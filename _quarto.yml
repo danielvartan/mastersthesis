@@ -1,0 +1,57 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
+  author: "Daniel Vartanian"
+  date: today
+  site-url: https://danielvartan.github.io/master-thesis/
+  repo-url: https://github.com/danielvartan/master-thesis/
+  repo-branch: main
+  chapters:
+    - index.qmd
+    - qmd/corrigendum.qmd
+    - qmd/evaluation-sheet.qmd
+    - qmd/inscription.qmd
+    - qmd/acknowledgments.qmd
+    - qmd/epigraph.qmd
+    - qmd/abstract.qmd
+    - qmd/resumo.qmd
+    - qmd/abbreviations.qmd
+    - qmd/table-of-contents.qmd
+    - qmd/thesis-outline.qmd
+    - part: qmd/chapter-1.qmd
+      chapters:
+        - qmd/on-chronobiology.qmd
+        - qmd/on-complex-systems.qmd
+        - qmd/aims.qmd
+    - part: qmd/chapter-2.qmd
+    - part: qmd/chapter-3.qmd
+    - part: qmd/chapter-4.qmd
+    - part: qmd/chapter-5.qmd
+    - part: qmd/chapter-6.qmd
+    - part: qmd/chapter-6.qmd
+      chapters:
+        - qmd/discussion.qmd
+        - qmd/study-limitations.qmd
+        - qmd/conclusions.qmd
+        - qmd/future-perspectives.qmd
+    - qmd/references.qmd
+  appendices:
+    - qmd/appendice-1.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    code-link: true
+  pdf:
+    documentclass: scrreprt
+    fontfamily: arial
+    fig-align: center
+    fig-cap-location: top
+    tbl-cap-location: top
+
+editor: source
