@@ -1,4 +1,16 @@
-# Chapter 6
+# Chapter 6 : a biological approach for the latitudinal cline of the chronotype
+
+::: {.callout-important}
+
+## Article
+
+Article about the latitude hypothesis.
+
+> Scientific Reports (IF 2022: 4.6/JCR | A1/2017-2020))
+
+:::
+
+See: https://docs.google.com/document/d/1fszBYkuhrbW_FONkV04sU-7HJRdPuWSx8Kry-nbGvF4/edit?usp=sharing
 
 This is a Quarto book.
 

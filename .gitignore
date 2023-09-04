@@ -58,3 +58,5 @@ po/*~
 .archive/
 pkgdown/
 .quarto/
+
+/.quarto/

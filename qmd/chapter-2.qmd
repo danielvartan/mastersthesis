@@ -1,5 +1,16 @@
 # Chapter 2
 
+::: {.callout-important}
+
+## Article
+
+Article about the similarity of MCTQ-PT translations.
+
+> Chronobiology International (IF: 2.8/JCR | CAPES: A1/2017-2020)
+> Journal of Biological Rhythms (IF 2022: 3.5/JCR | CAPES: A2/2017-2020)
+
+:::
+
 This is a Quarto book.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.

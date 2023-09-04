@@ -1,3 +1,6 @@
+execute:
+  freeze: auto
+
 project:
   type: book
   output-dir: docs
@@ -19,7 +22,7 @@ book:
     - qmd/abstract.qmd
     - qmd/resumo.qmd
     - qmd/abbreviations.qmd
-    - qmd/table-of-contents.qmd
+    - qmd/contents.qmd
     - qmd/thesis-outline.qmd
     - part: qmd/chapter-1.qmd
       chapters:
@@ -48,10 +51,15 @@ format:
     theme: cosmo
     code-link: true
   pdf:
-    documentclass: scrreprt
+    documentclass: scrbook
+    papersize: a4
     fontfamily: arial
     fig-align: center
     fig-cap-location: top
     tbl-cap-location: top
+    colorlinks: true
+    toc-title: Contents
+    toc: true
+    toc-depth: 2
 
 editor: source

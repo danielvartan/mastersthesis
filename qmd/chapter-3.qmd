@@ -1,5 +1,16 @@
 # Chapter 3
 
+::: {.callout-important}
+
+## Article
+
+Article about the `mctq` R package.
+
+> Journal of Open Source Software (IF 2022 : 5.2/Exaly | CAPES: B1/2017-2020)
+
+:::
+
+
 This is a Quarto book.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.

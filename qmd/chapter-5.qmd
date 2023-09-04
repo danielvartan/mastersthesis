@@ -1,5 +1,15 @@
 # Chapter 5
 
+::: {.callout-important}
+
+## Article
+
+Article about the {entrainment} R package and model.
+
+> Journal of Statistical Software (IF 2022: 5.8/JCR | CAPES: A1/2017-2020)
+
+:::
+
 This is a Quarto book.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.

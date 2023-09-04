@@ -1,4 +1,4 @@
-# On complex systems
+# Table of contents
 
 This is a Quarto book.
 
@@ -8,11 +8,3 @@ To learn more about Quarto books visit <https://quarto.org/docs/books>.
 1 + 1
 ```
 
-
-::: {.callout-note collapse="true"}
-
-## TODO
-
-* Dialetics and system theory.
-
-:::
