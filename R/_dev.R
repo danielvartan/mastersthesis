@@ -1,7 +1,8 @@
 # # For development use only (comment the code after use (Ctrl + Shift + C)).
 #
 # .rs.restartR()
-# cffr::cff_write()
+# .libPaths()
+# cffr::cff_validate()
 # lintr::lint_dir("R")
 # normalizePath(readClipboard(), "/", mustWork = FALSE)
 # renv::activate()
