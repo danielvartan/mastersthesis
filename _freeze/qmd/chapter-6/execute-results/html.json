@@ -1,8 +1,10 @@
 {
-  "hash": "e30f3a59745e1c42bd3ac7ad9ec08169",
+  "hash": "98ebd922f26a6d510c2ac4167045911b",
   "result": {
-    "markdown": "# Chapter 6\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "# Chapter 6 : a biological approach for the latitudinal cline of the chronotype\n\n::: {.callout-important}\n\n## Article\n\nArticle about the latitude hypothesis.\n\n> Scientific Reports (IF 2022: 4.6/JCR | A1/2017-2020))\n\n:::\n\nSee: https://docs.google.com/document/d/1fszBYkuhrbW_FONkV04sU-7HJRdPuWSx8Kry-nbGvF4/edit?usp=sharing\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [
+      "chapter-6_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

@@ -1,3 +1,9 @@
 # Epigraph
 
-“Nullius in verba” (The Royal Society, n.d.)
+```{r}
+#| echo: false
+
+source(here::here("R/_quarto_setup.R"))
+```
+
+“Nullius in verba” (@theroyalsociety_)

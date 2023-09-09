@@ -1,8 +1,10 @@
 {
-  "hash": "bacf7a8e090811775eb5a46fb2e1ec90",
+  "hash": "0fe531e82d6d01875bd31feb39fc483a",
   "result": {
-    "markdown": "# Chapter 5\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "# Chapter 5\n\n::: {.callout-important}\n\n## Article\n\nArticle about the {entrainment} R package and model.\n\n> Journal of Statistical Software (IF 2022: 5.8/JCR | CAPES: A1/2017-2020)\n\n:::\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [
+      "chapter-5_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

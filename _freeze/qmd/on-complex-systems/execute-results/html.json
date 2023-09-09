@@ -1,8 +1,10 @@
 {
-  "hash": "2a8ca92c4afcfc6d1cce6bbb1a2c67bd",
+  "hash": "05aa61610dbd4634bc6e0e1cb78316b9",
   "result": {
-    "markdown": "# On complex systems\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n\n\n\n::: {.callout-note collapse=\"true\"}\n\n## TODO\n\n* Dialetics and system theory\n\n:::\n",
-    "supporting": [],
+    "markdown": "# On complex systems\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n\n\n\n::: {.callout-note collapse=\"true\"}\n\n## TODO\n\n* Dialetics and system theory.\n\n:::\n",
+    "supporting": [
+      "on-complex-systems_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

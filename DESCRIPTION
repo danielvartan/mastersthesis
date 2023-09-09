@@ -1,0 +1,37 @@
+Package: mastersthesis
+Title: Ecology of Sleep and Circadian Phenotypes of the Brazilian population
+Version: 0.0.0.9000
+Authors@R: c(
+        person(
+            given = "Daniel",
+            family = "Vartanian",
+            role = c("aut", "cre", "ccp", "cph"),
+            email = "danvartan@gmail.com",
+            comment = c(ORCID = "0000-0001-7782-759X")
+            ),
+        person(
+            given = "Camilo",
+            family = "Rodrigues Neto",
+            role = c("aut", "sad"),
+            email = "camiloneto@usp.br",
+            comment = c(ORCID = "0000-0001-6783-6695")
+            ),
+        person(
+            given = "University of Sao Paulo (USP)",
+            role = "fnd"
+            ),
+        person(
+            given = paste0(
+              "Coordination for the Improvement of Higher Education Personnel",
+              "(CAPES)"
+              ),
+            role = "fnd"
+            )
+        )
+Description: Research compendium and Quarto book of the master's thesis: 
+  Ecology of sleep and circadian phenotypes of the Brazilian population.
+License: Creative Commons Attribution 4.0 International
+URL: https://github.com/danielvartan/mastersthesis/
+BugReports: https://github.com/danielvartan/mastersthesis/issues/
+Encoding: UTF-8
+Language: en-US

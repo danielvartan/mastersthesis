@@ -1,0 +1,29 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.5.0
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "mastersthesis" in publications use:'
+type: software
+title: 'mastersthesis: Ecology of Sleep and Circadian Phenotypes of the Brazilian
+  population'
+version: 0.0.0.9000
+abstract: 'Research compendium and Quarto book of the master''s thesis: Ecology of
+  sleep and circadian phenotypes of the Brazilian population.'
+authors:
+- family-names: Vartanian
+  given-names: Daniel
+  email: danvartan@gmail.com
+  orcid: https://orcid.org/0000-0001-7782-759X
+- family-names: Rodrigues Neto
+  given-names: Camilo
+  email: camiloneto@usp.br
+  orcid: https://orcid.org/0000-0001-6783-6695
+repository-code: https://github.com/danielvartan/mastersthesis/issues/
+url: https://github.com/danielvartan/mastersthesis/
+contact:
+- family-names: Vartanian
+  given-names: Daniel
+  email: danvartan@gmail.com
+  orcid: https://orcid.org/0000-0001-7782-759X

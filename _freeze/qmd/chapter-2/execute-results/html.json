@@ -1,8 +1,10 @@
 {
-  "hash": "a5e9de04110ef859f3e32d9b20965f99",
+  "hash": "9f6b5b9ac7cfdf09f74e706e95c8fb87",
   "result": {
-    "markdown": "# Chapter 2\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "# Chapter 2\n\n::: {.callout-important}\n\n## Article\n\nArticle about the similarity of MCTQ-PT translations.\n\n> Chronobiology International (IF: 2.8/JCR | CAPES: A1/2017-2020)\n> Journal of Biological Rhythms (IF 2022: 3.5/JCR | CAPES: A2/2017-2020)\n\n:::\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [
+      "chapter-2_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

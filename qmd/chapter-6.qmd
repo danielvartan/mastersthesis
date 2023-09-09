@@ -1,6 +1,8 @@
 # Chapter 6 : a biological approach for the latitudinal cline of the chronotype
 
-::: {.callout-important}
+::: {.callout-warning}
+This thesis is a work-in-progress. Follow new updates at the thesis web book: [danielvartan.github.io/mastersthesis](https://danielvartan.github.io/mastersthesis).
+:::
 
 ## Article
 

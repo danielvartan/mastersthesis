@@ -1,8 +1,10 @@
 {
-  "hash": "e364a3fb010394791560db679381d7a3",
+  "hash": "801b11bf3b8571b1145ff5de4a13e717",
   "result": {
-    "markdown": "# Preface {.unnumbered}\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "# Preface {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-warning}\nThis thesis is still a work-in-progress. You can follow new updates at the thesis web book: [danielvartan.github.io/master-thesis](https://danielvartan.github.io/master-thesis).\n:::\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n#> [1] 2\n```\n:::\n\n\n> Use ctrl-shift-P for open Rstudio's Addins menu.\n\nTest. @vartanian_2023\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

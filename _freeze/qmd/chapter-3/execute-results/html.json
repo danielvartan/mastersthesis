@@ -1,8 +1,10 @@
 {
-  "hash": "a79d06dc651a041c77ab325655120319",
+  "hash": "13eb94fbfdbedb5716ab609b80fbb3fc",
   "result": {
-    "markdown": "# Chapter 3\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "# Chapter 3\n\n::: {.callout-important}\n\n## Article\n\nArticle about the `mctq` R package.\n\n> Journal of Open Source Software (IF 2022 : 5.2/Exaly | CAPES: B1/2017-2020)\n\n:::\n\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [
+      "chapter-3_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

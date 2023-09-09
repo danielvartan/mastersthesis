@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^CITATION\.cff$
+^DESCRIPTION$
+^renv$
+^renv\.lock$

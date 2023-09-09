@@ -1,6 +1,27 @@
 # Preface {.unnumbered}
 
-See: https://docs.google.com/document/d/1zMnBFVhj8XtLHEThEJSEseartGTzZ-rooBjkEIwxRHo/edit?usp=sharing
+```{r}
+#| echo: false
+library(here)
+
+source(here::here("R/_quarto_setup.R"))
+```
+
+```{r}
+# TODO: Move this function to {groomr}.
+
+source(here::here("R/bbt_write_quarto_bib.R"))
+
+bbt_write_quarto_bib(
+  bib_file = here::here("references.json"), 
+  dir = here::here(c("", "qmd")),
+  pattern = "\\.qmd$"
+  )
+```
+
+::: {.callout-warning}
+This thesis is a work-in-progress. Follow new updates at the thesis web book: [danielvartan.github.io/mastersthesis](https://danielvartan.github.io/mastersthesis).
+:::
 
 This is a Quarto book.
 
@@ -9,3 +30,7 @@ To learn more about Quarto books visit <https://quarto.org/docs/books>.
 ```{r}
 1 + 1
 ```
+
+> Use ctrl-shift-P to open Rstudio's addins menu.
+
+Test. @vartanian_2023 @theroyalsociety_

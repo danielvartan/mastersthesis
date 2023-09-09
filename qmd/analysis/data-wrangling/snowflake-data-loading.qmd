@@ -1,0 +1,120 @@
+---
+title: "Snowflake data loading"
+description: |
+  Draft notebook.
+bibliography: ../references.bib
+format:
+  html:
+    citations-hover: true
+    code-copy: true
+    code-overflow: wrap
+    code-tools:
+      source: https://github.com/danielvartan/mastersthesis
+      toggle: false
+      caption: none
+    footnotes-hover: true
+editor: source
+highlight-style: arrow
+lang: en
+---
+
+<!-- Go to <https://quarto.org/docs/guide/> for Quarto's documentation. -->
+
+::: {.callout-note}
+This document is just a draft.
+:::
+
+## First things first
+
+```{r}
+#| eval: false
+
+library(here)
+library(dplyr)
+library(groomr)
+library(lubritime)
+library(readr)
+library(tidyverse)
+```
+
+## Export data
+
+```{r}
+raw <- read_field_form()
+```
+
+```{r}
+dplyr::glimpse(raw)
+```
+
+```{r}
+tidy <- 
+  raw |>
+  dplyr::mutate(
+    time = hms::parse_hms(time)
+  ) |>
+  dplyr::mutate(
+    dplyr::across(
+      .cols = dplyr::all_of(c("date", "pdBIRTH")),
+      .fns = ~ lubridate::ymd(.x)
+    )
+  ) |>
+  dplyr::mutate(
+    dplyr::across(
+      .cols = dplyr::all_of(c(
+        "pdHEIGHT", "pdWEIGHT", "mctqBTwMMdecimal", "mctqBTw", "mctqSPrepw",
+        "mctqSLatw", "mctqSEw", "mctqSIw", "mctqLEw", "mctqBTf", "mctqSPrepf",
+        "mctqSLatf", "mctqSEf", "mctqSIf", "mctqLEf", "mctqSOw", "mctqSOf",
+        "mctqGUw", "mctqGUf", "mctqSDw", "mctqSDf", "mctqTBTw", "mctqTBTf",
+        "mctqMSW", "mctqMSF", "mctqSDweek", "mctqMSFsc", "mctqSLossweek",
+        "mctqSJLrel", "mctqSJL", "mctqLEweek"
+      )),
+      .fns = as.numeric
+    ),
+    dplyr::across(.cols = dplyr::matches("decimal$"),.fns = as.numeric),
+    dplyr::across(
+      .cols = dplyr::all_of(c(
+        "ID", "pdGENDER", "pdGENDERidentity", "pdSEXUALORIENTATION",
+        "hhDRUGS", "hhSLEEPDISORDER", "hhMEDICATION", "hhSNORE", "hhWORK",
+        "hhSTUDY", "hhNOWORKORSTUDY", "hhWORKmorning", "hhWORKafternoon",
+        "hhWORKevening", "hhWORKweehours", "hhSTUDYmorning", "hhSTUDYafternoon",
+        "hhSTUDYevening", "hhSTUDYweehours", "mctqWD", "mctqFD", "mctqAlarmw",
+        "mctqAlarmf"
+      )),
+      .fns = as.integer
+    ),
+    dplyr::across(.cols = dplyr::matches("HH$|MM$"),.fns = as.integer)
+  )
+```
+
+```{r}
+dplyr::glimpse(tidy)
+```
+
+```{r}
+#| eval: false
+
+# dir <- choose.dir()
+dir <- normalizePath(readClipboard(), "/", mustWork = FALSE)
+
+tidy |>
+  readr::write_csv(
+    file = file.path(dir, "raw_data.csv"),
+    na = "",
+    quote = "all",
+    escape = "double"
+  )
+
+groomr::split_file(file = file.path(dir, "raw_data.csv"), n = 2, dir = dir)
+```
+
+## Test data
+
+```{r}
+test <- read_field_form(
+  file = file.path(dir, "raw_data.csv")
+)
+
+# Está substuindo por `NA` os nomes com acentos.
+```
+

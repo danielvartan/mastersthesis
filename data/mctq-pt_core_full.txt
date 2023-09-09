@@ -1,0 +1,27 @@
+Tenho um horário regular de trabalho? (inclui p. ex., ser dona/o de casa)
+Se “Sim”, quantos dias na semana?
+Dias de Trabalho
+Vou para a cama às _______ horas.
+Algumas pessoas permanecem algum tempo acordadas depois de estarem na cama.
+Às _______ horas estou pronto para adormecer.
+Necessito de _______ minutos para adormecer.
+Acordo às _______ horas.
+Após _______ minutos, levanto-me.
+Utilizo despertador nos dias de trabalho.
+Se “Sim”, normalmente acordo ANTES do despertador tocar
+
+
+
+Dias de Descanso
+Vou para a cama às _______ horas.
+Algumas pessoas permanecem algum tempo acordadas depois de estarem na cama.
+Às _______ horas estou pronto para adormecer.
+Necessito de _______ minutos para adormecer.
+Acordo às _______ horas.
+Após _______ minutos, levanto-me.
+A minha hora de acordar deve-se ao despertador, mesmo nos dias de descanso
+Existem razões que me impedem de escolher livremente o meu horário de sono nos dias de descanso
+Se “Sim”, quais?
+
+
+

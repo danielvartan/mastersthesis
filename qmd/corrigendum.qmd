@@ -1,3 +1,5 @@
 # Corrigendum
 
-No corrections were made to this version of the thesis.
+::: {.callout-warning}
+This thesis is a work-in-progress. Follow new updates at the thesis web book: [danielvartan.github.io/mastersthesis](https://danielvartan.github.io/mastersthesis).
+:::

@@ -1,0 +1,111 @@
+---
+title: "Data wrangling"
+description: |
+  Draft notebook.
+bibliography: ../references.bib
+format:
+  html:
+    citations-hover: true
+    code-copy: true
+    code-overflow: wrap
+    code-tools:
+      source: https://github.com/danielvartan/mastersthesis
+      toggle: false
+      caption: none
+    footnotes-hover: true
+editor: source
+highlight-style: arrow
+lang: en
+---
+
+<!-- Go to <https://quarto.org/docs/guide/> for Quarto's documentation. -->
+
+::: {.callout-note}
+This document is just a draft.
+:::
+
+## First things first
+
+```{r}
+#| eval: false
+
+library(gutils)
+library(here)
+library(lubritime)
+library(tidymodels)
+library(tidyverse)
+```
+
+## Recipes
+
+```{r}
+#| echo: false
+#| eval: false
+
+raw <- read_field_form()
+tidy <- raw |> tidy_field_form()
+valid <- tidy |> validate_field_form()
+analysis <- valid |> analyze_field_form()
+filter <- analysis |> filter_field_form()
+
+tidy <- read_field_form() |> 
+  tidy_field_form()
+
+valid <- read_field_form() |> 
+  tidy_field_form() |>
+  validate_field_form()
+
+analysis <- read_field_form() |>
+  tidy_field_form() |>
+  validate_field_form() |>
+  analyze_field_form()
+
+filter <- read_field_form() |>
+  tidy_field_form() |>
+  validate_field_form() |>
+  analyze_field_form() |>
+  filter_field_form()
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+vars <- c(
+  "birth_date", "sex", "country", "state", "city",
+  
+  "height", "weight", "sleep_drugs", "sleep_disorder", "medication",
+  "snore",
+  
+  "work", "study", "no_work_or_study",
+  
+  "wd",
+  
+  "bt_w", "sprep_w", "slat_w", "se_w", "si_w", "alarm_w", "le_w",
+  
+  "bt_f", "sprep_f", "slat_f", "se_f", "si_f", "alarm_f", "le_f"
+)
+
+nominal_vars <- c(
+  "sex", "sleep_drugs", "sleep_disorder", "medication",
+  "snore", "work", "study", "no_work_or_study","alarm_w", "alarm_f"
+)
+
+map_vars <- c("country", "state", "city", "latitude", "longitude")
+numerical_vars <- c("age", "height", "weight", "wd")
+hms_vars <- c("bt_w", "sprep_w", "se_w", "bt_f", "sprep_f", "se_f")
+duration_vars <- c("slat_w", "si_w", "le_w", "slat_f", "si_f", "le_f")
+```
+
+
+```{r}
+#| output: false
+#| warning: false
+
+data <- read_field_form() |>
+  tidy_field_form() |>
+  validate_field_form() |>
+  analyze_field_form() |>
+  filter_field_form() |>
+  add_geocode_data()
+```

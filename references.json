@@ -1,0 +1,4 @@
+[
+  {"id":"theroyalsociety_","abstract":"Explore the history of the Royal Society, including our motto and discover our timeline of key events.","accessed":{"date-parts":[[2023,9,9]]},"author":[{"family":"The Royal Society","given":""}],"citation-key":"theroyalsociety_","language":"en-gb","title":"History of the Royal Society","type":"webpage","URL":"https://royalsociety.org/about-us/history/"},
+  {"id":"vartanian_2023","author":[{"family":"Vartanian","given":"Daniel"}],"citation-key":"vartanian_2023","genre":"R","issued":{"date-parts":[[2023]]},"license":"MIT Licence","source":"GitHub","title":"{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)","title-short":"{mctq}","type":"software","URL":"https://docs.ropensci.org/mctq/","version":"0.3.2"}
+]

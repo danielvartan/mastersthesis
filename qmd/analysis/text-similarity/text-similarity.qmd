@@ -1,0 +1,213 @@
+---
+title: "Text similarity"
+description: |
+  Draft notebook.
+bibliography: ../references.bib
+format:
+  html:
+    citations-hover: true
+    code-copy: true
+    code-overflow: wrap
+    code-tools:
+      source: https://github.com/danielvartan/mastersthesis
+      toggle: false
+      caption: none
+    footnotes-hover: true
+editor: source
+highlight-style: arrow
+lang: en
+---
+
+<!-- Go to <https://quarto.org/docs/guide/> for Quarto's documentation. -->
+
+::: {.callout-note}
+This document is just a draft.
+:::
+
+## First things first
+
+```{r}
+#| eval: false
+
+library(checkmate)
+library(cli)
+library(curl)
+library(here)
+library(stringr)
+library(text)
+library(textreuse)
+```
+
+## Load and embed texts
+
+Vartanian, D., & Pedrazzoli, M. (2017). Questionário de cronotipo: baseado no Munich ChronoType Questionnaire (MCTQ). https://giperbio.github.io/mctq-form/
+
+Roenneberg, T., & Merrow, M. (2006). EUCLOCK: Portuguese MCTQ. http://web.archive.org/web/20141115175303/https://www.bioinfo.mpg.de/mctq/core_work_life/core/core.jsp?language=por_b
+
+Reis, C., Madeira, S. G., Lopes, L. V., Paiva, T., & Roenneberg, T. (2020). Validation of the Portuguese variant of the Munich Chronotype Questionnaire (MCTQ-PT). Frontiers in Physiology, 11, 795. https://doi.org/10.3389/fphys.2020.00795
+
+```{r}
+field_form_text_file <- "data/field-form_core_main.txt"
+euclock_text_file <- "data/euclock_core_main.txt"
+mctq_pt_text_file <- "data/mctq-pt_core_main.txt"
+```
+
+```{r}
+field_form_text_textreuse <- 
+  textreuse::TextReuseTextDocument(
+    file = field_form_text_file,
+    meta = list(id = "field_form")
+  )
+
+euclock_text_textreuse <- 
+  textreuse::TextReuseTextDocument(
+    file = euclock_text_file,
+    meta = list(id = "euclock")
+  )
+
+mctq_pt_text_textreuse <- 
+  textreuse::TextReuseTextDocument(
+    file = mctq_pt_text_file,
+    meta = list(id = "mctq_pt")
+  )
+```
+
+```{r}
+#| output: false
+
+if (!curl::has_internet()) {
+  cli::cli_abort(paste0(
+    "This code chunk needs an internet connection."
+  ))
+}
+
+## See:
+## https://huggingface.co/neuralmind/bert-base-portuguese-cased
+
+text_embed <- function(file) {
+  checkmate::assert_string(file)
+  checkmate::assert_file_exists(file)
+  
+  file |>
+    readLines() |>
+    text::textEmbed(
+      model = "neuralmind/bert-base-portuguese-cased",
+      layers = - 2,
+      dim_name = TRUE,
+      aggregation_from_layers_to_tokens = "concatenate",
+      aggregation_from_tokens_to_texts = "mean",
+      aggregation_from_tokens_to_word_types = NULL,
+      keep_token_embeddings = TRUE,
+      tokens_select = NULL,
+      tokens_deselect = NULL,
+      decontextualize = FALSE,
+      model_max_length = NULL,
+      max_token_to_sentence = 4,
+      tokenizer_parallelism = FALSE,
+      device = "gpu",
+      logging_level = "error"
+    )
+}
+
+field_form_text_textembed <- text_embed(field_form_text_file)
+euclock_text_textembed <- text_embed(euclock_text_file)
+mctq_pt_text_textembed <- text_embed(mctq_pt_text_file)
+```
+
+## Text similarity
+
+See @wang_2020 to learn more.
+
+For a quick explanation, see: <https://youtu.be/e9U0QAFbfLI>.
+
+<!-- See also: https://github.com/microsoft/semantic-kernel/blob/main/docs/EMBEDDINGS.md -->
+
+```{r}
+## See ?text::textSimilarity
+
+text_distance <- function(x, y) {
+  checkmate::assert_list(x, len = 2)
+  checkmate::assert_list(y, len = 2)
+  
+  methods <- c(
+    "binary", "cosine", "canberra", "euclidean", "manhattan", "maximum", 
+    "minkowski", "pearson"
+  )
+  
+  for (i in methods) {
+    cli::cli_alert_info(paste0(
+      "Method: {.strong {stringr::str_to_title(i)}}"
+      ))
+    
+    test <- 
+      text::textSimilarity(
+        x$texts$texts, 
+        y$texts$texts, 
+        method = i, 
+        center = TRUE, 
+        scale = FALSE
+      )
+    
+    cli::cli_bullets(c(">" = "Line by line"))
+    print(test)
+    
+    cli::cli_bullets(c(">" = "Overall mean"))
+    print(mean(test))
+    
+    cli::cat_line()
+  }
+}
+```
+
+```{r}
+## See ?textreuse::jaccard_similarity
+
+text_representation <- function(x, y) {
+  checkmate::assert_class(x, "TextReuseTextDocument")
+  checkmate::assert_class(y, "TextReuseTextDocument")
+  
+  cli::cli_alert_info(paste0("Method: {.strong Jaccard similarity}"))
+  print(textreuse::jaccard_similarity(x, y))
+  cli::cat_line()
+  
+  cli::cli_alert_info(paste0("Method: {.strong Jaccard bag similarity}"))
+  print(textreuse::jaccard_bag_similarity(x, y))
+  cli::cat_line()
+}
+```
+
+### How similar is the _field form_ when compared to the _EUCLOCK form_?
+
+* Text distance | Embedded (Semantic) test
+
+```{r}
+## See ?text::textSimilarity
+
+text_distance(field_form_text_textembed, euclock_text_textembed)
+```
+
+* Text representation
+
+```{r}
+# The maximum value for the Jaccard bag similarity is 0.5.
+
+text_representation(euclock_text_textreuse, field_form_text_textreuse)
+```
+
+### How similar is the _field form_ when compared to the _$\text{MCTQ}^{\text{PT}}$_?
+
+* Text distance | Embedded (Semantic) test
+
+```{r}
+## See ?text::textSimilarity
+
+text_distance(field_form_text_textembed, mctq_pt_text_textembed)
+```
+
+* Text representation
+
+```{r}
+# The maximum value for the Jaccard bag similarity is 0.5.
+
+text_representation(mctq_pt_text_textreuse, field_form_text_textreuse)
+```
