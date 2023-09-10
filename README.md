@@ -86,7 +86,9 @@ be made with the author’s approval and participation.
 
 You can find the thesis citation below.
 
-    Vartanian, D. (2023). Ecology of sleep and circadian phenotypes of the Brazilian population [Master's thesis]. School of Arts, Sciences and Humanities, University of Sao Paulo, São Paulo.
+    Vartanian, D. (2023). Ecology of sleep and circadian phenotypes of the Brazilian
+    population [Master's thesis]. School of Arts, Sciences and Humanities, 
+    University of Sao Paulo, São Paulo.
 
 A BibTeX entry for LaTeX users is
 

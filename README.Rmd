@@ -57,7 +57,9 @@ The main research data were used under the approval of a Research Ethics Committ
 You can find the thesis citation below.
 
 ```         
-Vartanian, D. (2023). Ecology of sleep and circadian phenotypes of the Brazilian population [Master's thesis]. School of Arts, Sciences and Humanities, University of Sao Paulo, São Paulo.
+Vartanian, D. (2023). Ecology of sleep and circadian phenotypes of the Brazilian
+population [Master's thesis]. School of Arts, Sciences and Humanities, 
+University of Sao Paulo, São Paulo.
 ```
 
 A BibTeX entry for LaTeX users is
