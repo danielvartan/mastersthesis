@@ -1,0 +1,16 @@
+{
+  "hash": "a888ef9e30d11b8140e60c4e44df3823",
+  "result": {
+    "markdown": "# Inscription {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n\n\nI dedicate this work to the skeptics, the radicals, the ignorant, the uncivilized, the subversives, the wild dogs, the irreducibles, the irreconcilables. To the true engines of change. To the destabilizers, who possess equal or greater importance than the stabilizers. To those who act on principle, even knowing that there is no ultimate reward or any meaning in life.\n",
+    "supporting": [
+      "inscription_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

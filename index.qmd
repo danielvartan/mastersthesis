@@ -1,13 +1,18 @@
-# Preface {.unnumbered}
+# Welcome {.unnumbered}
 
 ```{r}
+#| label: setup
 #| echo: false
-library(here)
+#| output: false
 
-source(here::here("R/_quarto_setup.R"))
+library(here)
+source(here::here("R/quarto-setup.R"))
 ```
 
 ```{r}
+#| echo: false
+#| output: false
+
 # TODO: Move this function to {groomr}.
 
 source(here::here("R/bbt_write_quarto_bib.R"))
@@ -19,18 +24,37 @@ bbt_write_quarto_bib(
   )
 ```
 
-::: {.callout-warning}
-This thesis is a work-in-progress. Follow new updates at the thesis web book: [danielvartan.github.io/mastersthesis](https://danielvartan.github.io/mastersthesis).
-:::
-
-This is a Quarto book.
-
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
 ```{r}
-1 + 1
+#| echo: false
+#| output: asis
+
+quarto_status("drafting")
 ```
 
-> Use ctrl-shift-P to open Rstudio's addins menu.
+This is the web version of the master's thesis titled _Ecology of Sleep and Circadian Phenotypes of the Brazilian Population_. The printed version will soon be available at [teses.usp.br](https://teses.usp.br/).
 
-Test. @vartanian_2023 @theroyalsociety_
+The analyses contained in this thesis are 100% reproducible. They were performed using the [R programming language](https://www.r-project.org/) and the  [Quarto](https://quarto.org/) publishing system (an evolution of the [R Markdown](https://rmarkdown.rstudio.com/) system). Click on the GitHub icon in the menu to access the thesis code repository.
+
+## Citation
+
+For attribution, please cite this work as:
+
+```
+Vartanian, D. (2023). Ecology of sleep and circadian phenotypes of the 
+Brazilian population [Master's thesis]. School of Arts, Sciences and Humanities,
+University of Sao Paulo, São Paulo. https://danielvartan.github.io/mastersthesis/
+```
+
+BibTeX citation:
+
+```
+@mastersthesis{vartanian_2023,
+  title = {Ecology of sleep and circadian phenotypes of the Brazilian population},
+  author = {Daniel Vartanian},
+  year = {2023},
+  address = {São Paulo},
+  school  = {University of Sao Paulo},
+  langid = {portuguese},
+  url = {https://danielvartan.github.io/mastersthesis/},
+}
+```

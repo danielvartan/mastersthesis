@@ -1,6 +1,23 @@
-# Abbreviations
+# Abbreviations {.unnumbered}
 
-::: {.callout-warning}
-This thesis is a work-in-progress. Follow new updates at the thesis web book: [danielvartan.github.io/mastersthesis](https://danielvartan.github.io/mastersthesis).
-:::
+```{r}
+#| label: setup
+#| echo: false
+#| output: false
 
+library(here)
+source(here::here("R/quarto-setup.R"))
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+quarto_status("drafting")
+```
+
+* __MCTQ__: Munich ChronoType Questionnaire
+* __MEQ__: Morningness-Eveningness Questionnaire 
+* __MSF~sc~__: Chronotype proxy. Midpoint between sleep onset and sleep end on work-free days. A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified.
+* __PRC__: Phase Response Curve
+* __SJL__: Social Jetlag 

@@ -2,6 +2,10 @@
 
 set.seed(2023)
 
+require(checkmate, quietly = TRUE)
+require(knitr, quietly = TRUE)
+require(ggplot2, quietly = TRUE)
+
 knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
@@ -28,7 +32,7 @@ options(
 ggplot2::theme_set(ggplot2::theme_gray(12))
 
 # use results: "asis" when setting a status for a chapter
-status <- function(type) {
+quarto_status <- function(type) {
   status <- switch(
     type,
     polishing = paste0(
@@ -38,7 +42,7 @@ status <- function(type) {
       "is undergoing heavy restructuring and may be confusing or incomplete"
       ),
     drafting = paste0(
-      "is currently a dumping ground for ideas, and we don't recommend", " ",
+      "is currently a dumping ground for ideas, and I don't recommend", " ",
       "reading it"
       ),
     complete = "is largely complete and just needs final proof reading",
@@ -55,11 +59,28 @@ status <- function(type) {
 
   cat(paste0(
     "\n",
-    ":::: status\n",
-    "::: callout-", class, " \n",
-    "You are reading the work-in-progress of this Master's thesis. ",
-    "This chapter ", status, ".",
-    ":::\n",
-    "::::\n"
+    "::: {.callout-", class, "}", "\n",
+    "You are reading the work-in-progress of this thesis.", " ",
+    "This chapter ", status, ".", "\n",
+    ":::",
+    "\n"
+  ))
+}
+
+quarto_callout_block <- function(text, type, options = "") {
+  choices_type <- c("note", "warning", "important", "tip", "caution")
+
+  checkmate:: assert_string(text)
+  checkmate::assert_choice(type, choices_type)
+  checkmate::assert_string(options)
+
+  options <- ifelse(options == "", "", paste0(" ", options))
+
+  cat(paste0(
+    "\n",
+    "::: {.callout-", type, options, "}", "\n",
+    text, "\n",
+    ":::",
+    "\n"
   ))
 }

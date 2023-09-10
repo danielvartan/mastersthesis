@@ -1,0 +1,25 @@
+# Discussion and conclusions
+
+```{r}
+#| label: setup
+#| echo: false
+#| output: false
+
+library(here)
+source(here::here("R/quarto-setup.R"))
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+quarto_status("drafting")
+```
+
+## Discussion
+
+## Limitations
+
+## Conclusions
+
+## Future perspectives

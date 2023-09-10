@@ -24,6 +24,12 @@
 # spelling::update_wordlist()
 # urlchecker::url_check()
 
+# # Quarto
+#
+# quarto render index.qmd
+# quarto render qmd/chapter-6.qmd
+# quarto publish gh-pages
+
 # # Google Cloud Storage
 #
 # library(googleCloudStorageR)

@@ -1,0 +1,16 @@
+{
+  "hash": "6f8f6eed3cfc1bf5467180dd1377a698",
+  "result": {
+    "markdown": "# Appendice: Chapter 4 supplemental material\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n",
+    "supporting": [
+      "appendice-ch-4_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

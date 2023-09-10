@@ -1,5 +1,17 @@
-# Acknowledgments
+# Acknowledgments {.unnumbered}
 
-::: {.callout-warning}
-This thesis is a work-in-progress. Follow new updates at the thesis web book: [danielvartan.github.io/mastersthesis](https://danielvartan.github.io/mastersthesis).
-:::
+```{r}
+#| label: setup
+#| echo: false
+#| output: false
+
+library(here)
+source(here::here("R/quarto-setup.R"))
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+quarto_status("drafting")
+```

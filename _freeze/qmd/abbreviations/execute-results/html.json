@@ -1,8 +1,10 @@
 {
-  "hash": "2789ae3ee82ad126dd6cba9d8de995da",
+  "hash": "0b3e7cf24ce90c88accda76fae59fbc4",
   "result": {
-    "markdown": "# Abbreviations\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "# Abbreviations {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n\n\n* __MCTQ__: Munich ChronoType Questionnaire\n* __MEQ__: Morningness-Eveningness Questionnaire \n* __MSF~sc~__: Chronotype proxy. Midpoint between sleep onset and sleep end on work-free days. A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified.\n* __PRC__: Phase Response Curve\n* __SJL__: Social Jetlag \n",
+    "supporting": [
+      "abbreviations_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

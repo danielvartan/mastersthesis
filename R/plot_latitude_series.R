@@ -2,10 +2,30 @@
 #
 # * Document functions.
 
+require(checkmate, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+require(gutils, quietly = TRUE)
+require(ggplot2, quietly = TRUE)
+require(here, quietly = TRUE)
+require(hms, quietly = TRUE)
+require(latex2exp, quietly = TRUE)
+require(tidyr, quietly = TRUE)
+
+source(here::here("R/utils.R"))
+source(here::here("R/utils-plot.R"))
+source(here::here("R/utils-stats.R"))
+
 plot_latitude_series <- function(
-    data, col = "msf_sc", y_lab = col, line_width = 2,
-    point_size = 1, error_bar_width = 0.5, error_bar_linewidth = 0.5,
-    error_bar = TRUE, text_size = NULL) {
+    data,
+    col = "msf_sc",
+    y_lab = col,
+    line_width = 2,
+    point_size = 1,
+    error_bar_width = 0.5,
+    error_bar_linewidth = 0.5,
+    error_bar = TRUE,
+    text_size = NULL
+    ) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
 
   checkmate::assert_tibble(data)
@@ -74,18 +94,18 @@ plot_latitude_series <- function(
       ggplot2::scale_y_datetime(date_labels = "%H:%M:%S")
   }
 
-if (isTRUE(error_bar)) {
-  plot <- plot +
-    ggplot2::geom_errorbar(
-      ggplot2::aes(
-        x = latitude, y = !!as.symbol(col),
-        ymin = !!as.symbol(col) - std_error,
-        ymax=!!as.symbol(col) + std_error
-      ),
-      data = data, show.legend = FALSE, inherit.aes = FALSE,
-      width = error_bar_width, linewidth = error_bar_linewidth
-    )
-}
+  if (isTRUE(error_bar)) {
+    plot <- plot +
+      ggplot2::geom_errorbar(
+        ggplot2::aes(
+          x = latitude, y = !!as.symbol(col),
+          ymin = !!as.symbol(col) - std_error,
+          ymax=!!as.symbol(col) + std_error
+        ),
+        data = data, show.legend = FALSE, inherit.aes = FALSE,
+        width = error_bar_width, linewidth = error_bar_linewidth
+      )
+  }
 
   print(plot)
   invisible(plot)

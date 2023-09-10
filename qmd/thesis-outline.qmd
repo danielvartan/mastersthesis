@@ -1,9 +1,17 @@
-# Thesis outline
-
-This is a Quarto book.
-
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+# Thesis outline {.unnumbered}
 
 ```{r}
-1 + 1
+#| label: setup
+#| echo: false
+#| output: false
+
+library(here)
+source(here::here("R/quarto-setup.R"))
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+quarto_status("drafting")
 ```

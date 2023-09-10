@@ -2886,6 +2886,29 @@
       "Repository": "RSPM",
       "Hash": "3a1be13d68d47a8cd0bfd74739ca1555"
     },
+    "tarchetypes": {
+      "Package": "tarchetypes",
+      "Version": "0.7.8",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "digest",
+        "dplyr",
+        "fs",
+        "furrr",
+        "future",
+        "future.callr",
+        "rlang",
+        "targets",
+        "tibble",
+        "tidyselect",
+        "utils",
+        "vctrs",
+        "withr"
+      ],
+      "Hash": "af10967be2e4d9531338272c0329378a"
+    },
     "targets": {
       "Package": "targets",
       "Version": "1.2.2",

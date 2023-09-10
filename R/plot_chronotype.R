@@ -6,15 +6,35 @@
 #
 #   The window must have an iterative length in order to obtain the desired
 #   or best density.
+#
 # * Document functions.
 
-plot_chronotype <- function(data, col = "msf_sc",
-                            x_lab = "Frequency (%)",
-                            y_lab = col,
-                            col_width = 0.8,
-                            col_border = 0.6,
-                            text_size = NULL,
-                            chronotype_cuts = FALSE) {
+require(checkmate, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+require(gutils, quietly = TRUE)
+require(ggplot2, quietly = TRUE)
+require(here, quietly = TRUE)
+require(hms, quietly = TRUE)
+require(latex2exp, quietly = TRUE)
+require(lubridate, quietly = TRUE)
+require(lubritime, quietly = TRUE)
+require(stats, quietly = TRUE)
+require(tidyr, quietly = TRUE)
+
+source(here::here("R/utils.R"))
+source(here::here("R/utils-plot.R"))
+
+plot_chronotype <- function(
+    data,
+    col = "msf_sc",
+    x_lab = "Frequency (%)",
+    y_lab = col,
+    col_width = 0.8,
+    col_border = 0.6,
+    text_size = NULL,
+    legend_position = "right",
+    chronotype_cuts = FALSE
+    ) {
   checkmate::assert_tibble(data, min.rows = 1, min.cols = 1)
   checkmate::assert_choice(col, names(data))
   checkmate::assert_multi_class(x_lab, c("character", "latexexpression"))
@@ -24,13 +44,8 @@ plot_chronotype <- function(data, col = "msf_sc",
   checkmate::assert_number(col_width)
   checkmate::assert_number(col_border)
   checkmate::assert_number(text_size, null.ok = TRUE)
+  checkmate::assert_choice(legend_position, c("left","top", "right", "bottom"))
   checkmate::assert_flag(chronotype_cuts)
-
-  # R CMD Check variable bindings fix (see: https://bit.ly/3z24hbU) -----
-  # nolint start: object_usage_linter.
-  . <- freq <- chronotype <- sd <- label <- quantile <- NULL
-  ee <- me <- se <- int <- sl <- ml <- el <- NULL
-  # nolint end
 
   if (is.null(y_lab)) {
     if (hms::is_hms(data[[col]])) {
@@ -137,7 +152,7 @@ plot_chronotype <- function(data, col = "msf_sc",
                                  y = stats::reorder(label, -order),
                                  fill = fill)) +
     ggplot2::geom_col(
-      width = col_width, colour = "#000000", size = col_border
+      width = col_width, colour = "#000000", linewidth = col_border
     ) +
     ggplot2::scale_x_continuous(minor_breaks = NULL) +
     ggplot2::scale_y_discrete(labels = labels_char_hms) +
@@ -157,7 +172,8 @@ plot_chronotype <- function(data, col = "msf_sc",
       #     size = 0, linetype = "blank", colour = "white"),
       # panel.grid.minor.x = ggplot2::element_line(
       #     size = 0, linetype = "blank", colour = "white"),
-      text = ggplot2::element_text(size = text_size)
+      text = ggplot2::element_text(size = text_size),
+      legend.position = legend_position
     )
 
   if (isTRUE(chronotype_cuts)) {

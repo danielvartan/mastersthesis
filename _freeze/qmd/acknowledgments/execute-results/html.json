@@ -1,8 +1,10 @@
 {
-  "hash": "6c8dbf6dc7951fb1e02dcd82fb13697a",
+  "hash": "bfac298fe5f4b0bea717f6ad90fe0311",
   "result": {
-    "markdown": "# Acknowledgments\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "# Acknowledgments {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n",
+    "supporting": [
+      "acknowledgments_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

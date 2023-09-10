@@ -1,9 +1,19 @@
-# Epigraph
+# Epigraph {.unnumbered}
+
+```{r}
+#| label: setup
+#| echo: false
+#| output: false
+
+library(here)
+source(here::here("R/quarto-setup.R"))
+```
 
 ```{r}
 #| echo: false
+#| output: asis
 
-source(here::here("R/_quarto_setup.R"))
+quarto_status("drafting")
 ```
 
-“Nullius in verba” (@theroyalsociety_)
+> _Nullius in verba_ [@theroyalsociety_]

@@ -1,0 +1,16 @@
+{
+  "hash": "ac1cb58b3da8044cf8b8e2a84886af4c",
+  "result": {
+    "markdown": "# Discussion and conclusions\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n\n\n## Discussion\n\n## Limitations\n\n## Conclusions\n\n## Future perspectives\n",
+    "supporting": [
+      "chapter-7_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

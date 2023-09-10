@@ -9,51 +9,69 @@ book:
   title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
   author: "Daniel Vartanian"
   date: today
+  reader-mode: true
+  # cover-image: cover.png
+  # favicon: cover.png
   site-url: https://danielvartan.github.io/mastersthesis/
   repo-url: https://github.com/danielvartan/mastersthesis/
   repo-branch: main
   chapters:
     - index.qmd
-    - qmd/corrigendum.qmd
-    - qmd/evaluation-sheet.qmd
-    - qmd/inscription.qmd
-    - qmd/acknowledgments.qmd
-    - qmd/epigraph.qmd
-    - qmd/abstract.qmd
-    - qmd/resumo.qmd
-    - qmd/abbreviations.qmd
-    - qmd/contents.qmd
-    - qmd/thesis-outline.qmd
-    - part: qmd/chapter-1.qmd
+    - part: "Preliminary Pages"
       chapters:
-        - qmd/on-chronobiology.qmd
-        - qmd/on-complex-systems.qmd
-        - qmd/aims.qmd
-    - part: qmd/chapter-2.qmd
-    - part: qmd/chapter-3.qmd
-    - part: qmd/chapter-4.qmd
-    - part: qmd/chapter-5.qmd
-    - part: qmd/chapter-6.qmd
+        - qmd/corrigendum.qmd
+        - qmd/inscription.qmd
+        - qmd/acknowledgments.qmd
+        - qmd/epigraph.qmd
+        - qmd/abstract.qmd
+        - qmd/resumo.qmd
+        - qmd/thesis-outline.qmd
+        - qmd/abbreviations.qmd
+    - part: "Chapters"
       chapters:
-        - qmd/discussion.qmd
-        - qmd/study-limitations.qmd
-        - qmd/conclusions.qmd
-        - qmd/future-perspectives.qmd
+        - qmd/chapter-1.qmd
+        - qmd/chapter-2.qmd
+        - qmd/chapter-3.qmd
+        - qmd/chapter-4.qmd
+        - qmd/chapter-5.qmd
+        - qmd/chapter-6.qmd
+        - qmd/chapter-7.qmd
     - qmd/references.qmd
   appendices:
-    - qmd/appendice-1.qmd
+    - qmd/appendice-ch-2.qmd
+    - qmd/appendice-ch-3.qmd
+    - qmd/appendice-ch-4.qmd
+    - qmd/appendice-ch-5.qmd
+    - qmd/appendice-ch-6.qmd
 
+# See <https://quarto.org/docs/authoring/footnotes-and-citations.html>.
 bibliography: references.json
+cls: apa.csl # <https://www.zotero.org/styles>
+
+# See <https://quarto.org/docs/authoring/create-citeable-articles.html>.
+citation:
+  type: thesis
+  url: https://danielvartan.github.io/mastersthesis/
+google-scholar: false
 
 format:
   html:
-    theme: cosmo
+    theme:
+      - cosmo
+      - style.scss
     code-link: true
     code-fold: true
+    fig-cap-location: bottom
+    tbl-cap-location: bottom
+    callout-appearance: simple
+    number-depth: 6
+    author-meta: "Daniel Vartanian"
   # pdf:
   #   documentclass: scrbook
   #   papersize: a4
   #   fontfamily: arial
+  #   cite-method: biblatex
+  #   biblio-style: apalike
   #   fig-align: center
   #   fig-cap-location: top
   #   tbl-cap-location: top

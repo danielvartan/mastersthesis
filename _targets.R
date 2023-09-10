@@ -1,5 +1,7 @@
 # See <https://books.ropensci.org/targets/> to learn more.
 
+library(here)
+library(tarchetypes)
 library(targets)
 
 source("R/get_raw_data.R")
@@ -11,7 +13,7 @@ source("R/add_geocode_data.R")
 source("R/lock_data.R")
 source("R/look_and_replace.R")
 
-tar_option_set(
+targets::tar_option_set(
   packages = c(
     "lubridate", # For masking reasons.
     "checkmate", "cli", "curl", "dplyr", "gutils", "googleCloudStorageR",
@@ -29,15 +31,16 @@ options(clustermq.scheduler = "multiprocess")
 future::plan(future.callr::callr)
 
 # Run the R scripts in the R/ folder with your custom functions:
-tar_source()
+targets::tar_source()
 # source("other_functions.R") # Source other scripts as needed.
 
 # Replace the target list below with your own:
 list(
-  tar_target(name = data, command = get_raw_data()),
-  tar_target(name = tidy, command = tidy_data(data)),
-  tar_target(name = validated, command = validate_data(tidy)),
-  tar_target(name = analyzed, command = analyze_data(validated)),
-  tar_target(name = filtered, command = filter_data(analyzed)),
-  tar_target(name = geocoded, command = add_geocode_data(filtered))
+  targets::tar_target(name = data, command = get_raw_data()),
+  targets::tar_target(name = tidy, command = tidy_data(data)),
+  targets::tar_target(name = validated, command = validate_data(tidy)),
+  targets::tar_target(name = analyzed, command = analyze_data(validated)),
+  targets::tar_target(name = filtered, command = filter_data(analyzed)),
+  targets::tar_target(name = geocoded, command = add_geocode_data(filtered)),
+  tarchetypes::tar_quarto(name = book, path = here::here())
 )

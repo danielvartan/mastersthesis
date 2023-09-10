@@ -1,0 +1,17 @@
+# Appendice: Chapter 2 supplemental material
+
+```{r}
+#| label: setup
+#| echo: false
+#| output: false
+
+library(here)
+source(here::here("R/quarto-setup.R"))
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+quarto_status("drafting")
+```

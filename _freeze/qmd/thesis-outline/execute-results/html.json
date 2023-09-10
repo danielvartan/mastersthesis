@@ -1,8 +1,10 @@
 {
-  "hash": "73f1c6a6013eb9c200de8a43311644ff",
+  "hash": "a2ce6ea3dd6e5ee82ce92de9791b385d",
   "result": {
-    "markdown": "# Thesis outline\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "# Thesis outline {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n",
+    "supporting": [
+      "thesis-outline_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
