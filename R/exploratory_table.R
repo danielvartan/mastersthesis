@@ -1,5 +1,9 @@
-## See <https://gt.rstudio.com/>.
-## See <https://gt.albert-rapp.de/>.
+# # TODO:
+#
+# * Document functions.
+
+## See <https://gt.rstudio.com/> & <https://gt.albert-rapp.de/>.
+
 exploratory_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
   checkmate::assert_atomic(x)
   checkmate::assert_choice(big_mark, c(".", ","))

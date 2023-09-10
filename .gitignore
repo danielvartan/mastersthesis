@@ -1,6 +1,7 @@
 /.auth/
 /.quarto/
 /.ssh/
+/_targets/
 /docs/
 .Rapp.history
 .RData

@@ -1,4 +1,8 @@
-## TODO: Refactor and document.
+# # TODO:
+#
+# * Refactor functions.
+# * Document functions.
+
 stats_sum <- function(x, threshold = hms::parse_hms("12:00:00"),
                       na_rm = TRUE, remove_outliers = FALSE, iqr_mult = 1.5,
                       hms_format = TRUE, print = TRUE) {

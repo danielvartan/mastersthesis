@@ -1,10 +1,12 @@
 # # TO DO:
 #
-# Index the local time vector in a timeline of 2 or 3 days in length and
-# scan data density in order to choose the densest data window. Extract
-# the statistics after.
-# The window must have an iterative length in order to obtain the desired
-# or best density.
+# * Index the local time vector in a timeline of 2 or 3 days in length and
+#   scan data density in order to choose the densest data window. Extract
+#   the statistics after.
+#
+#   The window must have an iterative length in order to obtain the desired
+#   or best density.
+# * Document functions.
 
 plot_chronotype <- function(data, col = "msf_sc",
                             x_lab = "Frequency (%)",

@@ -1,3 +1,7 @@
+# # TODO:
+#
+# * Document functions.
+
 plot_latitude_series <- function(
     data, col = "msf_sc", y_lab = col, line_width = 2,
     point_size = 1, error_bar_width = 0.5, error_bar_linewidth = 0.5,

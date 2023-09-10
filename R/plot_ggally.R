@@ -1,3 +1,7 @@
+# # TODO:
+#
+# * Document functions.
+
 plot_ggally <- function(data, cols, mapping = NULL, axis_labels = "none",
                         na_rm = TRUE, text_size = NULL) {
   checkmate::assert_tibble(data)

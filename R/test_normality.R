@@ -1,3 +1,7 @@
+# # TODO:
+#
+# * Document functions.
+
 # test <- test_normality(filter$msf_sc)
 test_normality <- function(x,
                            name = "x",

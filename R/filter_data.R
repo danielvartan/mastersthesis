@@ -1,4 +1,13 @@
-filter_field_form <- function(data) {
+# # TODO:
+#
+# * Document functions.
+
+require(checkmate, quietly = TRUE)
+require(cli, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+require(lubridate, quietly = TRUE)
+
+filter_data <- function(data) {
   checkmate::assert_tibble(data)
 
   cli::cli_progress_step("Filtering data")
@@ -24,4 +33,3 @@ filter_field_form <- function(data) {
       state %in% utc_minus_3_states
     )
 }
-

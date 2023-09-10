@@ -1,5 +1,10 @@
+# # TODO:
+#
+# * Document functions.
+# * Add to {scaler} package.
+
 # See https://doi.org/10.1037/0033-2909.112.1.155
-#     https://doi.org/10.3389/fpsyg.2012.00111 &
+#     https://doi.org/10.3389/fpsyg.2012.00111
 # to learn more.
 
 cohens_f_squared <- function(base_r_squared, new_r_squared = NULL) {

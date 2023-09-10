@@ -1,3 +1,7 @@
+# # TODO:
+#
+# * Document functions.
+
 normality_sum <- function(x, round = FALSE, digits = 5, ...) {
   checkmate::assert_numeric(x)
   checkmate::assert_flag(round)

@@ -47,16 +47,16 @@ Roenneberg, T., & Merrow, M. (2006). EUCLOCK: Portuguese MCTQ. http://web.archiv
 Reis, C., Madeira, S. G., Lopes, L. V., Paiva, T., & Roenneberg, T. (2020). Validation of the Portuguese variant of the Munich Chronotype Questionnaire (MCTQ-PT). Frontiers in Physiology, 11, 795. https://doi.org/10.3389/fphys.2020.00795
 
 ```{r}
-field_form_text_file <- "data/field-form_core_main.txt"
+data_text_file <- "data/field-form_core_main.txt"
 euclock_text_file <- "data/euclock_core_main.txt"
 mctq_pt_text_file <- "data/mctq-pt_core_main.txt"
 ```
 
 ```{r}
-field_form_text_textreuse <- 
+data_text_textreuse <- 
   textreuse::TextReuseTextDocument(
-    file = field_form_text_file,
-    meta = list(id = "field_form")
+    file = data_text_file,
+    meta = list(id = "data")
   )
 
 euclock_text_textreuse <- 
@@ -109,7 +109,7 @@ text_embed <- function(file) {
     )
 }
 
-field_form_text_textembed <- text_embed(field_form_text_file)
+data_text_textembed <- text_embed(data_text_file)
 euclock_text_textembed <- text_embed(euclock_text_file)
 mctq_pt_text_textembed <- text_embed(mctq_pt_text_file)
 ```
@@ -183,7 +183,7 @@ text_representation <- function(x, y) {
 ```{r}
 ## See ?text::textSimilarity
 
-text_distance(field_form_text_textembed, euclock_text_textembed)
+text_distance(data_text_textembed, euclock_text_textembed)
 ```
 
 * Text representation
@@ -191,7 +191,7 @@ text_distance(field_form_text_textembed, euclock_text_textembed)
 ```{r}
 # The maximum value for the Jaccard bag similarity is 0.5.
 
-text_representation(euclock_text_textreuse, field_form_text_textreuse)
+text_representation(euclock_text_textreuse, data_text_textreuse)
 ```
 
 ### How similar is the _field form_ when compared to the _$\text{MCTQ}^{\text{PT}}$_?
@@ -201,7 +201,7 @@ text_representation(euclock_text_textreuse, field_form_text_textreuse)
 ```{r}
 ## See ?text::textSimilarity
 
-text_distance(field_form_text_textembed, mctq_pt_text_textembed)
+text_distance(data_text_textembed, mctq_pt_text_textembed)
 ```
 
 * Text representation
@@ -209,5 +209,5 @@ text_distance(field_form_text_textembed, mctq_pt_text_textembed)
 ```{r}
 # The maximum value for the Jaccard bag similarity is 0.5.
 
-text_representation(mctq_pt_text_textreuse, field_form_text_textreuse)
+text_representation(mctq_pt_text_textreuse, data_text_textreuse)
 ```

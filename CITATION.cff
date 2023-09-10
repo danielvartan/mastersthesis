@@ -36,8 +36,8 @@ authors:
   given-names: Daniel
   email: danvartan@gmail.com
   orcid: https://orcid.org/0000-0001-7782-759X
-repository-code: https://github.com/danielvartan/mastersthesis/issues/
-url: https://github.com/danielvartan/mastersthesis/
+repository-code: https://github.com/danielvartan/mastersthesis/
+url: https://danielvartan.github.io/mastersthesis/
 contact:
 - family-names: Vartanian
   given-names: Daniel
@@ -46,3 +46,17 @@ contact:
 type: software
 version: 0.0.0.9000
 license: MIT
+identifiers:
+- type: url
+  value: https://danielvartan.github.io/mastersthesis/
+preferred-citation:
+  type: unpublished
+  title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
+  authors:
+  - family-names: Vartanian
+    given-names: Daniel
+    email: danvartan@gmail.com
+    orcid: https://orcid.org/0000-0001-7782-759X
+  year: "2023"
+  url: https://danielvartan.github.io/mastersthesis/
+  notes: "Quarto Book"

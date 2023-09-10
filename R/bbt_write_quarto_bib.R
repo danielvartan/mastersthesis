@@ -1,8 +1,13 @@
+# # TODO:
+#
+# * Document functions.
+# * Add to {groomr} package.
+
 # TODO: Add to {groomr} package.
 
-require(checkmate)
-require(rbbt)
-require(stringr)
+require(checkmate, quietly = TRUE)
+require(rbbt, quietly = TRUE)
+require(stringr, quietly = TRUE)
 
 bbt_write_quarto_bib <- function(bib_file, dir, pattern = "\\.qmd$") {
   checkmate::assert_string(bib_file)

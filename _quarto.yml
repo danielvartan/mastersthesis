@@ -50,16 +50,16 @@ format:
     theme: cosmo
     code-link: true
     code-fold: true
-  pdf:
-    documentclass: scrbook
-    papersize: a4
-    fontfamily: arial
-    fig-align: center
-    fig-cap-location: top
-    tbl-cap-location: top
-    colorlinks: true
-    toc-title: Contents
-    toc: true
-    toc-depth: 2
+  # pdf:
+  #   documentclass: scrbook
+  #   papersize: a4
+  #   fontfamily: arial
+  #   fig-align: center
+  #   fig-cap-location: top
+  #   tbl-cap-location: top
+  #   colorlinks: true
+  #   toc-title: Contents
+  #   toc: true
+  #   toc-depth: 2
 
 editor: source

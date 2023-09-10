@@ -1,3 +1,7 @@
+# # TODO:
+#
+# * Document functions.
+
 plot_ggcorrplot <- function(data, cols, na_rm = TRUE, text_size = NULL,
                             label = TRUE, hc_order = TRUE) {
   checkmate::assert_tibble(data)

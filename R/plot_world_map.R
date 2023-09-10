@@ -1,3 +1,7 @@
+# # TODO:
+#
+# * Document functions.
+
 plot_world_map <- function(data, option = NULL, text_size = NULL) {
   option_choices <- c(
     "magma", "A", "inferno", "B", "plasma", "C", "viridis", "D",

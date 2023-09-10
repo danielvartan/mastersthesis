@@ -1,12 +1,14 @@
-require(checkmate)
-require(cli)
-require(dplyr)
-require(googleCloudStorageR)
-require(here)
-require(lockr)
-require(readr)
-require(stringr)
-require(utils)
+require(checkmate, quietly = TRUE)
+require(cli, quietly = TRUE)
+require(curl, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+require(gutils, quietly = TRUE)
+require(googleCloudStorageR, quietly = TRUE)
+require(here, quietly = TRUE)
+require(lockr, quietly = TRUE)
+require(readr, quietly = TRUE)
+require(stringr, quietly = TRUE)
+require(utils, quietly = TRUE)
 
 #' Download, unlock, and read the project's raw data
 #'
@@ -31,17 +33,17 @@ require(utils)
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a raw the dataset.
 #'
-#' @importFrom dplyr %>%
 #' @template param_public_key
 #' @template param_private_key
-#' @family data functions
+#' @family data wrangling functions
+#'
 #' @noRd
 #'
 #' @examples
 #' \dontrun{
 #' if (requireNamespace("utils", quietly = TRUE)) {
-#'     raw <- read_field_form()
-#'     utils::View(raw)
+#'   raw <- get_raw_data()
+#'   utils::View(raw)
 #' }
 #' }
 get_raw_data <- function(
@@ -49,7 +51,9 @@ get_raw_data <- function(
     col_names = TRUE,
     public_key = here::here(".ssh/id_rsa.pub"),
     private_key = here::here(".ssh/id_rsa"),
-    iconv = TRUE) {
+    iconv = TRUE
+    ) {
+  checkmate::assert_string(file, null.ok = TRUE)
   checkmate::assert_flag(col_names)
   lockr:::assert_public_key(public_key)
   lockr:::assert_private_key(private_key)
@@ -58,27 +62,29 @@ get_raw_data <- function(
   test <- try(googleCloudStorageR::gcs_list_objects(), silent = TRUE)
 
   if (!is.null(file)) {
-    checkmate::assert_file_exists(file)
+    checkmate::assert_file_exists(file, extension = c("csv", "zip", "lockr"))
+  } else if (!curl::has_internet()) {
+    gutils:::assert_internet()
   } else if (inherits(test, "try-error")) {
     cli::cli_abort(paste0(
       "{.strong {cli::col_red('googleCloudStorageR')}} needs to be", " ",
-      "configured to get the raw data from the cloud. Contact the main", " ",
-      "author for more information."
+      "configured to get the {.strong {cli::col_blue('raw data')}} from", " ",
+      "the cloud. Contact the main author for more information."
     ))
   } else {
+    cli::cli_progress_step("Downloading raw data")
+
     file <- tempfile(fileext = ".zip.lockr")
-    gcs_get_object("raw-data.zip.lockr", saveToDisk = file)
+    googleCloudStorageR::gcs_get_object("raw-data.zip.lockr", saveToDisk = file)
   }
 
   if (any(grepl("\\.lockr$", file), na.rm = TRUE)) {
     cli::cli_progress_step("Decrypting data")
 
     for (i in file) {
-      lockr::unlock_file(
-        file = i, private_key = private_key, remove_file = TRUE
-      )
+      lockr::unlock_file(i, private_key, remove_file = TRUE)
 
-      file[file == i] <- sub("\\.lockr$", "", i)
+      file[file == i] <- stringr::str_remove(file, "\\.lockr$")
     }
 
     cli::cli_progress_done()
@@ -95,11 +101,9 @@ get_raw_data <- function(
     for (i in zip_files) {
       j <- utils::unzip(i, exdir = temp_dir)
 
-      lockr::lock_file(
-        file = i, public_key  = public_key, remove_file = TRUE
-      )
+      lockr::lock_file(i, public_key, remove_file = TRUE)
 
-      file <- file[!file == i] %>% append(j)
+      file <- file[!file == i] |> append(j)
     }
 
     cli::cli_progress_done()
@@ -141,9 +145,7 @@ get_raw_data <- function(
 
     if (isFALSE(col_names)) out <- out |> dplyr::slice(-1)
 
-    lockr::lock_file(
-      file = file, public_key = public_key, remove_file = TRUE
-    )
+    lockr::lock_file(file, public_key, remove_file = TRUE)
 
     cli::cli_progress_done()
   }

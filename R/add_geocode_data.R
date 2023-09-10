@@ -1,3 +1,11 @@
+## TODO:
+##
+## * Document functions
+
+require(checkmate, quietly = TRUE)
+require(cli, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+
 add_geocode_data <- function(data) {
   checkmate::assert_tibble(data)
 

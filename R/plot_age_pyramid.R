@@ -1,3 +1,7 @@
+# # TODO:
+#
+# * Document functions.
+
 plot_age_pyramid <- function(data, interval = 10, na_rm = TRUE,
                              text_size = NULL){
   checkmate::assert_tibble(data)

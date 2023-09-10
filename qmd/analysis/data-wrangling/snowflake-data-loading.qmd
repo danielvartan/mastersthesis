@@ -40,7 +40,7 @@ library(tidyverse)
 ## Export data
 
 ```{r}
-raw <- read_field_form()
+raw <- read_data()
 ```
 
 ```{r}
@@ -111,7 +111,7 @@ groomr::split_file(file = file.path(dir, "raw_data.csv"), n = 2, dir = dir)
 ## Test data
 
 ```{r}
-test <- read_field_form(
+test <- read_data(
   file = file.path(dir, "raw_data.csv")
 )
 

@@ -41,14 +41,12 @@ library(tidyverse)
 #| output: false
 #| warning: false
 
-data <- read_field_form() |>
-  tidy_field_form() |>
-  validate_field_form() |>
-  analyze_field_form() |>
-  filter_field_form() |>
+data <- get_raw_data() |>
+  tidy_data() |>
+  validate_data() |>
+  analyze_data() |>
+  filter_data() |>
   add_geocode_data()
-
-use_data(data, overwrite = TRUE)
 ```
 
 ```{r}

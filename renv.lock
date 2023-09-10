@@ -3,6 +3,26 @@
     "Version": "4.3.1",
     "Repositories": [
       {
+        "Name": "BioCsoft",
+        "URL": "https://bioconductor.org/packages/3.17/bioc"
+      },
+      {
+        "Name": "BioCann",
+        "URL": "https://bioconductor.org/packages/3.17/data/annotation"
+      },
+      {
+        "Name": "BioCexp",
+        "URL": "https://bioconductor.org/packages/3.17/data/experiment"
+      },
+      {
+        "Name": "BioCworkflows",
+        "URL": "https://bioconductor.org/packages/3.17/workflows"
+      },
+      {
+        "Name": "BioCbooks",
+        "URL": "https://bioconductor.org/packages/3.17/books"
+      },
+      {
         "Name": "CRAN",
         "URL": "https://packagemanager.posit.co/cran/latest"
       }
@@ -724,20 +744,6 @@
       ],
       "Hash": "e8a1e41acf02548751f45c718d55aa6a"
     },
-    "credentials": {
-      "Package": "credentials",
-      "Version": "2.0.1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "askpass",
-        "curl",
-        "jsonlite",
-        "openssl",
-        "sys"
-      ],
-      "Hash": "c7844b32098dcbd1c59cbd8dddb4ecc6"
-    },
     "curl": {
       "Package": "curl",
       "Version": "5.0.2",
@@ -1155,21 +1161,6 @@
       ],
       "Hash": "f9ccb31c736d673f7d597d1ce9d58597"
     },
-    "gert": {
-      "Package": "gert",
-      "Version": "1.9.3",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "askpass",
-        "credentials",
-        "openssl",
-        "rstudioapi",
-        "sys",
-        "zip"
-      ],
-      "Hash": "b544c397820e05a97d391b2d614a921a"
-    },
     "ggcorrplot": {
       "Package": "ggcorrplot",
       "Version": "0.1.4.1",
@@ -1223,32 +1214,6 @@
         "withr"
       ],
       "Hash": "92edfac53774706b4d6099f3ee6f6306"
-    },
-    "gh": {
-      "Package": "gh",
-      "Version": "1.4.0",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "cli",
-        "gitcreds",
-        "httr2",
-        "ini",
-        "jsonlite",
-        "rlang"
-      ],
-      "Hash": "03533b1c875028233598f848fda44c4c"
-    },
-    "gitcreds": {
-      "Package": "gitcreds",
-      "Version": "0.1.2",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "ab08ac61f3e1be454ae21911eb8bc2fe"
     },
     "globals": {
       "Package": "globals",
@@ -1591,25 +1556,6 @@
       ],
       "Hash": "ac107251d9d9fd72f0ca8049988f1d7f"
     },
-    "httr2": {
-      "Package": "httr2",
-      "Version": "0.2.3",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "R6",
-        "cli",
-        "curl",
-        "glue",
-        "magrittr",
-        "openssl",
-        "rappdirs",
-        "rlang",
-        "withr"
-      ],
-      "Hash": "193bb297368afbbb42dc85784a46b36e"
-    },
     "ids": {
       "Package": "ids",
       "Version": "1.0.1",
@@ -1642,13 +1588,6 @@
         "utils"
       ],
       "Hash": "80401cb5ec513e8ddc56764d03f63669"
-    },
-    "ini": {
-      "Package": "ini",
-      "Version": "0.3.1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "6154ec2223172bce8162d4153cda21f7"
     },
     "ipred": {
       "Package": "ipred",
@@ -3234,37 +3173,6 @@
       ],
       "Hash": "880ebc99e4d8f7e5f3caeb2f12632583"
     },
-    "usethis": {
-      "Package": "usethis",
-      "Version": "2.2.2",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "cli",
-        "clipr",
-        "crayon",
-        "curl",
-        "desc",
-        "fs",
-        "gert",
-        "gh",
-        "glue",
-        "jsonlite",
-        "lifecycle",
-        "purrr",
-        "rappdirs",
-        "rlang",
-        "rprojroot",
-        "rstudioapi",
-        "stats",
-        "utils",
-        "whisker",
-        "withr",
-        "yaml"
-      ],
-      "Hash": "60e51f0b94d0324dc19e44110098fa9f"
-    },
     "utf8": {
       "Package": "utf8",
       "Version": "1.2.3",
@@ -3374,13 +3282,6 @@
         "R"
       ],
       "Hash": "2982481615756e24e79fee95bdc95daa"
-    },
-    "whisker": {
-      "Package": "whisker",
-      "Version": "0.4.1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "c6abfa47a46d281a7d5159d0a8891e88"
     },
     "withr": {
       "Package": "withr",

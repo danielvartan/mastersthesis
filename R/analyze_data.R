@@ -1,18 +1,27 @@
-#' Analyze `validate_field_form()` output
+require(checkmate, quietly = TRUE)
+require(cli, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+require(gutils, quietly = TRUE)
+require(hms, quietly = TRUE)
+require(lubridate, quietly = TRUE)
+require(mctq, quietly = TRUE)
+require(scaler, quietly = TRUE)
+
+#' Analyze `validate_data()` output
 #'
 #' @description
 #'
-#' `analyse_field_form` computes and creates the non-measured MCTQ variables
-#' based on the output of `validate_field_form()`.
+#' `analyze_data()` computes and creates the non-measured MCTQ variables
+#' based on the output of `validate_data()`.
 #'
 #' @details
 #'
 #' Computing and creating new variables is part of the process of producing
-#' statistics, like described in Loo and Jonge (2018). It's also a part of the
+#' statistics, like described in Loo & Jonge (2018). It's also a part of the
 #' process of transforming data, described in the workflow proposed by Wickham
-#' and Grolemund (n.d.).
+#' & Grolemund (n.d.).
 #'
-#' @param data a [`tibble`][tibble::tibble()] with the `validate_field_form()`
+#' @param data A [`tibble`][tibble::tibble()] with the `validate_data()`
 #'   output.
 #' @param round (optional) a [`logical`][base::as.logical()] value indicating if
 #'   [`Duration`][lubridate::duration()] and [`hms`][hms::hms()] objects must be
@@ -22,37 +31,31 @@
 #'   objects must be converted to [`hms`][hms::hms() (default: `TRUE`).
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a validated
-#'   `field_form` dataset with all the variables proposed for a standard MCTQ
-#'   dataset.
+#'   dataset with all the variables proposed for a standard MCTQ dataset.
 #'
-#' @inheritParams read_field_form
 #' @template references_a
 #' @family data wrangling functions
-#' @importFrom dplyr %>%
-#' @importFrom rlang .data := !!
-#' @export
+#'
+#' @noRd
 #'
 #' @examples
 #' \dontrun{
 #' if (requireNamespace("utils", quietly = TRUE)) {
-#'     utils::View(analyze_field_form())
+#'   analysis <- analyze_data()
+#'   utils::View(analyze_data())
 #' }
 #' }
-analyze_field_form <- function(data,
-                               write = FALSE,
-                               round = FALSE,
-                               hms = FALSE) {
+analyze_data <- function(data, round = FALSE, hms = FALSE) {
   checkmate::assert_tibble(data)
-  checkmate::assert_flag(write)
   checkmate::assert_flag(round)
   checkmate::assert_flag(hms)
 
   cli::cli_progress_step("Analyzing data")
 
-  field_form <- data %>%
+  out <- data |>
     dplyr::mutate(
       age = scaler::age(birth_date, timestamp)
-    ) %>%
+    ) |>
     dplyr::mutate(
       fd = mctq::fd(wd),
       so_w = mctq::so(sprep_w, slat_w),
@@ -75,9 +78,9 @@ analyze_field_form <- function(data,
       sjl = abs(sjl_rel),
       sjl_sc_rel = mctq::sjl_sc_rel(so_w, se_w, so_f, se_f),
       sjl_sc = abs(sjl_sc_rel),
-    ) %>%
+    ) |>
     dplyr::relocate(
-      field_form_id, timestamp, track,
+      id, timestamp, track,
 
       name, email, birth_date, age, sex, gender_identity,
       sexual_orientation, country, state, city, postal_code,
@@ -100,17 +103,17 @@ analyze_field_form <- function(data,
       sjl_sc
     )
 
-  count_w <- length(names(field_form)[grepl("_w$", names(field_form))])
-  count_f <- length(names(field_form)[grepl("_f$", names(field_form))])
+  count_w <- length(names(out)[grepl("_w$", names(out))])
+  count_f <- length(names(out)[grepl("_f$", names(out))])
   count_w <- count_w * 2/3
   count_f <- count_f * 2/3
 
-  test <- field_form %>%
+  test <- out |>
     dplyr::mutate(dplyr::across(
       .cols = dplyr::everything(),
       .fns = as.character
-    )) %>%
-    dplyr::rowwise() %>%
+    )) |>
+    dplyr::rowwise() |>
     dplyr::mutate(
       dummy_0_a = as.integer(wd) == 0,
       dummy_0_b = gutils:::count_na(
@@ -120,12 +123,12 @@ analyze_field_form <- function(data,
       dummy_7_b = gutils:::count_na(
         dplyr::c_across(cols = dplyr::ends_with("_f"))) >= count_f,
       dummy_0 = dummy_0_a & dummy_0_b & dummy_0_c & dummy_7_b == FALSE,
-      dummy_7 = dummy_7_a & dummy_7_b & dummy_0_b == FALSE) %>%
-    dplyr::ungroup() %>%
+      dummy_7 = dummy_7_a & dummy_7_b & dummy_0_b == FALSE) |>
+    dplyr::ungroup() |>
     dplyr::select(dummy_0, dummy_7)
 
-  field_form <- field_form %>%
-    dplyr::bind_cols(test) %>%
+  out <- out |>
+    dplyr::bind_cols(test) |>
     dplyr::mutate(
       sd_week = dplyr::case_when(
         dummy_0 == TRUE ~ sd_f,
@@ -143,10 +146,8 @@ analyze_field_form <- function(data,
       sjl_sc_rel = dplyr::if_else(dummy_0, lubridate::dhours(0),
                                   sjl_sc_rel),
       sjl_sc = dplyr::if_else(dummy_0, lubridate::dhours(0), sjl_sc)
-    ) %>%
+    ) |>
     dplyr::select(-dummy_0, -dummy_7)
 
-  if (isTRUE(write)) usethis::use_data(field_form, overwrite = TRUE)
-
-  invisible(field_form)
+  invisible(out)
 }

@@ -1,7 +1,13 @@
+# # TODO:
+#
+# * Document functions.
+# * Add to {scaler} package.
+
 # Based on:
 #
 # Frey, B. B. (Ed.). (2022). The SAGE encyclopedia of research design (2. ed.).
 # SAGE Publications. https://doi.org/10.4135/9781071812082
+
 cohens_d <- function(x, y, t = NULL, abs = TRUE) {
   checkmate::assert_numeric(x)
   checkmate::assert_numeric(y)

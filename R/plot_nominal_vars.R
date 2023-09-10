@@ -1,3 +1,7 @@
+# # TODO:
+#
+# * Document functions.
+
 plot_nominal_vars <- function(data) {
   nominal_vars <- c(
     "sex", "sleep_drugs", "sleep_disorder", "medication",

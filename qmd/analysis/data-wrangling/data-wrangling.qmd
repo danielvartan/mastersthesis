@@ -42,29 +42,29 @@ library(tidyverse)
 #| echo: false
 #| eval: false
 
-raw <- read_field_form()
-tidy <- raw |> tidy_field_form()
-valid <- tidy |> validate_field_form()
-analysis <- valid |> analyze_field_form()
-filter <- analysis |> filter_field_form()
+raw <- get_raw_data()
+tidy <- raw |> tidy_data()
+valid <- tidy |> validate_data()
+analysis <- valid |> analyze_data()
+filter <- analysis |> filter_data()
 
-tidy <- read_field_form() |> 
-  tidy_field_form()
+tidy <- get_raw_data() |> 
+  tidy_data()
 
-valid <- read_field_form() |> 
-  tidy_field_form() |>
-  validate_field_form()
+valid <- get_raw_data() |> 
+  tidy_data() |>
+  validate_data()
 
-analysis <- read_field_form() |>
-  tidy_field_form() |>
-  validate_field_form() |>
-  analyze_field_form()
+analyzed <- get_raw_data() |>
+  tidy_data() |>
+  validate_data() |>
+  analyze_data()
 
-filter <- read_field_form() |>
-  tidy_field_form() |>
-  validate_field_form() |>
-  analyze_field_form() |>
-  filter_field_form()
+filter <- get_raw_data() |>
+  tidy_data() |>
+  validate_data() |>
+  analyze_data() |>
+  filter_data()
 ```
 
 ```{r}
@@ -102,10 +102,10 @@ duration_vars <- c("slat_w", "si_w", "le_w", "slat_f", "si_f", "le_f")
 #| output: false
 #| warning: false
 
-data <- read_field_form() |>
-  tidy_field_form() |>
-  validate_field_form() |>
-  analyze_field_form() |>
-  filter_field_form() |>
+data <- get_raw_data() |>
+  tidy_data() |>
+  validate_data() |>
+  analyze_data() |>
+  filter_data() |>
   add_geocode_data()
 ```
