@@ -2,7 +2,7 @@
 /.quarto/
 /.ssh/
 /_targets/
-/docs/
+# /docs/
 .Rapp.history
 .RData
 .Renviron

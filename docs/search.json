@@ -1,0 +1,254 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
+    "section": "",
+    "text": "Welcome\nThis is the web version of the master’s thesis titled Ecology of Sleep and Circadian Phenotypes of the Brazilian Population. The printed version will soon be available at teses.usp.br.\nThe analyses contained in this thesis are 100% reproducible. They were performed using the R programming language and the Quarto publishing system (an evolution of the R Markdown system). Click on the GitHub icon in the menu to access the thesis code repository."
+  },
+  {
+    "objectID": "index.html#citation",
+    "href": "index.html#citation",
+    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
+    "section": "Citation",
+    "text": "Citation\nFor attribution, please cite this work as:\nVartanian, D. (2023). Ecology of sleep and circadian phenotypes of the \nBrazilian population [Master's thesis]. School of Arts, Sciences and Humanities,\nUniversity of Sao Paulo, São Paulo. https://danielvartan.github.io/mastersthesis/\nBibTeX citation:\n@mastersthesis{vartanian_2023,\n  title = {Ecology of sleep and circadian phenotypes of the Brazilian population},\n  author = {Daniel Vartanian},\n  year = {2023},\n  address = {São Paulo},\n  school  = {University of Sao Paulo},\n  langid = {portuguese},\n  url = {https://danielvartan.github.io/mastersthesis/},\n}"
+  },
+  {
+    "objectID": "qmd/corrigendum.html",
+    "href": "qmd/corrigendum.html",
+    "title": "Corrigendum",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  },
+  {
+    "objectID": "qmd/inscription.html",
+    "href": "qmd/inscription.html",
+    "title": "Inscription",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it.\n\n\n\nI dedicate this work to the skeptics, the radicals, the ignorant, the uncivilized, the subversives, the wild dogs, the irreducibles, the irreconcilables. To the true engines of change. To the destabilizers, who possess equal or greater importance than the stabilizers. To those who act on principle, even knowing that there is no ultimate reward or any meaning in life."
+  },
+  {
+    "objectID": "qmd/acknowledgments.html",
+    "href": "qmd/acknowledgments.html",
+    "title": "Acknowledgments",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  },
+  {
+    "objectID": "qmd/epigraph.html",
+    "href": "qmd/epigraph.html",
+    "title": "Epigraph",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it.\n\n\n\n\nNullius in verba (The Royal Society n.d.)\n\n\n\n\n\nThe Royal Society. n.d. “History of the Royal Society.” Accessed September 9, 2023. https://royalsociety.org/about-us/history/."
+  },
+  {
+    "objectID": "qmd/abstract.html",
+    "href": "qmd/abstract.html",
+    "title": "Abstract",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  },
+  {
+    "objectID": "qmd/resumo.html",
+    "href": "qmd/resumo.html",
+    "title": "Resumo (PT-BR abstract)",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  },
+  {
+    "objectID": "qmd/thesis-outline.html",
+    "href": "qmd/thesis-outline.html",
+    "title": "Thesis outline",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  },
+  {
+    "objectID": "qmd/abbreviations.html",
+    "href": "qmd/abbreviations.html",
+    "title": "Abbreviations",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it.\n\n\n\n\n\nMCTQ: Munich ChronoType Questionnaire\n\nMEQ: Morningness-Eveningness Questionnaire\n\nMSFsc: Chronotype proxy. Midpoint between sleep onset and sleep end on work-free days. A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified.\n\nPRC: Phase Response Curve\n\nSJL: Social Jetlag"
+  },
+  {
+    "objectID": "qmd/chapter-1.html#on-chronobiology",
+    "href": "qmd/chapter-1.html#on-chronobiology",
+    "title": "\n1  Introduction\n",
+    "section": "\n1.1 On chronobiology",
+    "text": "1.1 On chronobiology"
+  },
+  {
+    "objectID": "qmd/chapter-1.html#on-complex-systems",
+    "href": "qmd/chapter-1.html#on-complex-systems",
+    "title": "\n1  Introduction\n",
+    "section": "\n1.2 On complex systems",
+    "text": "1.2 On complex systems"
+  },
+  {
+    "objectID": "qmd/chapter-1.html#on-the-entrainment-phenomenon",
+    "href": "qmd/chapter-1.html#on-the-entrainment-phenomenon",
+    "title": "\n1  Introduction\n",
+    "section": "\n1.3 On the entrainment phenomenon",
+    "text": "1.3 On the entrainment phenomenon"
+  },
+  {
+    "objectID": "qmd/chapter-1.html#aims",
+    "href": "qmd/chapter-1.html#aims",
+    "title": "\n1  Introduction\n",
+    "section": "\n1.4 Aims",
+    "text": "1.4 Aims"
+  },
+  {
+    "objectID": "qmd/chapter-2.html#study-framework",
+    "href": "qmd/chapter-2.html#study-framework",
+    "title": "\n2  Similarities between different versions of the MCTQ-PT\n",
+    "section": "\n2.1 Study framework",
+    "text": "2.1 Study framework"
+  },
+  {
+    "objectID": "qmd/chapter-3.html#study-framework",
+    "href": "qmd/chapter-3.html#study-framework",
+    "title": "\n3  The {mctq} R package\n",
+    "section": "\n3.1 Study framework",
+    "text": "3.1 Study framework"
+  },
+  {
+    "objectID": "qmd/chapter-4.html#study-framework",
+    "href": "qmd/chapter-4.html#study-framework",
+    "title": "\n4  Brazilian chronotypes: the largest MCTQ-PT sample to date\n",
+    "section": "\n4.1 Study framework",
+    "text": "4.1 Study framework"
+  },
+  {
+    "objectID": "qmd/chapter-5.html#study-framework",
+    "href": "qmd/chapter-5.html#study-framework",
+    "title": "\n5  Rule-based model of the 24h light/dark cycle entrainment phenomenon\n",
+    "section": "\n5.1 Study framework",
+    "text": "5.1 Study framework"
+  },
+  {
+    "objectID": "qmd/chapter-6.html#study-framework",
+    "href": "qmd/chapter-6.html#study-framework",
+    "title": "\n6  A biological approach for the latitudinal cline of the chronotype\n",
+    "section": "\n6.1 Study framework",
+    "text": "6.1 Study framework"
+  },
+  {
+    "objectID": "qmd/chapter-6.html#abstract",
+    "href": "qmd/chapter-6.html#abstract",
+    "title": "\n6  A biological approach for the latitudinal cline of the chronotype\n",
+    "section": "\n6.2 Abstract",
+    "text": "6.2 Abstract\nChronotypes are temporal phenotypes (Ehret 1974; C. S. Pittendrigh 1993). Observable traits, like weight and eye color. Our current understanding of these traits is that they are linked to our environment and are the result of evolution pressures for creating an inner temporal organization (Aschoff 1989; Paranjpe and Sharma 2005). A way that organisms have found to anticipate events. Having such an important function in nature, these internal rhythms need to be closely aligned with environmental changes. The agents that shift these oscillations towards the environment are called zeitgebers and the shift phenomenon is called entrainment (Roenneberg, Daan, and Merrow 2003; Roenneberg et al. 2010). The main zeitgeber for humans is light exposure, particularly the light of the sun (Khalsa et al. 2003; Minors, Waterhouse, and Wirz-Justice 1991; Roenneberg, Kumar, and Merrow 2007). Considering the major role of light on entrainment, several studies hypothesized that the latitude shift of the sun could influence or even define the chronotypes of different populations (Horzum et al. 2015; Hut et al. 2013; Leocadio-Miguel et al. 2017; Miguel et al. 2014; Colin S. Pittendrigh, Kyner, and Takamura 1991; Randler and Rahafar 2017). For example, populations that live close to the equator would be, on average, more entrained to the light-dark cycle and have morning-leaning characteristics. Here we test this hypothesis using a biological measure, the chronotype state, provided by the Munich ChronoType Questionnaire (Roenneberg, Wirz-Justice, and Merrow 2003). We tested the latitude hypothesis on a sample with \\(73,825\\) subjects living in different latitudes in Brazil. Our results show that, even with a wide, big, and aligned sample, the latitude is associated only with negligible effect sizes. The entrainment phenomenon appears to be much more complex than previously imagined, opening new questions and contradictions that need to be further investigated."
+  },
+  {
+    "objectID": "qmd/chapter-6.html#main-text",
+    "href": "qmd/chapter-6.html#main-text",
+    "title": "\n6  A biological approach for the latitudinal cline of the chronotype\n",
+    "section": "\n6.3 Main text",
+    "text": "6.3 Main text\n\n6.3.1 Introduction\nHumans can differ from one another in many ways. These observable traits, like hair color or height, are called phenotypes and are also presented in the way that our body function.\nA chronotype is a temporal phenotype (Ehret 1974; C. S. Pittendrigh 1993). This word is usually used to refer to endogenous circadian rhythms, i.e., rhythms which periods that are close to a day or 24 hours (circa diem). The current body of knowledge of Chronobiology, the science that studies biological rhythms, indicates that the evolution of these internal oscillators is linked to our oscillatory environment, like the day and night cycle, which, along with our evolution, created environmental pressures for the development of a temporal organization (Aschoff 1989; Paranjpe and Sharma 2005). A way in which an organism could predict events and better manage its needs, like storing food for the winter.\nBut a temporal system wouldn’t be of much use if it could not follow environmental changes. To those environmental signals that can regulate the biological rhythms are given the name zeitgeber (from the German Zeit, time, and Geber, giver). These zeitgebers produce inputs in our bodies that can shift and align those rhythms. This phenomenon is called entrainment (Roenneberg, Daan, and Merrow 2003; Roenneberg et al. 2010).\nThe main zeitgeber known today is the light, particularly the sun’s light (Khalsa et al. 2003; Minors, Waterhouse, and Wirz-Justice 1991; Roenneberg, Kumar, and Merrow 2007). Considering its influence in entraining the biological temporal system, several studies hypothesize that the latitudinal shift of the sun, related to the earth’s axis, would produce, on average, different temporal traits in populations that live close to the equator line when compared to populations that live close to the planet’s poles (Horzum et al. 2015; Hut et al. 2013; Leocadio-Miguel et al. 2017; Miguel et al. 2014; Colin S. Pittendrigh, Kyner, and Takamura 1991; Randler and Rahafar 2017). That is because the latter ones would have greater oscillations in sun activity and an overall weak solar zeitgeber. This is the latitude hypothesis, that can also appear as an environmental hypothesis of circadian rhythm regulation.\nRecently there have been attempts to test the latitude hypothesis in different settings, but, at least in humans, none of them have been successful in seeing a significant effect size related to the latitudinal cline. Some of these approaches worked with secondary data and with small samples. One of the most serious attempts of testing this hypothesis was made by Leocadio-Miguel et al. (2017) in 2017. They measured the chronotype of \\(12,884\\) Brazillian subjects on a wide latitudinal spectrum using the Morningness–Eveningness Questionnaire (MEQ). Their results showed a negligible effect size. One possible reason for this is that the MEQ measures psychological traits and not biological states (Roenneberg et al. 2019), i.e., the circadian oscillation itself, therefore, it’s not the best way to answer the question (Miguel et al. 2014).\nThis article brings a novel attempt to test the latitude hypothesis, using, this time, a biological approach provided by the Munich ChronoType Questionnaire (MCTQ) (Roenneberg, Wirz-Justice, and Merrow 2003). Furthermore, the test was carried out on the biggest chronotype sample ever collected in a same country. A sample made of \\(73,825\\) subjects, all living in the same timezone in Brazil, with only one week of difference between questionnaire responses.\n\n6.3.2 Results\nThe midpoint between sleep onset and sleep end on work-free days (\\(\\text{MSF}_{\\text{sc}}\\)), MCTQ proxy for measuring the chronotype, had an overall mean of \\(\\text{04:26:51}\\). The distribution curve is shown in Figure 6.1.\nThat’s the midsleep point of Brazilian subjects with an intermediate/average chronotype. One can imagine, following the 7-9h sleep recommendation for healthy adults of the American Academy of Sleep Medicine (AASM) (Watson et al. 2015), that this average person would, if he/she had no social obligations, typically wake up at about \\(\\text{08:26:51}\\).\n\nCodelibrary(callr)\nlibrary(dplyr)\nlibrary(here)\nlibrary(targets)\nlibrary(tidyr)\n\ndata &lt;- \n  targets::tar_read(\"geocoded\", store = here::here(\"_targets\")) |&gt;\n  dplyr::select(\n    age, sex, state, region, latitude, longitude, height, weight, work, study,\n    msf_sc, sjl, le_week, \n    ) |&gt;\n  tidyr::drop_na(msf_sc, age, sex, latitude)\n\n\n\nCodesource(here::here(\"R/plot_chronotype.R\"))\n\ndata |&gt; \n    plot_chronotype(\n    col = \"msf_sc\", \n    x_lab = \"Frequency (%)\",\n    y_lab = latex2exp::TeX(\"Local time ($MSF_{sc}$)\"),\n    col_width = 0.8,\n    col_border = 0.6,\n    text_size = 10,\n    chronotype_cuts = FALSE,\n    legend_position = \"right\"\n  )\n\n\n\nFigure 6.1: Distribution of the midpoint between sleep onset and sleep end on work-free days (\\(\\text{MSF}_{\\text{sc}}\\)), MCTQ proxy for measuring the chronotype. The categorical cuts follow a quantile approach going from extremely early (\\(0 |- 0.11\\)) to the extremely late (\\(0.88 - 1\\)).\n\n\n\nThe \\(\\text{MSF}_{\\text{sc}}\\) curve had a skewness of \\(0.291\\) and a kurtosis of \\(2.766\\). However, the distribution was not normal accordingly to Kolmogorov-Smirnov test (\\(\\text{D} = 0.0373\\); \\(\\text{p-value} &lt; 2e-16\\)) and D’Agostino Skewness test (\\(\\text{Z3} = 31.544\\); \\(\\text{p-value} &lt; 2.2e-16\\)).\nA linear regression model was created with \\(\\text{MSF}_{\\text{sc}}\\) as the response variable and with age and sex as predictors (\\(\\text{R}^{2} = 0.054433\\); \\(\\text{F}(2, 73822) = 2130\\), \\(\\text{p-value} &lt; 2e-16\\)). A Box-Cox transformation of the response variable was needed to attend to the linear regression model assumptions (\\(\\lambda = -1.1919\\); \\(\\text{MSF}_{\\text{sc}}^{\\lambda - 1} / \\lambda\\)). All coefficients were significantly different than \\(0\\) (\\(\\text{p-value} &lt; 2e-16\\)) and, accordingly to D’Agostino Skewness test, the residuals were normal (\\(\\text{Z3} = -1.2704\\); \\(\\text{p-value} &lt; 0.2039\\)). Residual homoscedasticity was verified by a Score Test for Heteroskedasticity (\\(\\chi^{2} = 0.00\\); \\(\\text{p-value} = 1\\)). No collinearity was found between the predictor variables (variance inflation factor: \\(\\text{age} = 1.0014\\); \\(\\text{sex} = 1.0014\\)).\nAnother model was created on top of the first one, adding the latitude as a predictor variable (\\(\\text{R}^{2} = 0.06204\\); \\(\\text{F}(3, 73821) = 1630\\), \\(\\text{p-value} &lt; 2e-16\\)). All coefficients were significantly different than 0 (\\(\\text{p-value} &lt; 2e-16\\)) and the residuals were normally distributed accordingly to the D’Agostino Skewness test, (\\(\\text{Z3} = 0.0703\\); \\(\\text{p-value} &lt; 0.944\\)). Residual homoscedasticity was verified by a Score Test for Heteroskedasticity (\\(\\chi^{2} = 0.00\\); \\(\\text{p-value} = 1\\)). No collinearity was found between the predictor variables (variance inflation factor: \\(\\text{age} = 1.0067\\); \\(\\text{sex} = 1.0018\\); \\(\\text{latitude} = 1.0056\\)). The longitude was not used as a predictor because it presented colinearity with the latitude variable.\nAn \\(\\text{F}\\) test for nested models showed a significant reduction of the residual sum of squares (\\(\\text{F}(1, 73821) = 600\\), \\(\\text{p-value} &lt; 2e-16\\)), meaning that the latitude seems to produce an effect on the chronotype. But, when estimating Cohen’s \\(f^2\\) effect size, the result was negligible19 \\(((0.06204 - 0.054433) / (1 - 0.06204) = 0.0081102\\)).\n\n6.3.3 Discussion\nThe results show that even with a wide latitudinal spectrum and with a big and aligned sample of biological states the latitude effect does not reveal itself in a non-negligible size. Several studies indicate the existence of this effect on the chronotype (Hut et al. 2013; Leocadio-Miguel et al. 2017; Colin S. Pittendrigh, Kyner, and Takamura 1991; Randler 2008; Randler and Rahafar 2017; Roenneberg, Wirz-Justice, and Merrow 2003), but, at this time, at least in humans, no empirical evidence can support this claim. Our results are very similar to Leocadio-Miguel et al. (2017), which also found a negligible effect size (Cohen’s \\(f^{2} = 0.004143174\\)). The inconsistency of the latitude effect can be visualized in Figure 6.2.\n\nCodelibrary(dplyr)\nsource(here::here(\"R/plot_latitude_series.R\"))\n\ndata |&gt;\n  dplyr::filter(age &lt;= 50) |&gt;\n  plot_latitude_series(\n    col = \"msf_sc\", \n    y_lab = latex2exp::TeX(\"$MSF_{sc} \\\\pm SEM$\"), \n    line_width = 2, \n    point_size = 3,\n    error_bar_width = 0.5, \n    error_bar_linewidth = 1, \n    error_bar = TRUE,\n    text_size = 10\n    )\n\n\n\nFigure 6.2: Distribution of mean aggregates of the midpoint between sleep onset and sleep end on work-free days (\\(\\text{MSF}_{\\text{sc}}\\)), MCTQ proxy for measuring the chronotype, with latitude decimal degree intervals. Higher values of \\(\\text{MSF}_{\\text{sc}}\\) indicate a late chronotype tendency.\n\n\n\nDespite the lack of evidence, is not uncommon to hear talks insisting that this effect is real and already proven. We suspect that this behavior may be derived from a lack of understanding of statistical models and techniques. Although it may be logical and aligned with the overall theory for the evolution of biological temporal systems, it’s our role as scientists to eliminate contractions, not pursue them.\nAs Karl Popper said, science begins and ends with questions (Popper 1979). The absence of a strong entrainment with the solar zeitgeber shows that the entrainment phenomenon is more complex than we previously imagined. Other hypotheses for the human circadian entrainment, like the entrainment to self-selected light, proposed by Anna Skeldon and Derk-Jan Dijk (Skeldon and Dijk 2021), need to be tested and may produce significant results.\nIt’s important to notice that the results shown here are preliminary. The data still needs some cleaning and to be balanced with Brazil’s latest population census. The latitude coordinates used in the analysis are related to the subject’s state capital and, hence, have low resolution. Even with these results, it may be that a significant latitude effect can still appear at the end of the research.\nDespite the several strengths that the dataset used in this study has, it is also important to notice its weaknesses and limitations. The fact that all the subjects were measured in the Spring season is one of them. Since the objective is to catch individuals in different seasonal patterns, the ideal moment to collect this kind of data is in the wintertime, when there is a greater insolation gradient between the equator and the poles. Another one is that this dataset can be influenced by the presence of a Daylight Saving Time (DST) event. This latter issue is explored in more detail in the methods section."
+  },
+  {
+    "objectID": "qmd/chapter-6.html#methods",
+    "href": "qmd/chapter-6.html#methods",
+    "title": "\n6  A biological approach for the latitudinal cline of the chronotype\n",
+    "section": "\n6.4 Methods",
+    "text": "6.4 Methods\n\n6.4.1 Ethics information\nAbiding by Brazilian law, all research involving human subjects must have the approval of a Research Ethics Committee (REC) affiliated with the Brazilian National Research Ethics Committee (CONEP). This approval request is ongoing.\n\n6.4.2 Measurement instrument\nChronotypes were measured using the core version of the standard Munich ChronoType Questionnaire (MCTQ) (Roenneberg, Wirz-Justice, and Merrow 2003). MCTQ is a widely validated and widely used self-report questionnaire for measuring the sleep-wake cycle and chronotypes (Roenneberg et al. 2019). It quantifies the chronotype as a state, a biological circadian phenotype, using as a proxy the local time of the midpoint between sleep onset and sleep end on work-free days (\\(MSF_{sc}\\)). A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified (Roenneberg et al. 2012).\nSubjects were asked to complete an online questionnaire based on the MCTQ Portuguese translation created by Till Roenneberg & Martha Merrow for the EUCLOCK project (Roenneberg and Merrow 2006) (\\(\\text{statements mean cosine distance} = 0.921\\)). They were also asked to provide sociodemographic (e.g., age, gender), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and work/study routine-related data. A deactivated version of the questionnaire can be seen at https://danielvartan.github.io/mctq-form.\n\n6.4.3 Sample\nThe sample is made of \\(73,825\\) Brazilian subjects. It was obtained in 2017 from October 15th to 21st by a broadcast of the online research questionnaire on a popular Sunday TV show with national reach (Globo 2017). This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.\nA survey made in 2019 by the Brazilian Institute of Geography and Statistics (IBGE)27 saw that \\(82.17%\\) of Brazilians’ homes had access to an internet connection. Hence, this sample can have a good diversity of Brazil’s population. Only Brazilian residents in states with UTC-3 timezone and with an age equal to or greater than \\(18\\) years old were included in the final sample.\nIn order to verify if the sample size were adequate for the study of the phenomenon under investigation, a power analysis was conducted for nested multiple regression models using the G*Power software (Faul et al. 2007). The analysis used the parameters presented in Leocadio-Miguel et al. (2017) article for a multiple linear regression with 10 tested predictors and only \\(10\\) conceived predictors, considering a significance level of \\(0.05\\) (\\(\\alpha\\)) and a power of \\(0.95\\) (\\(1 - \\beta\\)). The result showed that a sample of \\(5,895\\) individuals would be necessary to test the hypothesis.\nDaylight Saving Time (DST) began in Brazil at midnight on November 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that MCTQ asks subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample is the production of an even later chronotype for populations near the planet’s poles, amplifying a possible latitude effect. However, this was not shown on the hypothesis test.\nBased on the 2010 census29, Brazil had \\(51.793%\\) of females and \\(48.207%\\) of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with \\(66.341%\\) of females and \\(33.659%\\) of male subjects.\nThe subject’s mean age is \\(32.017\\) years (\\(\\text{SD} = 9.242\\); \\(\\text{Max.} = 58.786\\)). Female subjects have a mean age of \\(31.770 years\\) (\\(\\text{SD} = 9.340\\); \\(\\text{Max.} = 58.786\\)) and male subjects \\(32.504\\) years (\\(\\text{SD} = 9.026\\); \\(\\text{Max.} = 58.772\\)). For comparison, based on the 2010 census29, Brazil’s population with an age equal to or greater than \\(18\\) years old had a mean age of \\(41.032\\) years (\\(\\text{SD} = 9.242\\)), with a mean age of \\(41.645\\) years (\\(\\text{SD} = 16.907\\)) for female subjects and a mean age of \\(40.373\\) years (\\(\\text{SD} = 16.200\\)) for male subjects. Data related to age and sex from the last Brazil census (2022) were not available before this article was submitted.\nConsidering the 5 major regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census, the Southeast region is home to \\(41.784%\\) of Brazil’s population, followed by the Northeast (\\(26.910%\\)), South (\\(14.741%\\)), North (\\(8.544%\\)), and Midwest (\\(8.021%\\)) region. \\(62.454%\\) of the sample is located in the Southeast region, \\(11.797%\\) in the Northeast, \\(17.861%\\) in the South, \\(1.682%\\) in the North, and \\(6.205%\\) in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).\nThe sample latitudinal range was \\(30.211\\) decimal degrees (\\(\\text{Min.} = -30.109\\); \\(\\text{Max.} = 0.10177\\)) with a longitudinal span of \\(16.378\\) decimal degrees (\\(\\text{Min.} = -51.342\\); \\(\\text{Max.} = -34.964\\)). For comparison, Brazil has a latitudinal range of \\(39.024\\) decimal degrees (\\(\\text{Min.} = -33.752\\); \\(\\text{Max.} = 5.2719\\)) and a longitudinal span of \\(39.198\\) decimal degrees (\\(\\text{Min.} = -34.793\\); \\(\\text{Max.} = -73.991\\)).\nThe results shown in this article are just a preliminary view of the data analysis. The latitudes and longitudes of each subject are represented by the coordinates of his/her state’s capital (a low resolution). The final results will have the latitude and longitude coordinates based on the subject’s postal codes and will also use a balanced dataset following the latest Brazil census.\n\n6.4.4 Analysis\nThe data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund (Wickham and Grolemund 2016). All processes were made with the help of the R programming language (R Core Team 2023), RStudio IDE (Posit Team 2023), and several R packages. The tidyverse and rOpenSci package ecosystem and other R packages adherents of the tidy tools manifesto (Wickham 2023) were prioritized. The MCTQ data was analyzed using the mctq rOpenSci peer-reviewed package (Vartanian 2023). All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles (Wilkinson et al. 2016).\nThe study hypothesis was tested using nested models of multiple linear regressions. The main idea of nested models is to verify the effect of the inclusion of one or more predictors in the model variance explanation (i.e., the \\(\\text{R}^{2}\\)) (Allen 1997). This can be made by creating a restricted model and then comparing it with a full model. Hence, the hypothesis can be schematized as follows.\n\\[\n\\begin{cases}\n\\text{H}_{0}: \\text{R}^{2}_{\\text{res}} &gt;= \\text{R}^{2}_{\\text{full}} \\\\\n\\text{H}_{a}: \\text{R}^{2}_{\\text{res}} &lt; \\text{R}^{2}_{\\text{full}}\n\\end{cases}\n\\]\nIn order to test a possible latitude association in predicting the chronotype, the full model was the restricted model with the addition of the latitude variable. The restricted model had the midpoint between sleep onset and sleep end on work-free days (\\(\\text{MSF}_{\\text{sc}}\\)) as the response variable, MCTQ proxy for the chronotype, with sex and age as predictors.\nA residual analysis was made to assure the validity of the models before the hypothesis test. The hypothesis was tested using a \\(0.05\\) (\\(\\alpha\\)) significance level.\nTo favor the alternative hypothesis (\\(\\text{H}_{a}\\)), not only the \\(\\text{R}^{2}\\) of the full model must be significantly larger than the \\(R^{2}\\) of the restricted model, but the effect size must be at least considered small. To evaluate the effect size, Cohen’s \\(f^{2}\\) and his categorical parameters for size were used (cohen_1992?). That means that, in order to favor (\\(\\text{H}_{a}\\)), the effect size must be at least equal to or greater than \\(0.0219\\).\nNo blinding procedures were used during the analysis.\n\n6.4.5 Data availability\nThe data that support the findings of this study are available from the corresponding author [DV]. Restrictions apply to the availability of these data, which were used under the approval of a Research Ethics Committee (REC) linked to the Brazilian National Research Ethics Committee (CONEP), hence it cannot be publicly shared. Data are, however, available from the author upon reasonable request and with CONEP approval.\n\n6.4.6 Code availability\nAn R package representing the research compendium of the project, with all the code used accompanied by extensive documentation, will be available under the MIT license at https://github.com/danielvartan/mastersthesis when the research is completed. The code has all the steps from the raw data to the hypothesis test results."
+  },
+  {
+    "objectID": "qmd/chapter-6.html#acknowledgments",
+    "href": "qmd/chapter-6.html#acknowledgments",
+    "title": "\n6  A biological approach for the latitudinal cline of the chronotype\n",
+    "section": "\n6.5 Acknowledgments",
+    "text": "6.5 Acknowledgments\nFinancial support was provided by the Coordination for the Improvement of Higher Education Personnel (CAPES) and by the University of Sao Paulo (USP) (Grant number: 88887.703720/2022-00)."
+  },
+  {
+    "objectID": "qmd/chapter-6.html#ethics-declarations",
+    "href": "qmd/chapter-6.html#ethics-declarations",
+    "title": "\n6  A biological approach for the latitudinal cline of the chronotype\n",
+    "section": "\n6.6 Ethics declarations",
+    "text": "6.6 Ethics declarations\n\n6.6.1 Competing interests\nThe author declares that the study was carried out without any commercial or financial connections that could be seen as a possible competing interest."
+  },
+  {
+    "objectID": "qmd/chapter-6.html#additional-information",
+    "href": "qmd/chapter-6.html#additional-information",
+    "title": "\n6  A biological approach for the latitudinal cline of the chronotype\n",
+    "section": "\n6.7 Additional information",
+    "text": "6.7 Additional information\nThis manuscript shows only preliminary results and should not be considered a document ready for journal submission.\nThere is no supplementary information.\nCorrespondence can be sent to Daniel Vartanian (danvartan@gmail.com)."
+  },
+  {
+    "objectID": "qmd/chapter-6.html#rights-and-permissions",
+    "href": "qmd/chapter-6.html#rights-and-permissions",
+    "title": "\n6  A biological approach for the latitudinal cline of the chronotype\n",
+    "section": "\n6.8 Rights and permissions",
+    "text": "6.8 Rights and permissions\nThe author does not give permission to share this manuscript while the research is ongoing. An exception is made for education purposes. In the latter case, the manuscript must be accompanied by a warning statement, located at the top of the first page, warning the reader about the need for confidentiality. After the research process end, something that just a written communication by the author can provide, this article will be licensed under the Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution, and reproduction in any medium or format, as long as be given appropriate credit to the original author and the source, provide a link to the Creative Commons license, and indicate if changes were made.\n\n\n\n\nAllen, Michael Patrick. 1997. Understanding Regression Analysis. New York: Plenum Press.\n\n\nAschoff, Jürgen. 1989. “Temporal Orientation: Circadian Clocks in Animals and Humans.” Animal Behaviour 37 (June): 881–96. https://doi.org/10.1016/0003-3472(89)90132-2.\n\n\nEhret, Charles F. 1974. “The Sense of Time: Evidence for Its Molecular Basis in the Eukaryotic Gene-Action System.” In Advances in Biological and Medical Physics, 15:47–77. Elsevier. https://doi.org/10.1016/B978-0-12-005215-8.50009-7.\n\n\nFaul, Franz, Edgar Erdfelder, Albert-Georg Lang, and Axel Buchner. 2007. “G*Power 3: A Flexible Statistical Power Analysis Program for the Social, Behavioral, and Biomedical Sciences.” Behavior Research Methods 39 (2): 175–91. https://doi.org/10.3758/BF03193146.\n\n\nGlobo. 2017. “Metade Da População Se Sente Mal No Horário de Verão, Revela Pesquisa.” Fantástico. October 15, 2017. https://globoplay.globo.com/v/6219513/.\n\n\nHorzum, Mehmet Barış, Christoph Randler, Ercan Masal, Şenol Beşoluk, İsmail Önder, and Christian Vollmer. 2015. “Morningness–Eveningness and the Environment Hypothesis – a Cross-Cultural Comparison of Turkish and German Adolescents.” Chronobiology International 32 (6): 814–21. https://doi.org/10.3109/07420528.2015.1041598.\n\n\nHut, Roelof A., Silvia Paolucci, Roi Dor, Charalambos P. Kyriacou, and Serge Daan. 2013. “Latitudinal Clines: An Evolutionary View on Biological Rhythms.” Proceedings of the Royal Society B: Biological Sciences 280 (1765): 20130433. https://doi.org/10.1098/rspb.2013.0433.\n\n\nKhalsa, Sat Bir S., Megan E. Jewett, Christian Cajochen, and Charles A. Czeisler. 2003. “A Phase Response Curve to Single Bright Light Pulses in Human Subjects.” The Journal of Physiology 549 (3): 945–52. https://doi.org/10.1113/jphysiol.2003.040477.\n\n\nLeocadio-Miguel, Mario André, Fernando Mazzili Louzada, Leandro Lourenção Duarte, Roberta Peixoto Areas, Marilene Alam, Marcelo Ventura Freire, John Fontenele-Araujo, Luiz Menna-Barreto, and Mario Pedrazzoli. 2017. “Latitudinal Cline of Chronotype.” Scientific Reports 7 (1): 5437. https://doi.org/10.1038/s41598-017-05797-w.\n\n\nMiguel, Mario, Valéria Clarisse De Oliveira, Danyella Pereira, and Mario Pedrazzoli. 2014. “Detecting Chronotype Differences Associated to Latitude: A Comparison Between Horne--Östberg and Munich Chronotype Questionnaires.” Annals of Human Biology 41 (2): 107–10. https://doi.org/10.3109/03014460.2013.832795.\n\n\nMinors, David S., James M. Waterhouse, and Anna Wirz-Justice. 1991. “A Human Phase-Response Curve to Light.” Neuroscience Letters 133 (1): 36–40. https://doi.org/10.1016/0304-3940(91)90051-T.\n\n\nParanjpe, Dhanashree A, and Vijay Kumar Sharma. 2005. “Evolution of Temporal Order in Living Organisms.” Journal of Circadian Rhythms 3 (May). https://doi.org/10.1186/1740-3391-3-7.\n\n\nPittendrigh, C. S. 1993. “Temporal Organization: Reflections of a Darwinian Clock-Watcher.” Annual Review of Physiology 55 (1): 17–54. https://doi.org/10.1146/annurev.ph.55.030193.000313.\n\n\nPittendrigh, Colin S., Walter T. Kyner, and Tsuguhiko Takamura. 1991. “The Amplitude of Circadian Oscillations: Temperature Dependence, Latitudinal Clines, and the Photoperiodic Time Measurement.” Journal of Biological Rhythms 6 (4): 299–313. https://doi.org/10.1177/074873049100600402.\n\n\nPopper, Karl R. 1979. Objective Knowledge: An Evolutionary Approach. Rev. ed. Oxford University Press.\n\n\nPosit Team. 2023. “RStudio: Integrated Development Environment for R.” C. Posit Software. http://www.posit.co.\n\n\nR Core Team. 2023. “R: A Language and Environment for Statistical Computing.” R. R Foundation for Statistical Computing. https://www.R-project.org.\n\n\nRandler, Christoph. 2008. “Morningness‐eveningness Comparison in Adolescents from Different Countries Around the World.” Chronobiology International 25 (6): 1017–28. https://doi.org/10.1080/07420520802551519.\n\n\nRandler, Christoph, and Arash Rahafar. 2017. “Latitude Affects Morningness-Eveningness: Evidence for the Environment Hypothesis Based on a Systematic Review.” Scientific Reports 7 (1): 39976. https://doi.org/10.1038/srep39976.\n\n\nRoenneberg, Till, Karla V. Allebrandt, Martha Merrow, and Céline Vetter. 2012. “Social Jetlag and Obesity.” Current Biology 22 (10): 939–43. https://doi.org/10.1016/j.cub.2012.03.038.\n\n\nRoenneberg, Till, Serge Daan, and Martha Merrow. 2003. “The Art of Entrainment.” Journal of Biological Rhythms 18 (3): 183–94. https://doi.org/10.1177/0748730403018003001.\n\n\nRoenneberg, Till, Roelof Hut, Serge Daan, and Martha Merrow. 2010. “Entrainment Concepts Revisited.” Journal of Biological Rhythms 25 (5): 329–39. https://doi.org/10.1177/0748730410379082.\n\n\nRoenneberg, Till, C. Jairaj Kumar, and Martha Merrow. 2007. “The Human Circadian Clock Entrains to Sun Time.” Current Biology 17 (2): R44–45. https://doi.org/10.1016/j.cub.2006.12.011.\n\n\nRoenneberg, Till, and Martha Merrow. 2006. “EUCLOCK: Portuguese MCTQ.” 2006. http://web.archive.org/web/20141115175303/https://www.bioinfo.mpg.de/mctq/core_work_life/core/core.jsp?language=por_b.\n\n\nRoenneberg, Till, Luísa K. Pilz, Giulia Zerbini, and Eva C. Winnebeck. 2019. “Chronotype and Social Jetlag: A (Self-) Critical Review.” Biology 8 (3): 54. https://doi.org/10.3390/biology8030054.\n\n\nRoenneberg, Till, Anna Wirz-Justice, and Martha Merrow. 2003. “Life Between Clocks: Daily Temporal Patterns of Human Chronotypes.” Journal of Biological Rhythms 18 (1): 80–90. https://doi.org/10.1177/0748730402239679.\n\n\nSkeldon, Anne C., and Derk‐Jan Dijk. 2021. “Weekly and Seasonal Variation in the Circadian Melatonin Rhythm in Humans: Entrained to Local Clock Time, Social Time, Light Exposure or Sun Time?” Journal of Pineal Research 71 (1): e12746. https://doi.org/10.1111/jpi.12746.\n\n\nVartanian, Daniel. 2023. “{Mctq}: Tools to Process the Munich ChronoType Questionnaire (MCTQ).” R. https://docs.ropensci.org/mctq/.\n\n\nWatson, Nathaniel F., M. Safwan Badr, Gregory Belenky, Donald L. Bliwise, Orfeu M. Buxton, Daniel Buysse, David F. Dinges, et al. 2015. “Joint Consensus Statement of the American Academy of Sleep Medicine and Sleep Research Society on the Recommended Amount of Sleep for a Healthy Adult: Methodology and Discussion.” Journal of Clinical Sleep Medicine 11 (8): 931–52. https://doi.org/10.5664/jcsm.4950.\n\n\nWickham, Hadley. 2023. “The Tidy Tools Manifesto.” Tidyverse. February 23, 2023. https://tidyverse.tidyverse.org/articles/manifesto.html.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science. O’Reilly. https://r4ds.had.co.nz.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3 (1): 160018. https://doi.org/10.1038/sdata.2016.18."
+  },
+  {
+    "objectID": "qmd/chapter-7.html#discussion",
+    "href": "qmd/chapter-7.html#discussion",
+    "title": "\n7  Discussion and conclusions\n",
+    "section": "\n7.1 Discussion",
+    "text": "7.1 Discussion"
+  },
+  {
+    "objectID": "qmd/chapter-7.html#limitations",
+    "href": "qmd/chapter-7.html#limitations",
+    "title": "\n7  Discussion and conclusions\n",
+    "section": "\n7.2 Limitations",
+    "text": "7.2 Limitations"
+  },
+  {
+    "objectID": "qmd/chapter-7.html#conclusions",
+    "href": "qmd/chapter-7.html#conclusions",
+    "title": "\n7  Discussion and conclusions\n",
+    "section": "\n7.3 Conclusions",
+    "text": "7.3 Conclusions"
+  },
+  {
+    "objectID": "qmd/chapter-7.html#future-perspectives",
+    "href": "qmd/chapter-7.html#future-perspectives",
+    "title": "\n7  Discussion and conclusions\n",
+    "section": "\n7.4 Future perspectives",
+    "text": "7.4 Future perspectives"
+  },
+  {
+    "objectID": "qmd/references.html",
+    "href": "qmd/references.html",
+    "title": "References",
+    "section": "",
+    "text": "Allen, Michael Patrick. 1997. Understanding Regression\nAnalysis. New York: Plenum Press.\n\n\nAschoff, Jürgen. 1989. “Temporal Orientation: Circadian Clocks in\nAnimals and Humans.” Animal Behaviour 37 (June): 881–96.\nhttps://doi.org/10.1016/0003-3472(89)90132-2.\n\n\nEhret, Charles F. 1974. “The Sense of Time: Evidence for Its\nMolecular Basis in the Eukaryotic Gene-Action System.” In\nAdvances in Biological and Medical Physics, 15:47–77. Elsevier.\nhttps://doi.org/10.1016/B978-0-12-005215-8.50009-7.\n\n\nFaul, Franz, Edgar Erdfelder, Albert-Georg Lang, and Axel Buchner. 2007.\n“G*Power 3: A Flexible Statistical Power Analysis Program for the\nSocial, Behavioral, and Biomedical Sciences.” Behavior\nResearch Methods 39 (2): 175–91. https://doi.org/10.3758/BF03193146.\n\n\nGlobo. 2017. “Metade Da População Se Sente Mal No Horário de\nVerão, Revela Pesquisa.” Fantástico. October 15, 2017. https://globoplay.globo.com/v/6219513/.\n\n\nHorzum, Mehmet Barış, Christoph Randler, Ercan Masal, Şenol Beşoluk,\nİsmail Önder, and Christian Vollmer. 2015.\n“Morningness–Eveningness and the Environment Hypothesis – a\nCross-Cultural Comparison of Turkish and German Adolescents.”\nChronobiology International 32 (6): 814–21. https://doi.org/10.3109/07420528.2015.1041598.\n\n\nHut, Roelof A., Silvia Paolucci, Roi Dor, Charalambos P. Kyriacou, and\nSerge Daan. 2013. “Latitudinal Clines: An Evolutionary View on\nBiological Rhythms.” Proceedings of the Royal Society B:\nBiological Sciences 280 (1765): 20130433. https://doi.org/10.1098/rspb.2013.0433.\n\n\nKhalsa, Sat Bir S., Megan E. Jewett, Christian Cajochen, and Charles A.\nCzeisler. 2003. “A Phase Response Curve to Single Bright Light\nPulses in Human Subjects.” The Journal of Physiology 549\n(3): 945–52. https://doi.org/10.1113/jphysiol.2003.040477.\n\n\nLeocadio-Miguel, Mario André, Fernando Mazzili Louzada, Leandro\nLourenção Duarte, Roberta Peixoto Areas, Marilene Alam, Marcelo Ventura\nFreire, John Fontenele-Araujo, Luiz Menna-Barreto, and Mario Pedrazzoli.\n2017. “Latitudinal Cline of Chronotype.” Scientific\nReports 7 (1): 5437. https://doi.org/10.1038/s41598-017-05797-w.\n\n\nMiguel, Mario, Valéria Clarisse De Oliveira, Danyella Pereira, and Mario\nPedrazzoli. 2014. “Detecting Chronotype Differences Associated to\nLatitude: A Comparison Between Horne--Östberg and Munich Chronotype\nQuestionnaires.” Annals of Human Biology 41 (2): 107–10.\nhttps://doi.org/10.3109/03014460.2013.832795.\n\n\nMinors, David S., James M. Waterhouse, and Anna Wirz-Justice. 1991.\n“A Human Phase-Response Curve to Light.” Neuroscience\nLetters 133 (1): 36–40. https://doi.org/10.1016/0304-3940(91)90051-T.\n\n\nParanjpe, Dhanashree A, and Vijay Kumar Sharma. 2005. “Evolution\nof Temporal Order in Living Organisms.” Journal of Circadian\nRhythms 3 (May). https://doi.org/10.1186/1740-3391-3-7.\n\n\nPittendrigh, C. S. 1993. “Temporal Organization: Reflections of a\nDarwinian Clock-Watcher.” Annual Review of Physiology 55\n(1): 17–54. https://doi.org/10.1146/annurev.ph.55.030193.000313.\n\n\nPittendrigh, Colin S., Walter T. Kyner, and Tsuguhiko Takamura. 1991.\n“The Amplitude of Circadian Oscillations: Temperature Dependence,\nLatitudinal Clines, and the Photoperiodic Time Measurement.”\nJournal of Biological Rhythms 6 (4): 299–313. https://doi.org/10.1177/074873049100600402.\n\n\nPopper, Karl R. 1979. Objective Knowledge: An Evolutionary\nApproach. Rev. ed. Oxford University Press.\n\n\nPosit Team. 2023. “RStudio: Integrated Development Environment for\nR.” C. Posit Software. http://www.posit.co.\n\n\nR Core Team. 2023. “R: A Language and Environment for Statistical\nComputing.” R. R Foundation for Statistical Computing. https://www.R-project.org.\n\n\nRandler, Christoph. 2008. “Morningness‐eveningness Comparison in\nAdolescents from Different Countries Around the World.”\nChronobiology International 25 (6): 1017–28. https://doi.org/10.1080/07420520802551519.\n\n\nRandler, Christoph, and Arash Rahafar. 2017. “Latitude Affects\nMorningness-Eveningness: Evidence for the Environment Hypothesis Based\non a Systematic Review.” Scientific Reports 7 (1):\n39976. https://doi.org/10.1038/srep39976.\n\n\nRoenneberg, Till, Karla V. Allebrandt, Martha Merrow, and Céline Vetter.\n2012. “Social Jetlag and Obesity.” Current Biology\n22 (10): 939–43. https://doi.org/10.1016/j.cub.2012.03.038.\n\n\nRoenneberg, Till, Serge Daan, and Martha Merrow. 2003. “The Art of\nEntrainment.” Journal of Biological Rhythms 18 (3):\n183–94. https://doi.org/10.1177/0748730403018003001.\n\n\nRoenneberg, Till, Roelof Hut, Serge Daan, and Martha Merrow. 2010.\n“Entrainment Concepts Revisited.” Journal of Biological\nRhythms 25 (5): 329–39. https://doi.org/10.1177/0748730410379082.\n\n\nRoenneberg, Till, C. Jairaj Kumar, and Martha Merrow. 2007. “The\nHuman Circadian Clock Entrains to Sun Time.” Current\nBiology 17 (2): R44–45. https://doi.org/10.1016/j.cub.2006.12.011.\n\n\nRoenneberg, Till, and Martha Merrow. 2006. “EUCLOCK: Portuguese\nMCTQ.” 2006. http://web.archive.org/web/20141115175303/https://www.bioinfo.mpg.de/mctq/core_work_life/core/core.jsp?language=por_b.\n\n\nRoenneberg, Till, Luísa K. Pilz, Giulia Zerbini, and Eva C. Winnebeck.\n2019. “Chronotype and Social Jetlag: A (Self-) Critical\nReview.” Biology 8 (3): 54. https://doi.org/10.3390/biology8030054.\n\n\nRoenneberg, Till, Anna Wirz-Justice, and Martha Merrow. 2003.\n“Life Between Clocks: Daily Temporal Patterns of Human\nChronotypes.” Journal of Biological Rhythms 18 (1):\n80–90. https://doi.org/10.1177/0748730402239679.\n\n\nSkeldon, Anne C., and Derk‐Jan Dijk. 2021. “Weekly and Seasonal\nVariation in the Circadian Melatonin Rhythm in Humans: Entrained to\nLocal Clock Time, Social Time, Light Exposure or Sun Time?”\nJournal of Pineal Research 71 (1): e12746. https://doi.org/10.1111/jpi.12746.\n\n\nThe Royal Society. n.d. “History of the Royal Society.”\nAccessed September 9, 2023. https://royalsociety.org/about-us/history/.\n\n\nVartanian, Daniel. 2023. “{Mctq}: Tools to Process the Munich\nChronoType Questionnaire (MCTQ).” R. https://docs.ropensci.org/mctq/.\n\n\nWatson, Nathaniel F., M. Safwan Badr, Gregory Belenky, Donald L.\nBliwise, Orfeu M. Buxton, Daniel Buysse, David F. Dinges, et al. 2015.\n“Joint Consensus Statement of the American Academy of Sleep\nMedicine and Sleep Research Society on the Recommended Amount of Sleep\nfor a Healthy Adult: Methodology and Discussion.” Journal of\nClinical Sleep Medicine 11 (8): 931–52. https://doi.org/10.5664/jcsm.4950.\n\n\nWickham, Hadley. 2023. “The Tidy Tools Manifesto.”\nTidyverse. February 23, 2023. https://tidyverse.tidyverse.org/articles/manifesto.html.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data\nScience. O’Reilly. https://r4ds.had.co.nz.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg,\nGabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al.\n2016. “The FAIR Guiding Principles for Scientific Data Management\nand Stewardship.” Scientific Data 3 (1): 160018. https://doi.org/10.1038/sdata.2016.18."
+  },
+  {
+    "objectID": "qmd/appendice-ch-2.html",
+    "href": "qmd/appendice-ch-2.html",
+    "title": "Appendix A — Appendice: Chapter 2 supplemental material",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  },
+  {
+    "objectID": "qmd/appendice-ch-3.html",
+    "href": "qmd/appendice-ch-3.html",
+    "title": "Appendix B — Appendice: Chapter 3 supplemental material",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  },
+  {
+    "objectID": "qmd/appendice-ch-4.html",
+    "href": "qmd/appendice-ch-4.html",
+    "title": "Appendix C — Appendice: Chapter 4 supplemental material",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  },
+  {
+    "objectID": "qmd/appendice-ch-5.html",
+    "href": "qmd/appendice-ch-5.html",
+    "title": "Appendix D — Appendice: Chapter 5 supplemental material",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  },
+  {
+    "objectID": "qmd/appendice-ch-6.html",
+    "href": "qmd/appendice-ch-6.html",
+    "title": "Appendix E — Appendice: Chapter 6 supplemental material",
+    "section": "",
+    "text": "You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it."
+  }
+]
