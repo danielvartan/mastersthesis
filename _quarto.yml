@@ -4,6 +4,8 @@ execute:
 project:
   type: book
   output-dir: docs
+  pre-render: "R/quarto-pre-render.R"
+  resources: "robots.txt"
 
 book:
   title: "Ecology of sleep and circadian phenotypes of the Brazilian population"

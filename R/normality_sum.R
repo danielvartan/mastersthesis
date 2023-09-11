@@ -2,6 +2,12 @@
 #
 # * Document functions.
 
+require(checkmate, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+require(here, quietly = TRUE)
+
+source(here::here("R/test_normality.R"))
+
 normality_sum <- function(x, round = FALSE, digits = 5, ...) {
   checkmate::assert_numeric(x)
   checkmate::assert_flag(round)
@@ -67,10 +73,11 @@ normality_sum <- function(x, round = FALSE, digits = 5, ...) {
 
   if (isTRUE(round)) {
     out |>
-      dplyr::mutate(dplyr::across(
-        .cols = dplyr::where(is.numeric),
-        .fns = ~ round(.x, digits)
-      ))
+      dplyr::mutate(
+        dplyr::across(
+          .cols = dplyr::where(is.numeric),
+          .fns = ~ round(.x, digits)
+        ))
   } else {
     out
   }

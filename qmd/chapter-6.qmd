@@ -58,17 +58,18 @@ The midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\
 
 That’s the midsleep point of Brazilian subjects with an intermediate/average chronotype. One can imagine, following the 7-9h sleep recommendation for healthy adults of the American Academy of Sleep Medicine (AASM) [@watson_2015], that this average person would, if he/she had no social obligations, typically wake up at about $\text{08:26:51}$.
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 #| label: data-preparation
+#| message: false
+#| warning: false
 
-library(callr)
 library(dplyr)
 library(here)
 library(targets)
 library(tidyr)
 
 data <- 
-  targets::tar_read("geocoded", store = here::here("_targets")) |>
+  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
   dplyr::select(
     age, sex, state, region, latitude, longitude, height, weight, work, study,
     msf_sc, sjl, le_week, 
@@ -76,8 +77,10 @@ data <-
   tidyr::drop_na(msf_sc, age, sex, latitude)
 ```
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 #| label: fig-ch-6-chronotype-distribution
+#| message: false
+#| warning: false
 #| fig-cap: Distribution of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype. The categorical cuts follow a quantile approach going from extremely early ($0 |- 0.11$) to the extremely late ($0.88 - 1$).
 
 source(here::here("R/plot_chronotype.R"))
@@ -108,8 +111,10 @@ An $\text{F}$ test for nested models showed a significant reduction of the resid
 
 The results show that even with a wide latitudinal spectrum and with a big and aligned sample of biological states the latitude effect does not reveal itself in a non-negligible size. Several studies indicate the existence of this effect on the chronotype [@hut_2013; @leocadio-miguel_2017; @pittendrigh_1991; @randler_2008; @randler_2017; @roenneberg_2003], but, at this time, at least in humans, no empirical evidence can support this claim. Our results are very similar to Leocadio-Miguel et al. [-@leocadio-miguel_2017], which also found a negligible effect size (Cohen’s $f^{2} = 0.004143174$). The inconsistency of the latitude effect can be visualized in @fig-ch-6-chronotype-distribution-by-latitude.
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 #| label: fig-ch-6-chronotype-distribution-by-latitude
+#| message: false
+#| warning: false
 #| fig-cap: Distribution of mean aggregates of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype, with latitude decimal degree intervals. Higher values of $\text{MSF}_{\text{sc}}$ indicate a late chronotype tendency.
 
 library(dplyr)

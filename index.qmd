@@ -6,22 +6,8 @@
 #| output: false
 
 library(here)
+
 source(here::here("R/quarto-setup.R"))
-```
-
-```{r}
-#| echo: false
-#| output: false
-
-# TODO: Move this function to {groomr}.
-
-source(here::here("R/bbt_write_quarto_bib.R"))
-
-bbt_write_quarto_bib(
-  bib_file = here::here("references.json"), 
-  dir = here::here(c("", "qmd")),
-  pattern = "\\.qmd$"
-  )
 ```
 
 ```{r}

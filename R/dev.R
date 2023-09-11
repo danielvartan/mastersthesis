@@ -26,6 +26,7 @@
 
 # # Quarto
 #
+# quarto render
 # quarto render index.qmd
 # quarto render qmd/chapter-6.qmd
 # quarto publish gh-pages

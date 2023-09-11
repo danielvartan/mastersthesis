@@ -16,7 +16,10 @@ source("R/look_and_replace.R")
 #'
 #' @description
 #'
-#' `tidy_data` tidy the output of `get_raw_data()`.
+#' `tidy_data_` tidy the output of `get_raw_data()`.
+#'
+#' The function has a `_` at the end to differentiated itself with the
+#' `tidy_data` dataset produce by the `targets` R package.
 #'
 #' @details
 #'
@@ -47,11 +50,11 @@ source("R/look_and_replace.R")
 #' @examples
 #' \dontrun{
 #' if (requireNamespace("utils", quietly = TRUE)) {
-#'   tidy <- tidy_data()
-#'   utils::View(tidy_data())
+#'   tidy <- tidy_data_()
+#'   utils::View(tidy_data_())
 #' }
 #' }
-tidy_data <- function(
+tidy_data_ <- function(
     data,
     public_key = here::here(".ssh/id_rsa.pub"),
     private_key = here::here(".ssh/id_rsa")

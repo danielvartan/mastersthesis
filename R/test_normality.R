@@ -2,7 +2,23 @@
 #
 # * Document functions.
 
-# test <- test_normality(filter$msf_sc)
+require(checkmate, quietly = TRUE)
+require(cowplot, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+require(fBasics, quietly = TRUE)
+require(gutils, quietly = TRUE)
+require(ggplot2, quietly = TRUE)
+require(here, quietly = TRUE)
+require(hms, quietly = TRUE)
+require(moments, quietly = TRUE)
+require(nortest, quietly = TRUE)
+require(rlang, quietly = TRUE)
+require(stats, quietly = TRUE)
+require(tseries, quietly = TRUE)
+
+source(here::here("R/utils-stats.R"))
+source(here::here("R/utils.R"))
+
 test_normality <- function(x,
                            name = "x",
                            threshold = hms::parse_hms("12:00:00"),
@@ -30,60 +46,72 @@ test_normality <- function(x,
   checkmate::assert_number(text_size, null.ok = TRUE)
   checkmate::assert_flag(print)
 
-  n <- x %>% length()
-  class = x %>% class()
-  is_temporal <- x %>% gutils:::test_temporal()
+  n <- x |> length()
+  class = x |> class()
+  is_temporal <- x |> gutils:::test_temporal()
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
-  n_rm_na <- x %>% length()
+  n_rm_na <- x |> length()
 
   if (gutils:::test_temporal(x)) {
-    x <- x %>% transform_time(threshold = threshold)
+    x <- x |> transform_time(threshold = threshold)
   }
 
   if (isTRUE(remove_outliers)) {
-    x <- x %>% remove_outliers(method = "iqr", iqr_mult = iqr_mult)
+    x <- x |> remove_outliers(method = "iqr", iqr_mult = iqr_mult)
   }
 
   if (isTRUE(log_transform)) {
-    x <- x %>%
-      log() %>%
+    x <-
+      x |>
+      log() |>
       drop_inf()
   }
 
   if (n_rm_na >= 7) {
-    ad <- x %>% nortest::ad.test()
-    cvm <- x %>% nortest::cvm.test() %>% gutils:::shush()
+    ad <- x |> nortest::ad.test()
+
+    cvm <-
+      x |>
+      nortest::cvm.test() |>
+      gutils:::shush()
   } else {
     ad <- NULL
     cmv <- NULL
   }
 
-  bonett <- x %>% moments::bonett.test()
-  dagostino <- x %>% fBasics::dagoTest() %>% gutils:::shush()
-  jarque_bera <- gutils:::drop_na(x) %>% tseries::jarque.bera.test()
+  bonett <- x |> moments::bonett.test()
+
+  dagostino <-
+    x |>
+    fBasics::dagoTest() |>
+    gutils:::shush()
+
+  jarque_bera <-
+    gutils:::drop_na(x) |>
+    tseries::jarque.bera.test()
 
   if (n_rm_na >= 4) {
-    lillie_ks <- x %>% nortest::lillie.test()
+    lillie_ks <- x |> nortest::lillie.test()
   } else {
     lillie_ks <- NULL
   }
 
-  pearson <- x %>% nortest::pearson.test()
+  pearson <- x |> nortest::pearson.test()
 
   if (n_rm_na >= 5 && n_rm_na <= 5000) {
-    sf <- x %>% nortest::sf.test()
+    sf <- x |> nortest::sf.test()
   } else {
     sf <- NULL
   }
 
   if (n_rm_na >= 3 && n_rm_na <= 3000) {
-    shapiro <- x %>% stats::shapiro.test()
+    shapiro <- x |> stats::shapiro.test()
   } else {
     shapiro <- NULL
   }
 
   if (isTRUE(is_temporal) && isFALSE(log_transform)) {
-    x <- x %>% lubridate::as_datetime(tz = tz)
+    x <- x |> lubridate::as_datetime(tz = tz)
   }
 
   qq_plot <- plot_qq(x, text_size = text_size, print = FALSE)
@@ -123,22 +151,21 @@ plot_qq <- function(x, text_size = NULL, na_rm = TRUE, print = TRUE) {
   checkmate::assert_flag(na_rm)
   checkmate::assert_flag(print)
 
-  if (isTRUE(na_rm)) x <- x %>% gutils:::drop_na()
+  if (isTRUE(na_rm)) x <- x |> gutils:::drop_na()
 
-  plot <- dplyr::tibble(y = x) %>%
+  plot <-
+    dplyr::tibble(y = x) |>
     ggplot2::ggplot(ggplot2::aes(sample = y)) +
     ggplot2::stat_qq() +
     ggplot2::stat_qq_line(color = "red", linewidth = 1) +
     ggplot2::labs(
-      x = "Theoretical quantiles (Std. normal)", y = "Sample quantiles"
+      x = "Theoretical quantiles (Std. normal)",
+      y = "Sample quantiles"
     ) +
-    ggplot2::theme(
-      text = ggplot2::element_text(size = text_size)
-    )
+    ggplot2::theme(text = ggplot2::element_text(size = text_size))
 
   if (inherits(x, "POSIXt")) {
-    plot <- plot +
-      ggplot2::scale_y_datetime(date_labels = "%H:%M")
+    plot <- plot + ggplot2::scale_y_datetime(date_labels = "%H:%M")
   }
 
   if (isTRUE(print)) print(plot)
@@ -157,35 +184,28 @@ plot_hist <- function(x, x_lab = "x", stat = "density", text_size = NULL,
   checkmate::assert_flag(na_rm)
   checkmate::assert_flag(print)
 
-  if (isTRUE(na_rm)) x <- x %>% gutils:::drop_na()
+  if (isTRUE(na_rm)) x <- x |> gutils:::drop_na()
+  y_lab <- ifelse("count", "Frequency", "Density")
 
-  if (stat == "count") {
-    y_lab <- "Frequency"
-  } else {
-    y_lab <- "Density"
-  }
-
-  plot <- dplyr::tibble(y = x) %>%
+  plot <-
+    dplyr::tibble(y = x) |>
     ggplot2::ggplot(ggplot2::aes(x = y)) +
     ggplot2::geom_histogram(
       ggplot2::aes(y = ggplot2::after_stat(!!as.symbol(stat))),
       bins = 30, color = "white"
     ) +
     ggplot2::labs(x = x_lab, y = y_lab) +
-    ggplot2::theme(
-      text = ggplot2::element_text(size = text_size)
-    )
+    ggplot2::theme(text = ggplot2::element_text(size = text_size))
 
   if (stat == "density" && isTRUE(density_line)) {
-    plot <- plot +
-      ggplot2::geom_density(color = "red", linewidth = 1)
+    plot <- plot + ggplot2::geom_density(color = "red", linewidth = 1)
   }
 
   if (inherits(x, "POSIXt")) {
-    plot <- plot +
-      ggplot2::scale_x_datetime(date_labels = "%H:%M:%S")
+    plot <- plot + ggplot2::scale_x_datetime(date_labels = "%H:%M:%S")
   }
 
   if (isTRUE(print)) print(plot)
+
   invisible(plot)
 }

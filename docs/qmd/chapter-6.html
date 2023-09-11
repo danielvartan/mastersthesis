@@ -242,7 +242,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/chapter-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Brazilian chronotypes: the largest MCTQ-PT sample to date</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ecology of sleep and circadian phenotypes of the Brazilian population</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -424,14 +424,13 @@ Target
 <p>The midpoint between sleep onset and sleep end on work-free days (<span class="math inline">\(\text{MSF}_{\text{sc}}\)</span>), MCTQ proxy for measuring the chronotype, had an overall mean of <span class="math inline">\(\text{04:26:51}\)</span>. The distribution curve is shown in <a href="#fig-ch-6-chronotype-distribution">Figure&nbsp;<span>6.1</span></a>.</p>
 <p>That’s the midsleep point of Brazilian subjects with an intermediate/average chronotype. One can imagine, following the 7-9h sleep recommendation for healthy adults of the American Academy of Sleep Medicine (AASM) <span class="citation" data-cites="watson_2015">(<a href="references.html#ref-watson_2015" role="doc-biblioref">Watson et al. 2015</a>)</span>, that this average person would, if he/she had no social obligations, typically wake up at about <span class="math inline">\(\text{08:26:51}\)</span>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://callr.r-lib.org">callr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/targets/">targets</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu">targets</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/targets/reference/tar_read.html">tar_read</a></span><span class="op">(</span><span class="st">"geocoded"</span>, store <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"_targets"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">targets</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/targets/reference/tar_read.html">tar_read</a></span><span class="op">(</span><span class="st">"geocoded_data"</span>, store <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"_targets"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
 <span>    <span class="va">age</span>, <span class="va">sex</span>, <span class="va">state</span>, <span class="va">region</span>, <span class="va">latitude</span>, <span class="va">longitude</span>, <span class="va">height</span>, <span class="va">weight</span>, <span class="va">work</span>, <span class="va">study</span>,</span>
 <span>    <span class="va">msf_sc</span>, <span class="va">sjl</span>, <span class="va">le_week</span>, </span>
@@ -526,7 +525,7 @@ Target
 \]</span></p>
 <p>In order to test a possible latitude association in predicting the chronotype, the full model was the restricted model with the addition of the latitude variable. The restricted model had the midpoint between sleep onset and sleep end on work-free days (<span class="math inline">\(\text{MSF}_{\text{sc}}\)</span>) as the response variable, MCTQ proxy for the chronotype, with sex and age as predictors.</p>
 <p>A residual analysis was made to assure the validity of the models before the hypothesis test. The hypothesis was tested using a <span class="math inline">\(0.05\)</span> (<span class="math inline">\(\alpha\)</span>) significance level.</p>
-<p>To favor the alternative hypothesis (<span class="math inline">\(\text{H}_{a}\)</span>), not only the <span class="math inline">\(\text{R}^{2}\)</span> of the full model must be significantly larger than the <span class="math inline">\(R^{2}\)</span> of the restricted model, but the effect size must be at least considered small. To evaluate the effect size, Cohen’s <span class="math inline">\(f^{2}\)</span> and his categorical parameters for size were used <span class="citation" data-cites="cohen_1992">(<a href="references.html#ref-cohen_1992" role="doc-biblioref"><strong>cohen_1992?</strong></a>)</span>. That means that, in order to favor (<span class="math inline">\(\text{H}_{a}\)</span>), the effect size must be at least equal to or greater than <span class="math inline">\(0.0219\)</span>.</p>
+<p>To favor the alternative hypothesis (<span class="math inline">\(\text{H}_{a}\)</span>), not only the <span class="math inline">\(\text{R}^{2}\)</span> of the full model must be significantly larger than the <span class="math inline">\(R^{2}\)</span> of the restricted model, but the effect size must be at least considered small. To evaluate the effect size, Cohen’s <span class="math inline">\(f^{2}\)</span> and his categorical parameters for size were used <span class="citation" data-cites="cohen_1992">(<a href="references.html#ref-cohen_1992" role="doc-biblioref">Cohen 1992</a>)</span>. That means that, in order to favor (<span class="math inline">\(\text{H}_{a}\)</span>), the effect size must be at least equal to or greater than <span class="math inline">\(0.0219\)</span>.</p>
 <p>No blinding procedures were used during the analysis.</p>
 </section><section id="data-availability" class="level3" data-number="6.4.5"><h3 data-number="6.4.5" class="anchored" data-anchor-id="data-availability">
 <span class="header-section-number">6.4.5</span> Data availability</h3>
@@ -558,6 +557,9 @@ Allen, Michael Patrick. 1997. <em>Understanding Regression Analysis</em>. New Yo
 </div>
 <div id="ref-aschoff_1989" class="csl-entry" role="listitem">
 Aschoff, Jürgen. 1989. <span>“Temporal Orientation: Circadian Clocks in Animals and Humans.”</span> <em>Animal Behaviour</em> 37 (June): 881–96. <a href="https://doi.org/10.1016/0003-3472(89)90132-2">https://doi.org/10.1016/0003-3472(89)90132-2</a>.
+</div>
+<div id="ref-cohen_1992" class="csl-entry" role="listitem">
+Cohen, Jacob. 1992. <span>“A Power Primer.”</span> <em>Psychological Bulletin</em> 112 (1): 155–59. <a href="https://doi.org/10.1037/0033-2909.112.1.155">https://doi.org/10.1037/0033-2909.112.1.155</a>.
 </div>
 <div id="ref-ehret_1974" class="csl-entry" role="listitem">
 Ehret, Charles F. 1974. <span>“The Sense of Time: Evidence for Its Molecular Basis in the Eukaryotic Gene-Action System.”</span> In <em>Advances in Biological and Medical Physics</em>, 15:47–77. Elsevier. <a href="https://doi.org/10.1016/B978-0-12-005215-8.50009-7">https://doi.org/10.1016/B978-0-12-005215-8.50009-7</a>.

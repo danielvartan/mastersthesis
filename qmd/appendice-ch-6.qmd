@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
 # Appendice: Chapter 6 supplemental material
 
 ```{r}
@@ -7,6 +12,8 @@
 
 library(here)
 source(here::here("R/quarto-setup.R"))
+
+options(scipen = 10, digits = 5)
 ```
 
 ```{r}
@@ -14,4 +21,636 @@ source(here::here("R/quarto-setup.R"))
 #| output: asis
 
 quarto_status("drafting")
+```
+
+## Some references
+
+See @allen_1997; @bussab_1988; @degroot_2012; @hair_2019; @johnson_2013; @kuhn_2022; @dudek_2020; @dalpiaz_; @fox_2016.
+
+Other references:
+
+* <https://olsrr.rsquaredacademy.com>
+* <https://www.r-bloggers.com/2021/05/how-to-compare-nested-models-in-r/>
+* <https://www.r-bloggers.com/2022/10/box-cox-transformation-in-r/>
+* <https://online.stat.psu.edu/stat501/>
+
+## Statement
+
+$$
+\begin{cases}
+\text{H}_{0}: \text{R}^{2}_{\text{res}} >= \text{R}^{2}_{\text{full}} \\
+\text{H}_{a}: \text{R}^{2}_{\text{res}} < \text{R}^{2}_{\text{full}}
+\end{cases}
+$$
+
+General equation for the F-test [@allen_1997, pp. 113]:
+
+$$
+F = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+$$
+
+Where:
+
+* $\text{R}^{2}_{F}$ = Coefficient of determination for the __full__ model
+* $\text{R}^{2}_{R}$ = Coefficient of determination for the __restricted__ model
+* $k_{F}$ = Number of independent variables in the full model
+* $k_{R}$ = Number of independent variables in the restricted model
+* $N$ = Number of observations in the sample
+
+$$
+F = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
+$$
+
+## Assumptions
+
+See [@degroot_2012, pp. 736-738] to learn more.
+
+::: {.callout-warning}
+__The predictor is known__. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$).
+:::
+
+::: {.callout-warning}
+__Normality__. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution (__normality assumption__).
+:::
+
+::: {.callout-warning}
+__Linear mean__. There is a vector of parameters  $\beta = (\beta_{0}, \dots, \beta_{p - 1})$ such that the conditional mean of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ has the form
+
+$$
+z_{i0} \beta_{0} + z_{i1} \beta_{1} + \cdots + z_{ip - 1} \beta_{p - 1}
+$$
+
+for $i = 1, \dots, n$ (__zero error mean assumption__).
+:::
+
+::: {.callout-warning}
+__Common variance__. The observations $Y_{1}, \dots , Y_{n}$ have the same variance $\sigma^{2}$ (__homoscedasticity assumption__).
+:::
+
+::: {.callout-warning}
+__Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ (__independent errors assumption__).
+:::
+
+## Data preparation
+
+```{r}
+#| label: data-preparation
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(dplyr)
+library(here)
+library(targets)
+library(tidyr)
+
+source(here::here("R/utils.R"))
+
+data <- 
+  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
+  dplyr::select(msf_sc, age, sex, state, latitude, longitude) |>
+  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
+  tidyr::drop_na(msf_sc, age, sex, latitude)
+```
+
+## Restricted model
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(MASS)
+
+box_cox <- MASS::boxcox(msf_sc ~ age + sex, data = data)
+lambda <- box_cox$x[which.max(box_cox$y)]
+
+lambda
+```
+
+```{r}
+#| code-fold: false
+
+library(stats)
+
+res_model <- stats::lm(
+  ((msf_sc^lambda - 1) / lambda) ~ age + sex, data = data
+  )
+```
+
+```{r}
+#| code-fold: false
+
+library(broom)
+
+# ?broom::tidy.lm
+broom::tidy(res_model)
+```
+
+```{r}
+#| code-fold: false
+
+library(broom)
+library(dplyr)
+library(tidyr)
+
+# ?broom::glance.lm
+broom::glance(res_model) |> tidyr::pivot_longer(cols = dplyr::everything())
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(olsrr)
+
+# res_model |> olsrr::ols_regress()
+res_model |> summary()
+```
+
+### Residual diagnostics
+
+> Normality and zero mean error assumption.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(stats)
+
+source(here::here("R/stats_sum.R"))
+
+res_model |>
+  stats::residuals() |>
+  stats_sum()
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(fBasics)
+library(moments)
+
+source(here::here("R/normality_sum.R"))
+
+# ?moments::agostino.test
+# ?fBasics::dagoTest()
+
+res_model |>
+  stats::residuals() |>
+  normality_sum()
+```
+
+Correlation between observed residuals and expected residuals under normality.
+
+```{r}
+library(olsrr)
+#| code-fold: false
+
+res_model |> olsrr::ols_test_correlation()
+```
+
+```{r}
+library(cowplot)
+library(olsrr)
+library(stats)
+
+source(here::here("R/test_normality.R"))
+
+# res_model |> olsrr::ols_plot_resid_qq()
+
+qq_plot <- res_model |> 
+  stats::residuals() |>
+  plot_qq(print = FALSE)
+
+hist_plot <- res_model |>
+  stats::residuals() |>
+  plot_hist(print = FALSE)
+
+cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
+```
+
+```{r}
+library(olsrr)
+
+# Linear mean assumption
+
+res_model |> olsrr::ols_plot_resid_fit()
+```
+
+```{r}
+res_model |> plot(3)
+```
+
+### Heteroskedasticity
+
+> Homoscedasticity assumption.
+
+```{r}
+#| code-fold: false
+
+library(olsrr)
+
+# "It test whether variance of errors from a regression is dependent on the values of a independent variable."
+
+res_model |> olsrr::ols_test_breusch_pagan()
+```
+
+```{r}
+#| code-fold: false
+
+library(olsrr)
+
+res_model |> olsrr::ols_test_score()
+```
+
+### Collinearity diagnostics
+
+> Independence assumption.
+
+```{r}
+#| code-fold: false
+
+library(olsrr)
+
+res_model |> olsrr::ols_coll_diag()
+```
+
+> The variance inflation factor measures how much the behavior (variance) of an independent variable is influenced, or inflated, by its interaction/correlation with the other independent variables (e.g., VIF equal to 1 = variables are not correlated).
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(car)
+
+res_model |> car::vif()
+```
+
+### Measures of influence
+
+```{r}
+library(olsrr)
+
+res_model |> olsrr::ols_plot_resid_lev()
+```
+
+
+## Full model
+
+```{r}
+#| code-fold: false
+
+library(MASS)
+
+box_cox <- MASS::boxcox(
+  msf_sc ~ age + sex + latitude, data = data
+  )
+
+box_cox$x[which.max(box_cox$y)] # lambda
+```
+
+```{r}
+#| code-fold: false
+
+lambda # The same lambda of the restricted model
+```
+
+```{r}
+#| code-fold: false
+
+library(stats)
+
+full_model <- stats::lm(
+  ((msf_sc^lambda - 1) / lambda) ~ age + sex + latitude, 
+  data = data
+  )
+```
+
+```{r}
+#| code-fold: false
+
+library(broom)
+
+# ?broom::tidy.lm
+broom::tidy(full_model)
+```
+
+```{r}
+#| code-fold: false
+
+library(broom)
+library(dplyr)
+library(tidyr)
+
+# ?broom::glance.lm
+broom::glance(full_model) |>
+  tidyr::pivot_longer(cols = dplyr::everything())
+```
+
+```{r}
+#| code-fold: false
+
+# full_model |> olsrr::ols_regress()
+full_model |> summary()
+```
+
+### Residual diagnostics
+
+> Normality and zero mean error assumption.
+
+```{r}
+#| code-fold: false
+
+library(here)
+library(stats)
+
+source(here::here("R/stats_sum.R"))
+
+full_model |>
+  stats::residuals() |>
+  stats_sum()
+```
+
+```{r}
+#| code-fold: false
+
+library(here)
+library(stats)
+
+source(here::here("R/normality_sum.R"))
+
+full_model |>
+  stats::residuals() |>
+  normality_sum()
+```
+
+Correlation between observed residuals and expected residuals under normality.
+
+```{r}
+#| code-fold: false
+
+library(olsrr)
+
+full_model |> olsrr::ols_test_correlation()
+```
+
+```{r}
+library(here)
+library(cowplot)
+library(olsrr)
+library(stats)
+
+source(here::here("R/test_normality.R"))
+
+# full_model |> olsrr::ols_plot_resid_qq()
+
+hist_plot <- full_model |>
+  stats::residuals() |>
+  plot_hist(print = FALSE)
+
+qq_plot <- full_model |> 
+  stats::residuals() |>
+  plot_qq(print = FALSE)
+
+cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
+```
+
+```{r}
+library(olsrr)
+
+full_model |> olsrr::ols_plot_resid_fit()
+```
+
+```{r}
+full_model |> plot(3)
+```
+
+### Heteroskedasticity
+
+> Homoscedasticity assumption.
+
+```{r}
+#| code-fold: false
+
+library(olsrr)
+
+full_model |> olsrr::ols_test_breusch_pagan()
+```
+
+```{r}
+#| code-fold: false
+
+library(olsrr)
+
+full_model |> olsrr::ols_test_score()
+```
+
+### Collinearity diagnostics
+
+> Independence assumption.
+
+```{r}
+#| code-fold: false
+
+library(olsrr)
+
+full_model |> olsrr::ols_coll_diag()
+```
+
+> The variance inflation factor measures how much the behavior (variance) of an independent variable is influenced, or inflated, by its interaction/correlation with the other independent variables (e.g., VIF equal to 1 = variables are not correlated).
+
+```{r}
+#| code-fold: false
+
+library(car)
+
+full_model |> car::vif()
+```
+
+### Measures of influence
+
+```{r}
+library(olsrr)
+
+full_model |> olsrr::ols_plot_resid_lev()
+```
+
+
+## Nested regression models test
+
+$$
+\begin{cases}
+\text{H}_{0}: \text{R}^{2}_{\text{res}} >= \text{R}^{2}_{\text{full}} \\
+\text{H}_{a}: \text{R}^{2}_{\text{res}} < \text{R}^{2}_{\text{full}}
+\end{cases}
+$$
+
+$$
+F = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+$$
+
+$$
+F = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
+$$
+
+```{r}
+#| code-fold: false
+
+library(dplyr)
+library(here)
+
+source(here::here("R/utils-stats.R"))
+
+dplyr::tibble(
+  name = c("r_squared_res", "r_squared_full", "diff"),
+  value = c(
+  r_squared(res_model), r_squared(full_model), 
+  r_squared(full_model) - r_squared(res_model)
+  )
+)
+```
+
+```{r}
+#| code-fold: false
+
+library(stats)
+
+stats::anova(res_model, full_model)
+```
+
+```{r}
+#| code-fold: false
+
+library(stats)
+library(here)
+
+source(here::here("R/utils-stats.R"))
+
+n <- nrow(data)
+k_res <- length(stats::coefficients(res_model)) - 1
+k_full <- length(stats::coefficients(full_model)) - 1
+
+((r_squared(full_model) - r_squared(res_model)) / (k_full - k_res)) / ((1 - r_squared(full_model)) / (n  - k_full - 1))
+```
+
+$$
+f^{2} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R}}{1 - \text{R}^{2}_{F}}
+$$
+
+$$
+f^{2} = \cfrac{\text{Additional Var. Explained}}{\text{Var. unexplained}}
+$$
+
+```{r}
+#| code-fold: false
+
+library(here)
+
+source(here::here("R/cohens_f_squared.R"))
+source(here::here("R/utils-stats.R"))
+
+cohens_f_squared_summary(
+  adj_r_squared(res_model), 
+  adj_r_squared(full_model)
+  )
+```
+
+## Group test
+
+$$
+\begin{cases}
+\text{H}_{0}: \text{MSF}^{2^{o}}_{\text{sc}} >= \text{MSF}^{30^{o}}_{\text{sc}} \\
+\text{H}_{a}: \text{MSF}^{2^{o}}_{\text{sc}} < \text{MSF}^{30^{o}}_{\text{sc}}
+\end{cases}
+$$
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(dplyr)
+library(here)
+library(magrittr)
+
+source(here::here("R/stats_sum.R"))
+
+group_1 <- "Amapá" # Boa vista (0° 2′ 18.84″ N, 51° 3′ 59.1″ W)
+
+msf_sc_group_1 <- 
+  data |>
+  dplyr::filter(state == group_1) |>
+  magrittr::extract2("msf_sc")
+
+stats_sum_group_1 <- 
+  data |> 
+  dplyr::filter(state == group_1) |>
+  magrittr::extract2("msf_sc") |> 
+  stats_sum()
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(dplyr)
+library(here)
+library(magrittr)
+
+source(here::here("R/stats_sum.R"))
+
+group_2 <- "Rio Grande do Sul" # Porto Alegre (30° 01' 58" S, 51° 13' 48" O)
+
+msf_sc_group_2 <- data |>
+  dplyr::filter(state == group_2) |>
+  magrittr::extract2("msf_sc")
+
+stats_sum_group_2 <- 
+  data |> 
+  dplyr::filter(state == group_2) |>
+  magrittr::extract2("msf_sc") |> 
+  stats_sum()
+```
+
+```{r}
+#| code-fold: false
+
+library(stats)
+
+stats::t.test(msf_sc_group_1, msf_sc_group_2, alternative = "less")
+```
+
+```{r}
+#| code-fold: false
+
+library(dplyr)
+
+dplyr::tibble(
+  name = c("mean_group_1", "mean_group_2", "diff"),
+  value = c(
+  stats_sum_group_1$mean, stats_sum_group_2$mean, 
+  stats_sum_group_2$mean - stats_sum_group_1$mean
+  )
+)
+```
+
+[@frey_2022, pp. 224-227]
+
+$$
+d = \cfrac{\mu_{1} - \mu_{2}}{\sigma_{e}}
+$$
+
+```{r}
+#| code-fold: false
+
+library(effsize)
+
+effsize::cohen.d(msf_sc_group_1, msf_sc_group_2)
 ```

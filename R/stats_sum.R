@@ -3,9 +3,26 @@
 # * Refactor functions.
 # * Document functions.
 
-stats_sum <- function(x, threshold = hms::parse_hms("12:00:00"),
-                      na_rm = TRUE, remove_outliers = FALSE, iqr_mult = 1.5,
-                      hms_format = TRUE, print = TRUE) {
+require(checkmate, quietly = TRUE)
+require(gutils, quietly = TRUE)
+require(here, quietly = TRUE)
+require(hms, quietly = TRUE)
+require(lubridate, quietly = TRUE)
+require(moments, quietly = TRUE)
+require(purrr, quietly = TRUE)
+require(stats, quietly = TRUE)
+require(tidyr, quietly = TRUE)
+
+source(here::here("R/utils.R"))
+source(here::here("R/utils-stats.R"))
+
+stats_sum <- function(x,
+                      threshold = hms::parse_hms("12:00:00"),
+                      na_rm = TRUE,
+                      remove_outliers = FALSE,
+                      iqr_mult = 1.5,
+                      hms_format = TRUE,
+                      print = TRUE) {
   checkmate::assert_atomic(x)
   gutils:::assert_hms(
     threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59"),
@@ -17,19 +34,19 @@ stats_sum <- function(x, threshold = hms::parse_hms("12:00:00"),
   checkmate::assert_flag(hms_format)
   checkmate::assert_flag(print)
 
-  is_temporal <- x %>% gutils:::test_temporal()
+  is_temporal <- x |> gutils:::test_temporal()
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
 
   if (gutils:::test_temporal(x)) {
     if (lubridate::is.POSIXt(x)) {
-      x <- x %>% as.numeric()
+      x <- x |> as.numeric()
     } else {
-      x <- x %>% transform_time(threshold = threshold)
+      x <- x |> transform_time(threshold = threshold)
     }
   }
 
   if (isTRUE(remove_outliers)) {
-    x <- x %>% remove_outliers(method = "iqr", iqr_mult = iqr_mult)
+    x <- x |> remove_outliers(method = "iqr", iqr_mult = iqr_mult)
   }
 
   out <- list(
@@ -39,7 +56,9 @@ stats_sum <- function(x, threshold = hms::parse_hms("12:00:00"),
   )
 
   if (is.numeric(x)) {
-    out <- out %>% append(list(
+    out <-
+      out |>
+      append(list(
       mean = mean(x, na.rm = na_rm),
       var = stats::var(x, na.rm = na_rm),
       sd = stats::sd(x, na.rm = na_rm),
@@ -72,23 +91,25 @@ stats_sum <- function(x, threshold = hms::parse_hms("12:00:00"),
   }
 
   if (isTRUE(print)) {
-    out %>%
-      dplyr::as_tibble() %>%
+    out |>
+      dplyr::as_tibble() |>
       dplyr::mutate(dplyr::across(
         .cols = dplyr::everything(), .fns = as.character
-      )) %>%
-      tidyr::pivot_longer(cols = dplyr::everything()) %>%
+      )) |>
+      tidyr::pivot_longer(cols = dplyr::everything()) |>
       print()
   }
 
   if (!is.numeric(x) && !is_temporal) {
-    out <- out %>% append(list(
-      count = dplyr::tibble(col = x) %>% dplyr::count(col)
-    ))
+    out <-
+      out |>
+      append(list(
+        count = dplyr::tibble(col = x) |> dplyr::count(col)
+      ))
 
     if (print == TRUE) {
       cli::cat_line()
-      out$count %>% print()
+      out$count |> print()
     }
   }
 

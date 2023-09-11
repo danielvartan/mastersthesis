@@ -18,7 +18,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -55,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body class="nav-sidebar floating">
 
@@ -188,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/chapter-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Brazilian chronotypes: the largest MCTQ-PT sample to date</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ecology of sleep and circadian phenotypes of the Brazilian population</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -263,7 +316,34 @@ ul.task-list li input[type="checkbox"] {
 </nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#some-references" id="toc-some-references" class="nav-link active" data-scroll-target="#some-references"><span class="header-section-number">E.1</span> Some references</a></li>
+  <li><a href="#statement" id="toc-statement" class="nav-link" data-scroll-target="#statement"><span class="header-section-number">E.2</span> Statement</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">E.3</span> Assumptions</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation"><span class="header-section-number">E.4</span> Data preparation</a></li>
+  <li>
+<a href="#restricted-model" id="toc-restricted-model" class="nav-link" data-scroll-target="#restricted-model"><span class="header-section-number">E.5</span> Restricted model</a>
+  <ul class="collapse">
+<li><a href="#residual-diagnostics" id="toc-residual-diagnostics" class="nav-link" data-scroll-target="#residual-diagnostics"><span class="header-section-number">E.5.1</span> Residual diagnostics</a></li>
+  <li><a href="#heteroskedasticity" id="toc-heteroskedasticity" class="nav-link" data-scroll-target="#heteroskedasticity"><span class="header-section-number">E.5.2</span> Heteroskedasticity</a></li>
+  <li><a href="#collinearity-diagnostics" id="toc-collinearity-diagnostics" class="nav-link" data-scroll-target="#collinearity-diagnostics"><span class="header-section-number">E.5.3</span> Collinearity diagnostics</a></li>
+  <li><a href="#measures-of-influence" id="toc-measures-of-influence" class="nav-link" data-scroll-target="#measures-of-influence"><span class="header-section-number">E.5.4</span> Measures of influence</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#full-model" id="toc-full-model" class="nav-link" data-scroll-target="#full-model"><span class="header-section-number">E.6</span> Full model</a>
+  <ul class="collapse">
+<li><a href="#residual-diagnostics-1" id="toc-residual-diagnostics-1" class="nav-link" data-scroll-target="#residual-diagnostics-1"><span class="header-section-number">E.6.1</span> Residual diagnostics</a></li>
+  <li><a href="#heteroskedasticity-1" id="toc-heteroskedasticity-1" class="nav-link" data-scroll-target="#heteroskedasticity-1"><span class="header-section-number">E.6.2</span> Heteroskedasticity</a></li>
+  <li><a href="#collinearity-diagnostics-1" id="toc-collinearity-diagnostics-1" class="nav-link" data-scroll-target="#collinearity-diagnostics-1"><span class="header-section-number">E.6.3</span> Collinearity diagnostics</a></li>
+  <li><a href="#measures-of-influence-1" id="toc-measures-of-influence-1" class="nav-link" data-scroll-target="#measures-of-influence-1"><span class="header-section-number">E.6.4</span> Measures of influence</a></li>
+  </ul>
+</li>
+  <li><a href="#nested-regression-models-test" id="toc-nested-regression-models-test" class="nav-link" data-scroll-target="#nested-regression-models-test"><span class="header-section-number">E.7</span> Nested regression models test</a></li>
+  <li><a href="#group-test" id="toc-group-test" class="nav-link" data-scroll-target="#group-test"><span class="header-section-number">E.8</span> Group test</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -290,10 +370,873 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<section id="some-references" class="level2" data-number="E.1"><h2 data-number="E.1" class="anchored" data-anchor-id="some-references">
+<span class="header-section-number">E.1</span> Some references</h2>
+<p>See <span class="citation" data-cites="allen_1997">Allen (<a href="references.html#ref-allen_1997" role="doc-biblioref">1997</a>)</span>; <span class="citation" data-cites="bussab_1988">Bussab (<a href="references.html#ref-bussab_1988" role="doc-biblioref">1988</a>)</span>; <span class="citation" data-cites="degroot_2012">DeGroot and Schervish (<a href="references.html#ref-degroot_2012" role="doc-biblioref">2012</a>)</span>; <span class="citation" data-cites="hair_2019">Hair (<a href="references.html#ref-hair_2019" role="doc-biblioref">2019</a>)</span>; <span class="citation" data-cites="johnson_2013">Johnson and Wichern (<a href="references.html#ref-johnson_2013" role="doc-biblioref">2013</a>)</span>; <span class="citation" data-cites="kuhn_2022">Kuhn and Silge (<a href="references.html#ref-kuhn_2022" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="dudek_2020">Dudek (<a href="references.html#ref-dudek_2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="dalpiaz_">Dalpiaz (<a href="references.html#ref-dalpiaz_" role="doc-biblioref">n.d.</a>)</span>; <span class="citation" data-cites="fox_2016">Fox (<a href="references.html#ref-fox_2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>Other references:</p>
+<ul>
+<li><a href="https://olsrr.rsquaredacademy.com" class="uri">https://olsrr.rsquaredacademy.com</a></li>
+<li><a href="https://www.r-bloggers.com/2021/05/how-to-compare-nested-models-in-r/" class="uri">https://www.r-bloggers.com/2021/05/how-to-compare-nested-models-in-r/</a></li>
+<li><a href="https://www.r-bloggers.com/2022/10/box-cox-transformation-in-r/" class="uri">https://www.r-bloggers.com/2022/10/box-cox-transformation-in-r/</a></li>
+<li><a href="https://online.stat.psu.edu/stat501/" class="uri">https://online.stat.psu.edu/stat501/</a></li>
+</ul></section><section id="statement" class="level2" data-number="E.2"><h2 data-number="E.2" class="anchored" data-anchor-id="statement">
+<span class="header-section-number">E.2</span> Statement</h2>
+<p><span class="math display">\[
+\begin{cases}
+\text{H}_{0}: \text{R}^{2}_{\text{res}} &gt;= \text{R}^{2}_{\text{full}} \\
+\text{H}_{a}: \text{R}^{2}_{\text{res}} &lt; \text{R}^{2}_{\text{full}}
+\end{cases}
+\]</span></p>
+<p>General equation for the F-test <span class="citation" data-cites="allen_1997">(<a href="references.html#ref-allen_1997" role="doc-biblioref">Allen 1997, 113</a>)</span>:</p>
+<p><span class="math display">\[
+F = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li>
+<span class="math inline">\(\text{R}^{2}_{F}\)</span> = Coefficient of determination for the <strong>full</strong> model</li>
+<li>
+<span class="math inline">\(\text{R}^{2}_{R}\)</span> = Coefficient of determination for the <strong>restricted</strong> model</li>
+<li>
+<span class="math inline">\(k_{F}\)</span> = Number of independent variables in the full model</li>
+<li>
+<span class="math inline">\(k_{R}\)</span> = Number of independent variables in the restricted model</li>
+<li>
+<span class="math inline">\(N\)</span> = Number of observations in the sample</li>
+</ul>
+<p><span class="math display">\[
+F = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
+\]</span></p>
+</section><section id="assumptions" class="level2" data-number="E.3"><h2 data-number="E.3" class="anchored" data-anchor-id="assumptions">
+<span class="header-section-number">E.3</span> Assumptions</h2>
+<p>See <span class="citation" data-cites="degroot_2012">(<a href="references.html#ref-degroot_2012" role="doc-biblioref">DeGroot and Schervish 2012, 736–38</a>)</span> to learn more.</p>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>The predictor is known</strong>. Either the vectors <span class="math inline">\(z_{1}, \dots , z_{n}\)</span> are known ahead of time, or they are the observed values of random vectors <span class="math inline">\(Z_{1}, \dots , Z_{n}\)</span> on whose values we condition before computing the joint distribution of (<span class="math inline">\(Y_{1}, \dots , Y_{n}\)</span>).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Normality</strong>. For <span class="math inline">\(i = 1, \dots, n\)</span>, the conditional distribution of <span class="math inline">\(Y_{i}\)</span> given the vectors <span class="math inline">\(z_{1}, \dots , z_{n}\)</span> is a normal distribution (<strong>normality assumption</strong>).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Linear mean</strong>. There is a vector of parameters <span class="math inline">\(\beta = (\beta_{0}, \dots, \beta_{p - 1})\)</span> such that the conditional mean of <span class="math inline">\(Y_{i}\)</span> given the values <span class="math inline">\(z_{1}, \dots , z_{n}\)</span> has the form</p>
+<p><span class="math display">\[
+z_{i0} \beta_{0} + z_{i1} \beta_{1} + \cdots + z_{ip - 1} \beta_{p - 1}
+\]</span></p>
+<p>for <span class="math inline">\(i = 1, \dots, n\)</span> (<strong>zero error mean assumption</strong>).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Common variance</strong>. The observations <span class="math inline">\(Y_{1}, \dots , Y_{n}\)</span> have the same variance <span class="math inline">\(\sigma^{2}\)</span> (<strong>homoscedasticity assumption</strong>).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Independence</strong>. The random variables <span class="math inline">\(Y_{1}, \dots , Y_{n}\)</span> are independent given the observed <span class="math inline">\(z_{1}, \dots , z_{n}\)</span> (<strong>independent errors assumption</strong>).</p>
+</div>
+</div>
+</div>
+</section><section id="data-preparation" class="level2" data-number="E.4"><h2 data-number="E.4" class="anchored" data-anchor-id="data-preparation">
+<span class="header-section-number">E.4</span> Data preparation</h2>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/targets/">targets</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/utils.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">targets</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/targets/reference/tar_read.html">tar_read</a></span><span class="op">(</span><span class="st">"geocoded_data"</span>, store <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"_targets"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">msf_sc</span>, <span class="va">age</span>, <span class="va">sex</span>, <span class="va">state</span>, <span class="va">latitude</span>, <span class="va">longitude</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>msf_sc <span class="op">=</span> <span class="fu">transform_time</span><span class="op">(</span><span class="va">msf_sc</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">msf_sc</span>, <span class="va">age</span>, <span class="va">sex</span>, <span class="va">latitude</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="restricted-model" class="level2" data-number="E.5"><h2 data-number="E.5" class="anchored" data-anchor-id="restricted-model">
+<span class="header-section-number">E.5</span> Restricted model</h2>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">box_cox</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/boxcox.html">boxcox</a></span><span class="op">(</span><span class="va">msf_sc</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">data</span><span class="op">)</span></span>
+<span><span class="va">lambda</span> <span class="op">&lt;-</span> <span class="va">box_cox</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">box_cox</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">lambda</span></span>
+<span><span class="co">#&gt; [1] -1.1111</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span></span>
+<span>  <span class="op">(</span><span class="op">(</span><span class="va">msf_sc</span><span class="op">^</span><span class="va">lambda</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="va">lambda</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">data</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># ?broom::tidy.lm</span></span>
+<span><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">res_model</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 5</span></span>
+<span><span class="co">#&gt;   term        estimate std.error   statistic  p.value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 (Intercept)  9.00e-1  1.75e- 9 513579298.  0       </span></span>
+<span><span class="co">#&gt; 2 age         -3.38e-9  5.19e-11       -65.1 0       </span></span>
+<span><span class="co">#&gt; 3 sexMale      1.32e-8  1.02e- 9        13.0 1.03e-38</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># ?broom::glance.lm</span></span>
+<span><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">res_model</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 12 × 2</span></span>
+<span><span class="co">#&gt;   name            value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 r.squared     5.37e-2</span></span>
+<span><span class="co">#&gt; 2 adj.r.squared 5.37e-2</span></span>
+<span><span class="co">#&gt; 3 sigma         1.33e-7</span></span>
+<span><span class="co">#&gt; 4 statistic     2.18e+3</span></span>
+<span><span class="co">#&gt; 5 p.value       0      </span></span>
+<span><span class="co">#&gt; 6 df            2   e+0</span></span>
+<span><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># res_model |&gt; olsrr::ols_regress()</span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; stats::lm(formula = ((msf_sc^lambda - 1)/lambda) ~ age + sex, </span></span>
+<span><span class="co">#&gt;     data = data)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals:</span></span>
+<span><span class="co">#&gt;           Min            1Q        Median            3Q           Max </span></span>
+<span><span class="co">#&gt; -0.0000004859 -0.0000000911 -0.0000000031  0.0000000916  0.0000004204 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;                     Estimate       Std. Error     t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)  0.8999976603602  0.0000000017524 513579298.2   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; age         -0.0000000033812  0.0000000000519       -65.1   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; sexMale      0.0000000132309  0.0000000010162        13.0   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residual standard error: 0.000000133 on 76741 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.0537, Adjusted R-squared:  0.0537 </span></span>
+<span><span class="co">#&gt; F-statistic: 2.18e+03 on 2 and 76741 DF,  p-value: &lt;2e-16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="residual-diagnostics" class="level3" data-number="E.5.1"><h3 data-number="E.5.1" class="anchored" data-anchor-id="residual-diagnostics">
+<span class="header-section-number">E.5.1</span> Residual diagnostics</h3>
+<blockquote class="blockquote">
+<p>Normality and zero mean error assumption.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/stats_sum.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">stats_sum</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 14 × 2</span></span>
+<span><span class="co">#&gt;   name    value                         </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;                         </span></span>
+<span><span class="co">#&gt; 1 n       76744                         </span></span>
+<span><span class="co">#&gt; 2 n_rm_na 76744                         </span></span>
+<span><span class="co">#&gt; 3 n_na    0                             </span></span>
+<span><span class="co">#&gt; 4 mean    6.60699976667332e-23          </span></span>
+<span><span class="co">#&gt; 5 var     0.0000000000000176852866826985</span></span>
+<span><span class="co">#&gt; 6 sd      0.000000132986039427823       </span></span>
+<span><span class="co">#&gt; # ℹ 8 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/scm/viewvc.php/pkg/fBasics/?root=rmetrics">fBasics</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.r-project.org">moments</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/normality_sum.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># ?moments::agostino.test</span></span>
+<span><span class="co"># ?fBasics::dagoTest()</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">normality_sum</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 11 × 2</span></span>
+<span><span class="co">#&gt;   test                       p_value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Anderson-Darling          3.7 e-24</span></span>
+<span><span class="co">#&gt; 2 Bonett-Seier              0       </span></span>
+<span><span class="co">#&gt; 3 Cramer-von Mises          7.37e-10</span></span>
+<span><span class="co">#&gt; 4 D'Agostino Omnibus Test  NA       </span></span>
+<span><span class="co">#&gt; 5 D'Agostino Skewness Test  2.34e- 1</span></span>
+<span><span class="co">#&gt; 6 D'Agostino Kurtosis Test NA       </span></span>
+<span><span class="co">#&gt; # ℹ 5 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Correlation between observed residuals and expected residuals under normality.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span><span class="co">#| code-fold: false</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_test_correlation.html">ols_test_correlation</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.99929</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/test_normality.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># res_model |&gt; olsrr::ols_plot_resid_qq()</span></span>
+<span></span>
+<span><span class="va">qq_plot</span> <span class="op">&lt;-</span> <span class="va">res_model</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plot_qq</span><span class="op">(</span>print <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">hist_plot</span> <span class="op">&lt;-</span> <span class="va">res_model</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plot_hist</span><span class="op">(</span>print <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">hist_plot</span>, <span class="va">qq_plot</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Linear mean assumption</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_plot_resid_fit.html">ols_plot_resid_fit</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">res_model</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</section><section id="heteroskedasticity" class="level3" data-number="E.5.2"><h3 data-number="E.5.2" class="anchored" data-anchor-id="heteroskedasticity">
+<span class="header-section-number">E.5.2</span> Heteroskedasticity</h3>
+<blockquote class="blockquote">
+<p>Homoscedasticity assumption.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># "It test whether variance of errors from a regression is dependent on the values of a independent variable."</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_test_breusch_pagan.html">ols_test_breusch_pagan</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Breusch Pagan Test for Heteroskedasticity</span></span>
+<span><span class="co">#&gt;  -----------------------------------------</span></span>
+<span><span class="co">#&gt;  Ho: the variance is constant            </span></span>
+<span><span class="co">#&gt;  Ha: the variance is not constant        </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;                           Data                           </span></span>
+<span><span class="co">#&gt;  --------------------------------------------------------</span></span>
+<span><span class="co">#&gt;  Response : ((msf_sc^lambda - 1)/lambda) </span></span>
+<span><span class="co">#&gt;  Variables: fitted values of ((msf_sc^lambda - 1)/lambda) </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;         Test Summary          </span></span>
+<span><span class="co">#&gt;  -----------------------------</span></span>
+<span><span class="co">#&gt;  DF            =    1 </span></span>
+<span><span class="co">#&gt;  Chi2          =    70149.3586 </span></span>
+<span><span class="co">#&gt;  Prob &gt; Chi2   =    0.0000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_test_score.html">ols_test_score</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Score Test for Heteroskedasticity</span></span>
+<span><span class="co">#&gt;  ---------------------------------</span></span>
+<span><span class="co">#&gt;  Ho: Variance is homogenous</span></span>
+<span><span class="co">#&gt;  Ha: Variance is not homogenous</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Variables: fitted values of ((msf_sc^lambda - 1)/lambda) </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;       Test Summary       </span></span>
+<span><span class="co">#&gt;  ------------------------</span></span>
+<span><span class="co">#&gt;  DF            =    1 </span></span>
+<span><span class="co">#&gt;  Chi2          =    0.000 </span></span>
+<span><span class="co">#&gt;  Prob &gt; Chi2   =    1.000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="collinearity-diagnostics" class="level3" data-number="E.5.3"><h3 data-number="E.5.3" class="anchored" data-anchor-id="collinearity-diagnostics">
+<span class="header-section-number">E.5.3</span> Collinearity diagnostics</h3>
+<blockquote class="blockquote">
+<p>Independence assumption.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_coll_diag.html">ols_coll_diag</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Tolerance and Variance Inflation Factor</span></span>
+<span><span class="co">#&gt; ---------------------------------------</span></span>
+<span><span class="co">#&gt;   Variables Tolerance    VIF</span></span>
+<span><span class="co">#&gt; 1       age    0.9988 1.0012</span></span>
+<span><span class="co">#&gt; 2   sexMale    0.9988 1.0012</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Eigenvalue and Condition Index</span></span>
+<span><span class="co">#&gt; ------------------------------</span></span>
+<span><span class="co">#&gt;   Eigenvalue Condition Index intercept      age   sexMale</span></span>
+<span><span class="co">#&gt; 1   2.422418          1.0000  0.011753 0.011936 0.0669897</span></span>
+<span><span class="co">#&gt; 2   0.538450          2.1211  0.015824 0.018848 0.9280439</span></span>
+<span><span class="co">#&gt; 3   0.039132          7.8679  0.972423 0.969216 0.0049664</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>The variance inflation factor measures how much the behavior (variance) of an independent variable is influenced, or inflated, by its interaction/correlation with the other independent variables (e.g., VIF equal to 1 = variables are not correlated).</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span> <span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/vif.html">vif</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    age    sex </span></span>
+<span><span class="co">#&gt; 1.0012 1.0012</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="measures-of-influence" class="level3" data-number="E.5.4"><h3 data-number="E.5.4" class="anchored" data-anchor-id="measures-of-influence">
+<span class="header-section-number">E.5.4</span> Measures of influence</h3>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">res_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_plot_resid_lev.html">ols_plot_resid_lev</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</section></section><section id="full-model" class="level2" data-number="E.6"><h2 data-number="E.6" class="anchored" data-anchor-id="full-model">
+<span class="header-section-number">E.6</span> Full model</h2>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">box_cox</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/boxcox.html">boxcox</a></span><span class="op">(</span></span>
+<span>  <span class="va">msf_sc</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">latitude</span>, data <span class="op">=</span> <span class="va">data</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">box_cox</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">box_cox</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">]</span> <span class="co"># lambda</span></span>
+<span><span class="co">#&gt; [1] -1.1515</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lambda</span> <span class="co"># The same lambda of the restricted model</span></span>
+<span><span class="co">#&gt; [1] -1.1111</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span></span>
+<span>  <span class="op">(</span><span class="op">(</span><span class="va">msf_sc</span><span class="op">^</span><span class="va">lambda</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="va">lambda</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">latitude</span>, </span>
+<span>  data <span class="op">=</span> <span class="va">data</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># ?broom::tidy.lm</span></span>
+<span><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">full_model</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 4 × 5</span></span>
+<span><span class="co">#&gt;   term        estimate std.error   statistic   p.value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 (Intercept)  9.00e-1  2.30e- 9 391908053.  0        </span></span>
+<span><span class="co">#&gt; 2 age         -3.47e-9  5.19e-11       -66.9 0        </span></span>
+<span><span class="co">#&gt; 3 sexMale      1.37e-8  1.01e- 9        13.6 7.94e- 42</span></span>
+<span><span class="co">#&gt; 4 latitude    -1.82e-9  7.64e-11       -23.9 2.74e-125</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># ?broom::glance.lm</span></span>
+<span><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">full_model</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 12 × 2</span></span>
+<span><span class="co">#&gt;   name            value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 r.squared     6.07e-2</span></span>
+<span><span class="co">#&gt; 2 adj.r.squared 6.07e-2</span></span>
+<span><span class="co">#&gt; 3 sigma         1.32e-7</span></span>
+<span><span class="co">#&gt; 4 statistic     1.65e+3</span></span>
+<span><span class="co">#&gt; 5 p.value       0      </span></span>
+<span><span class="co">#&gt; 6 df            3   e+0</span></span>
+<span><span class="co">#&gt; # ℹ 6 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># full_model |&gt; olsrr::ols_regress()</span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; stats::lm(formula = ((msf_sc^lambda - 1)/lambda) ~ age + sex + </span></span>
+<span><span class="co">#&gt;     latitude, data = data)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals:</span></span>
+<span><span class="co">#&gt;           Min            1Q        Median            3Q           Max </span></span>
+<span><span class="co">#&gt; -0.0000004874 -0.0000000911 -0.0000000034  0.0000000912  0.0000004328 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;                     Estimate       Std. Error     t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)  0.8999976247783  0.0000000022965 391908052.9   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; age         -0.0000000034710  0.0000000000519       -66.9   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; sexMale      0.0000000137296  0.0000000010127        13.6   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; latitude    -0.0000000018222  0.0000000000764       -23.9   &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residual standard error: 0.000000132 on 76740 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.0607, Adjusted R-squared:  0.0607 </span></span>
+<span><span class="co">#&gt; F-statistic: 1.65e+03 on 3 and 76740 DF,  p-value: &lt;2e-16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="residual-diagnostics-1" class="level3" data-number="E.6.1"><h3 data-number="E.6.1" class="anchored" data-anchor-id="residual-diagnostics-1">
+<span class="header-section-number">E.6.1</span> Residual diagnostics</h3>
+<blockquote class="blockquote">
+<p>Normality and zero mean error assumption.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/stats_sum.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">stats_sum</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 14 × 2</span></span>
+<span><span class="co">#&gt;   name    value                         </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;                         </span></span>
+<span><span class="co">#&gt; 1 n       76744                         </span></span>
+<span><span class="co">#&gt; 2 n_rm_na 76744                         </span></span>
+<span><span class="co">#&gt; 3 n_na    0                             </span></span>
+<span><span class="co">#&gt; 4 mean    4.85272564733669e-24          </span></span>
+<span><span class="co">#&gt; 5 var     0.0000000000000175551361304561</span></span>
+<span><span class="co">#&gt; 6 sd      0.00000013249579665203        </span></span>
+<span><span class="co">#&gt; # ℹ 8 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/normality_sum.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">normality_sum</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 11 × 2</span></span>
+<span><span class="co">#&gt;   test                       p_value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Anderson-Darling          3.7 e-24</span></span>
+<span><span class="co">#&gt; 2 Bonett-Seier              0       </span></span>
+<span><span class="co">#&gt; 3 Cramer-von Mises          7.37e-10</span></span>
+<span><span class="co">#&gt; 4 D'Agostino Omnibus Test  NA       </span></span>
+<span><span class="co">#&gt; 5 D'Agostino Skewness Test  9.41e- 1</span></span>
+<span><span class="co">#&gt; 6 D'Agostino Kurtosis Test NA       </span></span>
+<span><span class="co">#&gt; # ℹ 5 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Correlation between observed residuals and expected residuals under normality.</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_test_correlation.html">ols_test_correlation</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.99929</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/test_normality.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># full_model |&gt; olsrr::ols_plot_resid_qq()</span></span>
+<span></span>
+<span><span class="va">hist_plot</span> <span class="op">&lt;-</span> <span class="va">full_model</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plot_hist</span><span class="op">(</span>print <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">qq_plot</span> <span class="op">&lt;-</span> <span class="va">full_model</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plot_qq</span><span class="op">(</span>print <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">hist_plot</span>, <span class="va">qq_plot</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_plot_resid_fit.html">ols_plot_resid_fit</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">full_model</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</section><section id="heteroskedasticity-1" class="level3" data-number="E.6.2"><h3 data-number="E.6.2" class="anchored" data-anchor-id="heteroskedasticity-1">
+<span class="header-section-number">E.6.2</span> Heteroskedasticity</h3>
+<blockquote class="blockquote">
+<p>Homoscedasticity assumption.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_test_breusch_pagan.html">ols_test_breusch_pagan</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Breusch Pagan Test for Heteroskedasticity</span></span>
+<span><span class="co">#&gt;  -----------------------------------------</span></span>
+<span><span class="co">#&gt;  Ho: the variance is constant            </span></span>
+<span><span class="co">#&gt;  Ha: the variance is not constant        </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;                           Data                           </span></span>
+<span><span class="co">#&gt;  --------------------------------------------------------</span></span>
+<span><span class="co">#&gt;  Response : ((msf_sc^lambda - 1)/lambda) </span></span>
+<span><span class="co">#&gt;  Variables: fitted values of ((msf_sc^lambda - 1)/lambda) </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;         Test Summary          </span></span>
+<span><span class="co">#&gt;  -----------------------------</span></span>
+<span><span class="co">#&gt;  DF            =    1 </span></span>
+<span><span class="co">#&gt;  Chi2          =    70101.1634 </span></span>
+<span><span class="co">#&gt;  Prob &gt; Chi2   =    0.0000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_test_score.html">ols_test_score</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Score Test for Heteroskedasticity</span></span>
+<span><span class="co">#&gt;  ---------------------------------</span></span>
+<span><span class="co">#&gt;  Ho: Variance is homogenous</span></span>
+<span><span class="co">#&gt;  Ha: Variance is not homogenous</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Variables: fitted values of ((msf_sc^lambda - 1)/lambda) </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;       Test Summary       </span></span>
+<span><span class="co">#&gt;  ------------------------</span></span>
+<span><span class="co">#&gt;  DF            =    1 </span></span>
+<span><span class="co">#&gt;  Chi2          =    0.000 </span></span>
+<span><span class="co">#&gt;  Prob &gt; Chi2   =    1.000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="collinearity-diagnostics-1" class="level3" data-number="E.6.3"><h3 data-number="E.6.3" class="anchored" data-anchor-id="collinearity-diagnostics-1">
+<span class="header-section-number">E.6.3</span> Collinearity diagnostics</h3>
+<blockquote class="blockquote">
+<p>Independence assumption.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_coll_diag.html">ols_coll_diag</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Tolerance and Variance Inflation Factor</span></span>
+<span><span class="co">#&gt; ---------------------------------------</span></span>
+<span><span class="co">#&gt;   Variables Tolerance    VIF</span></span>
+<span><span class="co">#&gt; 1       age   0.99354 1.0065</span></span>
+<span><span class="co">#&gt; 2   sexMale   0.99838 1.0016</span></span>
+<span><span class="co">#&gt; 3  latitude   0.99441 1.0056</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Eigenvalue and Condition Index</span></span>
+<span><span class="co">#&gt; ------------------------------</span></span>
+<span><span class="co">#&gt;   Eigenvalue Condition Index  intercept       age   sexMale  latitude</span></span>
+<span><span class="co">#&gt; 1   3.312504          1.0000 0.00377395 0.0064918 0.0304493 0.0068553</span></span>
+<span><span class="co">#&gt; 2   0.584652          2.3803 0.00328127 0.0064143 0.9588857 0.0083393</span></span>
+<span><span class="co">#&gt; 3   0.073700          6.7042 0.00040414 0.5063551 0.0023826 0.5659326</span></span>
+<span><span class="co">#&gt; 4   0.029145         10.6609 0.99254063 0.4807389 0.0082824 0.4188728</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>The variance inflation factor measures how much the behavior (variance) of an independent variable is influenced, or inflated, by its interaction/correlation with the other independent variables (e.g., VIF equal to 1 = variables are not correlated).</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span> <span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/vif.html">vif</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      age      sex latitude </span></span>
+<span><span class="co">#&gt;   1.0065   1.0016   1.0056</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="measures-of-influence-1" class="level3" data-number="E.6.4"><h3 data-number="E.6.4" class="anchored" data-anchor-id="measures-of-influence-1">
+<span class="header-section-number">E.6.4</span> Measures of influence</h3>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://olsrr.rsquaredacademy.com/">olsrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">full_model</span> <span class="op">|&gt;</span> <span class="fu">olsrr</span><span class="fu">::</span><span class="fu"><a href="https://olsrr.rsquaredacademy.com/reference/ols_plot_resid_lev.html">ols_plot_resid_lev</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="appendice-ch-6_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</section></section><section id="nested-regression-models-test" class="level2" data-number="E.7"><h2 data-number="E.7" class="anchored" data-anchor-id="nested-regression-models-test">
+<span class="header-section-number">E.7</span> Nested regression models test</h2>
+<p><span class="math display">\[
+\begin{cases}
+\text{H}_{0}: \text{R}^{2}_{\text{res}} &gt;= \text{R}^{2}_{\text{full}} \\
+\text{H}_{a}: \text{R}^{2}_{\text{res}} &lt; \text{R}^{2}_{\text{full}}
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+F = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+\]</span></p>
+<p><span class="math display">\[
+F = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/utils-stats.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"r_squared_res"</span>, <span class="st">"r_squared_full"</span>, <span class="st">"diff"</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="fu">r_squared</span><span class="op">(</span><span class="va">res_model</span><span class="op">)</span>, <span class="fu">r_squared</span><span class="op">(</span><span class="va">full_model</span><span class="op">)</span>, </span>
+<span>  <span class="fu">r_squared</span><span class="op">(</span><span class="va">full_model</span><span class="op">)</span> <span class="op">-</span> <span class="fu">r_squared</span><span class="op">(</span><span class="va">res_model</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   name             value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;            &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 r_squared_res  0.0537 </span></span>
+<span><span class="co">#&gt; 2 r_squared_full 0.0607 </span></span>
+<span><span class="co">#&gt; 3 diff           0.00696</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">res_model</span>, <span class="va">full_model</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model 1: ((msf_sc^lambda - 1)/lambda) ~ age + sex</span></span>
+<span><span class="co">#&gt; Model 2: ((msf_sc^lambda - 1)/lambda) ~ age + sex + latitude</span></span>
+<span><span class="co">#&gt;   Res.Df           RSS Df        Sum of Sq   F Pr(&gt;F)    </span></span>
+<span><span class="co">#&gt; 1  76741 0.00000000136                                   </span></span>
+<span><span class="co">#&gt; 2  76740 0.00000000135  1 0.00000000000999 569 &lt;2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/utils-stats.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span><span class="va">k_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coefficients</a></span><span class="op">(</span><span class="va">res_model</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span><span class="va">k_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coefficients</a></span><span class="op">(</span><span class="va">full_model</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span></span>
+<span><span class="op">(</span><span class="op">(</span><span class="fu">r_squared</span><span class="op">(</span><span class="va">full_model</span><span class="op">)</span> <span class="op">-</span> <span class="fu">r_squared</span><span class="op">(</span><span class="va">res_model</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">k_full</span> <span class="op">-</span> <span class="va">k_res</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu">r_squared</span><span class="op">(</span><span class="va">full_model</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">n</span>  <span class="op">-</span> <span class="va">k_full</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 568.94</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="math display">\[
+f^{2} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R}}{1 - \text{R}^{2}_{F}}
+\]</span></p>
+<p><span class="math display">\[
+f^{2} = \cfrac{\text{Additional Var. Explained}}{\text{Var. unexplained}}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/cohens_f_squared.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/utils-stats.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">cohens_f_squared_summary</span><span class="op">(</span></span>
+<span>  <span class="fu">adj_r_squared</span><span class="op">(</span><span class="va">res_model</span><span class="op">)</span>, </span>
+<span>  <span class="fu">adj_r_squared</span><span class="op">(</span><span class="va">full_model</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
+<span><span class="co">#&gt;   name        value              </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;              </span></span>
+<span><span class="co">#&gt; 1 f_squared   0.00740068896515648</span></span>
+<span><span class="co">#&gt; 2 effect_size Negligible</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="group-test" class="level2" data-number="E.8"><h2 data-number="E.8" class="anchored" data-anchor-id="group-test">
+<span class="header-section-number">E.8</span> Group test</h2>
+<p><span class="math display">\[
+\begin{cases}
+\text{H}_{0}: \text{MSF}^{2^{o}}_{\text{sc}} &gt;= \text{MSF}^{30^{o}}_{\text{sc}} \\
+\text{H}_{a}: \text{MSF}^{2^{o}}_{\text{sc}} &lt; \text{MSF}^{30^{o}}_{\text{sc}}
+\end{cases}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/stats_sum.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">group_1</span> <span class="op">&lt;-</span> <span class="st">"Amapá"</span> <span class="co"># Boa vista (0° 2′ 18.84″ N, 51° 3′ 59.1″ W)</span></span>
+<span></span>
+<span><span class="va">msf_sc_group_1</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span> <span class="op">==</span> <span class="va">group_1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"msf_sc"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">stats_sum_group_1</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">data</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span> <span class="op">==</span> <span class="va">group_1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"msf_sc"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">stats_sum</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 14 × 2</span></span>
+<span><span class="co">#&gt;   name    value           </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;           </span></span>
+<span><span class="co">#&gt; 1 n       113             </span></span>
+<span><span class="co">#&gt; 2 n_rm_na 113             </span></span>
+<span><span class="co">#&gt; 3 n_na    0               </span></span>
+<span><span class="co">#&gt; 4 mean    103564.475347661</span></span>
+<span><span class="co">#&gt; 5 var     28720417.6933099</span></span>
+<span><span class="co">#&gt; 6 sd      5359.14337308771</span></span>
+<span><span class="co">#&gt; # ℹ 8 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R/stats_sum.R"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">group_2</span> <span class="op">&lt;-</span> <span class="st">"Rio Grande do Sul"</span> <span class="co"># Porto Alegre (30° 01' 58" S, 51° 13' 48" O)</span></span>
+<span></span>
+<span><span class="va">msf_sc_group_2</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span> <span class="op">==</span> <span class="va">group_2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"msf_sc"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">stats_sum_group_2</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">data</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span> <span class="op">==</span> <span class="va">group_2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">magrittr</span><span class="fu">::</span><span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"msf_sc"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">stats_sum</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 14 × 2</span></span>
+<span><span class="co">#&gt;   name    value           </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;           </span></span>
+<span><span class="co">#&gt; 1 n       4097            </span></span>
+<span><span class="co">#&gt; 2 n_rm_na 4097            </span></span>
+<span><span class="co">#&gt; 3 n_na    0               </span></span>
+<span><span class="co">#&gt; 4 mean    103651.485407441</span></span>
+<span><span class="co">#&gt; 5 var     26397872.5737977</span></span>
+<span><span class="co">#&gt; 6 sd      5137.88600241361</span></span>
+<span><span class="co">#&gt; # ℹ 8 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">msf_sc_group_1</span>, <span class="va">msf_sc_group_2</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; data:  msf_sc_group_1 and msf_sc_group_2</span></span>
+<span><span class="co">#&gt; t = -0.17, df = 118, p-value = 0.43</span></span>
+<span><span class="co">#&gt; alternative hypothesis: true difference in means is less than 0</span></span>
+<span><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span><span class="co">#&gt;    -Inf 759.34</span></span>
+<span><span class="co">#&gt; sample estimates:</span></span>
+<span><span class="co">#&gt; mean of x mean of y </span></span>
+<span><span class="co">#&gt;    103564    103651</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mean_group_1"</span>, <span class="st">"mean_group_2"</span>, <span class="st">"diff"</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="va">stats_sum_group_1</span><span class="op">$</span><span class="va">mean</span>, <span class="va">stats_sum_group_2</span><span class="op">$</span><span class="va">mean</span>, </span>
+<span>  <span class="va">stats_sum_group_2</span><span class="op">$</span><span class="va">mean</span> <span class="op">-</span> <span class="va">stats_sum_group_1</span><span class="op">$</span><span class="va">mean</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   name            value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 mean_group_1 103564. </span></span>
+<span><span class="co">#&gt; 2 mean_group_2 103651. </span></span>
+<span><span class="co">#&gt; 3 diff             87.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="citation" data-cites="frey_2022">(<a href="references.html#ref-frey_2022" role="doc-biblioref">Frey 2022, 224–27</a>)</span></p>
+<p><span class="math display">\[
+d = \cfrac{\mu_{1} - \mu_{2}}{\sigma_{e}}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtorchiano/effsize/">effsize</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">effsize</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/effsize/man/cohen.d.html">cohen.d</a></span><span class="op">(</span><span class="va">msf_sc_group_1</span>, <span class="va">msf_sc_group_2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Cohen's d</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; d estimate: -0.016915 (negligible)</span></span>
+<span><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span><span class="co">#&gt;    lower    upper </span></span>
+<span><span class="co">#&gt; -0.20387  0.17004</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-allen_1997" class="csl-entry" role="listitem">
+Allen, Michael Patrick. 1997. <em>Understanding Regression Analysis</em>. New York: Plenum Press.
+</div>
+<div id="ref-bussab_1988" class="csl-entry" role="listitem">
+Bussab, Wilton de Oliveira. 1988. <em>Análise de variância e de regressão: uma introdução</em>. 2nd ed. Métodos quantitativos. São Paulo: Atlas.
+</div>
+<div id="ref-dalpiaz_" class="csl-entry" role="listitem">
+Dalpiaz, David. n.d. <em>Applied Statistics with R</em>. <a href="https://book.stat420.org/">https://book.stat420.org/</a>.
+</div>
+<div id="ref-degroot_2012" class="csl-entry" role="listitem">
+DeGroot, Morris H., and Mark J. Schervish. 2012. <em>Probability and Statistics</em>. 4th ed. Boston: Addison-Wesley.
+</div>
+<div id="ref-dudek_2020" class="csl-entry" role="listitem">
+Dudek, Bruce. 2020. <em>Linear Models with R: Emphasis on 2-IV Models: Basics of Multiple Regression</em>. <a href="https://bcdudek.net/regression1/">https://bcdudek.net/regression1/</a>.
+</div>
+<div id="ref-fox_2016" class="csl-entry" role="listitem">
+Fox, John. 2016. <em>Applied Regression Analysis and Generalized Linear Models</em>. 3rd ed. Thousand Oaks, CA: Sage.
+</div>
+<div id="ref-frey_2022" class="csl-entry" role="listitem">
+Frey, Bruce B., ed. 2022. <em>The SAGE Encyclopedia of Research Design</em>. 2nd ed. Thousand Oaks,&nbsp;CA: SAGE Publications. <a href="https://doi.org/10.4135/9781071812082">https://doi.org/10.4135/9781071812082</a>.
+</div>
+<div id="ref-hair_2019" class="csl-entry" role="listitem">
+Hair, Joseph F. 2019. <em>Multivariate Data Analysis</em>. 8th ed. Andover, Hampshire: Cengage.
+</div>
+<div id="ref-johnson_2013" class="csl-entry" role="listitem">
+Johnson, Richard, and Dean Wichern. 2013. <em>Applied Multivariate Statistical Analysis: Pearson New International Edition</em>. 6th ed. Harlow, UK: Pearson.
+</div>
+<div id="ref-kuhn_2022" class="csl-entry" role="listitem">
+Kuhn, Max, and Julia Silge. 2022. <em>Tidy Modeling with R: A Framework for Modeling in the Tidyverse</em>. Sebastopol, CA: O’Reilly Media. <a href="https://www.tmwr.org/">https://www.tmwr.org/</a>.
+</div>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

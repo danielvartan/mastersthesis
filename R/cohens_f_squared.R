@@ -7,6 +7,9 @@
 #     https://doi.org/10.3389/fpsyg.2012.00111
 # to learn more.
 
+require(checkmate, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+
 cohens_f_squared <- function(base_r_squared, new_r_squared = NULL) {
   checkmate::assert_number(base_r_squared, lower = 0, upper = 1)
   checkmate::assert_number(new_r_squared, lower = 0, upper = 1, null.ok = TRUE)

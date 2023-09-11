@@ -5,7 +5,7 @@ library(tarchetypes)
 library(targets)
 
 source("R/get_raw_data.R")
-source("R/tidy_data.R")
+source("R/tidy_data_.R")
 source("R/validate_data.R")
 source("R/analyze_data.R")
 source("R/filter_data.R")
@@ -36,11 +36,15 @@ targets::tar_source()
 
 # Replace the target list below with your own:
 list(
-  targets::tar_target(name = data, command = get_raw_data()),
-  targets::tar_target(name = tidy, command = tidy_data(data)),
-  targets::tar_target(name = validated, command = validate_data(tidy)),
-  targets::tar_target(name = analyzed, command = analyze_data(validated)),
-  targets::tar_target(name = filtered, command = filter_data(analyzed)),
-  targets::tar_target(name = geocoded, command = add_geocode_data(filtered)),
-  tarchetypes::tar_quarto(name = book, path = here::here())
+  targets::tar_target(name = raw_data, command = get_raw_data()),
+  targets::tar_target(name = tidy_data, command = tidy_data_(raw_data)),
+  targets::tar_target(name = validated_data,
+                      command = validate_data(tidy_data)),
+  targets::tar_target(name = analyzed_data,
+                      command = analyze_data(validated_data)),
+  targets::tar_target(name = filtered_data,
+                      command = filter_data(analyzed_data)),
+  targets::tar_target(name = geocoded_data,
+                      command = add_geocode_data(filtered_data))
+  # tarchetypes::tar_quarto(name = book, path = here::here())
 )
