@@ -2,7 +2,17 @@
 #
 # * Document functions.
 
-plot_age_pyramid <- function(data, interval = 10, na_rm = TRUE,
+require(apyramid, quietly = TRUE)
+require(checkmate, quietly = TRUE)
+require(dplyr, quietly = TRUE)
+require(ggplot2, quietly = TRUE)
+require(gutils, quietly = TRUE)
+require(tidyr, quietly = TRUE)
+require(viridis, quietly = TRUE)
+
+plot_age_pyramid <- function(data,
+                             interval = 10,
+                             na_rm = TRUE,
                              text_size = NULL){
   checkmate::assert_tibble(data)
   checkmate::assert_subset(c("sex", "age"), names(data))
@@ -19,17 +29,24 @@ plot_age_pyramid <- function(data, interval = 10, na_rm = TRUE,
       dplyr::select(sex, age) |>
       dplyr::mutate(
         age_group = cut(
-          age, breaks = pretty(age, n = interval), right = FALSE,
+          age,
+          breaks = pretty(age, n = interval),
+          right = FALSE,
           include.lowest = TRUE
         )
       ) |>
       tidyr::drop_na() |>
       apyramid::age_pyramid(
-        age_group = "age_group", split = "sex", na.rm = na_rm
+        age_group = "age_group",
+        split = "sex",
+        na.rm = na_rm
       ) +
       ggplot2::labs(x = "Frequency", y = "Age group") +
       viridis::scale_fill_viridis(
-        name = "Sex", begin = 0.5, end = 0.75, discrete = TRUE,
+        name = "Sex",
+        begin = 0.5,
+        end = 0.75,
+        discrete = TRUE,
         option = "viridis"
       ) +
       ggplot2::theme(

@@ -29,14 +29,8 @@ bbt_write_quarto_bib <- function(bib_file, dir, pattern = "\\.qmd$") {
     rbbt::bbt_detect_citations() |>
     sort()
 
-  keys <- keys[!keys %in% bbt_types]
-
   keys <-
-    ifelse(
-      stringr::str_detect(keys, "\\d", negate = TRUE),
-      paste0(keys, "_"),
-      keys
-    ) |>
+    keys[!keys %in% bbt_types] |>
     stringr::str_subset("^fig-|^sec-", negate = TRUE)
 
   rbbt::bbt_write_bib(

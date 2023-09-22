@@ -68,6 +68,7 @@ format:
     tbl-cap-location: bottom
     callout-appearance: simple
     number-depth: 6
+    df-print: kable
     author-meta: "Daniel Vartanian"
   # pdf:
   #   documentclass: scrbook

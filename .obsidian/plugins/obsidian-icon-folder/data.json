@@ -18,13 +18,10 @@
     },
     "iconInTabsEnabled": true
   },
-  "docs": "IbFolder",
-  "data": "IbFolder",
   "_targets": "IbFolder",
   "_freeze": "IbFolder",
   "man-roxygen": "IbFolder",
   "qmd": "IbFolder",
-  "qmd/analysis": "IbFolder",
   "R": "IbFolder",
   "renv": "IbFolder"
 }

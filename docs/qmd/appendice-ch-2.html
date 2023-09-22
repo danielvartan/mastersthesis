@@ -18,7 +18,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -79,11 +132,6 @@ ul.task-list li input[type="checkbox"] {
       <a href="../">Ecology of sleep and circadian phenotypes of the Brazilian population</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/danielvartan/mastersthesis/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
 </div>
     </div>
       </div>
@@ -155,6 +203,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../qmd/abbreviations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abbreviations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/terms-and-definitions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Terms and definitions</span></a>
   </div>
 </li>
       </ul>
@@ -264,7 +318,18 @@ ul.task-list li input[type="checkbox"] {
 </nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#load-and-embed-texts" id="toc-load-and-embed-texts" class="nav-link active" data-scroll-target="#load-and-embed-texts"><span class="header-section-number">A.1</span> Load and embed texts</a></li>
+  <li>
+<a href="#text-similarity" id="toc-text-similarity" class="nav-link" data-scroll-target="#text-similarity"><span class="header-section-number">A.2</span> Text similarity</a>
+  <ul class="collapse">
+<li><a href="#how-similar-is-the-data-questionnaire-when-compared-to-the-euclock-questionnaire" id="toc-how-similar-is-the-data-questionnaire-when-compared-to-the-euclock-questionnaire" class="nav-link" data-scroll-target="#how-similar-is-the-data-questionnaire-when-compared-to-the-euclock-questionnaire"><span class="header-section-number">A.2.1</span> How similar is the <em>data questionnaire</em> when compared to the <em>EUCLOCK questionnaire</em>?</a></li>
+  <li><a href="#how-similar-is-the-data-questionnaire-when-compared-to-the-mctqpt-questionnaire" id="toc-how-similar-is-the-data-questionnaire-when-compared-to-the-mctqpt-questionnaire" class="nav-link" data-scroll-target="#how-similar-is-the-data-questionnaire-when-compared-to-the-mctqpt-questionnaire"><span class="header-section-number">A.2.2</span> How similar is the <em>data questionnaire</em> when compared to the <em>MCTQ<sup>PT</sup> questionnaire</em>?</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -281,20 +346,344 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header><div class="callout callout-style-simple callout-important">
+</header><div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>You are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don’t recommend reading it.</p>
+<p>You are reading the work-in-progress of this thesis. This chapter should be readable but is currently undergoing final polishing.</p>
 </div>
 </div>
 </div>
+<section id="load-and-embed-texts" class="level2" data-number="A.1"><h2 data-number="A.1" class="anchored" data-anchor-id="load-and-embed-texts">
+<span class="header-section-number">A.1</span> Load and embed texts</h2>
+<p>See <span class="citation" data-cites="vartanian2017">Vartanian and Pedrazzoli (<a href="references.html#ref-vartanian2017" role="doc-biblioref">2017</a>)</span> to visualize the data questionnaire.</p>
+<p>See <span class="citation" data-cites="roenneberg2006">Roenneberg and Merrow (<a href="references.html#ref-roenneberg2006" role="doc-biblioref">2006</a>)</span> to visualize the EUCLOCK portuguese questionnaire.</p>
+<p>See <span class="citation" data-cites="reis2020">Reis (<a href="references.html#ref-reis2020" role="doc-biblioref">2020</a>)</span> to learn more about the MCTQ<sup>PT</sup> questionnaire.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Você vai para a cama às ___ horas."</span>,</span>
+<span>  <span class="st">"Algumas pessoas permanecem um tempo acordadas depois que vão se deitar."</span>,</span>
+<span>  <span class="st">"Depois de ir para a cama, você decide dormir às ___ horas."</span>,</span>
+<span>  <span class="st">"Você precisa de ___ para dormir."</span>,</span>
+<span>  <span class="st">"Você acorda às ___ horas."</span>,</span>
+<span>  <span class="st">"Você se levanta ___ depois de despertar."</span>,</span>
+<span>  <span class="st">"Você vai para a cama às ___ horas."</span>,</span>
+<span>  <span class="st">""</span>,</span>
+<span>  <span class="st">"Depois de ir para a cama, você decide dormir às ___ horas."</span>,</span>
+<span>  <span class="st">"Você precisa de ___ para dormir."</span>,</span>
+<span>  <span class="st">"Você acorda às ___ horas."</span>,</span>
+<span>  <span class="st">"Você se levanta ___ depois de despertar."</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">euclock_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"vou para a cama às ___ horas."</span>,</span>
+<span>  <span class="st">"Algumas pessoas permanecem um tempo acordadas depois que vão se deitar."</span>,</span>
+<span>  <span class="st">"às ___ horas, decido dormir."</span>,</span>
+<span>  <span class="st">"Eu necessito ___ minutos para adormecer."</span>,</span>
+<span>  <span class="st">"acordo às ___ horas,"</span>,</span>
+<span>  <span class="st">"passados ___ minutos, me levanto."</span>,</span>
+<span>  <span class="st">"vou para a cama às ___ horas."</span>,</span>
+<span>  <span class="st">"Algumas pessoas permanecem um tempo acordadas depois que vão se deitar."</span>,</span>
+<span>  <span class="st">"às ___ horas, decido dormir."</span>,</span>
+<span>  <span class="st">"Eu necessito ___ minutos para adormecer."</span>,</span>
+<span>  <span class="st">"acordo às ___ horas,"</span>,</span>
+<span>  <span class="st">"passados ___ minutos, me acordo."</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mctq_pt_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Vou para a cama às ___ horas."</span>,</span>
+<span>  <span class="st">"Algumas pessoas permanecem algum tempo acordadas depois de estarem na cama."</span>,</span>
+<span>  <span class="st">"Às ___ horas estou pronto para adormecer."</span>,</span>
+<span>  <span class="st">"Necessito de ___ minutos para adormecer."</span>,</span>
+<span>  <span class="st">"Acordo às ___ horas."</span>,</span>
+<span>  <span class="st">"Após ___ minutos, levanto-me."</span>,</span>
+<span>  <span class="st">"Vou para a cama às ___ horas."</span>,</span>
+<span>  <span class="st">"Algumas pessoas permanecem algum tempo acordadas depois de estarem na cama."</span>,</span>
+<span>  <span class="st">"Às ___ horas estou pronto para adormecer."</span>,</span>
+<span>  <span class="st">"Necessito de ___ minutos para adormecer."</span>,</span>
+<span>  <span class="st">"Acordo às ___ horas."</span>,</span>
+<span>  <span class="st">"Após ___ minutos, levanto-me."</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/textreuse">textreuse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data_text_textreuse</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">textreuse</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/textreuse/reference/TextReuseTextDocument.html">TextReuseTextDocument</a></span><span class="op">(</span></span>
+<span>    text <span class="op">=</span> <span class="va">data_text</span>,</span>
+<span>    meta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"data"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">euclock_text_textreuse</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">textreuse</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/textreuse/reference/TextReuseTextDocument.html">TextReuseTextDocument</a></span><span class="op">(</span></span>
+<span>    text <span class="op">=</span> <span class="va">euclock_text</span>,</span>
+<span>    meta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"euclock"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">mctq_pt_text_textreuse</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">textreuse</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/textreuse/reference/TextReuseTextDocument.html">TextReuseTextDocument</a></span><span class="op">(</span></span>
+<span>    text <span class="op">=</span> <span class="va">mctq_pt_text</span>,</span>
+<span>    meta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"mctq_pt"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># See</span></span>
+<span><span class="co"># &lt;https://huggingface.co/neuralmind/bert-base-portuguese-cased&gt;</span></span>
+<span><span class="co"># to learn more.</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mllg.github.io/checkmate/">checkmate</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://giperbio.github.io/gutils/">gutils</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-text.org/">text</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">gutils</span><span class="fu">:::</span><span class="fu">assert_internet</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">text_embed</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">text</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">checkmate</span><span class="fu">::</span><span class="fu"><a href="https://mllg.github.io/checkmate/reference/checkCharacter.html">assert_character</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">text</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">text</span><span class="fu">::</span><span class="fu"><a href="https://r-text.org/reference/textEmbed.html">textEmbed</a></span><span class="op">(</span></span>
+<span>      model <span class="op">=</span> <span class="st">"neuralmind/bert-base-portuguese-cased"</span>,</span>
+<span>      layers <span class="op">=</span> <span class="op">-</span> <span class="fl">2</span>,</span>
+<span>      dim_name <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>      aggregation_from_layers_to_tokens <span class="op">=</span> <span class="st">"concatenate"</span>,</span>
+<span>      aggregation_from_tokens_to_texts <span class="op">=</span> <span class="st">"mean"</span>,</span>
+<span>      aggregation_from_tokens_to_word_types <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>      keep_token_embeddings <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>      tokens_select <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>      tokens_deselect <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>      decontextualize <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>      model_max_length <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>      max_token_to_sentence <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>      tokenizer_parallelism <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>      device <span class="op">=</span> <span class="st">"gpu"</span>,</span>
+<span>      logging_level <span class="op">=</span> <span class="st">"error"</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">data_text_textembed</span> <span class="op">&lt;-</span> <span class="fu">text_embed</span><span class="op">(</span><span class="va">data_text</span><span class="op">)</span></span>
+<span><span class="va">euclock_text_textembed</span> <span class="op">&lt;-</span> <span class="fu">text_embed</span><span class="op">(</span><span class="va">euclock_text</span><span class="op">)</span></span>
+<span><span class="va">mctq_pt_text_textembed</span> <span class="op">&lt;-</span> <span class="fu">text_embed</span><span class="op">(</span><span class="va">mctq_pt_text</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="text-similarity" class="level2" data-number="A.2"><h2 data-number="A.2" class="anchored" data-anchor-id="text-similarity">
+<span class="header-section-number">A.2</span> Text similarity</h2>
+<p>See <span class="citation" data-cites="wang2020">Wang and Dong (<a href="references.html#ref-wang2020" role="doc-biblioref">2020</a>)</span> to learn more.</p>
+<p>For a quick explanation, see <a href="https://youtu.be/e9U0QAFbfLI" class="uri">https://youtu.be/e9U0QAFbfLI</a>.</p>
+<!-- See also: https://github.com/microsoft/semantic-kernel/blob/main/docs/EMBEDDINGS.md -->
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># See `?text::textSimilarity` to learn more.</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mllg.github.io/checkmate/">checkmate</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cli.r-lib.org">cli</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-text.org/">text</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">text_distance</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">checkmate</span><span class="fu">::</span><span class="fu"><a href="https://mllg.github.io/checkmate/reference/checkList.html">assert_list</a></span><span class="op">(</span><span class="va">x</span>, len <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="fu">checkmate</span><span class="fu">::</span><span class="fu"><a href="https://mllg.github.io/checkmate/reference/checkList.html">assert_list</a></span><span class="op">(</span><span class="va">y</span>, len <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">methods</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"binary"</span>, <span class="st">"cosine"</span>, <span class="st">"canberra"</span>, <span class="st">"euclidean"</span>, <span class="st">"manhattan"</span>, <span class="st">"maximum"</span>, </span>
+<span>    <span class="st">"minkowski"</span>, <span class="st">"pearson"</span></span>
+<span>  <span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">methods</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html">cli_alert_info</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Method: {.strong {stringr::str_to_title(i)}}"</span></span>
+<span>      <span class="op">)</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="va">test</span> <span class="op">&lt;-</span> </span>
+<span>      <span class="fu">text</span><span class="fu">::</span><span class="fu"><a href="https://r-text.org/reference/textSimilarity.html">textSimilarity</a></span><span class="op">(</span></span>
+<span>        <span class="va">x</span><span class="op">$</span><span class="va">texts</span><span class="op">$</span><span class="va">texts</span>, </span>
+<span>        <span class="va">y</span><span class="op">$</span><span class="va">texts</span><span class="op">$</span><span class="va">texts</span>, </span>
+<span>        method <span class="op">=</span> <span class="va">i</span>, </span>
+<span>        center <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>        scale <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>      <span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_bullets.html">cli_bullets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&gt;"</span> <span class="op">=</span> <span class="st">"Line by line"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_bullets.html">cli_bullets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"&gt;"</span> <span class="op">=</span> <span class="st">"Overall mean"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cat_line.html">cat_line</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># See `?textreuse::jaccard_similarity` to learn more.</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mllg.github.io/checkmate/">checkmate</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cli.r-lib.org">cli</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/textreuse">textreuse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">text_representation</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">checkmate</span><span class="fu">::</span><span class="fu"><a href="https://mllg.github.io/checkmate/reference/checkClass.html">assert_class</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"TextReuseTextDocument"</span><span class="op">)</span></span>
+<span>  <span class="fu">checkmate</span><span class="fu">::</span><span class="fu"><a href="https://mllg.github.io/checkmate/reference/checkClass.html">assert_class</a></span><span class="op">(</span><span class="va">y</span>, <span class="st">"TextReuseTextDocument"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html">cli_alert_info</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Method: {.strong Jaccard similarity}"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">textreuse</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/textreuse/reference/similarity-functions.html">jaccard_similarity</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cat_line.html">cat_line</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html">cli_alert_info</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Method: {.strong Jaccard bag similarity}"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">textreuse</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/textreuse/reference/similarity-functions.html">jaccard_bag_similarity</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cat_line.html">cat_line</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="how-similar-is-the-data-questionnaire-when-compared-to-the-euclock-questionnaire" class="level3" data-number="A.2.1"><h3 data-number="A.2.1" class="anchored" data-anchor-id="how-similar-is-the-data-questionnaire-when-compared-to-the-euclock-questionnaire">
+<span class="header-section-number">A.2.1</span> How similar is the <em>data questionnaire</em> when compared to the <em>EUCLOCK questionnaire</em>?</h3>
+<section id="text-distance-embedded-semantic-test" class="level4" data-number="A.2.1.1"><h4 data-number="A.2.1.1" class="anchored" data-anchor-id="text-distance-embedded-semantic-test">
+<span class="header-section-number">A.2.1.1</span> Text distance | Embedded (Semantic) test</h4>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># See `?text::textSimilarity` to learn more.</span></span>
+<span></span>
+<span><span class="fu">text_distance</span><span class="op">(</span><span class="va">data_text_textembed</span>, <span class="va">euclock_text_textembed</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Method: Binary</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 1 1 1</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; ℹ Method: Cosine</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1] 0.9911730 1.0000000 0.9639984 0.9662432 0.9604119 0.9557896 0.9911730</span></span>
+<span><span class="co">#&gt;  [8] 0.1559853 0.9639984 0.9662432 0.9604119 0.9497428</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] 0.9020976</span></span>
+<span><span class="co">#&gt; ℹ Method: Canberra</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1] -218.3367    1.0000 -335.1895 -318.9419 -335.9000 -373.7989 -218.3367</span></span>
+<span><span class="co">#&gt;  [8] -642.5522 -335.1895 -318.9419 -335.9000 -381.4067</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -317.7912</span></span>
+<span><span class="co">#&gt; ℹ Method: Euclidean</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1]  -1.504474   1.000000  -4.058168  -3.976768  -4.144779  -4.705653</span></span>
+<span><span class="co">#&gt;  [7]  -1.504474 -19.453535  -4.058168  -3.976768  -4.144779  -5.071087</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -4.633221</span></span>
+<span><span class="co">#&gt; ℹ Method: Manhattan</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1]  -53.58509    1.00000 -108.96057 -105.53439 -111.46668 -124.16400</span></span>
+<span><span class="co">#&gt;  [7]  -53.58509 -198.94244 -108.96057 -105.53439 -111.46668 -131.16054</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -101.03</span></span>
+<span><span class="co">#&gt; ℹ Method: Maximum</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1]   0.52944993   1.00000000   0.37664773   0.07405534   0.11978415</span></span>
+<span><span class="co">#&gt;  [6]   0.31058226   0.52944993 -14.91353795   0.37664773   0.07405534</span></span>
+<span><span class="co">#&gt; [11]   0.11978415   0.16830817</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -0.9362311</span></span>
+<span><span class="co">#&gt; ℹ Method: Minkowski</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1]  -1.504474   1.000000  -4.058168  -3.976768  -4.144779  -4.705653</span></span>
+<span><span class="co">#&gt;  [7]  -1.504474 -19.453535  -4.058168  -3.976768  -4.144779  -5.071087</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -4.633221</span></span>
+<span><span class="co">#&gt; ℹ Method: Pearson</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1] 0.9911730 1.0000000 0.9639984 0.9662432 0.9604119 0.9557896 0.9911730</span></span>
+<span><span class="co">#&gt;  [8] 0.1559853 0.9639984 0.9662432 0.9604119 0.9497428</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] 0.9020976</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="text-representation" class="level4" data-number="A.2.1.2"><h4 data-number="A.2.1.2" class="anchored" data-anchor-id="text-representation">
+<span class="header-section-number">A.2.1.2</span> Text representation</h4>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The maximum value for the Jaccard bag similarity is 0.5.</span></span>
+<span></span>
+<span><span class="fu">text_representation</span><span class="op">(</span><span class="va">euclock_text_textreuse</span>, <span class="va">data_text_textreuse</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Method: Jaccard similarity</span></span>
+<span><span class="co">#&gt; [1] 0.2173913</span></span>
+<span><span class="co">#&gt; ℹ Method: Jaccard bag similarity</span></span>
+<span><span class="co">#&gt; [1] 0.1446541</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="how-similar-is-the-data-questionnaire-when-compared-to-the-mctqpt-questionnaire" class="level3" data-number="A.2.2"><h3 data-number="A.2.2" class="anchored" data-anchor-id="how-similar-is-the-data-questionnaire-when-compared-to-the-mctqpt-questionnaire">
+<span class="header-section-number">A.2.2</span> How similar is the <em>data questionnaire</em> when compared to the <em>MCTQ<sup>PT</sup> questionnaire</em>?</h3>
+<section id="text-distance-embedded-semantic-test-1" class="level4" data-number="A.2.2.1"><h4 data-number="A.2.2.1" class="anchored" data-anchor-id="text-distance-embedded-semantic-test-1">
+<span class="header-section-number">A.2.2.1</span> Text distance | Embedded (Semantic) test</h4>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># See `?text::textSimilarity` to learn more.</span></span>
+<span></span>
+<span><span class="fu">text_distance</span><span class="op">(</span><span class="va">data_text_textembed</span>, <span class="va">mctq_pt_text_textembed</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Method: Binary</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 1 1 1</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] 1</span></span>
+<span><span class="co">#&gt; ℹ Method: Cosine</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1] 0.9901437 0.9898982 0.9687513 0.9575260 0.9882873 0.9598702 0.9901437</span></span>
+<span><span class="co">#&gt;  [8] 0.1601500 0.9687513 0.9575260 0.9882873 0.9598702</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] 0.9066005</span></span>
+<span><span class="co">#&gt; ℹ Method: Canberra</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1] -227.9938 -247.6044 -335.9297 -349.9493 -225.4809 -353.5263 -227.9938</span></span>
+<span><span class="co">#&gt;  [8] -631.6228 -335.9297 -349.9493 -225.4809 -353.5263</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -322.0823</span></span>
+<span><span class="co">#&gt; ℹ Method: Euclidean</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1]  -1.662187  -1.729814  -3.807963  -4.603019  -1.810249  -4.458696</span></span>
+<span><span class="co">#&gt;  [7]  -1.662187 -19.380367  -3.807963  -4.603019  -1.810249  -4.458696</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -4.482867</span></span>
+<span><span class="co">#&gt; ℹ Method: Manhattan</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1]  -57.28537  -58.97985 -102.26048 -119.55311  -59.76706 -117.55850</span></span>
+<span><span class="co">#&gt;  [7]  -57.28537 -193.79964 -102.26048 -119.55311  -59.76706 -117.55850</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -97.13571</span></span>
+<span><span class="co">#&gt; ℹ Method: Maximum</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1]   0.60554241   0.60396075   0.41795957   0.01856209   0.39220500</span></span>
+<span><span class="co">#&gt;  [6]   0.28932291   0.60554241 -14.95654231   0.41795957   0.01856209</span></span>
+<span><span class="co">#&gt; [11]   0.39220500   0.28932291</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -0.9087831</span></span>
+<span><span class="co">#&gt; ℹ Method: Minkowski</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1]  -1.662187  -1.729814  -3.807963  -4.603019  -1.810249  -4.458696</span></span>
+<span><span class="co">#&gt;  [7]  -1.662187 -19.380367  -3.807963  -4.603019  -1.810249  -4.458696</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] -4.482867</span></span>
+<span><span class="co">#&gt; ℹ Method: Pearson</span></span>
+<span><span class="co">#&gt; → Line by line</span></span>
+<span><span class="co">#&gt;  [1] 0.9901437 0.9898982 0.9687513 0.9575260 0.9882873 0.9598702 0.9901437</span></span>
+<span><span class="co">#&gt;  [8] 0.1601500 0.9687513 0.9575260 0.9882873 0.9598702</span></span>
+<span><span class="co">#&gt; → Overall mean</span></span>
+<span><span class="co">#&gt; [1] 0.9066005</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="text-representation-1" class="level4" data-number="A.2.2.2"><h4 data-number="A.2.2.2" class="anchored" data-anchor-id="text-representation-1">
+<span class="header-section-number">A.2.2.2</span> Text representation</h4>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The maximum value for the Jaccard bag similarity is 0.5.</span></span>
+<span></span>
+<span><span class="fu">text_representation</span><span class="op">(</span><span class="va">mctq_pt_text_textreuse</span>, <span class="va">data_text_textreuse</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Method: Jaccard similarity</span></span>
+<span><span class="co">#&gt; [1] 0.1052632</span></span>
+<span><span class="co">#&gt; ℹ Method: Jaccard bag similarity</span></span>
+<span><span class="co">#&gt; [1] 0.09815951</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-reis2020" class="csl-entry" role="listitem">
+Reis, Cátia. 2020. <span>“Sleep patterns in portugal.”</span> Tese de doutorado, Lisboa: Universidade de Lisboa. Repositório da Universidade de Lisboa. <a href="http://hdl.handle.net/10451/54147">http://hdl.handle.net/10451/54147</a>.
+</div>
+<div id="ref-roenneberg2006" class="csl-entry" role="listitem">
+Roenneberg, Till, and Martha Merrow. 2006. <span>“EUCLOCK: Portuguese MCTQ.”</span> 2006. <a href="http://web.archive.org/web/20141115175303/https://www.bioinfo.mpg.de/mctq/core_work_life/core/core.jsp?language=por_b">http://web.archive.org/web/20141115175303/https://www.bioinfo.mpg.de/mctq/core_work_life/core/core.jsp?language=por_b</a>.
+</div>
+<div id="ref-vartanian2017" class="csl-entry" role="listitem">
+Vartanian, Daniel, and Mario Pedrazzoli. 2017. <span>“Questionário de Cronotipo: Baseado No Munich ChronoType Questionnaire (MCTQ).”</span> 2017. <a href="https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq">https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq</a>.
+</div>
+<div id="ref-wang2020" class="csl-entry" role="listitem">
+Wang, Jiapeng, and Yihong Dong. 2020. <span>“Measurement of Text Similarity: A Survey.”</span> <em>Information</em> 11 (9): 421. <a href="https://doi.org/10.3390/info11090421">https://doi.org/10.3390/info11090421</a>.
+</div>
+</div>
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

@@ -1,7 +1,7 @@
 {
-  "hash": "2c77e220268f44d360f52677b55dc68f",
+  "hash": "65ad7a1375e73cd56166c41d7d23645b",
   "result": {
-    "markdown": "# Epigraph {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n\n\n> _Nullius in verba_ [@theroyalsociety_]\n",
+    "markdown": "# Epigraph {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n> _Nullius in verba_ [@theroyalsociety]\n",
     "supporting": [
       "epigraph_files"
     ],

@@ -10,16 +10,9 @@ library(here)
 source(here::here("R/quarto-setup.R"))
 ```
 
-```{r}
-#| echo: false
-#| output: asis
+This is the web version of this master's thesis. The printed version will soon be available at teses.usp.br.
 
-quarto_status("drafting")
-```
-
-This is the web version of the master's thesis. The printed version will soon be available at [teses.usp.br](https://teses.usp.br/).
-
-The analyses contained in this thesis are 100% reproducible. They were performed using the [R programming language](https://www.r-project.org/) and the [Quarto](https://quarto.org/) publishing system (an evolution of [R Markdown](https://rmarkdown.rstudio.com/)). Click on the GitHub icon in the menu to access the thesis code repository.
+The analyses contained in this document are 100% reproducible. They were performed using the [R programming language](https://www.r-project.org/) and the [Quarto](https://quarto.org/) publishing system (an evolution of [R Markdown](https://rmarkdown.rstudio.com/)). Click on the GitHub icon in the menu to access the thesis code repository.
 
 ## Citation
 

@@ -15,7 +15,7 @@ options(scipen = 10, digits = 5)
 #| echo: false
 #| output: asis
 
-quarto_status("drafting")
+quarto_status("polishing")
 ```
 
 <!--
@@ -31,7 +31,11 @@ Other references :
 * <https://online.stat.psu.edu/stat501/>
 -->
 
-## Statement
+## Hypothesis
+
+> Populations residing near the equator (latitude 0°) exhibit, on average, a shorter/morning circadian phenotype when compared to populations residing near the poles of the planet [@horzum2015; @hut2013; @leocadio-miguel2017; @leocadio-miguel2014; @pittendrigh1991; @randler2017].
+
+The study hypothesis was tested using nested models of multiple linear regressions. The main idea of nested models is to verify the effect of the inclusion of one or more predictors in the model variance explanation (i.e., the $\text{R}^{2}$) [@allen1997]. This can be made by creating a restricted model and then comparing it with a full model. Hence, the hypothesis can be schematized as follows.
 
 $$
 \begin{cases}
@@ -40,7 +44,7 @@ $$
 \end{cases}
 $$
 
-The general equation for the F-test [@allen_1997, pp. 113]:
+The general equation for the F-test [@allen1997, pp. 113] :
 
 $$
 \text{F} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
@@ -60,7 +64,7 @@ $$
 
 ## Assumptions
 
-See @degroot_2012 [ pp. 736-738] to learn more.
+See @degroot2012 [pp. 736-738] to learn more.
 
 ::: {.callout-warning}
 __The predictor is known__. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$).
@@ -103,8 +107,17 @@ library(tidyr)
 
 source(here::here("R/utils.R"))
 
+utc_minus_3_states <- c(
+  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
+  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
+  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
+  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
+  "Rio Grande do Sul"
+)
+
 data <- 
   targets::tar_read("geocoded_data", store = here::here("_targets")) |>
+  dplyr::filter(state %in% utc_minus_3_states) |>
   dplyr::select(msf_sc, age, sex, state, latitude, longitude) |>
   dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
   tidyr::drop_na(msf_sc, age, sex, latitude)
@@ -179,10 +192,12 @@ library(here)
 library(stats)
 
 source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
 
 res_model |>
   stats::residuals() |>
-  stats_sum()
+  stats_sum(print = FALSE) |>
+  list_as_tibble()
 ```
 
 ```{r}
@@ -190,13 +205,12 @@ res_model |>
 #| warning: false
 #| code-fold: false
 
+# See `?moments::agostino.test` & `?fBasics::dagoTest()` to learn more.
+
 library(fBasics)
 library(moments)
 
 source(here::here("R/normality_sum.R"))
-
-# ?moments::agostino.test
-# ?fBasics::dagoTest()
 
 res_model |>
   stats::residuals() |>
@@ -206,13 +220,16 @@ res_model |>
 Correlation between observed residuals and expected residuals under normality.
 
 ```{r}
-library(olsrr)
 #| code-fold: false
+
+library(olsrr)
 
 res_model |> olsrr::ols_test_correlation()
 ```
 
 ```{r}
+#| code-fold: false
+
 library(cowplot)
 library(olsrr)
 library(stats)
@@ -233,6 +250,8 @@ cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
 ```
 
 ```{r}
+#| code-fold: false
+
 library(olsrr)
 
 # Linear mean assumption
@@ -241,6 +260,8 @@ res_model |> olsrr::ols_plot_resid_fit()
 ```
 
 ```{r}
+#| code-fold: false
+
 res_model |> plot(3)
 ```
 
@@ -293,6 +314,8 @@ res_model |> car::vif()
 ### Measures of influence
 
 ```{r}
+#| code-fold: false
+
 library(olsrr)
 
 res_model |> olsrr::ols_plot_resid_lev()
@@ -368,10 +391,12 @@ library(here)
 library(stats)
 
 source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
 
 full_model |>
   stats::residuals() |>
-  stats_sum()
+  stats_sum(print = FALSE) |> 
+  list_as_tibble()
 ```
 
 ```{r}
@@ -398,6 +423,8 @@ full_model |> olsrr::ols_test_correlation()
 ```
 
 ```{r}
+#| code-fold: false
+
 library(here)
 library(cowplot)
 library(olsrr)
@@ -419,12 +446,16 @@ cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
 ```
 
 ```{r}
+#| code-fold: false
+
 library(olsrr)
 
 full_model |> olsrr::ols_plot_resid_fit()
 ```
 
 ```{r}
+#| code-fold: false
+
 full_model |> plot(3)
 ```
 
@@ -473,6 +504,8 @@ full_model |> car::vif()
 ### Measures of influence
 
 ```{r}
+#| code-fold: false
+
 library(olsrr)
 
 full_model |> olsrr::ols_plot_resid_lev()
@@ -577,6 +610,7 @@ library(here)
 library(magrittr)
 
 source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
 
 group_1 <- "Amapá" # Boa vista (0° 2′ 18.84″ N, 51° 3′ 59.1″ W)
 
@@ -589,7 +623,9 @@ stats_sum_group_1 <-
   data |> 
   dplyr::filter(state == group_1) |>
   magrittr::extract2("msf_sc") |> 
-  stats_sum()
+  stats_sum(print = FALSE)
+
+stats_sum_group_1 |> list_as_tibble()
 ```
 
 ```{r}
@@ -602,6 +638,7 @@ library(here)
 library(magrittr)
 
 source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
 
 group_2 <- "Rio Grande do Sul" # Porto Alegre (30° 01' 58" S, 51° 13' 48" O)
 
@@ -613,7 +650,9 @@ stats_sum_group_2 <-
   data |> 
   dplyr::filter(state == group_2) |>
   magrittr::extract2("msf_sc") |> 
-  stats_sum()
+  stats_sum(print = FALSE)
+
+stats_sum_group_2 |> list_as_tibble()
 ```
 
 ```{r}

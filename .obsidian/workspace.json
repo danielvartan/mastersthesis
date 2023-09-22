@@ -75,7 +75,8 @@
               "pinned": true
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -152,7 +153,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_quarto.yml",
+                "file": "qmd/chapter-6.qmd",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -169,7 +170,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_quarto.yml",
+                "file": "qmd/chapter-6.qmd",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -188,7 +189,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_quarto.yml"
+                "file": "qmd/chapter-6.qmd"
               }
             }
           }
@@ -208,18 +209,53 @@
       "obsidian-grammarly-plugin:Enable Grammarly": false
     }
   },
-  "active": "f12bac254bb847f0",
+  "active": "23593b0d16323158",
   "lastOpenFiles": [
-    "qmd/thesis-outline.qmd",
-    "qmd/chapter-6.qmd",
-    "qmd/terms-and-definitions.qmd",
-    "index.qmd",
-    "qmd/appendice-ch-6.qmd",
-    "qmd/appendice-ch-5.qmd",
-    "qmd/appendice-ch-4.qmd",
-    "qmd/appendice-ch-3.qmd",
-    "qmd/appendice-ch-2.qmd",
-    "qmd/acknowledgments.qmd",
-    "qmd/abstract.qmd"
+    "site_libs/quarto-html/tippy.umd.min.js",
+    "site_libs/quarto-html/tippy.css",
+    "site_libs/quarto-html/quarto.js",
+    "site_libs/quarto-html/popper.min.js",
+    "site_libs/quarto-html/quarto-syntax-highlighting.css",
+    "site_libs/quarto-html/anchor.min.js",
+    "site_libs/quarto-html",
+    "site_libs/quarto-search/fuse.min.js",
+    "site_libs/quarto-search/quarto-search.js",
+    "site_libs/quarto-search/autocomplete.umd.js",
+    "site_libs/quarto-search",
+    "qmd/appendice-ch-6.knit.md",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-36-1.png",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-31-1.png",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-30-1.png",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-29-1.png",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-20-1.png",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-19-1.png",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-14-1.png",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-13-1.png",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-12-1.png",
+    "qmd/appendice-ch-6_files/figure-html/unnamed-chunk-4-1.png",
+    "qmd/appendice-ch-4.knit.md",
+    "qmd/appendice-ch-2.knit.md",
+    "qmd/chapter-6.knit.md",
+    "renv/library/R-4.3/x86_64-w64-mingw32/webshot/NEWS.md",
+    "renv/library/R-4.3/x86_64-w64-mingw32/svglite/NEWS.md",
+    "renv/library/R-4.3/x86_64-w64-mingw32/kableExtra/NEWS.md",
+    "renv/library/R-4.3/x86_64-w64-mingw32/kableExtra/CONTRIBUTING.md",
+    "renv/library/R-4.3/x86_64-w64-mingw32/kableExtra/CODE_OF_CONDUCT.md",
+    "renv/staging/2/kableExtra/NEWS.md",
+    "renv/staging/2/kableExtra/CONTRIBUTING.md",
+    "renv/staging/2/kableExtra/CODE_OF_CONDUCT.md",
+    "renv/staging/2/file2af433963ed0/kableExtra/NEWS.md",
+    "renv/staging/2/file2af433963ed0/kableExtra/CONTRIBUTING.md",
+    "renv/staging/2/file2af433963ed0/kableExtra/CODE_OF_CONDUCT.md",
+    "renv/staging/2/svglite/NEWS.md",
+    "renv/staging/2/webshot/NEWS.md",
+    "renv/staging/2/file66ac538c1061/webshot/NEWS.md",
+    "qmd/terms-and-definitions.knit.md",
+    "qmd/abbreviations.knit.md",
+    "qmd/thesis-outline.knit.md",
+    "qmd/acknowledgments.knit.md",
+    "qmd/appendice-ch-5.knit.md",
+    "qmd/appendice-ch-3.knit.md",
+    "qmd/chapter-7.knit.md"
   ]
 }

@@ -13,5 +13,687 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("drafting")
+quarto_status("polishing")
+```
+
+## Data wrangling
+
+The data wrangling processes were performed using the  [`targets`](https://github.com/ropensci/targets) R package. A graphical pipeline of the process can be visualized below.
+
+The analyses are 100% reproducible. You can find all the code used in this thesis along with the computational notebooks at <https://github.com/danielvartan/mastersthesis/>.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+
+library(here)
+library(targets)
+
+targets::tar_visnetwork(
+  targets_only = TRUE, 
+  script = here::here("_targets.R"),
+  store = here::here("_targets")
+  )
+```
+
+```{r}
+#| label: data-preparation
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(dplyr)
+library(here)
+library(targets)
+library(tidyr)
+
+data <- 
+  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
+  dplyr::select(
+    age, sex, state, region, latitude, longitude, height, weight, work, study,
+    msf_sc, sjl, le_week, 
+    ) |>
+  tidyr::drop_na(msf_sc, age, sex, latitude)
+```
+
+## Distribution of main variables
+
+```{r}
+#| label: fig-ap-ch-4-age-var-distribution
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(hms)
+library(magrittr)
+
+source(here::here("R/test_normality.R"))
+source(here::here("R/utils.R"))
+
+col <- "age"
+
+stats <- data |> 
+  magrittr::extract2(col) |> 
+  test_normality(
+    name = col, 
+    threshold = hms::parse_hms("12:00:00"), 
+    remove_outliers = FALSE, 
+    iqr_mult = 1.5, 
+    log_transform = FALSE,
+    density_line = TRUE, 
+    text_size = text_size,
+    print = TRUE
+  )
+
+stats$stats |> list_as_tibble()
+```
+
+## Geographic distribution
+
+```{r}
+#| label: fig-ap-ch-4-brazil-uf-map
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(gutils)
+library(here)
+
+source(here::here("R/plot_brazil_uf_map.R"))
+
+gutils:::assert_internet()
+
+brazil_uf_map <- 
+  data |> 
+  plot_brazil_uf_map(option = "viridis", text_size = 10)
+```
+
+## Age pyramid
+
+```{r}
+#| label: fig-ap-ch-4-age-pyramid
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+
+source(here::here("R/plot_age_pyramid.R"))
+
+age_pyramid <- 
+  data |> 
+  plot_age_pyramid(
+    interval = 10, 
+    na_rm = TRUE, 
+    text_size = text_size
+  )
+```
+
+```{r}
+#| echo: false
+#| output: false
+#| eval: false
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(cowplot)
+
+cowplot::plot_grid(
+  brazil_uf_map, 
+  age_pyramid, 
+  ncol = 2, 
+  nrow = 1, 
+  labels = c("A", "B"), 
+  label_size = 14,
+  label_x = 0.775, 
+  label_y = 1
+  )
+```
+
+## Correlation matrix
+
+```{r}
+#| label: fig-ap-ch-4-correlation-matrix
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+
+source(here::here("R/plot_ggcorrplot.R"))
+
+cols <- c("sex", "age", "latitude", "longitude", "msf_sc", "sjl", "le_week")
+
+ggcorrplot <-
+  data |>
+  plot_ggcorrplot(
+    cols = cols, 
+    na_rm = TRUE, 
+    text_size = text_size, 
+    hc_order = TRUE
+    )
+```
+
+## Age series
+
+```{r}
+#| label: fig-ap-ch-4-age-series
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(latex2exp)
+
+source(here::here("R/plot_age_series.R"))
+
+col <- "msf_sc"
+y_lab <- latex2exp::TeX("Local time ($MSF_{sc}$)")
+
+data |>
+  dplyr::filter(age <= 50) |>
+  plot_age_series(
+    col = col, 
+    y_lab = y_lab, 
+    line_width = 2, 
+    boundary = 0.5, 
+    point_size = 1,
+    error_bar_width = 0.5, 
+    error_bar_linewidth = 0.5, 
+    error_bar = TRUE,
+    text_size = text_size
+    )
+```
+
+## Chronotype
+
+```{r}
+#| label: fig-ap-ch-4-chronotype
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(latex2exp)
+
+source(here::here("R/plot_chronotype.R"))
+
+col <- "msf_sc"
+y_lab <- latex2exp::TeX("Local time ($MSF_{sc}$)")
+
+data |>
+  plot_chronotype(
+    col = col, 
+    x_lab = "Frequency (%)",
+    y_lab = y_lab,
+    col_width = 0.8, 
+    col_border = 0.6, 
+    text_size = text_size,
+    legend_position = "right",
+    chronotype_cuts = FALSE
+  )
+```
+
+## Latitude series
+
+```{r}
+#| label: fig-ap-ch-4-latitude-series
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(latex2exp)
+
+source(here::here("R/plot_latitude_series.R"))
+
+col <- "msf_sc"
+y_lab <- latex2exp::TeX("$MSF_{sc} \\pm SEM$")
+
+data |>
+  dplyr::filter(age <= 50) |>
+  plot_latitude_series(
+    col = col, 
+    y_lab = y_lab, 
+    line_width = 2, 
+    point_size = 3,
+    error_bar_width = 0.5, 
+    error_bar_linewidth = 1, 
+    error_bar = TRUE,
+    text_size = text_size
+  )
+```
+
+## Statistics
+
+### Numerical variables
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(magrittr)
+
+source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
+
+col <- "age"
+
+data |>
+  magrittr::extract2(col) |>
+  stats_sum(print = FALSE) |>
+  list_as_tibble()
+```
+
+### Sex
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+# See <https://sidra.ibge.gov.br> to learn more.
+
+library(dplyr)
+library(gutils)
+library(sidrar)
+library(stringr)
+
+gutils:::assert_internet()
+
+# Brazil's 2010 census data
+census_data <- 
+  sidrar::get_sidra(x = 1378) %>% # Don't change the pipe
+  dplyr::filter(
+    Sexo %in% c("Homens", "Mulheres", "Total"),
+    stringr::str_detect(Idade, "^(1[8-9]|[2-9][0-9]+) (ano|anos)$"),
+    .[[13]] == "Total", 
+    .[[19]] == "Total"
+    ) |>
+  dplyr::transmute(
+    sex = dplyr::case_when(
+      Sexo == "Homens" ~ "Male",
+      Sexo == "Mulheres" ~ "Female",
+      Sexo == "Total" ~ "Total"
+    ),
+    value = Valor
+  ) |>
+  dplyr::group_by(sex) |>
+  dplyr::summarise(n = sum(value)) |>
+  dplyr::ungroup()
+
+census_data <- 
+  dplyr::bind_rows(
+    census_data |>
+      dplyr::filter(sex != "Total") |>
+      dplyr::mutate(
+        n_rel = n / sum(n[sex != "Total"]),
+        n_per = round(n_rel * 100, 3)
+      ),
+    census_data |>
+      dplyr::filter(sex == "Total") |>
+      dplyr::mutate(n_rel = 1, n_per = 100)
+  ) |>
+  dplyr::as_tibble() |>
+  dplyr::arrange(sex)
+
+count <- data |>
+  dplyr::select(sex) |>
+  dplyr::group_by(sex) |>
+  dplyr::summarise(n = dplyr::n()) |>
+  dplyr::ungroup() |>
+  dplyr::mutate(
+    n_rel = n / sum(n),
+    n_per = round(n_rel * 100, 3)
+  ) |>
+  dplyr::arrange(dplyr::desc(n_rel)) |>
+  dplyr::bind_rows(
+    dplyr::tibble(
+      sex = "Total",
+      n = nrow(tidyr::drop_na(data, sex)),
+      n_rel = 1, 
+      n_per = 100
+    )
+  )
+
+count <- 
+  dplyr::left_join(
+    count, census_data, 
+    by = "sex", 
+    suffix = c("_sample", "_census")
+  ) |>
+  dplyr::mutate(
+    n_rel_diff = n_rel_sample - n_rel_census,
+    n_per_diff = n_per_sample - n_per_census
+  ) |>
+  dplyr::relocate(
+    sex, n_sample, n_census, n_rel_sample, n_rel_census, n_rel_diff,
+    n_per_sample, n_per_census, n_per_diff
+  )
+
+## Difference from the sample to the census
+count
+count |> dplyr::select(sex, n_per_sample, n_per_census, n_per_diff)
+sum(count$n_per_diff)
+```
+
+### Sex and Age
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(dplyr)
+library(magrittr)
+
+source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
+
+value <- "Male"
+
+data |>
+  dplyr::filter(sex == value) |>
+  magrittr::extract2("age") |>
+  stats_sum(print = FALSE) |>
+  list_as_tibble()
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+# See <https://sidra.ibge.gov.br> to learn more.
+
+library(dplyr)
+library(gutils)
+library(sidrar)
+library(stats)
+library(stringr)
+
+gutils:::assert_internet()
+
+# Brazil's 2010 census data
+census_data <- 
+  sidrar::get_sidra(x = 1378) %>% # Don't change the pipe
+  dplyr::filter(
+    Sexo %in% c("Homens", "Mulheres", "Total"),
+    stringr::str_detect(Idade, "^(1[8-9]|[2-9][0-9]+) (ano|anos)$"),
+    .[[13]] == "Total", 
+    .[[19]] == "Total"
+    ) |>
+  dplyr::transmute(
+    sex = dplyr::case_when(
+      Sexo == "Homens" ~ "Male",
+      Sexo == "Mulheres" ~ "Female",
+      Sexo == "Total" ~ "Total"
+    ),
+    age = as.numeric(stringr::str_extract(Idade, "\\d+")),
+    value = Valor
+  ) |>
+  dplyr::group_by(sex) |>
+  dplyr::summarise(
+    mean = stats::weighted.mean(age, value),
+    sd = sqrt(Hmisc::wtd.var(age, value))
+  ) |> 
+  dplyr::ungroup() |>
+  dplyr::mutate(
+    min = c(18, 18, 18),
+    max = c(100, 100, 100)
+  ) |>
+  dplyr::relocate(sex, mean, sd, min, max) |>
+  dplyr::as_tibble()
+
+count <- data |>
+  dplyr::select(sex, age) |>
+  dplyr::group_by(sex) |>
+  dplyr::mutate(sex = as.character(sex)) |>
+  dplyr::summarise(
+    mean = mean(age, na.rm = TRUE), 
+    sd = stats::sd(age, na.rm = TRUE),
+    min = min(age, na.rm = TRUE), 
+    max = max(age, na.rm = TRUE)
+    ) |>
+  dplyr::ungroup() |>
+  dplyr::bind_rows(
+    dplyr::tibble(
+      sex = "Total",
+      mean = mean(data$age, na.rm = TRUE), 
+      sd = stats::sd(data$age, na.rm = TRUE),
+      min = min(data$age, na.rm = TRUE), 
+      max = max(data$age, na.rm = TRUE)
+    )
+  )
+  
+count <- 
+  dplyr::left_join(
+    count, 
+    census_data, 
+    by = "sex", 
+    suffix = c("_sample", "_census")
+  ) |>
+  dplyr::mutate(mean_diff = mean_sample - mean_census) |>
+  dplyr::relocate(
+    sex, mean_sample, mean_census, mean_diff, sd_sample, sd_census, 
+    min_sample, min_census, max_sample, max_census
+  )
+
+count
+
+count |> 
+  dplyr::select(
+    sex, mean_sample, mean_census, mean_diff, sd_sample, sd_census
+    )
+
+sum(count$mean_diff)
+```
+
+### Longitudinal range
+
+#### Sample
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(dplyr)
+library(magrittr)
+
+source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
+
+stats <- 
+  data |>
+  magrittr::extract2("longitude") |>
+  stats_sum(print = FALSE)
+
+abs(stats$max - stats$min)
+stats |> list_as_tibble()
+```
+
+#### Brazil
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(measurements)
+
+change_sign <- function(x) x * (-1)
+
+## Ponta do Seixas, PB (7° 09′ 18″ S, 34° 47′ 34″ O)
+min <- 
+  measurements::conv_unit("34 47 34", from = "deg_min_sec", to = "dec_deg") |>
+  as.numeric() |>
+  change_sign()
+
+## Nascente do rio Moa, AC (7° 32′ 09″ S, 73° 59′ 26″ O)
+max <- 
+  measurements::conv_unit("73 59 26", from = "deg_min_sec", to = "dec_deg") |>
+  as.numeric() |>
+  change_sign()
+
+min
+max
+abs(max - min)
+```
+
+### Latitudinal range
+
+#### Sample
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(dplyr)
+library(magrittr)
+
+source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
+
+stats <- 
+  data |>
+  magrittr::extract2("latitude") |>
+  stats_sum(print = FALSE)
+
+abs(stats$max - stats$min)
+stats |> list_as_tibble()
+```
+
+#### Brazil
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(measurements)
+
+change_sign <- function(x) x * (-1)
+
+## Arroio Chuí, RS (33° 45′ 07″ S, 53° 23′ 50″ O)
+min <- 
+  measurements::conv_unit("33 45 07", from = "deg_min_sec", to = "dec_deg") |>
+  as.numeric() |>
+  change_sign()
+
+## Nascente do rio Ailã, RR (5° 16′ 19″ N, 60° 12′ 45″ O)
+max <- 
+  measurements::conv_unit("5 16 19", from = "deg_min_sec", to = "dec_deg") |>
+  as.numeric()
+
+min
+max
+abs(max - min)
+```
+
+### Region
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+# See <https://sidra.ibge.gov.br> to learn more.
+
+library(dplyr)
+library(gutils)
+library(sidrar)
+library(stats)
+library(stringr)
+
+gutils:::assert_internet()
+
+# Brazil's 2022 census data
+census_data <- 
+  sidrar::get_sidra(x = 4714, variable = 93, geo = "Region") |>
+  dplyr::select(dplyr::all_of(c("Valor", "Grande Região"))) |>
+  dplyr::transmute(
+    col = `Grande Região`,
+    n = Valor,
+    n_rel = n / sum(n),
+    n_per = round(n_rel * 100, 3)
+    ) |>
+  dplyr::mutate(
+    col = dplyr::case_when(
+      col == "Norte" ~ "North",
+      col == "Nordeste" ~ "Northeast",
+      col == "Centro-Oeste" ~ "Midwest",
+      col == "Sudeste" ~ "Southeast",
+      col == "Sul" ~ "South"
+    )
+  ) |>
+  dplyr::as_tibble() |>
+  dplyr::arrange(dplyr::desc(n_rel))
+
+count <- data |> 
+  magrittr::extract2("region") |>
+  stats_sum(print = FALSE) |>
+  magrittr::extract2("count") |>
+  dplyr::mutate(
+    n_rel = n / sum(n),
+    n_per = round(n_rel * 100, 3)
+    ) |>
+  dplyr::arrange(dplyr::desc(n_rel))
+
+count <- 
+  dplyr::left_join(
+    count, census_data, by = "col", suffix = c("_sample", "_census")
+  ) |>
+  dplyr::mutate(
+    n_rel_diff = n_rel_sample - n_rel_census,
+    n_per_diff = n_per_sample - n_per_census
+  ) |>
+  dplyr::relocate(
+    col, n_sample, n_census, n_rel_sample, n_rel_census, n_rel_diff,
+    n_per_sample, n_per_census, n_per_diff
+  )
+
+## Difference from the sample to the census
+count
+count |> dplyr::select(col, n_per_sample, n_per_census, n_per_diff)
+sum(count$n_per_diff)
+```
+
+### State
+
+::: {.callout-note}
+## TODO
+
+Compare with 2022 census.
+:::
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(here)
+library(dplyr)
+library(magrittr)
+
+source(here::here("R/stats_sum.R"))
+
+data |> 
+  magrittr::extract2("state") |>
+  stats_sum(print = FALSE) |>
+  magrittr::extract2("count") |>
+  dplyr::mutate(
+    n_rel = n / sum(n),
+    n_per = round(n_rel * 100, 3)
+    ) |>
+  dplyr::arrange(dplyr::desc(n_rel))
 ```

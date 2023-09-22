@@ -1,10 +1,8 @@
 {
-  "hash": "0b3e7cf24ce90c88accda76fae59fbc4",
+  "hash": "d433e8e86a0cf2eae473ec4adf33e7ae",
   "result": {
-    "markdown": "# Abbreviations {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n\n\n* __MCTQ__: Munich ChronoType Questionnaire\n* __MEQ__: Morningness-Eveningness Questionnaire \n* __MSF~sc~__: Chronotype proxy. Midpoint between sleep onset and sleep end on work-free days. A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified.\n* __PRC__: Phase Response Curve\n* __SJL__: Social Jetlag \n",
-    "supporting": [
-      "abbreviations_files"
-    ],
+    "markdown": "# Abbreviations {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-note}\nYou are reading the work-in-progress of this thesis. This chapter should be readable but is currently undergoing final polishing.\n:::\n\n\n* __~F~__: Subscript indicating a relation with work-free days\n* __~W~__: Subscript indicating a relation with workdays\n* __BT__: Local time of going to bed\n* __HO__: Horne & Ostberg's morningness-eveningness questionnaire (same as _MEQ_)\n* __MCTQ__: Munich ChronoType Questionnaire\n* __MCTQ^PT^__: Portuguese version of the MCTQ.\n* __MEQ__: Morningness-Eveningness Questionnaire\n* __MSF~sc~__: Chronotype proxy. The midpoint between sleep onset and sleep end on work-free days. A sleep correction (~SC~) is made when a possible sleep compensation related to a lack of sleep on workdays is identified.\n* __PRC__: Phase response curve\n* __SD__: Sleep duration\n* __SE__: Sleep end\n* __SJL__: Social Jetlag\n* __SO__: Sleep onset\n* __SPrep__: Local time of preparing to sleep\n",
+    "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

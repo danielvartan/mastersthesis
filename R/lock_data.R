@@ -1,3 +1,9 @@
+require(checkmate, quietly = TRUE)
+require(cli, quietly = TRUE)
+require(encryptr, quietly = TRUE)
+require(here, quietly = TRUE)
+require(lockr, quietly = TRUE)
+
 #' Encrypt variables of `validate_data()` output
 #'
 #' @description

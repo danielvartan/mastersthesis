@@ -92,11 +92,7 @@ stats_sum <- function(x,
 
   if (isTRUE(print)) {
     out |>
-      dplyr::as_tibble() |>
-      dplyr::mutate(dplyr::across(
-        .cols = dplyr::everything(), .fns = as.character
-      )) |>
-      tidyr::pivot_longer(cols = dplyr::everything()) |>
+      list_as_tibble() |>
       print()
   }
 

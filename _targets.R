@@ -4,14 +4,14 @@ library(here)
 library(tarchetypes)
 library(targets)
 
-source("R/get_raw_data.R")
-source("R/tidy_data_.R")
-source("R/validate_data.R")
-source("R/analyze_data.R")
-source("R/filter_data.R")
-source("R/add_geocode_data.R")
-source("R/lock_data.R")
-source("R/look_and_replace.R")
+source(here::here("R/get_raw_data.R"))
+source(here::here("R/tidy_data_.R"))
+source(here::here("R/validate_data.R"))
+source(here::here("R/analyze_data.R"))
+source(here::here("R/filter_data.R"))
+source(here::here("R/add_geocode_data.R"))
+source(here::here("R/lock_data.R"))
+source(here::here("R/look_and_replace.R"))
 
 targets::tar_option_set(
   packages = c(
@@ -31,7 +31,7 @@ options(clustermq.scheduler = "multiprocess")
 future::plan(future.callr::callr)
 
 # Run the R scripts in the R/ folder with your custom functions:
-targets::tar_source()
+targets::tar_source(files = here::here("R"))
 # source("other_functions.R") # Source other scripts as needed.
 
 # Replace the target list below with your own:

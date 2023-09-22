@@ -10,7 +10,7 @@ require(lubridate, quietly = TRUE)
 require(stringr, quietly = TRUE)
 require(tidyr, quietly = TRUE)
 
-source("R/look_and_replace.R")
+source(here::here("R/look_and_replace.R"))
 
 #' Tidy `get_raw_data()` output
 #'

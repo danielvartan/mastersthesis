@@ -16,6 +16,7 @@ require(rlang, quietly = TRUE)
 require(stats, quietly = TRUE)
 require(tseries, quietly = TRUE)
 
+source(here::here("R/stats_sum.R"))
 source(here::here("R/utils-stats.R"))
 source(here::here("R/utils.R"))
 
@@ -114,29 +115,50 @@ test_normality <- function(x,
     x <- x |> lubridate::as_datetime(tz = tz)
   }
 
-  qq_plot <- plot_qq(x, text_size = text_size, print = FALSE)
-  hist_plot <- plot_hist(
-    x, x_lab = name, text_size = text_size, density_line = density_line,
-    print = FALSE
-  )
+  qq_plot <- x |> plot_qq(text_size = text_size, print = FALSE)
+
+  hist_plot <-
+    x |>
+    plot_hist(
+      x_lab = name,
+      text_size = text_size,
+      density_line = density_line,
+      print = FALSE
+      )
+
   grid_plot <- cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
 
   out <- list(
     stats = stats_sum(
-      x, threshold = NULL, na_rm = TRUE, remove_outliers = FALSE,
-      hms_format = TRUE, print = print
+      x,
+      threshold = NULL,
+      na_rm = TRUE,
+      remove_outliers = FALSE,
+      hms_format = TRUE,
+      print = print
     ),
     params = list(
-      name = name, class = class, threshold = threshold,
-      remove_outliers = remove_outliers, log_transform = log_transform,
+      name = name,
+      class = class,
+      threshold = threshold,
+      remove_outliers = remove_outliers,
+      log_transform = log_transform,
       density_line = density_line
     ),
 
-    ad = ad, bonett = bonett, cvm = cvm, dagostino = dagostino,
-    jarque_bera = jarque_bera, lillie_ks = lillie_ks, pearson = pearson,
-    sf = sf, shapiro = shapiro,
+    ad = ad,
+    bonett = bonett,
+    cvm = cvm,
+    dagostino = dagostino,
+    jarque_bera = jarque_bera,
+    lillie_ks = lillie_ks,
+    pearson = pearson,
+    sf = sf,
+    shapiro = shapiro,
 
-    hist_plot = hist_plot, qq_plot = qq_plot, grid_plot = grid_plot
+    hist_plot = hist_plot,
+    qq_plot = qq_plot,
+    grid_plot = grid_plot
   )
 
   if (isTRUE(print)) print(grid_plot)

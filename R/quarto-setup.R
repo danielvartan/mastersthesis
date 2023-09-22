@@ -20,6 +20,29 @@ knitr::opts_chunk$set(
   fig.show = "hold"
 )
 
+# From <https://stackoverflow.com/questions/74193542/
+#       quarto-dataframe-printing-and-styling>
+
+knit_print.data.frame = function(x, ...) {
+  res <- paste(
+    c(
+      "",
+      "",
+      knitr::kable(x, digits = 3) |> kableExtra::kable_styling()
+    ),
+    collapse = "\n"
+    )
+
+  knitr::asis_output(res)
+}
+
+registerS3method(
+  "knit_print",
+  "data.frame",
+  knit_print.data.frame,
+  envir = asNamespace("knitr")
+)
+
 options(
   dplyr.print_min = 6,
   dplyr.print_max = 6,
@@ -34,3 +57,5 @@ options(
 )
 
 ggplot2::theme_set(ggplot2::theme_gray(12))
+
+text_size <- 10

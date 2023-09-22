@@ -9,4 +9,4 @@ library(here)
 source(here::here("R/quarto-setup.R"))
 ```
 
-> _Nullius in verba_ [@theroyalsociety_]
+> _Nullius in verba_ [@theroyalsociety]

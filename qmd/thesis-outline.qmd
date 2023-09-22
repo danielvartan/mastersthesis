@@ -13,12 +13,8 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("polishing")
+quarto_status("drafting")
 ```
-
-[...]
-
-
 
 All articles shown in the next chapters are target to specific science journals and will be submitted for publication soon.
 

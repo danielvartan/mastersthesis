@@ -1,7 +1,7 @@
 {
-  "hash": "9482201f22c437f9e2760ce7b2ea594f",
+  "hash": "8a670a43d6390b5f6d128aedea6528be",
   "result": {
-    "markdown": "# Corrigendum {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n",
+    "markdown": "# Corrigendum {.unnumbered}\n\n\n::: {.cell}\n\n:::\n\n\nNone corrections have been made since the initial release version (1.0.0).\n",
     "supporting": [
       "corrigendum_files"
     ],
