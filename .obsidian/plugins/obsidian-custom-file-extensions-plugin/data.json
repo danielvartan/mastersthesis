@@ -1,0 +1,10 @@
+{
+  "additionalFileTypes": {
+    "markdown": [
+      "",
+      "qmd",
+      "Rmd"
+    ]
+  },
+  "currentValueIsInvalidJson": false
+}

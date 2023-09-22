@@ -9,7 +9,7 @@
 # targets::tar_visnetwork(targets_only = TRUE)
 # targets::tar_make()
 # targets::tar_outdated()
-# data <- targets::tar_read(geocoded)
+# data <- targets::tar_read(geocoded_data)
 # renv::activate()
 # renv::deactivate()
 # renv::status()

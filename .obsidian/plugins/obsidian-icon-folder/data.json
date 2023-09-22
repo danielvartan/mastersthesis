@@ -1,0 +1,30 @@
+{
+  "settings": {
+    "migrated": 2,
+    "iconPacksPath": ".obsidian/plugins/obsidian-icon-folder/icons",
+    "fontSize": 16,
+    "emojiStyle": "none",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "IbFolder"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": true
+  },
+  "docs": "IbFolder",
+  "data": "IbFolder",
+  "_targets": "IbFolder",
+  "_freeze": "IbFolder",
+  "man-roxygen": "IbFolder",
+  "qmd": "IbFolder",
+  "qmd/analysis": "IbFolder",
+  "R": "IbFolder",
+  "renv": "IbFolder"
+}

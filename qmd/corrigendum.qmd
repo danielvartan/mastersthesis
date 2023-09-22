@@ -9,9 +9,4 @@ library(here)
 source(here::here("R/quarto-setup.R"))
 ```
 
-```{r}
-#| echo: false
-#| output: asis
-
-quarto_status("drafting")
-```
+None corrections have been made since the initial release version (1.0.0).

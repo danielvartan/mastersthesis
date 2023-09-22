@@ -1,5 +1,6 @@
 /.auth/
 /.quarto/
+/.ignore/
 /.ssh/
 /_targets/
 # /docs/

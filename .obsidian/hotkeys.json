@@ -1,0 +1,32 @@
+{
+  "editor:toggle-comments": [],
+  "obsidian-smarter-md-hotkeys:smarter-upper-lower": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "T"
+    }
+  ],
+  "obsidian-smarter-md-hotkeys:smarter-html-comments": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "C"
+    }
+  ],
+  "obsidian-citation-plugin:open-literature-note": [],
+  "obsidian-citation-plugin:insert-citation": [],
+  "obsidian-citation-plugin:insert-markdown-citation": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "Z"
+    }
+  ]
+}

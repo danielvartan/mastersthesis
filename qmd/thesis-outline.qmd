@@ -13,5 +13,19 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("drafting")
+quarto_status("polishing")
 ```
+
+[...]
+
+
+
+All articles shown in the next chapters are target to specific science journals and will be submitted for publication soon.
+
+While this thesis was being developed, the publication below were produced:
+
+Viana-Mendes, J., Benedito-Silva, A. A., Andrade, M. A. M., Vartanian, D., Gonçalves, B. da S. B., Cipolla-Neto, J., & Pedrazzoli, M. (2023). Actigraphic characterization of sleep and circadian phenotypes of PER3 gene VNTR genotypes. _Chronobiology International_. https://doi.org/10.1080/07420528.2023.2256858
+
+The author is also currently working with the development of the project below:
+
+Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor (Master's project). School of Arts, Sciences and Humanities, University of Sao Paulo, São Paulo.

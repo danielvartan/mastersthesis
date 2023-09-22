@@ -1,0 +1,50 @@
+{
+  "selectionHighlighter": {
+    "highlightWordAroundCursor": true,
+    "highlightSelectedText": true,
+    "maxMatches": 100,
+    "minSelectionLength": 3,
+    "highlightDelay": 200,
+    "ignoredWords": "  *,    *"
+  },
+  "staticHighlighter": {
+    "queries": {
+      "BibTeX": {
+        "class": "BibTeX",
+        "color": "#00000000",
+        "regex": true,
+        "query": "@[a-zA-Z0-9_\\.\\-:_]+[a-zA-Z0-9]*",
+        "mark": [
+          "match"
+        ],
+        "css": ".BibTeX {\n background: none; color: #B90690 \n}"
+      },
+      "Mini-Linting": {
+        "class": "Mini-Linting",
+        "color": "#A70F0F38",
+        "regex": true,
+        "query": " {2,}(?!\\|| |$)|- - |^\\s*- \\n|^ +(?![0-9-`])",
+        "mark": [
+          "match"
+        ],
+        "css": ".cm-line .Mini-Linting {\n  background: none;\n}\n\n.cm-line:not(.cm-active) .Mini-Linting {\n  outline: 1px solid var(--text-error);\n}"
+      },
+      "Pandoc-Syntax": {
+        "class": "Pandoc-Syntax",
+        "color": "#77787C4A",
+        "regex": true,
+        "query": "::: \\{.*?\\}[\\s\\S]*?:::",
+        "mark": [
+          "match",
+          "group"
+        ],
+        "css": ""
+      }
+    },
+    "queryOrder": [
+      "BibTeX",
+      "Mini-Linting",
+      "Pandoc-Syntax"
+    ]
+  }
+}

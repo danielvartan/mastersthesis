@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "973fdb2b6085377c",
+    "type": "split",
+    "children": [
+      {
+        "id": "0648f5cb48350f19",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f12bac254bb847f0",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "yml-view",
+              "state": {
+                "file": "_quarto.yml"
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "6bcfb19c426cc2ea",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index.qmd",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "240338e1d6a23774",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "qmd/terms-and-definitions.qmd",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "8ce8246e54e4da20",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "qmd/thesis-outline.qmd",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "23593b0d16323158",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "qmd/chapter-6.qmd",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6c845cfd11f4a957",
+    "type": "split",
+    "children": [
+      {
+        "id": "a25ce182845916a6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8356ee2ff131600b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d7f337a9a291b6d7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "14667d773bae6398",
+    "type": "split",
+    "children": [
+      {
+        "id": "7fcea65777eaf760",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "94012e902265b80e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "bc8c48bd0acbe9c3",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          },
+          {
+            "id": "3bc2836e7f153203",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "_quarto.yml",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8dfee6add6e8ac09",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "_quarto.yml",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "335e6363339c95d4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "157e8a90e45025a3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "_quarto.yml"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian42-brat:BRAT": false,
+      "obsidian-grammarly-plugin:Enable Grammarly": false
+    }
+  },
+  "active": "f12bac254bb847f0",
+  "lastOpenFiles": [
+    "qmd/thesis-outline.qmd",
+    "qmd/chapter-6.qmd",
+    "qmd/terms-and-definitions.qmd",
+    "index.qmd",
+    "qmd/appendice-ch-6.qmd",
+    "qmd/appendice-ch-5.qmd",
+    "qmd/appendice-ch-4.qmd",
+    "qmd/appendice-ch-3.qmd",
+    "qmd/appendice-ch-2.qmd",
+    "qmd/acknowledgments.qmd",
+    "qmd/abstract.qmd"
+  ]
+}

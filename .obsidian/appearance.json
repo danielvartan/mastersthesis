@@ -1,0 +1,9 @@
+{
+  "accentColor": "",
+  "theme": "system",
+  "cssTheme": "Atom",
+  "enabledCssSnippets": [
+    "supercharged-links-gen",
+    "main"
+  ]
+}

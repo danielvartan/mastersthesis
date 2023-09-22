@@ -1,0 +1,11 @@
+{
+  "overrideViewsFromOtherPlugins": false,
+  "extensions": [
+    "txt",
+    "scss",
+    "r",
+    "csl",
+    "yml",
+    "cff"
+  ]
+}

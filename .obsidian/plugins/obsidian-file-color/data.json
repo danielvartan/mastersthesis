@@ -1,0 +1,40 @@
+{
+  "palette": [
+    {
+      "id": "ASk9cyoT41zwTUWmDkHck",
+      "name": "Cyan",
+      "value": "#00ffff"
+    },
+    {
+      "id": "8LWV3TqzPb3Y0-bBnXCTi",
+      "name": "Magenta",
+      "value": "#ff00ff"
+    },
+    {
+      "id": "auFFgyNt3loXKYqET8So4",
+      "name": "Yellow",
+      "value": "#ffff00"
+    },
+    {
+      "id": "DZ8KyZg4LIvwZ-WoEEI50",
+      "name": "Red",
+      "value": "#ff0000"
+    },
+    {
+      "id": "PjFjnELhrlsxQfUI2l1cv",
+      "name": "Green",
+      "value": "#00ff00"
+    },
+    {
+      "id": "U-imyVzoKPoZ-f3N2ptcJ",
+      "name": "Blue",
+      "value": "#0000ff"
+    }
+  ],
+  "fileColors": [
+    {
+      "path": "index.qmd",
+      "color": "8LWV3TqzPb3Y0-bBnXCTi"
+    }
+  ]
+}

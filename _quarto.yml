@@ -11,7 +11,7 @@ book:
   title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
   author: "Daniel Vartanian"
   date: today
-  reader-mode: true
+  reader-mode: false
   # cover-image: cover.png
   # favicon: cover.png
   site-url: https://danielvartan.github.io/mastersthesis/
@@ -29,6 +29,7 @@ book:
         - qmd/resumo.qmd
         - qmd/thesis-outline.qmd
         - qmd/abbreviations.qmd
+        - qmd/terms-and-definitions.qmd
     - part: "Chapters"
       chapters:
         - qmd/chapter-1.qmd

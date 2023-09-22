@@ -1,8 +1,3 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: inline
----
 # Appendice: Chapter 6 supplemental material
 
 ```{r}
@@ -23,16 +18,18 @@ options(scipen = 10, digits = 5)
 quarto_status("drafting")
 ```
 
+<!--
 ## Some references
 
-See @allen_1997; @bussab_1988; @degroot_2012; @hair_2019; @johnson_2013; @kuhn_2022; @dudek_2020; @dalpiaz_; @fox_2016.
+See @allen1997; @bussab1988; @degroot2012; @hair2019; @johnson2013; @kuhn2022; @dudek2020; @dalpiaz; @fox2016 .
 
-Other references:
+Other references :
 
 * <https://olsrr.rsquaredacademy.com>
 * <https://www.r-bloggers.com/2021/05/how-to-compare-nested-models-in-r/>
 * <https://www.r-bloggers.com/2022/10/box-cox-transformation-in-r/>
 * <https://online.stat.psu.edu/stat501/>
+-->
 
 ## Statement
 
@@ -43,10 +40,10 @@ $$
 \end{cases}
 $$
 
-General equation for the F-test [@allen_1997, pp. 113]:
+The general equation for the F-test [@allen_1997, pp. 113]:
 
 $$
-F = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+\text{F} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
 $$
 
 Where:
@@ -55,15 +52,15 @@ Where:
 * $\text{R}^{2}_{R}$ = Coefficient of determination for the __restricted__ model
 * $k_{F}$ = Number of independent variables in the full model
 * $k_{R}$ = Number of independent variables in the restricted model
-* $N$ = Number of observations in the sample
+* $\text{N}$ = Number of observations in the sample
 
 $$
-F = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
+\text{F} = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
 $$
 
 ## Assumptions
 
-See [@degroot_2012, pp. 736-738] to learn more.
+See @degroot_2012 [ pp. 736-738] to learn more.
 
 ::: {.callout-warning}
 __The predictor is known__. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$).
@@ -171,7 +168,7 @@ res_model |> summary()
 
 ### Residual diagnostics
 
-> Normality and zero mean error assumption.
+Normality and zero mean error assumption.
 
 ```{r}
 #| message: false
@@ -249,7 +246,7 @@ res_model |> plot(3)
 
 ### Heteroskedasticity
 
-> Homoscedasticity assumption.
+Homoscedasticity assumption.
 
 ```{r}
 #| code-fold: false
@@ -271,7 +268,7 @@ res_model |> olsrr::ols_test_score()
 
 ### Collinearity diagnostics
 
-> Independence assumption.
+Independence assumption.
 
 ```{r}
 #| code-fold: false
@@ -281,7 +278,7 @@ library(olsrr)
 res_model |> olsrr::ols_coll_diag()
 ```
 
-> The variance inflation factor measures how much the behavior (variance) of an independent variable is influenced, or inflated, by its interaction/correlation with the other independent variables (e.g., VIF equal to 1 = variables are not correlated).
+The variance inflation factor measures how much the behavior (variance) of an independent variable is influenced, or inflated, by its interaction/correlation with the other independent variables (e.g., VIF equal to 1 = variables are not correlated).
 
 ```{r}
 #| message: false
@@ -300,7 +297,6 @@ library(olsrr)
 
 res_model |> olsrr::ols_plot_resid_lev()
 ```
-
 
 ## Full model
 
@@ -363,7 +359,7 @@ full_model |> summary()
 
 ### Residual diagnostics
 
-> Normality and zero mean error assumption.
+Normality and zero mean error assumption.
 
 ```{r}
 #| code-fold: false
@@ -434,7 +430,7 @@ full_model |> plot(3)
 
 ### Heteroskedasticity
 
-> Homoscedasticity assumption.
+Homoscedasticity assumption.
 
 ```{r}
 #| code-fold: false
@@ -454,7 +450,7 @@ full_model |> olsrr::ols_test_score()
 
 ### Collinearity diagnostics
 
-> Independence assumption.
+Independence assumption.
 
 ```{r}
 #| code-fold: false
@@ -464,7 +460,7 @@ library(olsrr)
 full_model |> olsrr::ols_coll_diag()
 ```
 
-> The variance inflation factor measures how much the behavior (variance) of an independent variable is influenced, or inflated, by its interaction/correlation with the other independent variables (e.g., VIF equal to 1 = variables are not correlated).
+The variance inflation factor measures how much the behavior (variance) of an independent variable is influenced, or inflated, by its interaction/correlation with the other independent variables (e.g., VIF equal to 1 = variables are not correlated).
 
 ```{r}
 #| code-fold: false
@@ -493,11 +489,11 @@ $$
 $$
 
 $$
-F = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+\text{F} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
 $$
 
 $$
-F = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
+\text{F} = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
 $$
 
 ```{r}
@@ -566,10 +562,11 @@ cohens_f_squared_summary(
 
 $$
 \begin{cases}
-\text{H}_{0}: \text{MSF}^{2^{o}}_{\text{sc}} >= \text{MSF}^{30^{o}}_{\text{sc}} \\
-\text{H}_{a}: \text{MSF}^{2^{o}}_{\text{sc}} < \text{MSF}^{30^{o}}_{\text{sc}}
+\text{H}_{0}: \text{MSF}^{0^{o}}_{\text{sc}} >= \text{MSF}^{30^{o}}_{\text{sc}} \\
+\text{H}_{a}: \text{MSF}^{0^{o}}_{\text{sc}} < \text{MSF}^{30^{o}}_{\text{sc}}
 \end{cases}
 $$
+
 ```{r}
 #| message: false
 #| warning: false
@@ -641,7 +638,7 @@ dplyr::tibble(
 )
 ```
 
-[@frey_2022, pp. 224-227]
+See @frey2022 [pp. 224-227] to learn more.
 
 $$
 d = \cfrac{\mu_{1} - \mu_{2}}{\sigma_{e}}

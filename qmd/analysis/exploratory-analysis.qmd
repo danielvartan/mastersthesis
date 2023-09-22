@@ -37,33 +37,21 @@ library(tidyverse)
 ```
 
 ```{r}
-#| eval: false
-#| output: false
+#| label: data-preparation
+#| message: false
 #| warning: false
+#| code-fold: false
 
-data <- get_raw_data() |>
-  tidy_data() |>
-  validate_data() |>
-  analyze_data() |>
-  filter_data() |>
-  add_geocode_data()
-```
+library(here)
+library(targets)
 
-```{r}
-model_data <- 
-  data |>
+data <- 
+  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
   dplyr::select(
     age, sex, state, region, latitude, longitude, height, weight, work, study,
     msf_sc, sjl, le_week, 
     ) |>
   tidyr::drop_na(msf_sc, age, sex, latitude)
-
-# model_data <- 
-#   model_data |>
-#   dplyr::mutate(dplyr::across(
-#     .cols = dplyr::all_of(c("msf_sc")),
-#     .fns = transform_time
-#   ))
 ```
 
 ## Distribution of main variables
@@ -72,10 +60,12 @@ model_data <-
 #| label: fig-age-var-distribution
 #| fig-cap: "Distribution of the 'age' variable."
 
+library(magrittr)
+
 var_name <- "age"
 # text_size = 15
 
-stats <- model_data |> 
+stats <- data |> 
   magrittr::extract2(var_name) |> 
   test_normality(
     name = var_name, threshold = hms::parse_hms("12:00:00"), 
@@ -92,7 +82,7 @@ stats <- model_data |>
 
 # text_size = 15
 brazil_uf_map <- 
-  model_data |> 
+  data |> 
   plot_brazil_uf_map(option = "viridis", text_size = NULL)
 ```
 
@@ -106,11 +96,11 @@ brazil_uf_map <-
 #   filename = "image/fig-age-pyramid.png", width = 1000, height = 1000
 # )
 # 
-# model_data |> plot_age_pyramid(interval = 10, na_rm = TRUE, text_size = 15)
+# data |> plot_age_pyramid(interval = 10, na_rm = TRUE, text_size = 15)
 # invisible(grDevices::dev.off())
 
 age_pyramid <- 
-  model_data |> 
+  data |> 
   plot_age_pyramid(interval = 10, na_rm = TRUE, text_size = NULL)
 ```
 
@@ -128,7 +118,7 @@ cowplot::plot_grid(
 cols <- c("sex", "age", "latitude", "longitude", "msf_sc", "sjl", "le_week")
 
 ggcorrplot <-
-  model_data |>
+  data |>
   plot_ggcorrplot(
     cols, na_rm = TRUE, text_size = NULL, hc_order = TRUE
     )
@@ -140,7 +130,7 @@ ggcorrplot <-
 col <- "msf_sc"
 # text_size = 20, point_size = 3, error_bar_linewidth = 1
 
-model_data |>
+data |>
   dplyr::filter(age <= 50) |>
   plot_age_series(
     col = col, y_lab = col, line_width = 2, boundary = 0.5, point_size = 1,
@@ -157,7 +147,7 @@ model_data |>
 
 col <- "msf_sc"
 
-model_data |>
+data |>
   plot_chronotype(
     col = col, x_lab = "Frequency (%)",
     y_lab = latex2exp::TeX("Local time ($MSF_{sc}$)"),
@@ -173,7 +163,7 @@ model_data |>
 
 col <- "msf_sc"
 
-model_data |>
+data |>
   dplyr::filter(age <= 50) |>
   plot_latitude_series(
     col = col, y_lab = col, line_width = 2, point_size = 3,
@@ -189,7 +179,7 @@ model_data |>
 ```{r}
 col <- "age"
 
-model_data |>
+data |>
   magrittr::extract2(col) |>
   stats_sum()
 ```
@@ -198,6 +188,9 @@ model_data |>
 
 ```{r}
 # See <https://sidra.ibge.gov.br> to learn more.
+
+library(dplyr)
+library(gutils)
 
 gutils:::assert_internet()
 
@@ -236,7 +229,7 @@ census_data <-
   dplyr::as_tibble() |>
   dplyr::arrange(sex)
 
-count <- model_data |>
+count <- data |>
   dplyr::select(sex) |>
   dplyr::group_by(sex) |>
   dplyr::summarise(n = dplyr::n()) |>
@@ -249,7 +242,7 @@ count <- model_data |>
   dplyr::bind_rows(
     dplyr::tibble(
       sex = "Total",
-      n = nrow(tidyr::drop_na(model_data, sex)),
+      n = nrow(tidyr::drop_na(data, sex)),
       n_rel = 1, n_per = 100
     )
   )
@@ -275,9 +268,11 @@ sum(count$n_per_diff)
 # Sex and Age
 
 ```{r}
+library(magrittr)
+
 value <- "Male"
 
-model_data |>
+data |>
   dplyr::filter(sex == value) |>
   magrittr::extract2("age") |>
   stats_sum()
@@ -285,6 +280,8 @@ model_data |>
 
 ```{r}
 # See <https://sidra.ibge.gov.br> to learn more.
+
+library(dplyr)
 
 gutils:::assert_internet()
 
@@ -318,7 +315,7 @@ census_data <-
   dplyr::relocate(sex, mean, sd, min, max) |>
   dplyr::as_tibble()
 
-count <- model_data |>
+count <- data |>
   dplyr::select(sex, age) |>
   dplyr::group_by(sex) |>
   dplyr::mutate(sex = as.character(sex)) |>
@@ -332,10 +329,10 @@ count <- model_data |>
   dplyr::bind_rows(
     dplyr::tibble(
       sex = "Total",
-      mean = mean(model_data$age, na.rm = TRUE), 
-      sd = stats::sd(model_data$age, na.rm = TRUE),
-      min = min(model_data$age, na.rm = TRUE), 
-      max = max(model_data$age, na.rm = TRUE)
+      mean = mean(data$age, na.rm = TRUE), 
+      sd = stats::sd(data$age, na.rm = TRUE),
+      min = min(data$age, na.rm = TRUE), 
+      max = max(data$age, na.rm = TRUE)
     )
   )
   
@@ -361,7 +358,7 @@ sum(count$mean_diff)
 ### Sample
 
 ```{r}
-stats <- model_data |>
+stats <- data |>
   magrittr::extract2("longitude") |>
   stats_sum(print = FALSE)
 
@@ -397,7 +394,7 @@ abs(max - min)
 ### Sample
 
 ```{r}
-stats <- model_data |>
+stats <- data |>
   magrittr::extract2("latitude") |>
   stats_sum(print = FALSE)
 
@@ -456,7 +453,7 @@ census_data <-
   dplyr::as_tibble() |>
   dplyr::arrange(dplyr::desc(n_rel))
 
-count <- model_data |> 
+count <- data |> 
   magrittr::extract2("region") |>
   stats_sum(print = FALSE) |>
   magrittr::extract2("count") |>
@@ -489,7 +486,7 @@ sum(count$n_per_diff)
 ```{r}
 ## TODO: Compare with 2022 census.
 
-count <- model_data |> 
+count <- data |> 
   magrittr::extract2("state") |>
   stats_sum(print = FALSE) |>
   magrittr::extract2("count") |>

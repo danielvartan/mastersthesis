@@ -25,7 +25,7 @@ quarto_status("drafting")
 ::: {.callout-note}
 The following study was performed by __Daniel Vartanian (DV)__, Mario Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
 
-__DV__ contributed to the design and implementation of the study. __DV__ and __MP__ collected the data. __DV__ and __CR__ performed the statistical analysis.  __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript.
+__DV__ contributed to the design and implementation of the study. __DV__ and __MP__ collected the data. __DV__ and __CR__ performed the statistical analysis. __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript.
 
 (_Future reference_): Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). A biological approach for the latitudinal cline of the chronotype. _Scientific Reports_.
 :::
@@ -40,7 +40,7 @@ Chronotypes are temporal phenotypes [@ehret_1974; @pittendrigh_1993]. Observable
 
 ### Introduction
 
-Humans can differ from one another in many ways. These observable traits, like hair color or height, are called phenotypes and are also presented in the way that our body function.
+Humans can differ from one another in many ways. These observable traits, like hair color or height, are called phenotypes and are also presented in the way that our body functions.
 
 A chronotype is a temporal phenotype [@ehret_1974; @pittendrigh_1993]. This word is usually used to refer to endogenous circadian rhythms, i.e., rhythms which periods that are close to a day or 24 hours (_circa diem_). The current body of knowledge of Chronobiology, the science that studies biological rhythms, indicates that the evolution of these internal oscillators is linked to our oscillatory environment, like the day and night cycle, which, along with our evolution, created environmental pressures for the development of a temporal organization [@aschoff_1989; @paranjpe_2005]. A way in which an organism could predict events and better manage its needs, like storing food for the winter.
 
@@ -105,7 +105,7 @@ A linear regression model was created with $\text{MSF}_{\text{sc}}$ as the respo
 
 Another model was created on top of the first one, adding the latitude as a predictor variable ($\text{R}^{2} = 0.06204$; $\text{F}(3, 73821) = 1630$, $\text{p-value} < 2e-16$). All coefficients were significantly different than 0 ($\text{p-value} < 2e-16$) and the residuals were normally distributed accordingly to the D'Agostino Skewness test, ($\text{Z3} = 0.0703$; $\text{p-value} < 0.944$). Residual homoscedasticity was verified by a Score Test for Heteroskedasticity ($\chi^{2} = 0.00$; $\text{p-value} = 1$). No collinearity was found between the predictor variables (variance inflation factor: $\text{age} = 1.0067$; $\text{sex} = 1.0018$; $\text{latitude} = 1.0056$). The longitude was not used as a predictor because it presented colinearity with the latitude variable.
 
-An $\text{F}$ test for nested models showed a significant reduction of the residual sum of squares ($\text{F}(1, 73821) = 600$, $\text{p-value} < 2e-16$), meaning that the latitude seems to produce an effect on the chronotype. But, when estimating Cohen’s $f^2$ effect size, the result was negligible19 $((0.06204 - 0.054433) / (1 - 0.06204) = 0.0081102$).
+An $\text{F}$ test for nested models showed a significant reduction of the residual sum of squares ($\text{F}(1, 73821) = 600$, $\text{p-value} < 2e-16$), meaning that the latitude seems to produce an effect on the chronotype. However, when estimating Cohen’s $f^2$ effect size, the result was negligible [@cohen_1992] $((0.06204 - 0.054433) / (1 - 0.06204) = 0.0081102$).
 
 ### Discussion
 
@@ -156,19 +156,19 @@ Subjects were asked to complete an online questionnaire based on the MCTQ Portug
 
 ### Sample
 
-The sample is made of $73,825$ Brazilian subjects. It was obtained in 2017 from October 15th to 21st by a broadcast of the online research questionnaire on a popular Sunday TV show with national reach [@globo_2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The sample is made up of $73,825$ Brazilian subjects. It was obtained in 2017 from October 15th to 21st by a broadcast of the online research questionnaire on a popular Sunday TV show with national reach [@globo_2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
-A survey made in 2019 by the Brazilian Institute of Geography and Statistics (IBGE)27 saw that $82.17%$ of Brazilians' homes had access to an internet connection. Hence, this sample can have a good diversity of Brazil’s population. Only Brazilian residents in states with UTC-3 timezone and with an age equal to or greater than $18$ years old were included in the final sample.
+A survey made in 2019 by the Brazilian Institute of Geography and Statistics (IBGE)27 saw that $82.17\%$ of Brazilians' homes had access to an internet connection. Hence, this sample can have a good diversity of Brazil’s population. Only Brazilian residents in states with UTC-3 timezone and with an age equal to or greater than $18$ years old were included in the final sample.
 
-In order to verify if the sample size were adequate for the study of the phenomenon under investigation, a power analysis was conducted for nested multiple regression models using the G*Power software [@faul_2007]. The analysis used the parameters presented in Leocadio-Miguel et al. [-@leocadio-miguel_2017] article for a multiple linear regression with 10 tested predictors and only $10$ conceived predictors, considering a significance level of $0.05$ ($\alpha$) and a power of $0.95$ ($1 - \beta$). The result showed that a sample of $5,895$ individuals would be necessary to test the hypothesis.
+In order to verify if the sample size was adequate for the study of the phenomenon under investigation, a power analysis was conducted for nested multiple regression models using the G\*Power software [@faul_2007]. The analysis used the parameters presented in Leocadio-Miguel et al. [-@leocadio-miguel_2017] article for a multiple linear regression with 10 tested predictors and only $10$ conceived predictors, considering a significance level of $0.05$ ($\alpha$) and a power of $0.95$ ($1 - \beta$). The result showed that a sample of $5,895$ individuals would be necessary to test the hypothesis.
 
 Daylight Saving Time (DST) began in Brazil at midnight on November 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that MCTQ asks subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample is the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the hypothesis test.
 
-Based on the 2010 census29, Brazil had $51.793%$ of females and $48.207%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with $66.341%$ of females and $33.659%$ of male subjects.
+Based on the 2010 census29, Brazil had $51.793\%$ of females and $48.207\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with $66.341\%$ of females and $33.659\%$ of male subjects.
 
 The subject’s mean age is $32.017$ years ($\text{SD} = 9.242$; $\text{Max.} = 58.786$). Female subjects have a mean age of $31.770 years$ ($\text{SD} = 9.340$; $\text{Max.} = 58.786$) and male subjects $32.504$ years ($\text{SD} = 9.026$; $\text{Max.} = 58.772$). For comparison, based on the 2010 census29, Brazil’s population with an age equal to or greater than $18$ years old had a mean age of $41.032$ years ($\text{SD} = 9.242$), with a mean age of $41.645$ years ($\text{SD} = 16.907$) for female subjects and a mean age of $40.373$ years ($\text{SD} = 16.200$) for male subjects. Data related to age and sex from the last Brazil census (2022) were not available before this article was submitted.
 
-Considering the 5 major regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census, the Southeast region is home to $41.784%$ of Brazil’s population, followed by the Northeast ($26.910%$), South ($14.741%$), North ($8.544%$), and Midwest ($8.021%$) region. $62.454%$ of the sample is located in the  Southeast region, $11.797%$ in the Northeast, $17.861%$ in the South, $1.682%$ in the North, and $6.205%$ in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).
+Considering the 5 major regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census, the Southeast region is home to $41.784\%$ of Brazil’s population, followed by the Northeast ($26.910\%$), South ($14.741\%$), North ($8.544\%$), and Midwest ($8.021\%$) regions. $62.454\%$ of the sample is located in the Southeast region, $11.797\%$ in the Northeast, $17.861\%$ in the South, $1.682\%$ in the North, and $6.205\%$ in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).
 
 The sample latitudinal range was $30.211$ decimal degrees ($\text{Min.} = -30.109$; $\text{Max.} = 0.10177$) with a longitudinal span of $16.378$ decimal degrees ($\text{Min.} = -51.342$; $\text{Max.} = -34.964$). For comparison, Brazil has a latitudinal range of $39.024$ decimal degrees ($\text{Min.} = -33.752$; $\text{Max.} = 5.2719$) and a longitudinal span of $39.198$ decimal degrees ($\text{Min.} = -34.793$; $\text{Max.} = -73.991$). 
 
@@ -189,9 +189,9 @@ $$
 
 In order to test a possible latitude association in predicting the chronotype, the full model was the restricted model with the addition of the latitude variable. The restricted model had the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$) as the response variable, MCTQ proxy for the chronotype, with sex and age as predictors.
 
-A residual analysis was made to assure the validity of the models before the hypothesis test. The hypothesis was tested using a $0.05$ ($\alpha$) significance level.
+A residual analysis was made to ensure the validity of the models before the hypothesis test. The hypothesis was tested using a $0.05$ ($\alpha$) significance level.
 
-To favor the alternative hypothesis ($\text{H}_{a}$), not only the $\text{R}^{2}$ of the full model must be significantly larger than the $R^{2}$ of the restricted model, but the effect size must be at least considered small. To evaluate the effect size, Cohen’s $f^{2}$ and his categorical parameters for size were used [@cohen_1992]. That means that, in order to favor ($\text{H}_{a}$), the effect size must be at least equal to or greater than $0.0219$.
+To favor the alternative hypothesis ($\text{H}_{a}$), not only the $\text{R}^{2}$ of the full model must be significantly larger than the $\text{R}^{2}$ of the restricted model, but the effect size must be at least considered small. To evaluate the effect size, Cohen’s $f^{2}$ and his categorical parameters for size were used [@cohen_1992]. That means that, in order to favor ($\text{H}_{a}$), the effect size must be at least equal to or greater than $0.0219$.
 
 No blinding procedures were used during the analysis.
 
@@ -201,7 +201,7 @@ The data that support the findings of this study are available from the correspo
 
 ### Code availability
 
-An R package representing the research compendium of the project, with all the code used  accompanied by extensive documentation, will be available under the [MIT license](https://opensource.org/license/mit/) at <https://github.com/danielvartan/mastersthesis> when the research is completed. The code has all the steps from the raw data to the hypothesis test results.
+An R package representing the research compendium of the project, with all the code used accompanied by extensive documentation, will be available under the [MIT license](https://opensource.org/license/mit/) at <https://github.com/danielvartan/mastersthesis> when the research is completed. The code has all the steps from the raw data to the hypothesis test results.
 
 ## Acknowledgments
 
@@ -223,4 +223,4 @@ Correspondence can be sent to Daniel Vartanian (<danvartan@gmail.com>).
 
 ## Rights and permissions
 
-The author does not give permission to share this manuscript while the research is ongoing. An exception is made for education purposes. In the latter case, the manuscript must be accompanied by a warning statement, located at the top of the first page, warning the reader about the need for confidentiality. After the research process end, something that just a written communication by the author can provide, this article will be licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/), which permits use, sharing, adaptation, distribution, and reproduction in any medium or format, as long as be given appropriate credit to the original author and the source, provide a link to the Creative Commons license, and indicate if changes were made.
+The author does not give permission to share this manuscript while the research is ongoing. An exception is made for education purposes. In the latter case, the manuscript must be accompanied by a warning statement, located at the top of the first page, warning the reader about the need for confidentiality. After the research process ends, something that just a written communication by the author can provide, this article will be licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/), which permits use, sharing, adaptation, distribution, and reproduction in any medium or format, as long as be given appropriate credit to the original author and the source, provide a link to the Creative Commons license, and indicate if changes were made.

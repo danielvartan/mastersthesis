@@ -59,7 +59,7 @@ You can find the thesis citation below.
 ```         
 Vartanian, D. (2023). Ecology of sleep and circadian phenotypes of the Brazilian
 population [Master's thesis]. School of Arts, Sciences and Humanities, 
-University of Sao Paulo, São Paulo.
+University of São Paulo, São Paulo.
 ```
 
 A BibTeX entry for LaTeX users is
@@ -70,7 +70,7 @@ A BibTeX entry for LaTeX users is
   author = {Daniel Vartanian},
   year = {2023},
   address = {São Paulo},
-  school  = {University of Sao Paulo},
+  school  = {University of São Paulo},
   langid = {portuguese},
   url = {https://github.com/danielvartan/mastersthesis},
 }
@@ -80,4 +80,4 @@ A BibTeX entry for LaTeX users is
 
 This thesis was developed in the [Graduate Program in Modeling Complex Systems (PPG-SCX)](https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos) of the [University of Sao Paulo (USP)](https://www5.usp.br/), under the guidance of [Prof.Dr. Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695).
 
-Financial support was provided by the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) and by the [University of Sao Paulo (USP)](http://usp.br/) (❤️) (Grant number: 88887.703720/2022-00).
+Financial support was provided by the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) and by the [University of São Paulo (USP)](http://usp.br/) (❤️) (Grant number: 88887.703720/2022-00).

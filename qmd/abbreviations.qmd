@@ -13,11 +13,23 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("drafting")
+quarto_status("polishing")
 ```
 
+* __~F~__: Subscript indicating relation to work-free days
+* __~W~__: Subscript indicating relation to workdays
+* __BT_: Local time of going to bed
+* __HO__: Horne & Ostberg's morningness-eveningness questionnaire (same as _MEQ_)
 * __MCTQ__: Munich ChronoType Questionnaire
-* __MEQ__: Morningness-Eveningness Questionnaire 
-* __MSF~sc~__: Chronotype proxy. Midpoint between sleep onset and sleep end on work-free days. A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified.
+* __MEQ__: Morningness-Eveningness Questionnaire
+* __MSF~sc~__: Chronotype proxy. The midpoint between sleep onset and sleep end on work-free days. A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified.
 * __PRC__: Phase Response Curve
-* __SJL__: Social Jetlag 
+* __SD__: Sleep duration
+* __SE__: Sleep end
+* __SJL__: Social Jetlag
+* __SO__: Sleep onset
+* __SPrep__: Local time of preparing to sleep
+
+
+dsdasdas
+fdasdfa
