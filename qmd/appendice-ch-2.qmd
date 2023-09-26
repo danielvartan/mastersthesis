@@ -13,7 +13,9 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("polishing")
+# library(rutils)
+
+rutils:::quarto_status("polishing")
 ```
 
 ## Load and embed texts
@@ -76,7 +78,7 @@ mctq_pt_text <- c(
 ```{r}
 #| code-fold: false
 
-library(textreuse)
+# library(textreuse)
 
 data_text_textreuse <- 
   textreuse::TextReuseTextDocument(
@@ -105,11 +107,11 @@ mctq_pt_text_textreuse <-
 # <https://huggingface.co/neuralmind/bert-base-portuguese-cased>
 # to learn more.
 
-library(checkmate)
-library(gutils)
-library(text)
+# library(checkmate)
+# library(text)
+# library(rutils)
 
-gutils:::assert_internet()
+rutils:::assert_internet()
 
 text_embed <- function(text) {
   checkmate::assert_character(text)
@@ -152,9 +154,9 @@ For a quick explanation, see <https://youtu.be/e9U0QAFbfLI>.
 
 # See `?text::textSimilarity` to learn more.
 
-library(checkmate)
-library(cli)
-library(text)
+# library(checkmate)
+# library(cli)
+# library(text)
 
 text_distance <- function(x, y) {
   checkmate::assert_list(x, len = 2)
@@ -195,9 +197,9 @@ text_distance <- function(x, y) {
 
 # See `?textreuse::jaccard_similarity` to learn more.
 
-library(checkmate)
-library(cli)
-library(textreuse)
+# library(checkmate)
+# library(cli)
+# library(textreuse)
 
 text_representation <- function(x, y) {
   checkmate::assert_class(x, "TextReuseTextDocument")

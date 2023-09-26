@@ -1,0 +1,20 @@
+{
+  "hash": "31bf54bdb58c5fddc1b6b71dee64665c",
+  "result": {
+    "markdown": "# Appendice: Chapter 5 supplemental material\n\n\n\n::: {.cell}\n\n:::\n\n\n::: {.callout-important}\nYou are reading the work-in-progress of this thesis. This chapter is currently a dumping ground for ideas, and I don't recommend reading it.\n:::\n",
+    "supporting": [
+      "appendice-ch-5_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

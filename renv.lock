@@ -2336,6 +2336,18 @@
       ],
       "Hash": "1cba04a4e9414bdefc9dcaa99649a8dc"
     },
+    "qpdf": {
+      "Package": "qpdf",
+      "Version": "1.3.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "Rcpp",
+        "askpass",
+        "curl"
+      ],
+      "Hash": "e233fd211c74cb9297f4ab898ea2c18a"
+    },
     "quadprog": {
       "Package": "quadprog",
       "Version": "1.5-8",
@@ -2513,13 +2525,13 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "1.0.2",
+      "Version": "1.0.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "utils"
       ],
-      "Hash": "4b22ac016fe54028b88d0c68badbd061"
+      "Hash": "41b847654f567341725473431dd0d5ab"
     },
     "reshape": {
       "Package": "reshape",
@@ -2666,6 +2678,36 @@
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "5564500e25cffad9e22244ced1379887"
+    },
+    "rutils": {
+      "Package": "rutils",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "danielvartan",
+      "RemoteRepo": "rutils",
+      "RemoteRef": "main",
+      "RemoteSha": "9e80e927707adf95f015a65ef4e1c7f5693c4f60",
+      "Remotes": "github::paleolimbot/rbbt",
+      "Requirements": [
+        "R",
+        "checkmate",
+        "cli",
+        "curl",
+        "dplyr",
+        "ggplot2",
+        "here",
+        "hms",
+        "jsonlite",
+        "lifecycle",
+        "lubridate",
+        "qpdf",
+        "rbbt",
+        "stringr",
+        "yaml"
+      ],
+      "Hash": "1ec58974ab204cdbf39d2c6d12e808ab"
     },
     "rvest": {
       "Package": "rvest",

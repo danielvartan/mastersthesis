@@ -1,4 +1,10 @@
-# References {.unnumbered}
+::: {.content-visible when-format="pdf"}
+\postextual
+:::
+
+# REFERENCES [^1] {.unnumbered}
+
+[^1]: According to the APA style - American Psychological Association.
 
 ::: {#refs}
 :::

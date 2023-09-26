@@ -1,12 +1,16 @@
-/.auth/
-/.quarto/
-/.ignore/
-/.ssh/
-/_targets/
-# /docs/
+# See <https://git-scm.com/docs/gitignore>.
+
+.auth/
+.quarto/
+.temp/
+.ssh/
+_targets/
+# docs/
 .Rapp.history
 .RData
 .Renviron
 .Rhistory
 .Rproj.user
 .Ruserdata
+
+/.quarto/

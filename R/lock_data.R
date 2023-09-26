@@ -1,8 +1,8 @@
-require(checkmate, quietly = TRUE)
-require(cli, quietly = TRUE)
-require(encryptr, quietly = TRUE)
-require(here, quietly = TRUE)
-require(lockr, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(encryptr, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(lockr, quietly = TRUE)
 
 #' Encrypt variables of `validate_data()` output
 #'
@@ -13,11 +13,14 @@ require(lockr, quietly = TRUE)
 #'
 #' @param data A [`tibble`][tibble::tibble()] with the `validate_data()`
 #'   output.
+#' @param public_key (optional) an [`openssl`][openssl::rsa_keygen()] RSA
+#'   public key or a string specifying the public key path. See
+#'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
+#'   pair (default: `here::here(".ssh/id_rsa.pub")`).
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a validated dataset
 #'   with some variables encrypted.
 #'
-#' @template param_public_key
 #' @family data wrangling functions
 #'
 #' @noRd
@@ -34,10 +37,8 @@ require(lockr, quietly = TRUE)
 #'  utils::View(data)
 #' }
 #' }
-lock_data <- function(
-    data,
-    public_key_path = here::here(".ssh/id_rsa.pub")
-    ) {
+lock_data <- function(data,
+                      public_key_path = here::here(".ssh/id_rsa.pub")) {
   checkmate::assert_tibble(data)
   lockr:::assert_public_key(public_key)
 

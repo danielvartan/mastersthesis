@@ -1,14 +1,14 @@
-require(checkmate, quietly = TRUE)
-require(cli, quietly = TRUE)
-require(curl, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(googleCloudStorageR, quietly = TRUE)
-require(here, quietly = TRUE)
-require(lockr, quietly = TRUE)
-require(readr, quietly = TRUE)
-require(stringr, quietly = TRUE)
-require(utils, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(curl, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(googleCloudStorageR, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(lockr, quietly = TRUE)
+# library(readr, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(stringr, quietly = TRUE)
+# library(utils, quietly = TRUE)
 
 #' Download, unlock, and read the project's raw data
 #'
@@ -30,11 +30,17 @@ require(utils, quietly = TRUE)
 #' @param iconv (optional) a [`logical`][base::as.logical()] flag indicating if
 #'   the function must convert character vector between encodings
 #'   (default: `TRUE`).
+#' @param public_key (optional) an [`openssl`][openssl::rsa_keygen()] RSA
+#'   public key or a string specifying the public key path. See
+#'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
+#'   pair (default: `here::here(".ssh/id_rsa.pub")`).
+#' @param private_key (optional) an [`openssl`][openssl::rsa_keygen()] RSA
+#'   private key or a string specifying the private key path. See
+#'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
+#'   pair (default: `"here::here(.ssh/id_rsa")`).
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a raw the dataset.
 #'
-#' @template param_public_key
-#' @template param_private_key
 #' @family data wrangling functions
 #'
 #' @noRd
@@ -46,13 +52,11 @@ require(utils, quietly = TRUE)
 #'   utils::View(raw)
 #' }
 #' }
-get_raw_data <- function(
-    file = NULL,
-    col_names = TRUE,
-    public_key = here::here(".ssh/id_rsa.pub"),
-    private_key = here::here(".ssh/id_rsa"),
-    iconv = TRUE
-    ) {
+get_raw_data <- function(file = NULL,
+                         col_names = TRUE,
+                         public_key = here::here(".ssh/id_rsa.pub"),
+                         private_key = here::here(".ssh/id_rsa"),
+                         iconv = TRUE) {
   checkmate::assert_string(file, null.ok = TRUE)
   checkmate::assert_flag(col_names)
   lockr:::assert_public_key(public_key)
@@ -64,7 +68,7 @@ get_raw_data <- function(
   if (!is.null(file)) {
     checkmate::assert_file_exists(file, extension = c("csv", "zip", "lockr"))
   } else if (!curl::has_internet()) {
-    gutils:::assert_internet()
+    rutils:::assert_internet()
   } else if (inherits(test, "try-error")) {
     cli::cli_abort(paste0(
       "{.strong {cli::col_red('googleCloudStorageR')}} needs to be", " ",

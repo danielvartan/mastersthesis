@@ -1,11 +1,11 @@
-require(checkmate, quietly = TRUE)
-require(cli, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(hms, quietly = TRUE)
-require(lubridate, quietly = TRUE)
-require(mctq, quietly = TRUE)
-require(scaler, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(lubridate, quietly = TRUE)
+# library(mctq, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(scaler, quietly = TRUE)
 
 #' Analyze `validate_data()` output
 #'
@@ -33,10 +33,20 @@ require(scaler, quietly = TRUE)
 #' @return An invisible [`tibble`][dplyr::tibble()] with a validated
 #'   dataset with all the variables proposed for a standard MCTQ dataset.
 #'
-#' @template references_a
 #' @family data wrangling functions
 #'
 #' @noRd
+#'
+#' @references
+#'
+#' Loo, M. van der, & Jonge, E de. (2018). _Statistical data cleaning with
+#' applications in R_. John Wiley & Sons. \doi{10.1002/9781118897126}
+#'
+#' Wickham, H. (2014). Tidy data. _Journal of Statistical Software_, _59_(10),
+#' 1-23. \doi{10.18637/jss.v059.i10}
+#'
+#' Wickham, H., & Grolemund, G. (n.d.). _R for data science_. (n.p.).
+#' \url{https://r4ds.had.co.nz}
 #'
 #' @examples
 #' \dontrun{
@@ -116,11 +126,11 @@ analyze_data <- function(data, round = FALSE, hms = FALSE) {
     dplyr::rowwise() |>
     dplyr::mutate(
       dummy_0_a = as.integer(wd) == 0,
-      dummy_0_b = gutils:::count_na(
+      dummy_0_b = rutils:::count_na(
         dplyr::c_across(cols = dplyr::ends_with("_w"))) >= count_w,
       dummy_0_c = alarm_f == FALSE,
       dummy_7_a = as.integer(wd) == 7,
-      dummy_7_b = gutils:::count_na(
+      dummy_7_b = rutils:::count_na(
         dplyr::c_across(cols = dplyr::ends_with("_f"))) >= count_f,
       dummy_0 = dummy_0_a & dummy_0_b & dummy_0_c & dummy_7_b == FALSE,
       dummy_7 = dummy_7_a & dummy_7_b & dummy_0_b == FALSE) |>

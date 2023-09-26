@@ -1,20 +1,14 @@
-# # TODO:
-#
-# * Document functions.
-
-require(checkmate, quietly = TRUE)
-require(cowplot, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(fBasics, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(ggplot2, quietly = TRUE)
-require(here, quietly = TRUE)
-require(hms, quietly = TRUE)
-require(moments, quietly = TRUE)
-require(nortest, quietly = TRUE)
-require(rlang, quietly = TRUE)
-require(stats, quietly = TRUE)
-require(tseries, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cowplot, quietly = TRUE)
+# library(fBasics, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(lubridate, quietly = TRUE)
+# library(moments, quietly = TRUE)
+# library(nortest, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(stats, quietly = TRUE)
+# library(tseries, quietly = TRUE)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils-stats.R"))
@@ -36,7 +30,7 @@ test_normality <- function(x,
   checkmate::assert_atomic(x)
   checkmate::assert_multi_class(x, classes)
   checkmate::assert_string(name)
-  gutils:::assert_hms(
+  rutils:::assert_hms(
     threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59"),
     null.ok = TRUE
   )
@@ -49,11 +43,11 @@ test_normality <- function(x,
 
   n <- x |> length()
   class = x |> class()
-  is_temporal <- x |> gutils:::test_temporal()
+  is_temporal <- x |> rutils:::test_temporal()
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
   n_rm_na <- x |> length()
 
-  if (gutils:::test_temporal(x)) {
+  if (rutils:::test_temporal(x)) {
     x <- x |> transform_time(threshold = threshold)
   }
 
@@ -74,7 +68,7 @@ test_normality <- function(x,
     cvm <-
       x |>
       nortest::cvm.test() |>
-      gutils:::shush()
+      rutils:::shush()
   } else {
     ad <- NULL
     cmv <- NULL
@@ -85,10 +79,10 @@ test_normality <- function(x,
   dagostino <-
     x |>
     fBasics::dagoTest() |>
-    gutils:::shush()
+    rutils:::shush()
 
   jarque_bera <-
-    gutils:::drop_na(x) |>
+    rutils:::drop_na(x) |>
     tseries::jarque.bera.test()
 
   if (n_rm_na >= 4) {
@@ -166,14 +160,22 @@ test_normality <- function(x,
   invisible(out)
 }
 
-plot_qq <- function(x, text_size = NULL, na_rm = TRUE, print = TRUE) {
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+
+plot_qq <- function(x,
+                    text_size = NULL,
+                    na_rm = TRUE,
+                    print = TRUE) {
   checkmate::assert_atomic(x)
   checkmate::assert_multi_class(x, c("numeric", "POSIXt"))
   checkmate::assert_number(text_size, null.ok = TRUE)
   checkmate::assert_flag(na_rm)
   checkmate::assert_flag(print)
 
-  if (isTRUE(na_rm)) x <- x |> gutils:::drop_na()
+  if (isTRUE(na_rm)) x <- x |> rutils:::drop_na()
 
   plot <-
     dplyr::tibble(y = x) |>
@@ -191,12 +193,21 @@ plot_qq <- function(x, text_size = NULL, na_rm = TRUE, print = TRUE) {
   }
 
   if (isTRUE(print)) print(plot)
-
   invisible(plot)
 }
 
-plot_hist <- function(x, x_lab = "x", stat = "density", text_size = NULL,
-                      density_line = TRUE, na_rm = TRUE, print = TRUE) {
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+
+plot_hist <- function(x,
+                      x_lab = "x",
+                      stat = "density",
+                      text_size = NULL,
+                      density_line = TRUE,
+                      na_rm = TRUE,
+                      print = TRUE) {
   checkmate::assert_atomic(x)
   checkmate::assert_multi_class(x, c("numeric", "POSIXt"))
   checkmate::assert_string(x_lab)
@@ -206,7 +217,7 @@ plot_hist <- function(x, x_lab = "x", stat = "density", text_size = NULL,
   checkmate::assert_flag(na_rm)
   checkmate::assert_flag(print)
 
-  if (isTRUE(na_rm)) x <- x |> gutils:::drop_na()
+  if (isTRUE(na_rm)) x <- x |> rutils:::drop_na()
   y_lab <- ifelse("count", "Frequency", "Density")
 
   plot <-
@@ -228,6 +239,5 @@ plot_hist <- function(x, x_lab = "x", stat = "density", text_size = NULL,
   }
 
   if (isTRUE(print)) print(plot)
-
   invisible(plot)
 }

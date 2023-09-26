@@ -6,21 +6,19 @@
 #
 #   The window must have an iterative length in order to obtain the desired
 #   or best density.
-#
-# * Document functions.
 
-require(checkmate, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(ggplot2, quietly = TRUE)
-require(here, quietly = TRUE)
-require(hms, quietly = TRUE)
-require(latex2exp, quietly = TRUE)
-require(lubridate, quietly = TRUE)
-require(lubritime, quietly = TRUE)
-require(rlang, quietly = TRUE)
-require(stats, quietly = TRUE)
-require(tidyr, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(latex2exp, quietly = TRUE)
+# library(lubridate, quietly = TRUE)
+# library(lubritime, quietly = TRUE)
+library(rlang, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(stats, quietly = TRUE)
+# library(tidyr, quietly = TRUE)
 
 source(here::here("R/utils.R"))
 source(here::here("R/utils-plot.R"))
@@ -37,9 +35,9 @@ plot_chronotype <- function(data,
   checkmate::assert_tibble(data, min.rows = 1, min.cols = 1)
   checkmate::assert_choice(col, names(data))
   checkmate::assert_multi_class(x_lab, c("character", "latexexpression"))
-  gutils:::assert_length_one(x_lab)
+  rutils:::assert_length_one(x_lab)
   checkmate::assert_multi_class(y_lab, c("character", "latexexpression"))
-  gutils:::assert_length_one(y_lab)
+  rutils:::assert_length_one(y_lab)
   checkmate::assert_number(col_width)
   checkmate::assert_number(col_border)
   checkmate::assert_number(text_size, null.ok = TRUE)
@@ -109,7 +107,7 @@ plot_chronotype <- function(data,
       interval = cut(
         !!as.symbol(col),
         breaks = quantile(
-          transform_time(gutils:::drop_na(!!as.symbol(col))),
+          transform_time(rutils:::drop_na(!!as.symbol(col))),
           probs
         ),
         dig.lab = 10,

@@ -6,6 +6,7 @@
 #| output: false
 
 library(here)
+
 source(here::here("R/quarto-setup.R"))
 ```
 
@@ -13,8 +14,14 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("drafting")
+# library(rutils)
+
+rutils:::quarto_status("drafting")
 ```
+
+::: {.content-visible when-format="pdf"}
+\vspace{10pt}
+:::
 
 ## On chronobiology
 
@@ -23,3 +30,87 @@ quarto_status("drafting")
 ## On the entrainment phenomenon
 
 ## Aims
+
+## Projects developed
+
+## Other related activities
+
+### Classes
+
+While this thesis was developed, the following Graduate classes from the University of São Paulo (USP) were completed.
+
+* 2022/2: _SCX5000 - Mathematical and Computational Methods I_ (10 credits) (Concept: __C__);
+* 2022/2: _SCX5002 - Complex Systems I_ (10 credits) (Concept: __A__);
+* 2023/1: _SCX5001 - Mathematical and Computational Methods II_ (10 credits) (Concept: __A__);
+* 2023/1: _SCX5017 - Introduction to Data Science_ (10 credits) (Concept: __A__);
+* 2023/1: _EAH5001 - Pedagogic Preparation_ (4 credits) (Concept: __A__).
+
+Please note that the unfortunate __C__ concept above happened in the same semester when the author broke relations with his former supervisor (_Mario Pedrazzoli_).
+
+In total, 44 credits were completed until the thesis publication date. Another 12 special credits related to an article publication (see @viana-mendes2023) were requested, according to [program regulations](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019), to the Graduate Program Coordination Commission (CCP) and should be evaluated by the end of October 2023. A minimum of 50 credits is needed for the thesis defense.
+
+### Teaching internship
+
+Scholarship students of the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) must participate in the [Teaching Improvement Program (PAE)](www5.each.usp.br/pae/). This internship is ongoing and will end in December 2023.
+
+The internship activities comprise being an Assistant Professor for USP's undergraduate class _ACH0042 - Problem-Based Learning II_. A teaching plan was written while taking the _EAH5001_ graduate class mentioned above and can be accessed at the link below.
+
+<!-- @vartanian2023e -->
+
+Vartanian, D., Bernardes, M. E. M., & Rodrigues Neto, C. (2023). _Plano de ensino: ACH0042 - Resolução de Problemas II_. https://doi.org/10.13140/RG.2.2.33335.50086
+
+### Publications
+
+The following article was published during the development of this thesis.
+
+<!-- @viana-mendes2023 -->
+
+Viana-Mendes, J., Benedito-Silva, A. A., Andrade, M. A. M., Vartanian, D., Gonçalves, B. da S. B., Cipolla-Neto, J., & Pedrazzoli, M. (2023). Actigraphic characterization of sleep and circadian phenotypes of PER3 gene VNTR genotypes. _Chronobiology International_. https://doi.org/10.1080/07420528.2023.2256858
+
+### Conferences
+
+An abstract about the main investigation was published and presented on a poster in the [Sao Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms](https://espca.fapesp.br/school/sao_paulo_school_of_advanced_science_on_ecology_of_human_sleep_and_biological_rhythms/101/) of the São Paulo Research Foundation (FAPESP). This was an international school with 100 students and young researchers (50 from all states of Brazil and 50 international) that was held between 2022-11-16 to 2022-11-26.
+
+<!-- @vartanian2022a -->
+
+Vartanian, D., & Pedrazzoli, M. (2022). _Ecology of sleep and circadian phenotypes of the Brazilian population_ \[Poster\]. São Paulo Research Foundation; São Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms. https://doi.org/10.13140/RG.2.2.25343.07840
+
+## Research compediums
+
+<!-- @vartanian2023d -->
+
+Vartanian, D. (2023). _Ecology of sleep and circadian phenotypes of the Brazilian population_ [Research compendium]. https://danielvartan.github.io/mastersthesis/
+
+## Data models & Data plans
+
+<!-- @vartanian2023f -->
+
+Vartanian, D. (2023). _Ecology of sleep and circadian phenotypes of the Brazilian population_ [Data Management Plan]. DMPHub. https://doi.org/10.48321/D1DW8P
+
+## Softwares
+
+<!-- @vartanian2022 -->
+
+Vartanian, D. (2022). _{entrainment}: a rule-based model of the 24h light/dark cycle entrainment phenomenon_ [Software, Python library]. https://github.com/danielvartan/entrainment
+
+<!-- @vartanian2023 -->
+
+Vartanian, D. (2023). _{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)_ [Software, R Package v0.3.2]. https://docs.ropensci.org/mctq/
+
+<!-- @vartanian2023b -->
+
+Vartanian, D. (2023). _{lockr}: easily encrypt/decrypt files_ [Software, R package v0.3.0]. https://github.com/danielvartan/lockr
+
+<!-- @vartanian2023c -->
+
+Vartanian, D. (2023). _{lubritime}: an extension for the lubridate package_ [Software, R package]. https://github.com/danielvartan/lubritime
+
+<!-- @vartanian2023a -->
+
+Vartanian, D. (2023). _{tesesusp}: a Quarto format for USP theses and dissertation_ [Software, LaTeX/R format, v0.1.0]. https://github.com/danielvartan/tesesusp/
+
+### Projects
+
+The author is also currently working on the development of the project below.
+
+Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). _Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor_ \[Master's project\]. School of Arts, Sciences and Humanities, University of Sao Paulo, São Paulo. https://bit.ly/3S6O0MB   

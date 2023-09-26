@@ -1,16 +1,12 @@
-# # TODO:
-#
-# * Document functions.
-
-require(checkmate, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(ggplot2, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(here, quietly = TRUE)
-require(hms, quietly = TRUE)
-require(latex2exp, quietly = TRUE)
-require(rlang, quietly = TRUE)
-require(tidyr, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(latex2exp, quietly = TRUE)
+# library(rlang, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(tidyr, quietly = TRUE)
 
 source(here::here("R/utils.R"))
 source(here::here("R/utils-plot.R"))
@@ -33,7 +29,7 @@ plot_latitude_series <- function(data,
   checkmate::assert_subset(c("latitude", col), names(data))
   checkmate::assert_multi_class(data[[col]], col_classes)
   checkmate::assert_multi_class(y_lab, c("character", "latexexpression"))
-  gutils:::assert_length_one(y_lab)
+  rutils:::assert_length_one(y_lab)
   checkmate::assert_number(line_width)
   checkmate::assert_number(point_size)
   checkmate::assert_number(error_bar_width)
@@ -45,7 +41,7 @@ plot_latitude_series <- function(data,
     y_lab = paste0("Local time (", col, " +- SEM)")
   }
 
-  if (y_lab == col && gutils:::test_duration(data[[col]])) {
+  if (y_lab == col && rutils:::test_duration(data[[col]])) {
     y_lab = paste0("Duration (", col, " +- SEM)")
   }
 
@@ -54,7 +50,7 @@ plot_latitude_series <- function(data,
     dplyr::select(dplyr::all_of(c("latitude", col))) |>
     dplyr::mutate(
       dplyr::across(
-        .cols = dplyr::where(gutils:::test_duration),
+        .cols = dplyr::where(rutils:::test_duration),
         .fns = ~ hms::hms(as.numeric(.x))
       ),
       dplyr::across(
@@ -67,7 +63,7 @@ plot_latitude_series <- function(data,
       std_error = std_error(!!as.symbol(col)),
       !!as.symbol(col) := mean(!!as.symbol(col), na.rm = TRUE)
     ) |>
-    gutils:::shush() |>
+    rutils:::shush() |>
     tidyr::drop_na()
 
   plot <-

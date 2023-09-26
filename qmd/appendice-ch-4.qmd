@@ -5,7 +5,8 @@
 #| echo: false
 #| output: false
 
-library(here)
+# library(here)
+
 source(here::here("R/quarto-setup.R"))
 ```
 
@@ -13,7 +14,9 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("polishing")
+# library(rutils)
+
+rutils:::quarto_status("polishing")
 ```
 
 ## Data wrangling
@@ -23,18 +26,20 @@ The data wrangling processes were performed using the  [`targets`](https://githu
 The analyses are 100% reproducible. You can find all the code used in this thesis along with the computational notebooks at <https://github.com/danielvartan/mastersthesis/>.
 
 ```{r}
+#| eval: false
+#| echo: false
 #| message: false
 #| warning: false
 #| code-fold: true
 
-library(here)
+# library(here)
 library(targets)
 
 targets::tar_visnetwork(
   targets_only = TRUE, 
   script = here::here("_targets.R"),
   store = here::here("_targets")
-  )
+)
 ```
 
 ```{r}
@@ -43,10 +48,10 @@ targets::tar_visnetwork(
 #| warning: false
 #| code-fold: false
 
-library(dplyr)
-library(here)
+# library(dplyr)
+# library(here)
 library(targets)
-library(tidyr)
+# library(tidyr)
 
 data <- 
   targets::tar_read("geocoded_data", store = here::here("_targets")) |>
@@ -65,9 +70,9 @@ data <-
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(hms)
-library(magrittr)
+# library(here)
+# library(hms)
+# library(magrittr)
 
 source(here::here("R/test_normality.R"))
 source(here::here("R/utils.R"))
@@ -98,12 +103,12 @@ stats$stats |> list_as_tibble()
 #| warning: false
 #| code-fold: false
 
-library(gutils)
-library(here)
+# library(here)
+# library(rutils)
 
 source(here::here("R/plot_brazil_uf_map.R"))
 
-gutils:::assert_internet()
+rutils:::assert_internet()
 
 brazil_uf_map <- 
   data |> 
@@ -118,7 +123,7 @@ brazil_uf_map <-
 #| warning: false
 #| code-fold: false
 
-library(here)
+# library(here)
 
 source(here::here("R/plot_age_pyramid.R"))
 
@@ -139,7 +144,7 @@ age_pyramid <-
 #| warning: false
 #| code-fold: false
 
-library(cowplot)
+# library(cowplot)
 
 cowplot::plot_grid(
   brazil_uf_map, 
@@ -161,7 +166,7 @@ cowplot::plot_grid(
 #| warning: false
 #| code-fold: false
 
-library(here)
+# library(here)
 
 source(here::here("R/plot_ggcorrplot.R"))
 
@@ -185,8 +190,8 @@ ggcorrplot <-
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(latex2exp)
+# library(here)
+# library(latex2exp)
 
 source(here::here("R/plot_age_series.R"))
 
@@ -216,8 +221,8 @@ data |>
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(latex2exp)
+# library(here)
+# library(latex2exp)
 
 source(here::here("R/plot_chronotype.R"))
 
@@ -245,8 +250,8 @@ data |>
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(latex2exp)
+# library(here)
+# library(latex2exp)
 
 source(here::here("R/plot_latitude_series.R"))
 
@@ -276,8 +281,8 @@ data |>
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(magrittr)
+# library(here)
+# library(magrittr)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils.R"))
@@ -299,12 +304,13 @@ data |>
 
 # See <https://sidra.ibge.gov.br> to learn more.
 
-library(dplyr)
-library(gutils)
-library(sidrar)
-library(stringr)
+# library(dplyr)
+library(magrittr)
+# library(sidrar)
+# library(stringr)
+# library(rutils)
 
-gutils:::assert_internet()
+rutils:::assert_internet()
 
 # Brazil's 2010 census data
 census_data <- 
@@ -389,9 +395,9 @@ sum(count$n_per_diff)
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(dplyr)
-library(magrittr)
+# library(here)
+# library(dplyr)
+# library(magrittr)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils.R"))
@@ -412,13 +418,14 @@ data |>
 
 # See <https://sidra.ibge.gov.br> to learn more.
 
-library(dplyr)
-library(gutils)
-library(sidrar)
-library(stats)
-library(stringr)
+# library(dplyr)
+library(magrittr)
+# library(sidrar)
+# library(stats)
+# library(stringr)
+# library(rutils)
 
-gutils:::assert_internet()
+rutils:::assert_internet()
 
 # Brazil's 2010 census data
 census_data <- 
@@ -504,9 +511,9 @@ sum(count$mean_diff)
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(dplyr)
-library(magrittr)
+# library(here)
+# library(dplyr)
+# library(magrittr)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils.R"))
@@ -527,7 +534,7 @@ stats |> list_as_tibble()
 #| warning: false
 #| code-fold: false
 
-library(measurements)
+# library(measurements)
 
 change_sign <- function(x) x * (-1)
 
@@ -557,9 +564,9 @@ abs(max - min)
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(dplyr)
-library(magrittr)
+# library(here)
+# library(dplyr)
+# library(magrittr)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils.R"))
@@ -580,7 +587,7 @@ stats |> list_as_tibble()
 #| warning: false
 #| code-fold: false
 
-library(measurements)
+# library(measurements)
 
 change_sign <- function(x) x * (-1)
 
@@ -609,13 +616,13 @@ abs(max - min)
 
 # See <https://sidra.ibge.gov.br> to learn more.
 
-library(dplyr)
-library(gutils)
-library(sidrar)
-library(stats)
-library(stringr)
+# library(dplyr)
+# library(sidrar)
+# library(stats)
+# library(stringr)
+# library(rutils)
 
-gutils:::assert_internet()
+rutils:::assert_internet()
 
 # Brazil's 2022 census data
 census_data <- 
@@ -681,9 +688,9 @@ Compare with 2022 census.
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(dplyr)
-library(magrittr)
+# library(here)
+# library(dplyr)
+# library(magrittr)
 
 source(here::here("R/stats_sum.R"))
 

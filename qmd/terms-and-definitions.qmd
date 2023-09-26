@@ -5,15 +5,9 @@
 #| echo: false
 #| output: false
 
-library(here)
+# library(here)
+
 source(here::here("R/quarto-setup.R"))
-```
-
-```{r}
-#| echo: false
-#| output: asis
-
-quarto_status("polishing")
 ```
 
 The definitions below don't pretend to be an exhaustive list of terms about chronobiology and complex systems. They are only here to be a quick support for the reader.

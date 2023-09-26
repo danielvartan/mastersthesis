@@ -13,14 +13,16 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("drafting")
+# library(rutils)
+
+rutils:::quarto_status("drafting")
 ```
 
 ::: {.callout-note}
 ## Target
 
-* [Chronobiology International](https://www.tandfonline.com/action/authorSubmission?show=instructions&journalCode=icbi20) ([IF 2022: 2.8/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
-* [Journal of Biological Rhythms](https://journals.sagepub.com/author-instructions/JBR) ([IF 2022: 3.5/JCR](https://jcr.clarivate.com/jcr/) | [A2/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
+1. [Chronobiology International](https://www.tandfonline.com/action/authorSubmission?show=instructions&journalCode=icbi20) ([IF 2022: 2.8/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
+2. [Journal of Biological Rhythms](https://journals.sagepub.com/author-instructions/JBR) ([IF 2022: 3.5/JCR](https://jcr.clarivate.com/jcr/) | [A2/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
 :::
 
 ::: {.callout-note}
@@ -29,6 +31,10 @@ The following study was performed by __Daniel Vartanian (DV)__ and Camilo Rodrig
 __DV__ and __CR__ contributed to the design, implementation and statistical analysis of the study and . __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript.
 
 (_Future reference_): Vartanian, D., & Rodrigues Neto, C. (2024). Similarities between different versions of the MCTQ-PT. _Chronobiology International_.
+:::
+
+::: {.content-visible when-format="pdf"}
+\vspace{10pt}
 :::
 
 ## Study framework

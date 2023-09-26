@@ -1,14 +1,10 @@
-# # TODO:
-#
-# * Document functions.
-
-require(apyramid, quietly = TRUE)
-require(checkmate, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(ggplot2, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(tidyr, quietly = TRUE)
-require(viridis, quietly = TRUE)
+# library(apyramid, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(tidyr, quietly = TRUE)
+# library(viridis, quietly = TRUE)
 
 plot_age_pyramid <- function(data,
                              interval = 10,
@@ -24,7 +20,7 @@ plot_age_pyramid <- function(data,
   ##
   ## * Create a `pretty_breaks()` function.
 
-  plot <- gutils:::shush(
+  plot <- rutils:::shush(
     data |>
       dplyr::select(sex, age) |>
       dplyr::mutate(

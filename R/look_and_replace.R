@@ -1,17 +1,13 @@
-# # TODO:
-#
-# * Document functions.
-
-require(checkmate, quietly = TRUE)
-require(cli, quietly = TRUE)
-require(curl, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(googleCloudStorageR, quietly = TRUE)
-require(googlesheets4, quietly = TRUE)
-require(here, quietly = TRUE)
-require(lockr, quietly = TRUE)
-require(stringr, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(curl, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(googleCloudStorageR, quietly = TRUE)
+# library(googlesheets4, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(lockr, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(stringr, quietly = TRUE)
 
 look_and_replace <- function(
     x,
@@ -25,7 +21,7 @@ look_and_replace <- function(
   lockr:::assert_public_key(public_key)
   lockr:::assert_private_key(private_key)
   checkmate::assert_flag(na_unmatched)
-  gutils:::assert_internet()
+  rutils:::assert_internet()
 
   cli::cli_progress_step("Downloading lookup tables")
 
@@ -83,7 +79,7 @@ get_lookup_data <- function(
   if (!is.null(file)) {
     checkmate::assert_file_exists(file, extension = c("rda", "lockr"))
   } else if (!curl::has_internet()) {
-    gutils:::assert_internet()
+    rutils:::assert_internet()
   } else if (inherits(test, "try-error") && curl::has_internet()) {
     cli::cli_abort(paste0(
       "{.strong {cli::col_red('googleCloudStorageR')}} needs to be", " ",
@@ -111,8 +107,8 @@ update_lookup <- function(
   checkmate::assert_string(ss)
   checkmate::assert_character(sheet_ignore)
   lockr:::assert_public_key(public_key)
-  gutils:::assert_interactive()
-  gutils:::assert_internet()
+  rutils:::assert_interactive()
+  rutils:::assert_internet()
 
   googlesheets4::gs4_auth()
   ss <- googlesheets4::gs4_get(ss)
@@ -175,15 +171,15 @@ write_unique_values_to_lookup_sheet <- function(
   checkmate::assert_choice(col, names(data))
   checkmate::assert_string(sheet)
   checkmate::assert_string(ss)
-  gutils:::assert_interactive()
-  gutils:::assert_internet()
+  rutils:::assert_interactive()
+  rutils:::assert_internet()
 
   googlesheets4::gs4_auth()
   ss <- googlesheets4::gs4_get(ss)
   checkmate::assert_subset(sheet, ss$sheets$name)
 
   out <-
-    dplyr::tibble(key = gutils:::drop_na(unique(data[[col]])), value = NA) |>
+    dplyr::tibble(key = rutils:::drop_na(unique(data[[col]])), value = NA) |>
     dplyr::arrange(key)
 
   ss |>

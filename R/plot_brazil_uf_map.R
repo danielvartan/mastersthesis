@@ -1,14 +1,10 @@
-# # TODO:
-#
-# * Document functions.
-
-require(checkmate, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(geobr, quietly = TRUE)
-require(ggplot2, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(stringr, quietly = TRUE)
-require(viridis, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(geobr, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(stringr, quietly = TRUE)
+# library(viridis, quietly = TRUE)
 
 plot_brazil_uf_map <- function(data, option = "viridis", text_size = NULL) {
   option_choices <- c(
@@ -20,11 +16,11 @@ plot_brazil_uf_map <- function(data, option = "viridis", text_size = NULL) {
   checkmate::assert_subset("state", names(data))
   checkmate::assert_choice(option, option_choices, null.ok = TRUE)
   checkmate::assert_number(text_size, null.ok = TRUE)
-  gutils:::assert_internet()
+  rutils:::assert_internet()
 
   brazil_uf_map <-
     geobr::read_country(year = 2020, showProgress = FALSE) |>
-    gutils:::shush() |>
+    rutils:::shush() |>
     dplyr::mutate(
       name_state = stringr::str_replace_all(name_state, " Do ", " do "),
       name_state = stringr::str_replace_all(name_state, " De ", " de ")

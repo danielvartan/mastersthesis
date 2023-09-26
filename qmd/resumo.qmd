@@ -5,13 +5,12 @@
 #| echo: false
 #| output: false
 
-library(here)
+# library(here)
+
 source(here::here("R/quarto-setup.R"))
 ```
 
-```{r}
-#| echo: false
-#| output: asis
+Vartanian, D. (2023). _Ecologia do sono e de fenótipos circadianos da população brasileira_ [Dissertação de Mestrado]. Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo. https://danielvartan.github.io/mastersthesis/
 
-quarto_status("drafting")
-```
+Palavras-chaves: cronobiologia. cronotipo. fenótipos circadianos. sono. ciclo sono-vigília. entrainment. latitude. ecologia. mctq.
+

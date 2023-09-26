@@ -5,9 +5,12 @@
 #| echo: false
 #| output: false
 
-library(here)
+# library(here)
+
 source(here::here("R/quarto-setup.R"))
 ```
+
+I would like to acknowledge the following persons and organizations:
 
 To Salete Perroni (Sal), my partner in life and in the fight.
 

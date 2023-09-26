@@ -13,7 +13,7 @@
         "class": "BibTeX",
         "color": "#00000000",
         "regex": true,
-        "query": "(?<![a-zA-Z0-9])@[a-zA-Z0-9_\\.\\-:_]+[a-zA-Z0-9]*",
+        "query": "(?<![a-zA-Z0-9])@[a-zA-Z0-9_\\-:_]+[a-zA-Z0-9]*",
         "mark": [
           "match"
         ],

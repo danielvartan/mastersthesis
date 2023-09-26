@@ -13,21 +13,29 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("polishing")
+# library(rutils)
+
+rutils:::quarto_status("polishing")
 ```
 
 ::: {.callout-note}
 ## Target
 
-[Scientific Reports](https://www.nature.com/srep/author-instructions) ([IF 2022: 4.6/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
+* [Scientific Reports](https://www.nature.com/srep/author-instructions) ([IF 2022: 4.6/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
 :::
 
 ::: {.callout-note}
 The following study was performed by __Daniel Vartanian (DV)__, Mario Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
 
-__DV__ contributed to the design and implementation of the study. __DV__ and __MP__ collected the data. __DV__ and __CR__ performed the statistical analysis. __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript.
+__DV__ contributed to the design and implementation of the study. __DV__ and __MP__ collected the data. __DV__ and __CR__ performed the statistical analysis. __DV__ wrote the manuscript.
+
+<!-- All authors discussed the results and revised the final manuscript. -->
 
 (_Future reference_): Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). A biological approach for the latitudinal cline of the chronotype. _Scientific Reports_.
+:::
+
+::: {.content-visible when-format="pdf"}
+\vspace{10pt}
 :::
 
 ## Study framework
@@ -192,6 +200,10 @@ $$
 \text{H}_{a}: \text{R}^{2}_{\text{res}} < \text{R}^{2}_{\text{full}}
 \end{cases}
 $$
+
+::: {.content-visible when-format="pdf"}
+\vspace{15pt}
+:::
 
 In order to test a possible latitude association in predicting the chronotype, the full model was the restricted model with the addition of the latitude variable. The restricted model had the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$) as the response variable, MCTQ proxy for the chronotype, with sex and age as predictors.
 

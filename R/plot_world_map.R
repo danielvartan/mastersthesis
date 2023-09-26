@@ -1,6 +1,7 @@
-# # TODO:
-#
-# * Document functions.
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+# library(viridis, quietly = TRUE)
 
 plot_world_map <- function(data, option = NULL, text_size = NULL) {
   option_choices <- c(
@@ -16,12 +17,15 @@ plot_world_map <- function(data, option = NULL, text_size = NULL) {
   world_map <- ggplot2::map_data("world")
   countries_list <- unique(world_map$region)
 
-  plot <- data %>%
-    dplyr::count(country) %>%
-    dplyr::rename(region = country) %>%
-    dplyr::full_join(dplyr::tibble(region = countries_list),
-                     by = "region") %>%
-    dplyr::arrange(region) %>%
+  plot <-
+    data |>
+    dplyr::count(country) |>
+    dplyr::rename(region = country) |>
+    dplyr::full_join(
+      dplyr::tibble(region = countries_list),
+      by = "region"
+      ) |>
+    dplyr::arrange(region) |>
     ggplot2::ggplot(ggplot2::aes(map_id = region)) +
     ggplot2::geom_map(ggplot2::aes(fill = n), map = world_map) +
     ggplot2::expand_limits(x = world_map$long, y = world_map$lat) +

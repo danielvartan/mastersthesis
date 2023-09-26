@@ -1,10 +1,6 @@
-## TODO:
-##
-## * Document functions
-
-require(checkmate, quietly = TRUE)
-require(cli, quietly = TRUE)
-require(dplyr, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
 
 add_geocode_data <- function(data) {
   checkmate::assert_tibble(data)
@@ -103,8 +99,4 @@ add_geocode_data <- function(data) {
     )
 
   invisible(out)
-}
-
-add_labren_data <- function() {
-
 }

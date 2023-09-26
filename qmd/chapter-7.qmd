@@ -13,8 +13,14 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("drafting")
+# library(rutils)
+
+rutils:::quarto_status("drafting")
 ```
+
+::: {.content-visible when-format="pdf"}
+\vspace{10pt}
+:::
 
 ## Discussion
 

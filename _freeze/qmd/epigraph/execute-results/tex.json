@@ -1,0 +1,20 @@
+{
+  "hash": "7854ff7eff8e079d47f66a2823aff68f",
+  "result": {
+    "markdown": "# Epigraph {.unnumbered}\n\n\n\n::: {.cell}\n\n:::\n\n\n\n> _Nullius in verba_ [@theroyalsociety]\n",
+    "supporting": [
+      "epigraph_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

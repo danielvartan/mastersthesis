@@ -1,6 +1,5 @@
-require(checkmate, quietly = TRUE)
-require(cli, quietly = TRUE)
-require(stats, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
 
 extract_from_summary <- function(x, element = "r.squared") {
   checkmate::assert_list(x)
@@ -28,13 +27,20 @@ r_squared <- function(x) extract_from_summary(x, "r.squared")
 adj_r_squared <- function(x) extract_from_summary(x, "adj.r.squared")
 f_statistic <- function(x) extract_from_summary(x, "fstatistic")
 
+# library(checkmate, quietly = TRUE)
+# library(stats, quietly = TRUE)
+
 std_error <- function(x){
   checkmate::assert_numeric(x)
 
   stats::sd(x, na.rm = TRUE) / sqrt(length(x))
 }
 
-# TODO: Move to `gutils`.
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(stats, quietly = TRUE)
+
+# TODO: Move to `rutils`.
 is_outlier <- function(x, method = "iqr", iqr_mult = 1.5, sd_mult = 3) {
   checkmate::assert_numeric(x)
   checkmate::assert_choice(method, c("iqr", "sd"))
@@ -53,7 +59,9 @@ is_outlier <- function(x, method = "iqr", iqr_mult = 1.5, sd_mult = 3) {
   dplyr::if_else(x >= min & x <= max, FALSE, TRUE, missing = FALSE)
 }
 
-# TODO: Move to `gutils`.
+# library(checkmate, quietly = TRUE)
+
+# TODO: Move to `rutils`.
 remove_outliers <- function(x, method = "iqr", iqr_mult = 1.5, sd_mult = 3) {
   checkmate::assert_numeric(x)
   checkmate::assert_choice(method, c("iqr", "sd"))

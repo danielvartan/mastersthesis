@@ -1,15 +1,5 @@
-require(checkmate, quietly = TRUE)
-require(cli, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(hms, quietly = TRUE)
-require(lubridate, quietly = TRUE)
-require(lubritime, quietly = TRUE)
-require(mctq, quietly = TRUE)
-require(rlang)
-require(scaler, quietly = TRUE)
-require(stringr, quietly = TRUE)
-require(tidyr, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
 
 #' Validate `tidy_data()` output
 #'
@@ -32,11 +22,18 @@ require(tidyr, quietly = TRUE)
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a validated dataset.
 #'
-#' @template references_b
 #' @family data wrangling functions
-#'
 #' @importFrom rlang := !!
+#'
 #' @noRd
+#'
+#' @references
+#'
+#' Loo, M. van der, & Jonge, E de. (2018). _Statistical data cleaning with
+#' applications in R_. John Wiley & Sons. \doi{10.1002/9781118897126}
+#'
+#' Wickham, H., & Grolemund, G. (n.d.). _R for data science_. (n.p.).
+#' \url{https://r4ds.had.co.nz}
 #'
 #' @examples
 #' \dontrun{
@@ -50,7 +47,8 @@ validate_data <- function(data) {
 
   cli::cli_progress_step("Validating data")
 
-  out <- data |>
+  out <-
+    data |>
     na_mctq_blank_cases() |>
     validate_ranges() |>
     validate_work_study() |>
@@ -62,10 +60,16 @@ validate_data <- function(data) {
   invisible(out)
 }
 
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(scaler, quietly = TRUE)
+
 validate_ranges <- function(data) {
   checkmate::assert_tibble(data)
 
-  out <- data |>
+  out <-
+    data |>
     dplyr::mutate(
       birth_date = dplyr::case_when(
         dplyr::between(
@@ -112,10 +116,17 @@ validate_ranges <- function(data) {
   invisible(out)
 }
 
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+library(rlang)
+# library(stringr, quietly = TRUE)
+# library(tidyr, quietly = TRUE)
+
 validate_work_study <- function(data){
   checkmate::assert_tibble(data)
 
-  out <- data |>
+  out <-
+    data |>
     dplyr::mutate(
       work = dplyr::if_else(no_work_no_study, FALSE, work),
       study = dplyr::if_else(no_work_no_study, FALSE, study)
@@ -135,39 +146,39 @@ validate_work_study <- function(data){
     ) |>
     dplyr::select(-dummy, -no_work_no_study)
 
-  out <- out |>
+  out <-
+    out |>
     dplyr::mutate(
-      dummy = dplyr::if_else(
-        work == FALSE & study == FALSE, TRUE, FALSE
-      )
+      dummy = dplyr::if_else(work == FALSE & study == FALSE, TRUE, FALSE)
     ) |>
     tidyr::unnest(cols = c(work_periods, study_periods))
 
   for (i in stringr::str_subset(names(out), "^work_|^study_")) {
-    out <- out |>
+    out <-
+      out |>
       dplyr::mutate(
-        !!as.symbol(i) :=
-          dplyr::if_else(dummy, FALSE, !!as.symbol(i))
+        !!as.symbol(i) := dplyr::if_else(dummy, FALSE, !!as.symbol(i))
       )
   }
 
   for (i in stringr::str_subset(names(out), "^work_")) {
-    out <- out |>
+    out <-
+      out |>
       dplyr::mutate(
-        !!as.symbol(i) :=
-          dplyr::if_else(work, !!as.symbol(i), FALSE)
+        !!as.symbol(i) := dplyr::if_else(work, !!as.symbol(i), FALSE)
       )
   }
 
   for (i in stringr::str_subset(names(out), "^study_")) {
-    out <- out |>
+    out <-
+      out |>
       dplyr::mutate(
-        !!as.symbol(i) :=
-          dplyr::if_else(study, !!as.symbol(i), FALSE)
+        !!as.symbol(i) := dplyr::if_else(study, !!as.symbol(i), FALSE)
       )
   }
 
-  out <- out |>
+  out <-
+    out |>
     tidyr::nest(
       work_periods = c(
         work_morning, work_afternoon, work_evening, work_wee_hours
@@ -183,6 +194,12 @@ validate_work_study <- function(data){
   invisible(out)
 }
 
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(lubridate, quietly = TRUE)
+# library(lubritime, quietly = TRUE)
+library(rlang)
+
 fix_bt_sprep_inversion <- function(data) {
   checkmate::assert_tibble(data)
 
@@ -190,24 +207,38 @@ fix_bt_sprep_inversion <- function(data) {
     bt_i <- paste0("bt", i)
     sprep_i <- paste0("sprep", i)
 
-    out <- data |>
+    out <-
+      data |>
       dplyr::mutate(
         dummy = dplyr::case_when(
-          lubritime::assign_date(!!as.symbol(bt_i),
-                                 !!as.symbol(sprep_i)) >
+          lubritime::assign_date(!!as.symbol(bt_i), !!as.symbol(sprep_i)) >
             lubridate::dhours(12) ~ TRUE,
-          TRUE ~ FALSE),
+          TRUE ~ FALSE
+          ),
         bkp = !!as.symbol(bt_i),
-        !!as.symbol(bt_i) :=
-          dplyr::if_else(dummy, !!as.symbol(sprep_i),
-                         !!as.symbol(bt_i)),
-        !!as.symbol(sprep_i) :=
-          dplyr::if_else(dummy, bkp, !!as.symbol(sprep_i))) |>
+        !!as.symbol(bt_i) := dplyr::if_else(
+          dummy,
+          !!as.symbol(sprep_i),
+          !!as.symbol(bt_i)
+          ),
+        !!as.symbol(sprep_i) := dplyr::if_else(
+          dummy,
+          bkp,
+          !!as.symbol(sprep_i)
+          )
+        ) |>
       dplyr::select(-dummy, -bkp)
   }
 
   invisible(out)
 }
+
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(lubridate, quietly = TRUE)
+# library(mctq, quietly = TRUE)
+library(rlang)
+# library(rutils, quietly = TRUE)
 
 validate_sdu <- function(data) {
   checkmate::assert_tibble(data)
@@ -217,7 +248,8 @@ validate_sdu <- function(data) {
     slat_i <- paste0("slat", i)
     se_i <- paste0("se", i)
 
-    test <- data |>
+    test <-
+      data |>
       dplyr::mutate(
         so_i = mctq::so(!!as.symbol(sprep_i), !!as.symbol(slat_i)),
         sd_i = mctq::sdu(so_i, !!as.symbol(se_i)),
@@ -228,11 +260,14 @@ validate_sdu <- function(data) {
       ) |>
       dplyr::select(dummy)
 
-    out <- data |>
+    out <-
+      data |>
       dplyr::bind_cols(test) |>
-      dplyr::mutate(dplyr::across(
-        .cols = dplyr::matches(paste0("^wd$|", i, "$")),
-        .fns = ~ dplyr::if_else(dummy, gutils::na_as(.x), .x))
+      dplyr::mutate(
+        dplyr::across(
+          .cols = dplyr::matches(paste0("^wd$|", i, "$")),
+          .fns = ~ dplyr::if_else(dummy, rutils::na_as(.x), .x)
+        )
       ) |>
       dplyr::select(-dummy)
   }
@@ -240,10 +275,17 @@ validate_sdu <- function(data) {
   invisible(out)
 }
 
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(mctq, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+
 validate_so <- function(data) {
   checkmate::assert_tibble(data)
 
-  out <- data |>
+  out <-
+    data |>
     dplyr::mutate(
       so_w = mctq::so(sprep_w, slat_w),
       so_f = mctq::so(sprep_f, slat_f),
@@ -254,19 +296,28 @@ validate_so <- function(data) {
              so_f <= hms::parse_hms("18:00:00")) ~ TRUE,
         TRUE ~ FALSE)
     ) |>
-    dplyr::mutate(dplyr::across(
-      .cols = dplyr::matches("^wd$|_w$|_f$"),
-      .fns = ~ dplyr::if_else(dummy, gutils::na_as(.x), .x))
+    dplyr::mutate(
+      dplyr::across(
+        .cols = dplyr::matches("^wd$|_w$|_f$"),
+        .fns = ~ dplyr::if_else(dummy, rutils::na_as(.x), .x)
+      )
     ) |>
     dplyr::select(-so_w, -so_f, -dummy)
 
   invisible(out)
 }
 
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(lubridate, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+
 na_mctq_blank_cases <- function(data) {
   checkmate::assert_tibble(data)
 
-  out <- data |>
+  out <-
+    data |>
     dplyr::mutate(
       dummy = dplyr::case_when(
         wd == 0 &
@@ -280,32 +331,42 @@ na_mctq_blank_cases <- function(data) {
         TRUE ~ FALSE
       )
     ) |>
-    dplyr::mutate(dplyr::across(
-      .cols = dplyr::matches("^wd$|_w$|_f$"),
-      .fns = ~ dplyr::if_else(dummy, gutils::na_as(.x), .x))
+    dplyr::mutate(
+      dplyr::across(
+        .cols = dplyr::matches("^wd$|_w$|_f$"),
+        .fns = ~ dplyr::if_else(dummy, rutils::na_as(.x), .x)
+      )
     ) |>
     dplyr::select(-dummy)
 
   invisible(out)
 }
 
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+
 remove_duplicates_and_blanks <- function(data) {
   checkmate::assert_tibble(data)
 
-  count <- data |>
-    dplyr::mutate(dplyr::across(
-      .col = dplyr::everything(), .fns = as.character
-    )) |>
+  count <-
+    data |>
+    dplyr::mutate(
+      dplyr::across(
+        .col = dplyr::everything(),
+        .fns = as.character
+      )
+    ) |>
     dplyr::rowwise() |>
     dplyr::mutate(
-      length = count_not_na(dplyr::c_across(
-        cols = -dplyr::all_of(c("id", "timestamp", "track"))
-      ))
+      length = count_not_na(
+        dplyr::c_across(cols = -dplyr::all_of(c("id", "timestamp", "track")))
+      )
     ) |>
     dplyr::ungroup() |>
     dplyr::select(length)
 
-  out <- data |>
+  out <-
+    data |>
     dplyr::bind_cols(count) |>
     dplyr::arrange(dplyr::desc(length)) |>
     dplyr::group_by(email, birth_date) |>

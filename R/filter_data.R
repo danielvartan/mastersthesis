@@ -1,11 +1,7 @@
-# # TODO:
-#
-# * Document functions.
-
-require(checkmate, quietly = TRUE)
-require(cli, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(lubridate, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(lubridate, quietly = TRUE)
 
 filter_data <- function(data) {
   checkmate::assert_tibble(data)

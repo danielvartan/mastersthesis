@@ -1,15 +1,11 @@
-# # TODO:
-#
-# * Document functions.
-
-require(checkmate, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(ggcorrplot, quietly = TRUE)
-require(ggplot2, quietly = TRUE)
-require(here, quietly = TRUE)
-require(hms, quietly = TRUE)
-require(stats, quietly = TRUE)
-require(tidyr, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(ggcorrplot, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(stats, quietly = TRUE)
+# library(tidyr, quietly = TRUE)
 
 source(here::here("R/utils.R"))
 

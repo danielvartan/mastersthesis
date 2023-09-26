@@ -3,15 +3,15 @@
 ## * Arrumar cuts igual Roenneberg et al. (2007). Ver cuts acima de 60.
 ## * Criar `plot_msf_sc series()`.
 
-require(checkmate, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(ggplot2, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(here, quietly = TRUE)
-require(hms, quietly = TRUE)
-require(rlang, quietly = TRUE)
-require(tidyr, quietly = TRUE)
-require(viridis, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(hms, quietly = TRUE)
+library(rlang, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(tidyr, quietly = TRUE)
+# library(viridis, quietly = TRUE)
 
 source(here::here("R/utils.R"))
 source(here::here("R/utils-plot.R"))
@@ -34,7 +34,7 @@ plot_age_series <- function(data,
   checkmate::assert_subset(c("sex", "age", col), names(data))
   checkmate::assert_multi_class(data[[col]], col_classes)
   checkmate::assert_multi_class(y_lab, c("character", "latexexpression"))
-  gutils:::assert_length_one(y_lab)
+  rutils:::assert_length_one(y_lab)
   checkmate::assert_number(line_width)
   checkmate::assert_number(boundary)
   checkmate::assert_number(point_size)
@@ -47,7 +47,7 @@ plot_age_series <- function(data,
     y_lab = paste0("Local time (", col, " +- SEM)")
   }
 
-  if (y_lab == col && gutils:::test_duration(data[[col]])) {
+  if (y_lab == col && rutils:::test_duration(data[[col]])) {
     y_lab = paste0("Duration (", col, " +- SEM)")
   }
 
@@ -55,7 +55,7 @@ plot_age_series <- function(data,
     data |>
     dplyr::select(dplyr::all_of(c("age", col, "sex"))) |>
     dplyr::mutate(dplyr::across(
-      .cols = dplyr::where(gutils:::test_duration),
+      .cols = dplyr::where(rutils:::test_duration),
       .fns = ~ hms::hms(as.numeric(.x))
     )) |>
     dplyr::mutate(dplyr::across(
@@ -76,7 +76,7 @@ plot_age_series <- function(data,
       !!as.symbol(col) := mean(!!as.symbol(col), na.rm = TRUE),
       .by = age
     ) |>
-    gutils:::shush() |>
+    rutils:::shush() |>
     tidyr::drop_na()
 
   data_by_age_and_sex <-
@@ -86,7 +86,7 @@ plot_age_series <- function(data,
       !!as.symbol(col) := mean(!!as.symbol(col), na.rm = TRUE),
       .by = c(age, sex)
     ) |>
-    gutils:::shush() |>
+    rutils:::shush() |>
     tidyr::drop_na()
 
   plot <-

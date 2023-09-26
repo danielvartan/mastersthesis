@@ -4,6 +4,14 @@
 
 ## See <https://gt.rstudio.com/> & <https://gt.albert-rapp.de/>.
 
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(gt, quietly = TRUE)
+# library(here, quietly = TRUE)
+
+source(here::here("R/test_normality.R"))
+
 exploratory_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
   checkmate::assert_atomic(x)
   checkmate::assert_choice(big_mark, c(".", ","))
@@ -308,6 +316,9 @@ exploratory_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
   }
 }
 
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+
 sig_level_asterisks <- function(x) {
   checkmate::assert_number(x)
 
@@ -319,6 +330,11 @@ sig_level_asterisks <- function(x) {
     TRUE ~ ""
   )
 }
+
+# library(checkmate, quietly = TRUE)
+# library(exams, quietly = TRUE)
+# library(readr, quietly = TRUE)
+# library(stringr, quietly = TRUE)
 
 # Code from <https://gt.albert-rapp.de/case_studies.html#latex-formulas>.
 latex_to_svg <- function(x, color = "black") {
@@ -332,10 +348,12 @@ latex_to_svg <- function(x, color = "black") {
     tex = x,  format = "svg", dir = temp_dir, name = temp_name
   )
 
-  svg_formula_black <- readr::read_lines('formula.svg') |>
+  svg_formula_black <-
+    readr::read_lines('formula.svg') |>
     stringr::str_flatten()
 
-  svg_formula_white <- svg_formula_black |>
+  svg_formula_white <-
+    svg_formula_black |>
     # Overline color uses stroke, rest uses fill
     stringr::str_replace_all('stroke:rgb\\(0%,0%,0%\\)', 'stroke:#FFFFFF') |>
     stringr::str_replace_all('fill:rgb\\(0%,0%,0%\\)', 'fill:#FFFFFF')

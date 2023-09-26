@@ -1,10 +1,6 @@
-# # TODO:
-#
-# * Document functions.
-
-require(checkmate, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(here, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(here, quietly = TRUE)
 
 source(here::here("R/test_normality.R"))
 

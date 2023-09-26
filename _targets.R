@@ -1,6 +1,6 @@
 # See <https://books.ropensci.org/targets/> to learn more.
 
-library(here)
+# library(here)
 library(tarchetypes)
 library(targets)
 
@@ -16,9 +16,9 @@ source(here::here("R/look_and_replace.R"))
 targets::tar_option_set(
   packages = c(
     "lubridate", # For masking reasons.
-    "checkmate", "cli", "curl", "dplyr", "gutils", "googleCloudStorageR",
-    "here", "hms", "lockr", "lubritime", "mctq", "readr", "rlang",
-    "scaler", "stringr", "tidyr", "utils"
+    "checkmate", "cli", "curl", "dplyr", "googleCloudStorageR", "here", "hms",
+    "lockr", "lubritime", "mctq", "readr", "rlang", "rutils", "scaler",
+    "stringr", "tidyr", "utils"
     )
 )
 

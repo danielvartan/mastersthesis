@@ -1,16 +1,20 @@
+editor: source
+
 execute:
   freeze: auto
 
 project:
   type: book
-  output-dir: docs
+  output-dir: .temp
   pre-render: "R/quarto-pre-render.R"
+  post-render: "R/quarto-post-render.R"
   resources: "robots.txt"
 
 book:
   title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
   author: "Daniel Vartanian"
   date: today
+  date-format: "YYYY"
   reader-mode: false
   # cover-image: cover.png
   # favicon: cover.png
@@ -21,7 +25,7 @@ book:
     - index.qmd
     - part: "Preliminary Pages"
       chapters:
-        - qmd/corrigendum.qmd
+        - qmd/errata.qmd
         - qmd/inscription.qmd
         - qmd/acknowledgments.qmd
         - qmd/epigraph.qmd
@@ -47,11 +51,8 @@ book:
     - qmd/appendice-ch-5.qmd
     - qmd/appendice-ch-6.qmd
 
-# See <https://quarto.org/docs/authoring/footnotes-and-citations.html>.
 bibliography: references.json
-cls: apa.csl # <https://www.zotero.org/styles>
 
-# See <https://quarto.org/docs/authoring/create-citeable-articles.html>.
 citation:
   type: thesis
   url: https://danielvartan.github.io/mastersthesis/
@@ -70,18 +71,19 @@ format:
     number-depth: 6
     df-print: kable
     author-meta: "Daniel Vartanian"
-  # pdf:
-  #   documentclass: scrbook
-  #   papersize: a4
-  #   fontfamily: arial
-  #   cite-method: biblatex
-  #   biblio-style: apalike
-  #   fig-align: center
-  #   fig-cap-location: top
-  #   tbl-cap-location: top
-  #   colorlinks: true
-  #   toc-title: Contents
-  #   toc: true
-  #   toc-depth: 2
-
-editor: source
+  tesesusp-pdf:
+    # classoption: [twoside]
+    nocite: |
+      @*
+    latex-auto-install: true
+    keep-tex: true
+    # "Lato" # "Noto Sans" # "Open Sans" # "Futura Std" # Arial
+    mainfont: "Arial"
+    sansfont: "Arial"
+    # "Source Code Pro" # "Helvetica Monospaced W06 Rg" # "Roboto Mono"
+    monofont: "Helvetica Monospaced W06 Rg"
+    monofontoptions:
+      - Scale = 0.75
+    include-in-header: tex/include-in-header.tex
+    include-before-body: tex/include-before-body.tex
+    # include-after-body: tex/include-after-body.tex

@@ -13,22 +13,30 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-quarto_status("drafting")
+# library(rutils)
+
+rutils:::quarto_status("drafting")
 ```
 
 ::: {.callout-note}
 ## Target
 
-* [Journal of Open Source Software](https://joss.readthedocs.io/en/latest/submitting.html) ([IF 2022: 5.2/Exaly](https://exaly.com/journal/106890/journal-of-open-source-software/) | [B1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
-* [Journal of Statistical Software](https://www.jstatsoft.org/authors) ([IF 2022: 5.8/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
+1. [Journal of Statistical Software](https://www.jstatsoft.org/authors) ([IF 2022: 5.8/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
+2. [Journal of Open Source Software](https://joss.readthedocs.io/en/latest/submitting.html) ([B1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
 :::
 
 ::: {.callout-note}
 The following study was performed by __Daniel Vartanian (DV)__, Ana Amélia Benedito-Silva (AA), Mario Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
 
-__DV__ contributed to the design, implementation of the software. __AA__, __MP__ and __CR__ contributed as science advisers and reviewers. __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript.
+__DV__ contributed to conception, design, coding and implementation of the software. __AA__, __MP__ and __CR__ contributed as science advisers and reviewers. __DV__ wrote the manuscript.
+
+<!-- All authors discussed the results and revised the final manuscript. -->
 
 (_Future reference_): Vartanian, D, Benedito-Silva, A. A., Pedrazzoli, M., & Rodrigues Neto, C. (2024). {mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ). _Journal of Statistical Software_.
+:::
+
+::: {.content-visible when-format="pdf"}
+\vspace{10pt}
 :::
 
 ## Study framework

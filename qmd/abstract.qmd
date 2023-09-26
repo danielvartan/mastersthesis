@@ -9,9 +9,6 @@ library(here)
 source(here::here("R/quarto-setup.R"))
 ```
 
-```{r}
-#| echo: false
-#| output: asis
+Vartanian, D. (2023). _Ecology of sleep and circadian phenotypes of the Brazilian population_ [Master's thesis]. School of Arts, Sciences and Humanities, University of São Paulo, São Paulo. https://danielvartan.github.io/mastersthesis/
 
-quarto_status("drafting")
-```
+Keywords: chronobiology. chronotype. circadian phenotypes. sleep. sleep-wake cycle. entrainment. latitude. ecology. mctq.

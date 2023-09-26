@@ -1,14 +1,14 @@
-require(checkmate, quietly = TRUE)
-require(cli, quietly = TRUE)
-require(curl, quietly = TRUE)
-require(dplyr, quietly = TRUE)
-require(gutils, quietly = TRUE)
-require(here, quietly = TRUE)
-require(hms, quietly = TRUE)
-require(lockr, quietly = TRUE)
-require(lubridate, quietly = TRUE)
-require(stringr, quietly = TRUE)
-require(tidyr, quietly = TRUE)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(curl, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(lockr, quietly = TRUE)
+# library(lubridate, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(stringr, quietly = TRUE)
+# library(tidyr, quietly = TRUE)
 
 source(here::here("R/look_and_replace.R"))
 
@@ -36,16 +36,32 @@ source(here::here("R/look_and_replace.R"))
 #'
 #' @param data A [`tibble`][dplyr::tibble()] with the `get_raw_data()`
 #'   output.
+#' @param public_key (optional) an [`openssl`][openssl::rsa_keygen()] RSA
+#'   public key or a string specifying the public key path. See
+#'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
+#'   pair (default: `here::here(".ssh/id_rsa.pub")`).
+#' @param private_key (optional) an [`openssl`][openssl::rsa_keygen()] RSA
+#'   private key or a string specifying the private key path. See
+#'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
+#'   pair (default: `"here::here(.ssh/id_rsa")`).
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a tidied, but not
 #'   validated, dataset.
 #'
-#' @template param_public_key
-#' @template param_private_key
-#' @template references_a
 #' @family data wrangling functions
 #'
 #' @noRd
+#'
+#' @references
+#'
+#' Loo, M. van der, & Jonge, E de. (2018). _Statistical data cleaning with
+#' applications in R_. John Wiley & Sons. \doi{10.1002/9781118897126}
+#'
+#' Wickham, H. (2014). Tidy data. _Journal of Statistical Software_, _59_(10),
+#' 1-23. \doi{10.18637/jss.v059.i10}
+#'
+#' Wickham, H., & Grolemund, G. (n.d.). _R for data science_. (n.p.).
+#' \url{https://r4ds.had.co.nz}
 #'
 #' @examples
 #' \dontrun{
@@ -54,15 +70,13 @@ source(here::here("R/look_and_replace.R"))
 #'   utils::View(tidy_data_())
 #' }
 #' }
-tidy_data_ <- function(
-    data,
-    public_key = here::here(".ssh/id_rsa.pub"),
-    private_key = here::here(".ssh/id_rsa")
-    ) {
+tidy_data_ <- function(data,
+                       public_key = here::here(".ssh/id_rsa.pub"),
+                       private_key = here::here(".ssh/id_rsa")) {
   checkmate::assert_tibble(data)
   lockr:::assert_public_key(public_key)
   lockr:::assert_private_key(private_key)
-  gutils:::assert_internet()
+  rutils:::assert_internet()
 
   ## TODO:
   ##
@@ -70,7 +84,8 @@ tidy_data_ <- function(
 
   cli::cli_progress_step("Tidying data")
 
-  out <- data |>
+  out <-
+    data |>
     dplyr::rename(
       id = ID, track = track,
 
@@ -208,8 +223,4 @@ tidy_data_ <- function(
       sprep_f, slat_f, se_f, si_f, alarm_f, le_f)
 
   invisible(out)
-}
-
-case_by_case_fix <- function(data) {
-
 }

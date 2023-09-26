@@ -15,7 +15,9 @@ options(scipen = 10, digits = 5)
 #| echo: false
 #| output: asis
 
-quarto_status("polishing")
+# library(rutils)
+
+rutils:::quarto_status("polishing")
 ```
 
 <!--
@@ -100,10 +102,10 @@ __Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent gi
 #| warning: false
 #| code-fold: false
 
-library(dplyr)
-library(here)
+# library(dplyr)
+# library(here)
 library(targets)
-library(tidyr)
+# library(tidyr)
 
 source(here::here("R/utils.R"))
 
@@ -130,7 +132,7 @@ data <-
 #| warning: false
 #| code-fold: false
 
-library(MASS)
+# library(MASS)
 
 box_cox <- MASS::boxcox(msf_sc ~ age + sex, data = data)
 lambda <- box_cox$x[which.max(box_cox$y)]
@@ -141,7 +143,7 @@ lambda
 ```{r}
 #| code-fold: false
 
-library(stats)
+# library(stats)
 
 res_model <- stats::lm(
   ((msf_sc^lambda - 1) / lambda) ~ age + sex, data = data
@@ -151,20 +153,18 @@ res_model <- stats::lm(
 ```{r}
 #| code-fold: false
 
-library(broom)
+# library(broom)
 
-# ?broom::tidy.lm
 broom::tidy(res_model)
 ```
 
 ```{r}
 #| code-fold: false
 
-library(broom)
-library(dplyr)
-library(tidyr)
+# library(broom)
+# library(dplyr)
+# library(tidyr)
 
-# ?broom::glance.lm
 broom::glance(res_model) |> tidyr::pivot_longer(cols = dplyr::everything())
 ```
 
@@ -173,7 +173,7 @@ broom::glance(res_model) |> tidyr::pivot_longer(cols = dplyr::everything())
 #| warning: false
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 # res_model |> olsrr::ols_regress()
 res_model |> summary()
@@ -188,8 +188,8 @@ Normality and zero mean error assumption.
 #| warning: false
 #| code-fold: false
 
-library(here)
-library(stats)
+# library(here)
+# library(stats)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils.R"))
@@ -207,8 +207,8 @@ res_model |>
 
 # See `?moments::agostino.test` & `?fBasics::dagoTest()` to learn more.
 
-library(fBasics)
-library(moments)
+# library(fBasics)
+# library(moments)
 
 source(here::here("R/normality_sum.R"))
 
@@ -222,7 +222,7 @@ Correlation between observed residuals and expected residuals under normality.
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 res_model |> olsrr::ols_test_correlation()
 ```
@@ -230,9 +230,9 @@ res_model |> olsrr::ols_test_correlation()
 ```{r}
 #| code-fold: false
 
-library(cowplot)
-library(olsrr)
-library(stats)
+# library(cowplot)
+# library(olsrr)
+# library(stats)
 
 source(here::here("R/test_normality.R"))
 
@@ -252,7 +252,7 @@ cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 # Linear mean assumption
 
@@ -272,7 +272,7 @@ Homoscedasticity assumption.
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 # "It test whether variance of errors from a regression is dependent on the values of a independent variable."
 
@@ -282,7 +282,7 @@ res_model |> olsrr::ols_test_breusch_pagan()
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 res_model |> olsrr::ols_test_score()
 ```
@@ -294,7 +294,7 @@ Independence assumption.
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 res_model |> olsrr::ols_coll_diag()
 ```
@@ -306,7 +306,7 @@ The variance inflation factor measures how much the behavior (variance) of an in
 #| warning: false
 #| code-fold: false
 
-library(car)
+# library(car)
 
 res_model |> car::vif()
 ```
@@ -316,7 +316,7 @@ res_model |> car::vif()
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 res_model |> olsrr::ols_plot_resid_lev()
 ```
@@ -326,7 +326,7 @@ res_model |> olsrr::ols_plot_resid_lev()
 ```{r}
 #| code-fold: false
 
-library(MASS)
+# library(MASS)
 
 box_cox <- MASS::boxcox(
   msf_sc ~ age + sex + latitude, data = data
@@ -344,7 +344,7 @@ lambda # The same lambda of the restricted model
 ```{r}
 #| code-fold: false
 
-library(stats)
+# library(stats)
 
 full_model <- stats::lm(
   ((msf_sc^lambda - 1) / lambda) ~ age + sex + latitude, 
@@ -355,7 +355,7 @@ full_model <- stats::lm(
 ```{r}
 #| code-fold: false
 
-library(broom)
+# library(broom)
 
 # ?broom::tidy.lm
 broom::tidy(full_model)
@@ -364,9 +364,9 @@ broom::tidy(full_model)
 ```{r}
 #| code-fold: false
 
-library(broom)
-library(dplyr)
-library(tidyr)
+# library(broom)
+# library(dplyr)
+# library(tidyr)
 
 # ?broom::glance.lm
 broom::glance(full_model) |>
@@ -387,8 +387,8 @@ Normality and zero mean error assumption.
 ```{r}
 #| code-fold: false
 
-library(here)
-library(stats)
+# library(here)
+# library(stats)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils.R"))
@@ -402,8 +402,8 @@ full_model |>
 ```{r}
 #| code-fold: false
 
-library(here)
-library(stats)
+# library(here)
+# library(stats)
 
 source(here::here("R/normality_sum.R"))
 
@@ -417,7 +417,7 @@ Correlation between observed residuals and expected residuals under normality.
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 full_model |> olsrr::ols_test_correlation()
 ```
@@ -425,10 +425,10 @@ full_model |> olsrr::ols_test_correlation()
 ```{r}
 #| code-fold: false
 
-library(here)
-library(cowplot)
-library(olsrr)
-library(stats)
+# library(here)
+# library(cowplot)
+# library(olsrr)
+# library(stats)
 
 source(here::here("R/test_normality.R"))
 
@@ -448,7 +448,7 @@ cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 full_model |> olsrr::ols_plot_resid_fit()
 ```
@@ -466,7 +466,7 @@ Homoscedasticity assumption.
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 full_model |> olsrr::ols_test_breusch_pagan()
 ```
@@ -474,7 +474,7 @@ full_model |> olsrr::ols_test_breusch_pagan()
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 full_model |> olsrr::ols_test_score()
 ```
@@ -486,7 +486,7 @@ Independence assumption.
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 full_model |> olsrr::ols_coll_diag()
 ```
@@ -496,7 +496,7 @@ The variance inflation factor measures how much the behavior (variance) of an in
 ```{r}
 #| code-fold: false
 
-library(car)
+# library(car)
 
 full_model |> car::vif()
 ```
@@ -506,7 +506,7 @@ full_model |> car::vif()
 ```{r}
 #| code-fold: false
 
-library(olsrr)
+# library(olsrr)
 
 full_model |> olsrr::ols_plot_resid_lev()
 ```
@@ -532,8 +532,8 @@ $$
 ```{r}
 #| code-fold: false
 
-library(dplyr)
-library(here)
+# library(dplyr)
+# library(here)
 
 source(here::here("R/utils-stats.R"))
 
@@ -549,7 +549,7 @@ dplyr::tibble(
 ```{r}
 #| code-fold: false
 
-library(stats)
+# library(stats)
 
 stats::anova(res_model, full_model)
 ```
@@ -557,8 +557,8 @@ stats::anova(res_model, full_model)
 ```{r}
 #| code-fold: false
 
-library(stats)
-library(here)
+# library(stats)
+# library(here)
 
 source(here::here("R/utils-stats.R"))
 
@@ -580,7 +580,7 @@ $$
 ```{r}
 #| code-fold: false
 
-library(here)
+# library(here)
 
 source(here::here("R/cohens_f_squared.R"))
 source(here::here("R/utils-stats.R"))
@@ -605,9 +605,9 @@ $$
 #| warning: false
 #| code-fold: false
 
-library(dplyr)
-library(here)
-library(magrittr)
+# library(dplyr)
+# library(here)
+# library(magrittr)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils.R"))
@@ -633,9 +633,9 @@ stats_sum_group_1 |> list_as_tibble()
 #| warning: false
 #| code-fold: false
 
-library(dplyr)
-library(here)
-library(magrittr)
+# library(dplyr)
+# library(here)
+# library(magrittr)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils.R"))
@@ -658,7 +658,7 @@ stats_sum_group_2 |> list_as_tibble()
 ```{r}
 #| code-fold: false
 
-library(stats)
+# library(stats)
 
 stats::t.test(msf_sc_group_1, msf_sc_group_2, alternative = "less")
 ```
@@ -666,7 +666,7 @@ stats::t.test(msf_sc_group_1, msf_sc_group_2, alternative = "less")
 ```{r}
 #| code-fold: false
 
-library(dplyr)
+# library(dplyr)
 
 dplyr::tibble(
   name = c("mean_group_1", "mean_group_2", "diff"),
@@ -686,7 +686,7 @@ $$
 ```{r}
 #| code-fold: false
 
-library(effsize)
+# library(effsize)
 
 effsize::cohen.d(msf_sc_group_1, msf_sc_group_2)
 ```
