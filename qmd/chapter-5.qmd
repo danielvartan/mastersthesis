@@ -1,4 +1,6 @@
-# Rule-based model of the 24h light/dark cycle entrainment phenomenon
+<!-- %:::% .common h1 begin %:::% -->
+# Rule-based model of the 24h light/dark entrainment phenomenon
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -25,17 +27,17 @@ rutils:::quarto_status("drafting")
 :::
 
 ::: {.callout-note}
-The following study was performed by __Daniel Vartanian (DV)__ and Camilo Rodrigues Neto (CR).
-
-__DV__ contributed to the design, implementation of the software. __CR__ contributed as a science adviser and reviewer. __DV__ wrote the manuscript.
-
-<!-- All authors discussed the results and revised the final manuscript. -->
-
-(_Future reference_): Vartanian, D, & Rodrigues Neto, C. (2024). {entrainment}: A rule-based model of the 24h light/dark cycle entrainment phenomenon. _Journal of Statistical Software_.
-:::
+The following study was conducted by Daniel Vartanian (DV) and Camilo Rodrigues Neto (CR).
 
 ::: {.content-visible when-format="pdf"}
-\vspace{10pt}
+\vspace{5pt}
 :::
 
-## Study framework
+__DV__ was responsible for the design and software implementation. __CR__ contributed as a science adviser and reviewer. __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript.
+
+::: {.content-visible when-format="pdf"}
+\vspace{5pt}
+:::
+
+_Future reference_: Vartanian, D, & Rodrigues Neto, C. (2024). {entrainment}: A rule-based model of the 24h light/dark cycle entrainment phenomenon. _Journal of Open Source_.
+:::

@@ -1,4 +1,6 @@
-# Appendice: Chapter 6 supplemental material
+<!-- %:::% .common h1 begin %:::% -->
+# Appendice: chapter 6 supplemental material
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -32,6 +34,8 @@ Other references :
 * <https://www.r-bloggers.com/2022/10/box-cox-transformation-in-r/>
 * <https://online.stat.psu.edu/stat501/>
 -->
+
+The analyses here are 100% reproducible. You can find all the code used in this thesis along with the computational notebooks at <https://github.com/danielvartan/mastersthesis/>.
 
 ## Hypothesis
 

@@ -128,7 +128,7 @@
     },
     "Hmisc": {
       "Package": "Hmisc",
-      "Version": "5.1-0",
+      "Version": "5.1-1",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -151,7 +151,7 @@
         "rpart",
         "viridis"
       ],
-      "Hash": "58bdffbf73db41c8bf9e4e2329f92429"
+      "Hash": "27c7750992bc511728e2f9ebd2911199"
     },
     "KernSmooth": {
       "Package": "KernSmooth",
@@ -181,7 +181,7 @@
     },
     "Matrix": {
       "Package": "Matrix",
-      "Version": "1.6-1",
+      "Version": "1.6-1.1",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -194,7 +194,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "cb6855ac711958ca734b75e631b2035d"
+      "Hash": "1a00d4828f33a9d690806e98bd17150c"
     },
     "MatrixModels": {
       "Package": "MatrixModels",
@@ -1033,7 +1033,7 @@
     },
     "foreign": {
       "Package": "foreign",
-      "Version": "0.8-84",
+      "Version": "0.8-85",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1042,7 +1042,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "467ec0ca895d4e61a22cfbac9bccddf8"
+      "Hash": "26a24dde1722321b78f10d3bf42538d6"
     },
     "fs": {
       "Package": "fs",
@@ -1147,7 +1147,7 @@
     },
     "geobr": {
       "Package": "geobr",
-      "Version": "1.7.0",
+      "Version": "1.8.1",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -1159,7 +1159,7 @@
         "sf",
         "utils"
       ],
-      "Hash": "f9ccb31c736d673f7d597d1ce9d58597"
+      "Hash": "4299b169badff1944475c4a0b5edacfd"
     },
     "ggcorrplot": {
       "Package": "ggcorrplot",
@@ -1417,31 +1417,6 @@
       ],
       "Hash": "b29cf3031f49b04ab9c852c912547eef"
     },
-    "gutils": {
-      "Package": "gutils",
-      "Version": "0.0.0.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "giperbio",
-      "RemoteRepo": "gutils",
-      "RemoteRef": "main",
-      "RemoteSha": "5818bb1bfe64343303c47d12703770cb09845e50",
-      "Requirements": [
-        "R",
-        "checkmate",
-        "cli",
-        "curl",
-        "dplyr",
-        "ggplot2",
-        "hms",
-        "jsonlite",
-        "lifecycle",
-        "lubridate",
-        "stringr"
-      ],
-      "Hash": "2acd05b41519085ba902f10dad309ab7"
-    },
     "hardhat": {
       "Package": "hardhat",
       "Version": "1.3.0",
@@ -1555,6 +1530,18 @@
         "openssl"
       ],
       "Hash": "ac107251d9d9fd72f0ca8049988f1d7f"
+    },
+    "hunspell": {
+      "Package": "hunspell",
+      "Version": "3.0.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "digest"
+      ],
+      "Hash": "656219b6f3f605499d7cdbe208656639"
     },
     "ids": {
       "Package": "ids",
@@ -1687,9 +1674,9 @@
     },
     "knitr": {
       "Package": "knitr",
-      "Version": "1.43",
+      "Version": "1.44",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "evaluate",
@@ -1699,7 +1686,7 @@
         "xfun",
         "yaml"
       ],
-      "Hash": "9775eb076713f627c07ce41d8199d8f6"
+      "Hash": "60885b9f746c9dfaef110d070b5f7dc0"
     },
     "labeling": {
       "Package": "labeling",
@@ -1823,22 +1810,22 @@
       "Version": "0.3.0.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
       "RemoteUsername": "giperbio",
       "RemoteRepo": "lockr",
       "RemoteRef": "main",
-      "RemoteSha": "5b4e6e81466b097915441da8c4adda905100f7b0",
-      "Remotes": "github::giperbio/gutils",
+      "RemoteSha": "71d0d5025227c820b57fce66bf1a9964065e9253",
+      "RemoteHost": "api.github.com",
+      "Remotes": "github::danielvartan/rutils",
       "Requirements": [
         "R",
         "checkmate",
         "cli",
         "dplyr",
-        "gutils",
         "lifecycle",
-        "openssl"
+        "openssl",
+        "rutils"
       ],
-      "Hash": "823469280d52d8b8fee950be00b06f91"
+      "Hash": "b90d5182e064bad6a5edf2d8f1622a56"
     },
     "lubridate": {
       "Package": "lubridate",
@@ -1858,23 +1845,23 @@
       "Version": "0.0.0.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
       "RemoteUsername": "giperbio",
       "RemoteRepo": "lubritime",
       "RemoteRef": "main",
-      "RemoteSha": "b5864d396f007c45f5782a5042dd544dbe5c7d58",
-      "Remotes": "github::giperbio/gutils",
+      "RemoteSha": "766b0ec48a4ed047a4bcf195c8d183b822661d31",
+      "RemoteHost": "api.github.com",
+      "Remotes": "github::danielvartan/rutils",
       "Requirements": [
         "R",
         "checkmate",
         "cli",
         "dplyr",
-        "gutils",
         "hms",
         "lifecycle",
-        "lubridate"
+        "lubridate",
+        "rutils"
       ],
-      "Hash": "c708f5f2add796b2c9634ec428a08aae"
+      "Hash": "295b4c853d1bb2d15df62c79debce7bf"
     },
     "magrittr": {
       "Package": "magrittr",
@@ -1963,13 +1950,13 @@
     },
     "minqa": {
       "Package": "minqa",
-      "Version": "1.2.5",
+      "Version": "1.2.6",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
         "Rcpp"
       ],
-      "Hash": "587ce77fd3c7bada7eadb2d18b62930d"
+      "Hash": "f48238f8d4740426ca12f53f27d004dd"
     },
     "modelenv": {
       "Package": "modelenv",
@@ -2080,13 +2067,13 @@
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "2.1.0",
+      "Version": "2.1.1",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
         "askpass"
       ],
-      "Hash": "273a6bb4a9844c296a459d2176673270"
+      "Hash": "2a0dc8c6adfb6f032e4d4af82d258ab5"
     },
     "overlapping": {
       "Package": "overlapping",
@@ -2176,6 +2163,24 @@
       ],
       "Hash": "15da5a8412f317beeee6175fbc76f4bb"
     },
+    "pkgbuild": {
+      "Package": "pkgbuild",
+      "Version": "1.4.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "R6",
+        "callr",
+        "cli",
+        "crayon",
+        "desc",
+        "prettyunits",
+        "processx",
+        "rprojroot"
+      ],
+      "Hash": "beb25b32a957a22a5c301a9e441190b3"
+    },
     "pkgconfig": {
       "Package": "pkgconfig",
       "Version": "2.0.3",
@@ -2188,7 +2193,7 @@
     },
     "pkgload": {
       "Package": "pkgload",
-      "Version": "1.3.2.1",
+      "Version": "1.3.3",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -2199,12 +2204,13 @@
         "fs",
         "glue",
         "methods",
+        "pkgbuild",
         "rlang",
         "rprojroot",
         "utils",
         "withr"
       ],
-      "Hash": "a7f498a1b2a4a6816148e498509f6e1d"
+      "Hash": "903d68319ae9923fb2e2ee7fa8230b91"
     },
     "plyr": {
       "Package": "plyr",
@@ -2236,10 +2242,13 @@
     },
     "prettyunits": {
       "Package": "prettyunits",
-      "Version": "1.1.1",
+      "Version": "1.2.0",
       "Source": "Repository",
       "Repository": "RSPM",
-      "Hash": "95ef9167b75dde9d2ccc3c7528393e7e"
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "6b01fc98b1e86c4f705ce9dcfd2f57c7"
     },
     "processx": {
       "Package": "processx",
@@ -2559,7 +2568,7 @@
     },
     "reticulate": {
       "Package": "reticulate",
-      "Version": "1.31",
+      "Version": "1.32.0",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -2577,7 +2586,7 @@
         "utils",
         "withr"
       ],
-      "Hash": "5e2f71b7ccd5c060ad439a4824b4288c"
+      "Hash": "3bcef49cfb33dcc522ab94eabd5d3714"
     },
     "rjson": {
       "Package": "rjson",
@@ -2602,9 +2611,9 @@
     },
     "rmarkdown": {
       "Package": "rmarkdown",
-      "Version": "2.24",
+      "Version": "2.25",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "bslib",
@@ -2622,7 +2631,7 @@
         "xfun",
         "yaml"
       ],
-      "Hash": "3854c37590717c08c32ec8542a2e0a35"
+      "Hash": "d65e35823c817f09f4de424fcdfa812a"
     },
     "rpart": {
       "Package": "rpart",
@@ -2684,11 +2693,11 @@
       "Version": "0.0.0.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "danielvartan",
-      "RemoteRepo": "rutils",
+      "RemoteUsername": "giperbio",
+      "RemoteRepo": "gutils",
       "RemoteRef": "main",
-      "RemoteSha": "9e80e927707adf95f015a65ef4e1c7f5693c4f60",
+      "RemoteSha": "dc840fddc7c82dffd77f9747173256dc9c799c3e",
+      "RemoteHost": "api.github.com",
       "Remotes": "github::paleolimbot/rbbt",
       "Requirements": [
         "R",
@@ -2702,12 +2711,17 @@
         "jsonlite",
         "lifecycle",
         "lubridate",
+        "magrittr",
         "qpdf",
         "rbbt",
+        "rlang",
+        "rmarkdown",
+        "rstudioapi",
+        "spelling",
         "stringr",
         "yaml"
       ],
-      "Hash": "1ec58974ab204cdbf39d2c6d12e808ab"
+      "Hash": "2153966145c045e5e892f057990860e5"
     },
     "rvest": {
       "Package": "rvest",
@@ -2760,27 +2774,27 @@
       "Version": "0.0.0.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
       "RemoteUsername": "giperbio",
       "RemoteRepo": "scaler",
       "RemoteRef": "main",
-      "RemoteSha": "7c9f49675550bb0ce766f46366ef4b6ca65f6af7",
-      "Remotes": "github::giperbio/gutils, github::giperbio/lubritime",
+      "RemoteSha": "0ff433cf15f9112e259cb9e83db6c38148055abd",
+      "RemoteHost": "api.github.com",
+      "Remotes": "github::danielvartan/rutils, github::danielvartan/lubritime",
       "Requirements": [
         "R",
         "checkmate",
         "cli",
         "dplyr",
         "ggplot2",
-        "gutils",
         "hms",
         "lifecycle",
         "lubridate",
         "lubritime",
         "mctq",
+        "rutils",
         "tidyr"
       ],
-      "Hash": "0609686757007c848748478ab9aaa516"
+      "Hash": "d603f10802730a499afbb7ab0e0b9767"
     },
     "scales": {
       "Package": "scales",
@@ -2891,6 +2905,19 @@
         "utils"
       ],
       "Hash": "1229a01b4ec059e9f2396724f2ec9010"
+    },
+    "spelling": {
+      "Package": "spelling",
+      "Version": "2.2.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "commonmark",
+        "hunspell",
+        "knitr",
+        "xml2"
+      ],
+      "Hash": "8ed9f010f7caeb8586523088b7f23dcd"
     },
     "stabledist": {
       "Package": "stabledist",
@@ -3004,7 +3031,7 @@
     },
     "targets": {
       "Package": "targets",
-      "Version": "1.2.2",
+      "Version": "1.3.0",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -3027,7 +3054,7 @@
         "vctrs",
         "yaml"
       ],
-      "Hash": "b873e80be60dd0110feb00d3151ec3d7"
+      "Hash": "da40edff48c5c900c369d16564b51af1"
     },
     "testthat": {
       "Package": "testthat",
@@ -3280,14 +3307,14 @@
     },
     "units": {
       "Package": "units",
-      "Version": "0.8-3",
+      "Version": "0.8-4",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
         "R",
         "Rcpp"
       ],
-      "Hash": "880ebc99e4d8f7e5f3caeb2f12632583"
+      "Hash": "e0fbcea25008a7540c83c2c294135de0"
     },
     "utf8": {
       "Package": "utf8",

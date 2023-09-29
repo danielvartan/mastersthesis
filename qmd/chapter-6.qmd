@@ -1,4 +1,6 @@
+<!-- %:::% .common h1 begin %:::% -->
 # A biological approach for the latitudinal cline of the chronotype
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -18,31 +20,39 @@ source(here::here("R/quarto-setup.R"))
 rutils:::quarto_status("polishing")
 ```
 
+::: {.callout-warning}
+The results shown here are __preliminary__, so please take them with a grain of salt.
+
+::: {.content-visible when-format="pdf"}
+\vspace{5pt}
+:::
+
+The data has not yet been fully cleaned, balanced, and cross-referenced with the secondary databases. Think of these results as a low-resolution preview of the final results. The step-by-step analysis can be seen in the appendices section.
+:::
+
 ::: {.callout-note}
 ## Target
 
-* [Scientific Reports](https://www.nature.com/srep/author-instructions) ([IF 2022: 4.6/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
+1. [Scientific Reports](https://www.nature.com/srep/author-instructions) ([IF 2022: 4.6/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
 :::
 
 ::: {.callout-note}
-The following study was performed by __Daniel Vartanian (DV)__, Mario Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
-
-__DV__ contributed to the design and implementation of the study. __DV__ and __MP__ collected the data. __DV__ and __CR__ performed the statistical analysis. __DV__ wrote the manuscript.
-
-<!-- All authors discussed the results and revised the final manuscript. -->
-
-(_Future reference_): Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). A biological approach for the latitudinal cline of the chronotype. _Scientific Reports_.
-:::
+The following study was performed by Daniel Vartanian (DV), Mario Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
 
 ::: {.content-visible when-format="pdf"}
-\vspace{10pt}
+\vspace{5pt}
 :::
 
-## Study framework
+__DV__ contributed to the design and implementation of the study. __DV__ and __MP__ collected the data. __DV__ and __CR__ performed the statistical analysis. __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript. -->
 
-## Abstract
+::: {.content-visible when-format="pdf"}
+\vspace{5pt}
+:::
 
-Chronotypes are temporal phenotypes [@ehret1974; @pittendrigh1993]. Observable traits, like weight and eye color. Our current understanding of these traits is that they are linked to our environment and are the result of evolution pressures for creating an inner temporal organization [@aschoff1989; @paranjpe2005]. A way that organisms have found to anticipate events. Having such an important function in nature, these internal rhythms need to be closely aligned with environmental changes. The agents that shift these oscillations towards the environment are called zeitgebers and the shift phenomenon is called entrainment [@roenneberg2003a; @roenneberg2010]. The main zeitgeber for humans is light exposure, particularly the light of the sun [@khalsa2003; @minors1991; @roenneberg2007a]. Considering the major role of light on entrainment, several studies hypothesized that the latitude shift of the sun could influence or even define the chronotypes of different populations [@horzum2015; @hut2013; @leocadio-miguel2017; @leocadio-miguel2014; @pittendrigh1991; @randler2017]. For example, populations that live close to the equator would be, on average, more entrained to the light-dark cycle and have morning-leaning characteristics. Here we test this hypothesis using a biological measure, the chronotype state, provided by the Munich ChronoType Questionnaire [@roenneberg2003]. We tested the latitude hypothesis on a sample with $73,825$ subjects living in different latitudes in Brazil. Our results show that, even with a wide, big, and aligned sample, the latitude is associated only with negligible effect sizes. The entrainment phenomenon appears to be much more complex than previously imagined, opening new questions and contradictions that need to be further investigated.
+_Future reference_: Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). A biological approach for the latitudinal cline of the chronotype. _Scientific Reports_.
+:::
+
+\noindent __Chronotypes are temporal phenotypes [@ehret1974; @pittendrigh1993]. Observable traits, like weight and eye color. Our current understanding of these traits is that they are linked to our environment and are the result of evolution pressures for creating an inner temporal organization [@aschoff1989; @paranjpe2005]. A way that organisms have found to anticipate events. Having such an important function in nature, these internal rhythms need to be closely aligned with environmental changes. The agents that shift these oscillations towards the environment are called zeitgebers and the shift phenomenon is called entrainment [@roenneberg2003a; @roenneberg2010]. The main zeitgeber for humans is light exposure, particularly the light of the sun [@khalsa2003; @minors1991; @roenneberg2007a]. Considering the major role of light on entrainment, several studies hypothesized that the latitude shift of the sun could influence or even define the chronotypes of different populations [@horzum2015; @hut2013; @leocadio-miguel2017; @leocadio-miguel2014; @pittendrigh1991; @randler2017]. For example, populations that live close to the equator would be, on average, more entrained to the light-dark cycle and have morning-leaning characteristics. Here we test this hypothesis using a biological measure, the chronotype state, provided by the Munich ChronoType Questionnaire [@roenneberg2003]. We tested the latitude hypothesis on a sample with $73,825$ subjects living in different latitudes in Brazil. Our results show that, even with a wide, big, and aligned sample, the latitude is associated only with negligible effect sizes. The entrainment phenomenon appears to be much more complex than previously imagined, opening new questions and contradictions that need to be further investigated.__
 
 ## Main text
 
@@ -178,15 +188,15 @@ In order to verify if the sample size was adequate for the study of the phenomen
 
 Daylight Saving Time (DST) began in Brazil at midnight on November 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that MCTQ asks subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample is the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the hypothesis test.
 
-Based on the 2010 census29, Brazil had $51.793\%$ of females and $48.207\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with $66.341\%$ of females and $33.659\%$ of male subjects.
+Based on the 2010 census [@institutobrasileirodegeografiaeestatisticaa], Brazil had $51.793\%$ of females and $48.207\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with $66.341\%$ of females and $33.659\%$ of male subjects.
 
-The subject’s mean age is $32.017$ years ($\text{SD} = 9.242$; $\text{Max.} = 58.786$). Female subjects have a mean age of $31.770 years$ ($\text{SD} = 9.340$; $\text{Max.} = 58.786$) and male subjects $32.504$ years ($\text{SD} = 9.026$; $\text{Max.} = 58.772$). For comparison, based on the 2010 census29, Brazil’s population with an age equal to or greater than $18$ years old had a mean age of $41.032$ years ($\text{SD} = 9.242$), with a mean age of $41.645$ years ($\text{SD} = 16.907$) for female subjects and a mean age of $40.373$ years ($\text{SD} = 16.200$) for male subjects. Data related to age and sex from the last Brazil census (2022) were not available before this article was submitted.
+The subject’s mean age is $32.017$ years ($\text{SD} = 9.242$; $\text{Max.} = 58.786$). Female subjects have a mean age of $31.770$ years ($\text{SD} = 9.340$; $\text{Max.} = 58.786$) and male subjects $32.504$ years ($\text{SD} = 9.026$; $\text{Max.} = 58.772$). For comparison, based on the 2010 census29, Brazil’s population with an age equal to or greater than $18$ years old had a mean age of $41.032$ years ($\text{SD} = 9.242$), with a mean age of $41.645$ years ($\text{SD} = 16.907$) for female subjects and a mean age of $40.373$ years ($\text{SD} = 16.200$) for male subjects. Data related to age and sex from the last Brazil census (2022) were not available before this article was submitted.
 
 Considering the 5 major regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census, the Southeast region is home to $41.784\%$ of Brazil’s population, followed by the Northeast ($26.910\%$), South ($14.741\%$), North ($8.544\%$), and Midwest ($8.021\%$) regions. $62.454\%$ of the sample is located in the Southeast region, $11.797\%$ in the Northeast, $17.861\%$ in the South, $1.682\%$ in the North, and $6.205\%$ in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).
 
 The sample latitudinal range was $30.211$ decimal degrees ($\text{Min.} = -30.109$; $\text{Max.} = 0.10177$) with a longitudinal span of $16.378$ decimal degrees ($\text{Min.} = -51.342$; $\text{Max.} = -34.964$). For comparison, Brazil has a latitudinal range of $39.024$ decimal degrees ($\text{Min.} = -33.752$; $\text{Max.} = 5.2719$) and a longitudinal span of $39.198$ decimal degrees ($\text{Min.} = -34.793$; $\text{Max.} = -73.991$). 
 
-The results shown in this article are just a preliminary view of the data analysis. The latitudes and longitudes of each subject are represented by the coordinates of his/her state’s capital (a low resolution). The final results will have the latitude and longitude coordinates based on the subject’s postal codes and will also use a balanced dataset following the latest Brazil census.
+__The results shown in this article are just a preliminary view of the data analysis__. The latitudes and longitudes of each subject are represented by the coordinates of his/her state’s capital (a low resolution). The final results will have the latitude and longitude coordinates based on the subject’s postal codes and will also use a balanced dataset following the latest Brazil census.
 
 ### Analysis
 
@@ -219,7 +229,7 @@ The data that support the findings of this study are available from the correspo
 
 ### Code availability
 
-An R package representing the research compendium of the project, with all the code used accompanied by extensive documentation, will be available under the [MIT license](https://opensource.org/license/mit/) at <https://github.com/danielvartan/mastersthesis> when the research is completed. The code has all the steps from the raw data to the hypothesis test results.
+The research compendium of the project is available under the [MIT license](https://opensource.org/license/mit/) at <https://github.com/danielvartan/mastersthesis>. The code has all the steps from the raw data to the test results.
 
 ## Acknowledgments
 
@@ -233,12 +243,12 @@ The author declares that the study was carried out without any commercial or fin
 
 ## Additional information
 
-This manuscript shows only preliminary results and should not be considered a document ready for journal submission.
+__This manuscript shows only preliminary results and should not be considered a document ready for journal submission.__
 
-There is no supplementary information.
+See the appendices section for supplementary information.
 
 Correspondence can be sent to Daniel Vartanian (<danvartan@gmail.com>).
 
 ## Rights and permissions
 
-The author does not give permission to share this manuscript while the research is ongoing. An exception is made for education purposes. In the latter case, the manuscript must be accompanied by a warning statement, located at the top of the first page, warning the reader about the need for confidentiality. After the research process ends, something that just a written communication by the author can provide, this article will be licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/), which permits use, sharing, adaptation, distribution, and reproduction in any medium or format, as long as be given appropriate credit to the original author and the source, provide a link to the Creative Commons license, and indicate if changes were made.
+This article is released under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/), which permits use, sharing, adaptation, distribution, and reproduction in any medium or format, as long as be given appropriate credit to the original author and the source, provide a link to the Creative Commons license, and indicate if changes were made.

@@ -1,0 +1,73 @@
+project:
+  output-dir: docs
+  pre-render: "R/quarto-pre-render-html.R"
+  post-render: "R/quarto-post-render-html.R"
+
+# See  <https://quarto.org/docs/books/>.
+# See <https://quarto.org/docs/reference/projects/books.html>.
+book:
+  date: today
+  date-format: "YYYY-MM-DD"
+  reader-mode: false
+  # cover-image: cover.png
+  # favicon: cover.png
+  sidebar:
+    tools:
+      - icon: file-earmark-pdf-fill
+        href: index.pdf
+  chapters:
+    - index.qmd
+    - part: "Preliminary Pages"
+      chapters:
+        - qmd/errata.qmd
+        - qmd/inscription.qmd
+        - qmd/acknowledgments.qmd
+        - qmd/epigraph.qmd
+        - qmd/vernacular-abstract.qmd
+        - qmd/foreign-abstract.qmd
+        - qmd/list-of-abbreviations.qmd
+        - qmd/list-of-symbols.qmd
+        - qmd/list-of-terms.qmd
+        # - qmd/thesis-outline.qmd
+    - part: "Chapters"
+      chapters:
+        - qmd/chapter-1.qmd
+        - qmd/chapter-2.qmd
+        - qmd/chapter-3.qmd
+        - qmd/chapter-4.qmd
+        - qmd/chapter-5.qmd
+        - qmd/chapter-6.qmd
+        - qmd/chapter-7.qmd
+    - qmd/references.qmd
+  appendices:
+    - qmd/appendice-ch-2.qmd
+    - qmd/appendice-ch-3.qmd
+    - qmd/appendice-ch-4.qmd
+    - qmd/appendice-ch-5.qmd
+    - qmd/appendice-ch-6.qmd
+
+citation:
+  type: thesis
+  url: https://danielvartan.github.io/mastersthesis/
+google-scholar: false
+
+# See <https://quarto.org/docs/output-formats/html-themes.html>.
+theme:
+  light: [cosmo, scss/theme-light.scss]
+  dark: [cosmo, scss/theme-dark.scss]
+
+format:
+  html:
+    nocite: |
+      @*
+    site-name: tesesusp
+    open-graph: true
+    locale: en-us
+    number-depth: 6
+    code-link: true
+    code-fold: true
+    df-print: kable
+    callout-appearance: simple
+    # include-in-header: html/include-in-header.html
+    # include-before-body: html/include-before-body.html
+    # include-after-body: html/include-after-body.html

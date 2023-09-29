@@ -7,10 +7,14 @@ set.seed(2023)
 # library(kableExtra, quietly = TRUE)
 # library(knitr, quietly = TRUE)
 # library(ggplot2, quietly = TRUE)
+# lybrary(yaml)
+
+knitr::clean_cache()
 
 knitr::opts_chunk$set(
   comment = "#>",
-  collapse = TRUE
+  collapse = TRUE,
+  root.dir = here::here()
 )
 
 # From <https://stackoverflow.com/questions/74193542/
@@ -29,6 +33,8 @@ registerS3method(
 )
 
 options(
+  scipen = 10,
+  digits = 3,
   dplyr.print_min = 6,
   dplyr.print_max = 6,
   pillar.max_footer_lines = 2,
@@ -44,3 +50,6 @@ options(
 ggplot2::theme_set(ggplot2::theme_gray(12))
 
 text_size <- 10
+
+# See <./R/quarto-pre-render.R>
+env_vars <- yaml::read_yaml(here::here("_variables.yml"))

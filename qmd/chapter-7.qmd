@@ -1,4 +1,6 @@
+<!-- %:::% .common h1 begin %:::% -->
 # Discussion and conclusions
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -18,14 +20,10 @@ source(here::here("R/quarto-setup.R"))
 rutils:::quarto_status("drafting")
 ```
 
-::: {.content-visible when-format="pdf"}
-\vspace{10pt}
-:::
+<!-- ## Discussion -->
 
-## Discussion
+<!-- ## Limitations -->
 
-## Limitations
+<!-- ## Conclusions -->
 
-## Conclusions
-
-## Future perspectives
+<!-- ## Future perspectives -->

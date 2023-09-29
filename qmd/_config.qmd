@@ -1,0 +1,36 @@
+# {tesesusp} congif file
+
+Use this quarto document to change your thesis pre-textual sections on the PDF format.
+__Do not remove the text tags__! (a tag: <!-- %:::% tag %:::% --> )
+
+Some general instructions:
+
+* If you won't use a section of this document, remove it! Empty sections will produce an error. At the moment, this must be made on the `include-before-body.tex` file.
+
+## Title page
+
+<!-- %:::% title-page body begin %:::% -->
+Preliminary version
+
+\vspace{1cm}
+
+Dissertation presented to the School of Arts, Sciences and Humanities at the University of São Paulo as part of the requirements for the degree of Master of Science by the Graduate Program in Modeling Complex Systems (PPG-SCX).
+
+\vspace{0.5cm}
+
+Area of Concentration: Fundamentals of complex systems.
+
+<!-- \vspace{1cm} -->
+
+<!-- Revised version incorporating the changes requested by the examining committee on [DATE]. The original version is held in the reserved collection at the EACH-USP Library and in the Digital Library of Theses and Dissertations of the University of São Paulo (BDTD-USP), in accordance with [Resolution CoPGr 6018, dated October 13, 2011](https://leginf.usp.br/?resolucao=resolucao-copgr-no-6018-de-13-de-outubro-de-2011). -->
+
+\vspace{1cm}
+
+Supervisor: Prof. Dr. Camilo Rodrigues Neto
+<!-- %:::% title-page body end %:::% -->
+
+## Approval sheet text
+
+<!-- %:::% approval-sheet header begin %:::% -->
+  Qualifying exam text by Daniel Vartanian, titled __Ecology of sleep and circadian phenotypes of the Brazilian population__, presented to the School of Arts, Sciences and Humanities at the University of São Paulo, as part of the requirements for the degree of Master of Science by the Graduate Program in Modeling Complex Systems (PPG-SCX), in the concentration area of Fundamentals of Complex Systems.
+<!-- %:::% approval-sheet header end %:::% -->

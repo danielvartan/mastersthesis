@@ -1,0 +1,101 @@
+<!-- %:::% .common h1 begin %:::% -->
+# Abbreviations {.unnumbered}
+<!-- %:::% .common h1 end %:::% -->
+
+```{r}
+#| label: setup
+#| echo: false
+#| output: false
+
+library(here)
+source(here::here("R/quarto-setup.R"))
+```
+
+<!-- %:::% list-of-abbreviations body begin %:::% -->
+~F~
+: \hspace{20cm} Subscript indicating a relation with work-free days
+
+~W~
+: \hspace{20cm} Subscript indicating a relation with workdays
+
+BT
+: \hspace{20cm} Local time of going to bed
+
+FD
+: \hspace{20cm} Number of work-free days per week
+
+GU
+: \hspace{20cm} Local time of getting out of bed
+
+HO
+: \hspace{20cm} Horne & Ostberg's morningness-eveningness questionnaire (same as _MEQ_)
+
+LE
+: \hspace{20cm} Light exposure
+
+LE~week~
+: \hspace{20cm} Average weekly light exposure
+
+MCTQ
+: \hspace{20cm} Munich ChronoType Questionnaire
+
+MCTQ^PT^
+: \hspace{20cm} Portuguese version of the MCTQ
+
+MEQ
+: \hspace{20cm} Morningness-Eveningness Questionnaire
+
+MSF
+: \hspace{20cm} Local time of mid-sleep on work-free days
+
+MSF~sc~
+: \hspace{20cm} Chronotype proxy. The midpoint between sleep onset and sleep end on work-free days. A sleep correction (~SC~) is made when a possible sleep compensation related to a lack of sleep on workdays is identified.
+
+MSW
+: \hspace{20cm} Local time of mid-sleep on workdays
+
+PRC
+: \hspace{20cm} Phase response curve
+
+SD
+: \hspace{20cm} Sleep duration
+
+SD~week~
+: \hspace{20cm} Average weekly sleep duration
+
+SE
+: \hspace{20cm} Local time of sleep end
+
+SI
+: \hspace{20cm} "Sleep inertia". Despite the name, this abbreviation represents the time that a person takes to get up after sleep end. It is used this way by the MCTQ authors.
+
+SJL
+: \hspace{20cm} Absolute social jetlag
+
+SJL~rel~
+: \hspace{20cm} Relative social jetlag
+
+SJL~sc~
+: \hspace{20cm} Jankowski's sleep-corrected social jetlag
+
+SJL~sc-rel~
+: \hspace{20cm} Jankowski's relative sleep-corrected social jetlag
+
+Sloss~week~
+: \hspace{20cm} Weekly sleep loss
+
+SO
+: \hspace{20cm} Local time of sleep onset
+
+Slat
+: \hspace{20cm} Sleep latency, i.e., time (duration) to fall asleep after deciding to sleep
+
+SPrep
+: \hspace{20cm} Local time of preparing to sleep
+
+TBT
+: \hspace{20cm} Total time in bed
+
+WD
+: \hspace{20cm} Number of workdays per week
+<!-- %:::% list-of-abbreviations body end %:::% -->

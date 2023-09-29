@@ -1,4 +1,6 @@
-# Appendice: Chapter 4 supplemental material
+<!-- %:::% .common h1 begin %:::% -->
+# Appendice: chapter 4 supplemental material
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -19,11 +21,11 @@ source(here::here("R/quarto-setup.R"))
 rutils:::quarto_status("polishing")
 ```
 
+The analyses here are 100% reproducible. You can find all the code used in this thesis along with the computational notebooks at <https://github.com/danielvartan/mastersthesis/>.
+
 ## Data wrangling
 
-The data wrangling processes were performed using the  [`targets`](https://github.com/ropensci/targets) R package. A graphical pipeline of the process can be visualized below.
-
-The analyses are 100% reproducible. You can find all the code used in this thesis along with the computational notebooks at <https://github.com/danielvartan/mastersthesis/>.
+The data wrangling processes were performed using the  [`targets`](https://github.com/ropensci/targets) R package. The full pipeline can be seen in the `_targets.R` file at the root of the [research compendium](https://github.com/danielvartan/mastersthesis).
 
 ```{r}
 #| eval: false
@@ -65,7 +67,7 @@ data <-
 ## Distribution of main variables
 
 ```{r}
-#| label: fig-ap-ch-4-age-var-distribution
+# label: fig-ap-ch-4-age-var-distribution
 #| message: false
 #| warning: false
 #| code-fold: false
@@ -98,7 +100,7 @@ stats$stats |> list_as_tibble()
 ## Geographic distribution
 
 ```{r}
-#| label: fig-ap-ch-4-brazil-uf-map
+# label: fig-ap-ch-4-brazil-uf-map
 #| message: false
 #| warning: false
 #| code-fold: false
@@ -118,7 +120,7 @@ brazil_uf_map <-
 ## Age pyramid
 
 ```{r}
-#| label: fig-ap-ch-4-age-pyramid
+# label: fig-ap-ch-4-age-pyramid
 #| message: false
 #| warning: false
 #| code-fold: false
@@ -161,7 +163,7 @@ cowplot::plot_grid(
 ## Correlation matrix
 
 ```{r}
-#| label: fig-ap-ch-4-correlation-matrix
+# label: fig-ap-ch-4-correlation-matrix
 #| message: false
 #| warning: false
 #| code-fold: false
@@ -185,7 +187,7 @@ ggcorrplot <-
 ## Age series
 
 ```{r}
-#| label: fig-ap-ch-4-age-series
+# label: fig-ap-ch-4-age-series
 #| message: false
 #| warning: false
 #| code-fold: false
@@ -216,7 +218,7 @@ data |>
 ## Chronotype
 
 ```{r}
-#| label: fig-ap-ch-4-chronotype
+# label: fig-ap-ch-4-chronotype
 #| message: false
 #| warning: false
 #| code-fold: false
@@ -245,7 +247,7 @@ data |>
 ## Latitude series
 
 ```{r}
-#| label: fig-ap-ch-4-latitude-series
+# label: fig-ap-ch-4-latitude-series
 #| message: false
 #| warning: false
 #| code-fold: false
@@ -676,12 +678,6 @@ sum(count$n_per_diff)
 ```
 
 ### State
-
-::: {.callout-note}
-## TODO
-
-Compare with 2022 census.
-:::
 
 ```{r}
 #| message: false

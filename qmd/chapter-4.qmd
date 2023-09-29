@@ -1,4 +1,6 @@
-# Ecology of sleep and circadian phenotypes of the Brazilian population
+<!-- %:::% .common h1 begin %:::% -->
+# Ecology of sleep and circadian phenotypes of the brazilian population
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -26,17 +28,17 @@ rutils:::quarto_status("drafting")
 :::
 
 ::: {.callout-note}
-The following study was performed by __Daniel Vartanian (DV)__, Mario Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
-
-__DV__ and __CR__ contributed to the design, implementation and statistical analysis of the study and . __DV__ and __MP__ collected the data. __DV__ wrote the manuscript.
-
-<!-- All authors discussed the results and revised the final manuscript. -->
-
-(_Future reference_): Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). Ecology of sleep and circadian phenotypes of the Brazilian population. _Chronobiology International_.
-:::
+The following study was conducted by Daniel Vartanian (DV), Mario Pedrazzoli (MP), and Camilo Rodrigues Neto (CR).
 
 ::: {.content-visible when-format="pdf"}
-\vspace{10pt}
+\vspace{5pt}
 :::
 
-## Study framework
+__DV__ conceived the study, contributed with the design, implementation, statistical analysis and authored the manuscript. __CR__ contributed as a science adviser and reviewer. __DV__ and __MP__ were responsible for data collection.  All authors actively participated in discussions regarding the results and contributed to the final manuscript.
+
+::: {.content-visible when-format="pdf"}
+\vspace{5pt}
+:::
+
+_Future reference_: Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). Ecology of sleep and circadian phenotypes of the Brazilian population. _Chronobiology International_.
+:::

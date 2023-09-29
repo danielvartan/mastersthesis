@@ -1,53 +1,25 @@
+::: {.content-visible when-format="pdf"}
+\textual
+:::
+
+<!-- %:::% .common h1 begin %:::% -->
 # Welcome {.unnumbered}
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
 #| echo: false
 #| output: false
 
-library(here)
+# library(here)
 
 source(here::here("R/quarto-setup.R"))
 ```
 
 ::: {.content-visible when-format="html"}
-::: {.callout-important}
-You are seeing the web preliminary version of this master's thesis.
-:::
+{{< include qmd/_index-html.qmd >}}
 :::
 
 ::: {.content-visible when-format="pdf"}
-::: {.callout-important}
-You are seeing the printed preliminary version of this master's thesis. Please note that this a reproducible document that includes a lot of data and coding information, hence the thesis is best visualized in its web version: [<danielvartan.github.io/mastersthesis>](https://danielvartan.github.io/mastersthesis). The web version will have the most updated information.
-
-\vspace{5pt}
-
-The final print version is going to be rendered accordingly with [USP's guidelines to create theses and dissertations documents](https://teses.usp.br/index.php?option=com_content&view=article&id=52&Itemid=67&lang=en) and will be available at [<teses.usp.br>](https://teses.usp.br/).
+{{< include qmd/_index-pdf.qmd >}}
 :::
-\vspace{15pt}
-:::
-
-The analyses contained in this document are 100% reproducible. They were performed using the [R programming language](https://www.r-project.org/) and the [Quarto](https://quarto.org/) publishing system (an evolution of [R Markdown](https://rmarkdown.rstudio.com/)). Click on the GitHub icon in the menu to access the thesis code repository.
-
-## Citation
-
-For attribution, please cite this work as:
-
-Vartanian, D. (2023). _Ecology of sleep and circadian phenotypes of the 
-Brazilian population_ [Master's thesis]. School of Arts, Sciences and Humanities,
-University of Sao Paulo, São Paulo. https://danielvartan.github.io/mastersthesis/
-
-BibTeX citation:
-
-```
-@mastersthesis{vartanian2023,
-  title = {Ecology of sleep and circadian phenotypes of the Brazilian population},
-  author = {Daniel Vartanian},
-  year = {2023},
-  address = {São Paulo},
-  school  = {University of Sao Paulo},
-  langid = {portuguese},
-  url = {https://danielvartan.github.io/mastersthesis/}
-  note = {Preliminary version}
-}
-```

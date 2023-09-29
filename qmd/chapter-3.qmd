@@ -1,4 +1,6 @@
-# The {mctq} R package
+<!-- %:::% .common h1 begin %:::% -->
+# The mctq r package
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -26,17 +28,18 @@ rutils:::quarto_status("drafting")
 :::
 
 ::: {.callout-note}
-The following study was performed by __Daniel Vartanian (DV)__, Ana Amélia Benedito-Silva (AA), Mario Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
-
-__DV__ contributed to conception, design, coding and implementation of the software. __AA__, __MP__ and __CR__ contributed as science advisers and reviewers. __DV__ wrote the manuscript.
-
-<!-- All authors discussed the results and revised the final manuscript. -->
-
-(_Future reference_): Vartanian, D, Benedito-Silva, A. A., Pedrazzoli, M., & Rodrigues Neto, C. (2024). {mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ). _Journal of Statistical Software_.
-:::
+The following study was conducted by Daniel Vartanian (__DV__), Ana Amélia Benedito-Silva (__AA__), Mario Pedrazzoli (__MP__), and Camilo Rodrigues Neto (__CR__).
 
 ::: {.content-visible when-format="pdf"}
-\vspace{10pt}
+\vspace{5pt}
 :::
 
-## Study framework
+__DV__ contributed to the conception, design, coding, and implementation of the software. __AA__, __MP__, and __CR__ served as scientific advisors and reviewers. __DV__ authored the manuscript. All authors discussed the results and revised the final manuscript.
+
+::: {.content-visible when-format="pdf"}
+\vspace{5pt}
+:::
+
+_Future reference_: Vartanian, D., Benedito-Silva, A. A., Pedrazzoli, M., & Rodrigues Neto, C. (2024). {mctq}: Tools to process the Munich ChronoType Questionnaire (MCTQ). _Journal of Statistical Software_.
+
+:::

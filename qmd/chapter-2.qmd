@@ -1,4 +1,6 @@
-# Similarities between different versions of the MCTQ-PT
+<!-- %:::% .common h1 begin %:::% -->
+# Similarities between different versions of the mctq^pt^
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -26,15 +28,17 @@ rutils:::quarto_status("drafting")
 :::
 
 ::: {.callout-note}
-The following study was performed by __Daniel Vartanian (DV)__ and Camilo Rodrigues Neto (CR).
-
-__DV__ and __CR__ contributed to the design, implementation and statistical analysis of the study and . __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript.
-
-(_Future reference_): Vartanian, D., & Rodrigues Neto, C. (2024). Similarities between different versions of the MCTQ-PT. _Chronobiology International_.
-:::
+The following study was performed by Daniel Vartanian (DV) and Camilo Rodrigues Neto (CR).
 
 ::: {.content-visible when-format="pdf"}
-\vspace{10pt}
+\vspace{5pt}
 :::
 
-## Study framework
+__DV__ and __CR__ contributed to the study's design. __DV__ implemented the study, performed the statistical analysis, and authored the manuscript. All authors participated in discussions about the results and contributed to the final manuscript revision.
+
+::: {.content-visible when-format="pdf"}
+\vspace{5pt}
+:::
+
+_Future reference_: Vartanian, D., & Rodrigues Neto, C. (2024). Similarities between different use versions of the MCTQ^PT^. _Chronobiology International_.
+:::

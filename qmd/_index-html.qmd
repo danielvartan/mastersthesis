@@ -1,0 +1,26 @@
+You are seeing the preliminary web version of this master's thesis.
+
+The analyses contained in this document are 100% reproducible. They were performed using the [R programming language](https://www.r-project.org/) and the [Quarto](https://quarto.org/) publishing system (an evolution of [R Markdown](https://rmarkdown.rstudio.com/)). Click on the GitHub icon in the menu to access the thesis code repository.
+
+## Citation
+
+For attribution, please cite this work as:
+
+Vartanian, D. (2023). _Ecology of sleep and circadian phenotypes of the 
+Brazilian population_ [Master's thesis]. School of Arts, Sciences and Humanities,
+University of Sao Paulo, São Paulo. https://danielvartan.github.io/mastersthesis/
+
+BibTeX citation:
+
+```
+@mastersthesis{vartanian2023,
+  title = {Ecology of sleep and circadian phenotypes of the Brazilian population},
+  author = {Daniel Vartanian},
+  year = {2023},
+  address = {São Paulo},
+  school  = {University of Sao Paulo},
+  langid = {english},
+  url = {https://danielvartan.github.io/mastersthesis/}
+  note = {Preliminary version}
+}
+```

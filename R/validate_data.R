@@ -1,5 +1,8 @@
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
+# library(here)
+# library(checkmate)
+# library(cli)
+
+source(here::here("R/utils.R"))
 
 #' Validate `tidy_data()` output
 #'

@@ -1,4 +1,6 @@
+<!-- %:::% .common h1 begin %:::% -->
 # Epigraph {.unnumbered}
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -10,4 +12,10 @@
 source(here::here("R/quarto-setup.R"))
 ```
 
-> _Nullius in verba_ [@theroyalsociety]
+<!-- @theroyalsociety -->
+
+<!-- %:::% epigraph body begin %:::% -->
+_Nullius in verba_
+
+(The Royal Society, n.d.)
+<!-- %:::% epigraph body end %:::% -->

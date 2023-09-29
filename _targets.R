@@ -31,7 +31,7 @@ options(clustermq.scheduler = "multiprocess")
 future::plan(future.callr::callr)
 
 # Run the R scripts in the R/ folder with your custom functions:
-targets::tar_source(files = here::here("R"))
+# targets::tar_source(files = here::here("R"))
 # source("other_functions.R") # Source other scripts as needed.
 
 # Replace the target list below with your own:

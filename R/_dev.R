@@ -3,6 +3,7 @@
 # .rs.restartR()
 # .libPaths()
 # cffr::cff_validate()
+# knitr::clean_cache()
 # knitr:::webshot_available()
 # lintr::use_lintr()
 # lintr::lint_dir("R")
@@ -25,17 +26,34 @@
 # renv::update()
 # renv::restore()
 # renv::snapshot()
-# spelling::spell_check_package()
-# spelling::update_wordlist()
+# rutils:::bbt_scan_citation_keys()
+# rutils:::bbt_write_quarto_bib()
+# rutils:::set_quarto_speel_check()
+# rutils:::gather_words_from_spell_check()
+# rutils:::spell_check_quarto()
+# rutils:::update_quarto_wordlist()
+# rutils:::clean_quarto_mess()
+# rutils:::quarto_status("drafting")
+# spelling::spell_check_files("index.qmd")
 # urlchecker::url_check()
+# urlchecker::url_update()
+
+# # Pandoc
+#
+# rmarkdown::pandoc_convert(
+#   input = "qmd/acknowledgments.qmd",
+#   from = "markdown",
+#   to = "latex",
+#   wd = here::here()
+# )
 
 # # Quarto (see <https://quarto.org/docs/projects/quarto-projects.html>)
 #
 # quarto render
-# quarto render --to tesesusp-pdf
-# quarto render index.qmd --to tesesusp-pdf
-# quarto render --to html
-# # quarto render index.qmd --to html
+# quarto render --profile pdf
+# quarto render --profile pdf --cache-refresh
+# quarto render --profile html
+# quarto render --profile html --cache-refresh
 # quarto publish gh-pages
 
 # # Google Cloud Storage
@@ -66,3 +84,5 @@
 #
 # * Document functions.
 # * Finish version of 'tesesusp' Quarto format.
+# * Document and promote quarto util functions on {rutils}
+# * Create check_quarto_urls()

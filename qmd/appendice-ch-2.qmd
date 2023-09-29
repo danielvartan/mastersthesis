@@ -1,4 +1,6 @@
-# Appendice: Chapter 2 supplemental material
+<!-- %:::% .common h1 begin %:::% -->
+# Appendice: chapter 2 supplemental material
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
@@ -17,6 +19,8 @@ source(here::here("R/quarto-setup.R"))
 
 rutils:::quarto_status("polishing")
 ```
+
+The analyses shown here are 100% reproducible. You can find all the code used in this thesis along with the computational notebooks at <https://github.com/danielvartan/mastersthesis/>.
 
 ## Load and embed texts
 

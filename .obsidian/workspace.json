@@ -8,39 +8,13 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f12bac254bb847f0",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "yml-view",
-              "state": {
-                "file": "_quarto.yml"
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "6bcfb19c426cc2ea",
+            "id": "002602f343338cfd",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.qmd",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "8ce8246e54e4da20",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "qmd/thesis-outline.qmd",
+                "file": "qmd/chapter-1.qmd",
                 "mode": "source",
                 "source": false
               },
@@ -139,7 +113,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "index.qmd",
+                "file": "qmd/chapter-1.qmd",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -156,7 +130,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index.qmd",
+                "file": "qmd/chapter-1.qmd",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -175,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index.qmd"
+                "file": "qmd/chapter-1.qmd"
               }
             }
           }
@@ -195,53 +169,53 @@
       "obsidian-grammarly-plugin:Enable Grammarly": false
     }
   },
-  "active": "6bcfb19c426cc2ea",
+  "active": "8356ee2ff131600b",
   "lastOpenFiles": [
-    "csl/apa-numeric-superscript.csl",
-    "csl/apa.csl",
-    "csl/abnt.csl",
-    "csl/apa-numeric-superscript-brackets.csl",
-    "csl",
-    "Nova pasta",
-    "apa-numeric-superscript-brackets.csl",
-    "renv/staging/2/cli/shiny/output/app.R",
-    "renv/staging/2/cli/shiny/along/app.R",
-    "renv/staging/2/cli/shiny/nested/app.R",
-    "renv/staging/2/cli/shiny/simple/app.R",
-    "renv/staging/2/cli/help/figures/progress-step.svg",
-    "renv/staging/2/cli/help/figures/progress-tasks.svg",
-    "renv/staging/2/cli/help/figures/progress-step-spin.svg",
-    "renv/staging/2/cli/help/figures/progress-step-msg.svg",
-    "renv/staging/2/cli/help/figures/progress-step-dynamic.svg",
-    "renv/staging/2/cli/help/figures/progress-natotal.svg",
-    "renv/staging/2/cli/help/figures/progress-output2.svg",
-    "renv/staging/2/cli/help/figures/progress-output.svg",
-    "renv/staging/2/cli/help/figures/progress-format.svg",
-    "renv/staging/2/cli/help/figures/progress-message.svg",
-    "renv/staging/2/cli/NEWS.md",
-    "LICENSE.md",
-    "index.knit.md",
-    "qmd/corrigendum.knit.md",
+    "qmd/chapter-6.qmd",
+    "Ecology-of-sleep-and-circadian-phenotypes-of-the-Brazilian-population.tex",
+    "Ecology-of-sleep-and-circadian-phenotypes-of-the-Brazilian-population.pdf",
+    "index.pdf",
+    "index.log",
+    "index.toc",
+    "index.lot",
+    "index.lof",
+    "index.aux",
+    "tesesusp.cls",
+    "index.tex",
     "qmd/appendice-ch-6.knit.md",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-36-1.png",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-31-1.png",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-30-1.png",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-29-1.png",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-20-1.png",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-19-1.png",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-14-1.png",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-13-1.png",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-12-1.png",
+    "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-4-1.png",
     "qmd/appendice-ch-5.knit.md",
     "qmd/appendice-ch-4.knit.md",
-    "qmd/abbreviations.knit.md",
-    "renv/library/R-4.3/x86_64-w64-mingw32/websocket/NEWS.md",
-    "renv/library/R-4.3/x86_64-w64-mingw32/webshot2/NEWS.md",
-    "renv/library/R-4.3/x86_64-w64-mingw32/chromote/NEWS.md",
-    "renv/staging/2/webshot2/NEWS.md",
-    "renv/staging/2/file65ac7cb43745/webshot2/NEWS.md",
-    "renv/staging/2/chromote/NEWS.md",
-    "renv/staging/2/websocket/NEWS.md",
-    "renv/library/R-4.3/x86_64-w64-mingw32/webshot/NEWS.md",
-    "renv/staging/2/webshot/NEWS.md",
-    "renv/staging/2/filebec61f75257/webshot/NEWS.md",
-    "qmd/chapter-6.knit.md",
-    "qmd/thesis-outline.knit.md",
     "qmd/appendice-ch-3.knit.md",
     "qmd/appendice-ch-2.knit.md",
+    "qmd/references.knit.md",
     "qmd/chapter-7.knit.md",
+    "qmd/chapter-6.knit.md",
     "qmd/chapter-5.knit.md",
-    "qmd/chapter-4.knit.md"
+    "qmd/chapter-4.knit.md",
+    "qmd/chapter-3.knit.md",
+    "qmd/chapter-2.knit.md",
+    "index.knit.md",
+    "qmd/chapter-1.knit.md",
+    "qmd/list-of-terms.knit.md",
+    "qmd/list-of-symbols.knit.md",
+    "qmd/list-of-abbreviations.knit.md",
+    "qmd/foreign-abstract.knit.md",
+    "qmd/vernacular-abstract.knit.md",
+    "qmd/epigraph.knit.md",
+    "qmd/acknowledgments.knit.md",
+    "qmd/inscription.knit.md",
+    "qmd/errata.knit.md",
+    "renv/library/R-4.3/x86_64-w64-mingw32/targets/tar_watch/about.md",
+    "renv/library/R-4.3/x86_64-w64-mingw32/targets/paper/paper.md"
   ]
 }

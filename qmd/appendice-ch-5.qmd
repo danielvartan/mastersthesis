@@ -1,4 +1,6 @@
-# Appendice: Chapter 5 supplemental material
+<!-- %:::% .common h1 begin %:::% -->
+# Appendice: chapter 5 supplemental material
+<!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup

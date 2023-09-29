@@ -27,10 +27,15 @@ abstract: "Chronotypes are temporal phenotypes. Observable traits, like weight
 keywords:
   - masters-thesis
   - chronobiology
+  - chronotype
+  - circadian phenotypes
+  - sleep
+  - sleep-wake cycle
   - complex-systems
   - entrainment
-  - sleep
   - latitude
+  - ecology
+  - mctq
 authors:
 - family-names: Vartanian
   given-names: Daniel

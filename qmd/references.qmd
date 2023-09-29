@@ -2,9 +2,19 @@
 \postextual
 :::
 
-# REFERENCES [^1] {.unnumbered}
+<!-- %:::% .common h1 begin %:::% -->
+# References {.unnumbered}
+<!-- %:::% .common h1 end %:::% -->
 
-[^1]: According to the APA style - American Psychological Association.
+```{r}
+#| label: setup
+#| echo: false
+#| output: false
+
+# library(here)
+
+source(here::here("R/quarto-setup.R"))
+```
 
 ::: {#refs}
 :::

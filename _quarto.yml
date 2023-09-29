@@ -1,89 +1,42 @@
 editor: source
 
 execute:
-  freeze: auto
+  cache: false
+  freeze: false # auto
 
 project:
   type: book
-  output-dir: .temp
-  pre-render: "R/quarto-pre-render.R"
-  post-render: "R/quarto-post-render.R"
-  resources: "robots.txt"
 
+# See <https://quarto.org/docs/projects/profiles.html>.
+profile:
+  group:
+    - [html, pdf]
+  default: html
+
+# See  <https://quarto.org/docs/books/>.
+# See <https://quarto.org/docs/reference/projects/books.html>.
 book:
   title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
   author: "Daniel Vartanian"
-  date: today
-  date-format: "YYYY"
-  reader-mode: false
-  # cover-image: cover.png
-  # favicon: cover.png
+  # abstract: >
+  #   Quarto book of the master's thesis: Ecology of sleep and circadian
+  #   phenotypes of the Brazilian population.
+  # description: >
+  #   Quarto book of the master's thesis: Ecology of sleep and circadian
+  #   phenotypes of the Brazilian population.
+  keyword: >
+    masters-thesis, chronobiology, chronotype, circadian phenotypes, sleep,
+    sleep-wake cycle, complex-systems, entrainment, latitude, ecology, mctq
+  language: en-us
+  license: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+  publisher: "University of São Paulo"
+  publisher-place: "São Paulo, SP, Brazil"
+  submitted: 2023
+  url: https://danielvartan.github.io/mastersthesis/
   site-url: https://danielvartan.github.io/mastersthesis/
   repo-url: https://github.com/danielvartan/mastersthesis/
+  issue-url: https://github.com/danielvartan/mastersthesis/issues/
   repo-branch: main
-  chapters:
-    - index.qmd
-    - part: "Preliminary Pages"
-      chapters:
-        - qmd/errata.qmd
-        - qmd/inscription.qmd
-        - qmd/acknowledgments.qmd
-        - qmd/epigraph.qmd
-        - qmd/abstract.qmd
-        - qmd/resumo.qmd
-        - qmd/thesis-outline.qmd
-        - qmd/abbreviations.qmd
-        - qmd/terms-and-definitions.qmd
-    - part: "Chapters"
-      chapters:
-        - qmd/chapter-1.qmd
-        - qmd/chapter-2.qmd
-        - qmd/chapter-3.qmd
-        - qmd/chapter-4.qmd
-        - qmd/chapter-5.qmd
-        - qmd/chapter-6.qmd
-        - qmd/chapter-7.qmd
-    - qmd/references.qmd
-  appendices:
-    - qmd/appendice-ch-2.qmd
-    - qmd/appendice-ch-3.qmd
-    - qmd/appendice-ch-4.qmd
-    - qmd/appendice-ch-5.qmd
-    - qmd/appendice-ch-6.qmd
+  version: "0.1.0"
 
 bibliography: references.json
-
-citation:
-  type: thesis
-  url: https://danielvartan.github.io/mastersthesis/
-google-scholar: false
-
-format:
-  html:
-    theme:
-      - cosmo
-      - style.scss
-    code-link: true
-    code-fold: true
-    fig-cap-location: bottom
-    tbl-cap-location: bottom
-    callout-appearance: simple
-    number-depth: 6
-    df-print: kable
-    author-meta: "Daniel Vartanian"
-  tesesusp-pdf:
-    # classoption: [twoside]
-    nocite: |
-      @*
-    latex-auto-install: true
-    keep-tex: true
-    # "Lato" # "Noto Sans" # "Open Sans" # "Futura Std" # Arial
-    mainfont: "Arial"
-    sansfont: "Arial"
-    # "Source Code Pro" # "Helvetica Monospaced W06 Rg" # "Roboto Mono"
-    monofont: "Helvetica Monospaced W06 Rg"
-    monofontoptions:
-      - Scale = 0.75
-    include-in-header: tex/include-in-header.tex
-    include-before-body: tex/include-before-body.tex
-    # include-after-body: tex/include-after-body.tex
