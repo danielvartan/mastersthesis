@@ -1,11 +1,8 @@
 project:
-  output-dir: .temp
-    # Remove the pre-render if you don't use Zotero.
+  output-dir: pdf
   pre-render: "R/quarto-pre-render-pdf.R"
   post-render: "R/quarto-post-render-pdf.R"
 
-# See  <https://quarto.org/docs/books/>.
-# See <https://quarto.org/docs/reference/projects/books.html>.
 book:
   date: today
   date-format: "YYYY"
@@ -17,26 +14,39 @@ book:
     - qmd/chapter-5.qmd
     - qmd/chapter-6.qmd
     - qmd/chapter-7.qmd
-    - qmd/references.qmd
+    - qmd/glossary.qmd
   appendices:
-    - qmd/appendice-ch-2.qmd
-    - qmd/appendice-ch-3.qmd
-    - qmd/appendice-ch-4.qmd
-    - qmd/appendice-ch-5.qmd
-    - qmd/appendice-ch-6.qmd
+    - qmd/appendice-chapter-2.qmd
+    - qmd/appendice-chapter-3.qmd
+    - qmd/appendice-chapter-4.qmd
+    - qmd/appendice-chapter-5.qmd
+    - qmd/appendice-chapter-6.qmd
+
+filters:
+  - latex-environment
+commands: legend
 
 format:
-  tesesusp-pdf:
-    # classoption: [twoside]
-    nocite: |
-      @*
-    latex-auto-install: true
-    keep-tex: true
-    mainfont: "Arial"
-    sansfont: "Arial"
-    monofont: "Source Code Pro"
-    monofontoptions:
-      - Scale = 0.75
+  abnt-pdf:
+    index-page: true
+    zotero: true
+    biblio-style: apa
+    biblio-title: REFERENCES
+    biblio-footnote: >
+      In accordance with the American Psychological Association
+      (APA) Style, 7th edition.
+    bibhang: 0.5cm
+    bibparsep: 1ex
+    location: "São Paulo"
+    supervisor: "Camilo Rodrigues Neto"
+    academic-title: "Master"
+    academic-degree: "Master of Science"
+    type-of-work: "Thesis"
+    area-of-concentration: "Fundamentals of complex systems"
+    university: "University of São Paulo"
+    school: "School of Arts, Sciences and Humanities"
+    program: "Graduate Program in Complex Systems Modeling"
+    version-note: "Preliminary version"
     include-in-header: tex/include-in-header.tex
     include-before-body: tex/include-before-body.tex
-    # include-after-body: tex/include-after-body.tex
+    include-after-body: tex/include-after-body.tex

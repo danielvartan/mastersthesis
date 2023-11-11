@@ -1,0 +1,324 @@
+% See `babel.tex` for language changes.
+% See `toc.text` for changes related to the ToC.
+
+% Set page numbering -----
+
+\makepagestyle{abntheadings}
+\makeevenhead{abntheadings}{\ABNTEXfontereduzida\thepage}{}{}
+\makeoddhead{abntheadings}{}{}{\ABNTEXfontereduzida\thepage}
+
+% Set text variables -----
+
+\renewcommand{\ABNTEXpartfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXpartfontsize}{\normalsize}
+\renewcommand{\ABNTEXchapterfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+\renewcommand{\ABNTEXsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsubsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsubsubsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize\itshape}
+\renewcommand{\ABNTEXfontereduzida}{\footnotesize}
+\renewcommand{\ABNTEXcaptiondelim}{~\textendash~}
+\renewcommand{\ABNTEXcaptionfontedelim}{:~}
+
+\renewcommand{\captiontitlefont}{\ABNTEXfontereduzida}
+
+% Set new commands -----
+
+\providecommand{\imprimiruniversidade}{}
+\newcommand{\universidade}[1]{\renewcommand{\imprimiruniversidade}{#1}}
+
+\providecommand{\imprimirescola}{}
+\newcommand{\escola}[1]{\renewcommand{\imprimirescola}{#1}}
+
+\providecommand{\imprimirprograma}{}
+\newcommand{\programa}[1]{\renewcommand{\imprimirprograma}{#1}}
+
+\newcommand{\imprimirtipodetrabalho}{\imprimirtipotrabalho}
+
+\providecommand{\imprimirtipodetituloacademico}{}
+\newcommand{\tipodetituloacademico}[1]{\renewcommand{\imprimirtipodetituloacademico}{#1}}
+
+\providecommand{\imprimirtituloacademico}{}
+\newcommand{\tituloacademico}[1]{\renewcommand{\imprimirtituloacademico}{#1}}
+
+\providecommand{\imprimirareadeconcentracao}{}
+\newcommand{\areadeconcentracao}[1]{\renewcommand{\imprimirareadeconcentracao}{#1}}
+
+\providecommand{\imprimirnotadeversao}{}
+\newcommand{\notadeversao}[1]{\renewcommand{\imprimirnotadeversao}{#1}}
+
+% Set chapter style -----
+
+\renewcommand{\chapnamefont}{\normalfont\normalsize}
+\renewcommand{\chapnumfont}{\normalfont\normalsize}
+
+\setsecnumformat{\chapnumfont\csname the#1\endcsname\quad}
+
+\renewcommand{\printchaptername}{
+  \ifthenelse{\boolean{abntex@apendiceousecao}}{
+    \chapnamefont \ABNTEXchapterupperifneeded{\appendixname} % [Changed]
+  }{}
+}
+
+% Open an issue about it (`\hspace{-1em}`) - Title streching.
+\renewcommand{\chapternamenum}{
+  \ifthenelse{\boolean{abntex@apendiceousecao}}{
+    \hspace{-2em} \space
+  }{}
+}
+
+\renewcommand{\printchapternum}{
+  \tocprintchapter
+  \setboolean{abntex@innonumchapter}{false}
+  \chapnumfont
+  \thechapter % [Changed]
+  % \ifthenelse{\boolean{abntex@apendiceousecao}}{ % [Removed]
+  %   \tocinnonumchapter
+  %   \ABNTEXcaptiondelim
+  % }{}
+}
+
+\renewcommand{\afterchapternum}{
+  \ifthenelse{\boolean{abntex@apendiceousecao}}{ % [Added]
+    \normalfont \hspace{-1em} \space\ABNTEXcaptiondelim\space \hspace{-1.5em}
+  }{
+    \hspace{-0.875em}
+  }
+}
+
+\renewcommand{\printchapternonum}{
+  \tocprintchapternonum
+  \setlength{\afterchapskip}{\hugeskipamount} % [Added]
+  \setboolean{abntex@innonumchapter}{true}
+}
+
+\renewcommand{\printchaptertitle}[1]{
+  \chaptitlefont
+  \ifthenelse{\boolean{abntex@innonumchapter}}{
+    \centering \ABNTEXchapterupperifneeded{#1}
+  }{
+    \ifthenelse{\boolean{abntex@apendiceousecao}}{
+      \normalfont \ABNTEXchapterupperifneeded{#1}
+    }{
+      \ABNTEXchapterupperifneeded{#1}
+    }
+  }
+}
+
+% Set `\textual` -----
+
+\renewcommand{\textual}{
+  \pagestyle{abntheadings}
+  \aliaspagestyle{chapter}{abntheadings}
+}
+
+% Set cover -----
+
+\renewcommand{\imprimircapa}{
+  \phantomsection\pdfbookmark[0]{\capaname}{}
+  \begin{capa}%
+  \begin{adjustwidth}{-1cm}{0cm}
+  \center
+  \imprimirinstituicao
+
+  \vfill
+  \imprimirautor
+
+  \vfill
+  \textbf{\imprimirtitulo}
+
+  \vfill
+  \vspace{6.5cm}
+  \imprimirlocal
+
+  \imprimirdata
+  \vspace{1.5cm}
+  \end{adjustwidth}
+  \end{capa}
+}
+
+% Set title page -----
+
+\makeatletter
+\renewcommand{\folhaderostocontent}{
+  \begin{center}
+  \imprimirautor
+
+  \vfill
+  \bfseries\imprimirtitulo
+
+  \vfill
+  \bfseries\imprimirnotadeversao\normalfont
+
+  \vfill
+  \abntex@ifnotempty{
+    \imprimirpreambulo
+  }{
+    \hspace{0.35\textwidth}
+    \begin{minipage}{.6\textwidth}
+    \SingleSpacing
+    \imprimirpreambulo
+    \end{minipage}
+  }
+
+  \vfill
+  \imprimirlocal
+
+  \imprimirdata
+  \vspace{1cm}
+  \end{center}
+}
+\makeatother
+
+% Set cataloging record -----
+
+\renewenvironment{fichacatalografica}{
+  \PRIVATEbookmarkthis{\fichacatalograficaname}
+  \setlength{\parindent}{0cm}
+  \begin{SingleSpacing}
+}{
+  \end{SingleSpacing}
+}
+
+% Set errata -----
+
+\renewenvironment{errata}[1][\errataname]{
+  \newpage
+  \phantomsection
+  \pretextualchapter{#1}
+}{
+  \cleardoublepage
+}
+
+% Set approval sheet -----
+
+\renewenvironment{folhadeaprovacao}[1][\folhadeaprovacaoname]{
+  \clearpage
+  \PRIVATEbookmarkthis{#1}
+  \setlength\parindent{0cm}
+  \AtBeginEnvironment{tabular}{\normalsize}
+  \begin{SingleSpace}
+}{
+  \end{SingleSpace}
+  \cleardoublepage
+}
+
+% Set abstract -----
+
+\newenvironment{resumoenv}[1][\resumoname]{
+  \pretextualchapter{#1}
+  \begingroup
+  \setlength{\parindent}{0cm}
+  \setlength{\parskip}{\smallskipamount} % The troublemaker.
+  \AtBeginEnvironment{tabular}{\normalsize}
+  \renewcommand{\arraystretch}{1}
+  \setlength{\aboverulesep}{0ex}
+  \setlength{\belowrulesep}{0ex}
+  \setlength{\arrayrulewidth}{0pt}
+  \setlength{\tabcolsep}{0cm}
+  \vspace{-\smallskipamount} % !
+  \begin{SingleSpace}
+}{
+  \end{SingleSpace}
+  \cleardoublepage
+  \endgroup
+}
+
+% Set list of abbreviations and acronyms -----
+
+\renewenvironment{siglas}{
+  \pretextualchapter{\listadesiglasname}
+}{
+  \cleardoublepage
+}
+
+% Set list of symbols -----
+
+\renewenvironment{simbolos}{
+  \pretextualchapter{\listadesimbolosname}
+}{
+  \cleardoublepage
+}
+
+% Set glossary -----
+
+\newenvironment{glossario}{
+  \tocprintchapternonum
+}{
+  \cleardoublepage
+}
+
+% Set appendices and annexes -----
+
+\renewcommand{\PRIVATEapendiceconfig}[2]{
+  \setboolean{abntex@apendiceousecao}{true}
+  \renewcommand{\appendixname}{#1}
+  \renewcommand{\apendicesname}{#1}
+
+  \ifthenelse{\boolean{ABNTEXsumario-abnt-6027-2012}}{
+    \renewcommand{\appendixtocname}{\uppercase{#2}}
+  }{
+    \renewcommand{\appendixtocname}{#2}
+  }
+
+  \renewcommand{\appendixpagename}{#2}
+  \renewcommand{\appendixtocname}{#2}
+  % \switchchapname{#1} % [Altered]
+  \renewcommand{\cftappendixname}{} % [Altered]
+  \tocpartapendices % [Added]
+
+  % Note:
+  %
+  % \cleardoublepage
+  % \phantomsection
+  % \addcontentsline{toc}{part}{Appendices}
+  % \appendix
+  %
+  % is automatically add by the Quarto render.
+}
+
+\renewcommand{\apendices}{
+  \PRIVATEapendiceconfig{\apendicename}{\apendicesname}
+  \appendix
+}
+
+\renewenvironment{apendicesenv}{
+  \PRIVATEapendiceconfig{\apendicename}{\apendicesname}
+  \begin{appendix}
+}{
+  \end{appendix}
+  \setboolean{abntex@apendiceousecao}{false}
+  \bookmarksetup{startatroot}
+}
+
+\renewcommand{\anexos}{
+  % \cftinserthook{toc}{AAA} [Removed]
+  \PRIVATEapendiceconfig{\anexoname}{\anexosname}
+
+  \newpage % [Added]
+  \phantomsection % [Added]
+  \addcontentsline{toc}{part}{\appendixtocname} % [Added]
+
+  \appendix
+  \renewcommand\theHchapter{anexochapback.\arabic{chapter}}
+}
+
+\renewenvironment{anexosenv}{
+  \PRIVATEapendiceconfig{\anexoname}{\anexosname}
+
+  \newpage % [Added]
+  \phantomsection % [Added]
+  \addcontentsline{toc}{part}{\appendixtocname} % [Added]
+
+  \begin{appendix}
+  \renewcommand\theHchapter{anexochapback.\arabic{chapter}}
+}{
+  \end{appendix}
+  \setboolean{abntex@apendiceousecao}{false}
+  \bookmarksetup{startatroot}
+}

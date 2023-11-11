@@ -1,13 +1,11 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Similarities between different versions of the mctq^pt^
+# Similarities between different versions of the MCTQ^PT^
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
+#| include: false
 
-library(here)
 source(here::here("R/quarto-setup.R"))
 ```
 
@@ -15,13 +13,15 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-# library(rutils)
-
-rutils:::quarto_status("drafting")
+rutils:::quarto_status(
+  type = "drafting",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
 ```
 
 ::: {.callout-note}
-## Target
+## Target journal
 
 1. [Chronobiology International](https://www.tandfonline.com/action/authorSubmission?show=instructions&journalCode=icbi20) ([IF 2022: 2.8/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
 2. [Journal of Biological Rhythms](https://journals.sagepub.com/author-instructions/JBR) ([IF 2022: 3.5/JCR](https://jcr.clarivate.com/jcr/) | [A2/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
@@ -30,15 +30,11 @@ rutils:::quarto_status("drafting")
 ::: {.callout-note}
 The following study was performed by Daniel Vartanian (DV) and Camilo Rodrigues Neto (CR).
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+\microskip
 
 __DV__ and __CR__ contributed to the study's design. __DV__ implemented the study, performed the statistical analysis, and authored the manuscript. All authors participated in discussions about the results and contributed to the final manuscript revision.
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+\microskip
 
-_Future reference_: Vartanian, D., & Rodrigues Neto, C. (2024). Similarities between different use versions of the MCTQ^PT^. _Chronobiology International_.
+_Future reference_: Vartanian, D., & Rodrigues Neto, C. (2024). Similarities between different versions of the MCTQ^PT^. _Chronobiology International_.
 :::

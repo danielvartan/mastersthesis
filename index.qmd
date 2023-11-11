@@ -1,6 +1,7 @@
-::: {.content-visible when-format="pdf"}
-\textual
-:::
+---
+execute:
+  freeze: false
+---
 
 <!-- %:::% .common h1 begin %:::% -->
 # Welcome {.unnumbered}
@@ -8,10 +9,7 @@
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
-
-# library(here)
+#| include: false
 
 source(here::here("R/quarto-setup.R"))
 ```

@@ -1,1 +1,27 @@
+academic-title: Master
+academic-degree: Master of Science
+area-of-concentration: Fundamentals of complex systems
+author-surname: Vartanian
+author-given-name: Daniel
+author-minus-surname: Daniel
+author-initials: D. V.
+author: Daniel Vartanian
+cosupervisor: '[Co-supervisor''s full name]'
+keyword: |
+  Chronobiology. Biological rhythms. Chronotype. Circadian phenotype. Sleep. Complex systems. Entrainment. Latitude. Ecology. MCTQ.
+location: São Paulo
+mainfont: Arial
+monofont: FragmentMono-Regular.otf
+program: Graduate Program in Complex Systems Modeling
+sansfont: Arial
+school: School of Arts, Sciences and Humanities
+supervisor: Camilo Rodrigues Neto
+type-of-work: Thesis
+university: University of São Paulo
+version-note: Preliminary version
+url: https://danielvartan.github.io/mastersthesis/
+language: en-us
+title: Ecology of sleep and circadian phenotypes of the Brazilian population
+date: '2023-11-11'
+year: '2023'
 format: html

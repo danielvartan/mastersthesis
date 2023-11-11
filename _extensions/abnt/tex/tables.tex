@@ -1,0 +1,27 @@
+\renewcommand{\arraystretch}{1.5}
+\setlength{\aboverulesep}{0ex}
+\setlength{\belowrulesep}{0ex}
+
+% Correct order of tables after \paragraph or \subparagraph
+% \usepackage{etoolbox}
+% \makeatletter
+% \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+% \makeatother
+
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+% Set tabular environment -----
+
+\AtBeginEnvironment{table}{\ABNTEXfontereduzida}
+\AtBeginEnvironment{tabular}{\ABNTEXfontereduzida}
+
+\AtBeginEnvironment{longtable}{\ABNTEXfontereduzida \addvspace{\tinyskipamount}}
+\AtBeginEnvironment{longtable*}{\ABNTEXfontereduzida \addvspace{\tinyskipamount}}
+
+\floatplacement{table}{H}
+
+% Set theorem environment -----
+
+\AtEndEnvironment{theorem}{\vspace{\bigskipamount}}

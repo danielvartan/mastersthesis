@@ -78,6 +78,6 @@ A BibTeX entry for LaTeX users is
 
 ## Acknowledgments
 
-This thesis was developed in the [Graduate Program in Modeling Complex Systems (PPG-SCX)](https://sites.usp.br/scx/en/apresentacao/) at the [University of Sao Paulo (USP)](https://www5.usp.br/), under the guidance of [Prof. Dr. Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695).
+This thesis was developed in the [Graduate Program in Modeling Complex Systems (PPG-SCX)](https://sites.usp.br/scx/en/apresentacao/) at the [University of Sao Paulo (USP)](https://www5.usp.br/), under the supervision of [Prof. Dr. Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695).
 
 Financial support was provided by the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) and the [University of São Paulo (USP)](http://usp.br/) (❤️) (Grant number: 88887.703720/2022-00).

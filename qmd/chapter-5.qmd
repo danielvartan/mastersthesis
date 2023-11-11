@@ -4,10 +4,8 @@
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
+#| include: false
 
-library(here)
 source(here::here("R/quarto-setup.R"))
 ```
 
@@ -15,13 +13,15 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-# library(rutils)
-
-rutils:::quarto_status("drafting")
+rutils:::quarto_status(
+  type = "drafting",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
 ```
 
 ::: {.callout-note}
-## Target
+## Target journal
 
 1. [Journal of Open Source Software](https://joss.readthedocs.io/en/latest/submitting.html) ([B1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
 :::
@@ -29,15 +29,11 @@ rutils:::quarto_status("drafting")
 ::: {.callout-note}
 The following study was conducted by Daniel Vartanian (DV) and Camilo Rodrigues Neto (CR).
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+\microskip
 
 __DV__ was responsible for the design and software implementation. __CR__ contributed as a science adviser and reviewer. __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript.
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+\microskip
 
-_Future reference_: Vartanian, D, & Rodrigues Neto, C. (2024). {entrainment}: A rule-based model of the 24h light/dark cycle entrainment phenomenon. _Journal of Open Source_.
+_Future reference_: Vartanian, D, & Rodrigues Neto, C. (2024). {entrainment}: a rule-based model of the 24h light/dark cycle entrainment phenomenon. _Journal of Open Source_.
 :::

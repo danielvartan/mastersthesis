@@ -4,16 +4,13 @@
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
-
-# library(here)
+#| include: false
 
 source(here::here("R/quarto-setup.R"))
 ```
 
 <!-- %:::% acknowledgments body begin %:::% -->
-I would like to acknowledge the following persons and organizations:
+I would like to acknowledge and express my gratitude to the following persons and organizations:
 
 Salete Perroni (Sal), my partner in life and in the fight for a better world.
 
@@ -25,17 +22,17 @@ My friends in science, [Alicia Rafaelly Vilefort Sales](https://orcid.org/0000-0
 
 My friend and Professor [Humberto Miguel Garay Malpartida](https://orcid.org/0000-0002-1164-2055), for his support; for his principles; and for his integrity, which was demonstrated when the need arose.
 
-Professor [Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695), for introducing me to and teaching me about the science of complex systems since 2012; for guiding my dissertation; for the patience and the virtue in taking on and mediating the process of transitioning my guidance in my master's degree after the breakdown of relations with my former supervisor.
+Professor [Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695), for introducing me to and teaching me about the science of complex systems since 2012; for supervising my dissertation; for the patience and the virtue in taking on and mediating the process of transitioning my master's supervision after the breakdown of relations with my former supervisor.
 
-Professor [Carlos Molina Mendes](https://orcid.org/0000-0003-2916-4415), for the speed, impartiality, patience, and virtue in mediating the process of transitioning my guidance in my master's degree.
+Professor [Carlos Molina Mendes](https://orcid.org/0000-0003-2916-4415), for his speed, impartiality, patience, and virtuous approach in mediating the process of transitioning of my master's supervision.
 
-My fellow friends: Alex Azevedo Martins; Amanda Moreira; Augusto Amado, Carina (Cacau) Prado; Cauê Teles; Ítalo Alves Bezerra do Nascimento; Júlia Mafra; Leonardo Kazuhiko Kawazoe; Letícia Nery de Figueiredo; and Reginaldo Noveli.
+My fellow friends: Alex Azevedo Martins; Amanda Moreira; Augusto Amado, Carina (Cacau) Prado; Ítalo Alves Bezerra do Nascimento; Júlia Mafra; Letícia Nery de Figueiredo; Marcelo Ricardo Fernandes Roschel; Reginaldo Noveli; Sílvia Capelanes; and Vanessa Simon Silva.
 
-[President Lula](https://lula.com.br/) (Yes!), who saved Brazil from fascism and approved the long-overdue adjustments to postgraduate scholarships.
+[President Lula](https://lula.com.br/) (Yes!), who saved Brazil from fascism and approved the long-overdue adjustments to graduate scholarships.
 
 The local student movements, which truly support their category.
 
 The [Support Program for Student Permanence and Education (PAPFE)](https://prip.usp.br/apoio-estudantil/) of USP, which enabled me to get this far.
 
-The [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/), for funding this work and enabling my presence in postgraduate studies.
+The [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/), for funding this work and enabling my presence in graduate studies (Grant number: 88887.703720/2022-00).
 <!-- %:::% acknowledgments body end %:::% -->

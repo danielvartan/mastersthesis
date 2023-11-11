@@ -1,26 +1,34 @@
-You are seeing the preliminary web version of this master's thesis.
+You are viewing the web version of this thesis. Click [here](index.pdf) or on the PDF icon in the menu to see the PDF version.
 
-The analyses contained in this document are 100% reproducible. They were performed using the [R programming language](https://www.r-project.org/) and the [Quarto](https://quarto.org/) publishing system (an evolution of [R Markdown](https://rmarkdown.rstudio.com/)). Click on the GitHub icon in the menu to access the thesis code repository.
+All analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system. Click [here](https://github.com/danielvartan/mastersthesis) or on the GitHub icon in the menu to access the research compendium for the thesis.
 
 ## Citation
 
 For attribution, please cite this work as:
 
-Vartanian, D. (2023). _Ecology of sleep and circadian phenotypes of the 
-Brazilian population_ [Master's thesis]. School of Arts, Sciences and Humanities,
-University of Sao Paulo, São Paulo. https://danielvartan.github.io/mastersthesis/
+{{< var author-surname >}}, `r sub("\\. .\\.$", "", env_vars[["author-initials"]])`. ({{< var year >}}). _{{< var title >}}_ [{{< var academic-title >}}'s {{< var type-of-work >}}, {{< var university >}}]. {{< var url >}}
 
 BibTeX citation:
 
+```{r}
+#| include: false
+
+bib_tag <- ifelse(
+  grepl(env_vars$`academic-title`, "Master", ignore.case = TRUE), 
+  "@mastersthesis", 
+  "@phdthesis"
+  )
 ```
-@mastersthesis{vartanian2023,
-  title = {Ecology of sleep and circadian phenotypes of the Brazilian population},
-  author = {Daniel Vartanian},
-  year = {2023},
-  address = {São Paulo},
-  school  = {University of Sao Paulo},
-  langid = {english},
-  url = {https://danielvartan.github.io/mastersthesis/}
-  note = {Preliminary version}
+
+```
+`r bib_tag`{`r tolower(env_vars[["author-surname"]])``r env_vars[["year"]]`,
+  title = {`r env_vars[["title"]]`},
+  author = {`r env_vars[["author"]]`},
+  year = {`r env_vars[["date"]]`},
+  address = {`r env_vars[["location"]]`},
+  school  = {`r env_vars[["university"]]`},
+  langid = {`r env_vars[["language"]]`},
+  url = {`r env_vars[["url"]]`},
+  note = {`r env_vars[["version-note"]]`}
 }
 ```

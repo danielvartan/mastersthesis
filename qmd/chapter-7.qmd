@@ -4,10 +4,8 @@
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
+#| include: false
 
-library(here)
 source(here::here("R/quarto-setup.R"))
 ```
 
@@ -17,7 +15,11 @@ source(here::here("R/quarto-setup.R"))
 
 # library(rutils)
 
-rutils:::quarto_status("drafting")
+rutils:::quarto_status(
+  type = "drafting",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
 ```
 
 <!-- ## Discussion -->
@@ -27,3 +29,24 @@ rutils:::quarto_status("drafting")
 <!-- ## Conclusions -->
 
 <!-- ## Future perspectives -->
+
+<!-- textual end -->
+
+```{=latex}
+\postextual
+
+\begingroup
+\renewcommand{\baselinestretch}{1}
+\setcounter{footnote}{0}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\printbibliography[heading=bibheading]
+\endgroup
+
+\tocskipone
+\tocprintchapternonum
+\addcontentsline{toc}{chapter}{\newbibname}
+```
+
+```{=latex}
+\begin{glossario}
+```

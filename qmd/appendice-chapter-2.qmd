@@ -1,0 +1,327 @@
+<!-- %:::% .common h1 begin %:::% -->
+# Chapter 2 supplemental material
+<!-- %:::% .common h1 end %:::% -->
+
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R/quarto-setup.R"))
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+rutils:::quarto_status(
+  type = "polishing",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
+```
+
+## Base texts
+
+See @vartanian2017 to visualize the data questionnaire.
+
+See @roenneberg2006 to visualize the EUCLOCK Portuguese questionnaire.
+
+See @reis2020 to learn more about the MCTQ^PT^ questionnaire.  It's important to note that the MCTQ^PT^ was not included in the validation article. To obtain full access to the questionnaire statements, you should contact the main author of the article.
+
+Two control texts were used, one from @andrade2023 and another from @brecht2000.
+
+<!-- @|andrade2023, @|brecht2000 -->
+
+```{r}
+#| code-fold: false
+
+data_text <- c(
+  "Você vai para a cama às ___ horas.",
+  "Algumas pessoas permanecem um tempo acordadas depois que vão se deitar.",
+  "Depois de ir para a cama, você decide dormir às ___ horas.",
+  "Você precisa de ___ para dormir.",
+  "Você acorda às ___ horas.",
+  "Você se levanta ___ depois de despertar.",
+  "Você vai para a cama às ___ horas.",
+  "",
+  "Depois de ir para a cama, você decide dormir às ___ horas.",
+  "Você precisa de ___ para dormir.",
+  "Você acorda às ___ horas.",
+  "Você se levanta ___ depois de despertar."
+)
+
+euclock_text <- c(
+  "vou para a cama às ___ horas.",
+  "Algumas pessoas permanecem um tempo acordadas depois que vão se deitar.",
+  "às ___ horas, decido dormir.",
+  "Eu necessito ___ minutos para adormecer.",
+  "acordo às ___ horas,",
+  "passados ___ minutos, me levanto.",
+  "vou para a cama às ___ horas.",
+  "Algumas pessoas permanecem um tempo acordadas depois que vão se deitar.",
+  "às ___ horas, decido dormir.",
+  "Eu necessito ___ minutos para adormecer.",
+  "acordo às ___ horas,",
+  "passados ___ minutos, me acordo."
+)
+
+mctq_pt_text <- c(
+  "Vou para a cama às ___ horas.",
+  "Algumas pessoas permanecem algum tempo acordadas depois de estarem na cama.",
+  "Às ___ horas estou pronto para adormecer.",
+  "Necessito de ___ minutos para adormecer.",
+  "Acordo às ___ horas.",
+  "Após ___ minutos, levanto-me.",
+  "Vou para a cama às ___ horas.",
+  "Algumas pessoas permanecem algum tempo acordadas depois de estarem na cama.",
+  "Às ___ horas estou pronto para adormecer.",
+  "Necessito de ___ minutos para adormecer.",
+  "Acordo às ___ horas.",
+  "Após ___ minutos, levanto-me."
+)
+
+# See: Andrade, T. (2023). Acronomia. In T. Andrade, Tau (Chapter 1). Flyve.
+control_text_1 <- c(
+  "Eles eliminaram o tempo, definitivamente.",
+  "Removeram todos os relógios, de parede, de pulso, de bolso...",
+  "Talvez esses objetos fossem realmente obsoletos àquela altura",
+  "mas sim, foi deliberado: era um projeto mundial.",
+  "Mas a situação é bem pior do que parece a princípio.",
+  "Não foi apenas qualquer possibilidade de aferição do tempo",
+  "exterminaram a própria capacidade de produzi-lo.",
+  "Primeiro marcaram o 'Grande dia da entrega'.",
+  "Um comboio de carros de lixo passou pelas ruas",
+  "recolhendo todos os tipos de relógio",
+  "e cronômetro que estavam de posse das pessoas.",
+  "De mecanismos empoeirados e engrenagens enferrujadas a dispositivos modernos"
+)
+
+# See: Brecht, B. (2000). Quem se defende. In B. Brecht, Poemas 1913-1956 
+#      (5th ed., p. 73; Paulo César de Souza, Trans.). Editora 34.
+control_text_2 <- c(
+  "Quem se defende porque lhe tiram o ar",
+  "Ao lhe apertar a garganta, ",
+  "para este há um parágrafo",
+  "Que diz: ele agiu em legítima defesa. ", 
+  "Mas",
+  "O mesmo parágrafo silencia",
+  "Quando vocês se defendem porque lhes tiram o pão.",
+  "E no entanto morre quem não come, ",
+  "e quem não come o suficiente",
+  "Morre lentamente. ",
+  "Durante os anos todos em que morre",
+  "Não lhe é permitido se defender."
+)
+```
+
+```{r}
+#| code-fold: false
+
+data_text_textreuse <- 
+  textreuse::TextReuseTextDocument(
+    text = data_text,
+    meta = list(id = "data")
+  )
+
+euclock_text_textreuse <- 
+  textreuse::TextReuseTextDocument(
+    text = euclock_text,
+    meta = list(id = "euclock")
+  )
+
+mctq_pt_text_textreuse <- 
+  textreuse::TextReuseTextDocument(
+    text = mctq_pt_text,
+    meta = list(id = "mctq_pt")
+  )
+
+control_text_1_textreuse <- 
+  textreuse::TextReuseTextDocument(
+    text = control_text_1,
+    meta = list(id = "control_1")
+  )
+
+control_text_2_textreuse <- 
+  textreuse::TextReuseTextDocument(
+    text = control_text_2,
+    meta = list(id = "control_2")
+  )
+```
+
+```{r}
+#| output: false
+#| code-fold: false
+
+# See
+# <https://huggingface.co/neuralmind/bert-base-portuguese-cased>
+# to learn more.
+
+rutils:::assert_internet()
+
+text_embed <- function(text) {
+  checkmate::assert_character(text)
+  
+  text |>
+    text::textEmbed(
+      model = "neuralmind/bert-base-portuguese-cased",
+      layers = - 2,
+      dim_name = TRUE,
+      aggregation_from_layers_to_tokens = "concatenate",
+      aggregation_from_tokens_to_texts = "mean",
+      aggregation_from_tokens_to_word_types = NULL,
+      keep_token_embeddings = TRUE,
+      tokens_select = NULL,
+      tokens_deselect = NULL,
+      decontextualize = FALSE,
+      model_max_length = NULL,
+      max_token_to_sentence = 4,
+      tokenizer_parallelism = FALSE,
+      device = "gpu",
+      logging_level = "error"
+    )
+}
+
+data_text_textembed <- text_embed(data_text)
+euclock_text_textembed <- text_embed(euclock_text)
+mctq_pt_text_textembed <- text_embed(mctq_pt_text)
+control_text_1_textembed <- text_embed(control_text_1)
+control_text_2_textembed <- text_embed(control_text_2)
+```
+
+## Text similarity
+
+See @wang2020 to learn more.
+
+For a quick explanation, see <https://youtu.be/e9U0QAFbfLI>.
+
+<!-- See also: https://github.com/microsoft/semantic-kernel/blob/main/docs/EMBEDDINGS.md -->
+
+```{r}
+#| code-fold: false
+
+text_distance <- function(x, y) {
+  checkmate::assert_list(x, len = 2)
+  checkmate::assert_list(y, len = 2)
+  
+  methods <- c(
+    "binary", "cosine", "canberra", "euclidean", "manhattan", "maximum", 
+    "minkowski", "pearson"
+  )
+  
+  for (i in methods) {
+    cli::cli_alert_info(paste0(
+      "Method: {.strong {stringr::str_to_title(i)}}"
+      ))
+    
+    test <- 
+      text::textSimilarity(
+        x$texts$texts, 
+        y$texts$texts, 
+        method = i, 
+        center = TRUE, 
+        scale = FALSE
+      )
+    
+    cli::cli_bullets(c(">" = "Line by line"))
+    print(test)
+    
+    cli::cli_bullets(c(">" = "Overall mean"))
+    print(mean(test))
+    
+    cli::cat_line()
+  }
+}
+```
+
+```{r}
+#| code-fold: false
+
+text_representation <- function(x, y) {
+  checkmate::assert_class(x, "TextReuseTextDocument")
+  checkmate::assert_class(y, "TextReuseTextDocument")
+  
+  cli::cli_alert_info(paste0("Method: {.strong Jaccard similarity}"))
+  print(textreuse::jaccard_similarity(x, y))
+  cli::cat_line()
+  
+  cli::cli_alert_info(paste0("Method: {.strong Jaccard bag similarity}"))
+  print(textreuse::jaccard_bag_similarity(x, y))
+  cli::cat_line()
+}
+```
+
+### How similar is the _data questionnaire_ when compared to the _EUCLOCK questionnaire_?
+
+#### Text distance
+
+```{r}
+#| code-fold: false
+
+text_distance(data_text_textembed, euclock_text_textembed)
+```
+
+#### Text representation
+
+__Note__: The maximum value for the Jaccard bag similarity is 0.5.
+
+```{r}
+#| code-fold: false
+
+text_representation(euclock_text_textreuse, data_text_textreuse)
+```
+
+### How similar is the _data questionnaire_ when compared to the _MCTQ^PT^ questionnaire_?
+
+#### Text distance
+
+```{r}
+#| code-fold: false
+
+text_distance(data_text_textembed, mctq_pt_text_textembed)
+```
+
+#### Text representation
+
+__Note__: The maximum value for the Jaccard bag similarity is 0.5.
+
+```{r}
+#| code-fold: false
+
+text_representation(mctq_pt_text_textreuse, data_text_textreuse)
+```
+
+### How similar is the _data questionnaire_ when compared to the _Control Text 1_?
+
+#### Text distance
+
+```{r}
+#| code-fold: false
+
+text_distance(data_text_textembed, control_text_1_textembed)
+```
+
+#### Text representation
+
+```{r}
+#| code-fold: false
+
+text_representation(control_text_1_textreuse, data_text_textreuse)
+```
+
+### How similar is the _data questionnaire_ when compared to the _Control Text 2_?
+
+#### Text distance
+
+```{r}
+#| code-fold: false
+
+text_distance(data_text_textembed, control_text_2_textembed)
+```
+
+#### Text representation
+
+```{r}
+#| code-fold: false
+
+text_representation(control_text_2_textreuse, data_text_textreuse)
+```

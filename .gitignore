@@ -1,11 +1,11 @@
 # See <https://git-scm.com/docs/gitignore>.
 
+_freeze/
+_targets/
 .auth/
 .quarto/
 .temp/
 .ssh/
-_targets/
-# docs/
 .Rapp.history
 .RData
 .Renviron

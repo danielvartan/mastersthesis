@@ -1,23 +1,34 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Resumo (pt-br abstract) {.unnumbered}
+# Resumo {.unnumbered}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
-
-# library(here)
+#| include: false
 
 source(here::here("R/quarto-setup.R"))
 ```
 
-<!-- %:::% foreign-abstract body begin %:::% -->
-Vartanian, D. (2023). _Ecologia do sono e de fenótipos circadianos da população brasileira_ [Dissertação de Mestrado]. Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo. [https://danielvartan.github.io/mastersthesis/](https://danielvartan.github.io/mastersthesis/)
+{{< var author-surname >}}, `r sub("\\. .\\.$", "", env_vars[["author-initials"]])`. ({{< var year >}}). _Ecologia do sono e de fenótipos circadianos da população brasileira_ [Dissertação de Mestrado, Universidade de São Paulo].
 
+::: {.content-visible when-format="pdf"}
+<!-- %:::% foreign-abstract reference begin %:::% -->
+Vartanian, D. ({\imprimirdata}). \textit{Ecologia do sono e de fenótipos circadianos da população brasileira} [Dissertação de Mestrado, Universidade de São Paulo].
+<!-- %:::% foreign-abstract reference end %:::% -->
+:::
+
+<!-- %:::% foreign-abstract body begin %:::% -->
 O texto abaixo está relacionado ao __projeto__ desta dissertação. O resumo final só poderá ser produzido quando a pesquisa for finalizada.
 
 Teorias relacionadas ao sono e aos ritmos circadianos já estão bem consolidadas na ciência. No entanto, é necessário verificar e testar essas mesmas teorias em amostras mais abrangentes para obter um retrato mais preciso da ecologia do sono e dos fenótipos temporais. Esta dissertação assume esse compromisso, tendo como objetivo mapear a expressão dos ciclos de sono-vigília e dos fenótipos circadianos da população adulta brasileira e investigar a hipótese de que a latitude está associada à regulação do ritmo circadiano. A hipótese da latitude se fundamenta na ideia de que regiões localizadas em latitudes próximas aos polos apresentam, em média, uma menor incidência de luz solar anual quando comparadas com regiões próximas da linha do equador (latitude 0°). Dessa forma, deduz-se que as regiões próximas ao equador apresentam um zeitgeber solar mais forte, o que, de acordo com as teorias da cronobiologia, pode gerar uma maior propensão à sincronização dos ritmos circadianos dessas populações, reduzindo a amplitude e a diversidade de fenótipos circadianos. Isso também daria a essas populações uma característica matutina quando comparadas com populações que vivem distantes da linha do equador. Para atingir os objetivos mencionados, o projeto irá contar com uma amostra de dados da expressão do ciclo sono-vigília da população brasileira composta por $120.265$ respondentes que abrange todos os estados brasileiros. Essa amostra de dados foi obtida no ano de 2017 e se baseia no Munich ChronoType Questionnaire (MCTQ), um questionário amplamente validado e utilizado para mensurar fenótipos circadianos a partir da expressão do ciclo sono-vigília de indivíduos em suas últimas quatro semanas. Os resultados irão contribuir com a validação de teorias da cronobiologia e gerar conhecimento sobre a regulação do ritmo circadiano e dos ciclos de sono-vigília da população brasileira.
-
-Palavras-chaves: cronobiologia. cronotipo. fenótipos circadianos. sono. ciclo sono-vigília. entrainment. latitude. ecologia. mctq.
 <!-- %:::% foreign-abstract body end %:::% -->
+
+__Palavras-chaves__: Cronobiologia. Ritmos biológicos. Cronotipo. Fenótipo circadiano. Sono. Sistemas complexos. Entrainment. Latitude. Ecologia. MCTQ.
+
+::: {.content-visible when-format="pdf"}
+<!-- %:::% foreign-abstract keywords begin %:::% -->
+\begin{tabular}{p{3.6cm} p{12.3cm}}
+  \textbf{Palavras-chaves}: &  Cronobiologia. Ritmos biológicos. Cronotipo. Fenótipo circadiano. Sono. Sistemas complexos. Entrainment. Latitude. Ecologia. MCTQ.
+\end{tabular}
+<!-- %:::% foreign-abstract keywords end %:::% -->
+:::

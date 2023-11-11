@@ -4,10 +4,8 @@
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
+#| include: false
 
-library(here)
 source(here::here("R/quarto-setup.R"))
 ```
 
@@ -15,23 +13,23 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-# library(rutils)
-
-rutils:::quarto_status("polishing")
+rutils:::quarto_status(
+  type = "polishing",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
 ```
 
 ::: {.callout-warning}
 The results shown here are __preliminary__, so please take them with a grain of salt.
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+\microskip
 
 The data has not yet been fully cleaned, balanced, and cross-referenced with the secondary databases. Think of these results as a low-resolution preview of the final results. The step-by-step analysis can be seen in the appendices section.
 :::
 
 ::: {.callout-note}
-## Target
+## Target journal
 
 1. [Scientific Reports](https://www.nature.com/srep/author-instructions) ([IF 2022: 4.6/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
 :::
@@ -39,20 +37,18 @@ The data has not yet been fully cleaned, balanced, and cross-referenced with the
 ::: {.callout-note}
 The following study was performed by Daniel Vartanian (DV), Mario Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+\microskip
 
-__DV__ contributed to the design and implementation of the study. __DV__ and __MP__ collected the data. __DV__ and __CR__ performed the statistical analysis. __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript. -->
+__DV__ contributed to the design and implementation of the study. __DV__ and __MP__ collected the data. __DV__ and __CR__ performed the statistical analysis. __DV__ wrote the manuscript. All authors discussed the results and revised the final manuscript.
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+\microskip
 
 _Future reference_: Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). A biological approach for the latitudinal cline of the chronotype. _Scientific Reports_.
 :::
 
-\noindent __Chronotypes are temporal phenotypes [@ehret1974; @pittendrigh1993]. Observable traits, like weight and eye color. Our current understanding of these traits is that they are linked to our environment and are the result of evolution pressures for creating an inner temporal organization [@aschoff1989; @paranjpe2005]. A way that organisms have found to anticipate events. Having such an important function in nature, these internal rhythms need to be closely aligned with environmental changes. The agents that shift these oscillations towards the environment are called zeitgebers and the shift phenomenon is called entrainment [@roenneberg2003a; @roenneberg2010]. The main zeitgeber for humans is light exposure, particularly the light of the sun [@khalsa2003; @minors1991; @roenneberg2007a]. Considering the major role of light on entrainment, several studies hypothesized that the latitude shift of the sun could influence or even define the chronotypes of different populations [@horzum2015; @hut2013; @leocadio-miguel2017; @leocadio-miguel2014; @pittendrigh1991; @randler2017]. For example, populations that live close to the equator would be, on average, more entrained to the light-dark cycle and have morning-leaning characteristics. Here we test this hypothesis using a biological measure, the chronotype state, provided by the Munich ChronoType Questionnaire [@roenneberg2003]. We tested the latitude hypothesis on a sample with $73,825$ subjects living in different latitudes in Brazil. Our results show that, even with a wide, big, and aligned sample, the latitude is associated only with negligible effect sizes. The entrainment phenomenon appears to be much more complex than previously imagined, opening new questions and contradictions that need to be further investigated.__
+<!-- Statement of Significance -->
+
+\noindent __Chronotypes are temporal phenotypes [@ehret1974; @pittendrigh1993]. Observable traits, like weight and eye color. Our current understanding of these traits is that they are linked to our environment and are the result of evolution pressures for creating an inner temporal organization [@aschoff1989; @paranjpe2005], a way that organisms found to anticipate events. Having such an important function in nature, these internal rhythms need to be closely aligned with environmental changes. The agents that shift these oscillations towards the environment are called zeitgebers and the shift phenomenon is called entrainment [@roenneberg2003a; @roenneberg2010]. The main zeitgeber for humans is light exposure, particularly the light of the sun [@khalsa2003; @minors1991; @roenneberg2007a]. Considering the major role of light on entrainment, several studies hypothesized that the latitude shift of the sun could influence or even define the chronotypes of different populations [@horzum2015; @hut2013; @leocadio-miguel2017; @leocadio-miguel2014; @pittendrigh1991; @randler2017]. For example, populations that live close to the equator would be, on average, more entrained to the light-dark cycle and have morning-leaning characteristics. Here we test this hypothesis using a biological measure, the chronotype state, provided by the Munich ChronoType Questionnaire [@roenneberg2003]. We tested the latitude hypothesis on a sample with $76,744$ subjects living in different latitudes in Brazil. Our results show that, even with a wide, big, and aligned sample, the latitude is associated only with negligible effect sizes. The entrainment phenomenon appears to be much more complex than previously imagined, opening new questions and contradictions that need to be further investigated.__
 
 ## Main text
 
@@ -62,85 +58,83 @@ Humans can differ from one another in many ways. These observable traits, like h
 
 A chronotype is a temporal phenotype [@ehret1974; @pittendrigh1993]. This word is usually used to refer to endogenous circadian rhythms, i.e., rhythms which periods that are close to a day or 24 hours (_circa diem_). The current body of knowledge of Chronobiology, the science that studies biological rhythms, indicates that the evolution of these internal oscillators is linked to our oscillatory environment, like the day and night cycle, which, along with our evolution, created environmental pressures for the development of a temporal organization [@aschoff1989; @paranjpe2005]. A way in which an organism could predict events and better manage its needs, like storing food for the winter.
 
-But a temporal system wouldn’t be of much use if it could not follow environmental changes. To those environmental signals that can regulate the biological rhythms are given the name zeitgeber (from the German Zeit, time, and Geber, giver). These zeitgebers produce inputs in our bodies that can shift and align those rhythms. This phenomenon is called entrainment [@roenneberg2003a; @roenneberg2010].
+A temporal system wouldn’t be of much use if it could not follow environmental changes. To those environmental signals that can regulate the biological rhythms are given the name zeitgeber (from the German Zeit, time, and Geber, giver). These zeitgebers produce inputs in our bodies that can shift and align those rhythms. This phenomenon is called entrainment [@roenneberg2003a; @roenneberg2010].
 
 The main zeitgeber known today is the light, particularly the sun’s light [@khalsa2003; @minors1991; @roenneberg2007a]. Considering its influence in entraining the biological temporal system, several studies hypothesize that the latitudinal shift of the sun, related to the earth's axis, would produce, on average, different temporal traits in populations that live close to the equator line when compared to populations that live close to the planet’s poles [@horzum2015; @hut2013; @leocadio-miguel2017; @leocadio-miguel2014; @pittendrigh1991; @randler2017]. That is because the latter ones would have greater oscillations in sun activity and an overall weak solar zeitgeber. This is the latitude hypothesis, that can also appear as an environmental hypothesis of circadian rhythm regulation.
 
 Recently there have been attempts to test the latitude hypothesis in different settings, but, at least in humans, none of them have been successful in seeing a significant effect size related to the latitudinal cline. Some of these approaches worked with secondary data and with small samples. One of the most serious attempts of testing this hypothesis was made by Leocadio-Miguel et al. [-@leocadio-miguel2017] in 2017. They measured the chronotype of $12,884$ Brazillian subjects on a wide latitudinal spectrum using the Morningness–Eveningness Questionnaire (MEQ). Their results showed a negligible effect size. One possible reason for this is that the MEQ measures psychological traits and not biological states [@roenneberg2019], i.e., the circadian oscillation itself, therefore, it’s not the best way to answer the question [@leocadio-miguel2014].
 
-This article brings a novel attempt to test the latitude hypothesis, using, this time, a biological approach provided by the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. Furthermore, the test was carried out on the biggest chronotype sample ever collected in a same country. A sample made of $73,825$ subjects, all living in the same timezone in Brazil, with only one week of difference between questionnaire responses.
+This article brings a novel attempt to test the latitude hypothesis, using, this time, a biological approach provided by the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. Furthermore, the test was carried out on the biggest chronotype sample ever collected in a same country. A sample made of $76,744$ subjects, all living in the same timezone in Brazil, with only one week of difference between questionnaire responses.
 
 ### Results
 
-The midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype, had an overall mean of $\text{04:26:51}$. The distribution curve is shown in @fig-ch-6-chronotype-distribution.
+The local time of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype, had an overall mean of $\text{04:28:35}$. The distribution curve is shown in @fig-chapter-6-chronotype-distribution.
 
-That’s the midsleep point of Brazilian subjects with an intermediate/average chronotype. One can imagine, following the 7-9h sleep recommendation for healthy adults of the American Academy of Sleep Medicine (AASM) [@watson2015], that this average person would, if he/she had no social obligations, typically wake up at about $\text{08:26:51}$.
+That’s the midsleep point of Brazilian subjects with an intermediate/average chronotype. One can imagine, following the 7-9h sleep recommendation for healthy adults of the American Academy of Sleep Medicine (AASM) [@watson2015], that this average person would, if he/she had no social obligations, typically wake up at about $\text{08:28:35}$.
 
 ```{r}
 #| label: data-preparation
 #| message: false
 #| warning: false
 
-library(dplyr)
-library(here)
-library(targets)
-library(tidyr)
+source(here::here("R/utils.R"))
+
+utc_minus_3_states <- c(
+  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
+  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
+  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
+  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
+  "Rio Grande do Sul"
+)
 
 data <- 
   targets::tar_read("geocoded_data", store = here::here("_targets")) |>
-  dplyr::select(
-    age, sex, state, region, latitude, longitude, height, weight, work, study,
-    msf_sc, sjl, le_week, 
-    ) |>
+  dplyr::filter(state %in% utc_minus_3_states) |>
+  dplyr::select(msf_sc, age, sex, state, latitude, longitude) |>
   tidyr::drop_na(msf_sc, age, sex, latitude)
 ```
 
+::: {#fig-chapter-6-chronotype-distribution}
 ```{r}
-#| label: fig-ch-6-chronotype-distribution
 #| message: false
 #| warning: false
-#| fig-cap: Distribution of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype. The categorical cuts follow a quantile approach going from extremely early ($0 |- 0.11$) to the extremely late ($0.88 - 1$).
-
-library(here)
-library(latex2exp)
 
 source(here::here("R/plot_chronotype.R"))
 
 data |> 
-    plot_chronotype(
+  plot_chronotype(
     col = "msf_sc", 
     x_lab = "Frequency (%)",
     y_lab = latex2exp::TeX("Local time ($MSF_{sc}$)"),
     col_width = 0.8,
     col_border = 0.6,
-    text_size = 10,
+    text_size = env_vars$base_size,
     chronotype_cuts = FALSE,
     legend_position = "right"
   )
 ```
 
+[Source: Created by the author.]{.legend}
 
-The $\text{MSF}_{\text{sc}}$ curve had a skewness of $0.291$ and a kurtosis of $2.766$. However, the distribution was not normal accordingly to Kolmogorov-Smirnov test ($\text{D} = 0.0373$; $\text{p-value} < 2e-16$) and D'Agostino Skewness test ($\text{Z3} = 31.544$; $\text{p-value} < 2.2e-16$).
+Distribution of the local time of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype. The categorical cuts follow a quantile approach going from extremely early ($0 |- 0.11$) to the extremely late ($0.88 - 1$).
+:::
 
-A linear regression model was created with $\text{MSF}_{\text{sc}}$ as the response variable and with age and sex as predictors ($\text{R}^{2} = 0.054433$; $\text{F}(2, 73822) = 2130$, $\text{p-value} < 2e-16$). A Box-Cox transformation of the response variable was needed to attend to the linear regression model assumptions ($\lambda = -1.1919$; $\text{MSF}_{\text{sc}}^{\lambda - 1} / \lambda$). All coefficients were significantly different than $0$ ($\text{p-value} < 2e-16$) and, accordingly to D'Agostino Skewness test, the residuals were normal ($\text{Z3} = -1.2704$; $\text{p-value} < 0.2039$). Residual homoscedasticity was verified by a Score Test for Heteroskedasticity ($\chi^{2} = 0.00$; $\text{p-value} = 1$). No collinearity was found between the predictor variables (variance inflation factor: $\text{age} = 1.0014$; $\text{sex} = 1.0014$).
+The $\text{MSF}_{\text{sc}}$ curve had a skewness of $0.284$ and a kurtosis of $2.773$. However, the distribution was not normal accordingly to Kolmogorov-Smirnov test ($\text{D} = 0.03717$; $\text{p-value} = 2e-16$) and D'Agostino Skewness test ($\text{Z3} = 31.525$; $\text{p-value} = 2.2e-16$).
 
-Another model was created on top of the first one, adding the latitude as a predictor variable ($\text{R}^{2} = 0.06204$; $\text{F}(3, 73821) = 1630$, $\text{p-value} < 2e-16$). All coefficients were significantly different than 0 ($\text{p-value} < 2e-16$) and the residuals were normally distributed accordingly to the D'Agostino Skewness test, ($\text{Z3} = 0.0703$; $\text{p-value} < 0.944$). Residual homoscedasticity was verified by a Score Test for Heteroskedasticity ($\chi^{2} = 0.00$; $\text{p-value} = 1$). No collinearity was found between the predictor variables (variance inflation factor: $\text{age} = 1.0067$; $\text{sex} = 1.0018$; $\text{latitude} = 1.0056$). The longitude was not used as a predictor because it presented colinearity with the latitude variable.
+A linear regression model was created with $\text{MSF}_{\text{sc}}$ as the response variable and with age and sex as predictors ($\text{R}^{2} = 0.05373$; $\text{F}(2, 76741) = 2180$, $\text{p-value} = 2e-16$), the two most known predictors for chronotype (@roenneberg2007a). A Box-Cox transformation of the response variable was needed to attend to the linear regression model assumptions ($\lambda = -1.1111$; $\text{MSF}_{\text{sc}}^{\lambda - 1} / \lambda$). All coefficients were significantly different than $0$ ($\text{p-value} = 2e-16$) and, accordingly to D'Agostino Skewness test, the residuals were normal ($\text{Z3} = -1.1906$; $\text{p-value} = 0.23383$). Residual homoscedasticity was verified by a Score Test for Heteroskedasticity ($\chi^{2} = 0.00$; $\text{p-value} = 1$). No collinearity was found between the predictor variables (variance inflation factor: $\text{age} = 1.0012$; $\text{sex} = 1.0012$).
 
-An $\text{F}$ test for nested models showed a significant reduction of the residual sum of squares ($\text{F}(1, 73821) = 600$, $\text{p-value} < 2e-16$), meaning that the latitude seems to produce an effect on the chronotype. However, when estimating Cohen’s $f^2$ effect size, the result was negligible [@cohen1992] $((0.06204 - 0.054433) / (1 - 0.06204) = 0.0081102$).
+Another model was created on top of the first one, adding the latitude as a predictor variable ($\text{R}^{2} = 0.060698$; $\text{F}(3, 76740) = 1650$, $\text{p-value} = 2e-16$). All coefficients were significantly different than 0 ($\text{p-value} = 2e-16$) and the residuals were normally distributed accordingly to the D'Agostino Skewness test, ($\text{Z3} = 0.0742$; $\text{p-value} = 0.94085$). Residual homoscedasticity was verified by a Score Test for Heteroskedasticity ($\chi^{2} = 0.00$; $\text{p-value} = 1$). No collinearity was found between the predictor variables (variance inflation factor: $\text{age} = 1.0065$; $\text{sex} = 1.0016$; $\text{latitude} = 1.0056	$). The longitude was not used as a predictor because it presented colinearity with the latitude variable.
+
+An $\text{F}$ test for nested models showed a significant reduction of the residual sum of squares ($\text{F}(1, 76740) = 568.94$, $\text{p-value} = 2e-16$), meaning that the latitude seems to produce an effect on the chronotype. However, when estimating Cohen’s $f^2$ effect size, the result was negligible [@cohen1992] $((0.06069 - 0.05373) / (1 - 0.06069) = 0.00740$).
 
 ### Discussion
 
-The results show that even with a wide latitudinal spectrum and with a big and aligned sample of biological states the latitude effect does not reveal itself in a non-negligible size. Several studies indicate the existence of this effect on the chronotype [@hut2013; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003], but, at this time, at least in humans, no empirical evidence can support this claim. Our results are very similar to Leocadio-Miguel et al. [-@leocadio-miguel2017], which also found a negligible effect size (Cohen’s $f^{2} = 0.004143174$). The inconsistency of the latitude effect can be visualized in @fig-ch-6-chronotype-distribution-by-latitude.
+The results show that even with a wide latitudinal spectrum and with a big and aligned sample of biological states the latitude effect does not reveal itself in a non-negligible size. Several studies indicate the existence of this effect on the chronotype [@hut2013; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003], but, at this time, at least in humans, no empirical evidence can support this claim. Our results are very similar to Leocadio-Miguel et al. [-@leocadio-miguel2017], which also found a negligible effect size (Cohen’s $f^{2} = 0.004143174$). The inconsistency of the latitude effect can be visualized in @fig-chapter-6-chronotype-distribution-by-latitude.
 
+::: {#fig-chapter-6-chronotype-distribution-by-latitude}
 ```{r}
-#| label: fig-ch-6-chronotype-distribution-by-latitude
 #| message: false
 #| warning: false
-#| fig-cap: Distribution of mean aggregates of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype, with latitude decimal degree intervals. Higher values of $\text{MSF}_{\text{sc}}$ indicate a late chronotype tendency.
-
-library(dplyr)
-library(here)
-library(latex2exp)
 
 source(here::here("R/plot_latitude_series.R"))
 
@@ -154,13 +148,18 @@ data |>
     error_bar_width = 0.5, 
     error_bar_linewidth = 1, 
     error_bar = TRUE,
-    text_size = 10
-    )
+    text_size = env_vars$base_size
+  )
 ```
+
+[Source: Created by the author.]{.legend}
+
+Distribution of mean aggregates of the local time of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of $\text{MSF}_{\text{sc}}$ indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval.
+:::
 
 Despite the lack of evidence, is not uncommon to hear talks insisting that this effect is real and already proven. We suspect that this behavior may be derived from a lack of understanding of statistical models and techniques. Although it may be logical and aligned with the overall theory for the evolution of biological temporal systems, it’s our role as scientists to eliminate contractions, not pursue them.
 
-As Karl Popper said, science begins and ends with questions [@popper1979]. The absence of a strong entrainment with the solar zeitgeber shows that the entrainment phenomenon is more complex than we previously imagined. Other hypotheses for the human circadian entrainment, like the entrainment to self-selected light, proposed by Anna Skeldon and Derk-Jan Dijk [@skeldon2021], need to be tested and may produce significant results.
+As Karl Popper said, science begins and ends with questions [@popper1979]. The absence of a strong entrainment with the solar zeitgeber shows that the entrainment phenomenon is more complex than we previously imagined. Other hypotheses for the human circadian entrainment, like the entrainment to self-selected light, proposed by Anna Skeldon and Derk-Jan Dijk [-@skeldon2021], need to be tested and may produce significant results.
 
 It’s important to notice that the results shown here are preliminary. The data still needs some cleaning and to be balanced with Brazil's latest population census. The latitude coordinates used in the analysis are related to the subject’s state capital and, hence, have low resolution. Even with these results, it may be that a significant latitude effect can still appear at the end of the research.
 
@@ -170,29 +169,31 @@ Despite the several strengths that the dataset used in this study has, it is als
 
 ### Ethics information
 
-Abiding by Brazilian law, all research involving human subjects must have the approval of a Research Ethics Committee (REC) affiliated with the [Brazilian National Research Ethics Committee (CONEP)](https://conselho.saude.gov.br/Web_comissoes/conep/index.html). This approval request is ongoing.
+Abiding by Brazilian law, all research involving human subjects must have the approval of a Research Ethics Committee (REC) affiliated with the [Brazilian National Research Ethics Committee (CONEP)](https://conselho.saude.gov.br/Web_comissoes/conep/index.html). This approval request is ongoing (CAAE: [75588723.4.0000.5390](https://plataformabrasil.saude.gov.br/login.jsf)).
 
 ### Measurement instrument
 
 Chronotypes were measured using the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. MCTQ is a widely validated and widely used self-report questionnaire for measuring the sleep-wake cycle and chronotypes [@roenneberg2019]. It quantifies the chronotype as a state, a biological circadian phenotype, using as a proxy the local time of the midpoint between sleep onset and sleep end on work-free days ($MSF_{sc}$). A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified [@roenneberg2012].
 
-Subjects were asked to complete an online questionnaire based on the MCTQ Portuguese translation created by Till Roenneberg & Martha Merrow for the EUCLOCK project [@roenneberg2006] ($\text{statements mean cosine distance} = 0.921$). They were also asked to provide sociodemographic (e.g., age, gender), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and work/study routine-related data. A deactivated version of the questionnaire can be seen at <https://bit.ly/brchrono-form>.
+Subjects were asked to complete an online questionnaire based on the MCTQ Portuguese translation created by Till Roenneberg & Martha Merrow for the EUCLOCK project [@roenneberg2006] ($\text{statements mean cosine distance} = 0.921$). They were also asked to provide sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and work/study routine-related data. A deactivated version of the questionnaire can be seen at <https://bit.ly/brchrono-form>.
 
 ### Sample
 
-The sample is made up of $73,825$ Brazilian subjects. It was obtained in 2017 from October 15th to 21st by a broadcast of the online research questionnaire on a popular Sunday TV show with national reach [@globo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The sample is made up of $76,744$ Brazilian subjects. It was obtained in 2017 from October 15th to 21st by a broadcast of the online research questionnaire on a popular Sunday TV show with national reach [@globo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
-A survey made in 2019 by the Brazilian Institute of Geography and Statistics (IBGE)27 saw that $82.17\%$ of Brazilians' homes had access to an internet connection. Hence, this sample can have a good diversity of Brazil’s population. Only Brazilian residents in states with UTC-3 timezone and with an age equal to or greater than $18$ years old were included in the final sample.
+A survey conducted in 2019 by the Brazilian Institute of Geography and Statistics (IBGE) [-@ibge2021] found that $82.17\%$ of Brazilian households had access to an internet connection. Therefore, this sample is likely to have a good representation of Brazil’s population. Only residents of Brazilian states in the UTC-3 timezone, aged $18$ years or older, were included in the final sample.
 
 In order to verify if the sample size was adequate for the study of the phenomenon under investigation, a power analysis was conducted for nested multiple regression models using the G\*Power software [@faul2007]. The analysis used the parameters presented in Leocadio-Miguel et al. [-@leocadio-miguel2017] article for a multiple linear regression with 10 tested predictors and only $10$ conceived predictors, considering a significance level of $0.05$ ($\alpha$) and a power of $0.95$ ($1 - \beta$). The result showed that a sample of $5,895$ individuals would be necessary to test the hypothesis.
 
 Daylight Saving Time (DST) began in Brazil at midnight on November 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that MCTQ asks subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample is the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the hypothesis test.
 
-Based on the 2010 census [@institutobrasileirodegeografiaeestatisticaa], Brazil had $51.793\%$ of females and $48.207\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with $66.341\%$ of females and $33.659\%$ of male subjects.
+<!-- Use the PNAD data -->
 
-The subject’s mean age is $32.017$ years ($\text{SD} = 9.242$; $\text{Max.} = 58.786$). Female subjects have a mean age of $31.770$ years ($\text{SD} = 9.340$; $\text{Max.} = 58.786$) and male subjects $32.504$ years ($\text{SD} = 9.026$; $\text{Max.} = 58.772$). For comparison, based on the 2010 census29, Brazil’s population with an age equal to or greater than $18$ years old had a mean age of $41.032$ years ($\text{SD} = 9.242$), with a mean age of $41.645$ years ($\text{SD} = 16.907$) for female subjects and a mean age of $40.373$ years ($\text{SD} = 16.200$) for male subjects. Data related to age and sex from the last Brazil census (2022) were not available before this article was submitted.
+Based on the 2022 census [@ibgea], Brazil had $52.263\%$ of females and $47.737\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with $66.297\%$ of females and $33.703\%$ of male subjects.
 
-Considering the 5 major regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census, the Southeast region is home to $41.784\%$ of Brazil’s population, followed by the Northeast ($26.910\%$), South ($14.741\%$), North ($8.544\%$), and Midwest ($8.021\%$) regions. $62.454\%$ of the sample is located in the Southeast region, $11.797\%$ in the Northeast, $17.861\%$ in the South, $1.682\%$ in the North, and $6.205\%$ in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).
+The subject’s mean age is $32.015$ years ($\text{SD} = 9.252$; $\text{Max.} = 58.786$). Female subjects have a mean age of $31.787$ years ($\text{SD} = 9.364$; $\text{Max.} = 58.786$) and male subjects $32.464$ years ($\text{SD} = 9.012$; $\text{Max.} = 58.772$). For comparison, based on the 2022 census [@ibgeb], Brazil’s population with an age equal to or greater than $18$ years old had a mean age of $44.277$ years ($\text{SD} = 17.221$), with a mean age of $44.987$ years ($\text{SD} = 17.511$) for female subjects and a mean age of $43.499$ years ($\text{SD} = 16.864$) for male subjects.
+
+Considering the five regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census [@ibge2022], the Southeast region is home to $41.784\%$ of Brazil’s population, followed by the Northeast ($26.910\%$), South ($14.741\%$), North ($8.544\%$), and Midwest ($8.021\%$) regions. $62.454\%$ of the sample is located in the Southeast region, $11.797\%$ in the Northeast, $17.861\%$ in the South, $1.682\%$ in the North, and $6.205\%$ in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).
 
 The sample latitudinal range was $30.211$ decimal degrees ($\text{Min.} = -30.109$; $\text{Max.} = 0.10177$) with a longitudinal span of $16.378$ decimal degrees ($\text{Min.} = -51.342$; $\text{Max.} = -34.964$). For comparison, Brazil has a latitudinal range of $39.024$ decimal degrees ($\text{Min.} = -33.752$; $\text{Max.} = 5.2719$) and a longitudinal span of $39.198$ decimal degrees ($\text{Min.} = -34.793$; $\text{Max.} = -73.991$). 
 
@@ -212,10 +213,10 @@ $$
 $$
 
 ::: {.content-visible when-format="pdf"}
-\vspace{15pt}
+\smallskip
 :::
 
-In order to test a possible latitude association in predicting the chronotype, the full model was the restricted model with the addition of the latitude variable. The restricted model had the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$) as the response variable, MCTQ proxy for the chronotype, with sex and age as predictors.
+In order to test a possible latitude association in predicting the chronotype, the full model was the restricted model with the addition of the latitude variable. The restricted model had the local time of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$) as the response variable, MCTQ proxy for the chronotype, with sex and age as predictors.
 
 A residual analysis was made to ensure the validity of the models before the hypothesis test. The hypothesis was tested using a $0.05$ ($\alpha$) significance level.
 

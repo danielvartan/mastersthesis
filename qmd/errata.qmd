@@ -4,14 +4,19 @@
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
-
-# library(here)
+#| include: false
 
 source(here::here("R/quarto-setup.R"))
 ```
 
+{{< var author-surname >}}, `r sub("\\. .\\.$", "", env_vars[["author-initials"]])`. ({{< var year >}}). _{{< var title >}}_ [{{< var academic-title >}}'s {{< var type-of-work >}}, {{< var university >}}].
+
+::: {.content-visible when-format="pdf"}
+<!-- %:::% errata reference begin %:::% -->
+\noindent Vartanian, D. ({\imprimirdata}). \textit{\imprimirtitulo} [{\imprimirtipodetituloacademico}'s {\imprimirtipotrabalho}, {\imprimiruniversidade}].
+<!-- %:::% errata reference end %:::% -->
+:::
+
 <!-- %:::% errata body begin %:::% -->
-This is the development version of the thesis (version <1.0.0). Any necessary corrections will be listed here after its approval.
+This is the preliminary version of this thesis (version <1.0.0). Any required corrections will be listed here upon approval.
 <!-- %:::% errata body end %:::% -->

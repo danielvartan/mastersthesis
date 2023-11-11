@@ -2,19 +2,16 @@ editor: source
 
 execute:
   cache: false
-  freeze: false # auto
+  freeze: auto
 
 project:
   type: book
 
-# See <https://quarto.org/docs/projects/profiles.html>.
 profile:
   group:
     - [html, pdf]
-  default: html
+  default: pdf
 
-# See  <https://quarto.org/docs/books/>.
-# See <https://quarto.org/docs/reference/projects/books.html>.
 book:
   title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
   author: "Daniel Vartanian"
@@ -25,8 +22,8 @@ book:
   #   Quarto book of the master's thesis: Ecology of sleep and circadian
   #   phenotypes of the Brazilian population.
   keyword: >
-    masters-thesis, chronobiology, chronotype, circadian phenotypes, sleep,
-    sleep-wake cycle, complex-systems, entrainment, latitude, ecology, mctq
+    Chronobiology. Biological rhythms. Chronotype. Circadian phenotype. Sleep.
+    Complex systems. Entrainment. Latitude. Ecology. MCTQ.
   language: en-us
   license: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
   publisher: "University of São Paulo"
@@ -37,6 +34,5 @@ book:
   repo-url: https://github.com/danielvartan/mastersthesis/
   issue-url: https://github.com/danielvartan/mastersthesis/issues/
   repo-branch: main
-  version: "0.1.0"
 
-bibliography: references.json
+bibliography: references.bib

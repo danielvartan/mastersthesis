@@ -1,13 +1,11 @@
 <!-- %:::% .common h1 begin %:::% -->
-# The mctq r package
+# The {mctq} R package
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
+#| include: false
 
-library(here)
 source(here::here("R/quarto-setup.R"))
 ```
 
@@ -15,13 +13,15 @@ source(here::here("R/quarto-setup.R"))
 #| echo: false
 #| output: asis
 
-# library(rutils)
-
-rutils:::quarto_status("drafting")
+rutils:::quarto_status(
+  type = "drafting",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
 ```
 
 ::: {.callout-note}
-## Target
+## Target journal
 
 1. [Journal of Statistical Software](https://www.jstatsoft.org/authors) ([IF 2022: 5.8/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
 2. [Journal of Open Source Software](https://joss.readthedocs.io/en/latest/submitting.html) ([B1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
@@ -30,16 +30,11 @@ rutils:::quarto_status("drafting")
 ::: {.callout-note}
 The following study was conducted by Daniel Vartanian (__DV__), Ana Amélia Benedito-Silva (__AA__), Mario Pedrazzoli (__MP__), and Camilo Rodrigues Neto (__CR__).
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+\microskip
 
 __DV__ contributed to the conception, design, coding, and implementation of the software. __AA__, __MP__, and __CR__ served as scientific advisors and reviewers. __DV__ authored the manuscript. All authors discussed the results and revised the final manuscript.
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+\microskip
 
-_Future reference_: Vartanian, D., Benedito-Silva, A. A., Pedrazzoli, M., & Rodrigues Neto, C. (2024). {mctq}: Tools to process the Munich ChronoType Questionnaire (MCTQ). _Journal of Statistical Software_.
-
+_Future reference_: Vartanian, D., Benedito-Silva, A. A., Pedrazzoli, M., & Rodrigues Neto, C. (2024). {mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ). _Journal of Statistical Software_.
 :::

@@ -1,77 +1,19 @@
-% tesesusp.cls, v-0.1.0
-
-% Based on 'bntex2ppgsi.cls', 'abntex2.csl' and on USP guidelines to create
-% thesis and dissertation documents.
-% See <https://www.overleaf.com/project/64f7bdf1641ad4a3a8482800>
-% and <https://teses.usp.br/index.php?option=com_content&
-%      view=article&id=52&Itemid=67&lang=en>
-% to learn more.
-
 %:::% class attribute begin/end %:::%
 
-% ----------------------------------------------------------------------
-% Cover
-% ----------------------------------------------------------------------
-
-%:::% cover begin %:::%
-\instituicao{
-	UNIVERSITY OF SÃO PAULO
-	\par
-	SCHOOL OF ARTS, SCIENCES AND HUMANITIES
-	\par
-	GRADUATE PROGRAM IN MODELING COMPLEX SYSTEMS
-}
-
-\local{São Paulo}
-\orientador{Prof. Dr. Camilo Rodrigues Neto}
-\tipotrabalho{Master's thesis}
-%:::% cover end %:::%
-
-% ----------------------------------------------------------------------
+% -----
 % Title page
-% ----------------------------------------------------------------------
+% -----
 
 %:::% title-page begin %:::%
 \preambulo{
-  %:::% title-page body begin %:::%
-Preliminary version
+%:::% title-page body begin %:::%
+{\imprimirtipotrabalho} presented to the {\imprimirescola} at {\imprimiruniversidade}, as part of the requirements for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}.
 
-\vspace{1cm}
+\smallskip
+Area of concentration: {\imprimirareadeconcentracao}.
 
-Dissertation presented to the School of Arts, Sciences and Humanities at
-the University of São Paulo as part of the requirements for the degree
-of Master of Science by the Graduate Program in Modeling Complex Systems
-(PPG-SCX).
-
-\vspace{0.5cm}
-
-Area of Concentration: Fundamentals of complex systems.
-
-\vspace{1cm}
-
-Supervisor: Prof.~Dr.~Camilo Rodrigues Neto
-  %:::% title-page body end %:::%
+\smallskip
+Supervisor: Prof. Dr. {\imprimirorientador}
+%:::% title-page body end %:::%
 }
 %:::% title-page end %:::%
-
-% ----------------------------------------------------------------------
-% Final PDF appearance settings (change only if necessary)
-% ----------------------------------------------------------------------
-
-\usepackage{array}
-\usepackage{float}
-\usepackage{lipsum}
-\usepackage{setspace}
-
-\floatplacement{table}{H}
-\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
-
-\setlength{\parindent}{1.25cm}
-\setlength{\parskip}{0cm}
-\renewcommand{\baselinestretch}{1.5}
-
-% \makeindex
-
-\clubpenalty10000
-\widowpenalty10000
-\displaywidowpenalty10000

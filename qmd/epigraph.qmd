@@ -4,18 +4,24 @@
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
-
-# library(here)
+#| include: false
 
 source(here::here("R/quarto-setup.R"))
 ```
 
-<!-- @theroyalsociety -->
+::: {.content-visible when-format="html"}
+_Nullius in verba_[^1]
 
+[^1]: The Royal Society. (n.d.). __History of the Royal Society__. https://royalsociety.org/about-us/history/
+
+:::
+
+::: {.content-visible when-format="pdf"}
 <!-- %:::% epigraph body begin %:::% -->
-_Nullius in verba_
+\textit{Nullius in verba}\footnotemark{}
 
-(The Royal Society, n.d.)
+\footnotetext{
+  The Royal Society. (n.d.). \textit{History of the Royal Society}. \href{https://royalsociety.org/about-us/history/}{https://royalsociety.org/about-us/history/}
+}
 <!-- %:::% epigraph body end %:::% -->
+:::

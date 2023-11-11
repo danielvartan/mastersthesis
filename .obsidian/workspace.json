@@ -34,9 +34,21 @@
               },
               "pinned": true
             }
+          },
+          {
+            "id": "0f3fffc213ca6f8b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "qmd/list-of-abbreviations.qmd",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -113,7 +125,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "qmd/chapter-1.qmd",
+                "file": "qmd/list-of-abbreviations.qmd",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -130,7 +142,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "qmd/chapter-1.qmd",
+                "file": "qmd/list-of-abbreviations.qmd",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -149,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "qmd/chapter-1.qmd"
+                "file": "qmd/list-of-abbreviations.qmd"
               }
             }
           }
@@ -169,9 +181,12 @@
       "obsidian-grammarly-plugin:Enable Grammarly": false
     }
   },
-  "active": "8356ee2ff131600b",
+  "active": "0f3fffc213ca6f8b",
   "lastOpenFiles": [
+    "qmd/chapter-1.qmd",
     "qmd/chapter-6.qmd",
+    "README.html",
+    "README.knit.md",
     "Ecology-of-sleep-and-circadian-phenotypes-of-the-Brazilian-population.tex",
     "Ecology-of-sleep-and-circadian-phenotypes-of-the-Brazilian-population.pdf",
     "index.pdf",
@@ -180,8 +195,6 @@
     "index.lot",
     "index.lof",
     "index.aux",
-    "tesesusp.cls",
-    "index.tex",
     "qmd/appendice-ch-6.knit.md",
     "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-36-1.png",
     "qmd/appendice-ch-6_files/figure-pdf/unnamed-chunk-31-1.png",
@@ -215,7 +228,6 @@
     "qmd/acknowledgments.knit.md",
     "qmd/inscription.knit.md",
     "qmd/errata.knit.md",
-    "renv/library/R-4.3/x86_64-w64-mingw32/targets/tar_watch/about.md",
-    "renv/library/R-4.3/x86_64-w64-mingw32/targets/paper/paper.md"
+    "renv/library/R-4.3/x86_64-w64-mingw32/targets/tar_watch/about.md"
   ]
 }

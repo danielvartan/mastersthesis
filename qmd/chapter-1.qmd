@@ -1,30 +1,39 @@
-::: {.content-visible when-format="pdf"}
-\textual
-:::
-
 <!-- %:::% .common h1 begin %:::% -->
 # Introduction
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
-#| echo: false
-#| output: false
-
-# library(here)
+#| include: false
 
 source(here::here("R/quarto-setup.R"))
 ```
 
-<!-- %:::% chapter-1 clip begin %:::% -->
 ```{r}
 #| echo: false
 #| output: asis
 
-# library(rutils)
-
-rutils:::quarto_status("polishing")
+rutils:::quarto_status(
+  type = "polishing",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
 ```
+
+<!-- %:::% index pdf begin %:::% -->
+You are currently viewing the preliminary `r ifelse(env_vars$format == "pdf", "print", "web")` version of this master's thesis.
+
+This document follows the [collection of articles thesis](https://en.wikipedia.org/wiki/Collection_of_articles) format. This first chapter serves as an introduction to the thesis subject, providing its justification, aims, and a list of all projects and related activities produced during its development. The subsequent chapters consist of a series of articles connected to the thesis, with the exception of the last one, which encompasses a discussion and final remarks.
+
+::: {.content-visible when-format="html"}
+All analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system.
+:::
+
+::: {.content-visible when-format="pdf"}
+All analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system. It's worth noting that this type of thesis is best suited for online viewing. To access the digital version and see the latest research updates, please visit [https://danielvartan.github.io/mastersthesis/](https://danielvartan.github.io/mastersthesis/).
+:::
+
+Given its preliminary nature, not all chapters are ready for reading. However, the author has chosen to display the entire state of the thesis rather than presenting only polished sections. This approach provides readers with a more comprehensive understanding of the work in progress. Chapters not suitable for reading will include a call block indicating their status.
 
 <!-- ## On chronobiology -->
 
@@ -32,59 +41,44 @@ rutils:::quarto_status("polishing")
 
 <!-- ## On the entrainment phenomenon -->
 
-::: {.content-visible when-format="pdf"}
-## Foreword
-
-You are currently viewing the preliminary print version of this master's thesis.
-
-The analyses presented in this document are entirely reproducible. They were conducted using the [R programming language](https://www.r-project.org/) in conjunction with the [Quarto](https://quarto.org/) publishing system (an evolution of [R Markdown](https://rmarkdown.rstudio.com/)). It's worth noting that this type of thesis, given its nature, is better suited for viewing in a **digital format**. To access the digital version of the thesis, as well as the latest research updates, please visit [https://danielvartan.github.io/mastersthesis/](https://danielvartan.github.io/mastersthesis/).
-
-As one might expect from a preliminary version, not all chapters are ready for reading. However, the author has chosen to display the entire state of the thesis rather than showing only one or two polished sections. This approach provides readers with a more comprehensive understanding of the work in progress. Chapters that are not suitable for reading will include a call block indicating their status.
-:::
-
 ## A brief introduction to chronobiology
 
 The dimension of time, manifest in the form of rhythms and cycles, like the alternating patterns of day and night as well as the annual transition of seasons, was consistently featured in the evolutionary journey of not only the human species but also all other life forms on our planet. These rhythms and cycles brought with them evolutionary pressures, resulting in the development of a temporal organization that allowed organisms to survive and reproduce in response to the conditions imposed by the environments they inhabited [@pittendrigh1981; @menna-barreto2003]. An example of this organization can be observed in the presence of different activity-rest patterns among living beings as they adapt to certain temporal niches, such as the diurnal behavior of humans and the nocturnal behavior of cats and some rodents [@foster2005].
 
-For years, scientists debated whether this organization was solely in response to environmental stimuli or if it was also present endogenously, internally, within organisms [@rotenberg2003]. One of the early seminal studies describing a potential endogenous rhythmicity in living beings was conducted in 1729 by the French astronomer Jean Jacques d'Ortous de Mairan. De Mairan observed the movement of the sensitive plant (_mimosa pudica_) by isolating it from the light-dark cycle and found that the plant continued to move its leaves periodically (@fig-ch-1-nobel-prize-2017-de-mairan-experiment) [@foster2005; @rotenberg2003]. The search for this internal timekeeper in living beings only began to solidify in the 20th century through the efforts of scientists like Jürgen Aschoff, Colin Pittendrigh, and Erwin Bünning, culminating in the establishment of the science known as chronobiology, with a significant milestone being the Cold Spring Harbor Symposium on Quantitative Biology: Biological Clocks in 1960 (_chrónos_, from Greek, meaning time; and _biology_, pertaining to the study of life) [@rotenberg2003; @coldspringharborlaboratory] . However, the recognition of endogenous rhythmicity by the global scientific community truly came in 2017 when Jeffrey Hall, Michael Rosbash, and Michael Young were awarded the [Nobel Prize in Physiology or Medicine](https://www.nobelprize.org/prizes/medicine/2017/press-release/](https://www.nobelprize.org/prizes/medicine/2017/press-release/) for their discoveries of molecular mechanisms that regulate the circadian rhythm in fruit flies (_circā_, from Latin, meaning around, and _dĭes_, meaning day [@latinitium] — a rhythm that expresses itself in approximately one day) [@nobelprizeoutreachab].
+For years, scientists debated whether this organization was solely in response to environmental stimuli or if it was also present endogenously, internally, within organisms [@rotenberg2003]. One of the early seminal studies describing a potential endogenous rhythmicity in living beings was conducted in 1729 by the French astronomer Jean Jacques d'Ortous de Mairan. De Mairan observed the movement of the sensitive plant (_mimosa pudica_) by isolating it from the light-dark cycle and found that the plant continued to move its leaves periodically (@fig-chapter-1-nobel-prize-2017-de-mairan-experiment) [@foster2005; @rotenberg2003]. The search for this internal timekeeper in living beings only began to solidify in the 20th century through the efforts of scientists like Jürgen Aschoff, Colin Pittendrigh, Franz Halberg, and Erwin Bünning, culminating in the establishment of the science known as chronobiology^[Some say the term _chronobiology_ was coined by Franz Halberg during the Cold Spring Harbor Symposium on Quantitative Biology, vol. XXV [@menna-barreto2023, p. 21].], with a significant milestone being the Cold Spring Harbor Symposium on Quantitative Biology: Biological Clocks in 1960 (_chrónos_, from Greek, meaning time; and _biology_, pertaining to the study of life) [@rotenberg2003; @coldspringharborlaboratory]. However, the recognition of endogenous rhythmicity by the global scientific community truly came in 2017 when Jeffrey Hall, Michael Rosbash, and Michael Young were awarded the [Nobel Prize in Physiology or Medicine](https://www.nobelprize.org/prizes/medicine/2017/press-release/) for their discoveries of molecular mechanisms that regulate the circadian rhythm in fruit flies (_circā_, from Latin, meaning around, and _dĭes_, meaning day [@latinitium] — a rhythm that expresses itself in approximately one day) [@nobelprizeoutreachab].
 
-::: {#fig-ch-1-nobel-prize-2017-de-mairan-experiment}
+::: {#fig-chapter-1-nobel-prize-2017-de-mairan-experiment}
 ![](images/nobel-prize-outreach-ab-2017-de-mairan-experiment.jpg){width=50%}
 
-Illustration of a circadian rhythm in the movement of the leaves of the sensitive plant (_mimosa pudica_) observed by Jacques d'Ortous de Mairan in 1729.\
-Reproduction from @nobelprizeoutreachab.
+[Source: Reproduction from @nobelprizeoutreachab.]{.legend}
+
+Illustration of a circadian rhythm in the movement of the leaves of the sensitive plant (_mimosa pudica_) observed by Jacques d'Ortous de Mairan in 1729.
 :::
 
 Science has already demonstrated and described various biological rhythms and their impacts on organisms. These rhythms can occur at different levels, whether at a macro level, such as the menstrual cycle, or even at a micro level, such as rhythms expressed within cells [@roenneberg2016]. Like many other biological phenomena, these are complex systems present in all living beings, i.e., a emergence created by a large number of connected and interecticve agents that exhibit adaptive characteristics, all without the need of a central control [@boccara2010]. It is understood today that the endogeneity of rhythms has provided organisms with an anticipatory capacity, allowing them to organize resources and activities before they are needed [@marques2003].
 
-Despite the endogenous nature of these rhythms, they can still be regulated by the external environment. Signals (cues) from the environment that occur cyclically and have the ability to regulate biological rhythmic expression are called zeitgebers (from the German _zeit_, meaning time, and _geber_, meaning donor [@cambridgeuniversitypress]). These zeitgebers act as synchronizers by entraining the phases of  biological rhythms [@khalsa2003; @kuhlman2018] (see @fig-ch-1-kuhlman-2018-figure-2b). Among the known zeitgebers are, for example, meal timing and changes in environmental temperature [@aschoff1981; @roenneberg2016]. However, the most influential of them is the light-dark cycle. It is understood that the day/night cycle, resulting from the rotation of the Earth, has provided the vast majority of organisms with an oscillatory system with a periodic duration of approximately 24 hours [@kuhlman2018; @roenneberg2007].
+Despite the endogenous nature of these rhythms, they can still be regulated by the external environment. Signals (cues) from the environment that occur cyclically and have the ability to regulate biological rhythmic expression are called zeitgebers (from the German _zeit_, meaning time, and _geber_, meaning donor [@cambridgeuniversitypress]). These zeitgebers act as synchronizers by entraining the phases of  biological rhythms [@khalsa2003; @kuhlman2018] (see @fig-chapter-1-kuhlman-2018-figure-2b). Among the known zeitgebers are, for example, meal timing and changes in environmental temperature [@aschoff1981; @roenneberg2016]. However, the most influential of them is the light-dark cycle. It is understood that the day/night cycle, resulting from the rotation of the Earth, has provided the vast majority of organisms with an oscillatory system with a periodic duration of approximately 24 hours [@kuhlman2018; @roenneberg2007].
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
-
-::: {#fig-ch-1-kuhlman-2018-figure-2b}
+::: {#fig-chapter-1-kuhlman-2018-figure-2b}
 ![](images/kuhlman-2018-figure-2b.jpg){width=75%}
 
-Illustration of a circadian rhythm (output) whose phase is entrained in the presence of a zeitgeber (input). The rectangles represent the light-dark cycle.\
-Adaptation based on @kuhlman2018.
+[Source: Adapted from @kuhlman2018.]{.legend}
+
+Illustration of a circadian rhythm (output) whose phase is entrained in the presence of a zeitgeber (input). The rectangles represent the light-dark cycle.
 :::
 
 Naturally, the expression of this temporal organization varies from organism to organism, even among members of the same species, whether due to the different ways they are exposed to the environment or the differences in the expression of endogenous rhythmicity, which, in turn, results from gene expression [@roenneberg2007a]. The interaction between these two expressions, external and internal, of the environment and genotype, generates a signature, an observable characteristic, which is called a phenotype [@frommlet2016].
 
 The various temporal characteristics of an organism can be linked to different oscillatory periods. Among these are circadian phenotypes, which refer to characteristics observed in rhythms with periods lasting about a day [@foster2005]. Another term used for these temporal phenotypes, as the name suggest, is _chronotype_ [@ehret1974; @pittendrigh1993]. This term is also often used to differentiate phenotypes on a spectrum ranging from morningness to eveningness [@horne1976; @roenneberg2019b].
 
-Sleep is a phenomenon that exhibits circadian expression. By observing the sleep characteristics of individuals, it is possible to assess the distribution of circadian phenotypes within the same population, thereby investigating their covariates and other relevant associations [@roenneberg2003]. This is because sleep regulation is understood as the result of the interaction between two processes: a homeostatic process (referred to as the $\text{S}$ process), which is sleep-dependent and accumulates with sleep deprivation, and a circadian process (referred to as the $\text{C}$ process), whose expression can be influenced by zeitgebers, such as the light-dark cycle [@borbely1982; @borbely2016] (@fig-ch-1-borbely-1982-figure-4 illustrates these two process). Considering that the circadian rhythm (the $\text{C}$ process) is present in sleep, its characteristics can be estimated if the $\text{S}$ process can be controlled.
+Sleep is a phenomenon that exhibits circadian expression. By observing the sleep characteristics of individuals, it is possible to assess the distribution of circadian phenotypes within the same population, thereby investigating their covariates and other relevant associations [@roenneberg2003]. This is because sleep regulation is understood as the result of the interaction between two processes: a homeostatic process (referred to as the $\text{S}$ process), which is sleep-dependent and accumulates with sleep deprivation, and a circadian process (referred to as the $\text{C}$ process), whose expression can be influenced by zeitgebers, such as the light-dark cycle [@borbely1982; @borbely2016] (@fig-chapter-1-borbely-1982-figure-4 illustrates these two process). Considering that the circadian rhythm (the $\text{C}$ process) is present in sleep, its characteristics can be estimated if the $\text{S}$ process can be controlled.
 
-::: {.content-visible when-format="pdf"}
-\vspace{10pt}
-:::
-
-::: {#fig-ch-1-borbely-1982-figure-4}
+::: {#fig-chapter-1-borbely-1982-figure-4}
 ![](images/borbely-1982-figure-4.jpg){width=75%}
 
-Illustration of the interaction of the $\text{S}$ process and the $\text{C}$ process in sleep regulation. The figure depicts two scenarios: one without sleep deprivation and another with sleep deprivation. The $y$-axis represents the level of process. \
-Adaptation based on @borbely1982.
+[Source: Adapted from @borbely1982.]{.legend}
+
+Illustration of the interaction of the $\text{S}$ process and the $\text{C}$ process in sleep regulation. The figure depicts two scenarios: one without sleep deprivation and another with sleep deprivation. The $y$-axis represents the level of the process.
 :::
 
 Although many theories related to sleep and circadian rhythms are well-established in science, it is still necessary to verify and test them in larger samples to obtain a more accurate picture of the mechanisms related to the ecology of sleep and chronotypes. This project undertakes this commitment with the aim of investigating a hypothesis that is still relatively untested but widely accepted in chronobiology, which suggests that latitude is associated with the regulation of circadian rhythms [@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003].
@@ -97,45 +91,37 @@ To achieve the mentioned objectives, this project will rely on a dataset of the 
 
 Mapping the sleep-wake cycles and circadian phenotypes of Brazilians can contribute to the understanding of various phenomena related to sleep and chronobiology, such as the relationship between latitude and the regulation of circadian rhythms, the hypothesis tested by this thesis. However, in addition to contributing to the validation of theories and the advancement of scientific knowledge, the data, information, and knowledge generated by this project will also serve the public interest as a guide for public policies related to sleep and population health. Scientific literature is filled with studies pointing to negative associations with human health stemming from the disruption of biological rhythms. These range from fatigue [@tryon2004], deficits in cognitive performance [@dongen2003] , gastrointestinal problems [@fido2008; @morito2014; @mortas2020], mental disorders [@jones2005; @kalmbach2015; @roh2012] and even cancer [@lie2006; @papantoniou2015; @schernhammer2001].
 
-This study will also produce the largest dataset of valid sleep-wake cycle expression among Brazilians ever recorded. For comparison, national epidemiological studies on sleep and circadian phenotypes such as those by @drager2022 and @leocadio-miguel2017 worked with samples of $2,635$ and $12,884$ individuals, respectively. The sample of this project includes $120,265$ individuals in its raw state, covering all Brazilian states, and a preliminary data analysis estimated that $89.25\%$ of them are valid. Another advantage of the sample is its cross-sectional nature, as $98.173\%$ of the data were collected during a single week (from October 15 to 21, 2017). This avoids potential distortions caused by seasonal effects.
+This study will also produce the largest dataset of valid sleep-wake cycle expression among Brazilians ever recorded. For comparison, national epidemiological studies on sleep and circadian phenotypes such as those by @drager2022 and @leocadio-miguel2017 worked with samples of $2,635$ and $12,884$ individuals, respectively. The sample of this project includes $120,265$ individuals in its raw state, covering all Brazilian states. Another advantage of the sample is its cross-sectional nature, as $98.173\%$ of the data were collected during a single week (from October 15 to 21, 2017). This avoids potential distortions caused by seasonal effects.
 
 ## Thesis aims
 
 This project focuses on the ecology of sleep and circadian phenotypes (chronotypes) with the aim of providing answers to the following questions:
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
-
 1. How are the sleep-wake cycles and circadian phenotypes of the adult Brazilian population characterized?
 
 1. Is latitude associated with the regulation of circadian rhythms in humans?
-
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
 
 The basic hypothesis to be tested is that populations residing near the equator (latitude 0°) have, on average, a shorter/more morning-oriented circadian phenotype compared to populations living near the Earth's poles (H1) [@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003].
 
 The primary objectives (PO) of the project are as follows:
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+```{=latex}
+\microskip
+```
 
 A) Quantitatively describe the expression of sleep-wake cycles and circadian phenotypes of the Brazilian adult population at the end of the year 2017 (pre-pandemic).
 
 A) Investigate and model the presence/absence of a significant association and effect between decimal degrees of latitude (independent variable (IV)) and circadian phenotypes (dependent variable (DV)) of the Brazilian population.
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+```{=latex}
+\microskip
+```
 
 To achieve the primary objectives, the following secondary objectives (SO) have been outlined:
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+```{=latex}
+\microskip
+```
 
 i) Conduct data cleaning, validation, and transformation processes on the obtained sample data.
 
@@ -153,7 +139,7 @@ In addition to the main investigation, which is center on testing the latitude h
 
 The first project involves a concise paper that delineates the resemblance observed among Portuguese translations of the MCTQ (Munich ChronoType Questionnaire) employed in scientific research. It's crucial to emphasize that, although the MCTQ functions as a self-report scale for assessing chronotypes, it primarily relies on objective temporal metrics (e.g., local bedtime, sleep latency duration) rather than more subjective factors such as perceived sleep quality. Essentially, it functions as a sleep diary. Nevertheless, these translations can exhibit noteworthy discrepancies. It's worth noting that the proper validation of MCTQ in Portuguese was only achieved in 2020 through the efforts of @reis2020. The aim of this project is to assess the semantic similarity among these translations using a natural language model (NLM) known as Bidirectional Encoder Representations from Transformers (BERT), developed by Google, and pretrained on the Portuguese language [@devlin2018; @souza2020]. By leveraging these semantic representation vectors, the translations will be evaluated based on cosine similarity.
 
-The second project is an R package comprising a suite of tools designed for processing the MCTQ questionnaire. While it may appear to be a straightforward questionnaire, the MCTQ necessitates a considerable amount of date and time manipulation. This presents a challenge for many scientists, as handling date and time data can be particularly tricky, especially when dealing with extensive datasets. By creating a free, open-source, and peer-reviewed R package, it becomes possible to standardize the analyses and enhance reproducibility for all research related to the MCTQ. This R package (@vartanian2023) has already been developed and published on [CRAN](https://cran.r-project.org/web/packages/mctq/index.html) (The Comprehensive R Archive Network) and [GitHub](https://github.com/ropensci/mctq). It have been downloaded more than 6000 to this date, and underwent peer review by the [rOpenSci Initiative](https://ropensci.org/). Chapter 2 will serve as a manuscript for a publication regarding the package in the [Journal of Statistical Software](https://www.jstatsoft.org/authors).
+The second project is an R package comprising a suite of tools designed for processing the MCTQ questionnaire. While it may appear to be a straightforward questionnaire, the MCTQ necessitates a considerable amount of date and time manipulation. This presents a challenge for many scientists, as handling date and time data can be particularly tricky, especially when dealing with extensive datasets. By creating a free, open-source and peer-reviewed R package, it becomes possible to standardize the analyses and enhance reproducibility for all research related to the MCTQ. This R package [@vartanian2023)]has already been developed and published on [CRAN](https://cran.r-project.org/web/packages/mctq/index.html) (The Comprehensive R Archive Network) and [GitHub](https://github.com/ropensci/mctq). It has been downloaded more than $6,000$ to this date, and underwent a peer review by the [rOpenSci Initiative](https://ropensci.org/). Chapter 2 will serve as a manuscript for a publication regarding the package in the [Journal of Statistical Software](https://www.jstatsoft.org/authors).
 
 The third project is centered around the project's extensive MCTQ data sample, representing the largest dataset collected within a single country for this questionnaire thus far. This chapter serves as a crucial step in fulfilling one of the thesis primary objectives, which is to describe the sleep-wake cycle and circadian characteristics of the Brazilian population. Achieving this goal entails rigorous data cleaning and comprehensive data wrangling efforts. Furthermore, it functions as a means to facilitate the utilization of this valuable sample in future scientific research, while ensuring full compliance with ethical requirements.
 
@@ -167,9 +153,9 @@ All of these projects are developed using secure, open-source tools and adhere t
 
 During the development of this thesis, several activities and results have been accomplished. These activities are important to note, as they demonstrate the path taken to arrive at this final document.
 
-### Classes
+### Courses
 
-The following post-graduate classes at the University of São Paulo (USP) were completed during the first year of the master's program.
+The following graduate courses from the University of São Paulo (USP) were completed during the first year of the master's program.
 
 * 2022/2: _SCX5000 - Mathematical and Computational Methods I_ (10 credits) (Concept: __C__);
 * 2022/2: _SCX5002 - Complex Systems I_ (10 credits) (Concept: __A__);
@@ -179,7 +165,7 @@ The following post-graduate classes at the University of São Paulo (USP) were c
 
 Please note that the unfortunate __C__ concept above happened in the same semester when the author broke relations with his former supervisor (_Mario Pedrazzoli_).
 
-In total, 44 credits were completed until the thesis publication date. Another 12 special credits related to an article publication (see @viana-mendes2023) were requested, according to [program regulations](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019), to the Post-Graduate Program Coordination Commission (CCP) and should be evaluated by the end of October 2023. A minimum of 50 credits is needed for the thesis defense.
+44 discipline credits were completed by this thesis publication date. An additional 12 special credits, related to an article publication (see @viana-mendes2023), were requested and approved by the Graduate Program Coordination Commission (CCP) in accordance with [program regulations](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019). In total, 56 credits were earned. A minimum of 50 credits is required for the thesis defense.
 
 ### Teaching internship
 
@@ -187,9 +173,9 @@ Scholarship students under the [Coordination for the Improvement of Higher Educa
 
 The internship responsibilities entail serving as an Assistant Professor for the undergraduate course _ACH0042 - Problem-Based Learning II_ at USP. A comprehensive teaching plan [@vartanian2023e] was formulated during enrollment in the aforementioned graduate course _EAH5001_, and it is accessible through the following link.
 
-::: {.content-visible when-format="pdf"}
-\vspace{15pt}
-:::
+```{=latex}
+\smallskip
+```
 
 \noindent Vartanian, D., Bernardes, M. E. M., & Rodrigues Neto, C. (2023). _Plano de ensino: ACH0042 - Resolução de Problemas II_. <https://doi.org/10.13140/RG.2.2.33335.50086>
 
@@ -197,37 +183,43 @@ The internship responsibilities entail serving as an Assistant Professor for the
 
 The following article [@viana-mendes2023] was published during the development of this thesis.
 
-::: {.content-visible when-format="pdf"}
-\vspace{15pt}
-:::
+```{=latex}
+\smallskip
+```
 
 \noindent Viana-Mendes, J., Benedito-Silva, A. A., Andrade, M. A. M., __Vartanian, D.__, Gonçalves, B. da S. B., Cipolla-Neto, J., & Pedrazzoli, M. (2023). Actigraphic characterization of sleep and circadian phenotypes of PER3 gene VNTR genotypes. _Chronobiology International_. <https://doi.org/10.1080/07420528.2023.2256858>
+
+### Translations
+
+As a member and package developer of the [rOpenSci Initiative](https://ropensci.org/) (based in Berkeley, CA), the author is actively contributing to the [ongoing translation](https://github.com/ropensci/dev_guide/pull/717) of the [rOpenSci Developer Guide](https://devguide.ropensci.org/) into Portuguese. The aim is to create a more inclusive environment for individuals in Brazil and other Portuguese-speaking countries when developing for the [R programming language](https://www.r-project.org/).
+
+This endeavor is linked to the thesis, as the author's membership in rOpenSci began with the creation of the [{mctq} R package](https://docs.ropensci.org/mctq/) (listed below).
 
 ### Conferences
 
 An abstract pertaining to the primary investigation was published and presented on a poster at the [Sao Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms](https://espca.fapesp.br/school/sao_paulo_school_of_advanced_science_on_ecology_of_human_sleep_and_biological_rhythms/101/) organized by the [São Paulo Research Foundation (FAPESP)](https://fapesp.br/en). This international school hosted 100 participants, including students and young researchers, with a diverse representation of 50 individuals from various states within Brazil and an additional 50 from international backgrounds. The event took place from November 16, 2022, to November 26, 2022.
 
-::: {.content-visible when-format="pdf"}
-\vspace{15pt}
-:::
+```{=latex}
+\smallskip
+```
 
 <!-- @vartanian2022a -->
 
 \noindent Vartanian, D., & Pedrazzoli, M. (2022). _Ecology of sleep and circadian phenotypes of the Brazilian population_ \[Poster\]. São Paulo Research Foundation; São Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms. <https://doi.org/10.13140/RG.2.2.25343.07840>
 
-::: {.content-visible when-format="pdf"}
-\vspace{15pt}
-:::
+```{=latex}
+\smallskip
+```
 
-In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation (SIICUSP) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartanian2022b. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of Earth and exact sciences.
+In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation (SIICUSP) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartanian2022b. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of _Earth and Exact Sciences_.
 
 ### Research compendia
 
 This thesis, along with all the accompanying research, is structured and organized within the research compendium provided below.
 
-::: {.content-visible when-format="pdf"}
-\vspace{15pt}
-:::
+```{=latex}
+\smallskip
+```
 
 <!-- @vartanian2023d -->
 
@@ -237,9 +229,9 @@ This thesis, along with all the accompanying research, is structured and organiz
 
 This research has also produced and published the following open data model and data plan.
 
-::: {.content-visible when-format="pdf"}
-\vspace{15pt}
-:::
+```{=latex}
+\smallskip
+```
 
 <!-- @vartanian2023f -->
 
@@ -247,55 +239,55 @@ This research has also produced and published the following open data model and 
 
 ### Softwares
 
-The following R packages, [Quarto](https://quarto.org/) format (being used to write this thesis), and Python package were developed in relation com this thesis.
+The following R packages, [Quarto](https://quarto.org/) format (being used to write this thesis), and Python package were developed in relation with this thesis.
 
-::: {.content-visible when-format="pdf"}
-\vspace{15pt}
-:::
+```{=latex}
+\smallskip
+```
 
 <!-- @vartanian2022 -->
 
-\noindent Vartanian, D. (2022). _{entrainment}: a rule-based model of the 24h light/dark cycle entrainment phenomenon_ [Software, Python library]. <https://github.com/danielvartan/entrainment>
+\noindent Vartanian, D. (2022). _{entrainment}: a rule-based model of the 24h light/dark cycle entrainment phenomenon_ [Software, Python Package]. <https://github.com/danielvartan/entrainment>
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+```{=latex}
+\microskip
+```
 
 <!-- @vartanian2023 -->
 
 \noindent Vartanian, D. (2023). _{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)_ [Software, R Package v0.3.2]. <https://docs.ropensci.org/mctq/>
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+```{=latex}
+\microskip
+```
 
 <!-- @vartanian2023b -->
 
 \noindent Vartanian, D. (2023). _{lockr}: easily encrypt/decrypt files_ [Software, R package v0.3.0]. <https://github.com/danielvartan/lockr>
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+```{=latex}
+\microskip
+```
 
 <!-- @vartanian2023c -->
 
 \noindent Vartanian, D. (2023). _{lubritime}: an extension for the lubridate package_ [Software, R package]. <https://github.com/danielvartan/lubritime>
 
-::: {.content-visible when-format="pdf"}
-\vspace{5pt}
-:::
+```{=latex}
+\microskip
+```
 
 <!-- @vartanian2023a -->
 
-\noindent Vartanian, D. (2023). _{tesesusp}: a Quarto format for USP theses and dissertation_ [Software, LaTeX/R format, v0.1.0]. <https://github.com/danielvartan/tesesusp/>
+\noindent Vartanian, D. (2023). _{abnt}: Quarto format for ABNT theses and dissertations_ [Software, LaTeX/R format, v0.3.0]. <https://github.com/danielvartan/abnt/>
 
 ### Other projects
 
 The author is also currently working on the development of the project below.
 
-::: {.content-visible when-format="pdf"}
-\vspace{15pt}
-:::
+```{=latex}
+\smallskip
+```
 
-\noindent Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). _Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor_ \[Master's project\]. School of Arts, Sciences and Humanities, University of Sao Paulo, São Paulo. <https://bit.ly/3S6O0MB>
-<!-- %:::% chapter-1 clip end %:::% -->
+\noindent Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). _Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor_ \[PhD project, University of Sao Paulo\]. <https://bit.ly/3S6O0MB>
+<!-- %:::% index pdf end %:::% -->

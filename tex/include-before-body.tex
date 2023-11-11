@@ -1,158 +1,173 @@
-% tesesusp.cls, v-0.1.0
-
-% Based on 'bntex2ppgsi.cls', 'abntex2.csl' and on USP guidelines to create
-% thesis and dissertation documents.
-% See <https://www.overleaf.com/project/64f7bdf1641ad4a3a8482800>
-% and <https://teses.usp.br/index.php?option=com_content&
-%      view=article&id=52&Itemid=67&lang=en>
-% to learn more.
-
-\clearpage
-
 %:::% class attribute begin/end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Cover (mandatory)
-% ----------------------------------------------------------------------
+% -----
 
-%:::% cover body-tag begin %:::%
+%:::% cover begin %:::%
 \imprimircapa
-%:::% cover body-tag end %:::%
+%:::% cover end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Title page (mandatory)
-% ----------------------------------------------------------------------
+% -----
 
-%:::% approval-sheet body-tag begin %:::%
-\imprimirfolhaderosto*
-%:::% approval-sheet body-tag end %:::%
+%:::% approval-sheet begin %:::%
+\imprimirfolhaderosto
+%:::% approval-sheet end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Cataloging record (mandatory)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% cataloging-record begin %:::%
 \begin{fichacatalografica}
- \includepdf{images/fig_ficha_catalografica.pdf}
+%:::% cataloging-record body begin %:::%
+I authorize the full or partial reproduction of this work by any conventional or electronic means for the purposes of study and research, provided that the source is cited.
+\ABNTEXfontereduzida
+
+\vfill
+\begin{center}
+Cataloging in publication
+
+Library
+
+[Library name]
+
+\medskip
+\setlength{\fboxsep}{1cm}
+\fbox{\begin{minipage}[c][7.5cm]{12.5cm}
+Vartanian, Daniel
+
+\smallskip
+\hspace{0.5cm} {\imprimirtitulo}  / {\imprimirautor}; supervisor, {\imprimirorientador}. {\imprimirlocal}, {\imprimirdata}
+
+\smallskip
+{\thelastpage}p. : il
+
+\smallskip
+\hspace{0.5cm} {\imprimirtipotrabalho} (\imprimirtituloacademico) -- {\imprimirprograma}, {\imprimirescola}, {\imprimiruniversidade}, {\imprimirdata}.
+
+\smallskip
+\hspace{0.5cm} {\imprimirnotadeversao}
+
+\smallskip
+\hspace{0.5cm} 1. Chronotype. 2. Entrainment. 3. Sleep. 4. Chronobiology. 5. Complex systems. I. Rodrigues Neto, Camilo, super. II. Title.
+\end{minipage}}
+\end{center}
+%:::% cataloging-record body end %:::%
 \end{fichacatalografica}
 %:::% cataloging-record end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Errata (optional)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% errata begin %:::%
-\begin{errata}
-  %:::% errata body begin %:::%
-This is the development version of the thesis (version \textless1.0.0).
-Any necessary corrections will be listed here after its approval.
-  %:::% errata body end %:::%
+\begin{errata}[\errataname]
+%:::% errata reference begin %:::%
+\noindent Vartanian, D. ({\imprimirdata}). \textit{\imprimirtitulo} [{\imprimirtipodetituloacademico}'s {\imprimirtipotrabalho}, {\imprimiruniversidade}].
+%:::% errata reference end %:::%
+\tinyskip
+%:::% errata body begin %:::%
+
+This is the preliminary version of this thesis (version \textless1.0.0).
+Any required corrections will be listed here upon approval.
+
+%:::% errata body end %:::%
 \end{errata}
 %:::% errata end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Approval sheet (mandatory)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% approval-sheet begin %:::%
-\begin{folhadeaprovacao}
-  \noindent
-  %:::% approval-sheet header begin %:::%
-Qualifying exam text by Daniel Vartanian, titled \textbf{Ecology of
-sleep and circadian phenotypes of the Brazilian population}, presented
-to the School of Arts, Sciences and Humanities at the University of São
-Paulo, as part of the requirements for the degree of Master of Science
-by the Graduate Program in Modeling Complex Systems (PPG-SCX), in the
-concentration area of Fundamentals of Complex Systems.
-  %:::% approval-sheet header end %:::%
+\begin{folhadeaprovacao}[\folhadeaprovacaoname]
+%:::% approval-sheet body begin %:::%
+{\imprimirtipotrabalho} by {\imprimirautor}, under the title \textbf{\imprimirtitulo}, presented to the {\imprimirescola} at the {\imprimiruniversidade}, as part of the requirements for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}, in the concentration area of {\imprimirareadeconcentracao}.
 
-  \vspace*{1.5cm}
+\vspace{\hugeskipamount}
+Approved on \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ , \_\_\_\_\_\_\_\_\_\_ .
 
-  \noindent
-  Approved on \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ , \_\_\_\_\_\_\_\_\_\_ .
+\vspace{\hugeskipamount}
+\begin{center}
+  Examination committee
+\end{center}
 
-  \vspace*{1.5cm}
+\vspace{\smallskipamount}
+Committee chair:
 
-  \begin{center}
-    \noindent Examination committee
-  \end{center}
+\vspace{\tinyskipamount}
+\begingroup
 
-  \vspace*{0.5cm}
-
-  \noindent Committee chair:
-
-  \vspace*{0.25cm}
-
+\AtBeginEnvironment{tabular}{
+  \normalsize
   \renewcommand{\arraystretch}{2}
-  \setlength{\arrayrulewidth}{0pt}
-  \setlength{\tabcolsep}{0pt}
-  \noindent
-  \begin{tabular}{m{2cm} P{14cm}}
-    Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-    Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  \end{tabular}
+}
 
-  \vspace*{1cm}
+\setlength{\arrayrulewidth}{0pt}
+\setlength{\tabcolsep}{0cm}
+\begin{tabular}{m{2cm} P{14cm}}
+  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\end{tabular}
 
-  \noindent Examiners:
+\vspace{\bigskipamount}
+Examiners:
 
-  \vspace*{0.25cm}
+\vspace{\tinyskipamount}
+\begin{tabular}{m{2cm} P{14cm}}
+  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\end{tabular}
 
-  \noindent
-  \begin{tabular}{m{2cm} P{14cm}}
-    Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-    Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-    Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  \end{tabular}
+\vspace{\smallskipamount}
+\begin{tabular}{m{2cm} P{14cm}}
+  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\end{tabular}
 
-  \vspace*{0.5cm}
-
-  \noindent
-  \begin{tabular}{m{2cm} P{14cm}}
-    Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-    Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-    Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  \end{tabular}
-
-  \vspace*{0.5cm}
-
-  \noindent
-  \begin{tabular}{m{2cm} P{14cm}}
-    Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-    Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-    Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  \end{tabular}
+\vspace{\smallskipamount}
+\begin{tabular}{m{2cm} P{14cm}}
+  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\end{tabular}
+\endgroup
+%:::% approval-sheet body end %:::%
 \end{folhadeaprovacao}
 %:::% approval-sheet end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Inscription (optional)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% inscription begin %:::%
-\begin{dedicatoria}
-  \vspace*{\fill}
-  \centering
-  %:::% inscription body begin %:::%
-I dedicate this work to the skeptics, the radicals, the ignorant, the
-uncivilized, the subversives, the wild dogs, the irreducibles, the
-irreconcilables. To the true engines of change. To the destabilizers,
-who possess equal or greater importance than the stabilizers. To those
-who act on principle, even knowing that there is no ultimate reward or
-any meaning in life.
-  %:::% inscription body end %:::%
-	\vspace*{\fill}
+\begin{dedicatoria}[] % \dedicatorianame | Keep #1 empty.
+\vspace*{\fill} % Don't change it.
+\centering
+%:::% inscription body begin %:::%
+\textit{I dedicate this work to the skeptics, the radicals, the ignorant, the uncivilized, the subversives, the wild dogs, the irreducibles, the irreconcilables. To the true engines of change. To the destabilizers, who possess equal or greater importance than the stabilizers. To those who act on principle, even knowing that there is no ultimate reward or any meaning in life.}
+%:::% inscription body end %:::%
+\vspace*{\fill} % Don't change it.
+\vspace{4.5cm}
+% \vspace{13cm}
 \end{dedicatoria}
 %:::% inscription end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Acknowledgments (optional)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% acknowledgments begin %:::%
-\begin{agradecimentos}
+\begin{agradecimentos}[\agradecimentosname]
   %:::% acknowledgments body begin %:::%
-I would like to acknowledge the following persons and organizations:
+
+I would like to acknowledge and express my gratitude to the following
+persons and organizations:
 
 Salete Perroni (Sal), my partner in life and in the fight for a better
 world.
@@ -174,22 +189,22 @@ which was demonstrated when the need arose.
 
 Professor \href{https://orcid.org/0000-0001-6783-6695}{Camilo Rodrigues
 Neto}, for introducing me to and teaching me about the science of
-complex systems since 2012; for guiding my dissertation; for the
+complex systems since 2012; for supervising my dissertation; for the
 patience and the virtue in taking on and mediating the process of
-transitioning my guidance in my master's degree after the breakdown of
-relations with my former supervisor.
+transitioning my master's supervision after the breakdown of relations
+with my former supervisor.
 
 Professor \href{https://orcid.org/0000-0003-2916-4415}{Carlos Molina
-Mendes}, for the speed, impartiality, patience, and virtue in mediating
-the process of transitioning my guidance in my master's degree.
+Mendes}, for his speed, impartiality, patience, and virtuous approach in
+mediating the process of transitioning of my master's supervision.
 
 My fellow friends: Alex Azevedo Martins; Amanda Moreira; Augusto Amado,
-Carina (Cacau) Prado; Cauê Teles; Ítalo Alves Bezerra do Nascimento;
-Júlia Mafra; Leonardo Kazuhiko Kawazoe; Letícia Nery de Figueiredo; and
-Reginaldo Noveli.
+Carina (Cacau) Prado; Ítalo Alves Bezerra do Nascimento; Júlia Mafra;
+Letícia Nery de Figueiredo; Marcelo Ricardo Fernandes Roschel; Reginaldo
+Noveli; Sílvia Capelanes; and Vanessa Simon Silva.
 
 \href{https://lula.com.br/}{President Lula} (Yes!), who saved Brazil
-from fascism and approved the long-overdue adjustments to postgraduate
+from fascism and approved the long-overdue adjustments to graduate
 scholarships.
 
 The local student movements, which truly support their category.
@@ -200,40 +215,42 @@ get this far.
 
 The \href{https://www.gov.br/capes/}{Coordination for the Improvement of
 Higher Education Personnel (CAPES)}, for funding this work and enabling
-my presence in postgraduate studies.
+my presence in graduate studies (Grant number: 88887.703720/2022-00).
+
   %:::% acknowledgments body end %:::%
 \end{agradecimentos}
 %:::% acknowledgments end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Epigraph (optional)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% epigraph begin %:::%
-\begin{epigrafe}
-  \vspace*{\fill}
-	\begin{flushright}
-	  %:::% epigraph body begin %:::%
-\emph{Nullius in verba}
+\begin{epigrafe}[] % \epigraphname | Keep #1 empty.
+\vspace*{\fill} % Don't change it.
+\begin{flushright}
+%:::% epigraph body begin %:::%
+\textit{Nullius in verba}\footnotemark{}
 
-(The Royal Society, n.d.)
-		%:::% epigraph body end %:::%
-	\end{flushright}
+\footnotetext{
+  The Royal Society. (n.d.). \textit{History of the Royal Society}. \href{https://royalsociety.org/about-us/history/}{https://royalsociety.org/about-us/history/}
+}
+%:::% epigraph body end %:::%
+\end{flushright}
 \end{epigrafe}
 %:::% epigraph end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Abstract in the vernacular language (mandatory)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% vernacular-abstract begin %:::%
-\setlength{\absparsep}{18pt}
-\begin{resumo}
-  %:::% vernacular-abstract body begin %:::%
-Vartanian, D. (2023). \emph{Ecology of sleep and circadian phenotypes of
-the Brazilian population} {[}Master's thesis{]}. School of Arts,
-Sciences and Humanities, University of São Paulo, São Paulo.
-\url{https://danielvartan.github.io/mastersthesis/}
+\begin{resumoenv}[\resumoname]
+ %:::% vernacular-abstract reference begin %:::%
+Vartanian, D. ({\imprimirdata}). \textit{\imprimirtitulo} [{\imprimirtipodetituloacademico}'s {\imprimirtipotrabalho}, {\imprimiruniversidade}].
+%:::% vernacular-abstract reference end %:::%
+
+%:::% vernacular-abstract body begin %:::%
 
 The text below is related to the \textbf{project} of this thesis. The
 final abstract can only be produced when the research is completed.
@@ -266,24 +283,28 @@ chronobiology theories and will generate greater knowledge about the
 regulation of circadian rhythms and sleep-wake cycles in the Brazilian
 population.
 
-Keywords: chronobiology. chronotype. circadian phenotypes. sleep.
-sleep-wake cycle. entrainment. latitude. ecology. mctq.
-  %:::% vernacular-abstract body end %:::%
-\end{resumo}
+%:::% vernacular-abstract body end %:::%
+
+%:::% vernacular-abstract keywords begin %:::%
+\begin{tabular}{p{2.3cm} p{13.6cm}}
+  \textbf{Keywords}: & Chronobiology. Biological rhythms. Chronotype. Circadian phenotype. Sleep. Complex systems. Entrainment. Latitude. Ecology. MCTQ.
+\end{tabular}
+%:::% vernacular-abstract keywords end %:::%
+\end{resumoenv}
 %:::% vernacular-abstract end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % Abstract in the foreign language (mandatory)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% foreign-abstract begin %:::%
-\begin{resumo}[RESUMO]
-  \begin{otherlanguage*}{brazil}
-    %:::% foreign-abstract body begin %:::%
-Vartanian, D. (2023). \emph{Ecologia do sono e de fenótipos circadianos
-da população brasileira} {[}Dissertação de Mestrado{]}. Escola de Artes,
-Ciências e Humanidades, Universidade de São Paulo, São Paulo.
-\url{https://danielvartan.github.io/mastersthesis/}
+\begin{resumoenv}[\resumoestrangeironame]
+\begin{otherlanguage*}{brazil}
+%:::% foreign-abstract reference begin %:::%
+Vartanian, D. ({\imprimirdata}). \textit{Ecologia do sono e de fenótipos circadianos da população brasileira} [Dissertação de Mestrado, Universidade de São Paulo].
+%:::% foreign-abstract reference end %:::%
+
+%:::% foreign-abstract body begin %:::%
 
 O texto abaixo está relacionado ao \textbf{projeto} desta dissertação. O
 resumo final só poderá ser produzido quando a pesquisa for finalizada.
@@ -317,45 +338,45 @@ irão contribuir com a validação de teorias da cronobiologia e gerar
 conhecimento sobre a regulação do ritmo circadiano e dos ciclos de
 sono-vigília da população brasileira.
 
-Palavras-chaves: cronobiologia. cronotipo. fenótipos circadianos. sono.
-ciclo sono-vigília. entrainment. latitude. ecologia. mctq.
-    %:::% foreign-abstract body end %:::%
-  \end{otherlanguage*}
-\end{resumo}
+%:::% foreign-abstract body end %:::%
+
+%:::% foreign-abstract keywords begin %:::%
+\begin{tabular}{p{3.6cm} p{12.3cm}}
+  \textbf{Palavras-chaves}: &  Cronobiologia. Ritmos biológicos. Cronotipo. Fenótipo circadiano. Sono. Sistemas complexos. Entrainment. Latitude. Ecologia. MCTQ.
+\end{tabular}
+%:::% foreign-abstract keywords end %:::%
+\end{otherlanguage*}
+\end{resumoenv}
 %:::% foreign-abstract end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % List of figures (optional)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% list-of-figures begin %:::%
-\setlength{\absparsep}{12pt}
-\renewcommand{\listfigurename}{LIST OF FIGURES}
 \pdfbookmark[0]{\listfigurename}{lof}
 \listoffigures*
 \cleardoublepage
 %:::% list-of-figures end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % List of tables (optional)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% list-of-tables begin %:::%
-\setlength{\absparsep}{12pt}
-\renewcommand{\listtablename}{LIST OF TABLES}
 \pdfbookmark[0]{\listtablename}{lot}
 \listoftables*
 \cleardoublepage
 %:::% list-of-tables end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % List of abbreviations and acronyms (optional)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% list-of-abbreviations begin %:::%
-\setlength{\absparsep}{12pt}
 \begin{siglas}
-  %:::% list-of-abbreviations body begin %:::%
+%:::% list-of-abbreviations body begin %:::%
+
 \begin{description}
 \item[\textsubscript{F}]
 \hspace{20cm}
@@ -481,20 +502,21 @@ Total time in bed
 
 Number of workdays per week
 \end{description}
-  %:::% list-of-abbreviations body end %:::%
+
+%:::% list-of-abbreviations body end %:::%
 \end{siglas}
 %:::% list-of-abbreviations end %:::%
 
-% ----------------------------------------------------------------------
+% -----
 % List of symbols (optional)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% list-of-symbols begin %:::%
-\setlength{\absparsep}{12pt}
 \begin{simbolos}
-  %:::% list-of-symbols body begin %:::%
+%:::% list-of-symbols body begin %:::%
+
 For an extensive list of chronobiology related symbols, please refer to
-Aschoff et al.~(1965) and Marques \& Oda (2012).
+\textcite{aschoff1965} and \textcite{marques2012}.
 
 \begin{description}
 \item[\(\tau\)]
@@ -527,144 +549,17 @@ Phase delay
 
 Phase relation
 \end{description}
-  %:::% list-of-symbols body end %:::%
+
+%:::% list-of-symbols body end %:::%
 \end{simbolos}
 %:::% list-of-symbols end %:::%
 
-% ----------------------------------------------------------------------
-% List of terms and definitions (optional)
-% ----------------------------------------------------------------------
-
-%:::% list-of-terms begin %:::%
-\setlength{\absparsep}{12pt}
-\begin{termos}
-  %:::% list-of-terms body begin %:::%
-For an extensive list of chronobiology related terms and definitions,
-please refer to Aschoff et al.~(1965) and Marques \& Oda (2012).
-
-\begin{description}
-\item[Chronotype]
-\hspace{20cm}
-
-Any kind of temporal phenotype (Ehret, 1974; Pittendrigh, 1993).
-Usually, it refers to circadian phenotypes in a spectrum that goes from
-morningness to eveningness (Horne \& Ostberg, 1976; Roenneberg et al.,
-2003). It can also be seen as an organism's phase of entrainment
-(Roenneberg et al., 2012).
-\end{description}
-
-\begin{description}
-\item[Circadian rhythm]
-\hspace{20cm}
-
-A rhythm with a period close to a day/24h, an approximation to the
-period of the earth's rotation (Pittendrigh, 1960). From the Latin
-\emph{circā}, around, and \emph{dĭes}, day (Latinitium, n.d.). Example:
-the sleep-wake cycle.
-\end{description}
-
-\begin{description}
-\item[Complex system]
-\hspace{20cm}
-
-There are several definitions. Here are some that I found to be of use:
-\end{description}
-
-\begin{itemize}
-\tightlist
-\item
-  ``Systems that don't yield to compact forms of representation or
-  description'' (David Krakauer apud Mitchell, 2013)
-\item
-  ``A system of many interacting parts where the system is more than
-  just the sum of its parts'' (Mark Newman apud Mitchell, 2013)
-\item
-  Systems with many connected agents that interact and exhibit
-  self-organization and emergence behavior, all without the need for a
-  central controller (adapted from Camilo Rodrigues Neto's definition,
-  supervisor of this thesis).
-\item
-  Dialectics at its finest (my working definition).
-\end{itemize}
-
-\begin{description}
-\item[Entrainment]
-\hspace{20cm}
-
-A shift and alignment of biological rhythms induced by a zeitgeber input
-(Kuhlman et al., 2018). For example: a shift/alignment of an organism's
-circadian rhythm when exposed to light.
-\end{description}
-
-\begin{description}
-\item[Infradian rhythm]
-\hspace{20cm}
-
-A rhythm with a period greater than a day/24h. From the Latin
-\emph{infrā}, below (think in terms of period repetition), and
-\emph{dĭes}, day (Latinitium, n.d.). Example: the menstrual cycle.
-\end{description}
-
-\begin{description}
-\item[Period]
-\hspace{20cm}
-
-Cycle duration of an oscillation. In a more technical way, the duration
-between two identical and consecutive phases in an oscillation (Kuhlman
-et al., 2018).
-\end{description}
-
-\begin{description}
-\item[System theory]
-\hspace{20cm}
-
-Two definitions can be of use:
-\end{description}
-
-\begin{itemize}
-\tightlist
-\item
-  Science or discipline that investigates models, principles, and laws
-  that are valid to systems in general (Bertalanffy, 1968)
-\item
-  ``The attempt of a reductionist scientific tradition to come to terms
-  with complexity, nonlinearity, and change through sophisticated
-  mathematical and computational techniques, \emph{a groping toward a
-  more dialectical understanding} that is held back by its philosophical
-  biases and the institutional and economic contexts of its
-  development'' (Levins, 1998)
-\end{itemize}
-
-\begin{description}
-\item[Ultradian rhythm]
-\hspace{20cm}
-
-A rhythm with a period below a day/24h. From the Latin \emph{ultrā},
-beyond (think in terms of period repetition), and \emph{dĭes}, day
-(Latinitium, n.d.). Example: the cardiac cycle.
-\end{description}
-
-\begin{description}
-\item[Zeitgeber]
-\hspace{20cm}
-
-Any periodic environmental signal/cue that can influence or regulate
-biological rhythms. From the German \emph{zeit}, time, and \emph{geber},
-donor (Cambridge University Press, n.d.). Two main well known zeitgebers
-are light exposure and environment temperature (Pittendrigh, 1960).
-\end{description}
-  %:::% list-of-terms body end %:::%
-\end{termos}
-%:::% list-of-terms end %:::%
-
-% ----------------------------------------------------------------------
+% -----
 % Table of contents (mandatory)
-% ----------------------------------------------------------------------
+% -----
 
 %:::% table-of-contents begin %:::%
-\setlength{\absparsep}{12pt}
-\renewcommand{\contentsname}{TABLE OF CONTENTS}
 \pdfbookmark[0]{\contentsname}{toc}
-% \tableofcontents*
+\tableofcontents*
 \cleardoublepage
 %:::% table-of-contents end %:::%

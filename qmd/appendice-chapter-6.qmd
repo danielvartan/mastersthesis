@@ -1,0 +1,732 @@
+<!-- %:::% .common h1 begin %:::% -->
+# Chapter 6 supplemental material
+<!-- %:::% .common h1 end %:::% -->
+
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R/quarto-setup.R"))
+options(scipen = 10, digits = 5)
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+rutils:::quarto_status(
+  type = "polishing",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
+```
+
+<!--
+## Some references
+
+See @|allen1997; @|bussab1988; @|degroot2012; @|hair2019; @|johnson2013; @|kuhn2022; @|dudek2020; @|dalpiaz; @|fox2016 .
+
+Other references :
+
+* <https://olsrr.rsquaredacademy.com>
+* <https://www.r-bloggers.com/2021/05/how-to-compare-nested-models-in-r/>
+* <https://www.r-bloggers.com/2022/10/box-cox-transformation-in-r/>
+* <https://online.stat.psu.edu/stat501/>
+-->
+
+## Hypothesis
+
+__Statement__
+: \hspace{20cm} Populations residing near the equator (latitude 0°) exhibit, on average, a shorter/morning circadian phenotype when compared to populations residing near the poles of the planet [@horzum2015; @hut2013; @leocadio-miguel2017; @leocadio-miguel2014; @pittendrigh1991; @randler2017].
+
+```{=latex}
+\smallskip
+```
+
+The study hypothesis was tested using nested models of multiple linear regressions. The main idea of nested models is to verify the effect of the inclusion of one or more predictors in the model variance explanation (i.e., the $\text{R}^{2}$) [@allen1997]. This can be made by creating a restricted model and then comparing it with a full model. Hence, the hypothesis can be schematized as follows.
+
+$$
+\begin{cases}
+\text{H}_{0}: \text{R}^{2}_{\text{res}} >= \text{R}^{2}_{\text{full}} \\
+\text{H}_{a}: \text{R}^{2}_{\text{res}} < \text{R}^{2}_{\text{full}}
+\end{cases}
+$$
+
+```{=latex}
+\smallskip
+```
+
+The general equation for the F-test [@allen1997, p. 113] :
+
+$$
+\text{F} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+$$
+
+```{=latex}
+\smallskip
+```
+
+Where:
+
+* $\text{R}^{2}_{F}$ = Coefficient of determination for the __full__ model
+* $\text{R}^{2}_{R}$ = Coefficient of determination for the __restricted__ model
+* $k_{F}$ = Number of independent variables in the full model
+* $k_{R}$ = Number of independent variables in the restricted model
+* $\text{N}$ = Number of observations in the sample
+
+```{=latex}
+\smallskip
+```
+
+$$
+\text{F} = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
+$$
+
+```{=latex}
+\smallskip
+```
+
+It's important to note that, in addition to the F-test, it's assumed that for $\text{R}^{2}_{\text{res}}$ to differ significantly from $\text{R}^{2}_{\text{full}}$, there must be a non-negligible effect size between them. This effect size can be calculated using Cohen's $f^{2}$ [@cohen1988; @cohen1992]:
+
+$$
+f^{2} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R}}{1 - \text{R}^{2}_{F}}
+$$
+
+$$
+f^{2} = \cfrac{\text{Additional Var. Explained}}{\text{Var. unexplained}}
+$$
+
+```{=latex}
+\smallskip
+```
+
+## A brief look on general linear models
+
+> See @degroot2012 [pp. 699-707, pp. 736-754] and @hair2019 [pp. 259-370] to learn more.
+
+"[...] A problem of this type is called a problem of multiple linear regression because we are considering the regression of $Y$ on $k$ variables $X_{1}, \dots, X_{k}$, rather than on just a single variable $X$, and we are assuming also that this regression is a linear function of the parameters $\beta_{0}, \dots, \beta_{k}$. In a problem of multiple linear regressions, we obtain $n$ vectors of observations ($x_{i1}. \dots, x_{ik}, Y_{i}$), for $i = 1, \dots, n$. Here $x_{ij}$ is the observed value of the variable $X_{j}$ for the $i$th observation. The $E{Y}$ is given by the relation
+
+$$
+E(Y_{i}) = \beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}
+$$
+
+```{=latex}
+\smallskip
+```
+
+[@degroot2012, p. 738]
+
+### Definitions
+
+Residuals/Fitted Values
+: \hspace{20cm} For $i = 1, \dots, n$, the observed values of $\hat{y} = \hat{\beta}_{0} + \hat{\beta}_{1} x_{i}$ are called _fitted values_. For $i = 1, \dots, n$, the observed values of $e_{i} = y_{i} - \hat{y}_{i}$ are called _residuals_ [@degroot2012, p. 717].
+
+"[...] regression problems in which the observations $Y_{i}, \dots, Y_{n}$ [...] we shall assume that each observation $Y_{i}$ has a normal distribution, that the observations $Y_{1}, \dots, Y_{n}$ are independent, and that the observations $Y_{1}, \dots, Y_{n}$ have the same variance $\sigma^{2}$. Instead of a single predictor being associated with each $Y_{i}$, we assume that a $p$-dimensional vector $z_{i} = (z_{i0}, \dots, z_{ip - 1})$ is associated with each $Y_{i}$"  [@degroot2012, p. 736].
+
+General Linear Model
+: The statistical model in which the observations $Y_{1}, \dots, Y_{n}$ satisfy the following assumptions [@degroot2012, p. 738].
+
+### Assumptions
+
+Assumption 1
+: \hspace{20cm} __Predictor is known__. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012, p. 736].
+
+Age and sex are known predictors for the chronotype [@roenneberg2007a].
+
+Assumption 2
+: \hspace{20cm} __Normality__. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012, p. 737].
+
+(Normality of the error term distribution [@hair2019, p. 287]).
+
+As it will be seen in the next topics, without any transformation, the chronotype variable does not have a normal distribution. However, this can be satisfied with a Box-Cox transformation (see @box1964).
+
+A residual diagnostics will test the assumption of normality of the error term distribution.
+
+Assumption 3
+: \hspace{20cm} __Linear mean__. There is a vector of parameters  $\beta = (\beta_{0}, \dots, \beta_{p - 1})$ such that the conditional mean of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ has the form
+
+$$
+z_{i0} \beta_{0} + z_{i1} \beta_{1} + \cdots + z_{ip - 1} \beta_{p - 1}
+$$
+```{=latex}
+\smallskip
+```
+
+
+for $i = 1, \dots, n$ [@degroot2012, p. 737].
+
+(Linearity of the phenomenon measured [@hair2019, p. 287]).
+
+The hypothesis assumes a linear relation.
+
+Assumption 4
+: \hspace{20cm} __Common variance__. There is as parameter $\sigma^{2}$ such the conditional variance of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ is $\sigma^{2}$ for $i = 1, \dots\, n$.
+
+(Constant variance of the error terms [@hair2019, p. 287])
+
+The presence of unequal variances (heteroscedasticity) will be tested with a residual diagnostics.
+
+Assumption 5
+: \hspace{20cm} __Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012, p. 737].
+
+(Independence of the error terms [@hair2019, p. 287]).
+
+This will also be tested with a residual diagnostics.
+
+## Data preparation
+
+Outlier treatment (for now): 1.5x Interquartile range (IQR) for age and chronotype (MSF~sc~).
+
+```{r}
+#| eval: false
+#| output: false
+#| code-fold: false
+
+is_outlier <- function(x, method = "iqr", iqr_mult = 1.5, sd_mult = 3) {
+  checkmate::assert_numeric(x)
+  checkmate::assert_choice(method, c("iqr", "sd"))
+  checkmate::assert_number(iqr_mult)
+  checkmate::assert_number(sd_mult)
+
+  if (method == "iqr") {
+    iqr <- stats::IQR(x, na.rm = TRUE)
+    min <- stats::quantile(x, 0.25, na.rm = TRUE) - (iqr_mult * iqr)
+    max <- stats::quantile(x, 0.75, na.rm = TRUE) + (iqr_mult * iqr)
+  } else if (method == "sd") {
+    min <- mean(x, na.rm = TRUE) - (sd_mult * stats::sd(x, na.rm = TRUE))
+    max <- mean(x, na.rm = TRUE) + (sd_mult * stats::sd(x, na.rm = TRUE))
+  }
+
+  dplyr::if_else(x >= min & x <= max, FALSE, TRUE, missing = FALSE)
+}
+```
+
+```{r}
+#| label: data-preparation
+#| message: false
+#| warning: false
+#| code-fold: false
+
+source(here::here("R/utils.R"))
+
+utc_minus_3_states <- c(
+  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
+  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
+  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
+  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
+  "Rio Grande do Sul"
+)
+
+data <- 
+  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
+  dplyr::filter(state %in% utc_minus_3_states) |>
+  dplyr::select(msf_sc, age, sex, state, latitude, longitude) |>
+  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
+  tidyr::drop_na(msf_sc, age, sex, latitude)
+```
+
+## Restricted model
+
+### Model building
+
+::: {#tbl-appendice-chapter-6-restricted-model-box-cox}
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+box_cox <- MASS::boxcox(msf_sc ~ age + sex, data = data)
+```
+
+[Source: Created by the author. See @box1964 to learn more.]{.legend}
+
+Profile of log-likelihoods for the parameter ($\lambda$) of the Box-Cox power transformation for the restricted model.
+:::
+
+```{r}
+#| code-fold: false
+
+lambda <- box_cox$x[which.max(box_cox$y)]
+
+lambda
+```
+
+```{r}
+#| code-fold: false
+
+res_model <- stats::lm(
+  ((msf_sc^lambda - 1) / lambda) ~ age + sex, data = data
+)
+```
+
+::: {#tbl-appendice-chapter-6-restricted-model-summary-stats-1}
+```{r}
+#| code-fold: false
+
+broom::tidy(res_model)
+```
+
+[Source: Created by the author.]{.legend}
+
+Summarized information about the components of the restricted model.
+:::
+
+::: {#tbl-appendice-chapter-6-restricted-model-summary-stats-2}
+```{r}
+#| code-fold: false
+
+broom::glance(res_model) |> tidyr::pivot_longer(cols = dplyr::everything())
+```
+
+[Source: Created by the author.]{.legend}
+
+Summarized statistics about the restricted model.
+:::
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+res_model |> summary()
+```
+
+### Residual diagnostics
+
+#### Normality
+
+::: {#tbl-appendice-chapter-6-restricted-model-residual-diag-stats}
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
+
+res_model |>
+  stats::residuals() |>
+  stats_sum(print = FALSE) |>
+  list_as_tibble()
+```
+
+[Source: Created by the author.]{.legend}
+
+Statistics about the restricted model residuals.
+:::
+
+::: {#tbl-appendice-chapter-6-restricted-model-residual-diag-normality-tests}
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+source(here::here("R/normality_sum.R"))
+
+res_model |>
+  stats::residuals() |>
+  normality_sum()
+```
+
+[Source: Created by the author.]{.legend}
+
+Normality tests about the restricted model residuals.
+:::
+
+Correlation between observed residuals and expected residuals under normality.
+
+```{r}
+#| code-fold: false
+
+res_model |> olsrr::ols_test_correlation()
+```
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-correlation}
+```{r}
+#| code-fold: false
+
+source(here::here("R/test_normality.R"))
+
+# res_model |> olsrr::ols_plot_resid_qq()
+
+qq_plot <- res_model |> 
+  stats::residuals() |>
+  plot_qq(print = FALSE)
+
+hist_plot <- res_model |>
+  stats::residuals() |>
+  plot_hist(print = FALSE)
+
+cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
+```
+
+[Source: Created by the author.]{.legend}
+
+Histogram of the restricted model residuals with a kernel density estimate, along with a quantile-quantile (Q-Q) plot between the residuals and the theoretical quantiles of the normal distribution.
+:::
+
+#### Common variance
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-fit-values}
+```{r}
+#| code-fold: false
+
+res_model |> olsrr::ols_plot_resid_fit()
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the fitted values of the restricted model and its residuals.
+:::
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-fit-values}
+```{r}
+#| code-fold: false
+
+res_model |> plot(3)
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the fitted values of the restricted model and its standardized residuals.
+:::
+
+```{r}
+#| code-fold: false
+
+res_model |> olsrr::ols_test_breusch_pagan()
+```
+
+```{r}
+#| code-fold: false
+
+res_model |> olsrr::ols_test_score()
+```
+
+#### Independence
+
+Variance inflation factor (VIF)
+: \hspace{20cm} "Indicator of the effect that the other independent variables have on the standard error of a regression coefficient. The variance inflation factor is directly related to the tolerance value ($\text{VIF}_{i} = 1/\text{TO}L$). Large VIF values also indicate a high degree of collinearity or multicollinearity among the independent variables" [@hair2019, p. 265].
+
+```{r}
+#| code-fold: false
+
+res_model |> olsrr::ols_coll_diag()
+```
+
+#### Measures of influence
+
+Leverage points
+: \hspace{20cm} "Type of _influential observation_ defined by one aspect of influence termed _leverage_. These observations are substantially different on one or more independent variables, so that they affect the estimation of one or more _regression coefficients_" [@hair2019, p. 262].
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-fit-values}
+```{r}
+#| code-fold: false
+
+res_model |> olsrr::ols_plot_resid_lev()
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the restricted model studentized residuals and their leverage/influence.
+:::
+
+## Full model
+
+### Model building
+
+::: {#tbl-appendice-chapter-6-full-model-box-cox}
+```{r}
+#| code-fold: false
+
+box_cox <- MASS::boxcox(
+  msf_sc ~ age + sex + latitude, data = data
+  )
+```
+
+[Source: Created by the author. See @box1964 to learn more.]{.legend}
+
+Profile of log-likelihoods for the parameter ($\lambda$) of the Box-Cox power transformation for the full model.
+:::
+
+```{r}
+#| code-fold: false
+
+box_cox$x[which.max(box_cox$y)] # lambda
+```
+
+```{r}
+#| code-fold: false
+
+lambda # The same lambda of the restricted model
+```
+
+```{r}
+#| code-fold: false
+
+full_model <- stats::lm(
+  ((msf_sc^lambda - 1) / lambda) ~ age + sex + latitude, 
+  data = data
+  )
+```
+
+::: {#tbl-appendice-chapter-6-full-model-summary-stats-1}
+```{r}
+#| code-fold: false
+
+broom::tidy(full_model)
+```
+
+[Source: Created by the author.]{.legend}
+
+Summarized information about the components of the full model.
+:::
+
+::: {#tbl-appendice-chapter-6-restricted-model-summary-stats-2}
+```{r}
+#| code-fold: false
+
+broom::glance(full_model) |>
+  tidyr::pivot_longer(cols = dplyr::everything())
+```
+
+[Source: Created by the author.]{.legend}
+
+Summarized statistics about the full model.
+:::
+
+```{r}
+#| code-fold: false
+
+full_model |> summary()
+```
+
+### Residual diagnostics
+
+#### Normality
+
+::: {#tbl-appendice-chapter-6-full-model-residual-diag-stats}
+```{r}
+#| code-fold: false
+
+source(here::here("R/stats_sum.R"))
+source(here::here("R/utils.R"))
+
+full_model |>
+  stats::residuals() |>
+  stats_sum(print = FALSE) |> 
+  list_as_tibble()
+```
+
+[Source: Created by the author.]{.legend}
+
+Statistics about the full model residuals.
+:::
+
+::: {#tbl-appendice-chapter-6-full-model-residual-diag-normality-tests}
+```{r}
+#| code-fold: false
+
+source(here::here("R/normality_sum.R"))
+
+full_model |>
+  stats::residuals() |>
+  normality_sum()
+```
+
+[Source: Created by the author.]{.legend}
+
+Normality tests about the full model residuals.
+:::
+
+Correlation between observed residuals and expected residuals under normality.
+
+```{r}
+#| code-fold: false
+
+full_model |> olsrr::ols_test_correlation()
+```
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-correlation}
+```{r}
+#| code-fold: false
+
+source(here::here("R/test_normality.R"))
+
+hist_plot <- full_model |>
+  stats::residuals() |>
+  plot_hist(print = FALSE)
+
+qq_plot <- full_model |> 
+  stats::residuals() |>
+  plot_qq(print = FALSE)
+
+cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
+```
+
+[Source: Created by the author.]{.legend}
+
+Histogram of the full model residuals with a kernel density estimate, along with a quantile-quantile (Q-Q) plot between the residuals and the theoretical quantiles of the normal distribution.
+:::
+
+#### Common variance
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-fit-values}
+```{r}
+#| code-fold: false
+
+full_model |> olsrr::ols_plot_resid_fit()
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the fitted values of the full model and its residuals.
+:::
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-fit-values}
+```{r}
+#| code-fold: false
+
+full_model |> plot(3)
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the fitted values of the full model and its standardized residuals.
+:::
+
+```{r}
+#| code-fold: false
+
+full_model |> olsrr::ols_test_breusch_pagan()
+```
+
+```{r}
+#| code-fold: false
+
+full_model |> olsrr::ols_test_score()
+```
+
+#### Independence
+
+Variance inflation factor (VIF)
+: \hspace{20cm} "Indicator of the effect that the other independent variables have on the standard error of a regression coefficient. The variance inflation factor is directly related to the tolerance value ($\text{VIF}_{i} = 1/\text{TO}L$). Large VIF values also indicate a high degree of collinearity or multicollinearity among the independent variables" [@hair2019, p. 265].
+
+```{r}
+#| code-fold: false
+
+full_model |> olsrr::ols_coll_diag()
+```
+
+#### Measures of influence
+
+Leverage points
+: \hspace{20cm} "Type of _influential observation_ defined by one aspect of influence termed _leverage_. These observations are substantially different on one or more independent variables, so that they affect the estimation of one or more _regression coefficients_" [@hair2019, p. 262].
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-fit-values}
+```{r}
+#| code-fold: false
+
+full_model |> olsrr::ols_plot_resid_lev()
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the full model studentized residuals and their leverage/influence.
+:::
+
+## Hypothesis test
+
+$$
+\begin{cases}
+\text{H}_{0}: \text{R}^{2}_{\text{res}} >= \text{R}^{2}_{\text{full}} \\
+\text{H}_{a}: \text{R}^{2}_{\text{res}} < \text{R}^{2}_{\text{full}}
+\end{cases}
+$$
+
+$$
+\text{F} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+$$
+
+$$
+\text{F} = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
+$$
+
+```{=latex}
+\smallskip
+```
+
+::: {#tbl-appendice-chapter-6-hypothesis-test-r-squared-comparison}
+```{r}
+#| code-fold: false
+
+source(here::here("R/utils-stats.R"))
+
+dplyr::tibble(
+  name = c("r_squared_res", "r_squared_full", "diff"),
+  value = c(
+  r_squared(res_model), r_squared(full_model), 
+  r_squared(full_model) - r_squared(res_model)
+  )
+)
+```
+
+[Source: Created by the author.]{.legend}
+
+Comparison between the coefficients of determination ($\text{R}^2$) of the restricted and full model.
+:::
+
+```{r}
+#| code-fold: false
+
+print(stats::anova(res_model, full_model))
+```
+
+```{r}
+#| code-fold: false
+
+source(here::here("R/utils-stats.R"))
+
+n <- nrow(data)
+k_res <- length(stats::coefficients(res_model)) - 1
+k_full <- length(stats::coefficients(full_model)) - 1
+
+((r_squared(full_model) - r_squared(res_model)) / (k_full - k_res)) / 
+  ((1 - r_squared(full_model)) / (n  - k_full - 1))
+```
+
+$$
+f^{2} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R}}{1 - \text{R}^{2}_{F}}
+$$
+
+$$
+f^{2} = \cfrac{\text{Additional Var. Explained}}{\text{Var. unexplained}}
+$$
+
+```{=latex}
+\smallskip
+```
+
+::: {#tbl-appendice-chapter-6-hypothesis-test-r-squared-comparison}
+```{r}
+#| code-fold: false
+
+source(here::here("R/cohens_f_squared.R"))
+source(here::here("R/utils-stats.R"))
+
+cohens_f_squared_summary(
+  adj_r_squared(res_model), 
+  adj_r_squared(full_model)
+  )
+```
+
+[Source: Created by the author. See @cohen1988; @cohen1992 to learn more.]{.legend}
+
+Effect size between the restricted and full model based on Cohen's $f^2$.
+:::
+
+```{=latex}
+\end{apendicesenv}
+```
+
+<!-- appendices end -->

@@ -32,8 +32,8 @@ The analyses contained in this thesis are 100% reproducible. They were
 made using the [R programming language](https://www.r-project.org/) and
 the [Quarto](https://quarto.org/) publishing system — an evolution of
 the [R Markdown](https://rmarkdown.rstudio.com/) system. The
-[`renv`](https://rstudio.github.io/renv/) package was used to ensure that
-the R environment used can be restored (see `renv.lock`). The
+[`renv`](https://rstudio.github.io/renv/) package was used to ensure
+that the R environment used can be restored (see `renv.lock`). The
 computational notebooks can be found in the `qmd` directory.
 
 Steps to reproduce the analyses:
@@ -107,7 +107,7 @@ A BibTeX entry for LaTeX users is
 This thesis was developed in the [Graduate Program in Modeling Complex
 Systems (PPG-SCX)](https://sites.usp.br/scx/en/apresentacao/) at the
 [University of Sao Paulo (USP)](https://www5.usp.br/), under the
-guidance of [Prof. Dr. Camilo Rodrigues
+supervision of [Prof. Dr. Camilo Rodrigues
 Neto](https://orcid.org/0000-0001-6783-6695).
 
 Financial support was provided by the [Coordination for the Improvement

@@ -1,36 +1,115 @@
-# {tesesusp} congif file
+# {abnt} config file
 
-Use this quarto document to change your thesis pre-textual sections on the PDF format.
-__Do not remove the text tags__! (a tag: <!-- %:::% tag %:::% --> )
+Use this quarto document to change your thesis pre-textual sections in the PDF format.
+
+__Do not remove the text tags__! (they look like this: `<!-- %:::% tag %:::% -->`)
 
 Some general instructions:
 
-* If you won't use a section of this document, remove it! Empty sections will produce an error. At the moment, this must be made on the `include-before-body.tex` file.
+* If you won't use a section of this document, remove it! Empty sections will produce an error. At the moment, you also need to remove them in the `tex/include-before-body.tex` file and `R/quarto-pre-render-pdf.R`.
 
 ## Title page
 
 <!-- %:::% title-page body begin %:::% -->
-Preliminary version
+{\imprimirtipotrabalho} presented to the {\imprimirescola} at {\imprimiruniversidade}, as part of the requirements for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}.
 
-\vspace{1cm}
+\smallskip
+Area of concentration: {\imprimirareadeconcentracao}.
 
-Dissertation presented to the School of Arts, Sciences and Humanities at the University of São Paulo as part of the requirements for the degree of Master of Science by the Graduate Program in Modeling Complex Systems (PPG-SCX).
-
-\vspace{0.5cm}
-
-Area of Concentration: Fundamentals of complex systems.
-
-<!-- \vspace{1cm} -->
-
-<!-- Revised version incorporating the changes requested by the examining committee on [DATE]. The original version is held in the reserved collection at the EACH-USP Library and in the Digital Library of Theses and Dissertations of the University of São Paulo (BDTD-USP), in accordance with [Resolution CoPGr 6018, dated October 13, 2011](https://leginf.usp.br/?resolucao=resolucao-copgr-no-6018-de-13-de-outubro-de-2011). -->
-
-\vspace{1cm}
-
-Supervisor: Prof. Dr. Camilo Rodrigues Neto
+\smallskip
+Supervisor: Prof. Dr. {\imprimirorientador}
 <!-- %:::% title-page body end %:::% -->
 
-## Approval sheet text
+## Cataloging record
 
-<!-- %:::% approval-sheet header begin %:::% -->
-  Qualifying exam text by Daniel Vartanian, titled __Ecology of sleep and circadian phenotypes of the Brazilian population__, presented to the School of Arts, Sciences and Humanities at the University of São Paulo, as part of the requirements for the degree of Master of Science by the Graduate Program in Modeling Complex Systems (PPG-SCX), in the concentration area of Fundamentals of Complex Systems.
-<!-- %:::% approval-sheet header end %:::% -->
+<!-- %:::% cataloging-record body begin %:::% -->
+I authorize the full or partial reproduction of this work by any conventional or electronic means for the purposes of study and research, provided that the source is cited.
+\ABNTEXfontereduzida
+
+\vfill
+\begin{center}
+Cataloging in publication
+
+Library
+
+[Library name]
+
+\medskip
+\setlength{\fboxsep}{1cm}
+\fbox{\begin{minipage}[c][7.5cm]{12.5cm}
+Vartanian, Daniel
+
+\smallskip
+\hspace{0.5cm} {\imprimirtitulo}  / {\imprimirautor}; supervisor, {\imprimirorientador}. {\imprimirlocal}, {\imprimirdata}
+
+\smallskip
+{\thelastpage}p. : il
+
+\smallskip
+\hspace{0.5cm} {\imprimirtipotrabalho} (\imprimirtituloacademico) -- {\imprimirprograma}, {\imprimirescola}, {\imprimiruniversidade}, {\imprimirdata}.
+
+\smallskip
+\hspace{0.5cm} {\imprimirnotadeversao}
+
+\smallskip
+\hspace{0.5cm} 1. Chronotype. 2. Entrainment. 3. Sleep. 4. Chronobiology. 5. Complex systems. I. Rodrigues Neto, Camilo, super. II. Title.
+\end{minipage}}
+\end{center}
+<!-- %:::% cataloging-record body end %:::% -->
+
+## Approval sheet header
+
+<!-- %:::% approval-sheet body begin %:::% -->
+{\imprimirtipotrabalho} by {\imprimirautor}, under the title \textbf{\imprimirtitulo}, presented to the {\imprimirescola} at the {\imprimiruniversidade}, as part of the requirements for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}, in the concentration area of {\imprimirareadeconcentracao}.
+
+\vspace{\hugeskipamount}
+Approved on \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ , \_\_\_\_\_\_\_\_\_\_ .
+
+\vspace{\hugeskipamount}
+\begin{center}
+  Examination committee
+\end{center}
+
+\vspace{\smallskipamount}
+Committee chair:
+
+\vspace{\tinyskipamount}
+\begingroup
+
+\AtBeginEnvironment{tabular}{
+  \normalsize
+  \renewcommand{\arraystretch}{2}
+}
+
+\setlength{\arrayrulewidth}{0pt}
+\setlength{\tabcolsep}{0cm}
+\begin{tabular}{m{2cm} P{14cm}}
+  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\end{tabular}
+
+\vspace{\bigskipamount}
+Examiners:
+
+\vspace{\tinyskipamount}
+\begin{tabular}{m{2cm} P{14cm}}
+  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\end{tabular}
+
+\vspace{\smallskipamount}
+\begin{tabular}{m{2cm} P{14cm}}
+  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\end{tabular}
+
+\vspace{\smallskipamount}
+\begin{tabular}{m{2cm} P{14cm}}
+  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\end{tabular}
+\endgroup
+<!-- %:::% approval-sheet body end %:::% -->
