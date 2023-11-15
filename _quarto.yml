@@ -4,23 +4,14 @@ execute:
   cache: false
   freeze: auto
 
-project:
-  type: book
-
 profile:
   group:
-    - [html, pdf]
+    - [html, pdf, revealjs]
   default: pdf
 
 book:
   title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
   author: "Daniel Vartanian"
-  # abstract: >
-  #   Quarto book of the master's thesis: Ecology of sleep and circadian
-  #   phenotypes of the Brazilian population.
-  # description: >
-  #   Quarto book of the master's thesis: Ecology of sleep and circadian
-  #   phenotypes of the Brazilian population.
   keyword: >
     Chronobiology. Biological rhythms. Chronotype. Circadian phenotype. Sleep.
     Complex systems. Entrainment. Latitude. Ecology. MCTQ.
@@ -34,5 +25,10 @@ book:
   repo-url: https://github.com/danielvartan/mastersthesis/
   issue-url: https://github.com/danielvartan/mastersthesis/issues/
   repo-branch: main
+
+citation:
+  type: thesis
+  url: https://danielvartan.github.io/mastersthesis/
+google-scholar: false
 
 bibliography: references.bib

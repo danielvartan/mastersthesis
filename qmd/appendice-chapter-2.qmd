@@ -80,7 +80,7 @@ mctq_pt_text <- c(
   "Após ___ minutos, levanto-me."
 )
 
-# See: Andrade, T. (2023). Acronomia. In T. Andrade, Tau (Chapter 1). Flyve.
+# See: Andrade, T. (2023). Acronomia. In T. Andrade, Tau (chapter 1). Flyve.
 control_text_1 <- c(
   "Eles eliminaram o tempo, definitivamente.",
   "Removeram todos os relógios, de parede, de pulso, de bolso...",
@@ -97,7 +97,7 @@ control_text_1 <- c(
 )
 
 # See: Brecht, B. (2000). Quem se defende. In B. Brecht, Poemas 1913-1956 
-#      (5th ed., p. 73; Paulo César de Souza, Trans.). Editora 34.
+#      (P. C. Souza, Trans.; 5th ed., p. 73). Editora 34.
 control_text_2 <- c(
   "Quem se defende porque lhe tiram o ar",
   "Ao lhe apertar a garganta, ",

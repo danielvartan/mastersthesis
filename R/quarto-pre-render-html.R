@@ -2,17 +2,19 @@
 # library(rutils, quietly = TRUE)
 # lybrary(yaml)
 
-source(here::here("R", "quarto-pre-render-common.R"))
+# Pre-render begin ----------
+
+source(here::here("R", "quarto-pre-render-begin.R"))
 
 # Update Quarto files -----
 
 swap_list <- list(
-  index_title = list(
-    from = here::here("index.qmd"),
+  index = list(
+    from = here::here("qmd", "_index-html.qmd"),
     to = here::here("index.qmd"),
-    begin_tag = "%:::% .common h1 begin %:::%",
-    end_tag = "%:::% .common h1 end %:::%",
-    value = "# Welcome {.unnumbered}",
+    begin_tag = "%:::% index begin %:::%",
+    end_tag = "%:::% index end %:::%",
+    value = NULL,
     quarto_render = FALSE
   )
 )
@@ -55,3 +57,7 @@ rutils:::add_or_update_env_var(
   var = var_list,
   yml_file = here::here("_variables.yml")
 )
+
+# Pre-render end ----------
+
+source(here::here("R", "quarto-pre-render-end.R"))

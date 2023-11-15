@@ -11,7 +11,7 @@ Some general instructions:
 ## Title page
 
 <!-- %:::% title-page body begin %:::% -->
-{\imprimirtipotrabalho} presented to the {\imprimirescola} at {\imprimiruniversidade}, as part of the requirements for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}.
+{\imprimirtipotrabalho} presented to the {\imprimirescola} at the {\imprimiruniversidade}, as a requirement for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}.
 
 \smallskip
 Area of concentration: {\imprimirareadeconcentracao}.
@@ -32,7 +32,7 @@ Cataloging in publication
 
 Library
 
-[Library name]
+{\imprimirescola}
 
 \medskip
 \setlength{\fboxsep}{1cm}
@@ -40,19 +40,22 @@ Library
 Vartanian, Daniel
 
 \smallskip
-\hspace{0.5cm} {\imprimirtitulo}  / {\imprimirautor}; supervisor, {\imprimirorientador}. {\imprimirlocal}, {\imprimirdata}
+\hspace{0.5cm} {\imprimirtitulo}  / {\imprimirautor}; supervisor, {\imprimirorientador}. {\imprimirlocal}, {\imprimirdata}.
 
 \smallskip
 {\thelastpage}p. : il
 
 \smallskip
-\hspace{0.5cm} {\imprimirtipotrabalho} (\imprimirtituloacademico) -- {\imprimirprograma}, {\imprimirescola}, {\imprimiruniversidade}, {\imprimirdata}.
+\hspace{0.5cm} {\imprimirtipotrabalho} (\imprimirtituloacademico) -- {\imprimirprograma}, {\imprimirescola}, {\imprimiruniversidade}, {\imprimirlocal}, {\imprimirdata}.
 
 \smallskip
 \hspace{0.5cm} {\imprimirnotadeversao}
 
 \smallskip
 \hspace{0.5cm} 1. Chronotype. 2. Entrainment. 3. Sleep. 4. Chronobiology. 5. Complex systems. I. Rodrigues Neto, Camilo, super. II. Title.
+
+\smallskip
+\hfill CDD ? .ed. ???.???
 \end{minipage}}
 \end{center}
 <!-- %:::% cataloging-record body end %:::% -->
@@ -60,7 +63,7 @@ Vartanian, Daniel
 ## Approval sheet header
 
 <!-- %:::% approval-sheet body begin %:::% -->
-{\imprimirtipotrabalho} by {\imprimirautor}, under the title \textbf{\imprimirtitulo}, presented to the {\imprimirescola} at the {\imprimiruniversidade}, as part of the requirements for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}, in the concentration area of {\imprimirareadeconcentracao}.
+{\imprimirtipotrabalho} by {\imprimirautor}, under the title \textbf{\imprimirtitulo}, presented to the {\imprimirescola} at the {\imprimiruniversidade}, as a requirement for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}, in the concentration area of {\imprimirareadeconcentracao}.
 
 \vspace{\hugeskipamount}
 Approved on \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ , \_\_\_\_\_\_\_\_\_\_ .

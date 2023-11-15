@@ -3,14 +3,19 @@
 # library(rutils, quietly = TRUE)
 # library(yaml, quietly = TRUE)
 
-source(here::here("R", "quarto-post-render-common.R"))
+# Post-render begin ----------
+
+source(here::here("R", "quarto-post-render-begin.R"))
 
 # Copy PDF (if exists) to `output_dir_html` folder ----------
 
 pdf_file <- list.files(output_dir_pdf, full.names = TRUE, pattern = ".pdf$")
 
 if (length(pdf_file) == 1) {
-  rutils:::copy_file(pdf_file, file.path(output_dir_html, "index.pdf"))
+  rutils:::copy_file(
+    from = pdf_file,
+    to = file.path(output_dir_html, "index.pdf")
+  )
 }
 
 # Create robots.txt file ----------
@@ -35,13 +40,6 @@ writeLines(
   con = robots_file
 )
 
-# Delete unnecessary files and folders -----
+# Post-render end ----------
 
-rutils:::clean_quarto_mess(
-  file = NULL,
-  dir = c(".temp", "index_cache", "index_files", "qmd/images"),
-  ext = c("aux", "bbx", "cbx", "dbx", "fdb_latexmk", "lbx", "loa", "log",
-          "pdf", "scss", "tex", "xdv"),
-  ignore = NULL,
-  wd = here::here()
-)
+source(here::here("R", "quarto-post-render-end.R"))

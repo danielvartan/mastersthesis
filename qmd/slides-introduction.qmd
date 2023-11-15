@@ -1,0 +1,133 @@
+<!-- %:::% slides-introduction begin %:::% -->
+## {background-iframe="https://www.interactive-earth.com/earth/solar-system.html?gridXZ.visible=true&sun.spinrate=0.26&earth.diameter=0.50&earth.au=0.13&earth.ellipse=0.50&earth.spinrate=0.50&earth.angle1=23.50&earthgroup.angle=5.00&moon.diameter=0.29&moon.distance=0.31&moon.spinrate=0.50" background-interactive=true scrollable=false}
+
+<!-- Hipótese da latitude -->
+
+## {background-iframe="https://astro.unl.edu/classaction/animations/coordsmotion/sunsrays.html" background-interactive=true scrollable=false}
+
+<!-- Hipótese da latitude -->
+
+## {background-iframe="https://ciechanow.ski/earth-and-sun/#es_cosine" background-interactive=true}
+
+<!-- Hipótese da latitude -->
+
+## {background-iframe="https://ciechanow.ski/earth-and-sun/#es_earth_outline" background-interactive=true}
+
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+change_sign <- function(x) x * (-1)
+
+nra <- list(
+  name = "Nascente do rio Ailã, RR",
+  lat = 
+    measurements::conv_unit(
+      x = "5 16 19", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric(),
+  lng = 
+    measurements::conv_unit(
+      x = "60 12 45", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign()
+)
+
+ac <- list(
+  name = "Arroio Chuí, RS",
+  lat = 
+    measurements::conv_unit(
+      x = "33 45 7", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign(),
+  lng = 
+    measurements::conv_unit(
+      x = "53 23 50", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign()
+)
+
+nrm <- list(
+  name = "Nascente do rio Moa, AC",
+  lat = 
+    measurements::conv_unit(
+      x = "7 32 9", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign(),
+  lng = 
+    measurements::conv_unit(
+      x = "73 59 26", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign()
+)
+
+ps <- list(
+  name = "Ponta do Seixas, PB",
+  lat = 
+    measurements::conv_unit(
+      x = "7 9 18", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign(),
+  lng = 
+    measurements::conv_unit(
+      x = "34 47 34", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign()
+)
+
+leaflet::leaflet() |>
+  leaflet::addTiles() |> 
+  leaflet::addPolylines(
+    data = dplyr::tibble(
+      group = c("A", "B"),
+      lat = c(nra$lat, ac$lat),
+      lng = c(nra$lng, ac$lng)
+    ),
+    lng = ~lng, 
+    lat = ~lat,
+    weight = 3,
+    color = "red"
+  ) |>
+  leaflet::addPolylines(
+    data = dplyr::tibble(
+      group = c("A", "B"),
+      lat = c(nrm$lat, ps$lat),
+      lng = c(nrm$lng, ps$lng)
+    ),
+    lng = ~lng, 
+    lat = ~lat,
+    weight = 3,
+    color = "red"
+  ) |>
+  leaflet::addMarkers(popup = nra$name, lat = nra$lat, lng = nra$lng) |>
+  leaflet::addMarkers(popup = ac$name, lat = ac$lat, lng = ac$lng) |>
+  leaflet::addMarkers(popup = nrm$name, lat = nrm$lat, lng = nrm$lng) |>
+  leaflet::addMarkers(popup = ps$name, lat = ps$lat, lng = ps$lng)
+```
+<!-- %:::% slides-introduction end %:::% -->

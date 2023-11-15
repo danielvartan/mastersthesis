@@ -85,7 +85,7 @@ stats <- data |>
 
 [Source: Created by the author.]{.legend}
 
-Frequencies of age among the sample subjects.
+Age frequencies among sample subjects.
 :::
 
 ::: {#tbl-appendice-chapter-4-distribution-of-main-variables}
@@ -97,7 +97,7 @@ stats$stats |> list_as_tibble()
 
 [Source: Created by the author.]{.legend}
 
-Statistics related to the $\text{age}$ variable.
+Age statistics of sample subjects
 :::
 
 ## Geographic distribution
@@ -119,7 +119,7 @@ brazil_uf_map <-
 
 [Source: Created by the author.]{.legend}
 
-Geographic distribution of the sample subjects.
+Residential geographic distribution among sample subjects
 :::
 
 ## Age pyramid
@@ -143,7 +143,7 @@ age_pyramid <-
 
 [Source: Created by the author.]{.legend}
 
-Age pyramid of the sample subjects.
+Age pyramid of the sample subjects
 :::
 
 ```{r}
@@ -189,7 +189,7 @@ ggcorrplot <-
 
 [Source: Created by the author.]{.legend}
 
-Correlation matrix of the main variables.
+Correlation matrix of main variables
 :::
 
 ## Age and sex series
@@ -222,9 +222,9 @@ data |>
     )
 ```
 
-[Source: Created by the author. Based on the data visualization found in @roenneberg2007a.]{.legend}
+[Source: Created by the author. Based on data visualization found in @roenneberg2007a.]{.legend}
 
-Relation between age and chronotype, divided by sex. Chronotype is represented by the local time of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+Relation between age and chronotype, divided by sex. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
 :::
 
 ### Age/sex _versus_ weight
@@ -255,7 +255,7 @@ data |>
     )
 ```
 
-[Source: Created by the author. Based on the data visualization found in @roenneberg2007a.]{.legend}
+[Source: Created by the author. Based on data visualization found in @roenneberg2007a.]{.legend}
 
 Relation between age and weight (kg), divided by sex. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
 :::
@@ -286,9 +286,9 @@ data |>
   )
 ```
 
-[Source: Created by the author. Based on the data visualization found in @roenneberg2019b.]{.legend}
+[Source: Created by the author. Based on data visualization found in @roenneberg2019b.]{.legend}
 
-Distribution of the local time of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype. The categorical cuts follow a quantile approach going from extremely early ($0 |- 0.11$) to the extremely late ($0.88 - 1$).
+Distribution of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The categorical cut-offs follow a quantile approach going from extremely early ($0 |- 0.11$) to the extremely late ($0.88 - 1$).
 :::
 
 ## Latitude series
@@ -318,9 +318,9 @@ data |>
   )
 ```
 
-[Source: Created by the author. Based on the data visualization found in @leocadio-miguel2017.]{.legend}
+[Source: Created by the author. Based on data visualization found in @leocadio-miguel2017.]{.legend}
 
-Distribution of mean aggregates of the local time of the midpoint between sleep onset and sleep end on work-free days ($\text{MSF}_{\text{sc}}$), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of $\text{MSF}_{\text{sc}}$ indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval.
+Distribution of mean aggregates of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of MSF~sc~ indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval.
 :::
 
 ## Statistics
@@ -346,7 +346,7 @@ data |>
 
 [Source: Created by the author.]{.legend}
 
-Statistics related to the MSF~sc~ variable.
+Statistics of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, of sample subjects
 :::
 
 
@@ -439,9 +439,9 @@ count <-
 count |> dplyr::select(sex, n_per_sample, n_per_census, n_per_diff)
 ```
 
-[Source: Created by the author, based on data from Brazil's 2022 census (@ibgeb).]{.legend}
+[Source: Created by the author. Based on data from Brazil's 2022 census (@ibgeb).]{.legend}
 
-Frequencies of sex among subjects compared with data from Brazil's 2022 census.
+Sex frequencies among sample subjects compared with data from Brazil's 2022 census
 :::
 
 ```{r}
@@ -472,7 +472,7 @@ data |>
 
 [Source: Created by the author.]{.legend}
 
-Statistics related to male subject's age.
+Age statistics of male sample subjects.
 :::
 
 ::: {#tbl-appendice-chapter-4-statistics-sex-age-2}
@@ -560,9 +560,9 @@ count |>
     )
 ```
 
-[Source: Created by the author, based on data from Brazil's 2022 census (@ibgeb).]{.legend}
+[Source: Created by the author. Based on data from Brazil's 2022 census (@ibgeb).]{.legend}
 
-Mean and standard deviation ($sd$) of subjects' age by sex compared with data from Brazil's 2022 census.
+Mean and standard deviation ($\text{sd}$) of sample subjects' age, divided by sex, compared with data from Brazil's 2022 census
 :::
 
 ```{r}
@@ -595,7 +595,7 @@ stats |> list_as_tibble()
 
 [Source: Created by the author.]{.legend}
 
-Statistics related to subject's residential longitude.
+Residential longitude statistics of sample subjects
 :::
 
 #### Brazil
@@ -648,7 +648,7 @@ stats |> list_as_tibble()
 
 [Source: Created by the author.]{.legend}
 
-Statistics related to subject's residential latitude.
+Residential latitude statistics of sample subjects
 :::
 
 #### Brazil
@@ -736,9 +736,9 @@ count <-
 count |> dplyr::select(col, n_per_sample, n_per_census, n_per_diff)
 ```
 
-[Source: Created by the author, based on data from Brazil's 2022 census (@ibgec).]{.legend}
+[Source: Created by the author. Based on data from Brazil's 2022 census (@ibgec).]{.legend}
 
-Frequencies of residential regions among subjects compared with data from Brazil's 2022 census.
+Residential region frequencies among sample subjects compared with data from Brazil's 2022 census.
 :::
 
 ```{r}
@@ -768,7 +768,7 @@ data |>
   dplyr::arrange(dplyr::desc(n_rel))
 ```
 
-[Source: Created by the author, based on data from Brazil's 2022 census (@ibgec).]{.legend}
+[Source: Created by the author. Based on data from Brazil's 2022 census (@ibgec).]{.legend}
 
-Frequencies of residential states among subjects compared with data from Brazil's 2022 census.
+Residential state frequencies among sample subjects compared with data from Brazil's 2022 census.
 :::

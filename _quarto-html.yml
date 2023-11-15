@@ -1,5 +1,6 @@
 project:
-  output-dir: docs
+  type: book
+  output-dir: _web
   pre-render: "R/quarto-pre-render-html.R"
   post-render: "R/quarto-post-render-html.R"
 
@@ -40,11 +41,6 @@ book:
     - qmd/appendice-chapter-4.qmd
     - qmd/appendice-chapter-5.qmd
     - qmd/appendice-chapter-6.qmd
-
-citation:
-  type: thesis
-  url: https://danielvartan.github.io/mastersthesis/
-google-scholar: false
 
 format:
   abnt-html:

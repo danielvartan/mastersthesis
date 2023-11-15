@@ -44,13 +44,13 @@ MEQ
 : \hspace{20cm} Morningness-Eveningness Questionnaire
 
 MSF
-: \hspace{20cm} Local time of mid-sleep on work-free days
+: \hspace{20cm} Midsleep on work-free days. Local time of the midpoint between sleep onset and sleep end on work-free days
 
 MSF~sc~
-: \hspace{20cm} Chronotype proxy. The midpoint between sleep onset and sleep end on work-free days. A sleep correction (~SC~) is made when a possible sleep compensation related to a lack of sleep on workdays is identified.
+: \hspace{20cm} Midsleep on work-free days with a sleep correction -- MCTQ's chronotype proxy. Same as MSF with a sleep correction (~SC~) made when a possible sleep compensation related to a lack of sleep on workdays is identified.
 
 MSW
-: \hspace{20cm} Local time of mid-sleep on workdays
+: \hspace{20cm} Midsleep on workdays. Local time of the midpoint between sleep onset and sleep end on workdays.
 
 PRC
 : \hspace{20cm} Phase response curve

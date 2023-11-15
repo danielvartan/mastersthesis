@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: _slides
+  render: [index.qmd]
+  pre-render: "R/quarto-pre-render-revealjs.R"
+  post-render: "R/quarto-post-render-revealjs.R"
+
+title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
+author: "Daniel Vartanian"
+
+format:
+  revealjs:
+    date: today
+    lang: en
+    csl: english-apa-author-date.csl
+    keyboard: true
+    controls: true
+    controls-layout: bottom-right
+    preview-links: auto
+    theme: default
+    chalkboard: true

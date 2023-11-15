@@ -1,6 +1,9 @@
 # See <https://git-scm.com/docs/gitignore>.
 
 _freeze/
+_print/
+_slides/
+_web/
 _targets/
 .auth/
 .quarto/

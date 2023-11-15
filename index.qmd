@@ -3,9 +3,8 @@ execute:
   freeze: false
 ---
 
-<!-- %:::% .common h1 begin %:::% -->
-# Welcome {.unnumbered}
-<!-- %:::% .common h1 end %:::% -->
+<!-- %:::% index begin %:::% -->
+## {.smaller visibility="hidden"}
 
 ```{r}
 #| label: setup
@@ -14,10 +13,215 @@ execute:
 source(here::here("R/quarto-setup.R"))
 ```
 
-::: {.content-visible when-format="html"}
-{{< include qmd/_index-html.qmd >}}
+Presented to the School of Arts, Sciences and Humanities at the University of São Paulo, as a requirement for the degree of Master of Science by the Graduate Program in Complex Systems Modeling.
+
+<!-- %:::% slides-introduction begin %:::% -->
+## {background-iframe="https://www.interactive-earth.com/earth/solar-system.html?gridXZ.visible=true&sun.spinrate=0.26&earth.diameter=0.50&earth.au=0.13&earth.ellipse=0.50&earth.spinrate=0.50&earth.angle1=23.50&earthgroup.angle=5.00&moon.diameter=0.29&moon.distance=0.31&moon.spinrate=0.50" background-interactive=true scrollable=false}
+
+<!-- Hipótese da latitude -->
+
+## {background-iframe="https://astro.unl.edu/classaction/animations/coordsmotion/sunsrays.html" background-interactive=true scrollable=false}
+
+<!-- Hipótese da latitude -->
+
+## {background-iframe="https://ciechanow.ski/earth-and-sun/#es_cosine" background-interactive=true}
+
+<!-- Hipótese da latitude -->
+
+## {background-iframe="https://ciechanow.ski/earth-and-sun/#es_earth_outline" background-interactive=true}
+
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+change_sign <- function(x) x * (-1)
+
+nra <- list(
+  name = "Nascente do rio Ailã, RR",
+  lat = 
+    measurements::conv_unit(
+      x = "5 16 19", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric(),
+  lng = 
+    measurements::conv_unit(
+      x = "60 12 45", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign()
+)
+
+ac <- list(
+  name = "Arroio Chuí, RS",
+  lat = 
+    measurements::conv_unit(
+      x = "33 45 7", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign(),
+  lng = 
+    measurements::conv_unit(
+      x = "53 23 50", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign()
+)
+
+nrm <- list(
+  name = "Nascente do rio Moa, AC",
+  lat = 
+    measurements::conv_unit(
+      x = "7 32 9", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign(),
+  lng = 
+    measurements::conv_unit(
+      x = "73 59 26", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign()
+)
+
+ps <- list(
+  name = "Ponta do Seixas, PB",
+  lat = 
+    measurements::conv_unit(
+      x = "7 9 18", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign(),
+  lng = 
+    measurements::conv_unit(
+      x = "34 47 34", 
+      from = "deg_min_sec", 
+      to = "dec_deg"
+    ) |> 
+    as.numeric() |>  
+    change_sign()
+)
+
+leaflet::leaflet() |>
+  leaflet::addTiles() |> 
+  leaflet::addPolylines(
+    data = dplyr::tibble(
+      group = c("A", "B"),
+      lat = c(nra$lat, ac$lat),
+      lng = c(nra$lng, ac$lng)
+    ),
+    lng = ~lng, 
+    lat = ~lat,
+    weight = 3,
+    color = "red"
+  ) |>
+  leaflet::addPolylines(
+    data = dplyr::tibble(
+      group = c("A", "B"),
+      lat = c(nrm$lat, ps$lat),
+      lng = c(nrm$lng, ps$lng)
+    ),
+    lng = ~lng, 
+    lat = ~lat,
+    weight = 3,
+    color = "red"
+  ) |>
+  leaflet::addMarkers(popup = nra$name, lat = nra$lat, lng = nra$lng) |>
+  leaflet::addMarkers(popup = ac$name, lat = ac$lat, lng = ac$lng) |>
+  leaflet::addMarkers(popup = nrm$name, lat = nrm$lat, lng = nrm$lng) |>
+  leaflet::addMarkers(popup = ps$name, lat = ps$lat, lng = ps$lng)
+```
+<!-- %:::% slides-introduction end %:::% -->
+<!-- %:::% slides-results begin %:::% -->
+---
+
+::: {.notes}
+Distribution of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The categorical cut-offs follow a quantile approach going from extremely early ($0 |- 0.11$) to the extremely late ($0.88 - 1$).
 :::
 
-::: {.content-visible when-format="pdf"}
-{{< include qmd/_index-pdf.qmd >}}
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+source(here::here("R/utils.R"))
+
+utc_minus_3_states <- c(
+  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
+  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
+  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
+  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
+  "Rio Grande do Sul"
+)
+
+data <- 
+  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
+  dplyr::filter(state %in% utc_minus_3_states) |>
+  dplyr::select(msf_sc, age, sex, state, latitude, longitude) |>
+  tidyr::drop_na(msf_sc, age, sex, latitude)
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+source(here::here("R/plot_chronotype.R"))
+
+data |> 
+  plot_chronotype(
+    col = "msf_sc", 
+    x_lab = "Frequency (%)",
+    y_lab = latex2exp::TeX("Local time ($MSF_{sc}$)"),
+    col_width = 0.8,
+    col_border = 0.6,
+    text_size = 12,
+    chronotype_cuts = FALSE,
+    legend_position = "right"
+  )
+```
+
+---
+
+::: {.notes}
+Distribution of mean aggregates of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of MSF~sc~ indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval.
 :::
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+source(here::here("R/plot_latitude_series.R"))
+
+data |>
+  dplyr::filter(age <= 50) |>
+  plot_latitude_series(
+    col = "msf_sc", 
+    y_lab = latex2exp::TeX("$MSF_{sc} \\pm SEM$"), 
+    line_width = 2, 
+    point_size = 3,
+    error_bar_width = 0.5, 
+    error_bar_linewidth = 1, 
+    error_bar = TRUE,
+    text_size = 12
+  )
+```
+<!-- %:::% slides-results end %:::% -->
+<!-- %:::% index end %:::% -->

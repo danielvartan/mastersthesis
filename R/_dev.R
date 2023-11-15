@@ -42,10 +42,12 @@
 #
 # source(here::here("R", "quarto-pre-render-pdf.R"))
 # source(here::here("R", "quarto-pre-render-html.R"))
+# source(here::here("R", "quarto-pre-render-revealjs.R"))
 #
 # quarto render
 # quarto render --profile pdf
 # quarto render --profile html
+# quarto render --profile revealjs
 # quarto publish gh-pages
 
 # # LaTeX

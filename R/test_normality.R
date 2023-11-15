@@ -76,6 +76,7 @@ test_normality <- function(x,
 
   bonett <- x |> moments::bonett.test()
 
+  # See also `Rita::DPTest()` (just for Omnibus (K) tests).
   dagostino <-
     x |>
     fBasics::dagoTest() |>

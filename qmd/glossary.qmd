@@ -48,7 +48,7 @@ Ultradian rhythm
 : \hspace{20cm} A rhythm with a period below a day/24h. From the Latin _ultrā_, beyond (think in terms of period repetition), and _dĭes_, day [@latinitium]. Example: the cardiac cycle.
 
 Zeitgeber
-: \hspace{20cm} Any periodic environmental signal/cue that can influence or regulate biological rhythms. From the German _zeit_, time, and _geber_, donor [@cambridgeuniversitypress]. Two main well known zeitgebers are light exposure and environment temperature [@pittendrigh1960].
+: \hspace{20cm} Any periodic environmental signal/cue that can influence or regulate biological rhythms. From the German _zeit_, time, and _geber_, donor [@cambridgeuniversitypress]. Two main and well known zeitgebers are light exposure and environment temperature [@pittendrigh1960].
 
 ```{=latex}
 \end{glossario}

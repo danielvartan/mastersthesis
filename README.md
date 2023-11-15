@@ -21,6 +21,9 @@ book](https://quarto.org/docs/books/) of my master’s thesis: *Ecology of
 sleep and circadian phenotypes of the Brazilian population*. Its aim is
 to facilitate research work and to improve reproducibility.
 
+Click [here](https://danielvartan.github.io/mastersthesis/) to access
+the thesis documents.
+
 The assemble of this repository was inspired by Ben Marwick, Carl
 Boettiger & Lincoln Mullen’s article [Packaging Data Analytical Work
 Reproducibly Using R (and
@@ -30,20 +33,10 @@ Friends)](https://doi.org/10.1080/00031305.2017.1375986).
 
 The analyses contained in this thesis are 100% reproducible. They were
 made using the [R programming language](https://www.r-project.org/) and
-the [Quarto](https://quarto.org/) publishing system — an evolution of
-the [R Markdown](https://rmarkdown.rstudio.com/) system. The
+the [Quarto](https://quarto.org/) publishing system. The
 [`renv`](https://rstudio.github.io/renv/) package was used to ensure
 that the R environment used can be restored (see `renv.lock`). The
 computational notebooks can be found in the `qmd` directory.
-
-Steps to reproduce the analyses:
-
-1.  Clone this repository.
-2.  Open the R project (`mastersthesis.Rproj`).
-3.  Run
-    [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html)
-    to install all software dependencies.
-4.  Open and run the analysis in the computational notebook.
 
 It’s important to note that some restrictions apply to the availability
 of the main research data, which were used under the approval of a
@@ -53,6 +46,15 @@ Research Ethics Committee
 As a result, this data cannot be publicly shared. To run the analyses,
 users must have an internet connection and request a set of access keys
 from the author.
+
+To reproduce the analyses do the following steps:
+
+1.  Clone this repository.
+2.  Open the R project (`mastersthesis.Rproj`).
+3.  Run
+    [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html)
+    to install all software dependencies.
+4.  Open and run the analysis in the computational notebook.
 
 If you don’t feel comfortable with R, I strongly recommend checking
 Hadley Wickham and Garrett Grolemund’s free and online book [R for Data
@@ -87,8 +89,7 @@ be made with the author’s approval and participation.
 You can find the thesis citation below.
 
     Vartanian, D. (2023). Ecology of sleep and circadian phenotypes of the Brazilian
-    population [Master's thesis]. School of Arts, Sciences and Humanities, 
-    University of São Paulo, São Paulo.
+    population [Master's thesis, University of São Paulo].
 
 A BibTeX entry for LaTeX users is
 
@@ -98,8 +99,9 @@ A BibTeX entry for LaTeX users is
       year = {2023},
       address = {São Paulo},
       school  = {University of São Paulo},
-      langid = {portuguese},
+      langid = {en-us},
       url = {https://github.com/danielvartan/mastersthesis},
+      note = {Preliminary version}
     }
 
 ## Acknowledgments
@@ -111,6 +113,5 @@ supervision of [Prof. Dr. Camilo Rodrigues
 Neto](https://orcid.org/0000-0001-6783-6695).
 
 Financial support was provided by the [Coordination for the Improvement
-of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) and
-the [University of São Paulo (USP)](http://usp.br/) (❤️) (Grant number:
-88887.703720/2022-00).
+of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) (Grant
+number: 88887.703720/2022-00).

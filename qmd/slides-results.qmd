@@ -1,0 +1,76 @@
+<!-- %:::% slides-results begin %:::% -->
+---
+
+::: {.notes}
+Distribution of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The categorical cut-offs follow a quantile approach going from extremely early ($0 |- 0.11$) to the extremely late ($0.88 - 1$).
+:::
+
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+source(here::here("R/utils.R"))
+
+utc_minus_3_states <- c(
+  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
+  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
+  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
+  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
+  "Rio Grande do Sul"
+)
+
+data <- 
+  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
+  dplyr::filter(state %in% utc_minus_3_states) |>
+  dplyr::select(msf_sc, age, sex, state, latitude, longitude) |>
+  tidyr::drop_na(msf_sc, age, sex, latitude)
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+source(here::here("R/plot_chronotype.R"))
+
+data |> 
+  plot_chronotype(
+    col = "msf_sc", 
+    x_lab = "Frequency (%)",
+    y_lab = latex2exp::TeX("Local time ($MSF_{sc}$)"),
+    col_width = 0.8,
+    col_border = 0.6,
+    text_size = 12,
+    chronotype_cuts = FALSE,
+    legend_position = "right"
+  )
+```
+
+---
+
+::: {.notes}
+Distribution of mean aggregates of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of MSF~sc~ indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval.
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+source(here::here("R/plot_latitude_series.R"))
+
+data |>
+  dplyr::filter(age <= 50) |>
+  plot_latitude_series(
+    col = "msf_sc", 
+    y_lab = latex2exp::TeX("$MSF_{sc} \\pm SEM$"), 
+    line_width = 2, 
+    point_size = 3,
+    error_bar_width = 0.5, 
+    error_bar_linewidth = 1, 
+    error_bar = TRUE,
+    text_size = 12
+  )
+```
+<!-- %:::% slides-results end %:::% -->
