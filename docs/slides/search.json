@@ -123,7 +123,7 @@
     "href": "index.html#elegibility-criteria",
     "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
     "section": "Elegibility criteria",
-    "text": "Elegibility criteria\n\n\nInclusion criteria\nIC1. Residents in Brazil.\nIC2. Adults (i.e., aged \\(\\geq\\) 18 years).\nIC3. Literate.\nIC4. With internet access\n\nExclusion criteria\nNone. (besides validation)"
+    "text": "Elegibility criteria\n\n\nInclusion criteria\nIC1. Residents in Brazil\nIC2. Adults (i.e., age \\(\\geq\\) 18 years)\nIC3. Literate\nIC4. With internet access\n\nExclusion criteria\nNone (besides validation)"
   },
   {
     "objectID": "index.html#population",
@@ -133,11 +133,25 @@
     "text": "Population\nAccording to the Continuous National Household Sample Survey (PNAD), in 2017, Brazil had an illiteracy rate of \\(6.9\\%\\) among individuals aged 18 years or older (Instituto Brasileiro de Geografia e Estatística, n.d.-c).\nIn that same year, the Brazilian population in this age group comprised approximately \\(151,321,000\\) individuals (Instituto Brasileiro de Geografia e Estatística, n.d.-b). Considering these two pieces of data, it can be inferred that there were around \\(140,879,851\\) literate individuals aged 18 years or older in Brazil in 2017.\nAccording to the PNAD, the proportion of men and women above 18 years old in 2017 was \\(48.163\\%\\) and \\(51.837\\%\\), respectively (Instituto Brasileiro de Geografia e Estatística, n.d.-a). Another edition of the same study showed that internet usage covered \\(82.17\\%\\) of Brazilian households in 2019 (Instituto Brasileiro de Geografia e Estatística, 2021). Based on this data, it is estimated that the size of the population to be represented in this study is around \\(115,760,973\\) individuals, which corresponds to approximately \\(76.500\\%\\) of the adult Brazilian population in 2017."
   },
   {
-    "objectID": "index.html#sample-raw-chracteristics",
-    "href": "index.html#sample-raw-chracteristics",
+    "objectID": "index.html#sample-raw-characteristics",
+    "href": "index.html#sample-raw-characteristics",
     "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Sample (raw) chracteristics",
-    "text": "Sample (raw) chracteristics\n\nConvenience sample (non-probabilistic)\nUnit of observation and analysis: Individuals\nTotal of \\(120,265\\) entries in the raw state\n\\(118,068\\) responses within a seven-day window (from 15th to 21st October 2017)\nEncompasses all states of Brazil\n\\(92,107\\) Brazilian resident subjects aged 18 years or older (\\(78.012\\%\\) of the total) (ages between \\(18-79\\) years; mean of \\(32.726 \\pm 10.176\\) years)\n\\(66.320\\%\\) are female (ages between \\(18-79\\) years; mean of \\(32.543 \\pm 10.259\\) years) and \\(33.600\\%\\) are male (ages between \\(18-79\\) years; mean of \\(33.076 \\pm 9.987\\) years)\nIt is assumed that individuals in the sample are literate and have internet access, as it would not be possible to respond to the questionnaire without these characteristics."
+    "section": "Sample (raw) characteristics",
+    "text": "Sample (raw) characteristics\n\nConvenience sample (non-probabilistic)\nUnit of observation and analysis: Individuals\nTotal of \\(120,265\\) entries in the raw state\n\\(118,068\\) responses within a seven-day window (from 15th to 21st October 2017)\nEncompasses all states of Brazil\n\\(92,107\\) Brazilian resident subjects aged 18 years or older (\\(78.012\\%\\) of the total) (ages between \\(18-79\\) years; mean of \\(32.726 \\pm 10.176\\) years)\n\\(66.320\\%\\) are female (ages between \\(18-79\\) years; mean of \\(32.543 \\pm 10.259\\) years) and \\(33.600\\%\\) are male (ages between \\(18-79\\) years; mean of \\(33.076 \\pm 9.987\\) years)\nIt is assumed that individuals in the sample are literate and have internet access, as it would not be possible to respond to the questionnaire without these characteristics."
+  },
+  {
+    "objectID": "index.html#dataset-characteristics",
+    "href": "index.html#dataset-characteristics",
+    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
+    "section": "Dataset characteristics",
+    "text": "Dataset characteristics\n\n\\(120,265 entries\\), divided into \\(94\\) variables, representing a total of \\(11,304,910\\) data points.\nAll fields in the form were mandatory.\nThe value of minutes in the collected times was obtained through intervals of \\(5\\) or \\(10\\) minutes.\nAs it was a prototype, the collection form did not contain response validation rules for most fields, which resulted in a variety of formats in some of the collected variables."
+  },
+  {
+    "objectID": "index.html#data-categories",
+    "href": "index.html#data-categories",
+    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
+    "section": "Data categories",
+    "text": "Data categories\n\n\nRecord/Control\n\nid\ntimestamp\ntrack\n\n\nPersonal\n\nName\nEmail\nSex\nDate of birth\nCountry of residence\nState of residence\nCity of residence\nResidential ZIP code\n[…]\n\n\nHealth\n\nUse of sleeping medication\nUse of other types of medication\nPresence of sleep disorders"
   },
   {
     "objectID": "index.html#section-24",
@@ -161,11 +175,18 @@
     "text": "(Vartanian, 2023b)"
   },
   {
-    "objectID": "index.html#section-29",
-    "href": "index.html#section-29",
+    "objectID": "index.html#data-plan",
+    "href": "index.html#data-plan",
     "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Vartanian, 2023a)"
+    "section": "Data plan",
+    "text": "Data plan\nSee: https://dmphub.cdlib.org/dmps/doi:10.48321/D1DW8P\n\n(Vartanian, 2023a)"
+  },
+  {
+    "objectID": "index.html#research-compendium",
+    "href": "index.html#research-compendium",
+    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
+    "section": "Research compendium",
+    "text": "Research compendium\nSee:\n\nhttps://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375986.\nhttps://github.com/danielvartan/mastersthesis"
   },
   {
     "objectID": "index.html#section-33",

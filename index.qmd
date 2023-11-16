@@ -277,11 +277,11 @@ $$
 ::: {.column width="50%"}
 __Inclusion criteria__
 
-__IC1__. Residents in Brazil.
+__IC1__. Residents in Brazil
 
-__IC2__. Adults (i.e., aged $\geq$ 18 years).
+__IC2__. Adults (i.e., age $\geq$ 18 years)
 
-__IC3__. Literate.
+__IC3__. Literate
 
 __IC4__. With internet access
 :::
@@ -289,7 +289,7 @@ __IC4__. With internet access
 ::: {.column width="50%"}
 __Exclusion criteria__
 
-None. (besides validation)
+None (besides validation)
 :::
 :::
 
@@ -301,7 +301,7 @@ In that same year, the Brazilian population in this age group comprised approxim
 
 According to the PNAD, the proportion of men and women above 18 years old in 2017 was $48.163\%$ and $51.837\%$, respectively [@ibgee]. Another edition of the same study showed that internet usage covered $82.17\%$ of Brazilian households in 2019 [@ibge2021]. Based on this data, it is estimated that the size of the population to be represented in this study is around $115,760,973$ individuals, which corresponds to approximately $76.500\%$ of the adult Brazilian population in 2017.
 
-## Sample (raw) chracteristics {.smaller}
+## Sample (raw) characteristics {.smaller}
 
 * Convenience sample (non-probabilistic)
 * Unit of observation and analysis: Individuals
@@ -311,6 +311,82 @@ According to the PNAD, the proportion of men and women above 18 years old in 201
 * $92,107$ Brazilian resident subjects aged 18 years or older ($78.012\%$ of the total) (ages between $18-79$ years; mean of $32.726 \pm 10.176$ years)
 * $66.320\%$ are female (ages between $18-79$ years; mean of $32.543 \pm 10.259$ years) and $33.600\%$ are male (ages between $18-79$ years; mean of $33.076 \pm 9.987$ years)
 * It is assumed that individuals in the sample are literate and have internet access, as it would not be possible to respond to the questionnaire without these characteristics.
+
+## Dataset characteristics {.smaller}
+
+* $120,265 entries$, divided into $94$ variables, representing a total of $11,304,910$ data points.
+* All fields in the form were mandatory.
+* The value of minutes in the collected times was obtained through intervals of $5$ or $10$ minutes.
+* As it was a prototype, the collection form did not contain response validation rules for most fields, which resulted in a variety of formats in some of the collected variables.
+
+## Data categories {.smaller}
+
+::: columns
+::: {.column width="33%"}
+__Record/Control__
+
+* id
+* timestamp
+* track
+:::
+
+::: {.column width="33%"}
+__Personal__
+
+* Name
+* Email
+* Sex
+* Date of birth
+* Country of residence
+* State of residence
+* City of residence
+* Residential ZIP code
+* [...]
+:::
+
+::: {.column width="33%"}
+__Health__
+
+* Use of sleeping medication
+* Use of other types of medication
+* Presence of sleep disorders
+:::
+:::
+
+# Data categories {.smaller}
+
+::: columns
+::: {.column width="33%"}
+__Habits__
+
+* Employment status
+* Student status
+* Work periods
+* Study periods
+:::
+
+::: {.column width="66%"}
+__MCTQ standard version__ 
+
+(workdays days and work-free days)
+
+::: columns
+::: {.column width="45%"}
+* Number of workdays per week
+* Local time of going to bed
+* Local time of preparing to sleep
+* Sleep latency or time to fall asleep after preparing to sleep
+:::
+
+::: {.column width="45%"}
+* Local time of sleep end
+* Use of alarm clock to wake up
+* Time that it takes to get up after sleep end
+* Light exposure
+:::
+:::
+:::
+:::
 
 ## {.center-x}
 
@@ -336,13 +412,24 @@ According to the PNAD, the proportion of men and women above 18 years old in 201
 
 ## {background-iframe="http://labren.ccst.inpe.br/atlas_2017.html" background-interactive=true}
 
-## {background-iframe="https://dmphub.cdlib.org/dmps/doi:10.48321/D1DW8P" background-interactive=true}
+## Data plan
+
+See: <https://dmphub.cdlib.org/dmps/doi:10.48321/D1DW8P>
 
 ::: footer
 [@vartanian2023f]
 :::
 
 ## {background-iframe="https://dbdiagram.io/e/5e6c84484495b02c3b883aff/6555ee6d3be14957871dd472" background-interactive=true}
+
+## Research compendium
+
+See: 
+
+* <https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375986>.
+* <https://github.com/danielvartan/mastersthesis>
+
+## {background-iframe="https://books.ropensci.org/targets/walkthrough.html#run-the-pipeline" background-interactive=true}
 
 ## {background-iframe="https://www.go-fair.org/fair-principles/" background-interactive=true}
 <!-- %:::% slides-methods end %:::% -->
