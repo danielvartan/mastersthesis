@@ -47,8 +47,8 @@ The study hypothesis was tested using nested models of multiple linear regressio
 
 $$
 \begin{cases}
-\text{H}_{0}: \text{R}^{2}_{\text{res}} >= \text{R}^{2}_{\text{full}} \\
-\text{H}_{a}: \text{R}^{2}_{\text{res}} < \text{R}^{2}_{\text{full}}
+\text{H}_{0}: \text{R}^{2}_{r} >= \text{R}^{2}_{f} \\
+\text{H}_{a}: \text{R}^{2}_{r} < \text{R}^{2}_{f}
 \end{cases}
 $$
 
@@ -59,7 +59,7 @@ $$
 The general equation for the F-test [@allen1997, p. 113] :
 
 $$
-\text{F} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+\text{F} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r} / (k_{f} - k_{R})}{(1 - \text{R}^{2}_{f}) / (\text{N} - k_{f} - 1)}
 $$
 
 ```{=latex}
@@ -89,7 +89,7 @@ $$
 It's important to note that, in addition to the F-test, it's assumed that for $\text{R}^{2}_{\text{res}}$ to differ significantly from $\text{R}^{2}_{\text{full}}$, there must be a non-negligible effect size between them. This effect size can be calculated using Cohen's $f^{2}$ [@cohen1988; @cohen1992]:
 
 $$
-f^{2} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R}}{1 - \text{R}^{2}_{F}}
+f^{2} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r}}{1 - \text{R}^{2}_{f}}
 $$
 
 $$
@@ -671,13 +671,13 @@ Relation between the full model studentized residuals and their leverage/influen
 
 $$
 \begin{cases}
-\text{H}_{0}: \text{R}^{2}_{\text{res}} >= \text{R}^{2}_{\text{full}} \\
-\text{H}_{a}: \text{R}^{2}_{\text{res}} < \text{R}^{2}_{\text{full}}
+\text{H}_{0}: \text{R}^{2}_{r} >= \text{R}^{2}_{f} \\
+\text{H}_{a}: \text{R}^{2}_{r} < \text{R}^{2}_{f}
 \end{cases}
 $$
 
 $$
-\text{F} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R} / (k_{F} - k_{R})}{(1 - \text{R}^{2}_{F}) / (\text{N} - k_{F} - 1)}
+\text{F} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r} / (k_{f} - k_{R})}{(1 - \text{R}^{2}_{f}) / (\text{N} - k_{f} - 1)}
 $$
 
 $$
@@ -728,7 +728,7 @@ k_full <- length(stats::coefficients(full_model)) - 1
 ```
 
 $$
-f^{2} = \cfrac{\text{R}^{2}_{F} - \text{R}^{2}_{R}}{1 - \text{R}^{2}_{F}}
+f^{2} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r}}{1 - \text{R}^{2}_{f}}
 $$
 
 $$

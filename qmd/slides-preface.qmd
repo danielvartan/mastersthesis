@@ -1,0 +1,36 @@
+<!-- %:::% slides-preface begin %:::% -->
+## {visibility="hidden"}
+
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R/quarto-setup.R"))
+```
+
+## Hello, there 👋 {.smaller}
+
+This presentation will provide an overview of the thesis objectives, main concepts, methods, and results. Here is our itinerary.
+
+<!-- 🤔 👀 🌱⏳👩⏳ ☀️ 😪 🌎 ⚙️ 📓 📋 💬 -->
+
+:::: {.columns}
+::: {.column width="47.5%"}
+(@) Object and objectives
+(@) Introduction to the main concepts
+  i) Biological rhythms and complexity
+  i) Temporal phenotypes (AKA chronotypes)
+  i) Zeitgebers and the entrainment phenomenon
+  i) The two process of sleep regulation and the MCTQ
+  i) The latitude hypothesis
+:::
+
+::: {.column width="47.5%"}
+(@) Thesis outline
+(@) Materials and methods
+(@) Main results
+(@) Discussion
+(@) Final remarks
+:::
+::::
+<!-- %:::% slides-preface end %:::% -->

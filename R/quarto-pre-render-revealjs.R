@@ -9,6 +9,22 @@ source(here::here("R", "quarto-pre-render-begin.R"))
 # Update Quarto files -----
 
 swap_list <- list(
+  preface = list(
+    from = here::here("qmd", "slides-preface.qmd"),
+    to = here::here("qmd", "_index-revealjs.qmd"),
+    begin_tag = "%:::% slides-preface begin %:::%",
+    end_tag = "%:::% slides-preface end %:::%",
+    value = NULL,
+    quarto_render = FALSE
+  ),
+  objectives = list(
+    from = here::here("qmd", "slides-objectives.qmd"),
+    to = here::here("qmd", "_index-revealjs.qmd"),
+    begin_tag = "%:::% slides-objectives begin %:::%",
+    end_tag = "%:::% slides-objectives end %:::%",
+    value = NULL,
+    quarto_render = FALSE
+  ),
   introduction = list(
     from = here::here("qmd", "slides-introduction.qmd"),
     to = here::here("qmd", "_index-revealjs.qmd"),
@@ -17,11 +33,51 @@ swap_list <- list(
     value = NULL,
     quarto_render = FALSE
   ),
+  thesis_outline = list(
+    from = here::here("qmd", "slides-thesis-outline.qmd"),
+    to = here::here("qmd", "_index-revealjs.qmd"),
+    begin_tag = "%:::% slides-thesis-outline begin %:::%",
+    end_tag = "%:::% slides-thesis-outline end %:::%",
+    value = NULL,
+    quarto_render = FALSE
+  ),
+  methods = list(
+    from = here::here("qmd", "slides-methods.qmd"),
+    to = here::here("qmd", "_index-revealjs.qmd"),
+    begin_tag = "%:::% slides-methods begin %:::%",
+    end_tag = "%:::% slides-methods end %:::%",
+    value = NULL,
+    quarto_render = FALSE
+  ),
   results = list(
     from = here::here("qmd", "slides-results.qmd"),
     to = here::here("qmd", "_index-revealjs.qmd"),
     begin_tag = "%:::% slides-results begin %:::%",
     end_tag = "%:::% slides-results end %:::%",
+    value = NULL,
+    quarto_render = FALSE
+  ),
+  discussion = list(
+    from = here::here("qmd", "slides-discussion.qmd"),
+    to = here::here("qmd", "_index-revealjs.qmd"),
+    begin_tag = "%:::% slides-discussion begin %:::%",
+    end_tag = "%:::% slides-discussion end %:::%",
+    value = NULL,
+    quarto_render = FALSE
+  ),
+  final_remarks = list(
+    from = here::here("qmd", "slides-final-remarks.qmd"),
+    to = here::here("qmd", "_index-revealjs.qmd"),
+    begin_tag = "%:::% slides-final-remarks begin %:::%",
+    end_tag = "%:::% slides-final-remarks end %:::%",
+    value = NULL,
+    quarto_render = FALSE
+  ),
+  references = list(
+    from = here::here("qmd", "slides-references.qmd"),
+    to = here::here("qmd", "_index-revealjs.qmd"),
+    begin_tag = "%:::% slides-references begin %:::%",
+    end_tag = "%:::% slides-references end %:::%",
     value = NULL,
     quarto_render = FALSE
   ),

@@ -7,15 +7,17 @@ project:
 
 title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
 author: "Daniel Vartanian"
+institute: "University of São Paulo"
+date: today
 
 format:
   revealjs:
-    date: today
+
     lang: en
     csl: english-apa-author-date.csl
     keyboard: true
     controls: true
     controls-layout: bottom-right
     preview-links: auto
-    theme: default
+    theme: [default, scss/slides.scss]
     chalkboard: true

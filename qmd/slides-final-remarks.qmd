@@ -1,0 +1,19 @@
+<!-- %:::% slides-final-remarks begin %:::% -->
+## Final remarks {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+This thesis was presented to the School of Arts, Sciences and Humanities ([EACH](http://www5.each.usp.br/)) at the University of São Paulo ([USP](https://www5.usp.br/)), as a requirement for the degree of Master of Science by the Graduate Program in Complex Systems Modeling ([PPG-SCX](https://sites.usp.br/scx/en/apresentacao/)).
+
+Financial support was provided by the Coordination for the Improvement of Higher Education Personnel ([CAPES]((https://www.gov.br/capes/)) (Grant number: 88887.703720/2022-00).
+:::
+
+::: {.column width="50%"}
+Thesis Supervisor: [Prof. Dr. Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695).
+
+Area of concentration: Fundamentals of complex systems.
+
+You can learn more about this work at: <https://github.com/danielvartan/mastersthesis>
+:::
+::::
+<!-- %:::% slides-final-remarks end %:::% -->

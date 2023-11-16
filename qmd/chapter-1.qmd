@@ -106,7 +106,7 @@ This study will also produce the largest dataset of valid sleep-wake cycle expre
 
 ## Thesis aims
 
-This project focuses on the ecology of sleep and circadian phenotypes (chronotypes) with the aim of providing answers to the following questions:
+This thesis focuses on the ecology of sleep and circadian phenotypes (chronotypes) with the aim of providing answers to the following questions:
 
 1. How are the sleep-wake cycles and circadian phenotypes of the adult Brazilian population characterized?
 
@@ -114,7 +114,7 @@ This project focuses on the ecology of sleep and circadian phenotypes (chronotyp
 
 The basic hypothesis to be tested is that populations residing near the equator (latitude 0°) have, on average, a shorter/more morning-oriented circadian phenotype compared to populations living near the Earth's poles (H1) [@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003].
 
-The primary objectives (PO) of the project are as follows:
+The primary objectives (PO) are as follows:
 
 ```{=latex}
 \microskip

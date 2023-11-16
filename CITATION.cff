@@ -3,39 +3,17 @@
 cff-version: 1.2.0
 message: "To cite this master's thesis in publications use:"
 title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
-abstract: "Chronotypes are temporal phenotypes. Observable traits, like weight
-  and eye color. Our current understanding of these traits is that they are
-  linked to our environment and are the result of evolution pressures for
-  creating an inner temporal organization. A way that organisms have found to
-  anticipate events. Having such an important function in nature, these internal
-  rhythms need to be closely aligned with environmental changes. The agents
-  that shift these oscillations towards the environment are called zeitgebers
-  and the shift phenomenon is called entrainment. The main zeitgeber for
-  humans is light exposure, particularly the light of the sun. Considering
-  the major role of light on entrainment, several studies hypothesized that
-  the latitude shift of the sun could influence or even define the chronotypes
-  of different populations. For example, populations that live close to the
-  equator would be, on average, more entrained to the light-dark cycle and
-  have morning-leaning characteristics. Here we test this hypothesis using
-  a biological measure, the chronotype state, provided by the Munich ChronoType
-  Questionnaire. We tested the latitude hypothesis on a sample with 73,825
-  subjects living in different latitudes in Brazil. Our results show that,
-  even with a wide, big, and aligned sample, the latitude is associated only
-  with negligible effect sizes. The entrainment phenomenon appears to be much
-  more complex than previously imagined, opening new questions and
-  contradictions that need to be further investigated."
 keywords:
-  - masters-thesis
-  - chronobiology
-  - chronotype
-  - circadian phenotypes
-  - sleep
-  - sleep-wake cycle
-  - complex-systems
-  - entrainment
-  - latitude
-  - ecology
-  - mctq
+  - Chronobiology
+  - Biological rhythms
+  - Chronotype
+  - Circadian phenotype
+  - Sleep
+  - Complex systems
+  - Entrainment
+  - Latitude
+  - Ecology
+  - MCTQ
 authors:
 - family-names: Vartanian
   given-names: Daniel
@@ -63,5 +41,8 @@ preferred-citation:
     email: danvartan@gmail.com
     orcid: https://orcid.org/0000-0001-7782-759X
   year: "2023"
+  address: São Paulo
+  school: University of São Paulo
+  langid: en-us
   url: https://danielvartan.github.io/mastersthesis/
-  notes: "Quarto Book"
+  note: Preliminary version

@@ -6,6 +6,9 @@ library(ggplot2, quietly = TRUE)
 # library(tidyr, quietly = TRUE)
 # library(viridis, quietly = TRUE)
 
+source(here::here("R/utils.R"))
+
+# ggplot2::aes(colour = sex)
 plot_ggally <- function(data,
                         cols,
                         mapping = NULL,
@@ -54,9 +57,6 @@ plot_ggally <- function(data,
       GGally::ggpairs(
         mapping = mapping,
         axisLabels = axis_labels
-      ) +
-      ggplot2::theme(
-        text = ggplot2::element_text(size = text_size)
       ) +
       viridis::scale_color_viridis(
         begin = 0.25,

@@ -68,7 +68,8 @@ source(here::here("R/utils.R"))
 
 col <- "age"
 
-stats <- data |> 
+stats <- 
+  data |> 
   magrittr::extract2(col) |> 
   test_normality(
     name = col, 
@@ -184,7 +185,7 @@ ggcorrplot <-
     na_rm = TRUE, 
     text_size = env_vars$base_size, 
     hc_order = TRUE
-    )
+  )
 ```
 
 [Source: Created by the author.]{.legend}
