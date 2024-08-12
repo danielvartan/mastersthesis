@@ -1,6 +1,16 @@
-# library(here)
-# library(checkmate)
-# library(cli)
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(hms, quietly = TRUE)
+# library(lubridate, quietly = TRUE)
+# library(lubritime, quietly = TRUE)
+# library(mctq, quietly = TRUE)
+# library(rlang, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(scaler, quietly = TRUE)
+# library(stringr, quietly = TRUE)
+# library(tidyr, quietly = TRUE)
 
 source(here::here("R/utils.R"))
 
@@ -52,6 +62,7 @@ validate_data <- function(data) {
 
   out <-
     data |>
+    rm_test_cases() |>
     na_mctq_blank_cases() |>
     validate_ranges() |>
     validate_work_study() |>
@@ -61,6 +72,15 @@ validate_data <- function(data) {
     remove_duplicates_and_blanks()
 
   invisible(out)
+}
+
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+
+rm_test_cases <- function(data) {
+  checkmate::assert_tibble(data)
+
+  data |> dplyr::filter(!track == "teste" | is.na(track))
 }
 
 # library(checkmate, quietly = TRUE)
@@ -121,7 +141,7 @@ validate_ranges <- function(data) {
 
 # library(checkmate, quietly = TRUE)
 # library(dplyr, quietly = TRUE)
-library(rlang)
+library(rlang, quietly = TRUE)
 # library(stringr, quietly = TRUE)
 # library(tidyr, quietly = TRUE)
 
@@ -240,7 +260,7 @@ fix_bt_sprep_inversion <- function(data) {
 # library(dplyr, quietly = TRUE)
 # library(lubridate, quietly = TRUE)
 # library(mctq, quietly = TRUE)
-library(rlang)
+library(rlang, quietly = TRUE)
 # library(rutils, quietly = TRUE)
 
 validate_sdu <- function(data) {

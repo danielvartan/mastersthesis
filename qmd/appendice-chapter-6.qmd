@@ -6,7 +6,7 @@
 #| label: setup
 #| include: false
 
-source(here::here("R/quarto-setup.R"))
+source(here::here("R/_setup.R"))
 options(scipen = 10, digits = 5)
 ```
 
@@ -56,7 +56,7 @@ $$
 \smallskip
 ```
 
-The general equation for the F-test [@allen1997, p. 113] :
+The general equation for the F-test [@allen1997, p. 113]:
 
 $$
 \text{F} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r} / (k_{f} - k_{R})}{(1 - \text{R}^{2}_{f}) / (\text{N} - k_{f} - 1)}
@@ -179,6 +179,8 @@ This will also be tested with a residual diagnostics.
 
 ## Data preparation
 
+### Outlier treatment
+
 Outlier treatment (for now): 1.5x Interquartile range (IQR) for age and chronotype (MSF~sc~).
 
 ```{r}
@@ -205,6 +207,96 @@ is_outlier <- function(x, method = "iqr", iqr_mult = 1.5, sd_mult = 3) {
 }
 ```
 
+### Method for dealing with circular time
+
+* Understanding circular time: See [Linear versus circular time](https://danielvartan.github.io/lubritime/reference/cycle_time.html), [The two intervals problem](https://docs.ropensci.org/mctq/articles/sjl-computation.html#the-two-intervals-problem) & [midday_change() response](https://github.com/ropensci/software-review/issues/434#issuecomment-939683786).
+
+```
+Threshold: 12:00
+
+             day 1                        day 2
+   12:00              21:00     05:00              11:59
+-----|------------------|---------|------------------|----->
+```
+
+```{r}
+#| eval: false
+#| output: false
+#| code-fold: false
+
+# Same as lubritime:::link_to_timeline()
+
+link_to_timeline <- function(x, threshold = hms::parse_hms("12:00:00")) {
+  checkmate::assert_multi_class(x, c("hms", "POSIXt"))
+  rutils:::assert_hms(
+    threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59")
+  )
+
+  if (hms::is_hms(x)) x <- as.POSIXct(x)
+  x <- lubritime:::flat_posixt(x)
+
+  dplyr::case_when(
+    hms::as_hms(x) < threshold ~ lubridate::`day<-`(x, 2),
+    TRUE ~ x
+  )
+}
+```
+
+```{r}
+as.POSIXct("1970-01-01 00:00:00", tz = "UTC")
+```
+
+```{r}
+as.numeric(as.POSIXct("1970-01-01 00:00:00", tz = "UTC"))
+```
+
+```{r}
+as.POSIXct("1970-01-01 00:00:01", tz = "UTC") |> as.numeric()
+```
+
+```{r}
+as.POSIXct("1970-01-02 00:00:00", tz = "UTC") |> as.numeric()
+```
+
+That is the same as the number of seconds in a day.
+
+```{r}
+24 * 60 * 60
+```
+
+```{r}
+data <- mctq::std_mctq$bt_w
+
+head(data, 10)
+```
+
+```{r}
+data |>
+  rutils:::drop_na() |>
+  ggplot2::qplot(xlab = "Time", ylab = "Frequency", bins = 30) |>
+  rutils:::shush()
+```
+
+```{r}
+dplyr::tibble(
+  before = head(data, 10),
+  after = head(lubritime:::link_to_timeline(data), 10)
+)
+```
+
+```{r}
+lubritime:::link_to_timeline(data) |>
+  rutils:::drop_na() |>
+  ggplot2::qplot(xlab = "Time", ylab = "Frequency", bins = 30) |>
+  rutils:::shush()
+```
+
+### The pipeline
+
+See [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html).
+
+### Data wrangling
+
 ```{r}
 #| label: data-preparation
 #| message: false
@@ -225,9 +317,47 @@ data <-
   targets::tar_read("geocoded_data", store = here::here("_targets")) |>
   dplyr::filter(state %in% utc_minus_3_states) |>
   dplyr::select(msf_sc, age, sex, state, latitude, longitude) |>
-  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
-  tidyr::drop_na(msf_sc, age, sex, latitude)
+  tidyr::drop_na(msf_sc, age, sex, latitude) |>
+  dplyr::mutate(msf_sc = transform_time(msf_sc))
 ```
+
+### Round-off errors
+
+R's `hms` class store time by the number of seconds since `00:00:00`. R's `POSIXct` class store time as the number of seconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time). Those numeric values are used when creating the models.
+
+```{r}
+data |>
+  dplyr::slice_sample(n = 10) |>
+  dplyr::transmute(
+    as_datetime = as.POSIXct(msf_sc, tz = "UTC"),
+    as_hms = hms::hms(lubritime::cycle_time(msf_sc, cycle = 24 * 60 * 60)),
+    as_numeric = msf_sc
+  )
+```
+
+```{r}
+sprintf("%.50f", min(data$msf_sc))
+```
+
+```{r}
+min(as.POSIXct(data$msf_sc, tz = "UTC"))
+```
+
+```{r}
+sprintf("%.50f", max(data$msf_sc))
+```
+
+```{r}
+max(as.POSIXct(data$msf_sc, tz = "UTC"))
+```
+
+```{r}
+sprintf("%.50f", max(data$msf_sc) - min(data$msf_sc))
+```
+
+The R programming language [only stores values up to 53 binary bits](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f), that's about `r 53 * log10(2)` digits of precision ($x = 53 \log_{10}(2)$). Since MCTQ deals with self-reported local time of day (e.g., 02:30) and duration (e.g., 15 minutes), a greater floating-point precision is unnecessary. Even with multiple computations, round-off errors wouldn't significantly impact the phenomenon under study.
+
+However, this can become a problem when dealing with some transformations. The [`Rmpfr`](https://cran.r-project.org/web/packages/Rmpfr/index.html) R package is used in those cases, forcing a floating-point precision of 128 binary bits. That gives about `r 128 * log10(2)` ($x = 128 \log_{10}(2)$) decimal digits of precision.
 
 ## Restricted model
 
@@ -247,19 +377,63 @@ box_cox <- MASS::boxcox(msf_sc ~ age + sex, data = data)
 Profile of log-likelihoods for the parameter ($\lambda$) of the Box-Cox power transformation for the restricted model
 :::
 
+Since MSF~sc~ $> 0$, Box-Cox family of transformations for the dependent variable is given by [See @box1964, p. 214]:
+
+$$
+y^{(\lambda)} = 
+\begin{cases}
+\cfrac{y^\lambda - 1}{\lambda} &  (\lambda \neq 0) \\
+\log(y) &  (\lambda = 0)
+\end{cases}
+$$
+
 ```{r}
 #| code-fold: false
 
 lambda <- box_cox$x[which.max(box_cox$y)]
 
-lambda
+sprintf("%.50f", lambda) # Only ~16 digit precision
+```
+
+```{r}
+sprintf("%.50f", head(data$msf_sc, 3))
+```
+
+```{r}
+sprintf("%.50f", head(((data$msf_sc^lambda - 1) / lambda), 3))
+```
+
+```{r}
+msf_sc_128 <- Rmpfr::mpfr(data$msf_sc, 128)
+
+msf_sc_trans <- (msf_sc_128^lambda - 1) / lambda
+
+# head(Rmpfr::formatMpfr(msf_sc_res, 50), 3)
+head(msf_sc_trans, 3)
+```
+
+```{r}
+msf_sc_trans <- msf_sc_trans |> Rmpfr::asNumeric()
+
+sprintf("%.50f", head(msf_sc_trans, 3))
+```
+
+```{r}
+data <- 
+  data |> 
+  dplyr::mutate(
+    msf_sc_box_cox = msf_sc_trans,
+    msf_sc_ln = log(msf_sc),
+    msf_sc_log10 = log10(msf_sc),
+    msf_sc_log2 = log2(msf_sc)
+  )
 ```
 
 ```{r}
 #| code-fold: false
 
 res_model <- stats::lm(
-  ((msf_sc^lambda - 1) / lambda) ~ age + sex, data = data
+  msf_sc_box_cox ~ age + sex, data = data
 )
 ```
 
@@ -411,7 +585,18 @@ Relation between the fitted values of the restricted model and its standardized 
 :::
 
 ```{r}
+#| eval: false
+#| include: false
 #| code-fold: false
+
+res_model |> lmtest::bptest()
+```
+
+```{r}
+#| code-fold: false
+
+# See also:
+# res_model |> lmtest::bptest()
 
 res_model |> olsrr::ols_test_breusch_pagan()
 ```
@@ -471,20 +656,20 @@ Profile of log-likelihoods for the parameter ($\lambda$) of the Box-Cox power tr
 ```{r}
 #| code-fold: false
 
-box_cox$x[which.max(box_cox$y)] # lambda
+sprintf("%.50f", box_cox$x[which.max(box_cox$y)]) # lambda
 ```
 
 ```{r}
 #| code-fold: false
 
-lambda # The same lambda of the restricted model
+sprintf("%.50f", lambda) # The same lambda of the restricted model
 ```
 
 ```{r}
 #| code-fold: false
 
 full_model <- stats::lm(
-  ((msf_sc^lambda - 1) / lambda) ~ age + sex + latitude, 
+  msf_sc_box_cox ~ age + sex + latitude, 
   data = data
   )
 ```
@@ -626,6 +811,14 @@ full_model |> plot(3)
 
 Relation between the fitted values of the full model and its standardized residuals
 :::
+
+```{r}
+#| eval: false
+#| include: false
+#| code-fold: false
+
+full_model |> lmtest::bptest()
+```
 
 ```{r}
 #| code-fold: false

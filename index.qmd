@@ -11,7 +11,7 @@ execute:
 #| label: setup
 #| include: false
 
-source(here::here("R/quarto-setup.R"))
+source(here::here("R/_setup.R"))
 ```
 
 ## Hello, there 👋 {.smaller}
@@ -60,7 +60,6 @@ The primary objectives (PO) are as follows:
 :::: {.columns}
 ::: {.column width="50%"}
 __PO1__. Quantitatively describe the expression of sleep-wake cycles and circadian phenotypes of the Brazilian adult population at the end of the year 2017 (pre-pandemic).
-
 :::
 
 ::: {.column width="50%"}
@@ -353,7 +352,7 @@ __Health__
 :::
 :::
 
-# Data categories {.smaller}
+## Data categories {.smaller}
 
 ::: columns
 ::: {.column width="33%"}
@@ -762,7 +761,7 @@ You can learn more about this work at: <https://github.com/danielvartan/masterst
 ::::
 <!-- %:::% slides-final-remarks end %:::% -->
 <!-- %:::% slides-references begin %:::% -->
-# References {.smaller}
+## References {.smaller}
 
 ::: {style="font-size: 0.75em;"}
 In accordance with the [American Psychological Association (APA) Style](https://apastyle.apa.org/), 7th edition.

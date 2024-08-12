@@ -8,6 +8,8 @@
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![OSF
+DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/YGKTS-1284C5.svg)](https://doi.org/10.17605/OSF.IO/YGKTS)
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-green)](https://choosealicense.com/licenses/mit/)
 [![License: CC BY
@@ -16,10 +18,13 @@ MIT](https://img.shields.io/badge/license-MIT-green)](https://choosealicense.com
 
 ## Overview
 
+☀🌙⏰🛌💤🌍🗺️🧭📅🧬🧠🕰️📊📉📈📝
+
 This repository contains the research compendium and [Quarto
-book](https://quarto.org/docs/books/) of my master’s thesis: *Ecology of
-sleep and circadian phenotypes of the Brazilian population*. Its aim is
-to facilitate research work and to improve reproducibility.
+book](https://quarto.org/docs/books/) of my master’s thesis: *Is
+latitude associated with the regulation of circadian rhythms in
+humans?*. Its aim is to facilitate research work and to improve
+reproducibility.
 
 Click [here](https://danielvartan.github.io/mastersthesis/) to access
 the thesis documents.
@@ -88,15 +93,14 @@ be made with the author’s approval and participation.
 
 You can find the thesis citation below.
 
-    Vartanian, D. (2023). Ecology of sleep and circadian phenotypes of the Brazilian
-    population [Master's thesis, University of São Paulo].
+    Vartanian, D. (2024). Is latitude associated with the regulation of circadian rhythms in humans? [Master's thesis, University of São Paulo]. https://github.com/danielvartan/mastersthesis
 
 A BibTeX entry for LaTeX users is
 
     @mastersthesis{vartanian_2023,
-      title = {Ecology of sleep and circadian phenotypes of the Brazilian population},
+      title = {Is latitude associated with the regulation of circadian rhythms in humans?},
       author = {Daniel Vartanian},
-      year = {2023},
+      year = {2024},
       address = {São Paulo},
       school  = {University of São Paulo},
       langid = {en-us},
@@ -106,12 +110,14 @@ A BibTeX entry for LaTeX users is
 
 ## Acknowledgments
 
-This thesis was developed in the [Graduate Program in Modeling Complex
-Systems (PPG-SCX)](https://sites.usp.br/scx/en/apresentacao/) at the
-[University of Sao Paulo (USP)](https://www5.usp.br/), under the
+This Master’s thesis was developed in the Graduate Program in Modeling
+Complex Systems ([PPG-SCX](https://sites.usp.br/scx/en/apresentacao/))
+at the University of São Paulo ([USP](https://www5.usp.br/)), under the
 supervision of [Prof. Dr. Camilo Rodrigues
 Neto](https://orcid.org/0000-0001-6783-6695).
 
-Financial support was provided by the [Coordination for the Improvement
-of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) (Grant
-number: 88887.703720/2022-00).
+<a href="https://www.gov.br/capes/"><img src= "images/capes_logo_horizontal_rgb.png" height="35"/></a>
+
+This study was financed by the Coordenação de Aperfeiçoamento de Pessoal
+de Nível Superior - Brazil ([CAPES](https://www.gov.br/capes/)) -
+Finance Code 001, Grant Number: 88887.703720/2022-00.

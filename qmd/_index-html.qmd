@@ -5,7 +5,7 @@
 #| label: setup
 #| include: false
 
-source(here::here("R/quarto-setup.R"))
+source(here::here("R/_setup.R"))
 ```
 
 You are viewing the web version of this thesis. Click [here](index.pdf) or on the PDF icon in the menu to see the PDF version.

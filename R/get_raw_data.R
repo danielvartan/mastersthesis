@@ -2,9 +2,9 @@
 # library(cli, quietly = TRUE)
 # library(curl, quietly = TRUE)
 # library(dplyr, quietly = TRUE)
-# library(googleCloudStorageR, quietly = TRUE)
 # library(here, quietly = TRUE)
 # library(lockr, quietly = TRUE)
+# library(osfr, quietly = TRUE)
 # library(readr, quietly = TRUE)
 # library(rutils, quietly = TRUE)
 # library(stringr, quietly = TRUE)
@@ -16,8 +16,8 @@
 #'
 #' `get_raw_data()` download, unlock, and read the project's raw data.
 #'
-#' `googleCloudStorageR` must be pre-configured to get the raw data from the
-#' cloud. You can also use `get_raw_data()` using a local raw data file.
+#' `osfr` must be pre-configured to get the raw data from the cloud. You can
+#' also use `get_raw_data()` using a local raw data file.
 #'
 #' As second protection layer, you will also need a pair of RSA keys to
 #' lock/unlock sensitive data.
@@ -27,9 +27,8 @@
 #' @param col_names (optional) a [`logical`][base::as.logical()] value
 #'   indicating if the function must preserve the column names. See
 #'   [`?readr::read_csv`][readr::read_csv()] to learn more.
-#' @param iconv (optional) a [`logical`][base::as.logical()] flag indicating if
-#'   the function must convert character vector between encodings
-#'   (default: `TRUE`).
+#' @param osf_pat (optional) a string with the OSF personal access token
+#'   (PAT) (default: `Sys.getenv("OSF_PAT")`).
 #' @param public_key (optional) an [`openssl`][openssl::rsa_keygen()] RSA
 #'   public key or a string specifying the public key path. See
 #'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
@@ -38,6 +37,9 @@
 #'   private key or a string specifying the private key path. See
 #'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
 #'   pair (default: `"here::here(.ssh/id_rsa")`).
+#' @param iconv (optional) a [`logical`][base::as.logical()] flag indicating if
+#'   the function must convert character vector between encodings
+#'   (default: `TRUE`).
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a raw the dataset.
 #'
@@ -54,16 +56,20 @@
 #' }
 get_raw_data <- function(file = NULL,
                          col_names = TRUE,
+                         osf_pat = Sys.getenv("OSF_PAT"),
                          public_key = here::here(".ssh/id_rsa.pub"),
                          private_key = here::here(".ssh/id_rsa"),
                          iconv = TRUE) {
   checkmate::assert_string(file, null.ok = TRUE)
   checkmate::assert_flag(col_names)
+  checkmate::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
   lockr:::assert_public_key(public_key)
   lockr:::assert_private_key(private_key)
   checkmate::assert_flag(iconv)
 
-  test <- try(googleCloudStorageR::gcs_list_objects(), silent = TRUE)
+  osfr::osf_auth(osf_pat) |> rutils:::shush()
+  osf_id <- "https://osf.io/huy4r"
+  test <- try(osfr::osf_retrieve_node(osf_id), silent = TRUE)
 
   if (!is.null(file)) {
     checkmate::assert_file_exists(file, extension = c("csv", "zip", "lockr"))
@@ -71,15 +77,19 @@ get_raw_data <- function(file = NULL,
     rutils:::assert_internet()
   } else if (inherits(test, "try-error")) {
     cli::cli_abort(paste0(
-      "{.strong {cli::col_red('googleCloudStorageR')}} needs to be", " ",
-      "configured to get the {.strong {cli::col_blue('raw data')}} from", " ",
-      "the cloud. Contact the main author for more information."
+      "The {.strong OSF PAT} provided is invalid. ",
+      "Please, check the access token and try again."
     ))
   } else {
     cli::cli_progress_step("Downloading raw data")
 
-    file <- tempfile(fileext = ".zip.lockr")
-    googleCloudStorageR::gcs_get_object("raw-data.zip.lockr", saveToDisk = file)
+    file <-
+      osfr::osf_ls_files(
+        osfr::osf_retrieve_node(osf_id),
+        pattern = "raw-data.zip"
+      ) |>
+      osfr::osf_download(path = tempdir(), conflicts = "overwrite") |>
+      magrittr::extract2("local_path")
   }
 
   if (any(grepl("\\.lockr$", file), na.rm = TRUE)) {

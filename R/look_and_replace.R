@@ -2,34 +2,51 @@
 # library(cli, quietly = TRUE)
 # library(curl, quietly = TRUE)
 # library(dplyr, quietly = TRUE)
-# library(googleCloudStorageR, quietly = TRUE)
 # library(googlesheets4, quietly = TRUE)
 # library(here, quietly = TRUE)
 # library(lockr, quietly = TRUE)
+# library(osfr, quietly = TRUE)
 # library(rutils, quietly = TRUE)
 # library(stringr, quietly = TRUE)
+
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(lockr, quietly = TRUE)
+# library(rutils, quietly = TRUE)
 
 look_and_replace <- function(
     x,
     table,
-    public_key = here::here(".ssh/id_rsa.pub"),
-    private_key = here::here(".ssh/id_rsa"),
-    na_unmatched = FALSE
+    osf_pat = Sys.getenv("OSF_PAT"),
+    public_key = here::here("_ssh/id_rsa.pub"),
+    private_key = here::here("_ssh/id_rsa"),
+    na_unmatched = FALSE,
+    lookup_data = NULL
     ) {
   checkmate::assert_character(x)
   checkmate::assert_string(table)
   lockr:::assert_public_key(public_key)
   lockr:::assert_private_key(private_key)
   checkmate::assert_flag(na_unmatched)
+  checkmate::assert_list(lookup_data, min.len = 1, null.ok = TRUE)
   rutils:::assert_internet()
 
-  cli::cli_progress_step("Downloading lookup tables")
+  if (is.null(lookup_data)) {
+    cli::cli_progress_step("Downloading lookup tables")
 
-  lookup <- get_lookup_data(public_key = public_key, private_key = private_key)
-  checkmate::assert_choice(table, names(lookup))
+    lookup_data <- get_lookup_data(
+      osf_pat = osf_pat,
+      public_key = public_key,
+      private_key = private_key
+    )
+  }
 
-  lookup_data <-
-    lookup[[table]] |>
+  checkmate::assert_choice(table, names(lookup_data))
+
+  lookup_table <-
+    lookup_data[[table]] |>
     dplyr::rename_with(.fn = ~ table, .cols = "key") |>
     dplyr::rename(lookup_value = value) |>
     dplyr::mutate(
@@ -39,7 +56,7 @@ look_and_replace <- function(
 
   out <-
     dplyr::tibble(!!as.symbol(table) := x) |>
-    dplyr::left_join(lookup_data, by = table, na_matches = "never")
+    dplyr::left_join(lookup_table, by = table, na_matches = "never")
 
   if (isTRUE(na_unmatched)) {
     out <-
@@ -65,30 +82,49 @@ look_and_replace <- function(
   out[[table]]
 }
 
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(curl, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(lockr, quietly = TRUE)
+# library(osfr, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+# library(stringr, quietly = TRUE)
+
 get_lookup_data <- function(
     file = NULL,
-    public_key = here::here(".ssh/id_rsa.pub"),
-    private_key = here::here(".ssh/id_rsa")
+    pattern = "lookup.rda",
+    osf_pat = Sys.getenv("OSF_PAT"),
+    public_key = here::here("_ssh/id_rsa.pub"),
+    private_key = here::here("_ssh/id_rsa")
     ) {
   checkmate::assert_string(file, null.ok = TRUE)
+  checkmate::assert_string(pattern)
+  checkmate::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
   lockr:::assert_private_key(private_key)
 
-  test <- try(googleCloudStorageR::gcs_list_objects(), silent = TRUE)
+  osfr::osf_auth(osf_pat) |> rutils:::shush()
+  osf_id <- "https://osf.io/cbqsa"
+  test <- try(osfr::osf_retrieve_node(osf_id), silent = TRUE)
 
   if (!is.null(file)) {
     checkmate::assert_file_exists(file, extension = c("rda", "lockr"))
   } else if (!curl::has_internet()) {
     rutils:::assert_internet()
-  } else if (inherits(test, "try-error") && curl::has_internet()) {
+  } else if (inherits(test, "try-error")) {
     cli::cli_abort(paste0(
-      "{.strong {cli::col_red('googleCloudStorageR')}} needs to be", " ",
-      "configured to get the {.strong {cli::col_blue('lookup data')}}", " ",
-      "from the cloud. Contact the main author for more information."
+      "The {.strong OSF PAT} provided is invalid. ",
+      "Please, check the access token and try again."
     ))
   }  else {
-    file <- tempfile(fileext = ".rda.lockr")
-    googleCloudStorageR::gcs_get_object("lookup.rda.lockr", saveToDisk = file)
+    file <-
+      osfr::osf_ls_files(
+        osfr::osf_retrieve_node(osf_id),
+        pattern = pattern
+      ) |>
+      osfr::osf_download(path = tempdir(), conflicts = "overwrite") |>
+      magrittr::extract2("local_path")
   }
 
   lockr::unlock_file(file, private_key  = private_key)
@@ -99,9 +135,18 @@ get_lookup_data <- function(
   invisible(lookup)
 }
 
-update_lookup <- function(
+# library(checkmate, quietly = TRUE)
+# library(cli, quietly = TRUE)
+# library(googlesheets4, quietly = TRUE)
+# library(here, quietly = TRUE)
+# library(lockr, quietly = TRUE)
+# library(osfr, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+
+update_lookup_data <- function(
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA",
     sheet_ignore = c("Documentation", "Codebook", "Validation", "Template"),
+    osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here(".ssh/id_rsa.pub")
     ) {
   checkmate::assert_string(ss)
@@ -109,6 +154,17 @@ update_lookup <- function(
   lockr:::assert_public_key(public_key)
   rutils:::assert_interactive()
   rutils:::assert_internet()
+
+  osfr::osf_auth(osf_pat) |> rutils:::shush()
+  osf_id <- "https://osf.io/cbqsa"
+  test <- try(osfr::osf_retrieve_node(osf_id), silent = TRUE)
+
+  if (inherits(test, "try-error")) {
+    cli::cli_abort(paste0(
+      "The {.strong OSF PAT} provided is invalid. ",
+      "Please, check the access token and try again."
+    ))
+  }
 
   googlesheets4::gs4_auth()
   ss <- googlesheets4::gs4_get(ss)
@@ -125,9 +181,10 @@ update_lookup <- function(
     )
   }
 
-  cli::cli_progress_step("Saving data in temp directory")
+  cli::cli_progress_step("Saving data")
 
   file <- file.path(tempdir(), "lookup.rda")
+
   save(
     list = "lookup", file = file, compress = "bzip2", version = 2,
     ascii = FALSE
@@ -137,33 +194,48 @@ update_lookup <- function(
     file.remove(paste0(file, ".lockr"))
   }
 
-  cli::cli_progress_step("Locking data")
-
   lockr::lock_file(file, public_key, remove_file = TRUE)
 
-  cli::cli_progress_step("Uploading data to Google Cloud")
+  cli::cli_progress_step("Uploading data to OSF")
 
   file <- paste0(file, ".lockr")
-  googleCloudStorageR::gcs_upload(
-    file, name = basename(file), predefinedAcl = "default"
-    )
+
+  osfr::osf_upload(
+    x = osfr::osf_retrieve_node(osf_id),
+    path = file,
+    conflicts = "overwrite"
+  )
 
   invisible(NULL)
 }
 
-filter_state <- function(data, state) {
-    checkmate::assert_tibble(data)
-    checkmate::assert_string(state)
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+library(rlang, quietly = TRUE)
 
-    i <- state
+# data |> fix_var_names() |> filter_geo("id", 92238)
 
-    data |>
-        dplyr::filter(state == i) |>
-        dplyr::select(id, country, state, city)
+filter_geo <- function(data, var, value) {
+  checkmate::assert_tibble(data)
+  checkmate::assert_choice(var, names(data))
+
+  data |>
+    dplyr::filter(!!as.symbol(var) == value) |>
+    dplyr::select(id, country, state, city, postal_code)
 }
 
+# library(checkmate, quietly = TRUE)
+# library(dplyr, quietly = TRUE)
+# library(googlesheets4, quietly = TRUE)
+# library(rutils, quietly = TRUE)
+
+# data |> write_unique_values_to_lookup_sheet(col = "state")
+# data |> fix_var_names() |> write_unique_values_to_lookup_sheet(col = "name")
+
 write_unique_values_to_lookup_sheet <- function(
-    data, col, sheet = col,
+    data,
+    col,
+    sheet = col,
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA"
     ) {
   checkmate::assert_tibble(data)
@@ -185,13 +257,16 @@ write_unique_values_to_lookup_sheet <- function(
   ss |>
     googlesheets4::sheet_resize(
       sheet = sheet, nrow = 2, ncol = NULL, exact = TRUE
-      )
+    )
 
   ss |>
     googlesheets4::range_write(
-      data = out, sheet = sheet, range = "A1", col_names = TRUE,
+      data = out,
+      sheet = sheet,
+      range = "A1",
+      col_names = TRUE,
       reformat = FALSE
-      )
+    )
 
   invisible(NULL)
 }

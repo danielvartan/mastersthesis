@@ -1,15 +1,12 @@
 <!-- %:::% index begin %:::% -->
-<!-- %:::% slides-preface begin %:::% -->
-## {visibility="hidden"}
+## Hello, there 👋 {.smaller}
 
 ```{r}
 #| label: setup
 #| include: false
 
-source(here::here("R/quarto-setup.R"))
+source(here::here("R/_setup.R"))
 ```
-
-## Hello, there 👋 {.smaller}
 
 This presentation will provide an overview of the thesis objectives, main concepts, methods, and results. Here is our itinerary.
 
@@ -34,11 +31,10 @@ This presentation will provide an overview of the thesis objectives, main concep
 (@) Final remarks
 :::
 ::::
-<!-- %:::% slides-preface end %:::% -->
-<!-- %:::% slides-objectives begin %:::% -->
+
 ## Object and objectives {.smaller}
 
-This thesis focuses on the _ecology of sleep and circadian phenotypes (chronotypes)_ with the aim of providing answers to the following __questions__:
+This thesis focuses on the _expression of sleep and circadian phenotypes (chronotypes)_ with the aim of providing answers to the following __questions__:
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -55,7 +51,6 @@ The primary objectives (PO) are as follows:
 :::: {.columns}
 ::: {.column width="50%"}
 __PO1__. Quantitatively describe the expression of sleep-wake cycles and circadian phenotypes of the Brazilian adult population at the end of the year 2017 (pre-pandemic).
-
 :::
 
 ::: {.column width="50%"}
@@ -94,8 +89,7 @@ $$
 ::: footer
 [@cohen1992]
 :::
-<!-- %:::% slides-objectives end %:::% -->
-<!-- %:::% slides-introduction begin %:::% -->
+
 ## {background-iframe="https://www.interactive-earth.com/earth/solar-system.html?gridXZ.visible=false&sun.spinrate=0.26&earth.diameter=0.50&earth.au=0.13&earth.ellipse=0.50&earth.spinrate=0.50&earth.angle1=23.50&earthgroup.angle=5.00&moon.diameter=0.29&moon.distance=0.31&moon.spinrate=0.50" background-interactive=true scrollable=false}
 
 ## {.center-x}
@@ -204,11 +198,9 @@ $$
 ## {visibility="hidden" background-iframe="https://www.earthspacelab.com/app/earth-revolution/" background-interactive=true scrollable=false}
 
 ## {visibility="hidden" background-iframe="https://ciechanow.ski/earth-and-sun/#es_earth_outline" background-interactive=true}
-<!-- %:::% slides-introduction end %:::% -->
-<!-- %:::% slides-thesis-outline begin %:::% -->
+
 ## {background-iframe="https://danielvartan.github.io/mastersthesis/web/index.html" background-interactive=true}
-<!-- %:::% slides-thesis-outline end %:::% -->
-<!-- %:::% slides-methods begin %:::% -->
+
 ## Methods {.smaller}
 
 * Problem approach method: Hypothetico-deductive method [@popper1979]
@@ -348,7 +340,7 @@ __Health__
 :::
 :::
 
-# Data categories {.smaller}
+## Data categories {.smaller}
 
 ::: columns
 ::: {.column width="33%"}
@@ -407,7 +399,7 @@ __MCTQ standard version__
 
 ## {background-iframe="http://labren.ccst.inpe.br/atlas_2017.html" background-interactive=true}
 
-## Data plan
+## Data plan {.smaller}
 
 See: <https://dmphub.cdlib.org/dmps/doi:10.48321/D1DW8P>
 
@@ -417,7 +409,7 @@ See: <https://dmphub.cdlib.org/dmps/doi:10.48321/D1DW8P>
 
 ## {background-iframe="https://dbdiagram.io/e/5e6c84484495b02c3b883aff/6555ee6d3be14957871dd472" background-interactive=true}
 
-## Research compendium
+## Research compendium {.smaller}
 
 See: 
 
@@ -427,9 +419,8 @@ See:
 ## {background-iframe="https://books.ropensci.org/targets/walkthrough.html#run-the-pipeline" background-interactive=true}
 
 ## {background-iframe="https://www.go-fair.org/fair-principles/" background-interactive=true}
-<!-- %:::% slides-methods end %:::% -->
-<!-- %:::% slides-results begin %:::% -->
-## {visibility="hidden"}
+
+## {.center-x .nostretch .scrollable}
 
 ```{r}
 #| include: false
@@ -452,8 +443,6 @@ data <-
     ) |>
   tidyr::drop_na(msf_sc, age, sex, latitude)
 ```
-
-## {.center-x .nostretch .scrollable}
 
 ::: {.notes}
 Local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, statistics of sample subjects.
@@ -703,8 +692,7 @@ data |>
     text_size = base_size
   )
 ```
-<!-- %:::% slides-results end %:::% -->
-<!-- %:::% slides-discussion begin %:::% -->
+
 ## Discussion {.smaller}
 
 A significant p-value ($\text{p-value} = 2e-16$) was found, but with a negligible effect size (Cohen’s $f^2 = 0.00740$). Based on these results, we must reject $\text{H}_{a}$ in favor of $\text{H}_{0}$.
@@ -734,10 +722,6 @@ The results show that even with a wide latitudinal spectrum and with a big and a
 
 As Karl Popper said, science begins and ends with questions [@popper1979]. The absence of a strong entrainment with the solar zeitgeber shows that the entrainment phenomenon is more complex than we previously imagined. Other hypotheses for the human circadian entrainment, like the entrainment to self-selected light, proposed by Anna Skeldon and Derk-Jan Dijk [-@skeldon2021], need to be tested and may produce significant results.
 
-## {visibility="hidden"} # IDK
-
-<!-- %:::% slides-discussion end %:::% -->
-<!-- %:::% slides-final-remarks begin %:::% -->
 ## Final remarks {.smaller}
 
 :::: {.columns}
@@ -755,9 +739,8 @@ Area of concentration: Fundamentals of complex systems.
 You can learn more about this work at: <https://github.com/danielvartan/mastersthesis>
 :::
 ::::
-<!-- %:::% slides-final-remarks end %:::% -->
-<!-- %:::% slides-references begin %:::% -->
-# References {.smaller}
+
+## References {.smaller}
 
 ::: {style="font-size: 0.75em;"}
 In accordance with the [American Psychological Association (APA) Style](https://apastyle.apa.org/), 7th edition.
@@ -765,5 +748,4 @@ In accordance with the [American Psychological Association (APA) Style](https://
 
 ::: {#refs style="font-size: 0.75em;"}
 :::
-<!-- %:::% slides-references end %:::% -->
 <!-- %:::% index end %:::% -->

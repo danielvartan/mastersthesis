@@ -6,7 +6,7 @@
 #| label: setup
 #| include: false
 
-source(here::here("R/quarto-setup.R"))
+source(here::here("R/_setup.R"))
 ```
 
 For an extensive list of chronobiology related terms and definitions, please refer to @aschoff1965 and @marques2012.
@@ -38,11 +38,14 @@ Period
 
 <!-- Phenotype -->
 
+System theory:
+: \hspace{20cm} "A system can be defined as a complex of interacting elements. Interaction means that elements, $p$, stand in relations, $R$, so that the behavior of an element $p$ in $R$ is different from its behavior in another relation, $R'$. If the behaviors in $R$ and $R'$ are not different, there is no interaction, and the elements behave independently with respect to the relations $R$ and $R'$." [@bertalanffy1968, pp. 55-56]
+
 System theory
 : \hspace{20cm} Two definitions can be of use:
 
 * Science or discipline that investigates models, principles, and laws that are valid to systems in general [@bertalanffy1968];
-* "The attempt of a reductionist scientific tradition to come to terms with complexity, nonlinearity, and change through sophisticated mathematical and computational techniques, _a groping toward a more dialectical understanding_ that is held back by its philosophical biases and the institutional and economic contexts of its development" [@levins1998].
+* "The attempt of a reductionist scientific tradition to come to terms with complexity, nonlinearity, and change through sophisticated mathematical and computational techniques, _a groping toward a more dialectical understanding_ that is held back by its philosophical biases and the institutional and economic contexts of its development." [@levins1998].
 
 Ultradian rhythm
 : \hspace{20cm} A rhythm with a period below a day/24h. From the Latin _ultrā_, beyond (think in terms of period repetition), and _dĭes_, day [@latinitium]. Example: the cardiac cycle.

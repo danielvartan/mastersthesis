@@ -16,9 +16,9 @@ source(here::here("R/look_and_replace.R"))
 targets::tar_option_set(
   packages = c(
     "lubridate", # For masking reasons.
-    "checkmate", "cli", "curl", "dplyr", "googleCloudStorageR", "here", "hms",
-    "lockr", "lubritime", "mctq", "readr", "rlang", "rutils", "scaler",
-    "stringr", "tidyr", "utils"
+    "checkmate", "cli", "curl", "dplyr", "here", "hms", "lockr", "lubritime",
+    "methods", "mctq", "osfr", "readr", "rlang", "rutils", "scaler", "stringr",
+    "tidyr", "utils"
     )
 )
 
@@ -36,15 +36,29 @@ future::plan(future.callr::callr)
 
 # Replace the target list below with your own:
 list(
-  targets::tar_target(name = raw_data, command = get_raw_data()),
-  targets::tar_target(name = tidy_data, command = tidy_data_(raw_data)),
-  targets::tar_target(name = validated_data,
-                      command = validate_data(tidy_data)),
-  targets::tar_target(name = analyzed_data,
-                      command = analyze_data(validated_data)),
-  targets::tar_target(name = filtered_data,
-                      command = filter_data(analyzed_data)),
-  targets::tar_target(name = geocoded_data,
-                      command = add_geocode_data(filtered_data))
+  targets::tar_target(
+    name = raw_data,
+    command = get_raw_data()
+  ),
+  targets::tar_target(
+    name = tidy_data,
+    command = tidy_data_(raw_data)
+  ),
+  targets::tar_target(
+    name = validated_data,
+    command = validate_data(tidy_data)
+  ),
+  targets::tar_target(
+    name = analyzed_data,
+    command = analyze_data(validated_data)
+  ),
+  targets::tar_target(
+    name = filtered_data,
+    command = filter_data(analyzed_data)
+    ),
+  targets::tar_target(
+    name = geocoded_data,
+    command = add_geocode_data(filtered_data)
+  )
   # tarchetypes::tar_quarto(name = book, path = here::here())
 )

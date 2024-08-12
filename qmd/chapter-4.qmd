@@ -1,12 +1,12 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Ecology of sleep and circadian phenotypes of the brazilian population
+# Expression of sleep and circadian phenotypes of the brazilian population
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
 #| label: setup
 #| include: false
 
-source(here::here("R/quarto-setup.R"))
+source(here::here("R/_setup.R"))
 ```
 
 ```{r}
@@ -36,5 +36,5 @@ __DV__ conceived the study, contributed with the design, implementation, statist
 
 \microskip
 
-_Future reference_: Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). Ecology of sleep and circadian phenotypes of the Brazilian population. _Chronobiology International_.
+_Future reference_: Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). Expression of sleep and circadian phenotypes of the Brazilian population. _Chronobiology International_.
 :::

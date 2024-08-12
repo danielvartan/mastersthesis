@@ -1,13 +1,1 @@
-{
-  "showUnsupportedFiles": true,
-  "showLineNumber": true,
-  "tabSize": 2,
-  "promptDelete": false,
-  "alwaysUpdateLinks": true,
-  "newFileLocation": "folder",
-  "newFileFolderPath": "qmd",
-  "attachmentFolderPath": "./",
-  "spellcheck": false,
-  "autoPairMarkdown": true,
-  "useTab": true
-}
+{}

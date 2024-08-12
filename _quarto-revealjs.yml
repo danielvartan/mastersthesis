@@ -2,19 +2,18 @@ project:
   type: website
   output-dir: _slides
   render: [index.qmd]
-  pre-render: "R/quarto-pre-render-revealjs.R"
-  post-render: "R/quarto-post-render-revealjs.R"
+  pre-render: "R/_pre-render-revealjs.R"
+  post-render: "R/_post-render-revealjs.R"
 
-title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
+title: "Is latitude associated with human circadian rhythms?"
 author: "Daniel Vartanian"
 institute: "University of São Paulo"
 date: today
 
 format:
   revealjs:
-
     lang: en
-    csl: english-apa-author-date.csl
+    csl: csl/english-apa-author-date.csl
     keyboard: true
     controls: true
     controls-layout: bottom-right

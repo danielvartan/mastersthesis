@@ -10,11 +10,11 @@ profile:
   default: pdf
 
 book:
-  title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
+  title: "Is latitude associated with human circadian rhythms?"
   author: "Daniel Vartanian"
   keyword: >
     Chronobiology. Biological rhythms. Chronotype. Circadian phenotype. Sleep.
-    Complex systems. Entrainment. Latitude. Ecology. MCTQ.
+    Complex systems. Entrainment. Latitude. MCTQ.
   language: en-us
   license: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
   publisher: "University of São Paulo"

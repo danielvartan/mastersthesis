@@ -6,7 +6,7 @@
 #| label: setup
 #| include: false
 
-source(here::here("R/quarto-setup.R"))
+source(here::here("R/_setup.R"))
 ```
 
 ```{r}
@@ -137,6 +137,10 @@ An $\text{F}$ test for nested models showed a significant reduction of the resid
 
 ### Discussion
 
+It's important to note that a causal and linear relationship between latitude and chronotype is an _a priori_ assumption. The objective of this study is to test or falsify this hypothesis.
+
+For the latitude hypothesis to be true, there must be a significant association between these two variables when the most common covariates are controlled. Predictive models, in this case, are an adequate method for testing this.
+
 The results show that even with a wide latitudinal spectrum and with a big and aligned sample of biological states the latitude effect does not reveal itself in a non-negligible size. Several studies indicate the existence of this effect on the chronotype [@hut2013; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003], but, at this time, at least in humans, no empirical evidence can support this claim. Our results are very similar to Leocadio-Miguel et al. [-@leocadio-miguel2017], which also found a negligible effect size (Cohen’s $f^{2} = 0.004143174$). The inconsistency of the latitude effect can be visualized in @fig-chapter-6-chronotype-distribution-by-latitude.
 
 ::: {#fig-chapter-6-chronotype-distribution-by-latitude}
@@ -165,9 +169,9 @@ data |>
 Distribution of mean aggregates of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of MSF~sc~ indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval.
 :::
 
-Despite the lack of evidence, is not uncommon to hear talks insisting that this effect is real and already proven. We suspect that this behavior may be derived from a lack of understanding of statistical models and techniques. Although it may be logical and aligned with the overall theory for the evolution of biological temporal systems, it’s our role as scientists to eliminate contractions, not pursue them.
+Despite the lack of evidence, is not uncommon to hear talks insisting that this effect is real and already confirmed. We suspect that this behavior may be derived from a lack of understanding of statistical models and techniques. Although it may be logical and aligned with the overall theory for the evolution of biological temporal systems, it’s our role as scientists to eliminate contractions, not pursue them.
 
-As Karl Popper said, science begins and ends with questions [@popper1979]. The absence of a strong entrainment with the solar zeitgeber shows that the entrainment phenomenon is more complex than we previously imagined. Other hypotheses for the human circadian entrainment, like the entrainment to self-selected light, proposed by Anna Skeldon and Derk-Jan Dijk [-@skeldon2021], need to be tested and may produce significant results.
+The absence of a strong entrainment with the solar zeitgeber shows that the entrainment phenomenon is more complex than we previously imagined. Other hypotheses for the human circadian entrainment, like the entrainment to self-selected light, proposed by Anna Skeldon and Derk-Jan Dijk [-@skeldon2021], need to be tested and may produce significant results. Methods and techiniques for complex systems, like causal loop diagrams and agent-based models (ABM), may help to unravel this phenomenon more properly.
 
 It’s important to notice that the results shown here are preliminary. The data still needs some cleaning and to be balanced with Brazil's latest population census. The latitude coordinates used in the analysis are related to subjects' residential state capital and, hence, have low resolution. Even with these results, it may be that a significant latitude effect can still appear at the end of the research.
 

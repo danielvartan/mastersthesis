@@ -6,7 +6,7 @@ __Do not remove the text tags__! (they look like this: `<!-- %:::% tag %:::% -->
 
 Some general instructions:
 
-* If you won't use a section of this document, remove it! Empty sections will produce an error. At the moment, you also need to remove them in the `tex/include-before-body.tex` file and `R/quarto-pre-render-pdf.R`.
+* If you won't use a section of this document, remove it! Empty sections will produce an error. At the moment, you also need to remove them in the `tex/include-before-body.tex` file and `R/_pre-render-pdf.R`.
 
 ## Title page
 

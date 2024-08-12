@@ -2,7 +2,7 @@
 
 cff-version: 1.2.0
 message: "To cite this master's thesis in publications use:"
-title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
+title: "Is latitude associated with the regulation of circadian rhythms in humans?"
 keywords:
   - Chronobiology
   - Biological rhythms
@@ -12,7 +12,6 @@ keywords:
   - Complex systems
   - Entrainment
   - Latitude
-  - Ecology
   - MCTQ
 authors:
 - family-names: Vartanian
@@ -34,7 +33,7 @@ identifiers:
   value: https://danielvartan.github.io/mastersthesis/
 preferred-citation:
   type: unpublished
-  title: "Ecology of sleep and circadian phenotypes of the Brazilian population"
+  title: "Is latitude associated with the regulation of circadian rhythms in humans?"
   authors:
   - family-names: Vartanian
     given-names: Daniel

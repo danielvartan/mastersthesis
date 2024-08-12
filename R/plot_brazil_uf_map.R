@@ -19,7 +19,7 @@ plot_brazil_uf_map <- function(data, option = "viridis", text_size = NULL) {
   rutils:::assert_internet()
 
   brazil_uf_map <-
-    geobr::read_country(year = 2020, showProgress = FALSE) |>
+    geobr::read_state(year = 2020, showProgress = FALSE) |>
     rutils:::shush() |>
     dplyr::mutate(
       name_state = stringr::str_replace_all(name_state, " Do ", " do "),

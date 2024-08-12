@@ -1,8 +1,8 @@
 project:
   type: book
   output-dir: _web
-  pre-render: "R/quarto-pre-render-html.R"
-  post-render: "R/quarto-post-render-html.R"
+  pre-render: "R/_pre-render-html.R"
+  post-render: "R/_post-render-html.R"
 
 book:
   date: today
@@ -36,6 +36,7 @@ book:
     - qmd/references.qmd
     - qmd/glossary.qmd
   appendices:
+    - qmd/appendice-chapter-1.qmd
     - qmd/appendice-chapter-2.qmd
     - qmd/appendice-chapter-3.qmd
     - qmd/appendice-chapter-4.qmd
@@ -43,5 +44,15 @@ book:
     - qmd/appendice-chapter-6.qmd
 
 format:
-  abnt-html:
-    csl: english-apa-author-date.csl
+  html:
+    date-format: "YYYY-MM-DD"
+    open-graph: true
+    locale: en
+    number-depth: 5
+    code-link: true
+    code-fold: show
+    cap-location: top
+    reader-mode: false
+    callout-appearance: simple
+    csl: csl/english-apa-author-date.csl
+    theme: [cosmo, scss/web.scss]
