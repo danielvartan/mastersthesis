@@ -89,9 +89,11 @@ env_vars |> yaml::write_yaml(env_vars_file_path)
 quarto_yml_pdf_path <- here::here("_quarto-pdf.yml")
 quarto_yml_pdf_vars <- yaml::read_yaml(quarto_yml_pdf_path)
 
-# (2024-06-05)
-# This function only works with BetterBibTeX (BBT) for Zotero version v6.7.140
-# or lower.
+# (2024-08-25)
+# This function should work with any version of BetterBibTeX (BBT) for Zotero.
+# Verify if @wmoldham PR was merged in the `rbbt` package (see issue #47
+# <https://github.com/paleolimbot/rbbt/issues/47>). If not, install `rbbt`
+# from @wmoldham fork `remotes::install_github("wmoldham/rbbt")`.
 
 if (isTRUE(quarto_yml_pdf_vars$format$`abnt-pdf`$zotero)) {
   rutils:::bbt_write_quarto_bib(

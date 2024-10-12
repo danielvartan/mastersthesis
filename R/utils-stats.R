@@ -41,7 +41,12 @@ std_error <- function(x){
 # library(stats, quietly = TRUE)
 
 # TODO: Move to `rutils`.
-is_outlier <- function(x, method = "iqr", iqr_mult = 1.5, sd_mult = 3) {
+is_outlier <- function( # Change name to `test_outlier`
+    x,
+    method = "iqr",
+    iqr_mult = 1.5,
+    sd_mult = 3
+) {
   checkmate::assert_numeric(x)
   checkmate::assert_choice(method, c("iqr", "sd"))
   checkmate::assert_number(iqr_mult)
@@ -62,11 +67,23 @@ is_outlier <- function(x, method = "iqr", iqr_mult = 1.5, sd_mult = 3) {
 # library(checkmate, quietly = TRUE)
 
 # TODO: Move to `rutils`.
-remove_outliers <- function(x, method = "iqr", iqr_mult = 1.5, sd_mult = 3) {
+remove_outliers <- function(
+    x,
+    method = "iqr",
+    iqr_mult = 1.5,
+    sd_mult = 3
+) {
   checkmate::assert_numeric(x)
   checkmate::assert_choice(method, c("iqr", "sd"))
-  checkmate::assert_number(iqr_mult)
-  checkmate::assert_number(sd_mult)
+  checkmate::assert_number(iqr_mult, lower = 1)
+  checkmate::assert_number(sd_mult, lower = 0)
 
-  x[!is_outlier(x, method = method, iqr_mult = iqr_mult, sd_mult = sd_mult)]
+  x |>
+    test_outlier(
+      method = method,
+      iqr_mult = iqr_mult,
+      sd_mult = sd_mult
+    ) %>%
+    `!`() %>%
+    magrittr::extract(x, .)
 }

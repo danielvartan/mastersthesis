@@ -1,6 +1,8 @@
-# library(rutils, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(magrittr, quietly = TRUE)
+# library(rutils)
+# library(here)
+# library(magrittr)
+# library(readr)
+# library(stringr)
 
 # Copy output to `docs` folder -----
 
@@ -63,6 +65,20 @@ for (i in seq_along(output_docs_new_files)) {
     recursive = TRUE
   )
 }
+
+# Update `LICENSE.md` year -----
+
+file <- here::here("LICENSE.md")
+
+data <-
+  file |>
+  readr::read_lines() |>
+  stringr::str_replace_all(
+    pattern = "20\\d{2}",
+    replacement = as.character(Sys.Date() |> lubridate::year())
+  )
+
+data |> readr::write_lines(file)
 
 # Delete unnecessary files and folders -----
 

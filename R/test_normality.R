@@ -219,7 +219,7 @@ plot_hist <- function(x,
   checkmate::assert_flag(print)
 
   if (isTRUE(na_rm)) x <- x |> rutils:::drop_na()
-  y_lab <- ifelse("count", "Frequency", "Density")
+  y_lab <- ifelse(stat == "count", "Frequency", "Density")
 
   plot <-
     dplyr::tibble(y = x) |>

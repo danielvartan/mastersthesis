@@ -49,10 +49,10 @@
 # source(here::here("R", "_pre-render-revealjs.R"))
 #
 # quarto render
+# quarto render --profile gfm
 # quarto render --profile pdf
 # quarto render --profile html
 # quarto render --profile revealjs
-# quarto publish gh-pages
 
 # # LaTeX
 #

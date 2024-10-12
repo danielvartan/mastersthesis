@@ -295,7 +295,7 @@ lubritime:::link_to_timeline(data) |>
 
 See [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html).
 
-### Data wrangling
+### Data munging
 
 ```{r}
 #| label: data-preparation
@@ -389,6 +389,8 @@ $$
 
 ```{r}
 #| code-fold: false
+
+# recipes::step_BoxCox()
 
 lambda <- box_cox$x[which.max(box_cox$y)]
 
@@ -542,15 +544,9 @@ source(here::here("R/test_normality.R"))
 
 # res_model |> olsrr::ols_plot_resid_qq()
 
-qq_plot <- res_model |> 
+res_model |> 
   stats::residuals() |>
-  plot_qq(print = FALSE)
-
-hist_plot <- res_model |>
-  stats::residuals() |>
-  plot_hist(print = FALSE)
-
-cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
+  test_normality()
 ```
 
 [Source: Created by the author.]{.legend}

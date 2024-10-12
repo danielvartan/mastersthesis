@@ -6,20 +6,20 @@ execute:
 
 profile:
   group:
-    - [html, pdf, revealjs]
+    - [gfm, html, pdf, revealjs]
   default: pdf
 
 book:
   title: "Is latitude associated with human circadian rhythms?"
   author: "Daniel Vartanian"
   keyword: >
-    Chronobiology. Biological rhythms. Chronotype. Circadian phenotype. Sleep.
-    Complex systems. Entrainment. Latitude. MCTQ.
+    chronobiology. biological rhythms. chronotype. circadian phenotype. sleep.
+    complex systems. entrainment. latitude. mctq.
   language: en-us
   license: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
   publisher: "University of São Paulo"
   publisher-place: "São Paulo, SP, Brazil"
-  submitted: 2023
+  submitted: 2024
   url: https://danielvartan.github.io/mastersthesis/
   site-url: https://danielvartan.github.io/mastersthesis/
   repo-url: https://github.com/danielvartan/mastersthesis/

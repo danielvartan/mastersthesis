@@ -20,7 +20,7 @@ rutils:::quarto_status(
   )
 ```
 
-## Data wrangling
+## Data munging
 
 The data wrangling processes were performed using the  [`targets`](https://github.com/ropensci/targets) R package. The full pipeline can be seen in the `_targets.R` file at the root of the [research compendium](https://github.com/danielvartan/mastersthesis).
 
