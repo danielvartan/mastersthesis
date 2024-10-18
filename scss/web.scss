@@ -16,6 +16,11 @@ $font-size-root: 18px !default;
   color: #EA7701;
 }
 
+.center-x {
+  display: inline-block;
+  text-align: center;
+}
+
 div.sidebar-item-container .active {
   font-weight: bold;
 }

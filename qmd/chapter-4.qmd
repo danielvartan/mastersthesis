@@ -37,7 +37,7 @@ Different chronotype distributions, influenced by strong and weak zeitgebers -- 
 
 Effect sizes. Statistical ritual versus statistical thinking [@gigerenzer2004].
 
-A p-value is not evidence of the existence of an effect., it's only indirect evidence at best. Large samples and the p-value problem [@lin2013]. P-values as an exponential model of data sizes [@gomez-de-mariscal2021]. A small p-value does not imply that there is an important effect; it only tells us something about the plausibility of the effect. You need to have a meaningful effect to have an interesting result, and the p-value doesn't tell you that.
+A p-value is not evidence of the existence of an effect., it's only indirect evidence at best. Large samples and the p-value problem [@lin2013]. P-values as an exponential model of data sizes [@mariscal2021]. A small p-value does not imply that there is an important effect; it only tells us something about the plausibility of the effect. You need to have a meaningful effect to have an interesting result, and the p-value doesn't tell you that.
 
 Confidence intervals for an effect size measure in multiple linear regression [@algina2007]. Setting hypotheses with effect sizes: minimal effect size [@perezgonzalez2015].
 

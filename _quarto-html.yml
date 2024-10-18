@@ -43,7 +43,7 @@ format:
     number-depth: 5
     code-link: true
     code-fold: true
-    cap-location: bottom
+    cap-location: top
     fig-align: center
     df-print: paged
     reader-mode: false

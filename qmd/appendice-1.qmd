@@ -22,24 +22,13 @@ rutils:::quarto_status(
   )
 ```
 
-<!--
-## Some references
-
-See @|allen1997; @|bussab1988; @|degroot2012; @|hair2019; @|johnson2013; @|kuhn2022; @|dudek2020; @|dalpiaz; @|fox2016 .
-
-Other references :
-
-* <https://olsrr.rsquaredacademy.com>
-* <https://www.r-bloggers.com/2021/05/how-to-compare-nested-models-in-r/>
-* <https://www.r-bloggers.com/2022/10/box-cox-transformation-in-r/>
-* <https://online.stat.psu.edu/stat501/>
--->
-
 ## Question
 
 Every analysis should be guided by a question. The question that guides this analysis is the following:
 
+::: {.center-x}
 **Is latitude associated with chronotype?**
+:::
 
 The primary objective is to model and test this hypothesis by critically examining whether a significant association and effect size exist between latitude and circadian phenotypes in the Brazilian population.
 
@@ -169,7 +158,7 @@ In Cohen's words:
 
 > SMALL EFFECT SIZE: $f^2 = .02$. Translated into \text{R}^{2} (9.2.5) or partial \text{R}^{2} for Case 1 (9.1.8), this gives $.02 / (l + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested [@cohen1988, p. 413].
 
-> But in many circumstances, all that is intended by "proving" the null hypothesis is that the ES is not necessarily zero but *small enough to be negligible*, i.e., no larger than $i$ (Section 1.5.5). How large $i$ is will vary with the substantive context. Assume, for example, that ES is expressed as $f^2$, and that the context is such as to consider $f^2$ no larger than $.02$ to be negligible; thus $i$ = .02  [@cohen1988, p. 461].
+> But in many circumstances, all that is intended by "proving" the null hypothesis is that the ES is not necessarily zero but **small enough to be negligible**, i.e., no larger than $i$ (Section 1.5.5). How large $i$ is will vary with the substantive context. Assume, for example, that ES is expressed as $f^2$, and that the context is such as to consider $f^2$ no larger than $.02$ to be negligible; thus $i$ = .02  [@cohen1988, p. 461].
 
 $$
 \text{MES} = \text{Cohen's } f^2 \text{small threshold} = 0.02 \\
@@ -187,10 +176,10 @@ In other words, the latitude must explain at least $1.960784\%$ of the variance 
 
 In summary, the decision rule for the hypothesis test is as follows:
 
-- **Reject $\text{H_0}$ if both**:
+- **Reject** $\text{H}_{0}$ **if both**:
   - The F-test is significant.
   - $\Delta \ \text{Adjusted} \ \text{R}^{2} > 0.01960784$;
-- **Fail to reject $\text{H_0}$ if either**:
+- **Fail to reject** $\text{H}_{0}$ **if either**:
   - The F-test is not significant, or
   - The F-test is significant, but $\Delta \ \text{Adjusted} \ \text{R}^{2} \leq 0.01960784$.
 
@@ -204,6 +193,7 @@ Assumption checks include:
 
 ::: {.callout-warning}
 It is important to note that relying on objective assumption tests is not advisable in this context. In larger samples, these tests can be overly sensitive to minor deviations, and in smaller samples, they may fail to detect significant ones. Furthermore, they can miss visual patterns that a single metric cannot capture [@shatz2024; @kozak2018; @schucany2006]. Therefore, visual inspection of diagnostic plots was deemed a more effective method for assessing the model assumptions in this case.
+:::
 
 ::: {.callout-warning}
 It's also important to emphasize that this thesis is not trying to establishing causality, only association. Predictive models alone should never be used to infer causal relationships [@arif2022].
@@ -305,9 +295,17 @@ The data wrangling and analysis followed the data science program proposed by Ha
 The [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html) provided a pipeline for data munging. You can see this pipeline on the `_target.R` file in the root of thesis code repository or by clicking [here](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R).
 
 ```{r}
+#| eval: false
+#| output: false
+
+data <- targets::tar_make(script = "../_targets.R")
+```
+
+```{r}
 #| label: data-preparation
 #| message: false
 #| warning: false
+#| code-fold: false
 
 source(here::here("R/utils.R"))
 
@@ -318,8 +316,6 @@ utc_minus_3_states <- c(
   "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
   "Rio Grande do Sul"
 )
-
-data <- targets::tar_make(script = "../_targets.R")
 
 data <- 
   targets::tar_read("geocoded_data", store = here::here("_targets")) |>
@@ -344,22 +340,32 @@ data |>
 ```
 
 ```{r}
+#| code-fold: false
+
 sprintf("%.50f", min(data$msf_sc))
 ```
 
 ```{r}
+#| code-fold: false
+
 min(as.POSIXct(data$msf_sc, tz = "UTC"))
 ```
 
 ```{r}
+#| code-fold: false
+
 sprintf("%.50f", max(data$msf_sc))
 ```
 
 ```{r}
+#| code-fold: false
+
 max(as.POSIXct(data$msf_sc, tz = "UTC"))
 ```
 
 ```{r}
+#| code-fold: false
+
 sprintf("%.50f", max(data$msf_sc) - min(data$msf_sc))
 ```
 

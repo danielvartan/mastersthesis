@@ -1001,7 +1001,7 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{F1F3F5}}{}
 \makeatother
 \makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, breakable, borderline west={3pt}{0pt}{shadecolor}, colback={codebgcolor}, boxrule=0pt, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, colback={codebgcolor}, breakable, enhanced, sharp corners, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt]}{\end{tcolorbox}}\fi
 \makeatother
 
 % -----
@@ -1339,134 +1339,105 @@ se imaginava.
 
 \chapter{Introduction}\label{introduction}
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, titlerule=0mm, toprule=.15mm, coltitle=black, colbacktitle=quarto-callout-important-color!10!white, breakable, leftrule=.75mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colframe=quarto-callout-important-color-frame, bottomtitle=1mm, left=2mm, arc=.35mm]
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
 
 You are reading the work-in-progress of this thesis.
 
 \microskip
 
-This chapter is currently a dumping ground for ideas, and I don't
-recommend reading it.
+This chapter should be readable but is currently undergoing final
+polishing.
 
 \end{tcolorbox}
 
-You are currently viewing the preliminary print version of this master's
-thesis.
+There has been a long-standing debate in the chronobiology community
+regarding the relationship between latitude and circadian phenotypes
+(chronotypes)
+\autocite{randler2008,leocadio-miguel2017,zerbini2021,skeldon2021}, with
+many believing this association is already well-established. This
+hypothesis stems from the varying amounts of solar radiation experienced
+by populations across different latitudes. Since light exposure is a
+primary zeitgeber ---a periodic environmental cue that influences or
+regulates biological rhythms--- such variations are thought to create
+noticeable differences in chronotype distributions globally. This thesis
+investigates the so-called latitude or environmental hypothesis,
+addressing the question: \emph{Is latitude associated with chronotype?}.
 
-This document follows the
+The central hypothesis is that \emph{latitude is associated with
+chronotype distributions}, with populations closer to the equator
+exhibiting, on average, a shorter or more morning-oriented circadian
+phenotype compared to those residing near the poles
+\autocite{hut2013,leocadio-miguel2014,leocadio-miguel2017,pittendrigh1991,randler2008,randler2017,roenneberg2003}.
+The primary objective is to model and test this hypothesis by critically
+examining whether a significant association and effect size exist
+between latitude and circadian phenotypes in the Brazilian population.
+
+In the following chapters, the latitude hypothesis is explored using
+Popper's hypothetical-deductive method \autocite{popper1979} and an
+improved approach to Null Hypothesis Significance Testing (NHST), rooted
+in the original Neyman-Pearson framework for data testing
+\autocite{neyman1928,neyman1928a,perezgonzalez2015}. This exploration
+involves a series of analyses conducted on a large dataset comprising
+\(120,265\) individuals, collected from the Brazilian population in
+2017. The dataset is based on the Munich Chronotype Questionnaire (MCTQ)
+\autocite{roenneberg2003,roenneberg2012a}, and contains information on
+sleep habits and demographic characteristics from various regions of
+Brazil.
+
+The analyses utilize nested multiple regression models to evaluate the
+additional variance explained and the effect size when latitude is
+included as a predictor of chronotype. The results are then compared
+with those obtained from a restricted model that excludes latitude as a
+predictor. This method of prodecure builds on an article published by
+\textcite{leocadio-miguel2017}, which investigated the relationship
+between latitude and chronotype in the Brazilian population. The present
+study extends this work by utilizing a larger dataset and more advanced
+statistical methods to test the hypothesis. The results will contribute
+to the ongoing debate on the latitude-chronotype relationship, offering
+new evidences into how environmental factors influence human circadian
+rhythms.
+
+This procedure method is related to an article published in 2017 by
+\textcite{leocadio-miguel2017}, which investigated the relationship
+between latitude and chronotype in the Brazilian population. The present
+study extends this work by using a larger dataset and more sophisticated
+statistical methods to test the hypothesis. The results of this
+investigation will contribute to the ongoing debate on the relationship
+between latitude and chronotype, providing valuable insights into the
+role of environmental factors in shaping human circadian rhythms.
+
+The thesis is structure as a
 \href{https://en.wikipedia.org/wiki/Collection_of_articles}{collection
-of articles thesis} format. This first chapter serves as an introduction
-to the thesis subject, providing also its justification and aims. The
-subsequent chapters consist of a series of essays and a article
-connected to the thesis, with the exception of the last one, which
-encompasses a general discussion and final remarks.
+of articles}. Chapters 2 through 4 comprise a series of essays and
+literature reviews related to the thesis topic. Chapter 5 presents the
+main investigation, including an article reporting the hypothesis test
+and discussing the central research question. Finally, Chapter 6 offers
+conclusions and directions for future research.
 
 All analyses in this document are reproducible and were conducted using
 the \href{https://www.r-project.org/}{R programming language} along with
-the \href{https://quarto.org/}{Quarto} publishing system. It's worth
-noting that this type of thesis is best suited for online viewing. To
-access the digital version and see the latest research updates, please
-visit \url{https://danielvartan.github.io/mastersthesis/}.
-
-All of these projects are developed using secure, open-source tools and
-adhere to the best international standards. They are designed to ensure
-100\% reproducibility and are accompanied by extensive documentation.
-
-\section{Aims}\label{aims}
-
-This thesis focuses on the expression of sleep and circadian phenotypes
-(chronotypes) with the aim of providing answers to the following
-questions:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  How are the sleep-wake cycles and circadian phenotypes of the adult
-  Brazilian population characterized?
-\item
-  Is latitude associated with the regulation of circadian rhythms in
-  humans?
-\end{enumerate}
-
-The basic hypothesis to be tested is that populations residing near the
-equator (latitude 0°) have, on average, a shorter/more morning-oriented
-circadian phenotype compared to populations living near the Earth's
-poles (H1)
-\autocite{hut2013,leocadio-miguel2014,leocadio-miguel2017,pittendrigh1991,randler2008,randler2017,roenneberg2003}.
-
-The primary objectives (PO) are as follows:
-
-\microskip
-
-\begin{enumerate}
-\def\labelenumi{\Alph{enumi})}
-\item
-  Quantitatively describe the expression of sleep-wake cycles and
-  circadian phenotypes of the Brazilian adult population at the end of
-  the year 2017 (pre-pandemic).
-\item
-  Investigate and model the presence/absence of a significant
-  association and effect between decimal degrees of latitude
-  (independent variable (IV)) and circadian phenotypes (dependent
-  variable (DV)) of the Brazilian population.
-\end{enumerate}
-
-\microskip
-
-To achieve the primary objectives, the following secondary objectives
-(SO) have been outlined:
-
-\microskip
-
-\begin{enumerate}
-\def\labelenumi{\roman{enumi})}
-\item
-  Conduct data cleaning, validation, and transformation processes on the
-  obtained sample data.
-\item
-  Collect secondary data on geolocation and solarimetric models and
-  cross-reference them with the primary data.
-\item
-  Develop algorithms for generating randomly sampled subsets adjusted to
-  the proportions of the analyzed Brazilian regions, based on the latest
-  Brazilian demographic census.
-\item
-  Develop algorithms and models to help with the processing of MCTQ data
-  and to simulate the complexity of the entrainment phenomena.
-\item
-  Evaluate and discuss the presence/absence of significant differences
-  in the values of the local time of the sleep corrected midpoint
-  between sleep onset and sleep end on work-free days
-  (MSF\textsubscript{sc}), MCTQ proxy for measuring the chronotype,
-  based on decimal degrees of latitude (IV), while controlling for known
-  covariates such as subjects' gender and age.
-\end{enumerate}
-
-\section{Thesis structure}\label{thesis-structure}
-
-Three essays
-
-The main project is the test of the latitude hypothesis, which serves as
-the primary investigation. It's important to note that all the preceding
-projects converge into this one. The first project focuses on validating
-the MCTQ translation used for data collection. The second project
-involves the development of data processing tools. The third project is
-responsible for the necessary data manipulation to prepare it for
-analysis. The fourth project aims to offer valuable insights and
-guidance for the upcoming tasks.
+the \href{https://quarto.org/}{Quarto} publishing system. Since this
+thesis focuses heavily on data, it is best viewed online. To access the
+digital version and supplemental materials, please visit
+\url{https://danielvartan.github.io/mastersthesis/}. The thesis code
+repository is available on GitHub at
+\href{https://github.com/danielvartan/mastersthesis}{https://github.com/danielvartan/mastersthesis)}).
+The research compendium can also be accessed via
+\href{https://osf.io/}{The Open Science Framework} at the following
+link: \url{https://doi.org/10.17605/OSF.IO/YGKTS}.
 
 \bookmarksetup{startatroot}
 
 \chapter{On chronobiology}\label{on-chronobiology}
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, titlerule=0mm, toprule=.15mm, coltitle=black, colbacktitle=quarto-callout-important-color!10!white, breakable, leftrule=.75mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colframe=quarto-callout-important-color-frame, bottomtitle=1mm, left=2mm, arc=.35mm]
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
 
 You are reading the work-in-progress of this thesis.
 
 \microskip
 
-This chapter is currently a dumping ground for ideas, and I don't
-recommend reading it.
+This chapter should be readable but is currently undergoing final
+polishing.
 
 \end{tcolorbox}
 
@@ -1618,10 +1589,13 @@ the \(\text{S}\) process can be controlled.
 \begin{figure}[H]
 
 \caption{\label{fig-chapter-2-borbely-1982-figure-4}Illustration of the
-interaction of the \(\text{S}\) process and the \(\text{C}\) process in
-sleep regulation. The figure depicts two scenarios: one without sleep
-deprivation and another with sleep deprivation. The \(y\)-axis
-represents the level of the process.}
+interaction between Process S (sleep-dependent process) and Process C
+(circadian rhythm process) in sleep regulation. The figure depicts two
+scenarios: one with 17 hours of wakefulness followed by 7 hours of
+sleep, and another with sleep deprivation, consisting of 41 hours of
+wakefulness followed by 7 hours of sleep. The y-axis represents the
+level of each process. The shaded areas indicate periods of sleep, along
+with the exponential decline of Process S.}
 
 \centering{
 
@@ -1632,6 +1606,151 @@ represents the level of the process.}
 }
 
 \end{figure}%
+
+\bookmarksetup{startatroot}
+
+\chapter{On complexity science}\label{on-complexity-science}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+
+You are reading the work-in-progress of this thesis.
+
+\microskip
+
+This chapter is currently a dumping ground for ideas, and I don't
+recommend reading it.
+
+\end{tcolorbox}
+
+Complex versus Complicated.
+
+\textbf{Complex systems} are systems with many interconnected parts that
+exhibit emergent behavior.
+
+\textbf{Stable macroscopic patterns} arising from \textbf{local
+interaction} of agents \autocite{epstein1999}.
+
+In mathematical terms, the interactions of interest are non-linear
+\autocite{holland2014}.
+
+When the aggregate exhibits \textbf{properties not attained by
+summation} \autocite{holland2014}.
+
+The behavior of each part don't explain how they behave collectively.
+
+Emergence: new properties that arise from the interactions of the parts
+of a system, which are not present in the parts themselves. Collective
+behavior. Aggregate behavior.
+
+You are dealing with an emergence phenomenon when there is no need to
+look under the hood \autocite{krakauer2023}.
+
+\includegraphics{qmd/images/perez-villa-2023-figure-3.png}
+
+\includegraphics{qmd/images/perez-villa-2023-figure-1.png}
+
+The result of a \emph{juggling act} of billions of years of evolution.
+There are no specific functions. There's no proposed goal.
+
+Levels of description \autocite{nicolis2012}. Starting in the cell
+nucleus with the molecular clock, then the cell, the tissue, the organ
+following to stable macroscopic patterns of circadian rhythms in
+behavior and physiology.
+
+If you think about it, the extensive clock control is like a
+finely-tuned choreography. Everything is organized to happen at the
+right time, just like a \textbf{Rube Goldberg machine}
+\autocite{merrow2020}.
+
+Circadian clocks regulate and/or modulate functions at all levels,
+ranging from gene expression and physiology to behavior and cogitation
+\autocite{roenneberg2007}.
+
+It's an emergent phenomenon. It's not a property of the parts
+themselves. It's a property of the system as a whole.
+
+\includegraphics{qmd/images/flanagan-2021-figure-2.png}
+
+``{[}\ldots{]} involve great numbers of parts undergoing a kaleidoscopic
+array of simultaneous interactions.'' \autocite{holland1992b}
+
+In complex adaptive systems, \textbf{emergent properties} often occur
+when coevolving signals and boundaries generate \textbf{new levels of
+organization} \autocite{holland2012}.
+
+\includegraphics{qmd/images/holland-2012-figure-1.png}
+
+Structural levels
+
+\includegraphics{qmd/images/lewin-1993-figure-8.png}
+
+Fig. 8. Structural levels in the organization of the nervous system, a
+reflection of the hierarchical systems that may underlie the generation
+of higher cognitive functions, including consciousness. Courtesy of
+Patricia Churchland and Terrence Sejnowski.
+
+A system of many interacting parts where the system is \textbf{more than
+just the sum of its parts} (Mark Newman in \textcite{mitchell2013}).
+
+A system that involves a large number of parts undergoing a
+kaleidoscopic array of simultaneous interactions, exhibiting
+\textbf{aggregate behavior} that cannot be simply derived from the
+actions of the individual parts \autocite{holland1992b}.
+
+Systems with many connected agents that interact and exhibit
+self-organization and \textbf{emergence behavior}, all without the need
+for a central controller (Camilo Rodrigues Neto).
+
+Dialectics at its finest (my working definition).
+
+Complexity science seeks to \textbf{explain emergent phenomena} or
+mechanisms that ``screen-off'' their constituent parts and thereby allow
+new levels of description and understanding \autocite{krakauer2024}.
+
+\includegraphics{qmd/images/sayama-2015-figure-1.png}
+
+The seven basics consist of 4 properties and 3 mechanisms that are
+common to all complex adaptive systems:
+
+\begin{itemize}
+\tightlist
+\item
+  Aggregation (property)
+\item
+  Nonlinearity (property)
+\item
+  Flows (property)
+\item
+  Diversity (property)
+\item
+  Tags (mechanism)
+\item
+  Internal models (mechanism)
+\item
+  Building blocks (mechanism)
+\end{itemize}
+
+\autocite{holland1996}
+
+Other concepts: chaos, power laws \& factor sparsity, feedback loops,
+robustness, equilibrium states, path dependence, leverage points
+
+Approaches to study and model circadian clocks.
+
+\bookmarksetup{startatroot}
+
+\chapter{On the latitude hypothesis}\label{on-the-latitude-hypothesis}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+
+You are reading the work-in-progress of this thesis.
+
+\microskip
+
+This chapter is currently a dumping ground for ideas, and I don't
+recommend reading it.
+
+\end{tcolorbox}
 
 Although many theories related to sleep and circadian rhythms are
 well-established in science, it is still necessary to verify and test
@@ -1677,50 +1796,72 @@ hypothesized by the latitude hypothesis.}
 
 \end{figure}%
 
-To achieve the mentioned objectives, this project will rely on a dataset
-of the sleep-wake cycle expression of the Brazilian population,
-consisting of \(120,265\) subjects covering all states of the country.
-This dataset was collected in 2017 and is based on the Munich ChronoType
-Questionnaire (MCTQ), a widely validated scale used to measure
-chronotypes based on individuals' sleep-wake cycle expression in the
-last four weeks \autocite{roenneberg2003,roenneberg2012a}.
+``However, it is also our experience that some mathematically
+sophisticated scientists may lack the conceptual frame that links the
+mathematical procedures to the substantive scientific task in a
+particular case'' \autocite{cohen2002}.
 
-\bookmarksetup{startatroot}
+Effect sizes. Statistical ritual versus statistical thinking
+\autocite{gigerenzer2004}.
 
-\chapter{On complexity science}\label{on-complexity-science}
+A p-value is not evidence of the existence of an effect., it's only
+indirect evidence at best. Large samples and the p-value problem
+\autocite{lin2013}. P-values as an exponential model of data sizes
+\autocite{mariscal2021}. A small p-value does not imply that there is an
+important effect; it only tells us something about the plausibility of
+the effect. You need to have a meaningful effect to have an interesting
+result, and the p-value doesn't tell you that.
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, titlerule=0mm, toprule=.15mm, coltitle=black, colbacktitle=quarto-callout-important-color!10!white, breakable, leftrule=.75mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colframe=quarto-callout-important-color-frame, bottomtitle=1mm, left=2mm, arc=.35mm]
+Confidence intervals for an effect size measure in multiple linear
+regression \autocite{algina2007}. Setting hypotheses with effect sizes:
+minimal effect size \autocite{perezgonzalez2015}.
 
-You are reading the work-in-progress of this thesis.
+The original article had two issues regarding data testing, commonly
+related to null hypothesis significance tests (NHST). It is not within
+the scope of this article to discuss all the issues regarding NHST; for
+that, I recommend checking \textcite{perezgonzalez2015}. The two main
+methodological issues regarding the hypothesis test in the original
+article were:
 
-\microskip
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Using the p-value instead of the effect size as a criterion for
+  rejecting or accepting the alternative hypothesis;
+\item
+  Failing to integrate a minimum effect size in the alternative
+  hypothesis. A test without the latter can create serious distortions
+  in the interpretation of the results, since even a negligible effect
+  could lead to the acceptance of the alternative hypothesis.
+\end{enumerate}
 
-This chapter is currently a dumping ground for ideas, and I don't
-recommend reading it.
+Considering the particular emphasis that the solar zeitgeber has on the
+entrainment of biological rhythms (as demonstrated in many experiments),
+it would not be reasonable to assume that the latitude hypothesis could
+be supported without at least a non-negligible effect size. Although the
+latitude association claimed by many authors implies not just a linear
+relationship but also a significant effect on chronotype, considering
+the biological construct of chronotype, the approach that incorporates a
+minimum effect size (MES) is not new. In fact, when Neyman and Pearson
+published their schema for data testing, a MES was required.
 
-\end{tcolorbox}
+Even assuming a very low threshold, similar to the claim of 2\% variance
+explained by latitude as a predictor, the hypothesis does not hold. As
+shown by \textcite{leocadio-miguel2017}, adding \(0.00388\) to the
+\(\text{R}^2\) results in Cohen's
+\(f^2 = (0.06352 - 0.05964) / (1 - 0.06352) = 0.004143174\), which is
+negligible by all standards. Again, the conclusion drawn by the authors
+of this study was not based on sound statistical thinking.
 
-\bookmarksetup{startatroot}
-
-\chapter{On the latitude hypothesis}\label{on-the-latitude-hypothesis}
-
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, titlerule=0mm, toprule=.15mm, coltitle=black, colbacktitle=quarto-callout-important-color!10!white, breakable, leftrule=.75mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colframe=quarto-callout-important-color-frame, bottomtitle=1mm, left=2mm, arc=.35mm]
-
-You are reading the work-in-progress of this thesis.
-
-\microskip
-
-This chapter is currently a dumping ground for ideas, and I don't
-recommend reading it.
-
-\end{tcolorbox}
+y-axis illusion. unbalanced data.
 
 \bookmarksetup{startatroot}
 
 \chapter{Is latitude associated with
 chronotype?}\label{is-latitude-associated-with-chronotype}
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, titlerule=0mm, toprule=.15mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white, breakable, leftrule=.75mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, left=2mm, arc=.35mm]
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1731,7 +1872,7 @@ polishing.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, titlerule=0mm, toprule=.15mm, coltitle=black, colbacktitle=quarto-callout-warning-color!10!white, breakable, leftrule=.75mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, opacityback=0, colframe=quarto-callout-warning-color-frame, bottomtitle=1mm, left=2mm, arc=.35mm]
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-warning-color-frame, arc=.35mm, colbacktitle=quarto-callout-warning-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
 
 The results shown here are \textbf{preliminary}, so please take them
 with a grain of salt.
@@ -1745,7 +1886,7 @@ the appendices section.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, titlerule=0mm, toprule=.15mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white, breakable, leftrule=.75mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Target journal}, opacityback=0, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, left=2mm, arc=.35mm]
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Target journal}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1759,7 +1900,7 @@ the appendices section.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, titlerule=0mm, toprule=.15mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white, breakable, leftrule=.75mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, left=2mm, arc=.35mm]
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
 
 The following study was performed by Daniel Vartanian (DV), Mario
 Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
@@ -2078,7 +2219,7 @@ conceived predictors, considering a significance level of \(0.05\)
 that a sample of \(5,895\) individuals would be necessary to test the
 hypothesis.
 
-Daylight Saving Time (DST) began in Brazil at midnight on November 15th,
+Daylight Saving Time (DST) began in Brazil at midnight on October 15th,
 2017. Residents from the Midwest, Southeast, and South regions were
 instructed to set the clock forward by 1 hour. We believe that this
 event did not contaminate the data since it started on the same day of
@@ -2132,7 +2273,7 @@ resolution). The final results will have the latitude and longitude
 coordinates based on subjects' postal codes and will also use a balanced
 dataset following the latest Brazil census.
 
-\subsection{Analysis}\label{analysis}
+\subsection{Data wrangling}\label{data-wrangling}
 
 The data wrangling and analysis followed the data science program
 proposed by Hadley Wickham and Garrett Grolemund \autocite{wickham2016}.
@@ -2145,6 +2286,8 @@ rOpenSci peer-reviewed package \autocite{vartanian2023}. All processes
 were made in order to provide result reproducibility and to be in
 accordance with the FAIR principles \autocite{wilkinson2016}.
 
+\subsection{Hypothesis testing}\label{hypothesis-testing}
+
 The study hypothesis was tested using nested models of multiple linear
 regressions. The main idea of nested models is to verify the effect of
 the inclusion of one or more predictors in the model variance
@@ -2154,8 +2297,8 @@ model. Hence, the hypothesis can be schematized as follows.
 
 \[
 \begin{cases}
-\text{H}_{0}: \text{R}^{2}_{\text{res}} >= \text{R}^{2}_{\text{full}} \\
-\text{H}_{a}: \text{R}^{2}_{\text{res}} < \text{R}^{2}_{\text{full}}
+\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} \leq \text{MES} \quad \text{or} \quad \text{F-test is not significant} \\
+\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES} \quad \text{and} \quad \text{F-test is significant}
 \end{cases}
 \]
 
@@ -2179,8 +2322,6 @@ least considered small. To evaluate the effect size, Cohen's \(f^{2}\)
 and his categorical parameters for size were used \autocite{cohen1992}.
 That means that, in order to favor (\(\text{H}_{a}\)), the effect size
 must be at least equal to or greater than \(0.0219\).
-
-No blinding procedures were used during the analysis.
 
 \subsection{Data availability}\label{data-availability}
 
@@ -2239,7 +2380,7 @@ changes were made.
 
 \chapter{Conclusion}\label{conclusion}
 
-\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, titlerule=0mm, toprule=.15mm, coltitle=black, colbacktitle=quarto-callout-important-color!10!white, breakable, leftrule=.75mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colframe=quarto-callout-important-color-frame, bottomtitle=1mm, left=2mm, arc=.35mm]
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
 
 You are reading the work-in-progress of this thesis.
 
