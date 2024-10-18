@@ -35,27 +35,97 @@ Other references :
 * <https://online.stat.psu.edu/stat501/>
 -->
 
-## Setup
+## Question
 
-```{r}
+Every analysis should be guided by a question. The question that guides this analysis is the following:
 
-```
+**Is latitude associated with chronotype?**
+
+The primary objective is to model and test this hypothesis by critically examining whether a significant association and effect size exist between latitude and circadian phenotypes in the Brazilian population.
 
 ## Hypothesis
 
-__Statement__
-: \hspace{20cm} Populations residing near the equator (latitude 0°) exhibit, on average, a shorter/morning circadian phenotype when compared to populations residing near the poles of the planet [@horzum2015; @hut2013; @leocadio-miguel2017; @leocadio-miguel2014; @pittendrigh1991; @randler2017].
+Popper’s hypothetico-deductive method, also known as the *method of conjecture and refutation* [@popper1979, p. 164] is used as a method of approach of the thesis question. The basic structure of this approach can be summarized as follows:
 
-The study hypothesis was tested using nested models of multiple linear regressions. The main idea of nested models is to verify the effect of the inclusion of one or more predictors in the model variance explanation (i.e., the $\text{R}^{2}$) [@allen1997]. This can be made by creating a restricted model and then comparing it with a full model. Hence, the hypothesis can be schematized as follows.
+```{mermaid}
+%%| label: fig-mermaid
+%%| fig-cap: Simplified schema of Popper’s hypothetico-deductive method.
+%%| fig-align: center
+
+flowchart LR
+  A(P1) --> B(TT)
+  B --> C(EE)
+  C --> D(P2)
+```
+
+> Here $\text{P}_1$, is the **problem** from which we start, $\text{TT}$ (the ‘tentative theory’) is the imaginative conjectural solution which we first reach, for example our first **tentative interpretation**. $\text{EE}$ (‘**error- elimination**’) consists of a severe critical examination of our conjecture, our tentative interpretation: it consists, for example, of the critical use of documentary evidence and, if we have at this early stage more than one conjecture at our disposal, it will also consist of a critical discussion and comparative evaluation of the competing conjectures. $\text{P}_2$ is the problem situation as it emerges from our first critical attempt to solve our problems. It leads up to our second attempt (**and so on**) [@popper1979, p. 164].
+
+The tentative theory or main hypothesis, as stated in Chapter 1, is the following:
+
+__Hypothesis__
+: \hspace{20cm} *latitude is associated with chronotype distributions*, with populations closer to the equator exhibiting, on average, a shorter or more morning-oriented circadian phenotype compared to those residing near the poles [@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003].
+
+As a procedure method, an improved approach to Null Hypothesis Significance Testing (NHST), rooted in the original Neyman-Pearson framework for data testing is employed [@neyman1928; @neyman1928a; @perezgonzalez2015]. 
 
 $$
 \begin{cases}
-\text{H}_{0}: \text{R}^{2}_{r} >= \text{R}^{2}_{f} \\
-\text{H}_{a}: \text{R}^{2}_{r} < \text{R}^{2}_{f}
+\text{H}_{0}: \text{Latitude is not associated with chronotype} \\
+\text{H}_{a}: \text{Latitude is associated with chronotype}
 \end{cases}
 $$
 
-The general equation for the F-test [@allen1997, p. 113]:
+## Methods
+
+### Measurement instrument
+
+Chronotypes were measured using a an sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. MCTQ is a widely validated and widely used self-report questionnaire for measuring the sleep-wake cycle and chronotypes [@roenneberg2019]. It quantifies the chronotype as a state, a biological circadian phenotype, using as a proxy the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~). A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified [@roenneberg2012].
+
+Subjects were asked to complete an online questionnaire with the sleep log and to provide sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and work/study routine-related data. A deactivated version of the questionnaire can be seen at <https://bit.ly/brchrono-form>.
+
+### Sample
+
+The cleaned and validated sample is made up of $76,744$ Brazilian subjects. It was obtained in 2017 from October 15th to 21st by a broadcast of the online questionnaire on a popular Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+
+A survey conducted in 2019 by the Brazilian Institute of Geography and Statistics (IBGE) [-@ibge2021] found that $82.17\%$ of Brazilian households had access to an internet connection. Therefore, this sample is likely to have a good representation of Brazil’s population. Only residents of Brazilian states in the UTC-3 timezone, aged $18$ years or older, were included in the final sample.
+
+A power analysis *a posteriori* was conducted for nested multiple regression models in order to verify if the sample size was adequate.
+
+Daylight Saving Time (DST) began in Brazil at midnight on October 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that MCTQ asks subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample would be the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the hypothesis test.
+
+Based on the 2022 census [@ibgea], Brazil had $52.263\%$ of females and $47.737\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with $66.297\%$ of females and $33.703\%$ of male subjects.
+
+The subjects' mean age is $32.015$ years ($\text{SD} = 9.252$; $\text{Max.} = 58.786$). Female subjects have a mean age of $31.787$ years ($\text{SD} = 9.364$; $\text{Max.} = 58.786$) and male subjects $32.464$ years ($\text{SD} = 9.012$; $\text{Max.} = 58.772$). For comparison, based on the 2022 census [@ibgeb], Brazil’s population with an age equal to or greater than $18$ years old had a mean age of $44.277$ years ($\text{SD} = 17.221$), with a mean age of $44.987$ years ($\text{SD} = 17.511$) for female subjects and a mean age of $43.499$ years ($\text{SD} = 16.864$) for male subjects.
+
+Considering the five regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census [@ibge2022], the Southeast region is home to $41.784\%$ of Brazil’s population, followed by the Northeast ($26.910\%$), South ($14.741\%$), North ($8.544\%$), and Midwest ($8.021\%$) regions. $62.454\%$ of the sample is located in the Southeast region, $11.797\%$ in the Northeast, $17.861\%$ in the South, $1.682\%$ in the North, and $6.205\%$ in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).
+
+The sample latitudinal range was $30.211$ decimal degrees ($\text{Min.} = -30.109$; $\text{Max.} = 0.10177$) with a longitudinal span of $16.378$ decimal degrees ($\text{Min.} = -51.342$; $\text{Max.} = -34.964$). For comparison, Brazil has a latitudinal range of $39.024$ decimal degrees ($\text{Min.} = -33.752$; $\text{Max.} = 5.2719$) and a longitudinal span of $39.198$ decimal degrees ($\text{Min.} = -34.793$; $\text{Max.} = -73.991$). 
+
+### Data wrangling
+
+The data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The tidyverse and rOpenSci package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
+
+### Hypothesis test
+
+The study hypothesis was tested using nested models general linear models of multiple linear regressions. The main idea of nested models is to verify the effect of the inclusion of one or more predictors in the model variance explanation (i.e., the $\text{R}^{2}$) [@allen1997; @maxwell2018]. This can be made by creating a restricted model and then comparing it with a full model. Hence, the hypothesis can be schematized as follows.
+
+- __Null hypothesis__ ($\text{H}_{0}$): Adding *latitude* does not meaningfully improve the model’s fit, indicating that the change in adjusted $\text{R}^{2}$ is negligible or the F-test is not significant.
+
+- __Alternative Hypothesis__ ($\text{H}_{a}$): Adding *latitude* significantly improves the model’s fit, indicating that the change in adjusted $\text{R}^{2}$ is greater than the Minimum Effect Size (MES), and the F-test is significant.
+
+$$
+\begin{cases}
+\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} \leq \text{MES} \quad \text{or} \quad \text{F-test is not significant} \\
+\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES} \quad \text{and} \quad \text{F-test is significant}
+\end{cases}
+$$
+
+Where:
+
+$$
+\Delta \ \text{Adjusted} \ \text{R}^{2} = \text{Adjusted} \ \text{R}^{2}_{f} - \text{Adjusted} \ \text{R}^{2}_{r}
+$$
+
+The general equation for the F-test for nested models [@allen1997, p. 113] is:
 
 $$
 \text{F} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r} / (k_{f} - k_{R})}{(1 - \text{R}^{2}_{f}) / (\text{N} - k_{f} - 1)}
@@ -73,37 +143,124 @@ $$
 \text{F} = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
 $$
 
-It's important to note that, in addition to the F-test, it's assumed that for $\text{R}^{2}_{\text{res}}$ to differ significantly from $\text{R}^{2}_{\text{full}}$, there must be a non-negligible effect size between them. This effect size can be calculated using Cohen's $f^{2}$ [@cohen1988; @cohen1992]:
+A MES must always be used in any data testing. The effect-size was present in the original Neyman and Pearson framework [@neyman1928; @neyman1928a], but unfortunately this practice fade away with the use of p-values, one of the many issues that came with the Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. Because the estimated p-value tends to decrease when the sample size is increased, focusing just on p-values with large sample sizes results in the rejection of the null hypothesis, making it not meaningful in this specific situation [@mariscal2021].
+
+It's important to note that, in addition to the F-test, it's assumed that for $\text{R}^{2}_{\text{r}}$ to differ significantly from $\text{R}^{2}_{\text{f}}$, there must be a non-negligible effect size between them. This effect size can be calculated using Cohen's $f^{2}$ [@cohen1988; @cohen1992]:
 
 $$
-f^{2} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r}}{1 - \text{R}^{2}_{f}}
+\text{Cohen's } f^2 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}}
+$$
+
+For nested models, this can be adapted as follows:
+
+$$
+\text{Cohen's } f^2 = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r}}{1 - \text{R}^{2}_{f}} = \cfrac{\Delta \text{R}^{2}}{1 - \text{R}^{2}_{f}}
 $$
 
 $$
 f^{2} = \cfrac{\text{Additional Var. Explained}}{\text{Var. unexplained}}
 $$
 
-## A brief look on general linear models
+Considering the particular emphasis that the solar zeitgeber has on the entrainment of biological rhythms (as demonstrated in many experiments), it would not be reasonable to assume that the latitude hypothesis could be supported without at least a non-negligible effect size. With this in mind, this analysis will use Cohen's threshold for small/negligible effects, the Minimum Effect Size (MES) ($\delta$) is defined as 0.02 [@cohen1988, p. 413; @cohen1992, p. 157].
 
-> See @degroot2012 [pp. 699-707, pp. 736-754] and @hair2019 [pp. 259-370] to learn more.
+In Cohen's words: 
 
-"[...] A problem of this type is called a problem of multiple linear regression because we are considering the regression of $Y$ on $k$ variables $X_{1}, \dots, X_{k}$, rather than on just a single variable $X$, and we are assuming also that this regression is a linear function of the parameters $\beta_{0}, \dots, \beta_{k}$. In a problem of multiple linear regressions, we obtain $n$ vectors of observations ($x_{i1}. \dots, x_{ik}, Y_{i}$), for $i = 1, \dots, n$. Here $x_{ij}$ is the observed value of the variable $X_{j}$ for the $i$th observation. The $E(Y)$ is given by the relation
+> What is really intended by the invalid affirmation of a null hypothesis is not that the population ES [Effect Size] is literally zero, but **rather that it is negligible, or trivial** [@cohen1988, p. 16].
+
+> SMALL EFFECT SIZE: $f^2 = .02$. Translated into \text{R}^{2} (9.2.5) or partial \text{R}^{2} for Case 1 (9.1.8), this gives $.02 / (l + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested [@cohen1988, p. 413].
+
+> But in many circumstances, all that is intended by "proving" the null hypothesis is that the ES is not necessarily zero but *small enough to be negligible*, i.e., no larger than $i$ (Section 1.5.5). How large $i$ is will vary with the substantive context. Assume, for example, that ES is expressed as $f^2$, and that the context is such as to consider $f^2$ no larger than $.02$ to be negligible; thus $i$ = .02  [@cohen1988, p. 461].
+
+$$
+\text{MES} = \text{Cohen's } f^2 \text{small threshold} = 0.02 \\
+$$
+
+For comparison, Cohen's threshold for medium effects is $0.15$, and for large effects is $0.35$ [@cohen1988, p. 413-414; @cohen1992, p. 157].
+
+Knowing Cohen's $f^2$, is possible to calculated the equivalent $\text{R}^{2}$:
+
+$$
+0.02 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}} \quad \text{or} \quad \text{R}^{2} = \cfrac{0.02}{1.02} \eqsim 0.01960784
+$$
+
+In other words, the latitude must explain at least $1.960784\%$ of the variance in the dependent variable to be considered non-negligible. This is the Minimum Effect Size (MES) for this analysis.
+
+In summary, the decision rule for the hypothesis test is as follows:
+
+- **Reject $\text{H_0}$ if both**:
+  - The F-test is significant.
+  - $\Delta \ \text{Adjusted} \ \text{R}^{2} > 0.01960784$;
+- **Fail to reject $\text{H_0}$ if either**:
+  - The F-test is not significant, or
+  - The F-test is significant, but $\Delta \ \text{Adjusted} \ \text{R}^{2} \leq 0.01960784$.
+
+As usual, the significance level ($\alpha$) was set at $0.05$, allowing a 5% chance of a [Type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors). A power analysis will be performed to determine the necessary sample size for detecting a significant effect, targeting a power ($1 - \beta$) of $0.8$.
+
+Assumption checks include:
+
+- Assessing the normality of residuals through visual inspections, such as [Q-Q plots](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot), and statistical tests like the [Shapiro-Wilk test](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test).
+
+- Multicollinearity was assed by calculating variance inflation factors ([VIF](https://en.wikipedia.org/wiki/Variance_inflation_factor)), with a VIF above 10 indicating potential issues. Influential points will be examined using [Cook's distance](https://en.wikipedia.org/wiki/Cook%27s_distance) and leverage values to identify any points that may disproportionately affect model outcomes.
+
+::: {.callout-warning}
+It is important to note that relying on objective assumption tests is not advisable in this context. In larger samples, these tests can be overly sensitive to minor deviations, and in smaller samples, they may fail to detect significant ones. Furthermore, they can miss visual patterns that a single metric cannot capture [@shatz2024; @kozak2018; @schucany2006]. Therefore, visual inspection of diagnostic plots was deemed a more effective method for assessing the model assumptions in this case.
+
+::: {.callout-warning}
+It's also important to emphasize that this thesis is not trying to establishing causality, only association. Predictive models alone should never be used to infer causal relationships [@arif2022].
+:::
+
+### Predictors
+
+In order to replicate @leocadio-miguel2017 article, it was used the covariates age, longitude, and solar irradiation when the subjects filled the online questionnaire, with sex, daylight saving time (DST), and season as a cofactors. The thesis sample have data for all these variables with exception of DST and season since the data was collected in a single week, hence, the DST and season variables were not included in the model.
+
+As a latitude proxy, the same authors used the annual average solar irradiation, sunrise time, sunset time and daylight duration in March equinox, June, and December solstices for each volunteer. All these variables can be integrated with the sample. This analysis will also perform another test using only the latitude variable as a new predictor in the full model.
+
+The solar radiation data is based on Brazil's National Institute for Space Research (INPE) 2017 Laboratory of Modeling and Studies of Renewable Energy Resources (LABREN) 2017 [Solar Energy Atlas](https://labren.ccst.inpe.br/atlas_2017.html) [@pereira2017] (the data was collected in 2017). There are many types of solar radiation, unfortunately,  @leocadio-miguel2017, but is reasonable to think they used the global horizontal solar irradiation (GHI) as a proxy for solar radiation. The GHI is the total amount of shortwave radiation received from above by a surface horizontal to the ground. That's what will be used. You can find more information in about these metrics in @pereira2017.
+
+Therefore, the same hypothesis will be tested three times with different predictors, as follows.
+
+#### Test 1
+
+- **Predictors for the restricted model**: age, sex, longitude, and GHI when the subjects filled the online questionnaire.
+
+- **Predictors for the full model**: (predictors for the restricted model) + annual average GHI, daylight duration in March equinox, June, and December solstices, and sunrise time and sunset when the subjects filled the online questionnaire.
+
+#### Test 2
+
+- **Predictors for the restricted model**: age, sex, longitude, and GHI when the subjects filled the online questionnaire.
+
+- **Predictors for the full model**: (predictors for the restricted model) + annual average GHI, daylight duration in March equinox, June, and December solstices, and sunrise time and sunset when the subjects filled the online questionnaire + latitude.
+
+#### Test 3
+
+- **Predictors for the restricted model**: age, sex, longitude, and GHI when the subjects filled the online questionnaire.
+
+- **Predictors for the full model**: (predictors for the restricted model) + latitude
+
+It's important to note that the inclusion of some these variables may produce issues regarding multicollinearity. If this occur, the variables will be removed from the model.
+
+A power analysis will be performed to determine the necessary sample size for each test. Considering the original sample size this probably will not be an issue.
+
+## An overview of general linear models
+
+Before proceeding, here's briefly overview general linear models, with a focus on multiple regression analysis. This will be used as a reference for model diagnostics.
+
+> [...] A problem of this type is called a problem of multiple linear regression because we are considering the regression of $Y$ on $k$ variables $X_{1}, \dots, X_{k}$, rather than on just a single variable $X$, and we are assuming also that this regression is a linear function of the parameters $\beta_{0}, \dots, \beta_{k}$. In a problem of multiple linear regressions, we obtain $n$ vectors of observations ($x_{i1}. \dots, x_{ik}, Y_{i}$), for $i = 1, \dots, n$. Here $x_{ij}$ is the observed value of the variable $X_{j}$ for the $i$th observation. The $E(Y)$ is given by the relation
 
 $$
 E(Y_{i}) = \beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}
 $$
 
-
 [@degroot2012, p. 738]
 
 ### Definitions
 
-Residuals/Fitted Values
+Residuals/Fitted values
 : \hspace{20cm} For $i = 1, \dots, n$, the observed values of $\hat{y} = \hat{\beta}_{0} + \hat{\beta}_{1} x_{i}$ are called _fitted values_. For $i = 1, \dots, n$, the observed values of $e_{i} = y_{i} - \hat{y}_{i}$ are called _residuals_ [@degroot2012, p. 717].
 
-"[...] regression problems in which the observations $Y_{i}, \dots, Y_{n}$ [...] we shall assume that each observation $Y_{i}$ has a normal distribution, that the observations $Y_{1}, \dots, Y_{n}$ are independent, and that the observations $Y_{1}, \dots, Y_{n}$ have the same variance $\sigma^{2}$. Instead of a single predictor being associated with each $Y_{i}$, we assume that a $p$-dimensional vector $z_{i} = (z_{i0}, \dots, z_{ip - 1})$ is associated with each $Y_{i}$"  [@degroot2012, p. 736].
+> [...] regression problems in which the observations $Y_{i}, \dots, Y_{n}$ [...] we shall assume that each observation $Y_{i}$ has a normal distribution, that the observations $Y_{1}, \dots, Y_{n}$ are independent, and that the observations $Y_{1}, \dots, Y_{n}$ have the same variance $\sigma^{2}$. Instead of a single predictor being associated with each $Y_{i}$, we assume that a $p$-dimensional vector $z_{i} = (z_{i0}, \dots, z_{ip - 1})$ is associated with each $Y_{i}$"  [@degroot2012, p. 736].
 
-General Linear Model
+General linear model
 : The statistical model in which the observations $Y_{1}, \dots, Y_{n}$ satisfy the following assumptions [@degroot2012, p. 738].
 
 ### Assumptions
@@ -111,16 +268,10 @@ General Linear Model
 Assumption 1
 : \hspace{20cm} __Predictor is known__. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012, p. 736].
 
-Age and sex are known predictors for the chronotype [@roenneberg2007a].
-
 Assumption 2
 : \hspace{20cm} __Normality__. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012, p. 737].
 
-(Normality of the error term distribution [@hair2019, p. 287]).
-
-As it will be seen in the next topics, without any transformation, the chronotype variable does not have a normal distribution. However, this can be satisfied with a Box-Cox transformation (see @box1964).
-
-A residual diagnostics will test the assumption of normality of the error term distribution.
+(Normality of the error term distribution [@hair2019, p. 287])
 
 Assumption 3
 : \hspace{20cm} __Linear mean__. There is a vector of parameters  $\beta = (\beta_{0}, \dots, \beta_{p - 1})$ such that the conditional mean of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ has the form
@@ -131,29 +282,27 @@ $$
 
 for $i = 1, \dots, n$ [@degroot2012, p. 737].
 
-(Linearity of the phenomenon measured [@hair2019, p. 287]).
+(Linearity of the phenomenon measured [@hair2019, p. 287])
 
-The hypothesis assumes a linear relation.
+::: {.callout-warning}
+It is important to clarify that the linear assumption pertains to **linearity in the parameters** or equivalently, linearity in the coefficients. This means that each predictor is multiplied by its corresponding regression coefficient. However, this does not imply that the relationship between the predictors and the response variable is linear. In fact, a linear model can still effectively capture non-linear relationships between predictors and the response variable by utilizing transformations of the predictors [@cohen2002].
+:::
 
 Assumption 4
-: \hspace{20cm} __Common variance__. There is as parameter $\sigma^{2}$ such the conditional variance of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ is $\sigma^{2}$ for $i = 1, \dots\, n$.
+: \hspace{20cm} __Common variance__ (homoscedasticity). There is as parameter $\sigma^{2}$ such the conditional variance of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ is $\sigma^{2}$ for $i = 1, \dots, n$.
 
 (Constant variance of the error terms [@hair2019, p. 287])
-
-The presence of unequal variances (heteroscedasticity) will be tested with a residual diagnostics.
 
 Assumption 5
 : \hspace{20cm} __Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012, p. 737].
 
-(Independence of the error terms [@hair2019, p. 287]).
+(Independence of the error terms [@hair2019, p. 287])
 
-This will also be tested with a residual diagnostics.
+## Preparing the data
 
-### The pipeline
+The data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
 
-See [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html).
-
-### Data munging
+The [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html) provided a pipeline for data munging. You can see this pipeline on the `_target.R` file in the root of thesis code repository or by clicking [here](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R).
 
 ```{r}
 #| label: data-preparation
@@ -180,7 +329,7 @@ data <-
   dplyr::mutate(msf_sc = transform_time(msf_sc))
 ```
 
-### Round-off errors
+### A note about round-off errors
 
 R's `hms` class store time by the number of seconds since `00:00:00`. R's `POSIXct` class store time as the number of seconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time). Those numeric values are used when creating the models.
 
@@ -216,11 +365,11 @@ sprintf("%.50f", max(data$msf_sc) - min(data$msf_sc))
 
 The R programming language [only stores values up to 53 binary bits](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f), that's about `r 53 * log10(2)` digits of precision ($x = 53 \log_{10}(2)$). Since MCTQ deals with self-reported local time of day (e.g., 02:30) and duration (e.g., 15 minutes), a greater floating-point precision is unnecessary. Even with multiple computations, round-off errors wouldn't significantly impact the phenomenon under study.
 
-However, this can become a problem when dealing with some transformations. The [`Rmpfr`](https://cran.r-project.org/web/packages/Rmpfr/index.html) R package is used in those cases, forcing a floating-point precision of 128 binary bits. That gives about `r 128 * log10(2)` ($x = 128 \log_{10}(2)$) decimal digits of precision.
+## Test 1 - *Bring pipeline from `linear-model`
 
-## Restricted model
+### Restricted model A
 
-### Model building
+#### Model building
 
 ::: {#tbl-appendice-chapter-6-restricted-model-box-cox}
 ```{r}
@@ -753,8 +902,6 @@ cohens_f_squared_summary(
 Effect size between the restricted and full model based on Cohen's $f^2$
 :::
 
-```{=latex}
-\end{apendicesenv}
-```
+## Test 2
 
-<!-- appendices end -->
+## Test 3

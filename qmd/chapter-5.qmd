@@ -186,7 +186,7 @@ A survey conducted in 2019 by the Brazilian Institute of Geography and Statistic
 
 In order to verify if the sample size was adequate for the study of the phenomenon under investigation, a power analysis was conducted for nested multiple regression models using the G\*Power software [@faul2007]. The analysis used the parameters presented in Leocadio-Miguel et al. [-@leocadio-miguel2017] article for a multiple linear regression with 10 tested predictors and only $10$ conceived predictors, considering a significance level of $0.05$ ($\alpha$) and a power of $0.95$ ($1 - \beta$). The result showed that a sample of $5,895$ individuals would be necessary to test the hypothesis.
 
-Daylight Saving Time (DST) began in Brazil at midnight on November 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that MCTQ asks subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample is the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the hypothesis test.
+Daylight Saving Time (DST) began in Brazil at midnight on October 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that MCTQ asks subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample is the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the hypothesis test.
 
 <!-- Use the PNAD data -->
 
@@ -200,16 +200,18 @@ The sample latitudinal range was $30.211$ decimal degrees ($\text{Min.} = -30.10
 
 __The results shown in this article are just a preliminary view of the data analysis__. The latitudes and longitudes of each subject are represented by the coordinates of his/her state’s capital (a low resolution). The final results will have the latitude and longitude coordinates based on subjects' postal codes and will also use a balanced dataset following the latest Brazil census.
 
-### Analysis
+### Data wrangling
 
 The data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The tidyverse and rOpenSci package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
+
+### Hypothesis testing
 
 The study hypothesis was tested using nested models of multiple linear regressions. The main idea of nested models is to verify the effect of the inclusion of one or more predictors in the model variance explanation (i.e., the $\text{R}^{2}$) [@allen1997]. This can be made by creating a restricted model and then comparing it with a full model. Hence, the hypothesis can be schematized as follows.
 
 $$
 \begin{cases}
-\text{H}_{0}: \text{R}^{2}_{\text{res}} >= \text{R}^{2}_{\text{full}} \\
-\text{H}_{a}: \text{R}^{2}_{\text{res}} < \text{R}^{2}_{\text{full}}
+\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} \leq \text{MES} \quad \text{or} \quad \text{F-test is not significant} \\
+\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES} \quad \text{and} \quad \text{F-test is significant}
 \end{cases}
 $$
 
@@ -222,8 +224,6 @@ In order to test a possible latitude association in predicting the chronotype, t
 A residual analysis was made to ensure the validity of the models before the hypothesis test. The hypothesis was tested using a $0.05$ ($\alpha$) significance level.
 
 To favor the alternative hypothesis ($\text{H}_{a}$), not only the $\text{R}^{2}$ of the full model must be significantly larger than the $\text{R}^{2}$ of the restricted model, but the effect size must be at least considered small. To evaluate the effect size, Cohen’s $f^{2}$ and his categorical parameters for size were used [@cohen1992]. That means that, in order to favor ($\text{H}_{a}$), the effect size must be at least equal to or greater than $0.0219$.
-
-No blinding procedures were used during the analysis.
 
 ### Data availability
 

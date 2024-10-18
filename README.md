@@ -1,7 +1,6 @@
 # mastersthesis
 
 <!-- quarto render --profile gfm -->
-
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
@@ -81,8 +80,8 @@ author upon reasonable request.
 
 To cite this work, please use the following format:
 
-Vartanian, D. (2024). Is latitude associated with chronotype? \[Master’s
-thesis, University of São Paulo\].
+Vartanian, D. (2024). *Is latitude associated with chronotype?*
+\[Master’s thesis, University of São Paulo\].
 <https://doi.org/10.17605/OSF.IO/YGKTS>
 
 A BibTeX entry for LaTeX users is

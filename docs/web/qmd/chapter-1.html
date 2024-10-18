@@ -84,7 +84,32 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 <meta property="og:title" content="1&nbsp; Introduction – Is latitude associated with chronotype?">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Is latitude associated with chronotype?">
@@ -248,13 +273,8 @@ div.csl-indent {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-<li><a href="#aims" id="toc-aims" class="nav-link active" data-scroll-target="#aims"><span class="header-section-number">1.1</span> Aims</a></li>
-  <li><a href="#thesis-structure" id="toc-thesis-structure" class="nav-link" data-scroll-target="#thesis-structure"><span class="header-section-number">1.2</span> Thesis structure</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/danielvartan/mastersthesis/edit/main/qmd/chapter-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/danielvartan/mastersthesis/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/chapter-1.html">Chapters</a></li><li class="breadcrumb-item"><a href="../qmd/chapter-1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav><div class="quarto-title">
@@ -286,34 +306,14 @@ div.csl-indent {
 </div>
 </div>
 <!-- %:::% index pdf begin %:::% -->
-<p>You are currently viewing the preliminary web version of this master’s thesis.</p>
-<p>This document follows the <a href="https://en.wikipedia.org/wiki/Collection_of_articles">collection of articles thesis</a> format. This first chapter serves as an introduction to the thesis subject, providing also its justification and aims. The subsequent chapters consist of a series of essays and a article connected to the thesis, with the exception of the last one, which encompasses a general discussion and final remarks.</p>
-<p>All analyses in this document are reproducible and were conducted using the <a href="https://www.r-project.org/">R programming language</a> along with the <a href="https://quarto.org/">Quarto</a> publishing system.</p>
-<p>All of these projects are developed using secure, open-source tools and adhere to the best international standards. They are designed to ensure 100% reproducibility and are accompanied by extensive documentation.</p>
-<section id="aims" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="aims">
-<span class="header-section-number">1.1</span> Aims</h2>
-<p>This thesis focuses on the expression of sleep and circadian phenotypes (chronotypes) with the aim of providing answers to the following questions:</p>
-<ol type="1">
-<li><p>How are the sleep-wake cycles and circadian phenotypes of the adult Brazilian population characterized?</p></li>
-<li><p>Is latitude associated with the regulation of circadian rhythms in humans?</p></li>
-</ol>
-<p>The basic hypothesis to be tested is that populations residing near the equator (latitude 0°) have, on average, a shorter/more morning-oriented circadian phenotype compared to populations living near the Earth’s poles (H1) <span class="citation" data-cites="hut2013 leocadio-miguel2014 leocadio-miguel2017 pittendrigh1991 randler2008 randler2017 roenneberg2003">(<a href="references.html#ref-hut2013" role="doc-biblioref">Hut et al., 2013</a>; <a href="references.html#ref-leocadio-miguel2014" role="doc-biblioref">Leocadio-Miguel et al., 2014</a>, <a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>; <a href="references.html#ref-pittendrigh1991" role="doc-biblioref">Pittendrigh et al., 1991</a>; <a href="references.html#ref-randler2008" role="doc-biblioref">Randler, 2008</a>; <a href="references.html#ref-randler2017" role="doc-biblioref">Randler &amp; Rahafar, 2017</a>; <a href="references.html#ref-roenneberg2003" role="doc-biblioref">Roenneberg et al., 2003</a>)</span>.</p>
-<p>The primary objectives (PO) are as follows:</p>
-<ol type="A">
-<li><p>Quantitatively describe the expression of sleep-wake cycles and circadian phenotypes of the Brazilian adult population at the end of the year 2017 (pre-pandemic).</p></li>
-<li><p>Investigate and model the presence/absence of a significant association and effect between decimal degrees of latitude (independent variable (IV)) and circadian phenotypes (dependent variable (DV)) of the Brazilian population.</p></li>
-</ol>
-<p>To achieve the primary objectives, the following secondary objectives (SO) have been outlined:</p>
-<ol type="i">
-<li><p>Conduct data cleaning, validation, and transformation processes on the obtained sample data.</p></li>
-<li><p>Collect secondary data on geolocation and solarimetric models and cross-reference them with the primary data.</p></li>
-<li><p>Develop algorithms for generating randomly sampled subsets adjusted to the proportions of the analyzed Brazilian regions, based on the latest Brazilian demographic census.</p></li>
-<li><p>Develop algorithms and models to help with the processing of MCTQ data and to simulate the complexity of the entrainment phenomena.</p></li>
-<li><p>Evaluate and discuss the presence/absence of significant differences in the values of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF<sub>sc</sub>), MCTQ proxy for measuring the chronotype, based on decimal degrees of latitude (IV), while controlling for known covariates such as subjects’ gender and age.</p></li>
-</ol></section><section id="thesis-structure" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="thesis-structure">
-<span class="header-section-number">1.2</span> Thesis structure</h2>
-<p>Three essays</p>
-<p>The main project is the test of the latitude hypothesis, which serves as the primary investigation. It’s important to note that all the preceding projects converge into this one. The first project focuses on validating the MCTQ translation used for data collection. The second project involves the development of data processing tools. The third project is responsible for the necessary data manipulation to prepare it for analysis. The fourth project aims to offer valuable insights and guidance for the upcoming tasks. <!-- %:::% index end %:::% --></p>
+<p>There has been a long-standing debate in the chronobiology community regarding the relationship between latitude and circadian phenotypes (chronotypes) <span class="citation" data-cites="randler2008 leocadio-miguel2017 zerbini2021 skeldon2021">(<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">Leocadio-Miguel et al., 2017</a>; <a href="references.html#ref-randler2008" role="doc-biblioref">Randler, 2008</a>; <a href="references.html#ref-skeldon2021" role="doc-biblioref">Skeldon &amp; Dijk, 2021</a>; <a href="references.html#ref-zerbini2021" role="doc-biblioref">Zerbini et al., 2021</a>)</span>, with many believing this association is already well-established. This hypothesis stems from the varying amounts of solar radiation experienced by populations across different latitudes. Since light exposure is a primary zeitgeber —a periodic environmental cue that influences or regulates biological rhythms— such variations are thought to create noticeable differences in chronotype distributions globally. This thesis investigates the so-called latitude or environmental hypothesis, addressing the question: <em>Is latitude associated with chronotype?</em>.</p>
+<p>The central hypothesis is that <em>latitude is associated with chronotype distributions</em>, with populations closer to the equator exhibiting, on average, a shorter or more morning-oriented circadian phenotype compared to those residing near the poles <span class="citation" data-cites="hut2013 leocadio-miguel2014 leocadio-miguel2017 pittendrigh1991 randler2008 randler2017 roenneberg2003">(<a href="references.html#ref-hut2013" role="doc-biblioref">Hut et al., 2013</a>; <a href="references.html#ref-leocadio-miguel2014" role="doc-biblioref">Leocadio-Miguel et al., 2014</a>, <a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>; <a href="references.html#ref-pittendrigh1991" role="doc-biblioref">Pittendrigh et al., 1991</a>; <a href="references.html#ref-randler2008" role="doc-biblioref">Randler, 2008</a>; <a href="references.html#ref-randler2017" role="doc-biblioref">Randler &amp; Rahafar, 2017</a>; <a href="references.html#ref-roenneberg2003" role="doc-biblioref">Roenneberg et al., 2003</a>)</span>. The primary objective is to model and test this hypothesis by critically examining whether a significant association and effect size exist between latitude and circadian phenotypes in the Brazilian population.</p>
+<p>In the following chapters, the latitude hypothesis is explored using Popper’s hypothetical-deductive method <span class="citation" data-cites="popper1979">(<a href="references.html#ref-popper1979" role="doc-biblioref">Popper, 1979</a>)</span> and an improved approach to Null Hypothesis Significance Testing (NHST), rooted in the original Neyman-Pearson framework for data testing <span class="citation" data-cites="neyman1928 neyman1928a perezgonzalez2015">(<a href="references.html#ref-neyman1928" role="doc-biblioref">Neyman &amp; Pearson, 1928a</a>, <a href="references.html#ref-neyman1928a" role="doc-biblioref">1928b</a>; <a href="references.html#ref-perezgonzalez2015" role="doc-biblioref">Perezgonzalez, 2015</a>)</span>. This exploration involves a series of analyses conducted on a large dataset comprising <span class="math inline">\(120,265\)</span> individuals, collected from the Brazilian population in 2017. The dataset is based on the Munich Chronotype Questionnaire (MCTQ) <span class="citation" data-cites="roenneberg2003 roenneberg2012a">(<a href="references.html#ref-roenneberg2003" role="doc-biblioref">Roenneberg et al., 2003</a>, <a href="references.html#ref-roenneberg2012a" role="doc-biblioref">2012</a>)</span>, and contains information on sleep habits and demographic characteristics from various regions of Brazil.</p>
+<p>The analyses utilize nested multiple regression models to evaluate the additional variance explained and the effect size when latitude is included as a predictor of chronotype. The results are then compared with those obtained from a restricted model that excludes latitude as a predictor. This method of prodecure builds on an article published by <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span>, which investigated the relationship between latitude and chronotype in the Brazilian population. The present study extends this work by utilizing a larger dataset and more advanced statistical methods to test the hypothesis. The results will contribute to the ongoing debate on the latitude-chronotype relationship, offering new evidences into how environmental factors influence human circadian rhythms.</p>
+<p>This procedure method is related to an article published in 2017 by <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span>, which investigated the relationship between latitude and chronotype in the Brazilian population. The present study extends this work by using a larger dataset and more sophisticated statistical methods to test the hypothesis. The results of this investigation will contribute to the ongoing debate on the relationship between latitude and chronotype, providing valuable insights into the role of environmental factors in shaping human circadian rhythms.</p>
+<p>The thesis is structure as a <a href="https://en.wikipedia.org/wiki/Collection_of_articles">collection of articles</a>. Chapters 2 through 4 comprise a series of essays and literature reviews related to the thesis topic. Chapter 5 presents the main investigation, including an article reporting the hypothesis test and discussing the central research question. Finally, Chapter 6 offers conclusions and directions for future research.</p>
+<p>All the analyses in this document are reproducible and were conducted using the <a href="https://www.r-project.org/">R programming language</a> along with the <a href="https://quarto.org/">Quarto</a> publishing system.</p>
+<!-- %:::% index end %:::% -->
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
@@ -326,8 +326,20 @@ Leocadio-Miguel, M. A., Louzada, F. M., Duarte, L. L., Areas, R. P., Alam, M., F
 <div id="ref-leocadio-miguel2014" class="csl-entry" role="listitem">
 Leocadio-Miguel, M. A., Oliveira, V. C. D., Pereira, D., &amp; Pedrazzoli, M. (2014). Detecting chronotype differences associated to latitude: A comparison between <span>Horne–Östberg</span> and <span>Munich Chronotype</span> questionnaires. <em>Annals of Human Biology</em>, <em>41</em>(2), 107–110. <a href="https://doi.org/10.3109/03014460.2013.832795">https://doi.org/10.3109/03014460.2013.832795</a>
 </div>
+<div id="ref-neyman1928" class="csl-entry" role="listitem">
+Neyman, J., &amp; Pearson, E. S. (1928a). On the use and interpretation of certain test criteria for purposes of statistical inference: Part <span>I</span>. <em>Biometrika</em>, <em>20A</em>(1/2), 175–240. <a href="https://doi.org/10.2307/2331945">https://doi.org/10.2307/2331945</a>
+</div>
+<div id="ref-neyman1928a" class="csl-entry" role="listitem">
+Neyman, J., &amp; Pearson, E. S. (1928b). On the use and interpretation of certain test criteria for purposes of statistical inference: Part <span>II</span>. <em>Biometrika</em>, <em>20A</em>(3/4), 263–294. <a href="https://doi.org/10.2307/2332112">https://doi.org/10.2307/2332112</a>
+</div>
+<div id="ref-perezgonzalez2015" class="csl-entry" role="listitem">
+Perezgonzalez, J. D. (2015). Fisher, <span>Neyman-Pearson</span> or <span>NHST</span>? <span>A</span> tutorial for teaching data testing. <em>Frontiers in Psychology</em>, <em>6</em>. <a href="https://doi.org/10.3389/fpsyg.2015.00223">https://doi.org/10.3389/fpsyg.2015.00223</a>
+</div>
 <div id="ref-pittendrigh1991" class="csl-entry" role="listitem">
 Pittendrigh, C. S., Kyner, W. T., &amp; Takamura, T. (1991). The amplitude of circadian oscillations: Temperature dependence, latitudinal clines, and the photoperiodic time measurement. <em>Journal of Biological Rhythms</em>, <em>6</em>(4), 299–313. <a href="https://doi.org/10.1177/074873049100600402">https://doi.org/10.1177/074873049100600402</a>
+</div>
+<div id="ref-popper1979" class="csl-entry" role="listitem">
+Popper, K. R. (1979). <em>Objective knowledge: An evolutionary approach</em>. Oxford University Press.
 </div>
 <div id="ref-randler2008" class="csl-entry" role="listitem">
 Randler, C. (2008). Morningness‐eveningness comparison in adolescents from different countries around the world. <em>Chronobiology International</em>, <em>25</em>(6), 1017–1028. <a href="https://doi.org/10.1080/07420520802551519">https://doi.org/10.1080/07420520802551519</a>
@@ -335,11 +347,21 @@ Randler, C. (2008). Morningness‐eveningness comparison in adolescents from dif
 <div id="ref-randler2017" class="csl-entry" role="listitem">
 Randler, C., &amp; Rahafar, A. (2017). Latitude affects morningness-eveningness: Evidence for the environment hypothesis based on a systematic review. <em>Scientific Reports</em>, <em>7</em>(1), 39976. <a href="https://doi.org/10.1038/srep39976">https://doi.org/10.1038/srep39976</a>
 </div>
+<div id="ref-roenneberg2012a" class="csl-entry" role="listitem">
+Roenneberg, T., Allebrandt, K. V., Merrow, M., &amp; Vetter, C. (2012). Social jetlag and obesity. <em>Current Biology</em>, <em>22</em>(10), 939–943. <a href="https://doi.org/10.1016/j.cub.2012.03.038">https://doi.org/10.1016/j.cub.2012.03.038</a>
+</div>
 <div id="ref-roenneberg2003" class="csl-entry" role="listitem">
 Roenneberg, T., Wirz-Justice, A., &amp; Merrow, M. (2003). Life between clocks: Daily temporal patterns of human chronotypes. <em>Journal of Biological Rhythms</em>, <em>18</em>(1), 80–90. <a href="https://doi.org/10.1177/0748730402239679">https://doi.org/10.1177/0748730402239679</a>
 </div>
+<div id="ref-skeldon2021" class="csl-entry" role="listitem">
+Skeldon, A. C., &amp; Dijk, D. (2021). Weekly and seasonal variation in the circadian melatonin rhythm in humans: <span>Entrained</span> to local clock time, social time, light exposure or sun time? <em>Journal of Pineal Research</em>, <em>71</em>(1), e12746. <a href="https://doi.org/10.1111/jpi.12746">https://doi.org/10.1111/jpi.12746</a>
 </div>
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="ref-zerbini2021" class="csl-entry" role="listitem">
+Zerbini, G., Winnebeck, E. C., &amp; Merrow, M. (2021). Weekly, seasonal, and chronotype‐dependent variation of dim‐light melatonin onset. <em>Journal of Pineal Research</em>, <em>70</em>(3), e12723. <a href="https://doi.org/10.1111/jpi.12723">https://doi.org/10.1111/jpi.12723</a>
+</div>
+</div>
+
+</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -773,4 +795,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/danielvartan/mastersthesis/edit/main/qmd/chapter-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/danielvartan/mastersthesis/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/danielvartan/mastersthesis/edit/main/qmd/chapter-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/danielvartan/mastersthesis/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

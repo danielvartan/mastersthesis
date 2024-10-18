@@ -14,70 +14,30 @@ source(here::here("R/_setup.R"))
 #| output: asis
 
 rutils:::quarto_status(
-  type = "drafting",
+  type = "polishing",
   of_what = "of this thesis",
   latex_parskip = "\\microskip"
   )
 ```
 
 <!-- %:::% index pdf begin %:::% -->
-You are currently viewing the preliminary `r ifelse(env_vars$format == "pdf", "print", "web")` version of this master's thesis.
+There has been a long-standing debate in the chronobiology community regarding the relationship between latitude and circadian phenotypes (chronotypes) [@randler2008; @leocadio-miguel2017; @zerbini2021; @skeldon2021], with many believing this association is already well-established. This hypothesis stems from the varying amounts of solar radiation experienced by populations across different latitudes. Since light exposure is a primary zeitgeber —a periodic environmental cue that influences or regulates biological rhythms— such variations are thought to create noticeable differences in chronotype distributions globally. This thesis investigates the so-called latitude or environmental hypothesis, addressing the question: *Is latitude associated with chronotype?*.
 
-This document follows the [collection of articles thesis](https://en.wikipedia.org/wiki/Collection_of_articles) format. This first chapter serves as an introduction to the thesis subject, providing also its justification and aims. The subsequent chapters consist of a series of essays and a article connected to the thesis, with the exception of the last one, which encompasses a general discussion and final remarks.
+The central hypothesis is that *latitude is associated with chronotype distributions*, with populations closer to the equator exhibiting, on average, a shorter or more morning-oriented circadian phenotype compared to those residing near the poles [@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003]. The primary objective is to model and test this hypothesis by critically examining whether a significant association and effect size exist between latitude and circadian phenotypes in the Brazilian population.
+
+In the following chapters, the latitude hypothesis is explored using Popper's hypothetical-deductive method [@popper1979] and an improved approach to Null Hypothesis Significance Testing (NHST), rooted in the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015]. This exploration involves a series of analyses conducted on a large dataset comprising $120,265$ individuals, collected from the Brazilian population in 2017. The dataset is based on the Munich Chronotype Questionnaire (MCTQ) [@roenneberg2003; @roenneberg2012a], and contains information on sleep habits and demographic characteristics from various regions of Brazil.
+
+The analyses utilize nested multiple regression models to evaluate the additional variance explained and the effect size when latitude is included as a predictor of chronotype. The results are then compared with those obtained from a restricted model that excludes latitude as a predictor. This method of prodecure builds on an article published by @leocadio-miguel2017, which investigated the relationship between latitude and chronotype in the Brazilian population. The present study extends this work by utilizing a larger dataset and more advanced statistical methods to test the hypothesis. The results will contribute to the ongoing debate on the latitude-chronotype relationship, offering new evidences into how environmental factors influence human circadian rhythms.
+
+This procedure method is related to an article published in 2017 by @leocadio-miguel2017, which investigated the relationship between latitude and chronotype in the Brazilian population. The present study extends this work by using a larger dataset and more sophisticated statistical methods to test the hypothesis. The results of this investigation will contribute to the ongoing debate on the relationship between latitude and chronotype, providing valuable insights into the role of environmental factors in shaping human circadian rhythms.
+
+The thesis is structure as a [collection of articles ](https://en.wikipedia.org/wiki/Collection_of_articles). Chapters 2 through 4 comprise a series of essays and literature reviews related to the thesis topic. Chapter 5 presents the main investigation, including an article reporting the hypothesis test and discussing the central research question. Finally, Chapter 6 offers conclusions and directions for future research.
 
 ::: {.content-visible when-format="html"}
-All analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system.
+All the analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system.
 :::
 
 ::: {.content-visible when-format="pdf"}
-All analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system. It's worth noting that this type of thesis is best suited for online viewing. To access the digital version and see the latest research updates, please visit [https://danielvartan.github.io/mastersthesis/](https://danielvartan.github.io/mastersthesis/).
+All analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system. Since this thesis focuses heavily on data, it is best viewed online. To access the digital version and supplemental materials, please visit  [https://danielvartan.github.io/mastersthesis/](https://danielvartan.github.io/mastersthesis/). The thesis code repository is available on GitHub at [https://github.com/danielvartan/mastersthesis)](https://github.com/danielvartan/mastersthesis)). The research compendium can also be accessed via [The Open Science Framework](https://osf.io/) at the following link:  [https://doi.org/10.17605/OSF.IO/YGKTS](https://doi.org/10.17605/OSF.IO/YGKTS).
 :::
-
-All of these projects are developed using secure, open-source tools and adhere to the best international standards. They are designed to ensure 100% reproducibility and are accompanied by extensive documentation.
-
-## Aims
-
-This thesis focuses on the expression of sleep and circadian phenotypes (chronotypes) with the aim of providing answers to the following questions:
-
-1. How are the sleep-wake cycles and circadian phenotypes of the adult Brazilian population characterized?
-
-1. Is latitude associated with the regulation of circadian rhythms in humans?
-
-The basic hypothesis to be tested is that populations residing near the equator (latitude 0°) have, on average, a shorter/more morning-oriented circadian phenotype compared to populations living near the Earth's poles (H1) [@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003].
-
-The primary objectives (PO) are as follows:
-
-```{=latex}
-\microskip
-```
-
-A) Quantitatively describe the expression of sleep-wake cycles and circadian phenotypes of the Brazilian adult population at the end of the year 2017 (pre-pandemic).
-
-A) Investigate and model the presence/absence of a significant association and effect between decimal degrees of latitude (independent variable (IV)) and circadian phenotypes (dependent variable (DV)) of the Brazilian population.
-
-```{=latex}
-\microskip
-```
-
-To achieve the primary objectives, the following secondary objectives (SO) have been outlined:
-
-```{=latex}
-\microskip
-```
-
-i) Conduct data cleaning, validation, and transformation processes on the obtained sample data.
-
-i) Collect secondary data on geolocation and solarimetric models and cross-reference them with the primary data.
-
-i) Develop algorithms for generating randomly sampled subsets adjusted to the proportions of the analyzed Brazilian regions, based on the latest Brazilian demographic census.
-
-i) Develop algorithms and models to help with the processing of MCTQ data and to simulate the complexity of the entrainment phenomena.
-
-i) Evaluate and discuss the presence/absence of significant differences in the values of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, based on decimal degrees of latitude (IV), while controlling for known covariates such as subjects' gender and age.
-
-## Thesis structure
-
-Three essays
-
-The main project is the test of the latitude hypothesis, which serves as the primary investigation. It's important to note that all the preceding projects converge into this one. The first project focuses on validating the MCTQ translation used for data collection. The second project involves the development of data processing tools. The third project is responsible for the necessary data manipulation to prepare it for analysis. The fourth project aims to offer valuable insights and guidance for the upcoming tasks.
 <!-- %:::% index end %:::% -->

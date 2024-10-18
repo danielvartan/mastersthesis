@@ -22,3 +22,74 @@ rutils:::quarto_status(
 ```
 
 
+Complex versus Complicated.
+
+**Complex systems** are systems with many interconnected parts that exhibit emergent behavior.
+
+**Stable macroscopic patterns** arising from **local interaction** of agents [@epstein1999].
+
+In mathematical terms, the interactions of interest are non-linear [@holland2014].
+
+When the aggregate exhibits **properties not attained by summation** [@holland2014].
+
+The behavior of each part don't explain how they behave collectively.
+
+Emergence: new properties that arise from the interactions of the parts of a system, which are not present in the parts themselves. Collective behavior. Aggregate behavior.
+
+You are dealing with an emergence phenomenon when there is no need to look under the hood [@krakauer2023].
+
+![](images/perez-villa-2023-figure-3.png)
+
+![](images/perez-villa-2023-figure-1.png)
+
+The result of a *juggling act* of billions of years of evolution. There are no specific functions. There's no proposed goal.
+
+Levels of description [@nicolis2012]. Starting in the cell nucleus with the molecular clock, then the cell, the tissue, the organ following to stable macroscopic patterns of circadian rhythms in behavior and physiology.
+
+If you think about it, the extensive clock control is like a finely-tuned choreography. Everything is organized to happen at the right time, just like a **Rube Goldberg machine** [@merrow2020].
+
+Circadian clocks regulate and/or modulate functions at all levels, ranging from gene expression and physiology to behavior and cogitation [@roenneberg2007].
+
+It's an emergent phenomenon. It's not a property of the parts themselves. It's a property of the system as a whole.
+
+![](images/flanagan-2021-figure-2.png)
+
+"[...] involve great numbers of parts undergoing a kaleidoscopic array of simultaneous interactions." [@holland1992b]
+
+In complex adaptive systems, **emergent properties** often occur when coevolving signals and boundaries generate **new levels of organization** [@holland2012].
+
+![](images/holland-2012-figure-1.png)
+
+Structural levels
+
+![](images/lewin-1993-figure-8.png)
+
+Fig. 8. Structural levels in the organization of the nervous system, a reflection of the hierarchical systems that may underlie the generation of higher cognitive functions, including consciousness. Courtesy of Patricia Churchland and Terrence Sejnowski.
+
+A system of many interacting parts where the system is **more than just the sum of its parts** (Mark Newman in @mitchell2013).
+
+A system that involves a large number of parts undergoing a kaleidoscopic array of simultaneous interactions, exhibiting **aggregate behavior** that cannot be simply derived from the actions of the individual parts [@holland1992b].
+
+Systems with many connected agents that interact and exhibit self-organization and **emergence behavior**, all without the need for a central controller (Camilo Rodrigues Neto).
+
+Dialectics at its finest (my working definition).
+
+Complexity science seeks to **explain emergent phenomena** or mechanisms that “screen-off” their constituent parts and thereby allow new levels of description and understanding [@krakauer2024].
+
+![](images/sayama-2015-figure-1.png)
+
+The seven basics consist of 4 properties and 3 mechanisms that are common to all complex adaptive systems:
+
+- Aggregation (property)
+- Nonlinearity (property)
+- Flows (property)
+- Diversity (property)
+- Tags (mechanism)
+- Internal models (mechanism)
+- Building blocks (mechanism)
+
+[@holland1996]
+
+Other concepts: chaos, power laws & factor sparsity, feedback loops, robustness, equilibrium states, path dependence, leverage points
+
+Approaches to study and model circadian clocks.
