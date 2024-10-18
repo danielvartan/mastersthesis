@@ -4,18 +4,18 @@
 
 ## See <https://gt.rstudio.com/> & <https://gt.albert-rapp.de/>.
 
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(gt, quietly = TRUE)
-# library(here, quietly = TRUE)
+# library(cli)
+# library(dplyr)
+# library(gt)
+# library(here)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 source(here::here("R/test_normality.R"))
 
 exploratory_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
-  checkmate::assert_atomic(x)
-  checkmate::assert_choice(big_mark, c(".", ","))
-  checkmate::assert_choice(decimal_mark, c(".", ","))
+  prettycheck:::assert_atomic(x)
+  prettycheck:::assert_choice(big_mark, c(".", ","))
+  prettycheck:::assert_choice(decimal_mark, c(".", ","))
 
   if (big_mark == decimal_mark) {
     cli::cli_abort(paste0(
@@ -316,11 +316,11 @@ exploratory_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
   }
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 sig_level_asterisks <- function(x) {
-  checkmate::assert_number(x)
+  prettycheck:::assert_number(x)
 
   dplyr::case_when(
     x < 0.0001 ~ "****",
@@ -331,15 +331,15 @@ sig_level_asterisks <- function(x) {
   )
 }
 
-# library(checkmate, quietly = TRUE)
-# library(exams, quietly = TRUE)
-# library(readr, quietly = TRUE)
-# library(stringr, quietly = TRUE)
+# library(exams)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(readr)
+# library(stringr)
 
 # Code from <https://gt.albert-rapp.de/case_studies.html#latex-formulas>.
 latex_to_svg <- function(x, color = "black") {
-  checkmate::assert_string(x)
-  checkmate::assert_choice(color, c("black", "white"))
+  prettycheck:::assert_string(x)
+  prettycheck:::assert_choice(color, c("black", "white"))
 
   temp_dir <- tempdir()
   temp_name <- basename(tempfile())

@@ -1,13 +1,13 @@
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(here, quietly = TRUE)
+# library(dplyr)
+# library(here)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 source(here::here("R/test_normality.R"))
 
 normality_sum <- function(x, round = FALSE, digits = 5, ...) {
-  checkmate::assert_numeric(x)
-  checkmate::assert_flag(round)
-  checkmate::assert_number(digits)
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_flag(round)
+  prettycheck:::assert_number(digits)
 
   stats <- test_normality(x, print = FALSE, ...)
 

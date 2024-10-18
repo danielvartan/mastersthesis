@@ -1,7 +1,7 @@
-# library(checkmate, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(yaml, quietly = TRUE)
+# library(here)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(yaml)
 
 # Post-render begin ----------
 

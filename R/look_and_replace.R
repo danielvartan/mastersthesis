@@ -1,20 +1,20 @@
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(curl, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(googlesheets4, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(lockr, quietly = TRUE)
-# library(osfr, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(stringr, quietly = TRUE)
+# library(cli)
+# library(curl)
+# library(dplyr)
+# library(googlesheets4)
+# library(here)
+# library(lockr) # https://github.com/danielvartan/lockr
+# library(osfr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(stringr)
 
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(lockr, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(cli)
+# library(dplyr)
+# library(here)
+# library(lockr) # https://github.com/danielvartan/lockr
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 look_and_replace <- function(
     x,
@@ -22,16 +22,18 @@ look_and_replace <- function(
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh/id_rsa.pub"),
     private_key = here::here("_ssh/id_rsa"),
+    password = Sys.getenv("MASTERSTHESIS_PASSWORD"),
     na_unmatched = FALSE,
     lookup_data = NULL
-    ) {
-  checkmate::assert_character(x)
-  checkmate::assert_string(table)
+  ) {
+  prettycheck:::assert_character(x)
+  prettycheck:::assert_string(table)
   lockr:::assert_public_key(public_key)
-  lockr:::assert_private_key(private_key)
-  checkmate::assert_flag(na_unmatched)
-  checkmate::assert_list(lookup_data, min.len = 1, null.ok = TRUE)
-  rutils:::assert_internet()
+  prettycheck:::assert_string(password, n.chars = 32)
+  lockr:::assert_private_key(private_key, password = password)
+  prettycheck:::assert_flag(na_unmatched)
+  prettycheck:::assert_list(lookup_data, min.len = 1, null.ok = TRUE)
+  prettycheck:::assert_internet()
 
   if (is.null(lookup_data)) {
     cli::cli_progress_step("Downloading lookup tables")
@@ -43,7 +45,7 @@ look_and_replace <- function(
     )
   }
 
-  checkmate::assert_choice(table, names(lookup_data))
+  prettycheck:::assert_choice(table, names(lookup_data))
 
   lookup_table <-
     lookup_data[[table]] |>
@@ -82,36 +84,38 @@ look_and_replace <- function(
   out[[table]]
 }
 
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(curl, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(lockr, quietly = TRUE)
-# library(osfr, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(stringr, quietly = TRUE)
+# library(cli)
+# library(curl)
+# library(here)
+# library(lockr) # https://github.com/danielvartan/lockr
+# library(osfr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(stringr)
 
 get_lookup_data <- function(
     file = NULL,
     pattern = "lookup.rda",
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh/id_rsa.pub"),
-    private_key = here::here("_ssh/id_rsa")
+    private_key = here::here("_ssh/id_rsa"),
+    password = Sys.getenv("MASTERSTHESIS_PASSWORD")
     ) {
-  checkmate::assert_string(file, null.ok = TRUE)
-  checkmate::assert_string(pattern)
-  checkmate::assert_string(osf_pat, n.chars = 70)
+  prettycheck:::assert_string(file, null.ok = TRUE)
+  prettycheck:::assert_string(pattern)
+  prettycheck:::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
-  lockr:::assert_private_key(private_key)
+  lockr:::assert_private_key(private_key, password = password)
+  prettycheck:::assert_string(password, n.chars = 32)
 
-  osfr::osf_auth(osf_pat) |> rutils:::shush()
+  osfr::osf_auth(osf_pat) |> rutils::shush()
   osf_id <- "https://osf.io/cbqsa"
   test <- try(osfr::osf_retrieve_node(osf_id), silent = TRUE)
 
   if (!is.null(file)) {
-    checkmate::assert_file_exists(file, extension = c("rda", "lockr"))
+    prettycheck:::assert_file_exists(file, extension = c("rda", "lockr"))
   } else if (!curl::has_internet()) {
-    rutils:::assert_internet()
+    prettycheck:::assert_internet()
   } else if (inherits(test, "try-error")) {
     cli::cli_abort(paste0(
       "The {.strong OSF PAT} provided is invalid. ",
@@ -127,7 +131,7 @@ get_lookup_data <- function(
       magrittr::extract2("local_path")
   }
 
-  lockr::unlock_file(file, private_key  = private_key)
+  lockr::unlock_file(file, private_key = private_key, password = password)
   file <- stringr::str_remove(file, "\\.lockr$")
   load(file)
   lockr::lock_file(file, public_key = public_key, remove_file = TRUE)
@@ -135,27 +139,27 @@ get_lookup_data <- function(
   invisible(lookup)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(googlesheets4, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(lockr, quietly = TRUE)
-# library(osfr, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(cli)
+# library(googlesheets4)
+# library(here)
+# library(lockr) # https://github.com/danielvartan/lockr
+# library(osfr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 update_lookup_data <- function(
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA",
     sheet_ignore = c("Documentation", "Codebook", "Validation", "Template"),
     osf_pat = Sys.getenv("OSF_PAT"),
-    public_key = here::here(".ssh/id_rsa.pub")
+    public_key = here::here("_ssh/id_rsa.pub")
     ) {
-  checkmate::assert_string(ss)
-  checkmate::assert_character(sheet_ignore)
+  prettycheck:::assert_string(ss)
+  prettycheck:::assert_character(sheet_ignore)
   lockr:::assert_public_key(public_key)
-  rutils:::assert_interactive()
-  rutils:::assert_internet()
+  prettycheck:::assert_interactive()
+  prettycheck:::assert_internet()
 
-  osfr::osf_auth(osf_pat) |> rutils:::shush()
+  osfr::osf_auth(osf_pat) |> rutils::shush()
   osf_id <- "https://osf.io/cbqsa"
   test <- try(osfr::osf_retrieve_node(osf_id), silent = TRUE)
 
@@ -190,7 +194,7 @@ update_lookup_data <- function(
     ascii = FALSE
     )
 
-  if (checkmate::test_file_exists(paste0(file, ".lockr"))) {
+  if (prettycheck:::test_file_exists(paste0(file, ".lockr"))) {
     file.remove(paste0(file, ".lockr"))
   }
 
@@ -209,25 +213,25 @@ update_lookup_data <- function(
   invisible(NULL)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(rlang, quietly = TRUE)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+library(rlang)
 
 # data |> fix_var_names() |> filter_geo("id", 92238)
 
 filter_geo <- function(data, var, value) {
-  checkmate::assert_tibble(data)
-  checkmate::assert_choice(var, names(data))
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_choice(var, names(data))
 
   data |>
     dplyr::filter(!!as.symbol(var) == value) |>
     dplyr::select(id, country, state, city, postal_code)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(googlesheets4, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(dplyr)
+# library(googlesheets4)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 # data |> write_unique_values_to_lookup_sheet(col = "state")
 # data |> fix_var_names() |> write_unique_values_to_lookup_sheet(col = "name")
@@ -238,17 +242,17 @@ write_unique_values_to_lookup_sheet <- function(
     sheet = col,
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA"
     ) {
-  checkmate::assert_tibble(data)
-  checkmate::assert_string(col)
-  checkmate::assert_choice(col, names(data))
-  checkmate::assert_string(sheet)
-  checkmate::assert_string(ss)
-  rutils:::assert_interactive()
-  rutils:::assert_internet()
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_string(col)
+  prettycheck:::assert_choice(col, names(data))
+  prettycheck:::assert_string(sheet)
+  prettycheck:::assert_string(ss)
+  prettycheck:::assert_interactive()
+  prettycheck:::assert_internet()
 
   googlesheets4::gs4_auth()
   ss <- googlesheets4::gs4_get(ss)
-  checkmate::assert_subset(sheet, ss$sheets$name)
+  prettycheck:::assert_subset(sheet, ss$sheets$name)
 
   out <-
     dplyr::tibble(key = rutils:::drop_na(unique(data[[col]])), value = NA) |>

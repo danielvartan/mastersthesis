@@ -63,8 +63,11 @@
 
 # # OSF
 #
-# osf_pat = Sys.getenv("OSF_PAT")
+# osf_pat <- Sys.getenv("OSF_PAT")
+# password <- Sys.getenv("MASTERSTHESIS_PASSWORD")
+#
 # osfr::osf_auth(osf_pat)
+#
 # osf_id <- "https://osf.io/cbqsa"
 # pattern <- "lookup.rda"
 #
@@ -76,23 +79,27 @@
 #   osfr::osf_download(path = tempdir(), conflicts = "overwrite") |>
 #   magrittr::extract2("local_path")
 #
-# lockr::unlock_file(file, private_key  = private_key)
+# lockr::unlock_file(file, private_key= private_key, password = password)
 # file <- stringr::str_remove(file, "\\.lockr$")
 # load(file)
 # lockr::lock_file(file, public_key = public_key, remove_file = TRUE)
 
 # # Encryption
 #
-# lockr::rsa_keygen()
-# lockr::lock_dir(dir = "temp", public_key  = ".ssh/id_rsa.pub")
-# lockr::unlock_dir(dir = "temp", private_key  = ".ssh/id_rsa")
-# lockr::lock_file(file.choose(), public_key  = ".ssh/id_rsa.pub")
-# lockr::unlock_file(file.choose(), private_key  = ".ssh/id_rsa")
-
-# # TODO
+# password <- Sys.getenv("MASTERSTHESIS_PASSWORD")
 #
-# * Finish lookup tables.
-# * Add geocoding.
-# * Document functions.
-# * Finish version of 'abnt' Quarto format.
-# * Create a new R package named {quartoutils}.
+# lockr::rsa_keygen()
+#
+# lockr::lock_dir(dir = "temp", public_key = "_ssh/id_rsa.pub")
+#
+# lockr::unlock_dir(
+#   dir = "temp", private_key = "_ssh/id_rsa", password = password
+# )
+#
+# lockr::lock_file(
+#   rstudioapi::selectFile(), public_key = "_ssh/id_rsa.pub"
+# )
+#
+# lockr::unlock_file(
+#   rstudioapi::selectFile(), private_key = "_ssh/id_rsa", password = password
+# )

@@ -1,47 +1,49 @@
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(latex2exp, quietly = TRUE)
-# library(rlang, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
+# library(dplyr)
+library(ggplot2)
+# library(here)
+# library(hms)
+# library(latex2exp)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rlang)
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(tidyr)
 
 source(here::here("R/utils.R"))
 source(here::here("R/utils-plot.R"))
 source(here::here("R/utils-stats.R"))
 
-plot_latitude_series <- function(data,
-                                 col = "msf_sc",
-                                 y_lab = col,
-                                 line_width = 2,
-                                 point_size = 1,
-                                 error_bar_width = 0.5,
-                                 error_bar_linewidth = 0.5,
-                                 error_bar = TRUE,
-                                 text_size = NULL) {
+plot_latitude_series <- function(
+    data,
+    col = "msf_sc",
+    y_lab = col,
+    line_width = 2,
+    point_size = 1,
+    error_bar_width = 0.5,
+    error_bar_linewidth = 0.5,
+    error_bar = TRUE,
+    text_size = NULL
+  ) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
 
-  checkmate::assert_tibble(data)
-  checkmate::assert_string(col)
-  checkmate::assert_subset(col, names(data))
-  checkmate::assert_subset(c("latitude", col), names(data))
-  checkmate::assert_multi_class(data[[col]], col_classes)
-  checkmate::assert_multi_class(y_lab, c("character", "latexexpression"))
-  rutils:::assert_length_one(y_lab)
-  checkmate::assert_number(line_width)
-  checkmate::assert_number(point_size)
-  checkmate::assert_number(error_bar_width)
-  checkmate::assert_number(error_bar_linewidth)
-  checkmate::assert_flag(error_bar)
-  checkmate::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_string(col)
+  prettycheck:::assert_subset(col, names(data))
+  prettycheck:::assert_subset(c("latitude", col), names(data))
+  prettycheck:::assert_multi_class(data[[col]], col_classes)
+  prettycheck:::assert_multi_class(y_lab, c("character", "latexexpression"))
+  prettycheck:::assert_length(y_lab, len = 1)
+  prettycheck:::assert_number(line_width)
+  prettycheck:::assert_number(point_size)
+  prettycheck:::assert_number(error_bar_width)
+  prettycheck:::assert_number(error_bar_linewidth)
+  prettycheck:::assert_flag(error_bar)
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
 
   if (y_lab == col && hms::is_hms(data[[col]])) {
     y_lab = paste0("Local time (", col, " +- SEM)")
   }
 
-  if (y_lab == col && rutils:::test_duration(data[[col]])) {
+  if (y_lab == col && prettycheck:::test_duration(data[[col]])) {
     y_lab = paste0("Duration (", col, " +- SEM)")
   }
 
@@ -50,7 +52,7 @@ plot_latitude_series <- function(data,
     dplyr::select(dplyr::all_of(c("latitude", col))) |>
     dplyr::mutate(
       dplyr::across(
-        .cols = dplyr::where(rutils:::test_duration),
+        .cols = dplyr::where(prettycheck:::test_duration),
         .fns = ~ hms::hms(as.numeric(.x))
       ),
       dplyr::across(
@@ -63,7 +65,7 @@ plot_latitude_series <- function(data,
       std_error = std_error(!!as.symbol(col)),
       !!as.symbol(col) := mean(!!as.symbol(col), na.rm = TRUE)
     ) |>
-    rutils:::shush() |>
+    rutils::shush() |>
     tidyr::drop_na()
 
   plot <-

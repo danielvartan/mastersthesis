@@ -15,11 +15,26 @@ source(here::here("R/look_and_replace.R"))
 
 targets::tar_option_set(
   packages = c(
+    "cli",
+    "curl",
+    "dplyr",
+    "here",
+    "hms",
+    "lockr", # https://github.com/danielvartan/lockr
     "lubridate", # For masking reasons.
-    "checkmate", "cli", "curl", "dplyr", "here", "hms", "lockr", "lubritime",
-    "methods", "mctq", "osfr", "readr", "rlang", "rutils", "scaler", "stringr",
-    "tidyr", "utils"
-    )
+    "lubritime", # https://github.com/danielvartan/lubritime
+    "methods",
+    "mctq",
+    "prettycheck", # https://github.com/danielvartan/prettycheck
+    "osfr",
+    "readr",
+    "rlang",
+    "rutils", # https://github.com/danielvartan/rutils
+    "scaler", # https://github.com/danielvartan/scaler
+    "stringr",
+    "tidyr",
+    "utils"
+  )
 )
 
 # tar_make_clustermq() is an older (pre-{crew}) way to do distributed computing

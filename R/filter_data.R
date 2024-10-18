@@ -1,13 +1,16 @@
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
+# library(cli)
+# library(dplyr)
 # library(here)
-# library(lubridate, quietly = TRUE)
+# library(lubridate)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
+source(here::here("R/utils.R"))
 source(here::here("R/utils-stats.R"))
 
+# filtered_data <- analyzed_data |> filter_data()
+
 filter_data <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   cli::cli_progress_step("Filtering data")
 

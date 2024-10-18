@@ -1,16 +1,16 @@
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(lubritime, quietly = TRUE)
-# library(mctq, quietly = TRUE)
-# library(rlang, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(scaler, quietly = TRUE)
-# library(stringr, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
+# library(cli)
+# library(dplyr)
+# library(here)
+# library(hms)
+# library(lubridate)
+# library(lubritime) # https://github.com/danielvartan/lubritime
+# library(mctq)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rlang)
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(scaler) # https://github.com/danielvartan/scaler
+# library(stringr)
+# library(tidyr)
 
 source(here::here("R/utils.R"))
 
@@ -35,9 +35,8 @@ source(here::here("R/utils.R"))
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a validated dataset.
 #'
-#' @family data wrangling functions
+#' @family data munging functions
 #' @importFrom rlang := !!
-#'
 #' @noRd
 #'
 #' @references
@@ -50,13 +49,13 @@ source(here::here("R/utils.R"))
 #'
 #' @examples
 #' \dontrun{
-#' if (requireNamespace("utils", quietly = TRUE)) {
-#'   valid <- validate_data()
-#'   utils::View(validate_data())
+#' if (requireNamespace("utils")) {
+#'   validated_data <- tidy_data |> validate_data()
+#'   utils::View(validated_data)
 #' }
 #' }
 validate_data <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   cli::cli_progress_step("Validating data")
 
@@ -74,22 +73,22 @@ validate_data <- function(data) {
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 rm_test_cases <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   data |> dplyr::filter(!track == "teste" | is.na(track))
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(scaler, quietly = TRUE)
+# library(dplyr)
+# library(hms)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(scaler) # https://github.com/danielvartan/scaler
 
 validate_ranges <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   out <-
     data |>
@@ -139,14 +138,14 @@ validate_ranges <- function(data) {
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(rlang, quietly = TRUE)
-# library(stringr, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+library(rlang)
+# library(stringr)
+# library(tidyr)
 
 validate_work_study <- function(data){
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   out <-
     data |>
@@ -217,14 +216,14 @@ validate_work_study <- function(data){
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(lubritime, quietly = TRUE)
+# library(dplyr)
+# library(lubridate)
+# library(lubritime) # https://github.com/danielvartan/lubritime
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 library(rlang)
 
 fix_bt_sprep_inversion <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   for (i in c("_w", "_f")) {
     bt_i <- paste0("bt", i)
@@ -256,15 +255,15 @@ fix_bt_sprep_inversion <- function(data) {
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(mctq, quietly = TRUE)
-library(rlang, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(dplyr)
+# library(lubridate)
+# library(mctq)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+library(rlang)
+# library(rutils) # https://github.com/danielvartan/rutils
 
 validate_sdu <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   for (i in c("_w", "_f")) {
     sprep_i <- paste0("sprep", i)
@@ -298,14 +297,14 @@ validate_sdu <- function(data) {
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(mctq, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(dplyr)
+# library(hms)
+# library(mctq)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 validate_so <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   out <-
     data |>
@@ -330,14 +329,14 @@ validate_so <- function(data) {
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(dplyr)
+# library(hms)
+# library(lubridate)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 na_mctq_blank_cases <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   out <-
     data |>
@@ -365,11 +364,11 @@ na_mctq_blank_cases <- function(data) {
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 remove_duplicates_and_blanks <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   count <-
     data |>

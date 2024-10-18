@@ -1,6 +1,6 @@
-# library(checkmate)
 # library(here)
-# library(rutils)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 # lybrary(yaml)
 
 # Set variables -----
@@ -37,13 +37,13 @@ folders <- c(
 )
 
 for (i in folders) {
-  if (!checkmate::test_directory_exists(i)) dir.create(i)
+  if (!prettycheck:::test_directory_exists(i)) dir.create(i)
 }
 
 # Create `_variables.yml` if it doesn't exist -----
 
 env_vars_file_path <- here::here("_variables.yml")
 
-if (!checkmate::test_file_exists(env_vars_file_path)) {
+if (!prettycheck:::test_file_exists(env_vars_file_path)) {
   rutils:::create_file(env_vars_file_path)
 }

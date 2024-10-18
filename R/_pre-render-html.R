@@ -1,5 +1,6 @@
-# library(here, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(here)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 # lybrary(yaml)
 
 # Pre-render begin ----------
@@ -28,22 +29,6 @@ for (i in swap_list) {
     value = i$value,
     quarto_render = i$quarto_render,
     cite_method = "biblatex"
-  )
-}
-
-# Copy images folder to `./qmd` -----
-# (solve issues related to relative paths)
-
-dir_path <- here::here("qmd", "images")
-
-if (!checkmate::test_directory_exists(dir_path)) {
-  dir.create(dir_path) |> invisible()
-}
-
-for (i in rutils:::list_files(here::here("images"), full.names = TRUE)) {
-  rutils:::copy_file(
-    from = i,
-    to = file.path(dir_path, basename(i))
   )
 }
 

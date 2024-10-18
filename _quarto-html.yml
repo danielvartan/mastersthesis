@@ -5,6 +5,7 @@ project:
   post-render: "R/_post-render-html.R"
 
 book:
+  author: "Daniel Vartanian"
   date: today
   date-format: "YYYY-MM-DD"
   repo-actions: [edit, issue]
@@ -14,16 +15,12 @@ book:
         href: index.pdf
   chapters:
     - index.qmd
-    - part: "Preliminary Pages"
+    - part: "Preliminary sections"
       chapters:
-        - qmd/errata.qmd
-        - qmd/inscription.qmd
         - qmd/acknowledgments.qmd
         - qmd/epigraph.qmd
         - qmd/vernacular-abstract.qmd
         - qmd/foreign-abstract.qmd
-        - qmd/list-of-abbreviations.qmd
-        - qmd/list-of-symbols.qmd
     - part: "Chapters"
       chapters:
         - qmd/chapter-1.qmd
@@ -32,16 +29,11 @@ book:
         - qmd/chapter-4.qmd
         - qmd/chapter-5.qmd
         - qmd/chapter-6.qmd
-        - qmd/chapter-7.qmd
     - qmd/references.qmd
-    - qmd/glossary.qmd
   appendices:
-    - qmd/appendice-chapter-1.qmd
-    - qmd/appendice-chapter-2.qmd
-    - qmd/appendice-chapter-3.qmd
-    - qmd/appendice-chapter-4.qmd
-    - qmd/appendice-chapter-5.qmd
-    - qmd/appendice-chapter-6.qmd
+    - qmd/appendice-1.qmd
+    - qmd/appendice-2.qmd
+    - qmd/appendice-3.qmd
 
 format:
   html:
@@ -50,8 +42,10 @@ format:
     locale: en
     number-depth: 5
     code-link: true
-    code-fold: show
-    cap-location: top
+    code-fold: true
+    cap-location: bottom
+    fig-align: center
+    df-print: paged
     reader-mode: false
     callout-appearance: simple
     csl: csl/english-apa-author-date.csl

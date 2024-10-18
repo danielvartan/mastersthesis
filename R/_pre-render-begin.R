@@ -1,13 +1,30 @@
-# library(checkmate)
 # library(here)
 # library(lubridate)
-# library(rutils)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 # lybrary(stringr)
 # lybrary(yaml)
 
 # Load common render -----
 
-source(here::here("R", "quarto-render-common.R"))
+source(here::here("R", "_render-common.R"))
+
+# Copy images folder to `./qmd` -----
+
+## *Solve issues related to relative paths.
+
+dir_path <- here::here("qmd", "images")
+
+if (!prettycheck:::test_directory_exists(dir_path)) {
+  dir.create(dir_path) |> invisible()
+}
+
+for (i in rutils:::list_files(here::here("images"))) {
+  rutils:::copy_file(
+    from = i,
+    to = file.path(dir_path, basename(i))
+  )
+}
 
 # Create environment variables -----
 

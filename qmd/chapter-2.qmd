@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Similarities between different versions of the MCTQ^PT^
+# On chronobiology
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -20,21 +20,54 @@ rutils:::quarto_status(
   )
 ```
 
-::: {.callout-note}
-## Target journal
+The dimension of time, manifest in the form of rhythms and cycles, like the alternating patterns of day and night as well as the annual transition of seasons, was consistently featured in the evolutionary journey of not only the human species but also all other life forms on our planet. These rhythms and cycles brought with them evolutionary pressures, resulting in the development of a temporal organization that allowed organisms to survive and reproduce in response to the conditions imposed by the environments they inhabited [@pittendrigh1981; @menna-barreto2003]. An example of this organization can be observed in the presence of different activity-rest patterns among living beings as they adapt to certain temporal niches, such as the diurnal behavior of humans and the nocturnal behavior of cats and some rodents [@foster2005].
 
-1. [Chronobiology International](https://www.tandfonline.com/action/authorSubmission?show=instructions&journalCode=icbi20) ([IF 2022: 2.8/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
-2. [Journal of Biological Rhythms](https://journals.sagepub.com/author-instructions/JBR) ([IF 2022: 3.5/JCR](https://jcr.clarivate.com/jcr/) | [A2/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
+For years, scientists debated whether this organization was solely in response to environmental stimuli or if it was also present endogenously, internally, within organisms [@rotenberg2003]. One of the early seminal studies describing a potential endogenous rhythmicity in living beings was conducted in 1729 by the French astronomer Jean Jacques d'Ortous de Mairan. De Mairan observed the movement of the sensitive plant (_mimosa pudica_) by isolating it from the light-dark cycle and found that the plant continued to move its leaves periodically (@fig-chapter-2-nobel-prize-2017-de-mairan-experiment) [@demairan1729; @rotenberg2003]. Charles Darwin also also wrote about the movement observed in plants and made thematic explorations of these intriguing “periodical phenomena”[@andrade2024]. The search for this internal timekeeper in living beings only began to solidify in the 20th century through the efforts of scientists like Jürgen Aschoff, Colin Pittendrigh, Franz Halberg, and Erwin Bünning, culminating in the establishment of the science known as chronobiology^[Some say the term _chronobiology_ was coined by Franz Halberg during the Cold Spring Harbor Symposium on Quantitative Biology, vol. XXV [@menna-barreto2023, p. 21].], with a significant milestone being the Cold Spring Harbor Symposium on Quantitative Biology: Biological Clocks in 1960 (_chrónos_, from Greek, meaning time; and _biology_, pertaining to the study of life) [@rotenberg2003; @coldspringharborlaboratory]. However, the recognition of endogenous rhythmicity by the global scientific community truly came in 2017 when Jeffrey Hall, Michael Rosbash, and Michael Young were awarded the [Nobel Prize in Physiology or Medicine](https://www.nobelprize.org/prizes/medicine/2017/press-release/) for their discoveries of molecular mechanisms that regulate the circadian rhythm in fruit flies (_circā_, from Latin, meaning around, and _dĭes_, meaning day [@latinitium] -- a rhythm that expresses itself in approximately one day) [@nobelprizeoutreachab].
+
+::: {#fig-chapter-2-nobel-prize-2017-de-mairan-experiment}
+![](images/nobel-prize-outreach-ab-2017-de-mairan-experiment.png){width=50%}
+
+[Source: Reproduction from @nobelprizeoutreachab.]{.legend}
+
+Illustration of a circadian rhythm in the movement of the leaves of the sensitive plant (_mimosa pudica_) observed by Jacques d'Ortous de Mairan in 1729.
 :::
 
-::: {.callout-note}
-The following study was performed by Daniel Vartanian (DV) and Camilo Rodrigues Neto (CR).
+Science has already demonstrated and described various biological rhythms and their impacts on organisms. These rhythms can occur at different levels, whether at a macro level, such as the menstrual cycle, or even at a micro level, such as rhythms expressed within cells [@roenneberg2016]. Like many other biological phenomena, these are complex systems present in all living beings, i.e., a emergence created by a large number of connected and interecticve agents that exhibit adaptive characteristics, all without the need of a central control [@boccara2010]. It is understood today that the endogeneity of rhythms has provided organisms with an anticipatory capacity, allowing them to organize resources and activities before they are needed [@marques2003].
 
-\microskip
+Despite the endogenous nature of these rhythms, they can still be regulated by the external environment. Signals (cues) from the environment that occur cyclically and have the ability to regulate biological rhythmic expression are called zeitgebers (from the German _zeit_, meaning time, and _geber_, meaning donor [@cambridgeuniversitypress]). These zeitgebers act as synchronizers by entraining the phases of  biological rhythms [@khalsa2003; @kuhlman2018] (see @fig-chapter-2-kuhlman-2018-figure-2b). Among the known zeitgebers are, for example, meal timing and changes in environmental temperature [@aschoff1981; @roenneberg2016]. However, the most influential of them is the light-dark cycle. It is understood that the day/night cycle, resulting from the rotation of the Earth, has provided the vast majority of organisms with an oscillatory system with a periodic duration of approximately 24 hours [@kuhlman2018; @roenneberg2007].
 
-__DV__ and __CR__ contributed to the study's design. __DV__ implemented the study, performed the statistical analysis, and authored the manuscript. All authors participated in discussions about the results and contributed to the final manuscript revision.
+::: {#fig-chapter-2-kuhlman-2018-figure-2b}
+![](images/kuhlman-2018-figure-2b.png){width=75%}
 
-\microskip
+[Source: Adapted from @kuhlman2018.]{.legend}
 
-_Future reference_: Vartanian, D., & Rodrigues Neto, C. (2024). Similarities between different versions of the MCTQ^PT^. _Chronobiology International_.
+Illustration of a circadian rhythm (output) whose phase is entrained in the presence of a zeitgeber (input). The rectangles represent the light-dark cycle.
 :::
+
+Naturally, the expression of this temporal organization varies from organism to organism, even among members of the same species, whether due to the different ways they are exposed to the environment or the differences in the expression of endogenous rhythmicity, which, in turn, results from gene expression [@roenneberg2007a]. The interaction between these two expressions, external and internal, of the environment and genotype, generates a signature, an observable characteristic, which is called a phenotype [@frommlet2016].
+
+The various temporal characteristics of an organism can be linked to different oscillatory periods. Among these are circadian phenotypes, which refer to characteristics observed in rhythms with periods lasting about a day [@foster2005]. Another term used for these temporal phenotypes, as the name suggest, is _chronotype_ [@ehret1974; @pittendrigh1993]. This term is also often used to differentiate phenotypes on a spectrum ranging from morningness to eveningness [@horne1976; @roenneberg2019b].
+
+Sleep is a phenomenon that exhibits circadian expression. By observing the sleep characteristics of individuals, it is possible to assess the distribution of circadian phenotypes within the same population, thereby investigating their covariates and other relevant associations [@roenneberg2003]. This is because sleep regulation is understood as the result of the interaction between two processes: a homeostatic process (referred to as the $\text{S}$ process), which is sleep-dependent and accumulates with sleep deprivation, and a circadian process (referred to as the $\text{C}$ process), whose expression can be influenced by zeitgebers, such as the light-dark cycle [@borbely1982; @borbely2016] (@fig-chapter-2-borbely-1982-figure-4 illustrates these two process). Considering that the circadian rhythm (the $\text{C}$ process) is present in sleep, its characteristics can be estimated if the $\text{S}$ process can be controlled.
+
+::: {#fig-chapter-2-borbely-1982-figure-4}
+![](images/borbely-1982-figure-4.png){width=75%}
+
+[Source: Adapted from @borbely1982.]{.legend}
+
+Illustration of the interaction between Process S (sleep-dependent process) and Process C (circadian rhythm process) in sleep regulation. The figure depicts two scenarios: one with 17 hours of wakefulness followed by 7 hours of sleep, and another with sleep deprivation, consisting of 41 hours of wakefulness followed by 7 hours of sleep. The y-axis represents the level of each process. The shaded areas indicate periods of sleep, along with the exponential decline of Process S.
+:::
+
+Although many theories related to sleep and circadian rhythms are well-established in science, it is still necessary to verify and test them in larger samples to obtain a more accurate picture of the mechanisms related to the ecology of sleep and chronotypes. This project undertakes this commitment with the aim of investigating a hypothesis that is still relatively untested but widely accepted in chronobiology, which suggests that latitude is associated with the regulation of circadian rhythms [@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003].
+
+The latitude hypothesis is based on the idea that regions located at latitudes close to the poles, on average, experience less annual sunlight exposure compared to regions near the equator. Therefore, it is deduced that regions near latitude 0° have a stronger solar zeitgeber, which, according to chronobiology theories, should lead to a greater propensity for the synchronization of circadian rhythms in these populations with the light-dark cycle. This would reduce the amplitude and diversity of circadian phenotypes found due to a lower influence of individuals' characteristic endogenous periods (@fig-chapter-2-roenneberg-2003-figure-7-f illustrates this effect). This would also give these populations a morningness characteristic when compared to populations living farther from the equator, where the opposite would occur – greater amplitude and diversity of circadian phenotypes and an eveningness characteristic compared to populations living near latitude 0° [@roenneberg2003].
+
+::: {#fig-chapter-2-roenneberg-2003-figure-7-f}
+![](images/roenneberg-2003-figure-7-f.png){width=75%}
+
+[Source: Adapted from @roenneberg2003.]{.legend}
+
+Different chronotype distributions, influenced by strong and weak zeitgebers -- black for strong and hatched for weak. An illustration of the effect hypothesized by the latitude hypothesis.
+:::
+
+To achieve the mentioned objectives, this project will rely on a dataset of the sleep-wake cycle expression of the Brazilian population, consisting of $120,265$ subjects covering all states of the country. This dataset was collected in 2017 and is based on the Munich ChronoType Questionnaire (MCTQ), a widely validated scale used to measure chronotypes based on individuals' sleep-wake cycle expression in the last four weeks [@roenneberg2003; @roenneberg2012a].

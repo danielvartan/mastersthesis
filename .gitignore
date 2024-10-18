@@ -5,10 +5,10 @@ _print/
 _slides/
 _web/
 _targets/
+_temp/
+_ssh/
 .auth/
 .quarto/
-.temp/
-.ssh/
 .Rapp.history
 .RData
 .Renviron

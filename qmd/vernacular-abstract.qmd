@@ -9,7 +9,7 @@
 source(here::here("R/_setup.R"))
 ```
 
-{{< var author-surname >}}, `r sub("\\. .\\.$", "", env_vars[["author-initials"]])`. ({{< var year >}}). _{{< var title >}}_ [{{< var academic-title >}}'s {{< var type-of-work >}}, {{< var university >}}].
+Vartanian, D. V. ({{< var year >}}). _{{< var title >}}_ [{{< var academic-title >}}'s {{< var type-of-work >}}, {{< var university >}}].
 
 ::: {.content-visible when-format="pdf"}
 <!-- %:::% vernacular-abstract reference begin %:::% -->
@@ -18,9 +18,7 @@ Vartanian, D. ({\imprimirdata}). \textit{\imprimirtitulo} [{\imprimirtipodetitul
 :::
 
 <!-- %:::% vernacular-abstract body begin %:::% -->
-The text below is related to the __project__ of this thesis. The final abstract can only be produced when the research is completed.
-
-Theories related to sleep and circadian rhythms are already well-established in science. However, it is necessary to verify and test these same theories in more extensive samples to obtain a more accurate picture of the expression of sleep and temporal phenotypes. This thesis undertakes this commitment, with the aim of mapping the expression of sleep-wake cycles and circadian phenotypes in the Brazilian adult population and investigating the hypothesis that latitude is associated with circadian rhythm regulation. The latitude hypothesis is based on the idea that regions located at latitudes near the poles have, on average, a lower annual incidence of sunlight compared to regions near the equator (latitude 0°). Therefore, it is deduced that regions near the equator have a stronger solar zeitgeber, which, according to chronobiology theories, could lead to a greater propensity for the synchronization of circadian rhythms in these populations, reducing the amplitude and diversity of circadian phenotypes. This would also give these populations a morning characteristic when compared to populations living far from the equator. To achieve the aforementioned objectives, this thesis project will rely on a data sample of sleep-wake cycle expression in the Brazilian population, composed of $120,265$ subjects covering all Brazilian states. This data was obtained in 2017 and is based on the Munich ChronoType Questionnaire (MCTQ), a widely validated questionnaire used to measure circadian phenotypes based on the sleep-wake cycle expression of individuals in their last four weeks. The results will contribute to the validation of chronobiology theories and will generate greater knowledge about the regulation of circadian rhythms and sleep-wake cycles in the Brazilian population.
+Theories on circadian rhythms are well-established in science, but there is still a need to test them in larger samples to gain a better understanding of the expression of temporal phenotypes. This thesis investigates the hypothesis that latitude influences chronotype expression, based on the idea that regions closer to the poles receive less sunlight over the year than equatorial regions. This difference suggests that equatorial areas have a stronger solar zeitgeber, which could lead to greater synchronization of circadian rhythms with the light-dark cycle, reducing the amplitude and diversity of circadian phenotypes, resulting in a higher propensity for morningness in those populations. To test this hypothesis, data from $120,265$ individuals from all regions of Brazil were analyzed, collected in 2017 based on the Munich ChronoType Questionnaire (MCTQ), a validated questionnaire to assess circadian phenotypes derived from individuals' sleep-wake cycles over the past four weeks. The analysis, using nested linear regression models, revealed a negligible effect of latitude on the variation in chronotype expression (Cohen’s $f^2$: $0.00740$), contrasting with recent studies. Although the hypothesis is reasonable and aligns with evolutionary theories of temporal biological systems, the results suggest that the phenomenon of entrainment is more complex than previously thought.
 <!-- %:::% vernacular-abstract body end %:::% -->
 
 __Keywords__: {{< var keyword >}}
@@ -28,7 +26,7 @@ __Keywords__: {{< var keyword >}}
 ::: {.content-visible when-format="pdf"}
 <!-- %:::% vernacular-abstract keywords begin %:::% -->
 \begin{tabular}{p{2.3cm} p{13.6cm}}
-  \textbf{Keywords}: & Chronobiology. Biological rhythms. Chronotype. Circadian phenotype. Sleep. Complex systems. Entrainment. Latitude. Ecology. MCTQ.
+  \textbf{Keywords}: & Complexity science. Complex systems. Chronobiology. Biological rhythms. Chronotypes. Circadian phenotypes. Sleep. Entrainment. Latitude. MCTQ.
 \end{tabular}
 <!-- %:::% vernacular-abstract keywords end %:::% -->
 :::

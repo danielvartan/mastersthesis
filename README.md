@@ -1,5 +1,7 @@
 # mastersthesis
 
+<!-- quarto render --profile gfm -->
+
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
@@ -16,14 +18,11 @@ MIT](https://img.shields.io/badge/license-MIT-green.png)](https://choosealicense
 
 ☀🌙⏰🛌💤🌍🗺️🧭📅🧬🧠🕰️📊📉📈📝
 
-This repository contains the research compendium and [Quarto
+This repository contains the [Quarto
 book](https://quarto.org/docs/books/) of my master’s thesis: *Is
-latitude associated with the regulation of circadian rhythms in
-humans?*. Its aim is to facilitate research work and to improve
-reproducibility.
-
-Click [here](https://danielvartan.github.io/mastersthesis/) to access
-the thesis documents.
+latitude associated with chronotype?*. The research compendium is also
+accessible via [The Open Science Framework](https://osf.io/) by clicking
+[here](https://doi.org/10.17605/OSF.IO/YGKTS)
 
 The assemble of this repository was inspired by Ben Marwick, Carl
 Boettiger & Lincoln Mullen’s article [Packaging Data Analytical Work
@@ -52,11 +51,13 @@ To reproduce the analyses do the following steps:
 3.  Run
     [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html)
     to install all software dependencies.
-4.  Open and run the analysis in the computational notebook.
+4.  Set all the keys provided by the author in the `.Renviron` file and
+    the `_ssh` folder.
+5.  Open and run the analysis in the computational notebook.
 
 If you don’t feel comfortable with R, I strongly recommend checking
 Hadley Wickham and Garrett Grolemund’s free and online book [R for Data
-Science](https://r4ds.had.co.nz/) and the Coursera course from John
+Science](https://r4ds.hadley.nz/) and the Coursera course from John
 Hopkins University [Data Science: Foundations using
 R](https://www.coursera.org/specializations/data-science-foundations-r).
 
@@ -78,23 +79,23 @@ author upon reasonable request.
 
 ## Citation
 
-You can find the thesis citation below.
+To cite this work, please use the following format:
 
-Vartanian, D. (2024). Is latitude associated with the regulation of
-circadian rhythms in humans? \[Master’s thesis, University of São
-Paulo\]. https://github.com/danielvartan/mastersthesis
+Vartanian, D. (2024). Is latitude associated with chronotype? \[Master’s
+thesis, University of São Paulo\].
+<https://doi.org/10.17605/OSF.IO/YGKTS>
 
 A BibTeX entry for LaTeX users is
 
     @mastersthesis{vartanian2024,
-      title = {Is latitude associated with the regulation of circadian rhythms in humans?},
+      title = {Is latitude associated with chronotype?},
       author = {Daniel Vartanian},
       year = {2024},
       address = {São Paulo},
       school  = {University of São Paulo},
-      langid = {en-us},
-      url = {https://github.com/danielvartan/mastersthesis},
-      note = {Preliminary version}
+      langid = {en},
+      url = {https://doi.org/10.17605/OSF.IO/YGKTS},
+      note = {Original version}
     }
 
 ## Acknowledgments

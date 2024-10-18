@@ -5,18 +5,30 @@ project:
   pre-render: "R/_pre-render-revealjs.R"
   post-render: "R/_post-render-revealjs.R"
 
-title: "Is latitude associated with human circadian rhythms?"
+title: "Is latitude associated with chronotype?"
 author: "Daniel Vartanian"
 institute: "University of São Paulo"
 date: today
 
 format:
   revealjs:
-    lang: en
+    locale: en
+    lang: en-us
+    code-link: true
+    code-fold: true
+    link-external-newwindow: true
+    tbl-cap-location: top
+    callout-appearance: simple
     csl: csl/english-apa-author-date.csl
-    keyboard: true
+    preview-links: false
     controls: true
     controls-layout: bottom-right
-    preview-links: auto
-    theme: [default, scss/slides.scss]
     chalkboard: true
+    auto-stretch: true
+    fig-align: center
+    theme: [default, scss/slides.scss]
+    pdf-max-pages-per-slide: 1
+    menu:
+      titleSelector: [h1 h2]
+      useTextContentForMissingTitles: false
+      hideMissingTitles: false

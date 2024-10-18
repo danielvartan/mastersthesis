@@ -3,15 +3,15 @@
 ## * Arrumar cuts igual Roenneberg et al. (2007). Ver cuts acima de 60.
 ## * Criar `plot_msf_sc series()`.
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(hms, quietly = TRUE)
-library(rlang, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
-# library(viridis, quietly = TRUE)
+# library(dplyr)
+library(ggplot2)
+# library(here)
+# library(hms)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+library(rlang)
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(tidyr)
+# library(viridis)
 
 source(here::here("R/utils.R"))
 source(here::here("R/utils-plot.R"))
@@ -28,26 +28,26 @@ plot_age_series <- function(data,
                             text_size = NULL) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
 
-  checkmate::assert_tibble(data)
-  checkmate::assert_string(col)
-  checkmate::assert_subset(col, names(data))
-  checkmate::assert_subset(c("sex", "age", col), names(data))
-  checkmate::assert_multi_class(data[[col]], col_classes)
-  checkmate::assert_multi_class(y_lab, c("character", "latexexpression"))
-  rutils:::assert_length_one(y_lab)
-  checkmate::assert_number(line_width)
-  checkmate::assert_number(boundary)
-  checkmate::assert_number(point_size)
-  checkmate::assert_number(error_bar_width)
-  checkmate::assert_number(error_bar_linewidth)
-  checkmate::assert_flag(error_bar)
-  checkmate::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_string(col)
+  prettycheck:::assert_subset(col, names(data))
+  prettycheck:::assert_subset(c("sex", "age", col), names(data))
+  prettycheck:::assert_multi_class(data[[col]], col_classes)
+  prettycheck:::assert_multi_class(y_lab, c("character", "latexexpression"))
+  prettycheck:::assert_length(y_lab, len = 1)
+  prettycheck:::assert_number(line_width)
+  prettycheck:::assert_number(boundary)
+  prettycheck:::assert_number(point_size)
+  prettycheck:::assert_number(error_bar_width)
+  prettycheck:::assert_number(error_bar_linewidth)
+  prettycheck:::assert_flag(error_bar)
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
 
   if (y_lab == col && hms::is_hms(data[[col]])) {
     y_lab = paste0("Local time (", col, " +- SEM)")
   }
 
-  if (y_lab == col && rutils:::test_duration(data[[col]])) {
+  if (y_lab == col && prettycheck:::test_duration(data[[col]])) {
     y_lab = paste0("Duration (", col, " +- SEM)")
   }
 
@@ -55,7 +55,7 @@ plot_age_series <- function(data,
     data |>
     dplyr::select(dplyr::all_of(c("age", col, "sex"))) |>
     dplyr::mutate(dplyr::across(
-      .cols = dplyr::where(rutils:::test_duration),
+      .cols = dplyr::where(prettycheck:::test_duration),
       .fns = ~ hms::hms(as.numeric(.x))
     )) |>
     dplyr::mutate(dplyr::across(
@@ -76,7 +76,7 @@ plot_age_series <- function(data,
       !!as.symbol(col) := mean(!!as.symbol(col), na.rm = TRUE),
       .by = age
     ) |>
-    rutils:::shush() |>
+    rutils::shush() |>
     tidyr::drop_na()
 
   data_by_age_and_sex <-
@@ -86,7 +86,7 @@ plot_age_series <- function(data,
       !!as.symbol(col) := mean(!!as.symbol(col), na.rm = TRUE),
       .by = c(age, sex)
     ) |>
-    rutils:::shush() |>
+    rutils::shush() |>
     tidyr::drop_na()
 
   plot <-

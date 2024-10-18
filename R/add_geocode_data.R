@@ -1,9 +1,11 @@
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
+# library(cli)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+
+# geocoded_data <- filtered_data |> add_geocode_data()
 
 add_geocode_data <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   cli::cli_progress_step("Adding geocode data")
 

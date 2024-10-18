@@ -2,13 +2,18 @@
 
 // See <https://quarto.org/docs/output-formats/html-themes.htm>.
 
-$primary: #EF6500 !default;
+// Colors ----------
+//
+// - #EA7701 (PANTONE Lugano Sunset Orange)
+// - #2780E3 (Bootswatch's Cosmo primary color)
+
+$primary: #EA7701 !default;
 $font-size-root: 18px !default;
 
 /*-- scss:rules --*/
 
 .sidebar-title {
-  color: #EF6500;
+  color: #EA7701;
 }
 
 div.sidebar-item-container .active {

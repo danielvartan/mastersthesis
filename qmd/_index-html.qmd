@@ -8,15 +8,23 @@
 source(here::here("R/_setup.R"))
 ```
 
-You are viewing the web version of this thesis. Click [here](index.pdf) or on the PDF icon in the menu to see the PDF version.
+You are viewing the web version of this thesis. To view the PDF version, click [here](index.pdf){target="_blank"} or use the PDF icon in the menu.
 
-All analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system. Click [here](https://github.com/danielvartan/mastersthesis) or on the GitHub icon in the menu to access the research compendium for the thesis.
+All analyses presented in this document are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/){target="_blank"} and the [Quarto](https://quarto.org/){target="_blank"} publishing system.
+
+To explore the code and repository for this thesis, click [here](https://github.com/danielvartan/mastersthesis){target="_blank"} or use the GitHub icon in the menu. The research compendium is also accessible via [The Open Science Framework](https://osf.io/) by clicking [here](https://doi.org/10.17605/OSF.IO/YGKTS){target="_blank"}.
+
+## License
+
+[![](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/){fig-align="left"}
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/){target="_blank"}. This means you are free to share and adapt the work for any purpose, including commercial use, provided you give appropriate credit, link to the license, and indicate any changes made.
 
 ## Citation
 
-For attribution, please cite this work as:
+To cite this work, please use the following format:
 
-`r env_vars[["author-surname"]]`, `r sub("\\. .\\.$", "", env_vars[["author-initials"]])`. (`r env_vars[["year"]]`). _`r env_vars[["title"]]`_ [`r env_vars[["academic-title"]]`'s `r env_vars[["type-of-work"]]`, `r env_vars[["university"]]`]. `r env_vars[["url"]]`
+Vartanian, D. V. (`r env_vars[["year"]]`). _`r env_vars[["title"]]`_ [`r env_vars[["academic-title"]]`'s `r env_vars[["type-of-work"]]`, `r env_vars[["university"]]`]. [https://doi.org/10.17605/OSF.IO/YGKTS](https://doi.org/10.17605/OSF.IO/YGKTS){target="_blank"}
 
 BibTeX citation:
 
@@ -31,14 +39,14 @@ bib_tag <- ifelse(
 ```
 
 ```
-`r bib_tag`{`r tolower(env_vars[["author-surname"]])``r env_vars[["year"]]`,
+`r bib_tag`{vartanian`r env_vars[["year"]]`,
   title = {`r env_vars[["title"]]`},
-  author = {`r env_vars[["author"]]`},
+  author = {Daniel Vartanian},
   year = {`r env_vars[["year"]]`},
   address = {`r env_vars[["location"]]`},
   school  = {`r env_vars[["university"]]`},
   langid = {`r env_vars[["language"]]`},
-  url = {`r env_vars[["url"]]`},
+  url = {https://doi.org/10.17605/OSF.IO/YGKTS},
   note = {`r env_vars[["version-note"]]`}
 }
 ```

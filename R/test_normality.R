@@ -1,14 +1,14 @@
-# library(checkmate, quietly = TRUE)
-# library(cowplot, quietly = TRUE)
-# library(fBasics, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(moments, quietly = TRUE)
-# library(nortest, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(stats, quietly = TRUE)
-# library(tseries, quietly = TRUE)
+# library(cowplot)
+# library(fBasics)
+# library(here)
+# library(hms)
+# library(lubridate)
+# library(moments)
+# library(nortest)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(stats)
+# library(tseries)
 
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils-stats.R"))
@@ -27,27 +27,27 @@ test_normality <- function(x,
     "numeric", "Duration", "difftime", "hms", "POSIXt", "Interval"
   )
 
-  checkmate::assert_atomic(x)
-  checkmate::assert_multi_class(x, classes)
-  checkmate::assert_string(name)
-  rutils:::assert_hms(
+  prettycheck:::assert_atomic(x)
+  prettycheck:::assert_multi_class(x, classes)
+  prettycheck:::assert_string(name)
+  prettycheck:::assert_hms(
     threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59"),
-    null.ok = TRUE
+    null_ok = TRUE
   )
-  checkmate::assert_flag(remove_outliers)
-  checkmate::assert_number(iqr_mult)
-  checkmate::assert_flag(log_transform)
-  checkmate::assert_flag(density_line)
-  checkmate::assert_number(text_size, null.ok = TRUE)
-  checkmate::assert_flag(print)
+  prettycheck:::assert_flag(remove_outliers)
+  prettycheck:::assert_number(iqr_mult)
+  prettycheck:::assert_flag(log_transform)
+  prettycheck:::assert_flag(density_line)
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_flag(print)
 
   n <- x |> length()
   class = x |> class()
-  is_temporal <- x |> rutils:::test_temporal()
+  is_temporal <- x |> prettycheck:::test_temporal()
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
   n_rm_na <- x |> length()
 
-  if (rutils:::test_temporal(x)) {
+  if (prettycheck:::test_temporal(x)) {
     x <- x |> transform_time(threshold = threshold)
   }
 
@@ -68,7 +68,7 @@ test_normality <- function(x,
     cvm <-
       x |>
       nortest::cvm.test() |>
-      rutils:::shush()
+      rutils::shush()
   } else {
     ad <- NULL
     cmv <- NULL
@@ -80,7 +80,7 @@ test_normality <- function(x,
   dagostino <-
     x |>
     fBasics::dagoTest() |>
-    rutils:::shush()
+    rutils::shush()
 
   jarque_bera <-
     rutils:::drop_na(x) |>
@@ -161,20 +161,20 @@ test_normality <- function(x,
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(dplyr)
+library(ggplot2)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 plot_qq <- function(x,
                     text_size = NULL,
                     na_rm = TRUE,
                     print = TRUE) {
-  checkmate::assert_atomic(x)
-  checkmate::assert_multi_class(x, c("numeric", "POSIXt"))
-  checkmate::assert_number(text_size, null.ok = TRUE)
-  checkmate::assert_flag(na_rm)
-  checkmate::assert_flag(print)
+  prettycheck:::assert_atomic(x)
+  prettycheck:::assert_multi_class(x, c("numeric", "POSIXt"))
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_flag(na_rm)
+  prettycheck:::assert_flag(print)
 
   if (isTRUE(na_rm)) x <- x |> rutils:::drop_na()
 
@@ -197,10 +197,10 @@ plot_qq <- function(x,
   invisible(plot)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(dplyr)
+library(ggplot2)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 plot_hist <- function(x,
                       x_lab = "x",
@@ -209,14 +209,14 @@ plot_hist <- function(x,
                       density_line = TRUE,
                       na_rm = TRUE,
                       print = TRUE) {
-  checkmate::assert_atomic(x)
-  checkmate::assert_multi_class(x, c("numeric", "POSIXt"))
-  checkmate::assert_string(x_lab)
-  checkmate::assert_choice(stat, c("count", "density"))
-  checkmate::assert_number(text_size, null.ok = TRUE)
-  checkmate::assert_flag(density_line)
-  checkmate::assert_flag(na_rm)
-  checkmate::assert_flag(print)
+  prettycheck:::assert_atomic(x)
+  prettycheck:::assert_multi_class(x, c("numeric", "POSIXt"))
+  prettycheck:::assert_string(x_lab)
+  prettycheck:::assert_choice(stat, c("count", "density"))
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_flag(density_line)
+  prettycheck:::assert_flag(na_rm)
+  prettycheck:::assert_flag(print)
 
   if (isTRUE(na_rm)) x <- x |> rutils:::drop_na()
   y_lab <- ifelse(stat == "count", "Frequency", "Density")

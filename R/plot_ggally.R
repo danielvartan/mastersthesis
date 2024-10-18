@@ -1,10 +1,10 @@
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(GGally, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
-# library(viridis, quietly = TRUE)
+# library(dplyr)
+library(GGally)
+library(ggplot2)
+# library(hms)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(tidyr)
+# library(viridis)
 
 source(here::here("R/utils.R"))
 
@@ -15,13 +15,13 @@ plot_ggally <- function(data,
                         axis_labels = "none",
                         na_rm = TRUE,
                         text_size = NULL) {
-  checkmate::assert_tibble(data)
-  checkmate::assert_character(cols)
-  checkmate::assert_subset(cols, names(data))
-  checkmate::assert_class(mapping, "uneval", null.ok = TRUE)
-  checkmate::assert_choice(axis_labels, c("show", "internal", "none"))
-  checkmate::assert_flag(na_rm)
-  checkmate::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_character(cols)
+  prettycheck:::assert_subset(cols, names(data))
+  prettycheck:::assert_class(mapping, "uneval", null.ok = TRUE)
+  prettycheck:::assert_choice(axis_labels, c("show", "internal", "none"))
+  prettycheck:::assert_flag(na_rm)
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
 
   out <-
     data|>

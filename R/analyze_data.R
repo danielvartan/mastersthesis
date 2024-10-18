@@ -1,11 +1,11 @@
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(mctq, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(scaler, quietly = TRUE)
+# library(cli)
+# library(dplyr)
+# library(hms)
+# library(lubridate)
+# library(mctq)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(scaler) # https://github.com/danielvartan/scaler
 
 #' Analyze `validate_data()` output
 #'
@@ -33,8 +33,7 @@
 #' @return An invisible [`tibble`][dplyr::tibble()] with a validated
 #'   dataset with all the variables proposed for a standard MCTQ dataset.
 #'
-#' @family data wrangling functions
-#'
+#' @family data munging functions
 #' @noRd
 #'
 #' @references
@@ -50,15 +49,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' if (requireNamespace("utils", quietly = TRUE)) {
-#'   analysis <- analyze_data()
-#'   utils::View(analyze_data())
+#' if (requireNamespace("utils")) {
+#'   analyzed_data <- validated_data |> analyze_data()
+#'   utils::View(analyzed_data)
 #' }
 #' }
 analyze_data <- function(data, round = FALSE, hms = FALSE) {
-  checkmate::assert_tibble(data)
-  checkmate::assert_flag(round)
-  checkmate::assert_flag(hms)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_flag(round)
+  prettycheck:::assert_flag(hms)
 
   cli::cli_progress_step("Analyzing data")
 

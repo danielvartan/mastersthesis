@@ -9,26 +9,24 @@
 source(here::here("R/_setup.R"))
 ```
 
-{{< var author-surname >}}, `r sub("\\. .\\.$", "", env_vars[["author-initials"]])`. ({{< var year >}}). _A latitude está associada à regulação do ritmo circadiano em seres humanos?_ [Dissertação de Mestrado, Universidade de São Paulo].
+Vartanian, D. V. ({{< var year >}}). _A latitude está associada ao cronotipo?_ [Dissertação de Mestrado, Universidade de São Paulo].
 
 ::: {.content-visible when-format="pdf"}
 <!-- %:::% foreign-abstract reference begin %:::% -->
-Vartanian, D. ({\imprimirdata}). \textit{A latitude está associada à regulação do ritmo circadiano em seres humanos?} [Dissertação de Mestrado, Universidade de São Paulo].
+Vartanian, D. ({\imprimirdata}). \textit{A latitude está associada ao cronotipo?} [Dissertação de Mestrado, Universidade de São Paulo].
 <!-- %:::% foreign-abstract reference end %:::% -->
 :::
 
 <!-- %:::% foreign-abstract body begin %:::% -->
-O texto abaixo está relacionado ao __projeto__ desta dissertação. O resumo final só poderá ser produzido quando a pesquisa for finalizada.
-
-Teorias relacionadas ao sono e aos ritmos circadianos já estão bem consolidadas na ciência. No entanto, é necessário verificar e testar essas mesmas teorias em amostras mais abrangentes para obter um retrato mais preciso da expressão do sono e dos fenótipos temporais. Esta dissertação assume esse compromisso, tendo como objetivo mapear a expressão dos ciclos de sono-vigília e dos fenótipos circadianos da população adulta brasileira e investigar a hipótese de que a latitude está associada à regulação do ritmo circadiano. A hipótese da latitude se fundamenta na ideia de que regiões localizadas em latitudes próximas aos polos apresentam, em média, uma menor incidência de luz solar anual quando comparadas com regiões próximas da linha do equador (latitude 0°). Dessa forma, deduz-se que as regiões próximas ao equador apresentam um zeitgeber solar mais forte, o que, de acordo com as teorias da cronobiologia, pode gerar uma maior propensão à sincronização dos ritmos circadianos dessas populações, reduzindo a amplitude e a diversidade de fenótipos circadianos. Isso também daria a essas populações uma característica matutina quando comparadas com populações que vivem distantes da linha do equador. Para atingir os objetivos mencionados, o projeto irá contar com uma amostra de dados da expressão do ciclo sono-vigília da população brasileira composta por $120.265$ indivíduos que abrange todos os estados brasileiros. Essa amostra de dados foi obtida no ano de 2017 e se baseia no Munich ChronoType Questionnaire (MCTQ), um questionário amplamente validado e utilizado para mensurar fenótipos circadianos a partir da expressão do ciclo sono-vigília de indivíduos em suas últimas quatro semanas. Os resultados irão contribuir com a validação de teorias da cronobiologia e gerar conhecimento sobre a regulação do ritmo circadiano e dos ciclos de sono-vigília da população brasileira.
+As teorias sobre ritmos circadianos estão bem estabelecidas na ciência, mas ainda há a necessidade de testá-las em amostras mais amplas para compreender melhor a expressão dos fenótipos temporais. Esta dissertação investiga a hipótese de que a latitude influencia a expressão dos cronotipos, baseada na ideia de que regiões próximas aos polos recebem menos luz solar ao longo do ano do que as regiões equatoriais. Esse diferencial sugere que áreas equatoriais possuem um zeitgeber solar mais forte, o que poderia levar a uma maior sincronização dos ritmos circadianos com o ciclo claro-escuro, reduzindo a amplitude e a diversidade de fenótipos circadianos, resultando em uma propensão maior ao cronotipo matutino. Para testar essa hipótese, foram analisados dados de $120.265$ indivíduos de todas as regiões do Brasil, coletados em 2017 com base no Munich ChronoType Questionnaire (MCTQ), um questionário validado para medir fenótipos circadianos a partir do ciclo sono-vigília nas últimas quatro semanas. A análise, utilizando modelos de regressão linear aninhados, revelou um efeito negligenciável da latitude na variação da expressão dos cronotipos ($f^2$ de Cohen: $0,00740$), em contraste com estudos recentes. Embora a hipótese faça sentido e esteja alinhada com teorias evolutivas dos sistemas biológicos temporais, os resultados sugerem que o fenômeno de entraiment é mais complexo do que se imaginava.
 <!-- %:::% foreign-abstract body end %:::% -->
 
-__Palavras-chaves__: Cronobiologia. Ritmos biológicos. Cronotipo. Fenótipo circadiano. Sono. Sistemas complexos. Entrainment. Latitude. MCTQ.
+__Palavras-chaves__: Ciência da complexidade. Sistemas complexos. Cronobiologia. Ritmos biológicos. Cronotipos. Fenótipos circadianos. Sono. Entrainment. Latitude. MCTQ.
 
 ::: {.content-visible when-format="pdf"}
 <!-- %:::% foreign-abstract keywords begin %:::% -->
 \begin{tabular}{p{3.6cm} p{12.3cm}}
-  \textbf{Palavras-chaves}: &  Cronobiologia. Ritmos biológicos. Cronotipo. Fenótipo circadiano. Sono. Sistemas complexos. Entrainment. Latitude. MCTQ.
+  \textbf{Palavras-chaves}: &  Ciência da complexidade. Sistemas complexos. Cronobiologia. Ritmos biológicos. Cronotipos. Fenótipos circadianos. Sono. Entrainment. Latitude. MCTQ.
 \end{tabular}
 <!-- %:::% foreign-abstract keywords end %:::% -->
 :::

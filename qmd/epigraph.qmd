@@ -12,8 +12,7 @@ source(here::here("R/_setup.R"))
 ::: {.content-visible when-format="html"}
 _Nullius in verba_[^1]
 
-[^1]: The Royal Society. (n.d.). __History of the Royal Society__. https://royalsociety.org/about-us/history/
-
+[^1]: The Royal Society. (n.d.). __History of the Royal Society__. [https://royalsociety.org/about-us/history](https://royalsociety.org/about-us/history/){target="_blank"}
 :::
 
 ::: {.content-visible when-format="pdf"}

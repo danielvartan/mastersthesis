@@ -1,10 +1,10 @@
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(geobr, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(stringr, quietly = TRUE)
-# library(viridis, quietly = TRUE)
+# library(dplyr)
+# library(geobr)
+library(ggplot2)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(stringr)
+# library(viridis)
 
 plot_brazil_uf_map <- function(data, option = "viridis", text_size = NULL) {
   option_choices <- c(
@@ -12,15 +12,15 @@ plot_brazil_uf_map <- function(data, option = "viridis", text_size = NULL) {
     "cividis", "E", "rocket", "F", "mako", "G", "turbo", "H"
   )
 
-  checkmate::assert_tibble(data)
-  checkmate::assert_subset("state", names(data))
-  checkmate::assert_choice(option, option_choices, null.ok = TRUE)
-  checkmate::assert_number(text_size, null.ok = TRUE)
-  rutils:::assert_internet()
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_subset("state", names(data))
+  prettycheck:::assert_choice(option, option_choices, null.ok = TRUE)
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_internet()
 
   brazil_uf_map <-
     geobr::read_state(year = 2020, showProgress = FALSE) |>
-    rutils:::shush() |>
+    rutils::shush() |>
     dplyr::mutate(
       name_state = stringr::str_replace_all(name_state, " Do ", " do "),
       name_state = stringr::str_replace_all(name_state, " De ", " de ")

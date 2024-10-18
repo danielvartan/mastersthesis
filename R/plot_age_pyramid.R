@@ -1,26 +1,26 @@
-# library(apyramid, quietly = TRUE)
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
-# library(viridis, quietly = TRUE)
+# library(apyramid)
+# library(dplyr)
+library(ggplot2)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(tidyr)
+# library(viridis)
 
 plot_age_pyramid <- function(data,
                              interval = 10,
                              na_rm = TRUE,
                              text_size = NULL){
-  checkmate::assert_tibble(data)
-  checkmate::assert_subset(c("sex", "age"), names(data))
-  checkmate::assert_number(interval)
-  checkmate::assert_flag(na_rm)
-  checkmate::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_subset(c("sex", "age"), names(data))
+  prettycheck:::assert_number(interval)
+  prettycheck:::assert_flag(na_rm)
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
 
   ## TODO:
   ##
   ## * Create a `pretty_breaks()` function.
 
-  plot <- rutils:::shush(
+  plot <- rutils::shush(
     data |>
       dplyr::select(sex, age) |>
       dplyr::mutate(

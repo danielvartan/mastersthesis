@@ -1,11 +1,11 @@
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(ggcorrplot, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(stats, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
+# library(dplyr)
+# library(ggcorrplot)
+library(ggplot2)
+# library(here)
+# library(hms)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(stats)
+# library(tidyr)
 
 source(here::here("R/utils.R"))
 
@@ -15,13 +15,13 @@ plot_ggcorrplot <- function(data,
                             text_size = NULL,
                             label = TRUE,
                             hc_order = TRUE) {
-  checkmate::assert_tibble(data)
-  checkmate::assert_character(cols)
-  checkmate::assert_subset(cols, names(data))
-  checkmate::assert_flag(na_rm)
-  checkmate::assert_number(text_size, null.ok = TRUE)
-  checkmate::assert_flag(label)
-  checkmate::assert_flag(hc_order)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_character(cols)
+  prettycheck:::assert_subset(cols, names(data))
+  prettycheck:::assert_flag(na_rm)
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_flag(label)
+  prettycheck:::assert_flag(hc_order)
 
   out <-
     data |>

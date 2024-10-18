@@ -1,7 +1,7 @@
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(viridis, quietly = TRUE)
+# library(dplyr)
+library(ggplot2)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(viridis)
 
 plot_world_map <- function(data, option = NULL, text_size = NULL) {
   option_choices <- c(
@@ -9,10 +9,10 @@ plot_world_map <- function(data, option = NULL, text_size = NULL) {
     "cividis", "E", "rocket", "F", "mako", "G", "turbo", "H"
   )
 
-  checkmate::assert_tibble(data)
-  checkmate::assert_subset("country", names(data))
-  checkmate::assert_choice(option, option_choices, null.ok = TRUE)
-  checkmate::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_subset("country", names(data))
+  prettycheck:::assert_choice(option, option_choices, null.ok = TRUE)
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
 
   world_map <- ggplot2::map_data("world")
   countries_list <- unique(world_map$region)

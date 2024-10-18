@@ -1,14 +1,14 @@
 academic-title: Master
 academic-degree: Master of Science
-area-of-concentration: Fundamentals of complex systems
-author-surname: Vartanian
+area-of-concentration: Complex Systems
+author-surname: Azevedo
 author-given-name: Daniel
-author-minus-surname: Daniel
-author-initials: D. V.
-author: Daniel Vartanian
+author-minus-surname: Daniel Kachvartanian de
+author-initials: D. K. A.
+author: Daniel Kachvartanian de Azevedo
 cosupervisor: '[Co-supervisor''s full name]'
 keyword: |
-  Chronobiology. Biological rhythms. Chronotype. Circadian phenotype. Sleep. Complex systems. Entrainment. Latitude. Ecology. MCTQ.
+  Complexity science. Complex systems. Chronobiology. Biological rhythms. Chronotypes. Circadian phenotypes. Sleep. Entrainment. Latitude. MCTQ.
 location: São Paulo
 mainfont: Arial
 monofont: FragmentMono-Regular.otf
@@ -18,10 +18,10 @@ school: School of Arts, Sciences and Humanities
 supervisor: Camilo Rodrigues Neto
 type-of-work: Thesis
 university: University of São Paulo
-version-note: Preliminary version
+version-note: Original version
 url: https://danielvartan.github.io/mastersthesis/
-language: en-us
-title: Ecology of sleep and circadian phenotypes of the Brazilian population
-date: '2023-11-16'
-year: '2023'
-format: revealjs
+language: en
+title: Is latitude associated with chronotype?
+date: '2024-10-18'
+year: '2024'
+format: html

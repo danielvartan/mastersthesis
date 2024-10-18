@@ -1,13 +1,13 @@
-# library(checkmate, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(lubritime, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(hms)
+# library(lubritime) # https://github.com/danielvartan/lubritime
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 labels_hms <- function(x, type = "even") {
   classes <- c("numeric", "Duration", "difftime", "hms", "POSIXct",
                "POSIXlt", "Interval")
 
-  checkmate::assert_multi_class(x, classes)
+  prettycheck:::assert_multi_class(x, classes)
 
   if (hms::is_hms(x)) out <- lubritime:::fix_hms(x)
 
@@ -21,22 +21,22 @@ labels_hms <- function(x, type = "even") {
   out
 }
 
-# library(checkmate, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(hms)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 labels_char_hms <- function(x) {
-  checkmate::assert_character(x, pattern = "^\\d{2}:\\d{2}:\\d{2}$")
+  prettycheck:::assert_character(x, pattern = "^\\d{2}:\\d{2}:\\d{2}$")
 
   x |>
     hms::as_hms() |>
     rutils:::label_jump(type = "even")
 }
 
-# library(checkmate, quietly = TRUE)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 label_decimal_fix <- function(x){
-  checkmate::assert_character(x)
+  prettycheck:::assert_character(x)
 
   out <- x[which(grepl("0$", x))]
   min_end_digit <- as.numeric(stringr::str_extract(x[1], ".$"))
@@ -53,14 +53,14 @@ label_decimal_fix <- function(x){
   out
 }
 
-# library(checkmate, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(lubritime, quietly = TRUE)
-library(magrittr, quietly = TRUE)
-# library(mctq, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(stats, quietly = TRUE)
+# library(here)
+# library(hms)
+# library(lubritime) # https://github.com/danielvartan/lubritime
+library(magrittr)
+# library(mctq)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(stats)
 
 source(here::here("R/test_normality.R"))
 
@@ -71,11 +71,11 @@ summarise_inline <- function(data,
   classes <- c("numeric", "Duration", "difftime", "hms", "POSIXct",
                "POSIXlt", "Interval")
 
-  checkmate::assert_tibble(data)
-  checkmate::assert_choice(col, names(data))
-  checkmate::assert_string(x_label)
-  checkmate::assert_flag(test_norm)
-  checkmate::assert_multi_class(data[[col]], classes)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_choice(col, names(data))
+  prettycheck:::assert_string(x_label)
+  prettycheck:::assert_flag(test_norm)
+  prettycheck:::assert_multi_class(data[[col]], classes)
 
   # R CMD Check variable bindings fix (see: https://bit.ly/3z24hbU) -----
   . <- NULL
@@ -85,7 +85,7 @@ summarise_inline <- function(data,
     prettyNum(length(which(!(is.na(data[[col]])))), big.mark = ",")
   )
 
-  if (rutils:::test_temporal(data[[col]], rm = "Period")) {
+  if (prettycheck:::test_temporal(data[[col]], rm = "Period")) {
     data[[col]] <- mctq:::extract_seconds(data[[col]])
   }
 
@@ -161,16 +161,16 @@ summarise_inline <- function(data,
   }
 }
 
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(stringr, quietly = TRUE)
+# library(cli)
+# library(lubridate)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(stringr)
 
 transform_cut_levels <- function(x, tz = "UTC") {
   pattern <- "^[\\(\\[][\\d.e+]+,[\\d.e+]+[\\)\\]]$"
 
-  checkmate::assert_character(x, min.len = 1)
-  checkmate::assert_choice(tz, OlsonNames())
+  prettycheck:::assert_character(x, min.len = 1)
+  prettycheck:::assert_choice(tz, OlsonNames())
 
   if (!all(stringr::str_detect(x, pattern))) {
     cli::cli_abort(paste0(
@@ -196,11 +196,11 @@ transform_cut_levels <- function(x, tz = "UTC") {
   )
 }
 
-# library(checkmate, quietly = TRUE)
-# library(stringr, quietly = TRUE)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(stringr)
 
 cut_mean <- function(x, round = TRUE) {
-  checkmate::assert_multi_class(x, c("character", "factor"))
+  prettycheck:::assert_multi_class(x, c("character", "factor"))
 
   if (is.factor(x)) x <- as.character(x)
 

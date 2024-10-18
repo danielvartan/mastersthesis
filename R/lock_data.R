@@ -1,8 +1,8 @@
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(encryptr, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(lockr, quietly = TRUE)
+# library(cli)
+# library(encryptr)
+# library(here)
+# library(lockr) # https://github.com/danielvartan/lockr
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 #' Encrypt variables of `validate_data()` output
 #'
@@ -16,18 +16,17 @@
 #' @param public_key (optional) an [`openssl`][openssl::rsa_keygen()] RSA
 #'   public key or a string specifying the public key path. See
 #'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
-#'   pair (default: `here::here(".ssh/id_rsa.pub")`).
+#'   pair (default: `here::here("_ssh/id_rsa.pub")`).
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a validated dataset
 #'   with some variables encrypted.
 #'
-#' @family data wrangling functions
-#'
+#' @family data munging functions
 #' @noRd
 #'
 #' @examples
 #' \dontrun{
-#' if (requireNamespace("utils", quietly = TRUE)) {
+#' if (requireNamespace("utils")) {
 #'  data <-
 #'   get_data() |>
 #'   tidy_data() |>
@@ -37,14 +36,17 @@
 #'  utils::View(data)
 #' }
 #' }
-lock_data <- function(data,
-                      public_key_path = here::here(".ssh/id_rsa.pub")) {
-  checkmate::assert_tibble(data)
+lock_data <- function(
+    data,
+    public_key_path = here::here("_ssh/id_rsa.pub")
+  ) {
+  prettycheck:::assert_tibble(data)
   lockr:::assert_public_key(public_key)
 
   cli::cli_progress_step("Locking data")
 
-  out <- data |>
+  out <-
+    data |>
     encryptr::encrypt(
       track, name, email, birth_date, gender_identity,
       sexual_orientation, country, state, city, postal_code,

@@ -1,7 +1,7 @@
-# library(checkmate, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(yaml, quietly = TRUE)
+# library(here)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(yaml)
 
 # Post-render begin ----------
 
@@ -21,7 +21,10 @@ if (length(pdf_file) == 1) {
 # Create robots.txt file ----------
 
 robots_file <- file.path(output_dir_html, "robots.txt")
-if (!checkmate::test_file_exists(robots_file)) rutils:::create_file(robots_file)
+
+if (!prettycheck:::test_file_exists(robots_file)) {
+  rutils:::create_file(robots_file)
+}
 
 # Change this part if you will not use GitHub Pages.
 writeLines(

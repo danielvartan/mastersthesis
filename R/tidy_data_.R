@@ -1,23 +1,23 @@
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(curl, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(lockr, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(methods, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(stringr, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
+# library(cli)
+# library(curl)
+# library(dplyr)
+# library(here)
+# library(hms)
+# library(lockr) # https://github.com/danielvartan/lockr
+# library(lubridate)
+# library(methods)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(stringr)
+# library(tidyr)
 
 source(here::here("R/look_and_replace.R"))
 
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(lockr, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(cli)
+# library(here)
+# library(lockr) # https://github.com/danielvartan/lockr
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 #' Tidy `get_raw_data()` output
 #'
@@ -43,22 +43,27 @@ source(here::here("R/look_and_replace.R"))
 #'
 #' @param data A [`tibble`][dplyr::tibble()] with the `get_raw_data()`
 #'   output.
-#' @param osf_pat (optional) a string with the OSF personal access token
-#'   (PAT) (default: `Sys.getenv("OSF_PAT")`).
+#' @param osf_pat (optional) a string with the OSF Personal Access Token (PAT).
+#'   If you already configure it on `.Renviron`, use the default value. If not,
+#'   enter the key using the [`askpass()`][askpass::askpass()] function
+#'   (default: `Sys.getenv("OSF_PAT")`).
 #' @param public_key (optional) an [`openssl`][openssl::rsa_keygen()] RSA
 #'   public key or a string specifying the public key path. See
 #'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
-#'   pair (default: `here::here(".ssh/id_rsa.pub")`).
+#'   pair (default: `here::here("_ssh/id_rsa.pub")`).
 #' @param private_key (optional) an [`openssl`][openssl::rsa_keygen()] RSA
 #'   private key or a string specifying the private key path. See
 #'   [`rsa_keygen()`][lockr::rsa_keygen] to learn how to create an RSA key
-#'   pair (default: `"here::here(.ssh/id_rsa")`).
+#'   pair (default: `"here::here(_ssh/id_rsa")`).
+#' @param password (optional) a string with the password to unlock the data.
+#'  If you already configure it on `.Renviron`, use the default value. If not,
+#'  enter the key using the [`askpass()`][askpass::askpass()]
+#'  function (default: `Sys.getenv("MASTERSTHESIS_PASSWORD")`).
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a tidied, but not
 #'   validated, dataset.
 #'
-#' @family data wrangling functions
-#'
+#' @family data munging functions
 #' @noRd
 #'
 #' @references
@@ -74,22 +79,24 @@ source(here::here("R/look_and_replace.R"))
 #'
 #' @examples
 #' \dontrun{
-#' if (requireNamespace("utils", quietly = TRUE)) {
-#'   tidy <- tidy_data_()
-#'   utils::View(tidy_data_())
+#' if (requireNamespace("utils")) {
+#'   tidy_data <- raw_data |> tidy_data_()
+#'   utils::View(tidy_data)
 #' }
 #' }
 tidy_data_ <- function(
     data,
     osf_pat = Sys.getenv("OSF_PAT"),
-    public_key = here::here(".ssh/id_rsa.pub"),
-    private_key = here::here(".ssh/id_rsa")
+    public_key = here::here("_ssh/id_rsa.pub"),
+    private_key = here::here("_ssh/id_rsa"),
+    password = Sys.getenv("MASTERSTHESIS_PASSWORD")
 ) {
-  checkmate::assert_tibble(data)
-  checkmate::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
   lockr:::assert_public_key(public_key)
-  lockr:::assert_private_key(private_key)
-  rutils:::assert_internet()
+  prettycheck:::assert_string(password, n.chars = 32)
+  lockr:::assert_private_key(private_key, password = password)
+  prettycheck:::assert_internet()
 
   ## TO DO:
   ##
@@ -113,11 +120,11 @@ tidy_data_ <- function(
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 fix_var_names <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   data |>
     dplyr::rename(
@@ -148,12 +155,12 @@ fix_var_names <- function(data) {
     )
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
+# library(dplyr)
+# library(lubridate)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 fix_var_classes <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   data |>
     dplyr::mutate(
@@ -229,24 +236,26 @@ fix_var_classes <- function(data) {
     )
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(lockr, quietly = TRUE)
-# library(methods, quietly = TRUE)
-library(rlang, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(dplyr)
+# library(lockr) # https://github.com/danielvartan/lockr
+# library(methods)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+library(rlang)
+# library(rutils) # https://github.com/danielvartan/rutils
 
 look_and_replace_values <- function(
     data,
     osf_pat = Sys.getenv("OSF_PAT"),
-    public_key = here::here(".ssh/id_rsa.pub"),
-    private_key = here::here(".ssh/id_rsa")
+    public_key = here::here("_ssh/id_rsa.pub"),
+    private_key = here::here("_ssh/id_rsa"),
+    password = Sys.getenv("MASTERSTHESIS_PASSWORD")
 ) {
-  checkmate::assert_tibble(data)
-  checkmate::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
   lockr:::assert_public_key(public_key)
-  lockr:::assert_private_key(private_key)
-  rutils:::assert_internet()
+  prettycheck:::assert_string(password, n.chars = 32)
+  lockr:::assert_private_key(private_key, password = password)
+  prettycheck:::assert_internet()
 
   # char_vars <- c(
   #   "track", "name", "email", "country", "state", "city", "postal_code",
@@ -302,14 +311,14 @@ look_and_replace_values <- function(
   invisible(out)
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(lockr, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(stringr, quietly = TRUE)
+# library(dplyr)
+# library(lockr) # https://github.com/danielvartan/lockr
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(stringr)
 
 fix_character_vars <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   data |>
     dplyr::mutate(
@@ -331,12 +340,12 @@ fix_character_vars <- function(data) {
     )
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(tidyr)
 
 nest_vars <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   data |>
     tidyr::nest(
@@ -350,7 +359,7 @@ nest_vars <- function(data) {
 }
 
 select_vars <- function(data) {
-  checkmate::assert_tibble(data)
+  prettycheck:::assert_tibble(data)
 
   data |>
     dplyr::select(

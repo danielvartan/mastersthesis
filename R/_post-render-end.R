@@ -1,14 +1,17 @@
-# library(rutils)
+# library(beepr)
 # library(here)
-# library(magrittr)
+library(magrittr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 # library(readr)
+# library(rutils) # https://github.com/danielvartan/rutils
 # library(stringr)
 
 # Copy output to `docs` folder -----
 
-## TODO: Create function in `rutils` to delete all files and dirs from a folder.
-
-library(magrittr)
+# TO DO
+#
+# - Create a function in `rutils` to delete all files and dirs from a
+#   folder.
 
 env_vars <- yaml::read_yaml(env_vars_file_path)
 
@@ -46,15 +49,15 @@ output_docs_new_dirs <- list.dirs(
   here::here(get(paste0("output_docs_", env_vars$format)), .)
 
 for (i in output_docs_old_files) {
-  if (checkmate::test_file_exists(i)) rutils:::delete_file(i)
+  if (prettycheck:::test_file_exists(i)) rutils:::delete_file(i)
 }
 
 for (i in output_docs_old_dirs) {
-  if (checkmate::test_directory_exists(i)) rutils:::delete_dir(i)
+  if (prettycheck:::test_directory_exists(i)) rutils:::delete_dir(i)
 }
 
 for (i in output_docs_new_dirs) {
-  if (!checkmate::test_directory_exists(i)) dir.create(i)
+  if (!prettycheck:::test_directory_exists(i)) dir.create(i)
 }
 
 for (i in seq_along(output_docs_new_files)) {
@@ -90,9 +93,15 @@ rutils:::clean_quarto_mess(
   file = NULL,
   dir = dir_list,
   ext = c(
-    "aux", "bbx", "cbx", "dbx", "fdb_latexmk", "lbx", "loa", "log", "otf",
-    "pdf", "scss", "tex", "xdv"
+    "aux", "bbx", "bcf-SAVE-ERROR", "cbx", "dbx", "fdb_latexmk", "lbx", "loa",
+    "log", "otf", "pdf", "scss", "tex", "xdv"
   ),
   ignore = NULL,
   wd = here::here()
 )
+
+# Check if all ran successfully -----
+
+beepr::beep(1)
+
+Sys.sleep(3)

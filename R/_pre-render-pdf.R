@@ -1,5 +1,5 @@
 # library(here)
-# library(rutils)
+# library(rutils) # https://github.com/danielvartan/rutils
 # lybrary(yaml)
 
 # Pre-render begin ----------
@@ -33,35 +33,11 @@ swap_list <- list(
     value = NULL,
     quarto_render = FALSE
   ),
-  errata_reference = list(
-    from = here::here("qmd", "errata.qmd"),
-    to = here::here("tex", "include-before-body.tex"),
-    begin_tag = "%:::% errata reference begin %:::%",
-    end_tag = "%:::% errata reference end %:::%",
-    value = NULL,
-    quarto_render = FALSE
-  ),
-  errata_body = list(
-    from = here::here("qmd", "errata.qmd"),
-    to = here::here("tex", "include-before-body.tex"),
-    begin_tag = "%:::% errata body begin %:::%",
-    end_tag = "%:::% errata body end %:::%",
-    value = NULL,
-    quarto_render = TRUE
-  ),
   approval_sheet = list(
     from = here::here("qmd", "_config.qmd"),
     to = here::here("tex", "include-before-body.tex"),
     begin_tag = "%:::% approval-sheet body begin %:::%",
     end_tag = "%:::% approval-sheet body end %:::%",
-    value = NULL,
-    quarto_render = FALSE
-  ),
-  inscription_body = list(
-    from = here::here("qmd", "inscription.qmd"),
-    to = here::here("tex", "include-before-body.tex"),
-    begin_tag = "%:::% inscription body begin %:::%",
-    end_tag = "%:::% inscription body end %:::%",
     value = NULL,
     quarto_render = FALSE
   ),
@@ -128,22 +104,6 @@ swap_list <- list(
     end_tag = "%:::% foreign-abstract keywords end %:::%",
     value = NULL,
     quarto_render = FALSE
-  ),
-  list_of_abbreviations = list(
-    from = here::here("qmd", "list-of-abbreviations.qmd"),
-    to = here::here("tex", "include-before-body.tex"),
-    begin_tag = "%:::% list-of-abbreviations body begin %:::%",
-    end_tag = "%:::% list-of-abbreviations body end %:::%",
-    value = NULL,
-    quarto_render = TRUE
-  ),
-  list_of_symbols = list(
-    from = here::here("qmd", "list-of-symbols.qmd"),
-    to = here::here("tex", "include-before-body.tex"),
-    begin_tag = "%:::% list-of-symbols body begin %:::%",
-    end_tag = "%:::% list-of-symbols body end %:::%",
-    value = NULL,
-    quarto_render = TRUE
   )
 )
 

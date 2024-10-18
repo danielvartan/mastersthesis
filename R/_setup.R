@@ -1,20 +1,37 @@
 ## Based on <https://github.com/hadley/r4ds/blob/main/_common.R>.
 
+# Load libraries -----
+
+library(downlit)
 # library(extrafont)
-# library(here, quietly = TRUE)
-# library(knitr, quietly = TRUE)
-# library(ggplot2, quietly = TRUE)
-# lybrary(yaml)
+# library(here)
+# library(knitr)
+library(magrittr)
+library(ggplot2)
+library(rlang)
+# library(rutils) # https://github.com/danielvartan/rutils
+library(targets)
+library(xml2)
+# library(yaml)
 
-# Load libraries
+# Set general options -----
 
-library(magrittr, quietly = FALSE, verbose = FALSE)
-library(ggplot2, quietly = FALSE, verbose = FALSE)
-library(targets, quietly = FALSE, verbose = FALSE)
+options(
+  dplyr.print_min = 6,
+  dplyr.print_max = 6,
+  pillar.max_footer_lines = 2,
+  pillar.min_chars = 15,
+  scipen = 10,
+  digits = 5,
+  stringr.view_n = 6,
+  pillar.bold = TRUE,
+  width = 77 # 80 - 3 for #> comment
+)
 
 # Set variables -----
 
-set.seed(2023)
+set.seed(2024)
+
 env_vars <- yaml::read_yaml(here::here("_variables.yml"))
 base_size <- 10
 
@@ -33,7 +50,7 @@ if (is.null(env_vars$sansfont)) {
       "^(?i)", stringr::str_extract(env_vars$sansfont, "(?i)^.[a-zÀ-ÿ]+"), "*"
     )
   ) |>
-    rutils:::shush()
+    rutils::shush()
 
   extrafont::loadfonts(quiet = TRUE)
 }
@@ -46,18 +63,6 @@ knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
   root.dir = here::here()
-)
-
-# Set general options -----
-
-options(
-  dplyr.print_min = 6,
-  dplyr.print_max = 6,
-  pillar.max_footer_lines = 2,
-  pillar.min_chars = 15,
-  stringr.view_n = 6,
-  pillar.bold = TRUE,
-  width = 77 # 80 - 3 for #> comment
 )
 
 # Set `ggplot2` -----

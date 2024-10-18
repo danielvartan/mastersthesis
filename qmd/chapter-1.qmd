@@ -9,6 +9,7 @@ source(here::here("R/_setup.R"))
 ```
 
 ```{r}
+#| label: status
 #| echo: false
 #| output: asis
 
@@ -22,7 +23,7 @@ rutils:::quarto_status(
 <!-- %:::% index pdf begin %:::% -->
 You are currently viewing the preliminary `r ifelse(env_vars$format == "pdf", "print", "web")` version of this master's thesis.
 
-This document follows the [collection of articles thesis](https://en.wikipedia.org/wiki/Collection_of_articles) format. This first chapter serves as an introduction to the thesis subject, providing also its justification, aims, and a list of all projects produced during its development. The subsequent chapters consist of a series of articles connected to the thesis, with the exception of the last one, which encompasses a general discussion and final remarks.
+This document follows the [collection of articles thesis](https://en.wikipedia.org/wiki/Collection_of_articles) format. This first chapter serves as an introduction to the thesis subject, providing also its justification and aims. The subsequent chapters consist of a series of essays and a article connected to the thesis, with the exception of the last one, which encompasses a general discussion and final remarks.
 
 ::: {.content-visible when-format="html"}
 All analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system.
@@ -32,106 +33,9 @@ All analyses in this document are reproducible and were conducted using the [R p
 All analyses in this document are reproducible and were conducted using the [R programming language](https://www.r-project.org/) along with the [Quarto](https://quarto.org/) publishing system. It's worth noting that this type of thesis is best suited for online viewing. To access the digital version and see the latest research updates, please visit [https://danielvartan.github.io/mastersthesis/](https://danielvartan.github.io/mastersthesis/).
 :::
 
-Given its preliminary nature, not all chapters are ready for reading. However, the author has chosen to display the entire state of the thesis rather than presenting only polished sections. This approach provides readers with a more comprehensive understanding of the work in progress. Chapters not suitable for reading will include a call block indicating their status.
+All of these projects are developed using secure, open-source tools and adhere to the best international standards. They are designed to ensure 100% reproducibility and are accompanied by extensive documentation.
 
-## A brief introduction to chronobiology
-
-The dimension of time, manifest in the form of rhythms and cycles, like the alternating patterns of day and night as well as the annual transition of seasons, was consistently featured in the evolutionary journey of not only the human species but also all other life forms on our planet. These rhythms and cycles brought with them evolutionary pressures, resulting in the development of a temporal organization that allowed organisms to survive and reproduce in response to the conditions imposed by the environments they inhabited [@pittendrigh1981; @menna-barreto2003]. An example of this organization can be observed in the presence of different activity-rest patterns among living beings as they adapt to certain temporal niches, such as the diurnal behavior of humans and the nocturnal behavior of cats and some rodents [@foster2005].
-
-For years, scientists debated whether this organization was solely in response to environmental stimuli or if it was also present endogenously, internally, within organisms [@rotenberg2003]. One of the early seminal studies describing a potential endogenous rhythmicity in living beings was conducted in 1729 by the French astronomer Jean Jacques d'Ortous de Mairan. De Mairan observed the movement of the sensitive plant (_mimosa pudica_) by isolating it from the light-dark cycle and found that the plant continued to move its leaves periodically (@fig-chapter-1-nobel-prize-2017-de-mairan-experiment) [@foster2005; @rotenberg2003]. The search for this internal timekeeper in living beings only began to solidify in the 20th century through the efforts of scientists like Jürgen Aschoff, Colin Pittendrigh, Franz Halberg, and Erwin Bünning, culminating in the establishment of the science known as chronobiology^[Some say the term _chronobiology_ was coined by Franz Halberg during the Cold Spring Harbor Symposium on Quantitative Biology, vol. XXV [@menna-barreto2023, p. 21].], with a significant milestone being the Cold Spring Harbor Symposium on Quantitative Biology: Biological Clocks in 1960 (_chrónos_, from Greek, meaning time; and _biology_, pertaining to the study of life) [@rotenberg2003; @coldspringharborlaboratory]. However, the recognition of endogenous rhythmicity by the global scientific community truly came in 2017 when Jeffrey Hall, Michael Rosbash, and Michael Young were awarded the [Nobel Prize in Physiology or Medicine](https://www.nobelprize.org/prizes/medicine/2017/press-release/) for their discoveries of molecular mechanisms that regulate the circadian rhythm in fruit flies (_circā_, from Latin, meaning around, and _dĭes_, meaning day [@latinitium] -- a rhythm that expresses itself in approximately one day) [@nobelprizeoutreachab].
-
-::: {#fig-chapter-1-nobel-prize-2017-de-mairan-experiment}
-![](images/nobel-prize-outreach-ab-2017-de-mairan-experiment.png){width=50%}
-
-[Source: Reproduction from @nobelprizeoutreachab.]{.legend}
-
-Illustration of a circadian rhythm in the movement of the leaves of the sensitive plant (_mimosa pudica_) observed by Jacques d'Ortous de Mairan in 1729.
-:::
-
-Science has already demonstrated and described various biological rhythms and their impacts on organisms. These rhythms can occur at different levels, whether at a macro level, such as the menstrual cycle, or even at a micro level, such as rhythms expressed within cells [@roenneberg2016]. Like many other biological phenomena, these are complex systems present in all living beings, i.e., a emergence created by a large number of connected and interecticve agents that exhibit adaptive characteristics, all without the need of a central control [@boccara2010]. It is understood today that the endogeneity of rhythms has provided organisms with an anticipatory capacity, allowing them to organize resources and activities before they are needed [@marques2003].
-
-Despite the endogenous nature of these rhythms, they can still be regulated by the external environment. Signals (cues) from the environment that occur cyclically and have the ability to regulate biological rhythmic expression are called zeitgebers (from the German _zeit_, meaning time, and _geber_, meaning donor [@cambridgeuniversitypress]). These zeitgebers act as synchronizers by entraining the phases of  biological rhythms [@khalsa2003; @kuhlman2018] (see @fig-chapter-1-kuhlman-2018-figure-2b). Among the known zeitgebers are, for example, meal timing and changes in environmental temperature [@aschoff1981; @roenneberg2016]. However, the most influential of them is the light-dark cycle. It is understood that the day/night cycle, resulting from the rotation of the Earth, has provided the vast majority of organisms with an oscillatory system with a periodic duration of approximately 24 hours [@kuhlman2018; @roenneberg2007].
-
-::: {#fig-chapter-1-kuhlman-2018-figure-2b}
-![](images/kuhlman-2018-figure-2b.png){width=75%}
-
-[Source: Adapted from @kuhlman2018.]{.legend}
-
-Illustration of a circadian rhythm (output) whose phase is entrained in the presence of a zeitgeber (input). The rectangles represent the light-dark cycle.
-:::
-
-Naturally, the expression of this temporal organization varies from organism to organism, even among members of the same species, whether due to the different ways they are exposed to the environment or the differences in the expression of endogenous rhythmicity, which, in turn, results from gene expression [@roenneberg2007a]. The interaction between these two expressions, external and internal, of the environment and genotype, generates a signature, an observable characteristic, which is called a phenotype [@frommlet2016].
-
-The various temporal characteristics of an organism can be linked to different oscillatory periods. Among these are circadian phenotypes, which refer to characteristics observed in rhythms with periods lasting about a day [@foster2005]. Another term used for these temporal phenotypes, as the name suggest, is _chronotype_ [@ehret1974; @pittendrigh1993]. This term is also often used to differentiate phenotypes on a spectrum ranging from morningness to eveningness [@horne1976; @roenneberg2019b].
-
-Sleep is a phenomenon that exhibits circadian expression. By observing the sleep characteristics of individuals, it is possible to assess the distribution of circadian phenotypes within the same population, thereby investigating their covariates and other relevant associations [@roenneberg2003]. This is because sleep regulation is understood as the result of the interaction between two processes: a homeostatic process (referred to as the $\text{S}$ process), which is sleep-dependent and accumulates with sleep deprivation, and a circadian process (referred to as the $\text{C}$ process), whose expression can be influenced by zeitgebers, such as the light-dark cycle [@borbely1982; @borbely2016] (@fig-chapter-1-borbely-1982-figure-4 illustrates these two process). Considering that the circadian rhythm (the $\text{C}$ process) is present in sleep, its characteristics can be estimated if the $\text{S}$ process can be controlled.
-
-::: {#fig-chapter-1-borbely-1982-figure-4}
-![](images/borbely-1982-figure-4.png){width=75%}
-
-[Source: Adapted from @borbely1982.]{.legend}
-
-Illustration of the interaction of the $\text{S}$ process and the $\text{C}$ process in sleep regulation. The figure depicts two scenarios: one without sleep deprivation and another with sleep deprivation. The $y$-axis represents the level of the process.
-:::
-
-Although many theories related to sleep and circadian rhythms are well-established in science, it is still necessary to verify and test them in larger samples to obtain a more accurate picture of the mechanisms related to the ecology of sleep and chronotypes. This project undertakes this commitment with the aim of investigating a hypothesis that is still relatively untested but widely accepted in chronobiology, which suggests that latitude is associated with the regulation of circadian rhythms [@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003].
-
-```{=latex}
-\index{Latitude hypothesis}
-```
-
-The latitude hypothesis is based on the idea that regions located at latitudes close to the poles, on average, experience less annual sunlight exposure compared to regions near the equator. Therefore, it is deduced that regions near latitude 0° have a stronger solar zeitgeber, which, according to chronobiology theories, should lead to a greater propensity for the synchronization of circadian rhythms in these populations with the light-dark cycle. This would reduce the amplitude and diversity of circadian phenotypes found due to a lower influence of individuals' characteristic endogenous periods (@fig-chapter-1-roenneberg-2003-figure-7-f illustrates this effect). This would also give these populations a morningness characteristic when compared to populations living farther from the equator, where the opposite would occur – greater amplitude and diversity of circadian phenotypes and an eveningness characteristic compared to populations living near latitude 0° [@roenneberg2003].
-
-::: {#fig-chapter-1-roenneberg-2003-figure-7-f}
-![](images/roenneberg-2003-figure-7-f.png){width=75%}
-
-[Source: Adapted from @roenneberg2003.]{.legend}
-
-Different chronotype distributions, influenced by strong and weak zeitgebers -- black for strong and hatched for weak. An illustration of the effect hypothesized by the latitude hypothesis.
-:::
-
-To achieve the mentioned objectives, this project will rely on a dataset of the sleep-wake cycle expression of the Brazilian population, consisting of $120,265$ subjects covering all states of the country. This dataset was collected in 2017 and is based on the Munich ChronoType Questionnaire (MCTQ), a widely validated scale used to measure chronotypes based on individuals' sleep-wake cycle expression in the last four weeks [@roenneberg2003; @roenneberg2012a].
-
-## Sleep and the entrainment
-
-## Complex systems and entrainment
-
-What are complex systems?
-
-> "Systems that don't yield to compact forms of representation or description." (David Krakauer apud @mitchell2013)
-
-> "A system of many interacting parts where the system is more than just the sum of its parts." (Mark Newman apud @mitchell2013)
-
-> Systems with many connected agents that interact and exhibit self-organization and emergence behavior, all without the need for a central controller (adapted from Camilo Rodrigues Neto's definition, supervisor of this thesis).
-
-> Dialectics at its finest (my working definition).
-
-Common proprieties of complex systems and how they relate with the entrainment phenomenon.
-
-### Agents
-
-### Conectivity
-
-### Interdependence
-
-### Adaptation
-
-### Self-organization
-
-## Modeling complex systems
-
-Agent-based models
-Rule-based models
-
-The main investigation of this thesis aims to verify the effect of a rule/association about the biological rhythm entrainment with the light-dark cycle. That way, it may serve as a model predictor for the entrainment phenomenon.
-
-## Thesis justification
-
-Mapping the sleep-wake cycles and circadian phenotypes of Brazilians can contribute to the understanding of various phenomena related to sleep and chronobiology, such as the relationship between latitude and the regulation of circadian rhythms, the hypothesis tested by this thesis. However, in addition to contributing to the validation of theories and the advancement of scientific knowledge, the data, information, and knowledge generated by this project will also serve the public interest as a guide for public policies related to sleep and population health. Scientific literature is filled with studies pointing to negative associations with human health stemming from the disruption of biological rhythms. These range from fatigue [@tryon2004], deficits in cognitive performance [@dongen2003] , gastrointestinal problems [@fido2008; @morito2014; @mortas2020], mental disorders [@jones2005; @kalmbach2015; @roh2012] and even cancer [@lie2006; @papantoniou2015; @schernhammer2001].
-
-This study will also produce the largest dataset of valid sleep-wake cycle expression among Brazilians ever recorded. For comparison, national epidemiological studies on sleep and circadian phenotypes such as those by @drager2022 and @leocadio-miguel2017 worked with samples of $2,635$ and $12,884$ individuals, respectively. The sample of this project includes $120,265$ individuals in its raw state, covering all Brazilian states. Another advantage of the sample is its cross-sectional nature, as $98.173\%$ of the data were collected during a single week (from October 15th to 21st, 2017). This avoids potential distortions caused by seasonal effects.
-
-## Thesis aims
+## Aims
 
 This thesis focuses on the expression of sleep and circadian phenotypes (chronotypes) with the aim of providing answers to the following questions:
 
@@ -171,23 +75,9 @@ i) Develop algorithms and models to help with the processing of MCTQ data and to
 
 i) Evaluate and discuss the presence/absence of significant differences in the values of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, based on decimal degrees of latitude (IV), while controlling for known covariates such as subjects' gender and age.
 
-## Projects developed
+## Thesis structure
 
-In addition to the main investigation, which is center on testing the latitude hypothesis, four additional projects/analyses were devised for this thesis. Each project was organized into a separate chapter, with the intention of crafting each chapter in a manner suitable for submission to a scientific journal. This organizational approach was influenced by the doctoral thesis of @reis2020.
+Three essays
 
-The first project involves a concise paper that delineates the similarity observed among Portuguese translations of the MCTQ (Munich ChronoType Questionnaire) employed in scientific research. It's crucial to emphasize that, although the MCTQ functions as a self-report scale for assessing chronotypes, it primarily relies on objective temporal metrics (e.g., local bedtime, sleep latency duration) rather than more subjective factors such as perceived sleep quality. Essentially, it functions as a sleep diary. Nevertheless, these translations can exhibit noteworthy discrepancies. It's worth noting that the proper validation of MCTQ in Portuguese was only achieved in 2020 through the efforts of @reis2020. The aim of this project is to assess the semantic similarity among these translations using a natural language model (NLM) known as Bidirectional Encoder Representations from Transformers (BERT), developed by Google, and pretrained on the Portuguese language [@devlin2018; @souza2020]. By leveraging these semantic representation vectors, the translations will be evaluated based on cosine similarity.
-
-The second project is an R package comprising a suite of tools designed for processing the MCTQ questionnaire. While it may appear to be a straightforward questionnaire, the MCTQ necessitates a considerable amount of date and time manipulation. This presents a challenge for many scientists, as handling date and time data can be particularly tricky, especially when dealing with extensive datasets. By creating a free, open-source and peer-reviewed R package, it becomes possible to standardize the analyses and enhance reproducibility for all research related to the MCTQ. This R package [@vartanian2023] has already been developed and published on [CRAN](https://cran.r-project.org/web/packages/mctq/index.html) (The Comprehensive R Archive Network) and [GitHub](https://github.com/ropensci/mctq). It has been downloaded more than $6,000$ to this date, and underwent a peer review by the [rOpenSci Initiative](https://ropensci.org/). Chapter 2 will serve as a manuscript for a publication regarding the package in the [Journal of Statistical Software](https://www.jstatsoft.org/authors).
-
-The third project is centered around the project's extensive MCTQ data sample, representing the largest dataset collected within a single country for this questionnaire thus far. This chapter serves as a crucial step in fulfilling one of the thesis primary objectives, which is to describe the sleep-wake cycle and circadian characteristics of the Brazilian population. Achieving this goal entails rigorous data cleaning and comprehensive data wrangling efforts. Furthermore, it functions as a means to facilitate the utilization of this valuable sample in future scientific research, while ensuring full compliance with ethical requirements.
-
-The fourth project involves a rule-based model focusing on entrainment phenomena. Complex systems, such as biological rhythms, often exhibit the challenge of being described or represented concisely, as noted by David Krakauer (cited in @mitchell2013). Rule-based or agent-based models offer a means to simulate scenarios involving a multitude of agents and interactions. Models of this nature, underpinned by scientific theory-based rules, can provide valuable insights and enhance our comprehension of the various manifestations of entrainment phenomena within a population context. They offer an effective means to understand the implications of theory and test them against real-world data. An initial version of this package was developed as a Python package and is currently accessible on [GitHub](https://entrainment.readthedocs.io/en/latest/index.html) [see @vartanian2022].
-
-```{=latex}
-\index{Latitude hypothesis}
-```
-
-The fifth and final project is the test of the latitude hypothesis, which serves as the primary investigation. It's important to note that all the preceding projects converge into this one. The first project focuses on validating the MCTQ translation used for data collection. The second project involves the development of data processing tools. The third project is responsible for the necessary data manipulation to prepare it for analysis. The fourth project aims to offer valuable insights and guidance for the upcoming tasks.
-
-All of these projects are developed using secure, open-source tools and adhere to the best international standards. They are designed to ensure 100% reproducibility and are accompanied by extensive documentation.
+The main project is the test of the latitude hypothesis, which serves as the primary investigation. It's important to note that all the preceding projects converge into this one. The first project focuses on validating the MCTQ translation used for data collection. The second project involves the development of data processing tools. The third project is responsible for the necessary data manipulation to prepare it for analysis. The fourth project aims to offer valuable insights and guidance for the upcoming tasks.
 <!-- %:::% index end %:::% -->

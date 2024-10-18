@@ -1,9 +1,9 @@
-# library(checkmate, quietly = TRUE)
-# library(cli, quietly = TRUE)
+# library(cli)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 extract_from_summary <- function(x, element = "r.squared") {
-  checkmate::assert_list(x)
-  checkmate::assert_string(element)
+  prettycheck:::assert_list(x)
+  prettycheck:::assert_string(element)
 
   summary <- summary(x)
 
@@ -27,18 +27,18 @@ r_squared <- function(x) extract_from_summary(x, "r.squared")
 adj_r_squared <- function(x) extract_from_summary(x, "adj.r.squared")
 f_statistic <- function(x) extract_from_summary(x, "fstatistic")
 
-# library(checkmate, quietly = TRUE)
-# library(stats, quietly = TRUE)
+# library(stats)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 std_error <- function(x){
-  checkmate::assert_numeric(x)
+  prettycheck:::assert_numeric(x)
 
   stats::sd(x, na.rm = TRUE) / sqrt(length(x))
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(stats, quietly = TRUE)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(stats)
 
 # TODO: Move to `rutils`.
 is_outlier <- function( # Change name to `test_outlier`
@@ -47,10 +47,10 @@ is_outlier <- function( # Change name to `test_outlier`
     iqr_mult = 1.5,
     sd_mult = 3
 ) {
-  checkmate::assert_numeric(x)
-  checkmate::assert_choice(method, c("iqr", "sd"))
-  checkmate::assert_number(iqr_mult)
-  checkmate::assert_number(sd_mult)
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_choice(method, c("iqr", "sd"))
+  prettycheck:::assert_number(iqr_mult)
+  prettycheck:::assert_number(sd_mult)
 
   if (method == "iqr") {
     iqr <- stats::IQR(x, na.rm = TRUE)
@@ -64,7 +64,7 @@ is_outlier <- function( # Change name to `test_outlier`
   dplyr::if_else(x >= min & x <= max, FALSE, TRUE, missing = FALSE)
 }
 
-# library(checkmate, quietly = TRUE)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 # TODO: Move to `rutils`.
 remove_outliers <- function(
@@ -73,10 +73,10 @@ remove_outliers <- function(
     iqr_mult = 1.5,
     sd_mult = 3
 ) {
-  checkmate::assert_numeric(x)
-  checkmate::assert_choice(method, c("iqr", "sd"))
-  checkmate::assert_number(iqr_mult, lower = 1)
-  checkmate::assert_number(sd_mult, lower = 0)
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_choice(method, c("iqr", "sd"))
+  prettycheck:::assert_number(iqr_mult, lower = 1)
+  prettycheck:::assert_number(sd_mult, lower = 0)
 
   x |>
     test_outlier(

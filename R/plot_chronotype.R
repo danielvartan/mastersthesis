@@ -7,42 +7,44 @@
 #   The window must have an iterative length in order to obtain the desired
 #   or best density.
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(latex2exp, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(lubritime, quietly = TRUE)
-library(rlang, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(stats, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
+# library(dplyr)
+library(ggplot2)
+# library(here)
+# library(hms)
+# library(latex2exp)
+# library(lubridate)
+# library(lubritime) # https://github.com/danielvartan/lubritime
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+library(rlang)
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(stats)
+# library(tidyr)
 
 source(here::here("R/utils.R"))
 source(here::here("R/utils-plot.R"))
 
-plot_chronotype <- function(data,
-                            col = "msf_sc",
-                            x_lab = "Frequency (%)",
-                            y_lab = col,
-                            col_width = 0.8,
-                            col_border = 0.6,
-                            text_size = NULL,
-                            legend_position = "right",
-                            chronotype_cuts = FALSE) {
-  checkmate::assert_tibble(data, min.rows = 1, min.cols = 1)
-  checkmate::assert_choice(col, names(data))
-  checkmate::assert_multi_class(x_lab, c("character", "latexexpression"))
-  rutils:::assert_length_one(x_lab)
-  checkmate::assert_multi_class(y_lab, c("character", "latexexpression"))
-  rutils:::assert_length_one(y_lab)
-  checkmate::assert_number(col_width)
-  checkmate::assert_number(col_border)
-  checkmate::assert_number(text_size, null.ok = TRUE)
-  checkmate::assert_choice(legend_position, c("left","top", "right", "bottom"))
-  checkmate::assert_flag(chronotype_cuts)
+plot_chronotype <- function(
+    data,
+    col = "msf_sc",
+    x_lab = "Frequency (%)",
+    y_lab = col,
+    col_width = 0.8,
+    col_border = 0.6,
+    text_size = NULL,
+    legend_position = "right",
+    chronotype_cuts = FALSE
+  ) {
+  prettycheck:::assert_tibble(data, min.rows = 1, min.cols = 1)
+  prettycheck:::assert_choice(col, names(data))
+  prettycheck:::assert_multi_class(x_lab, c("character", "latexexpression"))
+  prettycheck:::assert_length(x_lab, len = 1)
+  prettycheck:::assert_multi_class(y_lab, c("character", "latexexpression"))
+  prettycheck:::assert_length(y_lab, len = 1)
+  prettycheck:::assert_number(col_width)
+  prettycheck:::assert_number(col_border)
+  prettycheck:::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_choice(legend_position, c("left","top", "right", "bottom"))
+  prettycheck:::assert_flag(chronotype_cuts)
 
   if (is.null(y_lab)) {
     if (hms::is_hms(data[[col]])) {

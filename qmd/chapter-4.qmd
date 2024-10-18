@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Expression of sleep and circadian phenotypes of the brazilian population
+# On the latitude hypothesis
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -10,6 +10,7 @@ source(here::here("R/_setup.R"))
 ```
 
 ```{r}
+#| label: status
 #| echo: false
 #| output: asis
 
@@ -20,21 +21,4 @@ rutils:::quarto_status(
   )
 ```
 
-::: {.callout-note}
-## Target journal
 
-1. [Chronobiology International](https://www.tandfonline.com/action/authorSubmission?show=instructions&journalCode=icbi20) ([IF 2022: 2.8/JCR](https://jcr.clarivate.com/jcr/) | [A1/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
-2. [Journal of Biological Rhythms](https://journals.sagepub.com/author-instructions/JBR) ([IF 2022: 3.5/JCR](https://jcr.clarivate.com/jcr/) | [A2/2017-2020](https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf)).
-:::
-
-::: {.callout-note}
-The following study was conducted by Daniel Vartanian (DV), Mario Pedrazzoli (MP), and Camilo Rodrigues Neto (CR).
-
-\microskip
-
-__DV__ conceived the study, contributed with the design, implementation, statistical analysis and authored the manuscript. __CR__ contributed as a science adviser and reviewer. __DV__ and __MP__ were responsible for data collection.  All authors actively participated in discussions regarding the results and contributed to the final manuscript.
-
-\microskip
-
-_Future reference_: Vartanian, D., Pedrazzoli, M., & Rodrigues Neto, C. (2024). Expression of sleep and circadian phenotypes of the Brazilian population. _Chronobiology International_.
-:::

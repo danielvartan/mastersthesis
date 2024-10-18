@@ -1,12 +1,12 @@
-# library(checkmate, quietly = TRUE)
-# library(here, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(moments, quietly = TRUE)
-# library(purrr, quietly = TRUE)
-# library(rutils, quietly = TRUE)
-# library(stats, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
+# library(here)
+# library(hms)
+# library(lubridate)
+# library(moments)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(purrr)
+# library(rutils) # https://github.com/danielvartan/rutils
+# library(stats)
+# library(tidyr)
 
 source(here::here("R/utils.R"))
 source(here::here("R/utils-stats.R"))
@@ -18,21 +18,21 @@ stats_sum <- function(x,
                       iqr_mult = 1.5,
                       hms_format = TRUE,
                       print = TRUE) {
-  checkmate::assert_atomic(x)
-  rutils:::assert_hms(
+  prettycheck:::assert_atomic(x)
+  prettycheck:::assert_hms(
     threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59"),
-    null.ok = TRUE
+    null_ok = TRUE
   )
-  checkmate::assert_flag(na_rm)
-  checkmate::assert_flag(remove_outliers)
-  checkmate::assert_number(iqr_mult)
-  checkmate::assert_flag(hms_format)
-  checkmate::assert_flag(print)
+  prettycheck:::assert_flag(na_rm)
+  prettycheck:::assert_flag(remove_outliers)
+  prettycheck:::assert_number(iqr_mult)
+  prettycheck:::assert_flag(hms_format)
+  prettycheck:::assert_flag(print)
 
-  is_temporal <- x |> rutils:::test_temporal()
+  is_temporal <- x |> prettycheck:::test_temporal()
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
 
-  if (rutils:::test_temporal(x)) {
+  if (prettycheck:::test_temporal(x)) {
     if (lubridate::is.POSIXt(x)) {
       x <- x |> as.numeric()
     } else {

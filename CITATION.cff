@@ -2,7 +2,7 @@
 
 cff-version: 1.2.0
 message: "To cite this master's thesis in publications use:"
-title: "Is latitude associated with the regulation of circadian rhythms in humans?"
+title: "Is latitude associated with chronotype?"
 keywords:
   - Chronobiology
   - Biological rhythms
@@ -26,22 +26,22 @@ contact:
   email: danvartan@gmail.com
   orcid: https://orcid.org/0000-0001-7782-759X
 type: software
-version: 0.0.0.9000
+version: 1.0.0
 license: MIT
 identifiers:
 - type: url
   value: https://danielvartan.github.io/mastersthesis/
 preferred-citation:
-  type: unpublished
-  title: "Is latitude associated with the regulation of circadian rhythms in humans?"
+  type: mastersthesis
+  title: "Is latitude associated with chronotype?"
   authors:
   - family-names: Vartanian
     given-names: Daniel
     email: danvartan@gmail.com
     orcid: https://orcid.org/0000-0001-7782-759X
-  year: "2023"
+  year: "2024"
   address: São Paulo
   school: University of São Paulo
-  langid: en-us
+  langid: en
   url: https://danielvartan.github.io/mastersthesis/
-  note: Preliminary version
+  note: Original version

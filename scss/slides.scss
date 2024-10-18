@@ -1,6 +1,25 @@
 /*-- scss:defaults --*/
 
+// Colors ----------
+//
+// - #EA7701 (PANTONE Lugano Sunset Orange)
+// - #2780E3 (Bootswatch's Cosmo primary color)
+
+$primary: #EA7701 !default;
+$presentation-title-slide-text-align: left;
+$link-color: $primary;
+
 /*-- scss:rules --*/
+
+// #title
+
+.theme-title-h1 {
+  background-color: $primary;
+
+  h1 {
+    color: white;
+  }
+}
 
 .border {
   border: 1px solid #dee2e6;
@@ -13,4 +32,34 @@
 .center-x {
   display: inline-block;
   text-align: center;
+}
+
+.center-xy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+h1 {
+  color: #EA7701;
+}
+
+.medium {
+  font-size: 0.85em;
+}
+
+.small {
+  font-size: 0.75em;
+}
+
+:root {
+  --r-selection-background-color: #EA7701;
+  --r-link-color: #EA7701;
+  --r-link-color-dark: #EA7701;
+  --r-link-color-hover: #EA7701;
+}
+
+.reveal .footer a {
+  color: #EA7701;
 }

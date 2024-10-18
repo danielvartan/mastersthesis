@@ -1,16 +1,16 @@
-# library(checkmate, quietly = TRUE)
-# library(hms, quietly = TRUE)
-# library(lubritime, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(hms)
+# library(lubritime) # https://github.com/danielvartan/lubritime
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 # TODO: Refactor and move to `lubritime`.
 transform_time <- function(x, threshold = hms::parse_hms("12:00:00")) {
-  checkmate::assert_atomic(x)
-  rutils:::assert_hms(
+  prettycheck:::assert_atomic(x)
+  prettycheck:::assert_hms(
     threshold,
     lower = hms::hms(0),
     upper = hms::parse_hms("23:59:59"),
-    null.ok = TRUE
+    null_ok = TRUE
   )
 
   classes <- c("Duration", "difftime", "hms", "POSIXt", "Interval")
@@ -19,21 +19,21 @@ transform_time <- function(x, threshold = hms::parse_hms("12:00:00")) {
     x |>
       lubritime:::link_to_timeline(threshold = threshold) |>
       as.numeric()
-  } else if (checkmate::test_multi_class(x, classes)) {
+  } else if (prettycheck:::test_multi_class(x, classes)) {
     x |> lubritime:::extract_seconds()
   } else {
     x
   }
 }
 
-# library(hms, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(lubritime, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(hms)
+# library(lubridate)
+# library(lubritime) # https://github.com/danielvartan/lubritime
+# library(rutils) # https://github.com/danielvartan/rutils
 
 # TODO: Try to integrate this with `lubritime:::link_to_timeline()`.
 midday_trigger <- function(x, trigger = hms::parse_hm("22:00")) {
-  rutils:::assert_hms(trigger)
+  prettycheck:::assert_hms(trigger)
 
   if (hms::is_hms(x) && any(x > trigger, na.rm = TRUE)) {
     lubritime:::link_to_timeline(
@@ -46,14 +46,14 @@ midday_trigger <- function(x, trigger = hms::parse_hm("22:00")) {
   }
 }
 
-# library(checkmate, quietly = TRUE)
-# library(lubridate, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(lubridate)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(rutils) # https://github.com/danielvartan/rutils
 
 # TODO: Move to `lubritime`.
 test_timeline_link <- function(x, tz = "UTC") {
-  checkmate::assert_multi_class(x, c("numeric", "POSIXt"))
-  checkmate::assert_choice(tz, OlsonNames())
+  prettycheck:::assert_multi_class(x, c("numeric", "POSIXt"))
+  prettycheck:::assert_choice(tz, OlsonNames())
 
   x <- x |> rutils:::drop_na()
 
@@ -74,30 +74,30 @@ test_timeline_link <- function(x, tz = "UTC") {
   }
 }
 
-# library(checkmate, quietly = TRUE)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 # TODO: Move to `rutils`.
 count_not_na <- function(x) {
-  checkmate::assert_atomic(x)
+  prettycheck:::assert_atomic(x)
 
   length(which(!is.na(x)))
 }
 
-# library(checkmate, quietly = TRUE)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
 
 # TODO: Move to `rutils`.
 drop_inf <- function(x) {
-  checkmate::assert_atomic(x)
+  prettycheck:::assert_atomic(x)
 
   x[!(x == -Inf | x == Inf)]
 }
 
-# library(checkmate, quietly = TRUE)
-# library(dplyr, quietly = TRUE)
-# library(tidyr, quietly = TRUE)
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(tidyr)
 
 list_as_tibble <- function(list) {
-  checkmate::assert_list(list)
+  prettycheck:::assert_list(list)
 
   list |>
     dplyr::as_tibble() |>

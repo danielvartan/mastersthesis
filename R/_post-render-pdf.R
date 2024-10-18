@@ -1,5 +1,5 @@
-# library(here, quietly = TRUE)
-# library(rutils, quietly = TRUE)
+# library(here)
+# library(rutils) # https://github.com/danielvartan/rutils
 
 # Post-render begin ----------
 

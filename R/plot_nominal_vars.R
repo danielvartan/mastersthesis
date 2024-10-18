@@ -1,7 +1,7 @@
-# library(checkmate, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-# library(gridExtra, quietly = TRUE)
-library(rlang, quietly = TRUE)
+library(ggplot2)
+# library(gridExtra)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+library(rlang)
 
 plot_nominal_vars <- function(data) {
   nominal_vars <- c(
@@ -9,8 +9,8 @@ plot_nominal_vars <- function(data) {
     "snore", "work", "study", "no_work_or_study","alarm_w", "alarm_f"
   )
 
-  checkmate::assert_tibble(data)
-  checkmate::assert_subset(nominal_vars, names(data))
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_subset(nominal_vars, names(data))
 
   for (i in nominal_vars) {
     plot <-
