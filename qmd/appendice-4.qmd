@@ -1,0 +1,390 @@
+<!-- %:::% .common h1 begin %:::% -->
+# Sample balance procedure
+<!-- %:::% .common h1 end %:::% -->
+
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R/_setup.R"))
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+rutils:::quarto_status(
+  type = "polishing",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
+```
+
+## Overview
+
+This document describes the procedure for balancing the sample used for the hypothesis test.
+
+## Setting this up
+
+```{r}
+#| eval: false
+
+library(broom)
+library(dplyr)
+library(here)
+library(janitor)
+library(magrittr)
+library(parsnip)
+library(report)
+library(rlang)
+library(sidrar)
+library(targets)
+library(tidyr)
+library(workflows)
+```
+
+```{r}
+source(here::here("R/utils-stats.R"))
+```
+
+```{r}
+#| include: false
+
+library(magrittr)
+library(rlang)
+library(targets)
+```
+
+## Getting the sample data
+
+Below, we load the data that was used for the hypothesis test before the balance procedure. You can visualize the data munging pipeline in the `_targets.R` file.
+
+```{r}
+#| eval: false
+#| output: false
+
+data <- targets::tar_make(script = "../_targets.R")
+```
+
+```{r}
+utc_minus_3_states <- c(
+  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
+  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
+  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
+  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
+  "Rio Grande do Sul"
+)
+```
+
+```{r}
+#| output: false
+
+data <- 
+  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
+  dplyr::select(country, region, state, sex, age, msf_sc) |>
+  dplyr::arrange(state, sex, age) |>
+  dplyr::mutate(state = factor(state, ordered = FALSE)) |>
+  dplyr::filter(state %in% utc_minus_3_states) |>
+  tidyr::drop_na()
+```
+
+## Getting the population data
+
+The sample data was obtained in 2017 from October 15th to 21st by a broadcast of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. Here we use Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) for a estimate of the population distribution in this timeframe. The data used here can be accessed at the [IBGE's SIDRA](https://sidra.ibge.gov.br/tabela/6407) platform.
+
+The balance is made considering the distribution of the population related to the variables `state`, `sex` and `age`.
+
+```{r}
+#| message: false
+#| warning: false
+
+prettycheck:::assert_internet()
+
+pnad_data <- 
+  sidrar::get_sidra(
+    api = "/t/6407/n1/all/n3/all/v/606/p/2017/c2/all/c58/1144,1145,1152,2793,3299,3300,3301,3302,6798"
+  ) |>
+  dplyr::as_tibble() |>
+  dplyr::select(
+    dplyr::all_of(
+      c(
+        "Valor", "Brasil e Unidade da Federação", "Ano", "Sexo", 
+        "Grupo de idade"
+      )
+    )
+  ) |>
+  dplyr::rename(
+    n = Valor,
+    state = `Brasil e Unidade da Federação`,
+    year = Ano,
+    sex = Sexo,
+    age_group = `Grupo de idade`
+  ) |>
+  dplyr::filter(
+    state != "Brasil", 
+    sex != "Total",
+    age_group != "60 anos ou mais"
+  ) |>
+  dplyr::arrange(state, sex, age_group) |>
+  dplyr::mutate(
+    year = as.integer(year),
+    country = "Brazil",
+    country = factor(country, ordered = FALSE),
+    region = dplyr::case_when(
+      state %in% c(
+        "Distrito Federal", "Goiás", "Mato Grosso", "Mato Grosso do Sul"
+      ) ~ "Midwest",
+      state %in% c(
+        "Alagoas", "Bahia", "Ceará", "Maranhão", "Paraíba", "Pernambuco",
+        "Piauí", "Rio Grande do Norte", "Sergipe"
+      ) ~ "Northeast",
+      state %in% c(
+        "Acre", "Amapá", "Amazonas", "Pará", "Rondônia", "Roraima", "Tocantins"
+      ) ~ "North",
+      state %in% c(
+        "Espírito Santo", "Minas Gerais", "Rio de Janeiro", "São Paulo"
+      ) ~ "Southeast",
+      state %in% c(
+        "Paraná", "Rio Grande do Sul", "Santa Catarina"
+      ) ~ "South"
+    ),
+    region = factor(region, ordered = FALSE),
+    state = factor(state, ordered = FALSE),
+    sex = dplyr::case_when(
+      sex == "Homens" ~ "Male",
+      sex == "Mulheres" ~ "Female"
+    ),
+    sex = factor(sex, ordered = FALSE),
+    age_group = dplyr::case_when(
+      age_group == "18 a 19 anos" ~ "18-19",
+      age_group == "20 a 24 anos" ~ "20-24",
+      age_group == "25 a 29 anos" ~ "25-29",
+      age_group == "30 a 39 anos" ~ "30-39",
+      age_group == "40 a 49 anos" ~ "40-49",
+      age_group == "50 a 59 anos" ~ "50-59",
+      age_group == "60 a 64 anos" ~ "60-64",
+      age_group == "65 anos ou mais" ~ "65+"
+    ),
+    age_group = factor(age_group, ordered = TRUE),
+    n = as.integer(n * 1000)
+  ) |>
+  dplyr::relocate(year, country, region, state, sex, age_group, n) |>
+  dplyr::mutate(
+    n_rel = n / sum(n),
+    n_per = (n / sum(n)) * 100
+  ) |>
+  dplyr::filter(state %in% utc_minus_3_states)
+
+pnad_data
+```
+
+```{r}
+pnad_data |> dplyr::glimpse()
+```
+
+```{r}
+pnad_data |> summarise_data("age_group")
+```
+
+```{r}
+summarise_data(pnad_data, "sex")
+```
+
+```{r}
+pnad_data |> summarise_data("state")
+```
+
+```{r}
+summarise_data(pnad_data, "region")
+```
+
+```{r}
+pnad_data |> summarise_data("country")
+```
+
+## Comparing the sample data with the population data
+
+```{r}
+data <- data |>
+  dplyr::mutate(
+    age_group = dplyr::case_when(
+      age >= 18 & age < 20 ~ "18-19",
+      age >= 20 & age < 25 ~ "20-24",
+      age >= 25 & age < 30 ~ "25-29",
+      age >= 30 & age < 40 ~ "30-39",
+      age >= 40 & age < 50 ~ "40-49",
+      age >= 50 & age < 60 ~ "50-59",
+      age >= 60 & age < 65 ~ "60-64",
+      age >= 65 ~ "65+"
+    )
+  ) |>
+  dplyr::arrange(state, sex, age) |>
+  dplyr::mutate(age_group = factor(
+    age_group,
+    levels = c(
+      "18-19", "20-24", "25-29", "30-39", "40-49", "50-59", "60-64", "65+"
+    ),
+    ordered = TRUE)
+  ) |>
+  dplyr::relocate(age_group, .after = age)
+
+data
+```
+
+```{r}
+compare_sample(data, pnad_data, "age_group")
+```
+
+```{r}
+compare_sample(data, pnad_data, "sex")
+```
+
+```{r}
+compare_sample(data, pnad_data, "state")
+```
+
+```{r}
+compare_sample(data, pnad_data, "region")
+```
+
+```{r}
+compare_sample(data, pnad_data, "country")
+```
+
+## Adjusting sample data with the population data
+
+The tables above indicate an overrepresentation of states like São Paulo and Rio de Janeiro, while states such as Amapá and Tocantins are underrepresented. To achieve a balanced sample, we applied a cell weighting procedure [see @kalton2003] based on the characteristics of `state`, `sex` and `age group`, using data from the 2017 PNAD as a reference.
+
+$$
+\text{Cell weighting}: \cfrac{\text{% 2017 PNAD}}{\text{% Survey sample}}
+$$
+
+```{r}
+pnad_data |> 
+  dplyr::select(state, sex, age_group, n) |>
+  tidyr::pivot_wider(names_from = state, values_from = n) |>
+  janitor::adorn_totals(c("row", "col")) |>
+  janitor::adorn_percentages("col") |>
+  janitor::adorn_pct_formatting(digits = 3) |>
+  janitor::adorn_ns() |>
+  dplyr::as_tibble()
+```
+
+See <https://www.tidyverse.org/blog/2022/05/case-weights/> to learn more.
+
+```{r}
+weights_data <- 
+  pnad_data |>
+  dplyr::mutate(
+    n_rel = n / sum(n),
+    n_per = (n / sum(n)) * 100,
+    inv_prob_weight = parsnip::importance_weights(1 / (n / sum(n)))
+  )|>
+  dplyr::left_join(
+    data |> 
+      dplyr::summarise(
+        n = dplyr::n(), 
+        .by = c("country", "region", "state", "sex", "age_group")
+      ) |>
+      dplyr::mutate(
+        n_rel = n / sum(n),
+        n_per = (n / sum(n)) * 100
+      ),
+    by = dplyr::all_of(c("country", "region", "state", "sex", "age_group")),
+    suffix = c("_pnad", "_sample")
+  ) |>
+  dplyr::relocate(year, .before = country) |>
+  dplyr::mutate(
+    cell_weight = parsnip::importance_weights(n_per_pnad / n_per_sample)
+  ) |>
+  dplyr::select(
+    country, region, state, sex, age_group, cell_weight, inv_prob_weight
+  ) |>
+  dplyr::arrange(state, sex, age_group)
+
+weights_data
+```
+
+```{r}
+test_data <-
+  data |>
+  dplyr::mutate(
+    msf_sc = 
+      msf_sc |>
+      lubritime:::link_to_timeline(
+        threshold = hms::parse_hms("12:00:00")
+      ) |>
+      as.numeric()
+  ) |>
+  dplyr::left_join(
+    weights_data,
+    by = dplyr::all_of(c("country", "region", "state", "sex", "age_group"))
+  )
+```
+
+## Fiting a model with the weights
+
+```{r}
+model <- 
+  parsnip::linear_reg() |> 
+  parsnip::set_engine("lm") |>
+  parsnip::set_mode("regression")
+```
+
+```{r}
+workflow <- 
+  workflows::workflow() |>
+  workflows::add_case_weights(cell_weight) |>
+  workflows::add_formula(msf_sc ~ sex + age) |>
+  workflows::add_model(model)
+
+workflow
+```
+
+```{r}
+fit <- workflow |> parsnip::fit(test_data)
+```
+
+```{r}
+fit |>
+  broom::tidy() |> 
+  janitor::adorn_rounding(5)
+```
+
+```{r}
+fit |> 
+  broom::augment(test_data) |>
+  janitor::adorn_rounding(5)
+```
+
+```{r}
+fit |> 
+  broom::glance() |> 
+  tidyr::pivot_longer(cols = dplyr::everything()) |>
+  janitor::adorn_rounding(10)
+```
+
+```{r}
+fit_engine <- fit |> parsnip::extract_fit_engine()
+
+fit_engine |> summary()
+```
+
+```{r}
+fit_engine_2 <- 
+  lm(
+    formula = msf_sc ~ sex + age, 
+    weights = cell_weight,
+    data = test_data
+  )
+
+fit_engine_2 |> summary()
+```
+
+```{r}
+report::report(fit_engine_2)
+```
+
+```{r}
+lm(formula = msf_sc ~ sex + age, data = test_data) |> summary()
+```

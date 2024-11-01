@@ -159,7 +159,7 @@ data |>
 
 [Source: Created by the author. Based on data visualization found in @leocadio-miguel2017.]{.legend}
 
-Distribution of mean aggregates of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of MSF~sc~ indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval.
+Distribution of mean aggregates of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of MSF~sc~ indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval. Attention is needed when interpreting this chart. Note that the y-axis is limited, and the difference between the highest and lowest values is negligible considering the MCTQ scale.
 :::
 
 Despite the lack of evidence, is not uncommon to hear talks insisting that this effect is real and already confirmed. We suspect that this behavior may be derived from a lack of understanding of statistical models and techniques. Although it may be logical and aligned with the overall theory for the evolution of biological temporal systems, it’s our role as scientists to eliminate contractions, not pursue them.

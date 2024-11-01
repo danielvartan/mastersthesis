@@ -1001,7 +1001,7 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{F1F3F5}}{}
 \makeatother
 \makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, colback={codebgcolor}, breakable, enhanced, sharp corners, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, sharp corners, borderline west={3pt}{0pt}{shadecolor}, colback={codebgcolor}, enhanced, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
 \makeatother
 
 % -----
@@ -1225,7 +1225,7 @@ number: 88887.703720/2022-00.
 \textit{Nullius in verba}\footnotemark{}
 
 \footnotetext{
-  The Royal Society. (n.d.). \textit{History of the Royal Society}. \href{https://royalsociety.org/about-us/history/}{https://royalsociety.org/about-us/history/}
+  The Royal Society. (n.d.). \textit{History of the Royal Society}. \href{https://royalsociety.org/about-us/history}{https://royalsociety.org/about-us/history/}
 }
 %:::% epigraph body end %:::%
 \end{flushright}
@@ -1339,7 +1339,7 @@ se imaginava.
 
 \chapter{Introduction}\label{introduction}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1397,32 +1397,24 @@ to the ongoing debate on the latitude-chronotype relationship, offering
 new evidences into how environmental factors influence human circadian
 rhythms.
 
-This procedure method is related to an article published in 2017 by
-\textcite{leocadio-miguel2017}, which investigated the relationship
-between latitude and chronotype in the Brazilian population. The present
-study extends this work by using a larger dataset and more sophisticated
-statistical methods to test the hypothesis. The results of this
-investigation will contribute to the ongoing debate on the relationship
-between latitude and chronotype, providing valuable insights into the
-role of environmental factors in shaping human circadian rhythms.
-
-The thesis is structure as a
+The thesis is structured as a
 \href{https://en.wikipedia.org/wiki/Collection_of_articles}{collection
 of articles}. Chapters 2 through 4 comprise a series of essays and
 literature reviews related to the thesis topic. Chapter 5 presents the
 main investigation, including an article reporting the hypothesis test
 and discussing the central research question. Finally, Chapter 6 offers
-conclusions and directions for future research.
+conclusions, limitations and directions for future research.
 
 All analyses in this document are reproducible and were conducted using
-the \href{https://www.r-project.org/}{R programming language} along with
-the \href{https://quarto.org/}{Quarto} publishing system. Since this
-thesis focuses heavily on data, it is best viewed online. To access the
-digital version and supplemental materials, please visit
-\url{https://danielvartan.github.io/mastersthesis/}. The thesis code
-repository is available on GitHub at
-\href{https://github.com/danielvartan/mastersthesis}{https://github.com/danielvartan/mastersthesis)}).
-The research compendium can also be accessed via
+the \href{https://www.r-project.org/}{R programming language}
+\autocite{rcoreteam} along with the \href{https://quarto.org/}{Quarto}
+publishing system \autocite{allaire}. Since this thesis focuses heavily
+on data, it is best viewed online. To access the digital version and
+supplemental materials, please visit
+\href{https://danielvartan.github.io/mastersthesis/}{https://danielvartan.github.io/mastersthesis}.
+The thesis code repository is available on GitHub at
+\href{https://github.com/danielvartan/mastersthesis}{https://github.com/danielvartan/mastersthesis)}.
+Finally, the research compendium can be accessed via
 \href{https://osf.io/}{The Open Science Framework} at the following
 link: \url{https://doi.org/10.17605/OSF.IO/YGKTS}.
 
@@ -1430,7 +1422,7 @@ link: \url{https://doi.org/10.17605/OSF.IO/YGKTS}.
 
 \chapter{On chronobiology}\label{on-chronobiology}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1467,21 +1459,21 @@ leaves periodically
 (Figure~\ref{fig-chapter-2-nobel-prize-2017-de-mairan-experiment})
 \autocite{demairan1729,rotenberg2003}. Charles Darwin also also wrote
 about the movement observed in plants and made thematic explorations of
-these intriguing ``periodical phenomena''\autocite{andrade2024}. The
+these intriguing ``periodical phenomena'' \autocite{andrade2024}. The
 search for this internal timekeeper in living beings only began to
 solidify in the 20th century through the efforts of scientists like
 Jürgen Aschoff, Colin Pittendrigh, Franz Halberg, and Erwin Bünning,
-culminating in the establishment of the science known as
-chronobiology\footnote{Some say the term \emph{chronobiology} was coined
-  by Franz Halberg during the Cold Spring Harbor Symposium on
-  Quantitative Biology, vol.~XXV \autocite[21]{menna-barreto2023}.},
+culminating in the establishment of the science known as chronobiology,
 with a significant milestone being the Cold Spring Harbor Symposium on
 Quantitative Biology: Biological Clocks in 1960 (\emph{chrónos}, from
 Greek, meaning time; and \emph{biology}, pertaining to the study of
-life) \autocite{rotenberg2003,coldspringharborlaboratory}. However, the
-recognition of endogenous rhythmicity by the global scientific community
-truly came in 2017 when Jeffrey Hall, Michael Rosbash, and Michael Young
-were awarded the
+life) \autocite{rotenberg2003,coldspringharborlaboratory}\footnote{Some
+  say the term \emph{chronobiology} was coined by Franz Halberg during
+  the Cold Spring Harbor Symposium on Quantitative Biology, vol.~XXV
+  \autocite[21]{menna-barreto2023}.}. However, the recognition of
+endogenous rhythmicity by the global scientific community truly came in
+2017 when Jeffrey Hall, Michael Rosbash, and Michael Young were awarded
+the
 \href{https://www.nobelprize.org/prizes/medicine/2017/press-release/}{Nobel
 Prize in Physiology or Medicine} for their discoveries of molecular
 mechanisms that regulate the circadian rhythm in fruit flies
@@ -1511,7 +1503,7 @@ rhythms and their impacts on organisms. These rhythms can occur at
 different levels, whether at a macro level, such as the menstrual cycle,
 or even at a micro level, such as rhythms expressed within cells
 \autocite{roenneberg2016}. Like many other biological phenomena, these
-are complex systems present in all living beings, i.e., a emergence
+are complex systems present in all living beings, i.e., an emergence
 created by a large number of connected and interecticve agents that
 exhibit adaptive characteristics, all without the need of a central
 control \autocite{boccara2010}. It is understood today that the
@@ -1572,7 +1564,7 @@ eveningness \autocite{horne1976,roenneberg2019b}.
 
 Sleep is a phenomenon that exhibits circadian expression. By observing
 the sleep characteristics of individuals, it is possible to assess the
-distribution of circadian phenotypes within the same population, thereby
+distribution of circadian phenotypes within a population, thereby
 investigating their covariates and other relevant associations
 \autocite{roenneberg2003}. This is because sleep regulation is
 understood as the result of the interaction between two processes: a
@@ -1580,11 +1572,11 @@ homeostatic process (referred to as the \(\text{S}\) process), which is
 sleep-dependent and accumulates with sleep deprivation, and a circadian
 process (referred to as the \(\text{C}\) process), whose expression can
 be influenced by zeitgebers, such as the light-dark cycle
-\autocite{borbely1982,borbely2016}
 (Figure~\ref{fig-chapter-2-borbely-1982-figure-4} illustrates these two
-process). Considering that the circadian rhythm (the \(\text{C}\)
-process) is present in sleep, its characteristics can be estimated if
-the \(\text{S}\) process can be controlled.
+process) \autocite{borbely1982,borbely2016}. Considering that the
+circadian rhythm (the \(\text{C}\) process) is present in sleep, its
+characteristics can be estimated if the \(\text{S}\) process can be
+controlled.
 
 \begin{figure}[H]
 
@@ -1607,11 +1599,13 @@ with the exponential decline of Process S.}
 
 \end{figure}%
 
+{[}Finish explaining about the MCTQ and its proxy for the chronotype{]}
+
 \bookmarksetup{startatroot}
 
 \chapter{On complexity science}\label{on-complexity-science}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-important-color-frame]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1741,7 +1735,7 @@ Approaches to study and model circadian clocks.
 
 \chapter{On the latitude hypothesis}\label{on-the-latitude-hypothesis}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-important-color-frame]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1861,7 +1855,7 @@ y-axis illusion. unbalanced data.
 \chapter{Is latitude associated with
 chronotype?}\label{is-latitude-associated-with-chronotype}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1872,7 +1866,7 @@ polishing.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-warning-color-frame, arc=.35mm, colbacktitle=quarto-callout-warning-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, opacityback=0, colbacktitle=quarto-callout-warning-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-warning-color-frame]
 
 The results shown here are \textbf{preliminary}, so please take them
 with a grain of salt.
@@ -1886,7 +1880,7 @@ the appendices section.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Target journal}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Target journal}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1900,7 +1894,7 @@ the appendices section.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
 
 The following study was performed by Daniel Vartanian (DV), Mario
 Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
@@ -2380,7 +2374,7 @@ changes were made.
 
 \chapter{Conclusion}\label{conclusion}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, titlerule=0mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, breakable, bottomrule=.15mm, rightrule=.15mm, bottomtitle=1mm, left=2mm, opacityback=0, toprule=.15mm, leftrule=.75mm, toptitle=1mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-important-color-frame]
 
 You are reading the work-in-progress of this thesis.
 
@@ -2390,6 +2384,23 @@ This chapter is currently a dumping ground for ideas, and I don't
 recommend reading it.
 
 \end{tcolorbox}
+
+Conclusions
+
+Limitations
+
+Future perspectives
+
+Initially, the thesis project proposed a global modeling approach to the
+phenomenon. This approach was maintained due to the scope of a master's
+degree program. As can be seen from the results of this and other
+studies, no non-negligible effect regarding latitude and chronotype was
+identified. It is possible, however, that this phenomenon, if it exists,
+could be observed through a local approach using an agent-based model.
+This approach would allow the simulation of an environment where agents
+have varying light exposure and considering their endogenous rhythms and
+the phase-response curve of the circadian clock to light. The data from
+this thesis could be used to calibrate validate the model.
 
 \postextual
 

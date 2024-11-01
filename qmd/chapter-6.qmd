@@ -23,11 +23,15 @@ rutils:::quarto_status(
   )
 ```
 
-<!-- Limitations -->
+Fictum, deserunt mollit anim laborum astutumque! Quisque placerat facilisis egestas cillum dolore. Nec dubitamus multa iter quae et nos invenerat. Contra legem facit qui id facit quod lex prohibet. Quam diu etiam furor iste tuus nos eludet?
 
-<!-- Conclusions -->
+## Limitations
 
-<!-- Future perspectives -->
+Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Donec sed odio operae, eu vulputate felis rhoncus. Salutantibus vitae elit libero, a pharetra augue. Nihil hic munitissimus habendi senatus locus, nihil horum? A communi observantia non est recedendum.
+
+## Future perspectives
+
+Initially, the thesis project proposed a global modeling approach to the phenomenon. This approach was maintained due to the scope of a master's degree program. As can be seen from the results of this and other studies, no non-negligible effect regarding latitude and chronotype was identified. It is possible, however, that this phenomenon, if it exists, could be observed through a local approach using an agent-based model. This approach would allow the simulation of an environment where agents have varying light exposure and considering their endogenous rhythms and the phase-response curve of the circadian clock to light. The data from this thesis could be used to calibrate validate the model.
 
 <!-- textual end -->
 

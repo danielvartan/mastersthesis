@@ -38,9 +38,13 @@ Emergence: new properties that arise from the interactions of the parts of a sys
 
 You are dealing with an emergence phenomenon when there is no need to look under the hood [@krakauer2023].
 
-![](images/perez-villa-2023-figure-3.png)
+::: {#fig-chapter-3-perez-villa-2023-figure-1}
+![](images/perez-villa-2023-figure-1.png){width=75%}
 
-![](images/perez-villa-2023-figure-1.png)
+[Source: Reproduction of @perez-villa2023.]{.legend}
+
+An illustration depicting how the human circadian clock system works. (A) The circadian timing system receives light signals through the eyes, which are processed by the brain's central clock, the suprachiasmatic nucleus (SCN). This clock helps to orchestrate peripheral clocks, regulating body functions like hormone release, metabolism, and temperature. Other factors like feeding schedules and exercise also influence this process, ensuring the synchronization of body systems like immunity and metabolism. (B) Specific brain cells and chemicals manage this timing by adjusting the activity of neurons, which helps reset the clock and keeps it in tune with day-night cycles. These neurons also influence clocks in other body parts via neuronal and hormonal signals. (C) At a molecular level, a network of genes and proteins operates in a feedback loop, maintaining near 24-hour cycles. This ensures that various body systems, such as metabolism and immune function, follow daily rhythms.
+:::
 
 The result of a *juggling act* of billions of years of evolution. There are no specific functions. There's no proposed goal.
 
@@ -52,19 +56,17 @@ Circadian clocks regulate and/or modulate functions at all levels, ranging from 
 
 It's an emergent phenomenon. It's not a property of the parts themselves. It's a property of the system as a whole.
 
-![](images/flanagan-2021-figure-2.png)
+::: {#fig-chapter-3-flanagan-2021-figure-2}
+![](images/flanagan-2021-figure-2.png){width=75%}
+
+[Source: Reproduction of @flanagan2021.]{.legend}
+
+This illustration shows how circadian rhythms influence key aspects of human metabolism. These rhythms impact hormone levels, body temperature, energy use, and metabolite concentrations in the body, independent of external factors like environment and behavior. The light/dark cycle and food intake help synchronize these internal clocks located throughout the body, regulating physiological processes like resting energy expenditure and melatonin secretion.
+:::
 
 "[...] involve great numbers of parts undergoing a kaleidoscopic array of simultaneous interactions." [@holland1992b]
 
 In complex adaptive systems, **emergent properties** often occur when coevolving signals and boundaries generate **new levels of organization** [@holland2012].
-
-![](images/holland-2012-figure-1.png)
-
-Structural levels
-
-![](images/lewin-1993-figure-8.png)
-
-Fig. 8. Structural levels in the organization of the nervous system, a reflection of the hierarchical systems that may underlie the generation of higher cognitive functions, including consciousness. Courtesy of Patricia Churchland and Terrence Sejnowski.
 
 A system of many interacting parts where the system is **more than just the sum of its parts** (Mark Newman in @mitchell2013).
 
@@ -76,19 +78,13 @@ Dialectics at its finest (my working definition).
 
 Complexity science seeks to **explain emergent phenomena** or mechanisms that “screen-off” their constituent parts and thereby allow new levels of description and understanding [@krakauer2024].
 
-![](images/sayama-2015-figure-1.png)
+::: {#fig-chapter-3-sayama-2015-figure-1}
+![](images/sayama-2015-figure-1.png){width=75%}
 
-The seven basics consist of 4 properties and 3 mechanisms that are common to all complex adaptive systems:
+[Source: Reproduction of @sayama2015.]{.legend}
 
-- Aggregation (property)
-- Nonlinearity (property)
-- Flows (property)
-- Diversity (property)
-- Tags (mechanism)
-- Internal models (mechanism)
-- Building blocks (mechanism)
-
-[@holland1996]
+This visual map organizes complex systems science into seven main areas. The fields of Nonlinear Dynamics, Systems Theory, and Game Theory represent its historical foundations, while newer areas include Pattern Formation, Evolution and Adaptation, Networks, and Collective Behavior. Together, these areas explore how complex systems emerge and self-organize over time and scale.
+:::
 
 Other concepts: chaos, power laws & factor sparsity, feedback loops, robustness, equilibrium states, path dependence, leverage points
 

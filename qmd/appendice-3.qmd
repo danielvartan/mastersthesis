@@ -1,161 +1,238 @@
-<!-- %:::% .common h1 begin %:::% -->
-# Activities during the development of this thesis
-<!-- %:::% .common h1 end %:::% -->
+# Leocadio et al. (2017): Y-axis comparison
 
+## Overview
+
+This document brings a y-axis comparison related to the figure 2 from @leocadio-miguel2017.
+
+## The Horner & Östberg scale
+
+The Horner & Östberg (HO) scale [@horne1976] was one of the first scales developed to assess chronotype. It is a self-report questionnaire that asks about the preferred time of day for various activities, such as waking up, going to bed, and peak performance. The scale is composed of 19 items, and the total score **ranges from 16 to 86**. The lower the score, the more evening-oriented the individual is, and the higher the score, the more morning-oriented the individual is.
+
+::: {#tbl-chapter-4-horne-1976-table-1}
 ```{r}
-#| label: setup
-#| include: false
-
-source(here::here("R/_setup.R"))
+dplyr::tibble(
+  Category = c(
+    "Definitely morning type",
+    "Moderately morning type",
+    "Neither type",
+    "Moderately evening type",
+    "Definitely evening type"
+  ),
+  Score = c(
+    "16-30",
+    "31-41",
+    "42-58",
+    "59-69",
+    "70-86"
+  )
+)
 ```
 
-```{r}
-#| echo: false
-#| output: asis
+[Source: Reproduction from @horne1976.]{.legend}
 
-rutils:::quarto_status(
-  type = "polishing",
-  of_what = "of this thesis",
-  latex_parskip = "\\microskip"
+Horner & Östberg five point Morningness-Eveningness scale, with the corresponding scores.
+:::
+
+::: {#fig-appendice-3-leocadio-miguel-2017-figure-1}
+![](../images/leocadio-miguel-2017-figure-1.png){width=100%}
+
+[Source: Reproduction from @leocadio-miguel2017.]{.legend}
+
+Distribution of HO scores for the entire sample of @leocadio-miguel2017 data. Each bar for each score represents the frequency (number of subjects). Low scores represent evening types and high scores morning types.
+:::
+
+## The figure
+
+::: {#fig-appendice-3-leocadio-miguel-2017-figure-2}
+![](../images/leocadio-miguel-2017-figure-2.png){width=100%}
+
+[Source: Reproduction from @leocadio-miguel2017.]{.legend}
+
+Mean HO scores (±SE) along a latitudinal cline, showing corresponding annual average of solar irradiation level (W/m2).
+:::
+
+
+::: {#fig-appendice-3-leocadio-miguel-2017-figure-2-with-guides}
+![](../images/leocadio-miguel-2017-figure-2-with-guides.png){width=100%}
+
+[Source: Adaptation from @leocadio-miguel2017.]{.legend}
+
+Same as the last figure, but with guides to help the comparison.
+:::
+
+## Latitude estimation (upper x-axis)
+
+The latitude does not have a fixed scale, it is pointed in relation to the second x-axis (Solar irradiation), but it's possible to get a good estimate of the values by counting the pixel distances.
+
+**Interval distances**
+
+- 0-13: 87 pixels. 87 / 13: 1 point ~ 6.692308 pixels.
+- 13-18: 88 pixels. 88 / (18 - 13): 1 point == 17.6 pixels.
+- 18-22: 87 pixels. 87 / (22 - 18): 1 point == 21.75 pixels.
+- 22-26: 87 pixels. 87 / (26 - 22): 1 point == 21.75 pixels.
+- 26-29: 88 pixels. 88 / (29 - 26): 1 point == ~ 29.333 pixels.
+- 29-32: 86 pixels. 86 / (32 - 29): 1 point == ~ 28.667 pixels.
+
+**Estimation**
+
+- 1. point: 0 to point: 42 pixels. Estimation: `42 / (87 / 13)` =~ 6.275862
+- 2. point: 13 to point: 44 pixels. Estimation: `13 + (44 / (88 / (18 - 13)))` == 15.5
+- 3. point: 18 to point: 43 pixels. Estimation: `18 + (43 / (87 / (22 - 18)))` =~ 19.97701
+- 4. point: 22 to point: 44 pixels. Estimation: `22 + (44 / (87 / (26 - 22)))` =~ 24.02299
+- 5. point: 26 to point: 44 pixels. Estimation: `26 + (44 / (87 / (29 - 26)))` =~ 27.51724
+- 6. point: 29 to point: 44 pixels. Estimation: `29 + (44 / (86 / (32 - 29)))` =~ 30.53488
+
+## HO estimation (y-axis)
+
+The HO value scale is fixed, so it's possible to get the values by counting the pixel distances.
+
+**Pixel/point**
+
+- 44.5-48.5: 402 pixels. 402 / (48.5 - 44.5): 1 point == 100.5 pixels.
+
+**Estimation**
+
+- 1. point: 44.5 to point: 338 pixels. Estimation: `44.5 + (338 / (402 / (48.5 - 44.5)))` =~ 47.86318
+- 2. point: 44.5 to point: 316 pixels. Estimation: `44.5 + (316 / (402 / (48.5 - 44.5)))` =~ 47.64428
+- 3. point: 44.5 to point: 217 pixels. Estimation: `44.5 + (217 / (402 / (48.5 - 44.5)))` =~ 46.6592
+- 4. point: 44.5 to point: 155 pixels. Estimation: `44.5 + (155 / (402 / (48.5 - 44.5)))` =~ 46.04229
+- 5. point: 44.5 to point: 94 pixels. Estimation: `44.5 + (94 / (402 / (48.5 - 44.5)))` =~ 45.43532
+- 6. point: 44.5 to point: 94 pixels. Estimation: `44.5 + (94 / (402 / (48.5 - 44.5)))` =~ 45.43532
+
+## Standard error estimation (y-axis)
+
+The standard error (SE) is shown in the y-axis, so it's possible to get the values by counting the pixel distances.
+
+**Pixel/point**
+
+- 44.5-48.5: 402 pixels. 402 / (48.5 - 44.5): 1 point == 100.5 pixels.
+
+**Estimation**
+
+- 1. point SE: 44.5 to upper SE: 369 pixels. Estimation: `44.5 + (369 / (402 / (48.5 - 44.5)))` =~ 48.17164
+- 2. point SE: 44.5 to upper SE: 357 pixels. Estimation: `44.5 + (357 / (402 / (48.5 - 44.5)))` =~ 48.05224
+- 3. point SE: 44.5 to upper SE: 240 pixels. Estimation: `44.5 + (240 / (402 / (48.5 - 44.5)))` =~ 46.88806
+- 4. point SE: 44.5 to upper SE: 176 pixels. Estimation: `44.5 + (176 / (402 / (48.5 - 44.5)))` =~ 46.25124
+- 5. point SE: 44.5 to upper SE: 134 pixels. Estimation: `44.5 + (134 / (402 / (48.5 - 44.5)))` =~ 45.83333
+- 6. point SE: 44.5 to upper SE: 131 pixels. Estimation: `44.5 + (131 / (402 / (48.5 - 44.5)))` =~ 45.80348
+
+## Data
+
+```{r}
+data <- 
+  dplyr::tibble(
+    ho = c(
+      44.5 + (338 / (402 / (48.5 - 44.5))),
+      44.5 + (316 / (402 / (48.5 - 44.5))),
+      44.5 + (217 / (402 / (48.5 - 44.5))),
+      44.5 + (155 / (402 / (48.5 - 44.5))),
+      44.5 + (94 / (402 / (48.5 - 44.5))),
+      44.5 + (94 / (402 / (48.5 - 44.5)))
+    ),
+    latitude = c(
+      42 / (87 / 13),
+      13 + (44 / (88 / (18 - 13))),
+      18 + (43 / (87 / (22 - 18))),
+      22 + (44 / (87 / (26 - 22))),
+      26 + (44 / (87 / (29 - 26))),
+      29 + (44 / (86 / (32 - 29)))
+    )
+  ) |>
+  dplyr::mutate(
+    se_upper = c(
+      44.5 + (369 / (402 / (48.5 - 44.5))),
+      44.5 + (357 / (402 / (48.5 - 44.5))),
+      44.5 + (240 / (402 / (48.5 - 44.5))),
+      44.5 + (176 / (402 / (48.5 - 44.5))),
+      44.5 + (134 / (402 / (48.5 - 44.5))),
+      44.5 + (131 / (402 / (48.5 - 44.5)))
+    ),
+    se = se_upper - ho
   )
 ```
 
-During the development of this thesis, several activities and results have been accomplished. These activities are important to note, as they demonstrate the path taken to arrive at this final document.
+## Ploting the data
 
-## Courses
-
-The following graduate courses from the University of São Paulo (USP) were completed during the first year of the master's program.
-
-* 2022/2: _SCX5000 - Mathematical and Computational Methods I_ (10 credits) (Concept: __C__);
-* 2022/2: _SCX5002 - Complex Systems I_ (10 credits) (Concept: __A__);
-* 2023/1: _SCX5001 - Mathematical and Computational Methods II_ (10 credits) (Concept: __A__);
-* 2023/1: _SCX5017 - Introduction to Data Science_ (10 credits) (Concept: __A__);
-* 2023/1: _EAH5001 - Pedagogic Preparation_ (4 credits) (Concept: __A__).
-
-Please note that the unfortunate __C__ concept above happened in the same semester when the author broke relations with his former supervisor (_Mario Pedrazzoli_).
-
-44 discipline credits were completed by this thesis publication date. An additional 12 special credits, related to an article publication (see @viana-mendes2023), were requested and approved by the Graduate Program Coordination Commission (CCP) in accordance with [program regulations](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019). In total, 56 credits were earned. A minimum of 50 credits is required for the thesis defense.
-
-## Teaching internship
-
-Scholarship students under the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) are required to participate in the [Teaching Improvement Program (PAE)](www5.each.usp.br/pae/). This internship occur in the 2º semester of 2023.
-
-The internship responsibilities entailed serving as an Assistant Professor for the undergraduate course _ACH0042 - Problem-Based Learning II_ at USP. A comprehensive teaching plan [@vartanian2023e] was formulated during enrollment in the aforementioned graduate course _EAH5001_, and it is accessible through the following link.
-
-```{=latex}
-\smallskip
+```{r}
+data |>
+  ggplot2::ggplot(
+    ggplot2::aes(
+      x = latitude,
+      y = ho
+    )
+  ) +
+  ggplot2::geom_point(shape = 15, size = 3) +
+  ggplot2::geom_errorbar(
+    ggplot2::aes(
+      x = latitude,
+      y = ho,
+      ymin = ho - se,
+      ymax= ho + se
+    ),
+    data = data,
+    show.legend = FALSE,
+    inherit.aes = FALSE,
+    width = 0.5,
+    linewidth = 0.5
+  ) +
+  ggplot2::geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE,
+    color = "red"
+  ) +
+  ggplot2::scale_x_continuous(
+    breaks = c(0, 13, 18, 22, 16, 29, 32),
+    labels = c("0º", "13º", "18º", "22º", "26º", "29º", "32º"),
+    limits = c(0, 32)
+  ) +
+  ggplot2::labs(
+    x = "Latitude",
+    y = "HO"
+  )
 ```
 
-\noindent Vartanian, D., Rodrigues Neto, C, & Bernardes, M. E. M. (2023). _Plano de ensino: ACH0042 - Resolução de Problemas II_. <https://doi.org/10.13140/RG.2.2.33335.50086>
+The same data but adjusting for the minimum and maximum values of the y-axis.
 
-## Publications
-
-The following article [@viana-mendes2023] was published during the development of this thesis.
-
-```{=latex}
-\smallskip
+```{r}
+data |>
+  ggplot2::ggplot(
+    ggplot2::aes(
+      x = latitude,
+      y = ho
+    )
+  ) +
+  ggplot2::geom_point(shape = 15, size = 3) +
+  ggplot2::geom_errorbar(
+    ggplot2::aes(
+      x = latitude,
+      y = ho,
+      ymin = ho - se,
+      ymax= ho + se
+    ),
+    data = data,
+    show.legend = FALSE,
+    inherit.aes = FALSE,
+    width = 0.5,
+    linewidth = 0.5
+  ) +
+  ggplot2::geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE,
+    color = "red"
+  ) +
+  ggplot2::scale_x_continuous(
+    breaks = c(0, 13, 18, 22, 16, 29, 32),
+    labels = c("0º", "13º", "18º", "22º", "26º", "29º", "32º"),
+    limits = c(0, 32)
+  ) +
+  ggplot2::scale_y_continuous(
+    breaks = seq(16, 86, 10),
+    limits = c(16, 86)
+  ) +
+  ggplot2::labs(
+    x = "Latitude",
+    y = "HO"
+  )
 ```
-
-\noindent Viana-Mendes, J., Benedito-Silva, A. A., Andrade, M. A. M., __Vartanian, D.__, Gonçalves, B. da S. B., Cipolla-Neto, J., & Pedrazzoli, M. (2023). Actigraphic characterization of sleep and circadian phenotypes of PER3 gene VNTR genotypes. _Chronobiology International_. <https://doi.org/10.1080/07420528.2023.2256858>
-
-## Translations
-
-As a member and package developer of the [rOpenSci Initiative](https://ropensci.org/) (based in Berkeley, CA), the author is actively contributing to the [ongoing translation](https://github.com/ropensci/dev_guide/pull/717) of the [rOpenSci Developer Guide](https://devguide.ropensci.org/) into Portuguese. The aim is to create a more inclusive environment for individuals in Brazil and other Portuguese-speaking countries when developing for the [R programming language](https://www.r-project.org/).
-
-This endeavor is linked to the thesis, as the author's membership in rOpenSci began with the creation of the [{mctq} R package](https://docs.ropensci.org/mctq/) (listed below).
-
-## Conferences
-
-An abstract pertaining to the primary investigation was published and presented on a poster at the [Sao Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms](https://espca.fapesp.br/school/sao_paulo_school_of_advanced_science_on_ecology_of_human_sleep_and_biological_rhythms/101/) organized by the [São Paulo Research Foundation (FAPESP)](https://fapesp.br/en). This international school hosted 100 participants, including students and young researchers, with a diverse representation of 50 individuals from various states within Brazil and an additional 50 from international backgrounds. The event took place from November 16, 2022, to November 26, 2022.
-
-```{=latex}
-\smallskip
-```
-
-<!-- @vartanian2022a -->
-
-\noindent Vartanian, D., & Pedrazzoli, M. (2022). _Ecology of sleep and circadian phenotypes of the Brazilian population_ \[Poster\]. São Paulo Research Foundation; São Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms. <https://doi.org/10.13140/RG.2.2.25343.07840>
-
-```{=latex}
-\smallskip
-```
-
-In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation (SIICUSP) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartanian2022b. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of _Earth and Exact Sciences_.
-
-## Research compendia
-
-This thesis, along with all the accompanying research, is structured and organized within the research compendium provided below.
-
-```{=latex}
-\smallskip
-```
-
-<!-- @vartanian2023d -->
-
-\noindent Vartanian, D. (2023). _Is latitude associated with the regulation of circadian rhythms in humans?_ [Research compendium]. <https://danielvartan.github.io/mastersthesis/>
-
-## Data plans
-
-This research has also produced and published the following open data model and data plan.
-
-```{=latex}
-\smallskip
-```
-
-<!-- @vartanian2023b -->
-
-\noindent Vartanian, D. (2023). _Is latitude associated with the regulation of circadian rhythms in humans?_ [Data Management Plan]. DMPHub. <https://doi.org/10.48321/D1DW8P>
-
-## Softwares
-
-The following R packages, [Quarto](https://quarto.org/) format (being used to write this thesis), and Python package were developed in relation with this thesis.
-
-```{=latex}
-\smallskip
-```
-
-<!-- @vartanian2022 -->
-
-\noindent Vartanian, D. (2022). _{entrainment}: a rule-based model of the 24h light/dark cycle entrainment phenomenon_ [Software, Python Package]. <https://github.com/danielvartan/entrainment>
-
-```{=latex}
-\microskip
-```
-
-<!-- @vartanian2023 -->
-
-\noindent Vartanian, D. (2023). _{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)_ [Software, R Package v0.3.2]. <https://docs.ropensci.org/mctq/>
-
-```{=latex}
-\microskip
-```
-
-<!-- @vartanian2023b -->
-
-\noindent Vartanian, D. (2023). _{lockr}: easily encrypt/decrypt files_ [Software, R package v0.3.0]. <https://github.com/danielvartan/lockr>
-
-```{=latex}
-\microskip
-```
-
-<!-- @vartanian2023c -->
-
-\noindent Vartanian, D. (2023). _{lubritime}: an extension for the lubridate package_ [Software, R package]. <https://github.com/danielvartan/lubritime>
-
-```{=latex}
-\microskip
-```
-
-<!-- @vartanian2023a -->
-
-\noindent Vartanian, D. (2023). _{abnt}: Quarto format for ABNT theses and dissertations_ [Software, LaTeX/R format, v0.3.0]. <https://github.com/danielvartan/abnt/>
-
-## Other projects
-
-The author is also currently working on the development of the project below.
-
-```{=latex}
-\smallskip
-```
-
-\noindent Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). _Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor_ \[PhD project, University of Sao Paulo\]. <https://bit.ly/3S6O0MB>

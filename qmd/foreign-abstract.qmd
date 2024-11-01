@@ -9,6 +9,15 @@
 source(here::here("R/_setup.R"))
 ```
 
+```{r}
+#| eval: false
+#| include: false
+
+# Elemento obrigatório, constituído de uma sequência de frases concisas e objetivas, em forma de texto.
+# Deve apresentar os objetivos, métodos empregados, resultados e conclusões.
+# O resumo deve ser redigido em parágrafo único, conter no máximo 500 palavras e ser seguido dos termos representativos do conteúdo do trabalho (palavras-chave ou descritores), preferencialmente de acordo com o Vocabulário Controlado do SIBI/USP (UNIVERSIDADE DE SÃO PAULO, 2006). Deve ser precedido da referência do documento e elaborado de acordo com a ABNT NBR 6028 (ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS, 2003).
+```
+
 Vartanian, D. V. ({{< var year >}}). _A latitude está associada ao cronotipo?_ [Dissertação de Mestrado, Universidade de São Paulo].
 
 ::: {.content-visible when-format="pdf"}

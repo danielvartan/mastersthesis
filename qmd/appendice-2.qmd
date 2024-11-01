@@ -22,37 +22,53 @@ rutils:::quarto_status(
   )
 ```
 
-## Data munging
+## Setting things up
+
+```{r}
+#| eval: false
+
+library(dplyr)
+library(here)
+library(janitor)
+library(magrittr)
+library(rlang)
+library(sidrar)
+library(targets)
+library(tidyr)
+```
+
+```{r}
+source(here::here("R/utils-stats.R"))
+```
+
+```{r}
+#| include: false
+
+library(magrittr)
+library(rlang)
+library(targets)
+```
+
+## Getting the sample data
 
 The data wrangling processes were performed using the  [`targets`](https://github.com/ropensci/targets) R package. The full pipeline can be seen in the `_targets.R` file at the root of the [research compendium](https://github.com/danielvartan/mastersthesis).
 
 ```{r}
 #| eval: false
-#| echo: false
-#| message: false
-#| warning: false
+#| output: false
 
-targets::tar_visnetwork(
-  targets_only = TRUE, 
-  script = here::here("_targets.R"),
-  store = here::here("_targets")
-)
+data <- targets::tar_make(script = "../_targets.R")
 ```
 
 ```{r}
 #| output: false
-
-library(targets)
-
-# data <- targets::tar_make(script = "../_targets.R")
 
 data <- 
   targets::tar_read("geocoded_data", store = here::here("_targets")) |>
   dplyr::select(
     age, sex, state, region, latitude, longitude, height, weight, work, study,
     msf_sc, sjl, le_week, 
-    ) |>
-  tidyr::drop_na(msf_sc, age, sex, latitude)
+    )
 ```
 
 ## Distribution of main variables
@@ -118,6 +134,10 @@ brazil_uf_map <-
 
 Residential geographic distribution among sample subjects
 :::
+
+```{r}
+
+```
 
 ## Age pyramid
 
@@ -314,243 +334,6 @@ Distribution of mean aggregates of the local time of the sleep corrected midpoin
 :::
 
 ## Statistics
-
-### Numerical variables
-
-::: {#tbl-appendice-chapter-4-statistics-numerical-variables}
-```{r}
-#| message: false
-#| warning: false
-
-source(here::here("R/stats_sum.R"))
-source(here::here("R/utils.R"))
-
-col <- "msf_sc"
-
-data |>
-  magrittr::extract2(col) |>
-  stats_sum(print = FALSE) |>
-  list_as_tibble()
-```
-
-[Source: Created by the author.]{.legend}
-
-Statistics of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, of sample subjects
-:::
-
-### Sex
-
-::: {#tbl-appendice-chapter-4-statistics-sex-1}
-```{r}
-#| message: false
-#| warning: false
-
-# See <https://sidra.ibge.gov.br> to learn more.
-
-library(magrittr)
-
-prettycheck:::assert_internet()
-
-# Brazil's 2022 census data
-census_data <- 
-  sidrar::get_sidra(x = 9514) %>% # Don't change the pipe
-  dplyr::filter(
-    Sexo %in% c("Homens", "Mulheres", "Total"),
-    stringr::str_detect(
-      Idade, 
-      "^(1[8-9]|[2-9][0-9]) (ano|anos)$|^100 anos ou mais$"
-    ),
-    .[[17]] == "Total"
-    ) |>
-  dplyr::transmute(
-    sex = dplyr::case_when(
-      Sexo == "Homens" ~ "Male",
-      Sexo == "Mulheres" ~ "Female",
-      Sexo == "Total" ~ "Total"
-    ),
-    value = Valor
-  ) |>
-  dplyr::group_by(sex) |>
-  dplyr::summarise(n = sum(value)) |>
-  dplyr::ungroup()
-
-census_data <- 
-  dplyr::bind_rows(
-    census_data |>
-      dplyr::filter(sex != "Total") |>
-      dplyr::mutate(
-        n_rel = n / sum(n[sex != "Total"]),
-        n_per = round(n_rel * 100, 3)
-      ),
-    census_data |>
-      dplyr::filter(sex == "Total") |>
-      dplyr::mutate(n_rel = 1, n_per = 100)
-  ) |>
-  dplyr::as_tibble() |>
-  dplyr::arrange(sex)
-
-count <- data |>
-  dplyr::select(sex) |>
-  dplyr::group_by(sex) |>
-  dplyr::summarise(n = dplyr::n()) |>
-  dplyr::ungroup() |>
-  dplyr::mutate(
-    n_rel = n / sum(n),
-    n_per = round(n_rel * 100, 3)
-  ) |>
-  dplyr::arrange(dplyr::desc(n_rel)) |>
-  dplyr::bind_rows(
-    dplyr::tibble(
-      sex = "Total",
-      n = nrow(tidyr::drop_na(data, sex)),
-      n_rel = 1, 
-      n_per = 100
-    )
-  )
-
-count <- 
-  dplyr::left_join(
-    count, census_data, 
-    by = "sex", 
-    suffix = c("_sample", "_census")
-  ) |>
-  dplyr::mutate(
-    n_rel_diff = n_rel_sample - n_rel_census,
-    n_per_diff = n_per_sample - n_per_census
-  ) |>
-  dplyr::relocate(
-    sex, n_sample, n_census, n_rel_sample, n_rel_census, n_rel_diff,
-    n_per_sample, n_per_census, n_per_diff
-  )
-
-count |> dplyr::select(sex, n_per_sample, n_per_census, n_per_diff)
-```
-
-[Source: Created by the author. Based on data from Brazil's 2022 census (@ibgeb).]{.legend}
-
-Sex frequencies among sample subjects compared with data from Brazil's 2022 census
-:::
-
-```{r}
-sum(count$n_per_diff)
-```
-
-### Age and sex
-
-::: {#tbl-appendice-chapter-4-statistics-sex-age-1}
-```{r}
-#| message: false
-#| warning: false
-
-source(here::here("R/stats_sum.R"))
-source(here::here("R/utils.R"))
-
-value <- "Male"
-
-data |>
-  dplyr::filter(sex == value) |>
-  magrittr::extract2("age") |>
-  stats_sum(print = FALSE) |>
-  list_as_tibble()
-```
-
-[Source: Created by the author.]{.legend}
-
-Age statistics of male sample subjects.
-:::
-
-::: {#tbl-appendice-chapter-4-statistics-sex-age-2}
-```{r}
-#| message: false
-#| warning: false
-
-# See <https://sidra.ibge.gov.br> to learn more.
-
-library(magrittr)
-
-prettycheck:::assert_internet()
-
-# Brazil's 2022 census data
-census_data <- 
-  sidrar::get_sidra(x = 9514) %>% # Don't change the pipe
-  dplyr::filter(
-    Sexo %in% c("Homens", "Mulheres", "Total"),
-    stringr::str_detect(
-      Idade, 
-      "^(1[8-9]|[2-9][0-9]) (ano|anos)$|^100 anos ou mais$"
-    ),
-    .[[17]] == "Total"
-    ) |>
-  dplyr::transmute(
-    sex = dplyr::case_when(
-      Sexo == "Homens" ~ "Male",
-      Sexo == "Mulheres" ~ "Female",
-      Sexo == "Total" ~ "Total"
-    ),
-    age = as.numeric(stringr::str_extract(Idade, "\\d+")),
-    value = Valor
-  ) |>
-  dplyr::group_by(sex) |>
-  dplyr::summarise(
-    mean = stats::weighted.mean(age, value),
-    sd = sqrt(Hmisc::wtd.var(age, value))
-  ) |> 
-  dplyr::ungroup() |>
-  dplyr::mutate(
-    min = c(18, 18, 18),
-    max = c(100, 100, 100)
-  ) |>
-  dplyr::relocate(sex, mean, sd, min, max) |>
-  dplyr::as_tibble()
-
-count <- data |>
-  dplyr::select(sex, age) |>
-  dplyr::group_by(sex) |>
-  dplyr::mutate(sex = as.character(sex)) |>
-  dplyr::summarise(
-    mean = mean(age, na.rm = TRUE), 
-    sd = stats::sd(age, na.rm = TRUE),
-    min = min(age, na.rm = TRUE), 
-    max = max(age, na.rm = TRUE)
-    ) |>
-  dplyr::ungroup() |>
-  dplyr::bind_rows(
-    dplyr::tibble(
-      sex = "Total",
-      mean = mean(data$age, na.rm = TRUE), 
-      sd = stats::sd(data$age, na.rm = TRUE),
-      min = min(data$age, na.rm = TRUE), 
-      max = max(data$age, na.rm = TRUE)
-    )
-  )
-  
-count <- 
-  dplyr::left_join(
-    count, 
-    census_data, 
-    by = "sex", 
-    suffix = c("_sample", "_census")
-  ) |>
-  dplyr::mutate(mean_diff = mean_sample - mean_census) |>
-  dplyr::relocate(
-    sex, mean_sample, mean_census, mean_diff, sd_sample, sd_census, 
-    min_sample, min_census, max_sample, max_census
-  )
-
-count |> 
-  dplyr::select(
-    sex, mean_sample, mean_census, mean_diff, sd_sample, sd_census
-    )
-```
-
-[Source: Created by the author. Based on data from Brazil's 2022 census (@ibgeb).]{.legend}
-
-Mean and standard deviation ($\text{sd}$) of sample subjects' age, divided by sex, compared with data from Brazil's 2022 census
-:::
-
-```{r}
-sum(count$mean_diff)
-```
 
 ### Longitudinal range
 

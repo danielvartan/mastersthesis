@@ -98,7 +98,9 @@ add_geocode_data <- function(data) {
         state == "São Paulo" ~ "Southeast",
         state == "Tocantins" ~ "North"
       )
-    )
+    ) |>
+    dplyr::relocate(region, .after = country) |>
+    dplyr::relocate(latitude, longitude, .after = postal_code)
 
   invisible(out)
 }

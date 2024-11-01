@@ -1,3 +1,58 @@
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+library(rlang)
+
+summarise_data <- function(data, by) {
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_string(by)
+  prettycheck:::assert_choice(by, names(data))
+
+  data |>
+    dplyr::summarise(n = sum(n), .by = !!as.symbol(by)) |>
+    dplyr::mutate(
+      n_rel = n / sum(n),
+      n_per = (n / sum(n)) * 100
+    )
+}
+
+# library(dplyr)
+# library(prettycheck) # https://github.com/danielvartan/prettycheck
+library(rlang)
+
+compare_sample <- function(sample_data, pop_data, by) {
+  prettycheck:::assert_tibble(sample_data)
+  prettycheck:::assert_tibble(pop_data)
+  prettycheck:::assert_string(by)
+  prettycheck:::assert_choice(by, names(sample_data))
+  prettycheck:::assert_choice(by, names(pop_data))
+
+  sample_data |>
+    dplyr::summarise(n = dplyr::n(), .by = !!as.symbol(by)) |>
+    dplyr::mutate(
+      n_rel = n / sum(n),
+      n_per = (n / sum(n)) * 100
+    ) |>
+    dplyr::left_join(
+      pop_data |>
+        dplyr::summarise(n = sum(n), .by = !!as.symbol(by))  |>
+        dplyr::mutate(
+          n_rel = n / sum(n),
+          n_per = (n / sum(n)) * 100
+        ),
+      by = dplyr::all_of(by),
+      suffix = c("_sample", "_pop")
+    ) |>
+    dplyr::mutate(
+      n_per_diff = n_per_sample - n_per_pop,
+      diff_per = (n_per_diff / n_per_pop) * 100
+    ) |>
+    dplyr::select(
+      !!as.symbol(by),
+      n_per_sample, n_per_pop,
+      n_per_diff, diff_per
+    )
+}
+
 # library(cli)
 # library(prettycheck) # https://github.com/danielvartan/prettycheck
 

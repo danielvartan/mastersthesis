@@ -16,7 +16,7 @@ options(scipen = 10, digits = 5)
 #| output: asis
 
 rutils:::quarto_status(
-  type = "polishing",
+  type = "drafting",
   of_what = "of this thesis",
   latex_parskip = "\\microskip"
   )
@@ -30,11 +30,11 @@ Every analysis should be guided by a question. The question that guides this ana
 **Is latitude associated with chronotype?**
 :::
 
-The primary objective is to model and test this hypothesis by critically examining whether a significant association and effect size exist between latitude and circadian phenotypes in the Brazilian population.
+The primary objective is to model and test this hypothesis, in the context of human circadian rhythms, by critically examining whether a significant association and effect size exist between latitude and circadian phenotypes in the Brazilian population.
 
 ## Hypothesis
 
-Popper’s hypothetico-deductive method, also known as the *method of conjecture and refutation* [@popper1979, p. 164] is used as a method of approach of the thesis question. The basic structure of this approach can be summarized as follows:
+To approach this question, we applied Popper’s hypothetico-deductive method, also known as the *method of conjecture and refutation* [@popper1979, p. 164]. The basic structure of this approach can be summarized as follows:
 
 ```{mermaid}
 %%| label: fig-mermaid
@@ -49,12 +49,12 @@ flowchart LR
 
 > Here $\text{P}_1$, is the **problem** from which we start, $\text{TT}$ (the ‘tentative theory’) is the imaginative conjectural solution which we first reach, for example our first **tentative interpretation**. $\text{EE}$ (‘**error- elimination**’) consists of a severe critical examination of our conjecture, our tentative interpretation: it consists, for example, of the critical use of documentary evidence and, if we have at this early stage more than one conjecture at our disposal, it will also consist of a critical discussion and comparative evaluation of the competing conjectures. $\text{P}_2$ is the problem situation as it emerges from our first critical attempt to solve our problems. It leads up to our second attempt (**and so on**) [@popper1979, p. 164].
 
-The tentative theory or main hypothesis, as stated in Chapter 1, is the following:
+Our tentative theory or main hypothesis, as stated in Chapter 1, is the following:
 
 __Hypothesis__
 : \hspace{20cm} *latitude is associated with chronotype distributions*, with populations closer to the equator exhibiting, on average, a shorter or more morning-oriented circadian phenotype compared to those residing near the poles [@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003].
 
-As a procedure method, an improved approach to Null Hypothesis Significance Testing (NHST), rooted in the original Neyman-Pearson framework for data testing is employed [@neyman1928; @neyman1928a; @perezgonzalez2015]. 
+As a procedure method, an improved approach to Null Hypothesis Significance Testing ([NHST](https://en.wikipedia.org/wiki/Statistical_hypothesis_test) (Null Hypothesis Significance Testing)), rooted in the original Neyman-Pearson framework for data testing is employed [@neyman1928; @neyman1928a; @perezgonzalez2015], evaluating the following hypotheses: 
 
 $$
 \begin{cases}
@@ -67,19 +67,19 @@ $$
 
 ### Measurement instrument
 
-Chronotypes were measured using a an sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. MCTQ is a widely validated and widely used self-report questionnaire for measuring the sleep-wake cycle and chronotypes [@roenneberg2019]. It quantifies the chronotype as a state, a biological circadian phenotype, using as a proxy the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~). A sleep correction (SC) is made when a possible sleep compensation related to a lack of sleep on workdays is identified [@roenneberg2012].
+Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MSF~sc~) on work-free days, accounting for any potential sleep compensation due to sleep deficits on workdays [@roenneberg2012].
 
-Subjects were asked to complete an online questionnaire with the sleep log and to provide sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and work/study routine-related data. A deactivated version of the questionnaire can be seen at <https://bit.ly/brchrono-form>.
+Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire can be viewed at https://bit.ly/brchrono-form.
 
 ### Sample
 
-The cleaned and validated sample is made up of $76,744$ Brazilian subjects. It was obtained in 2017 from October 15th to 21st by a broadcast of the online questionnaire on a popular Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The cleaned, validated and balanced sample is made up of $76,744$ Brazilian subjects. The original sample is composed of $120,265$ individuals from all regions of Brazil. It was obtained in 2017 from October 15th to 21st by a broadcast of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
 A survey conducted in 2019 by the Brazilian Institute of Geography and Statistics (IBGE) [-@ibge2021] found that $82.17\%$ of Brazilian households had access to an internet connection. Therefore, this sample is likely to have a good representation of Brazil’s population. Only residents of Brazilian states in the UTC-3 timezone, aged $18$ years or older, were included in the final sample.
 
 A power analysis *a posteriori* was conducted for nested multiple regression models in order to verify if the sample size was adequate.
 
-Daylight Saving Time (DST) began in Brazil at midnight on October 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that MCTQ asks subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample would be the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the hypothesis test.
+Daylight Saving Time (DST) began in Brazil at midnight on October 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that we asked subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample would be the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the data.
 
 Based on the 2022 census [@ibgea], Brazil had $52.263\%$ of females and $47.737\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with $66.297\%$ of females and $33.703\%$ of male subjects.
 
@@ -299,6 +299,16 @@ The [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.
 #| output: false
 
 data <- targets::tar_make(script = "../_targets.R")
+```
+
+```{r}
+utc_minus_3_states <- c(
+  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
+  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
+  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
+  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
+  "Rio Grande do Sul"
+)
 ```
 
 ```{r}

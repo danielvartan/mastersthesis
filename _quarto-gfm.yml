@@ -1,5 +1,4 @@
 project:
-  output-dir: "."
   render: [README.qmd]
   post-render: "R/_post-render-gfm.R"
 
