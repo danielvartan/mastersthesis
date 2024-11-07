@@ -1,8 +1,8 @@
 # library(dplyr)
 # library(geobr)
 library(ggplot2)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 # library(viridis)
 

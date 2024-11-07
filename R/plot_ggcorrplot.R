@@ -3,7 +3,7 @@
 library(ggplot2)
 # library(here)
 # library(hms)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(stats)
 # library(tidyr)
 

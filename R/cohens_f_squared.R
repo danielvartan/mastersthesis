@@ -8,7 +8,7 @@
 # to learn more.
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 cohens_f_squared <- function(base_r_squared, new_r_squared = NULL) {
   prettycheck:::assert_number(base_r_squared, lower = 0, upper = 1)
@@ -24,7 +24,7 @@ cohens_f_squared <- function(base_r_squared, new_r_squared = NULL) {
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 cohens_f_squared_effect_size <- function(f_squared) {
   prettycheck:::assert_number(f_squared, lower = - 1, upper = 1)
@@ -38,7 +38,7 @@ cohens_f_squared_effect_size <- function(f_squared) {
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 cohens_f_squared_summary <- function(base_r_squared, new_r_squared = NULL) {
   prettycheck:::assert_number(base_r_squared, lower = 0, upper = 1)

@@ -1,7 +1,7 @@
 # library(here)
 # library(lubridate)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 # lybrary(stringr)
 # lybrary(yaml)
 

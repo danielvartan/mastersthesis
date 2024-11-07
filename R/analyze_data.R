@@ -3,9 +3,9 @@
 # library(hms)
 # library(lubridate)
 # library(mctq)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
-# library(scaler) # https://github.com/danielvartan/scaler
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
+# library(scaler) # github.com/danielvartan/scaler
 
 #' Analyze `validate_data()` output
 #'

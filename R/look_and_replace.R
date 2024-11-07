@@ -3,18 +3,18 @@
 # library(dplyr)
 # library(googlesheets4)
 # library(here)
-# library(lockr) # https://github.com/danielvartan/lockr
+# library(lockr) # github.com/danielvartan/lockr
 # library(osfr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
 # library(cli)
 # library(dplyr)
 # library(here)
-# library(lockr) # https://github.com/danielvartan/lockr
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(lockr) # github.com/danielvartan/lockr
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 look_and_replace <- function(
     x,
@@ -87,10 +87,10 @@ look_and_replace <- function(
 # library(cli)
 # library(curl)
 # library(here)
-# library(lockr) # https://github.com/danielvartan/lockr
+# library(lockr) # github.com/danielvartan/lockr
 # library(osfr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
 get_lookup_data <- function(
@@ -142,10 +142,10 @@ get_lookup_data <- function(
 # library(cli)
 # library(googlesheets4)
 # library(here)
-# library(lockr) # https://github.com/danielvartan/lockr
+# library(lockr) # github.com/danielvartan/lockr
 # library(osfr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 update_lookup_data <- function(
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA",
@@ -214,7 +214,7 @@ update_lookup_data <- function(
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 
 # data |> fix_var_names() |> filter_geo("id", 92238)
@@ -230,8 +230,8 @@ filter_geo <- function(data, var, value) {
 
 # library(dplyr)
 # library(googlesheets4)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 # data |> write_unique_values_to_lookup_sheet(col = "state")
 # data |> fix_var_names() |> write_unique_values_to_lookup_sheet(col = "name")

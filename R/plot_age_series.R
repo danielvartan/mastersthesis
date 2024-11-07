@@ -7,9 +7,9 @@
 library(ggplot2)
 # library(here)
 # library(hms)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
 # library(viridis)
 

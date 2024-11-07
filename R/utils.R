@@ -1,7 +1,7 @@
 # library(hms)
-# library(lubritime) # https://github.com/danielvartan/lubritime
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(lubritime) # github.com/danielvartan/lubritime
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 # TODO: Refactor and move to `lubritime`.
 transform_time <- function(x, threshold = hms::parse_hms("12:00:00")) {
@@ -28,8 +28,8 @@ transform_time <- function(x, threshold = hms::parse_hms("12:00:00")) {
 
 # library(hms)
 # library(lubridate)
-# library(lubritime) # https://github.com/danielvartan/lubritime
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(lubritime) # github.com/danielvartan/lubritime
+# library(rutils) # github.com/danielvartan/rutils
 
 # TODO: Try to integrate this with `lubritime:::link_to_timeline()`.
 midday_trigger <- function(x, trigger = hms::parse_hm("22:00")) {
@@ -47,8 +47,8 @@ midday_trigger <- function(x, trigger = hms::parse_hm("22:00")) {
 }
 
 # library(lubridate)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 # TODO: Move to `lubritime`.
 test_timeline_link <- function(x, tz = "UTC") {
@@ -74,7 +74,7 @@ test_timeline_link <- function(x, tz = "UTC") {
   }
 }
 
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 # TODO: Move to `rutils`.
 count_not_na <- function(x) {
@@ -83,7 +83,7 @@ count_not_na <- function(x) {
   length(which(!is.na(x)))
 }
 
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 # TODO: Move to `rutils`.
 drop_inf <- function(x) {
@@ -93,7 +93,7 @@ drop_inf <- function(x) {
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(tidyr)
 
 list_as_tibble <- function(list) {
@@ -108,4 +108,13 @@ list_as_tibble <- function(list) {
       )
     ) |>
     tidyr::pivot_longer(cols = dplyr::everything())
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+to_ascii <- function(x, from = "UTF-8") {
+  prettycheck:::assert_character(x)
+  prettycheck:::assert_string(from)
+
+  iconv(x, to = "ASCII//TRANSLIT")
 }

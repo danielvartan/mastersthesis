@@ -2,7 +2,7 @@
 library(GGally)
 library(ggplot2)
 # library(hms)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(tidyr)
 # library(viridis)
 

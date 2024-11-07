@@ -20,17 +20,17 @@ targets::tar_option_set(
     "dplyr",
     "here",
     "hms",
-    "lockr", # https://github.com/danielvartan/lockr
+    "lockr", # github.com/danielvartan/lockr
     "lubridate", # For masking reasons.
-    "lubritime", # https://github.com/danielvartan/lubritime
+    "lubritime", # github.com/danielvartan/lubritime
     "methods",
     "mctq",
-    "prettycheck", # https://github.com/danielvartan/prettycheck
+    "prettycheck", # github.com/danielvartan/prettycheck
     "osfr",
     "readr",
     "rlang",
-    "rutils", # https://github.com/danielvartan/rutils
-    "scaler", # https://github.com/danielvartan/scaler
+    "rutils", # github.com/danielvartan/rutils
+    "scaler", # github.com/danielvartan/scaler
     "stringr",
     "tidyr",
     "utils"

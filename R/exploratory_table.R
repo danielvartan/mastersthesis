@@ -8,7 +8,7 @@
 # library(dplyr)
 # library(gt)
 # library(here)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 source(here::here("R/test_normality.R"))
 
@@ -317,7 +317,7 @@ exploratory_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 sig_level_asterisks <- function(x) {
   prettycheck:::assert_number(x)
@@ -332,7 +332,7 @@ sig_level_asterisks <- function(x) {
 }
 
 # library(exams)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(readr)
 # library(stringr)
 

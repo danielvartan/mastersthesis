@@ -2,11 +2,11 @@
 # library(curl)
 # library(dplyr)
 # library(here)
-# library(lockr) # https://github.com/danielvartan/lockr
+# library(lockr) # github.com/danielvartan/lockr
 # library(osfr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(readr)
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 # library(utils)
 

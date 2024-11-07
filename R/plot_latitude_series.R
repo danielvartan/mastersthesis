@@ -3,9 +3,9 @@ library(ggplot2)
 # library(here)
 # library(hms)
 # library(latex2exp)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rlang)
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
 
 source(here::here("R/utils.R"))

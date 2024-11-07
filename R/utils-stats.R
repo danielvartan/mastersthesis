@@ -1,5 +1,5 @@
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 
 summarise_data <- function(data, by) {
@@ -10,13 +10,34 @@ summarise_data <- function(data, by) {
   data |>
     dplyr::summarise(n = sum(n), .by = !!as.symbol(by)) |>
     dplyr::mutate(
-      n_rel = n / sum(n),
-      n_per = (n / sum(n)) * 100
-    )
+      n_cum = cumsum(n),
+      n_per = (n / sum(n)),
+      n_per_cum = cumsum(n_per * 100),
+      n_per_cum =
+        n_per_cum |>
+        round(3) |>
+        format(nsmall = 3) |>
+        paste0("%")
+    ) |>
+    janitor::adorn_totals(
+      where ="row",
+      fill = "-",
+      na.rm = TRUE,
+      name = "Total",
+      -n_cum,
+      -n_per_cum
+    ) |>
+    janitor::adorn_pct_formatting(
+      digits = 3,
+      rounding = "half to even",
+      affix_sign = TRUE,
+      n_per
+    ) |>
+    dplyr::as_tibble()
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 
 compare_sample <- function(sample_data, pop_data, by) {
@@ -54,7 +75,7 @@ compare_sample <- function(sample_data, pop_data, by) {
 }
 
 # library(cli)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 extract_from_summary <- function(x, element = "r.squared") {
   prettycheck:::assert_list(x)
@@ -83,7 +104,7 @@ adj_r_squared <- function(x) extract_from_summary(x, "adj.r.squared")
 f_statistic <- function(x) extract_from_summary(x, "fstatistic")
 
 # library(stats)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 std_error <- function(x){
   prettycheck:::assert_numeric(x)
@@ -92,7 +113,7 @@ std_error <- function(x){
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(stats)
 
 # TODO: Move to `rutils`.
@@ -116,10 +137,10 @@ is_outlier <- function( # Change name to `test_outlier`
     max <- mean(x, na.rm = TRUE) + (sd_mult * stats::sd(x, na.rm = TRUE))
   }
 
-  dplyr::if_else(x >= min & x <= max, FALSE, TRUE, missing = FALSE)
+  dplyr::if_else(x > min & x < max, FALSE, TRUE, missing = FALSE)
 }
 
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 # TODO: Move to `rutils`.
 remove_outliers <- function(

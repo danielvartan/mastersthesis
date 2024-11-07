@@ -1,5 +1,5 @@
 # library(here)
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(rutils) # github.com/danielvartan/rutils
 
 # Post-render begin ----------
 

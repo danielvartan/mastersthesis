@@ -1,6 +1,6 @@
 library(ggplot2)
 # library(gridExtra)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 
 plot_nominal_vars <- function(data) {

@@ -1,7 +1,7 @@
 # library(hms)
-# library(lubritime) # https://github.com/danielvartan/lubritime
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(lubritime) # github.com/danielvartan/lubritime
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 labels_hms <- function(x, type = "even") {
   classes <- c("numeric", "Duration", "difftime", "hms", "POSIXct",
@@ -22,8 +22,8 @@ labels_hms <- function(x, type = "even") {
 }
 
 # library(hms)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 labels_char_hms <- function(x) {
   prettycheck:::assert_character(x, pattern = "^\\d{2}:\\d{2}:\\d{2}$")
@@ -33,7 +33,7 @@ labels_char_hms <- function(x) {
     rutils:::label_jump(type = "even")
 }
 
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 label_decimal_fix <- function(x){
   prettycheck:::assert_character(x)
@@ -55,11 +55,11 @@ label_decimal_fix <- function(x){
 
 # library(here)
 # library(hms)
-# library(lubritime) # https://github.com/danielvartan/lubritime
+# library(lubritime) # github.com/danielvartan/lubritime
 library(magrittr)
 # library(mctq)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 # library(stats)
 
 source(here::here("R/test_normality.R"))
@@ -163,7 +163,7 @@ summarise_inline <- function(data,
 
 # library(cli)
 # library(lubridate)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(stringr)
 
 transform_cut_levels <- function(x, tz = "UTC") {
@@ -196,7 +196,7 @@ transform_cut_levels <- function(x, tz = "UTC") {
   )
 }
 
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(stringr)
 
 cut_mean <- function(x, round = TRUE) {

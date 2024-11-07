@@ -9,7 +9,7 @@ library(downlit)
 library(magrittr)
 library(ggplot2)
 library(rlang)
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(rutils) # github.com/danielvartan/rutils
 library(targets)
 library(xml2)
 # library(yaml)

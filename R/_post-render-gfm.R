@@ -1,5 +1,5 @@
 # library(beepr)
-# library(groomr) # https://github.com/danielvartan/groomr
+# library(groomr) # github.com/danielvartan/groomr
 # library(here)
 # library(readr)
 # library(stringr)

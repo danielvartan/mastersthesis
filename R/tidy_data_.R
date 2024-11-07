@@ -3,11 +3,11 @@
 # library(dplyr)
 # library(here)
 # library(hms)
-# library(lockr) # https://github.com/danielvartan/lockr
+# library(lockr) # github.com/danielvartan/lockr
 # library(lubridate)
 # library(methods)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 # library(tidyr)
 
@@ -15,9 +15,9 @@ source(here::here("R/look_and_replace.R"))
 
 # library(cli)
 # library(here)
-# library(lockr) # https://github.com/danielvartan/lockr
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(lockr) # github.com/danielvartan/lockr
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 #' Tidy `get_raw_data()` output
 #'
@@ -121,7 +121,7 @@ tidy_data_ <- function(
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 fix_var_names <- function(data) {
   prettycheck:::assert_tibble(data)
@@ -157,7 +157,7 @@ fix_var_names <- function(data) {
 
 # library(dplyr)
 # library(lubridate)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 fix_var_classes <- function(data) {
   prettycheck:::assert_tibble(data)
@@ -237,11 +237,11 @@ fix_var_classes <- function(data) {
 }
 
 # library(dplyr)
-# library(lockr) # https://github.com/danielvartan/lockr
+# library(lockr) # github.com/danielvartan/lockr
 # library(methods)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(rutils) # github.com/danielvartan/rutils
 
 look_and_replace_values <- function(
     data,
@@ -312,9 +312,9 @@ look_and_replace_values <- function(
 }
 
 # library(dplyr)
-# library(lockr) # https://github.com/danielvartan/lockr
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(lockr) # github.com/danielvartan/lockr
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
 fix_character_vars <- function(data) {
@@ -341,7 +341,7 @@ fix_character_vars <- function(data) {
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(tidyr)
 
 nest_vars <- function(data) {

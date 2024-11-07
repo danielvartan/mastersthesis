@@ -1,6 +1,6 @@
 # library(dplyr)
 library(ggplot2)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(viridis)
 
 plot_world_map <- function(data, option = NULL, text_size = NULL) {

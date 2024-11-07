@@ -5,8 +5,8 @@
 # library(lubridate)
 # library(moments)
 # library(nortest)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 # library(stats)
 # library(tseries)
 
@@ -163,8 +163,8 @@ test_normality <- function(x,
 
 # library(dplyr)
 library(ggplot2)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 plot_qq <- function(x,
                     text_size = NULL,
@@ -199,8 +199,8 @@ plot_qq <- function(x,
 
 # library(dplyr)
 library(ggplot2)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 plot_hist <- function(x,
                       x_lab = "x",

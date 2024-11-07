@@ -1,6 +1,6 @@
 # library(dplyr)
 # library(here)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 source(here::here("R/test_normality.R"))
 

@@ -3,12 +3,12 @@
 # library(here)
 # library(hms)
 # library(lubridate)
-# library(lubritime) # https://github.com/danielvartan/lubritime
+# library(lubritime) # github.com/danielvartan/lubritime
 # library(mctq)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rlang)
-# library(rutils) # https://github.com/danielvartan/rutils
-# library(scaler) # https://github.com/danielvartan/scaler
+# library(rutils) # github.com/danielvartan/rutils
+# library(scaler) # github.com/danielvartan/scaler
 # library(stringr)
 # library(tidyr)
 
@@ -74,7 +74,7 @@ validate_data <- function(data) {
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 rm_test_cases <- function(data) {
   prettycheck:::assert_tibble(data)
@@ -84,8 +84,8 @@ rm_test_cases <- function(data) {
 
 # library(dplyr)
 # library(hms)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(scaler) # https://github.com/danielvartan/scaler
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(scaler) # github.com/danielvartan/scaler
 
 validate_ranges <- function(data) {
   prettycheck:::assert_tibble(data)
@@ -139,7 +139,7 @@ validate_ranges <- function(data) {
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 # library(stringr)
 # library(tidyr)
@@ -218,8 +218,8 @@ validate_work_study <- function(data){
 
 # library(dplyr)
 # library(lubridate)
-# library(lubritime) # https://github.com/danielvartan/lubritime
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(lubritime) # github.com/danielvartan/lubritime
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 
 fix_bt_sprep_inversion <- function(data) {
@@ -258,9 +258,9 @@ fix_bt_sprep_inversion <- function(data) {
 # library(dplyr)
 # library(lubridate)
 # library(mctq)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(rutils) # github.com/danielvartan/rutils
 
 validate_sdu <- function(data) {
   prettycheck:::assert_tibble(data)
@@ -300,8 +300,8 @@ validate_sdu <- function(data) {
 # library(dplyr)
 # library(hms)
 # library(mctq)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 validate_so <- function(data) {
   prettycheck:::assert_tibble(data)
@@ -332,8 +332,8 @@ validate_so <- function(data) {
 # library(dplyr)
 # library(hms)
 # library(lubridate)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
 na_mctq_blank_cases <- function(data) {
   prettycheck:::assert_tibble(data)
@@ -365,7 +365,7 @@ na_mctq_blank_cases <- function(data) {
 }
 
 # library(dplyr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 remove_duplicates_and_blanks <- function(data) {
   prettycheck:::assert_tibble(data)

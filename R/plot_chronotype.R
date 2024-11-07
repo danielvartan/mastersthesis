@@ -13,10 +13,10 @@ library(ggplot2)
 # library(hms)
 # library(latex2exp)
 # library(lubridate)
-# library(lubritime) # https://github.com/danielvartan/lubritime
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(lubritime) # github.com/danielvartan/lubritime
+# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(rutils) # github.com/danielvartan/rutils
 # library(stats)
 # library(tidyr)
 

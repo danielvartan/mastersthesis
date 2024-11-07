@@ -44,7 +44,8 @@ library(workflows)
 ```
 
 ```{r}
-source(here::here("R/utils-stats.R"))
+source(here::here("R", "get_brazil_state_by_utc.R"))
+source(here::here("R", "utils-stats.R"))
 ```
 
 ```{r}
@@ -67,16 +68,6 @@ data <- targets::tar_make(script = "../_targets.R")
 ```
 
 ```{r}
-utc_minus_3_states <- c(
-  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
-  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
-  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
-  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
-  "Rio Grande do Sul"
-)
-```
-
-```{r}
 #| output: false
 
 data <- 
@@ -84,7 +75,7 @@ data <-
   dplyr::select(country, region, state, sex, age, msf_sc) |>
   dplyr::arrange(state, sex, age) |>
   dplyr::mutate(state = factor(state, ordered = FALSE)) |>
-  dplyr::filter(state %in% utc_minus_3_states) |>
+  dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state")) |>
   tidyr::drop_na()
 ```
 

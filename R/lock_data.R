@@ -1,8 +1,8 @@
 # library(cli)
 # library(encryptr)
 # library(here)
-# library(lockr) # https://github.com/danielvartan/lockr
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(lockr) # github.com/danielvartan/lockr
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 #' Encrypt variables of `validate_data()` output
 #'

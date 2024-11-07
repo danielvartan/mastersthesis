@@ -2,7 +2,7 @@
 # library(dplyr)
 # library(here)
 # library(lubridate)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 
 source(here::here("R/utils.R"))
 source(here::here("R/utils-stats.R"))

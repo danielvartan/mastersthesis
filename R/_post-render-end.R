@@ -1,9 +1,9 @@
 # library(beepr)
 # library(here)
 library(magrittr)
-# library(prettycheck) # https://github.com/danielvartan/prettycheck
+# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(readr)
-# library(rutils) # https://github.com/danielvartan/rutils
+# library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
 # Copy output to `docs` folder -----
