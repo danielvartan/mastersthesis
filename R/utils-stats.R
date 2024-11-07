@@ -50,28 +50,40 @@ compare_sample <- function(sample_data, pop_data, by) {
   sample_data |>
     dplyr::summarise(n = dplyr::n(), .by = !!as.symbol(by)) |>
     dplyr::mutate(
-      n_rel = n / sum(n),
-      n_per = (n / sum(n)) * 100
+      n_rel = n / sum(n)
     ) |>
-    dplyr::left_join(
+    dplyr::full_join(
       pop_data |>
         dplyr::summarise(n = sum(n), .by = !!as.symbol(by))  |>
         dplyr::mutate(
-          n_rel = n / sum(n),
-          n_per = (n / sum(n)) * 100
+          n_rel = n / sum(n)
         ),
       by = dplyr::all_of(by),
       suffix = c("_sample", "_pop")
     ) |>
     dplyr::mutate(
-      n_per_diff = n_per_sample - n_per_pop,
-      diff_per = (n_per_diff / n_per_pop) * 100
+      n_rel_sample = ifelse(is.na(n_rel_sample), 0, n_rel_sample),
+      n_rel_diff = n_rel_sample - n_rel_pop,
+      diff_rel = n_rel_diff / n_rel_pop
     ) |>
     dplyr::select(
       !!as.symbol(by),
-      n_per_sample, n_per_pop,
-      n_per_diff, diff_per
-    )
+      n_rel_sample, n_rel_pop,
+      n_rel_diff, diff_rel
+    ) |>
+    janitor::adorn_totals(
+      where ="row",
+      fill = "-",
+      na.rm = TRUE,
+      name = "Total"
+    ) |>
+    janitor::adorn_pct_formatting(
+      digits = 3,
+      rounding = "half to even",
+      affix_sign = TRUE,
+      -dplyr::all_of(by)
+    ) |>
+    dplyr::as_tibble()
 }
 
 # library(cli)

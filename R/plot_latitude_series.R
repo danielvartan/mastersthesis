@@ -9,7 +9,7 @@ library(ggplot2)
 # library(tidyr)
 
 source(here::here("R/utils.R"))
-source(here::here("R/utils-plot.R"))
+source(here::here("R/utils-plots.R"))
 source(here::here("R/utils-stats.R"))
 
 plot_latitude_series <- function(

@@ -1,4 +1,5 @@
 # library(dplyr)
+# library(here)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 # Based on data from the Brazilian Institute of Geography and Statistics (IBGE).
@@ -18,10 +19,10 @@ get_brazil_state <- function(x = NULL, by = "fu") {
     c(
       "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará",
       "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão",
-      "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Paraná",
-      "Paraíba", "Pará", "Pernambuco", "Piauí", "Rio de Janeiro",
+      "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará",
+      "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro",
       "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima",
-      "Santa Catarina", "Sergipe", "São Paulo", "Tocantins"
+      "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"
     )
   } else if (by == "region") {
     # assert_brazil_region(x)
@@ -70,9 +71,9 @@ get_brazil_state <- function(x = NULL, by = "fu") {
       x == "mt" ~ "Mato Grosso",
       x == "ms" ~ "Mato Grosso do Sul",
       x == "mg" ~ "Minas Gerais",
-      x == "pr" ~ "Paraná",
-      x == "pb" ~ "Paraíba",
       x == "pa" ~ "Pará",
+      x == "pb" ~ "Paraíba",
+      x == "pr" ~ "Paraná",
       x == "pe" ~ "Pernambuco",
       x == "pi" ~ "Piauí",
       x == "rj" ~ "Rio de Janeiro",
@@ -81,8 +82,8 @@ get_brazil_state <- function(x = NULL, by = "fu") {
       x == "ro" ~ "Rondônia",
       x == "rr" ~ "Roraima",
       x == "sc" ~ "Santa Catarina",
-      x == "se" ~ "Sergipe",
       x == "sp" ~ "São Paulo",
+      x == "se" ~ "Sergipe",
       x == "to" ~ "Tocantins"
     )
   }

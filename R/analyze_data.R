@@ -92,7 +92,7 @@ analyze_data <- function(data, round = FALSE, hms = FALSE) {
       id, timestamp, track,
 
       name, email, birth_date, age, sex, gender_identity,
-      sexual_orientation, country, state, city, postal_code,
+      sexual_orientation, country, state, municipality, postal_code,
 
       height, weight, sleep_drugs, sleep_drugs_which, sleep_disorder,
       sleep_disorder_which, medication, medication_which,

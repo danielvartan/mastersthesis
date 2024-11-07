@@ -49,7 +49,7 @@ lock_data <- function(
     data |>
     encryptr::encrypt(
       track, name, email, birth_date, gender_identity,
-      sexual_orientation, country, state, city, postal_code,
+      sexual_orientation, country, state, municipality, postal_code,
       public_key_path = public_key_path
     )
 

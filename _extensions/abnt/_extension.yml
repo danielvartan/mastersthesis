@@ -110,7 +110,7 @@ contributes:
       tbl-pos: H # `abntex2` default: htb (doesn't work)
       cap-location: top
       prefer-html: false
-      location: "[City]"
+      location: "[Municipality]"
       supervisor: "[Supervisor's full name]"
       cosupervisor: "[Co-supervisor's full name]"
       academic-title: "[Master/PhD]"

@@ -225,7 +225,7 @@ filter_geo <- function(data, var, value) {
 
   data |>
     dplyr::filter(!!as.symbol(var) == value) |>
-    dplyr::select(id, country, state, city, postal_code)
+    dplyr::select(id, country, state, municipality, postal_code)
 }
 
 # library(dplyr)
@@ -255,7 +255,10 @@ write_unique_values_to_lookup_sheet <- function(
   prettycheck:::assert_subset(sheet, ss$sheets$name)
 
   out <-
-    dplyr::tibble(key = rutils:::drop_na(unique(data[[col]])), value = NA) |>
+    dplyr::tibble(
+      key = rutils:::drop_na(unique(data[[col]])),
+      value = NA
+    ) |>
     dplyr::arrange(key)
 
   ss |>

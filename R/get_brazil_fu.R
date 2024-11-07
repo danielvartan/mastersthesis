@@ -1,4 +1,5 @@
 # library(dplyr)
+# library(here)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 # Based on data from the Brazilian Institute of Geography and Statistics (IBGE).
@@ -17,7 +18,7 @@ get_brazil_fu <- function(x = NULL, by = "state") {
   if (is.null(x)) {
     c(
       "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT",
-      "MS", "MG", "PR", "PB", "PA", "PE", "PI", "RJ", "RN", "RS", "RO",
+      "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO",
       "RR", "SC", "SE", "SP", "TO"
     )
   } else if (by == "region") {
@@ -57,9 +58,9 @@ get_brazil_fu <- function(x = NULL, by = "state") {
       x == "mato grosso" ~ "MT",
       x == "mato grosso do sul" ~ "MS",
       x == "minas gerais" ~ "MG",
-      x == "parana" ~ "PR",
-      x == "paraiba" ~ "PB",
       x == "para" ~ "PA",
+      x == "paraiba" ~ "PB",
+      x == "parana" ~ "PR",
       x == "pernambuco" ~ "PE",
       x == "piaui" ~ "PI",
       x == "rio de janeiro" ~ "RJ",
@@ -68,8 +69,8 @@ get_brazil_fu <- function(x = NULL, by = "state") {
       x == "rondonia" ~ "RO",
       x == "roraima" ~ "RR",
       x == "santa catarina" ~ "SC",
-      x == "sergipe" ~ "SE",
       x == "sao paulo" ~ "SP",
+      x == "sergipe" ~ "SE",
       x == "tocantins" ~ "TO"
     )
   }

@@ -11,7 +11,7 @@
 # library(stringr)
 # library(tidyr)
 
-source(here::here("R/look_and_replace.R"))
+source(here::here("R/lookup_data.R"))
 
 # library(cli)
 # library(here)
@@ -131,7 +131,7 @@ fix_var_names <- function(data) {
       id = ID, track = track,
 
       name = pdNAME, email = pdEMAIL, birth_date = pdBIRTH,
-      country = pdCOUNTRY, state = pdSTATE, city = pdCITY,
+      country = pdCOUNTRY, state = pdSTATE, municipality = pdCITY,
       postal_code = pdPOSTAL,
 
       height = pdHEIGHT, weight = pdWEIGHT, sex = pdGENDER,
@@ -258,8 +258,9 @@ look_and_replace_values <- function(
   prettycheck:::assert_internet()
 
   # char_vars <- c(
-  #   "track", "name", "email", "country", "state", "city", "postal_code",
-  #   "sleep_drugs_which", "sleep_disorder_which", "medication_which"
+  #   "track", "name", "email", "country", "state", "municipality",
+  #   "postal_code", "sleep_drugs_which", "sleep_disorder_which",
+  #   "medication_which"
   # )
 
   char_vars <- c("track", "name", "email", "country", "state")
@@ -291,19 +292,19 @@ look_and_replace_values <- function(
     dplyr::mutate(id = as.integer(id))
 
   for (i in seq_len(nrow(special_cases))) {
-    i_id <- special_cases$id[i]
-    i_var <- special_cases$var[i]
-    i_value <-
+    id_i <- special_cases$id[i]
+    var_i <- special_cases$var[i]
+    value_i <-
       special_cases$value[i] |>
-      methods::as(class(out[[special_cases$var]])[1])
+      methods::as(class(out[[var_i]])[1])
 
     out <-
       out |>
       dplyr::mutate(
-        !!as.symbol(i_var) := dplyr::if_else(
-          id == i_id,
-          i_value,
-          !!as.symbol(i_var)
+        !!as.symbol(var_i) := dplyr::if_else(
+          id == id_i,
+          value_i,
+          !!as.symbol(var_i)
         )
       )
   }
@@ -366,7 +367,7 @@ select_vars <- function(data) {
       id, timestamp, track,
 
       name, email, birth_date, sex, gender_identity, sexual_orientation,
-      country, state, city, postal_code,
+      country, state, municipality, postal_code,
 
       height, weight, sleep_drugs, sleep_drugs_which, sleep_disorder,
       sleep_disorder_which, medication, medication_which,

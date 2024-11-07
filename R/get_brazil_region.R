@@ -1,4 +1,5 @@
 # library(dplyr)
+# library(here)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 source(here::here("R", "utils.R"))
@@ -33,9 +34,9 @@ get_brazil_region <- function(x = NULL, type = "fu") {
       x == "mt" ~ "Central-West",
       x == "ms" ~ "Central-West",
       x == "mg" ~ "Southeast",
-      x == "pr" ~ "South",
-      x == "pb" ~ "Northeast",
       x == "pa" ~ "North",
+      x == "pb" ~ "Northeast",
+      x == "pr" ~ "South",
       x == "pe" ~ "Northeast",
       x == "pi" ~ "Northeast",
       x == "rj" ~ "Southeast",
@@ -44,8 +45,8 @@ get_brazil_region <- function(x = NULL, type = "fu") {
       x == "ro" ~ "North",
       x == "rr" ~ "North",
       x == "sc" ~ "South",
-      x == "se" ~ "Northeast",
       x == "sp" ~ "Southeast",
+      x == "se" ~ "Northeast",
       x == "to" ~ "North"
     )
   } else if (type == "state") {
@@ -65,9 +66,9 @@ get_brazil_region <- function(x = NULL, type = "fu") {
       x == "mato grosso" ~ "Central-West",
       x == "mato grosso do sul" ~ "Central-West",
       x == "minas gerais" ~ "Southeast",
-      x == "parana" ~ "South",
-      x == "paraiba" ~ "Northeast",
       x == "para" ~ "North",
+      x == "paraiba" ~ "Northeast",
+      x == "parana" ~ "South",
       x == "pernambuco" ~ "Northeast",
       x == "piaui" ~ "Northeast",
       x == "rio de janeiro" ~ "Southeast",
@@ -76,8 +77,8 @@ get_brazil_region <- function(x = NULL, type = "fu") {
       x == "rondonia" ~ "North",
       x == "roraima" ~ "North",
       x == "santa catarina" ~ "South",
-      x == "sergipe" ~ "Northeast",
       x == "sao paulo" ~ "Southeast",
+      x == "sergipe" ~ "Northeast",
       x == "tocantins" ~ "North"
     )
   }

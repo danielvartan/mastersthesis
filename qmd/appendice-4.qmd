@@ -44,6 +44,7 @@ library(workflows)
 ```
 
 ```{r}
+source(here::here("R", "get_brazil_region.R"))
 source(here::here("R", "get_brazil_state_by_utc.R"))
 source(here::here("R", "utils-stats.R"))
 ```
@@ -121,24 +122,7 @@ pnad_data <-
     year = as.integer(year),
     country = "Brazil",
     country = factor(country, ordered = FALSE),
-    region = dplyr::case_when(
-      state %in% c(
-        "Distrito Federal", "Goiás", "Mato Grosso", "Mato Grosso do Sul"
-      ) ~ "Midwest",
-      state %in% c(
-        "Alagoas", "Bahia", "Ceará", "Maranhão", "Paraíba", "Pernambuco",
-        "Piauí", "Rio Grande do Norte", "Sergipe"
-      ) ~ "Northeast",
-      state %in% c(
-        "Acre", "Amapá", "Amazonas", "Pará", "Rondônia", "Roraima", "Tocantins"
-      ) ~ "North",
-      state %in% c(
-        "Espírito Santo", "Minas Gerais", "Rio de Janeiro", "São Paulo"
-      ) ~ "Southeast",
-      state %in% c(
-        "Paraná", "Rio Grande do Sul", "Santa Catarina"
-      ) ~ "South"
-    ),
+    region = get_brazil_region(state, "state"),
     region = factor(region, ordered = FALSE),
     state = factor(state, ordered = FALSE),
     sex = dplyr::case_when(
@@ -164,7 +148,7 @@ pnad_data <-
     n_rel = n / sum(n),
     n_per = (n / sum(n)) * 100
   ) |>
-  dplyr::filter(state %in% utc_minus_3_states)
+  dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state"))
 
 pnad_data
 ```
