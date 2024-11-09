@@ -4,14 +4,14 @@
 library(tarchetypes)
 library(targets)
 
-source(here::here("R/get_raw_data.R"))
-source(here::here("R/tidy_data_.R"))
-source(here::here("R/validate_data.R"))
-source(here::here("R/analyze_data.R"))
-source(here::here("R/filter_data.R"))
-source(here::here("R/add_geocode_data.R"))
-source(here::here("R/lock_data.R"))
-source(here::here("R/lookup_data.R"))
+source(here::here("R", "get_raw_data.R"))
+source(here::here("R", "tidy_data_.R"))
+source(here::here("R", "validate_data.R"))
+source(here::here("R", "analyze_data.R"))
+source(here::here("R", "filter_data.R"))
+source(here::here("R", "add_geocode_data.R"))
+source(here::here("R", "lock_data.R"))
+source(here::here("R", "lookup_data.R"))
 
 targets::tar_option_set(
   packages = c(

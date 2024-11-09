@@ -13,7 +13,7 @@ get_brazil_fu <- function(x = NULL, by = "state") {
   prettycheck:::assert_character(x, null.ok = TRUE)
   prettycheck:::assert_choice(by, c("state", "region"))
 
-  if (!is.null(x)) x <- x |> to_ascii() |> tolower()
+  if (!is.null(x)) x <- x |> to_ascii_and_lower()
 
   if (is.null(x)) {
     c(

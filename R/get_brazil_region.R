@@ -13,7 +13,7 @@ get_brazil_region <- function(x = NULL, type = "fu") {
   prettycheck:::assert_character(x, null.ok = TRUE)
   prettycheck:::assert_choice(type, c("fu", "state"))
 
-  if (!is.null(x)) x <- x |> to_ascii() |> tolower()
+  if (!is.null(x)) x <- x |> to_ascii_and_lower()
 
   if (is.null(x)) {
     c("Central-West", "North", "Northeast", "South", "Southeast")

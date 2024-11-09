@@ -109,6 +109,16 @@
       ],
       "Hash": "b11ac45c916608b7d1374ff87da053d5"
     },
+    "ISOcodes": {
+      "Package": "ISOcodes",
+      "Version": "2024.02.12",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "8882a4410a254e41eab064b0330fea56"
+    },
     "KernSmooth": {
       "Package": "KernSmooth",
       "Version": "2.23-24",

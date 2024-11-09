@@ -59,18 +59,17 @@ validate_data <- function(data) {
 
   cli::cli_progress_step("Validating data")
 
-  out <-
-    data |>
+  data |>
     rm_test_cases() |>
+    rm_invalid_cases_detected_manually() |>
     na_mctq_blank_cases() |>
+    validate_emails() |>
     validate_ranges() |>
     validate_work_study() |>
     fix_bt_sprep_inversion() |>
     validate_sdu() |>
     validate_so() |>
     remove_duplicates_and_blanks()
-
-  invisible(out)
 }
 
 # library(dplyr)
@@ -79,7 +78,41 @@ validate_data <- function(data) {
 rm_test_cases <- function(data) {
   prettycheck:::assert_tibble(data)
 
-  data |> dplyr::filter(!track == "teste" | is.na(track))
+  pattern <- "^teste$|^teste | teste$"
+
+  data |>
+    dplyr::filter(!track == "teste" | is.na(track)) |>
+    dplyr::filter(
+      !stringr::str_detect(
+        string = to_ascii_and_lower(name),
+        pattern = pattern
+      )
+    )
+}
+
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(utils)
+
+source(here::here("R", "lookup_data.R"))
+
+# These cases were detected via manual inspection of the data.
+# Example: Cases when a respondent indicated that they were doing a
+# test by including the word "test" in the "name" field.
+
+rm_invalid_cases_detected_manually <- function(data) {
+  prettycheck:::assert_tibble(data)
+
+  cols <- get_lookup_data() |> names() |> utils::head(-1)
+  pattern <- "(?i)^R E M O V E$"
+
+  data |>
+    dplyr::filter(
+      !dplyr::if_any(
+        .cols = dplyr::all_of(cols),
+        .fns = ~ ifelse(is.na(.x), FALSE, stringr::str_detect(.x, pattern))
+      )
+    )
 }
 
 # library(dplyr)
@@ -90,8 +123,7 @@ rm_test_cases <- function(data) {
 validate_ranges <- function(data) {
   prettycheck:::assert_tibble(data)
 
-  out <-
-    data |>
+  data |>
     dplyr::mutate(
       birth_date = dplyr::case_when(
         dplyr::between(
@@ -134,8 +166,21 @@ validate_ranges <- function(data) {
         )
       )
     )
+}
 
-  invisible(out)
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(stringr)
+
+validate_emails <- function(data) {
+  prettycheck:::assert_tibble(data)
+
+  data |>
+    dplyr::mutate(
+      email = dplyr::case_when(
+        stringr::str_detect(email,"^[[:alnum:]._-]+@[[:alnum:].-]+$") ~ email
+      )
+    )
 }
 
 # library(dplyr)
@@ -213,7 +258,7 @@ validate_work_study <- function(data){
     dplyr::relocate(study_periods, .after = work_periods)|>
     dplyr::select(-dummy)
 
-  invisible(out)
+  out
 }
 
 # library(dplyr)
@@ -252,7 +297,7 @@ fix_bt_sprep_inversion <- function(data) {
       dplyr::select(-dummy, -bkp)
   }
 
-  invisible(out)
+  out
 }
 
 # library(dplyr)
@@ -294,7 +339,7 @@ validate_sdu <- function(data) {
       dplyr::select(-dummy)
   }
 
-  invisible(out)
+  out
 }
 
 # library(dplyr)
@@ -306,8 +351,7 @@ validate_sdu <- function(data) {
 validate_so <- function(data) {
   prettycheck:::assert_tibble(data)
 
-  out <-
-    data |>
+  data |>
     dplyr::mutate(
       so_w = mctq::so(sprep_w, slat_w),
       so_f = mctq::so(sprep_f, slat_f),
@@ -325,8 +369,6 @@ validate_so <- function(data) {
       )
     ) |>
     dplyr::select(-so_w, -so_f, -dummy)
-
-  invisible(out)
 }
 
 # library(dplyr)
@@ -338,8 +380,7 @@ validate_so <- function(data) {
 na_mctq_blank_cases <- function(data) {
   prettycheck:::assert_tibble(data)
 
-  out <-
-    data |>
+  data |>
     dplyr::mutate(
       dummy = dplyr::case_when(
         wd == 0 &
@@ -360,8 +401,6 @@ na_mctq_blank_cases <- function(data) {
       )
     ) |>
     dplyr::select(-dummy)
-
-  invisible(out)
 }
 
 # library(dplyr)
@@ -417,5 +456,5 @@ remove_duplicates_and_blanks <- function(data) {
     dplyr::select(-dup, -length) |>
     dplyr::arrange(id)
 
-  invisible(out)
+  out
 }

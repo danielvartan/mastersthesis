@@ -16,7 +16,7 @@ get_brazil_state_longitude <- function(x, type = "fu") {
   # if (type == "fu") assert_brazil_fu(x)
   if (type == "state") x <- get_brazil_fu(x)
 
-  x <- x |> to_ascii() |> tolower()
+  x <- x |> to_ascii_and_lower()
 
   dplyr::case_when(
     x == "ac" ~ -67.8220778, # Rio Branco

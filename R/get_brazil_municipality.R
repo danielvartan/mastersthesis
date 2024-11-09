@@ -7,11 +7,22 @@
 
 source(here::here("R", "get_brazil_state.R"))
 
+# Based on data from the Brazilian Institute of Geography and Statistics (IBGE)
+# via the `geobr` R package.
+
 # The `geobr` R package is produced by Brazil's Institute for Applied
 # Economic Research (IPEA) and access the Brazilian Institute of Geography and
-# Statistics (IBGE) data. You can see a list of all `geobr` daasets by
+# Statistics (IBGE) data. You can see a list of all `geobr` datasets by
 # running `geobr::list_geobr()`.
 # See <https://ipeagit.github.io/geobr/index.html> to learn more.
+
+# source(here::here("R", "to_title_case_pt.R"))
+#
+# get_brazil_municipality () |>
+#   dplyr::pull(municipality) |>
+#   to_title_case_pt() |>
+#   sort() |>
+#   utils::writeClipboard()
 
 get_brazil_municipality <- function(year = 2017) {
   prettycheck:::assert_number(

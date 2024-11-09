@@ -104,8 +104,7 @@ tidy_data_ <- function(
 
   cli::cli_progress_step("Tidying data")
 
-  out <-
-    data |>
+  data |>
     fix_var_names() |>
     fix_var_classes() |>
     look_and_replace_values(
@@ -116,8 +115,6 @@ tidy_data_ <- function(
     fix_character_vars() |>
     nest_vars() |>
     select_vars()
-
-  invisible(out)
 }
 
 # library(dplyr)
@@ -309,7 +306,7 @@ look_and_replace_values <- function(
       )
   }
 
-  invisible(out)
+  out
 }
 
 # library(dplyr)
@@ -334,10 +331,7 @@ fix_character_vars <- function(data) {
         stringr::str_detect(name, "^[A-Za-zÀ-ÖØ-öø-ÿ .-]+$") ~ name
       ),
       email = stringr::str_to_lower(email),
-      email = stringr::str_squish(email),
-      email = dplyr::case_when(
-        stringr::str_detect(email,"^[[:alnum:]._-]+@[[:alnum:].-]+$") ~ email
-      )
+      email = stringr::str_squish(email)
     )
 }
 

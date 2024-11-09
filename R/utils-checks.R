@@ -30,8 +30,8 @@ assert_brazil_region <- function(
     )
 
     x <-
-      to_ascii(x) |>
-      tolower() |>
+      x |>
+      to_ascii_and_lower() |>
       prettycheck:::assert_subset(region_options_insensitive)
   } else {
     region_options_sensitive <- c(
@@ -75,8 +75,8 @@ assert_brazil_fu <- function(
     )
 
     x <-
-      to_ascii(x) |>
-      tolower() |>
+      x |>
+      to_ascii_and_lower() |>
       prettycheck:::assert_subset(fu_options_insensitive)
   } else {
     fu_options_sensitive <- c(
@@ -125,8 +125,8 @@ assert_brazil_state <- function(
     )
 
     x <-
-      to_ascii(x) |>
-      tolower() |>
+      x |>
+      to_ascii_and_lower() |>
       prettycheck:::assert_subset(state_options_insensitive)
   } else {
     state_options_sensitive <- c(

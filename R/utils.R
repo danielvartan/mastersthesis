@@ -116,5 +116,34 @@ to_ascii <- function(x, from = "UTF-8") {
   prettycheck:::assert_character(x)
   prettycheck:::assert_string(from)
 
-  iconv(x, to = "ASCII//TRANSLIT")
+  x |> iconv(to = "ASCII//TRANSLIT")
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+to_ascii_and_lower <- function(x, from = "UTF-8") {
+  prettycheck:::assert_character(x)
+  prettycheck:::assert_string(from)
+
+  x |> to_ascii(from) |> tolower()
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+vector_to_c <- function(x, quote = TRUE, clipboard = TRUE) {
+  prettycheck:::assert_atomic(x)
+
+  if (isTRUE(quote)) x <- paste0('"', x, '"')
+
+  out <- paste0("c(", paste(x, collapse = ", "), ")")
+
+  if (isTRUE(clipboard)) {
+    cli::cli_alert_info("Copied to clipboard.")
+
+    utils::writeClipboard(out)
+  }
+
+  cat(out)
+
+  invisible(out)
 }
