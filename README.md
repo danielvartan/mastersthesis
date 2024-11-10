@@ -19,9 +19,9 @@ MIT](https://img.shields.io/badge/license-MIT-green.png)](https://choosealicense
 
 This repository contains the [Quarto
 book](https://quarto.org/docs/books/) of my master’s thesis: *Is
-latitude associated with chronotype?*. The research compendium is also
+latitude associated with chronotype?*. The research compendium is
 accessible via [The Open Science Framework](https://osf.io/) by clicking
-[here](https://doi.org/10.17605/OSF.IO/YGKTS)
+[here](https://doi.org/10.17605/OSF.IO/YGKTS).
 
 The assemble of this repository was inspired by Ben Marwick, Carl
 Boettiger & Lincoln Mullen’s article [Packaging Data Analytical Work
@@ -41,7 +41,7 @@ It’s important to note that some restrictions apply to the availability
 of the main research data, which contain personal and sensitive
 information. As a result, this data cannot be publicly shared. To run
 the analyses, users must have an internet connection and request a set
-of access keys from the author.
+of access keys from the author (see the keys section below).
 
 To reproduce the analyses do the following steps:
 
@@ -60,6 +60,31 @@ Science](https://r4ds.hadley.nz/) and the Coursera course from John
 Hopkins University [Data Science: Foundations using
 R](https://www.coursera.org/specializations/data-science-foundations-r).
 
+## Keys
+
+To access the data and run the notebooks, you will need to set the
+following keys in the
+[`.Renviron`](https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file)
+file:
+
+- `OSF_PAT`: Your OSF Personal Access Token (PAT). If you don’t have
+  one, go to the settings section of your OSF account and create a new
+  token.
+- `MASTERSTHESIS_PASSWORD`: The password for the project’s RSA private
+  key.
+
+Additionally, you will need the following files in the project’s `_ssh`
+folder:
+
+- `id_rsa`: The project’s private RSA key.
+- `id_rsa.pub`: The project’s public RSA key.
+
+These project’s keys will be provided by the author of the thesis upon
+reasonable request. As reasonable requests, I consider those made by
+researchers with a legitimate interest in the thesis topic, whose
+projects are of high quality, ethically conducted, and who have obtained
+all necessary approvals for their research proposal.
+
 ## License
 
 [![License:
@@ -72,9 +97,8 @@ license](https://opensource.org/license/mit/). Documents are released
 under the [Creative Commons Attribution 4.0 International
 license](https://creativecommons.org/licenses/by/4.0/).
 
-The main research data contain personal and sensitive data, hence it
-cannot be publicly shared. However, the data can be provided by the
-author upon reasonable request.
+The research data is under a private license and is not publicly
+available due to privacy and ethical considerations.
 
 ## Citation
 

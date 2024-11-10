@@ -1,19 +1,9 @@
 # library(cli)
-# library(curl)
-# library(dplyr)
-# library(googlesheets4)
-# library(here)
-# library(lockr) # github.com/danielvartan/lockr
-# library(osfr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-# library(stringr)
-
-# library(cli)
 # library(dplyr)
 # library(here)
 # library(lockr) # github.com/danielvartan/lockr
 # library(prettycheck) # github.com/danielvartan/prettycheck
+library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
 
 look_and_replace <- function(
@@ -86,22 +76,22 @@ look_and_replace <- function(
 }
 
 # library(cli)
-# library(curl)
 # library(here)
 # library(lockr) # github.com/danielvartan/lockr
 # library(osfr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
+# library(readr)
 # library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
 get_lookup_data <- function(
     file = NULL,
-    pattern = "lookup.rda",
+    pattern = "lookup-data.rds",
     osf_pat = Sys.getenv("OSF_PAT"),
-    public_key = here::here("_ssh/id_rsa.pub"),
-    private_key = here::here("_ssh/id_rsa"),
+    public_key = here::here("_ssh", "id_rsa.pub"),
+    private_key = here::here("_ssh", "id_rsa"),
     password = Sys.getenv("MASTERSTHESIS_PASSWORD")
-    ) {
+  ) {
   prettycheck:::assert_string(file, null.ok = TRUE)
   prettycheck:::assert_string(pattern)
   prettycheck:::assert_string(osf_pat, n.chars = 70)
@@ -114,8 +104,8 @@ get_lookup_data <- function(
   test <- try(osfr::osf_retrieve_node(osf_id), silent = TRUE)
 
   if (!is.null(file)) {
-    prettycheck:::assert_file_exists(file, extension = c("rda", "lockr"))
-  } else if (!curl::has_internet()) {
+    prettycheck:::assert_file_exists(file, extension = c("rds", "lockr"))
+  } else if (!prettycheck:::test_internet()) {
     prettycheck:::assert_internet()
   } else if (inherits(test, "try-error")) {
     cli::cli_abort(paste0(
@@ -134,10 +124,10 @@ get_lookup_data <- function(
 
   lockr::unlock_file(file, private_key = private_key, password = password)
   file <- stringr::str_remove(file, "\\.lockr$")
-  load(file)
+  lookup_data <- readr::read_rds(file)
   lockr::lock_file(file, public_key = public_key, remove_file = TRUE)
 
-  invisible(lookup)
+  invisible(lookup_data)
 }
 
 # library(cli)
@@ -148,12 +138,14 @@ get_lookup_data <- function(
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 
+source(here::here("R", "save_and_lock.R"))
+
 update_lookup_data <- function(
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA",
     sheet_ignore = c("Documentation", "Codebook", "Validation", "Template"),
     osf_pat = Sys.getenv("OSF_PAT"),
-    public_key = here::here("_ssh/id_rsa.pub")
-    ) {
+    public_key = here::here("_ssh", "id_rsa.pub")
+  ) {
   prettycheck:::assert_string(ss)
   prettycheck:::assert_character(sheet_ignore)
   lockr:::assert_public_key(public_key)
@@ -177,64 +169,73 @@ update_lookup_data <- function(
 
   cli::cli_progress_step("Reading data from Google Sheets")
 
-  lookup <- list()
+  lookup_data <- list()
 
   for (i in sheets) {
-    lookup[[i]] <- googlesheets4::read_sheet(
-      ss = ss, sheet = i, col_names = TRUE, col_types = "c",
-      na = c("", "NA"), trim_ws = TRUE, skip = 0
+    data_i <- googlesheets4::read_sheet(
+      ss = ss, sheet = i,
+      col_names = TRUE,
+      col_types = "c",
+      na = c("", "NA"),
+      trim_ws = TRUE,
+      skip = 0
     )
+
+    lookup_data[[i]] <- data_i
   }
 
   cli::cli_progress_step("Saving data")
 
-  file <- file.path(tempdir(), "lookup.rda")
+  rds_files <- character()
+  csv_files <- character()
 
-  save(
-    list = "lookup", file = file, compress = "bzip2", version = 2,
-    ascii = FALSE
-    )
+  for (i in names(lookup_data)) {
+    fixed_i <- i |> stringr::str_replace_all("_| ", "-")
 
-  if (prettycheck:::test_file_exists(paste0(file, ".lockr"))) {
-    file.remove(paste0(file, ".lockr"))
+    rds_file_i <-
+      lookup_data[[i]] |>
+      save_and_lock(
+        file = file.path(tempdir(), paste0(fixed_i, ".rds")),
+        type = "rds",
+        public_key = public_key,
+        compress = "bz2"
+      )
+
+    csv_file_i <-
+      lookup_data[[i]] |>
+      save_and_lock(
+        file = file.path(tempdir(), paste0(fixed_i, ".csv")),
+        type = "csv",
+        public_key = public_key
+      )
+
+    rds_files <- c(rds_files, rds_file_i)
+    csv_files <- c(csv_files, csv_file_i)
   }
 
-  lockr::lock_file(file, public_key, remove_file = TRUE)
+  rds_list_file <-
+    lookup_data |>
+    save_and_lock(
+      file = file.path(tempdir(), "lookup-data.rds"),
+      type = "rds",
+      public_key = public_key,
+      compress = "bz2"
+    )
 
   cli::cli_progress_step("Uploading data to OSF")
 
-  file <- paste0(file, ".lockr")
-
   osfr::osf_upload(
     x = osfr::osf_retrieve_node(osf_id),
-    path = file,
+    path = c(rds_list_file, rds_files, csv_files),
     conflicts = "overwrite"
   )
 
-  invisible(NULL)
+  invisible()
 }
 
-# library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-library(rlang)
+# get_viacep_postalcode_table
 
-# # Helpers
-#
-# source(here::here("R", "tidy_data_.R"))
-# data <- targets::tar_read("raw_data")
-# data |> fix_var_names() |> filter_geo("id", 92238)
-#
-# source(here::here("R", "get_brazil_address_by_postalcode.R"))
-# get_brazil_address_by_postalcode("01223000") |> dplyr::glimpse()
-
-filter_geo <- function(data, var, value) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_choice(var, names(data))
-
-  data |>
-    dplyr::filter(!!as.symbol(var) == value) |>
-    dplyr::select(id, country, state, municipality, postal_code)
-}
+# get_geocoding_table
 
 # library(dplyr)
 # library(googlesheets4)
@@ -320,4 +321,73 @@ write_unique_values_to_lookup_sheet <- function(
     )
 
   invisible()
+}
+
+# library(googlesheets4)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(targets)
+
+source(here::here("R", "utils.R"))
+
+test_unique_values_on_lookup_table <- function(
+    sheet,
+    ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA",
+    setdiff = FALSE
+  ) {
+  prettycheck:::assert_string(sheet)
+  prettycheck:::assert_string(ss)
+  prettycheck:::assert_flag(setdiff)
+  prettycheck:::assert_interactive()
+  prettycheck:::assert_internet()
+
+  googlesheets4::gs4_auth()
+
+  ss <- googlesheets4::gs4_get(ss)
+  prettycheck:::assert_subset(sheet, ss$sheets$name)
+  lookup_data <- googlesheets4::read_sheet(ss = ss, sheet = sheet)
+
+  raw_data <- targets::tar_read("raw_data")
+
+  data <-
+    raw_data |>
+    dplyr::rename(
+      track = track, name = pdNAME, email = pdEMAIL, country = pdCOUNTRY,
+      state = pdSTATE, municipality = pdCITY, postal_code = pdPOSTAL,
+      sleep_drugs_which = hhDRUGSwhich,
+      sleep_disorder_which = hhSLEEPDISORDERwhich,
+      medication_which = hhMEDICATIONwhich,
+    )
+
+  prettycheck:::assert_subset(sheet, names(data))
+
+  unique_lookup <- lookup_data$key |> unique() |> sort()
+  unique_data <- data[[sheet]] |> unique() |> sort()
+
+  # unique_lookup |> length()
+  # unique_data |> length()
+
+  test_length <- length(unique_data) == length(unique_lookup)
+  test_fun <- cli_test_fun(test_length)
+
+  cli::cli_alert_info(paste0(
+    "Is the length of the lookup data the same as the unique values in ",
+    "the raw data? {.strong {test_fun(test_length)}}."
+  ))
+
+  # `identical()` is too strict for this kind of use case.
+  # test_identical <- identical(unique_data, unique_lookup)
+
+  test_identical <- length(setdiff(unique_data, unique_lookup)) == 0
+  test_fun <- cli_test_fun(test_identical)
+
+  cli::cli_alert_info(paste0(
+    "Are the lookup data and the unique values in the raw data identical? ",
+    "{.strong {test_fun(test_identical)}}."
+  ))
+
+  if (isTRUE(setdiff)) {
+    setdiff(unique_data, unique_lookup)
+  } else {
+    invisible()
+  }
 }

@@ -1,5 +1,4 @@
 # library(cli)
-# library(curl)
 # library(dplyr)
 # library(here)
 # library(lockr) # github.com/danielvartan/lockr
@@ -83,7 +82,7 @@ get_raw_data <- function(
 
   if (!is.null(file)) {
     prettycheck:::assert_file_exists(file, extension = c("csv", "zip", "lockr"))
-  } else if (!curl::has_internet()) {
+  } else if (!prettycheck:::test_internet()) {
     prettycheck:::assert_internet()
   } else if (inherits(test, "try-error")) {
     cli::cli_abort(paste0(

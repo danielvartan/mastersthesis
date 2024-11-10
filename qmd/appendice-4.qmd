@@ -22,7 +22,7 @@ rutils:::quarto_status(
 
 ## Overview
 
-This document describes the procedure for balancing the sample used for the hypothesis test.
+This document shows the procedure for balancing the sample used for the hypothesis test. Like other documents of this thesis, it is 100% reproducible.
 
 ## Setting this up
 

@@ -147,3 +147,15 @@ vector_to_c <- function(x, quote = TRUE, clipboard = TRUE) {
 
   invisible(out)
 }
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+cli_test_fun <- function(test) {
+  prettycheck:::assert_flag(test)
+
+  if (isTRUE(test)) {
+    cli::col_blue
+  } else {
+    cli::col_red
+  }
+}

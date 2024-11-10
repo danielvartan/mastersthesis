@@ -563,6 +563,22 @@
       ],
       "Hash": "f61dbaec772ccd2e17705c1e872e9e7c"
     },
+    "chatgpt": {
+      "Package": "chatgpt",
+      "Version": "0.2.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "clipr",
+        "httr",
+        "jsonlite",
+        "miniUI",
+        "rstudioapi",
+        "shiny",
+        "utils"
+      ],
+      "Hash": "be57a06e21edcf37bbc5ab4edaca5300"
+    },
     "checkmate": {
       "Package": "checkmate",
       "Version": "2.3.2",
@@ -1753,7 +1769,7 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "lubritime",
       "RemoteUsername": "danielvartan",
-      "RemoteSha": "64b288246546176ece395c9199d933e0e6ba3ef6",
+      "RemoteSha": "f3826bbb45f0ff6a457644a06ec7ae51e1319871",
       "Requirements": [
         "R",
         "cli",
@@ -1765,7 +1781,7 @@
         "rutils",
         "stringdist"
       ],
-      "Hash": "cd6ffaedc8864f4f14b3b8ac27e84f46"
+      "Hash": "d401cf93248132b19fff6bc9e86bcfce"
     },
     "magrittr": {
       "Package": "magrittr",
@@ -1863,6 +1879,18 @@
         "tools"
       ],
       "Hash": "18e9c28c1d3ca1560ce30658b22ce104"
+    },
+    "miniUI": {
+      "Package": "miniUI",
+      "Version": "0.1.1.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "htmltools",
+        "shiny",
+        "utils"
+      ],
+      "Hash": "fec5f52652d60615fdb3957b3d74324a"
     },
     "minqa": {
       "Package": "minqa",

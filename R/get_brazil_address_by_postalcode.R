@@ -68,11 +68,14 @@ get_brazil_address_by_postalcode <- function(
   pattern <- "^\\d{8}$|^\\d{5}-\\d{3}$"
   method_options <- c("osm", "viacep")
 
+  postalcode <-
+    postalcode |>
+    stringr::str_squish() |>
+    stringr::str_remove_all("\\D+")
+
   prettycheck:::assert_character(postalcode, pattern = pattern)
   prettycheck:::assert_choice(method, method_options)
   prettycheck:::assert_internet()
-
-  postalcode <- stringr::str_replace_all(postalcode, "-", "")
 
   if (method == "viacep") {
     get_brazil_address_by_postalcode_viacep(postalcode)
@@ -95,7 +98,7 @@ get_brazil_address_by_postalcode_viacep <- function(postalcode) {
     complemento = NA_character_,
     unidade = NA_character_,
     bairro = NA_character_,
-    localidad = NA_character_,
+    localidade = NA_character_,
     uf = NA_character_,
     estado = NA_character_,
     regiao = NA_character_,
@@ -155,6 +158,7 @@ get_brazil_address_by_postalcode_viacep <- function(postalcode) {
         "{municipality}-{get_brazil_fu(state)}, {postalcode}, Brasil"
       ),
       address = as.character(address),
+      address = dplyr::if_else(is.na(street), NA, address),
       latitude = NA_real_,
       longitude = NA_real_
     )
@@ -174,57 +178,78 @@ get_brazil_address_by_postalcode_osm <- function(postalcode) {
     dplyr::tibble(postalcode = postalcode) |>
     tidygeocoder::geocode(
       postalcode = postalcode,
-      method = method
+      method = "osm"
     ) |>
     tidygeocoder::reverse_geocode(
       lat = lat,
       long = long,
-      method = method,
+      method = "osm",
       full_results = TRUE
-    ) |>
-    dplyr:: select(
-      postalcode,
-      osm_lat,
-      osm_lon,
-      house_number,
-      road,
-      suburb,
-      city,
-      state,
-      region
-    ) |>
-    dplyr::rename(
-      street = road,
-      complement = house_number,
-      neighborhood = suburb,
-      municipality = city,
-      latitude = osm_lat,
-      longitude = osm_lon
-    ) |>
-    dplyr::mutate(
-      municipality_code = NA_integer_,
-      region = get_brazil_region(state, "state"),
-      address = glue::glue(
-        "{street}, {complement}, {neighborhood}, ",
-        "{municipality}-{get_brazil_fu(state)}, {postalcode}, Brasil"
-      ),
-      address = as.character(address),
-      latitude = as.numeric(latitude),
-      longitude = as.numeric(longitude)
-    ) |>
-    dplyr::relocate(
-      postalcode, street, complement, neighborhood, municipality_code,
-      municipality, state, region, address, latitude, longitude
     )
 
-  match <- stringdist::amatch(
-    out$municipality |> to_ascii_and_lower(),
-    brazil_municipalities$municipality |> to_ascii_and_lower(),
-    maxDist = 1
-  )
+  if (is.na(out$lat)) {
+    out |>
+      dplyr::transmute(
+        postalcode = postalcode,
+        street = NA_character_,
+        complement = NA_character_,
+        neighborhood = NA_character_,
+        municipality_code = NA_integer_,
+        municipality = NA_character_,
+        state = NA_character_,
+        region = NA_character_,
+        address = NA_character_,
+        latitude = NA_real_,
+        longitude = NA_real_
+      )
+  } else {
+    out <-
+      out |>
+      dplyr:: select(
+        postalcode,
+        osm_lat,
+        osm_lon,
+        house_number,
+        road,
+        suburb,
+        city,
+        state,
+        region
+      ) |>
+      dplyr::rename(
+        street = road,
+        complement = house_number,
+        neighborhood = suburb,
+        municipality = city,
+        latitude = osm_lat,
+        longitude = osm_lon
+      ) |>
+      dplyr::mutate(
+        municipality_code = NA_integer_,
+        region = get_brazil_region(state, "state"),
+        address = glue::glue(
+          "{street}, {complement}, {neighborhood}, ",
+          "{municipality}-{get_brazil_fu(state)}, {postalcode}, Brasil"
+        ),
+        address = as.character(address),
+        latitude = as.numeric(latitude),
+        longitude = as.numeric(longitude)
+      ) |>
+      dplyr::relocate(
+        postalcode, street, complement, neighborhood, municipality_code,
+        municipality, state, region, address, latitude, longitude
+      )
 
-  out |>
-    dplyr::mutate(
-      municipality_code = brazil_municipalities$municipality_code[match]
+    match <- stringdist::amatch(
+      out$municipality |> to_ascii_and_lower(),
+      brazil_municipalities$municipality |> to_ascii_and_lower(),
+      maxDist = 1
     )
+
+    out |>
+      dplyr::mutate(
+        municipality_code = brazil_municipalities$municipality_code[match],
+        municipality_code = as.integer(municipality_code)
+      )
+  }
 }
