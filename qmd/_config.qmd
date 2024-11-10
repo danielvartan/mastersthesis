@@ -24,36 +24,40 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 
 <!-- %:::% cataloging-record body begin %:::% -->
 I authorize the full or partial reproduction of this work by any conventional or electronic means for the purposes of study and research, provided that the source is cited.
-\ABNTEXfontereduzida
+\small
+
 
 \vfill
 \begin{center}
-Cataloging by the Library of the {\imprimirescola}
+CATALOGUING IN PUBLICATION
 
-Brenda Fontes Malheiros de Castro (CRB 8-7012); Sandra Tokarevicz (CRB 8-4936)
+(University of São Paulo. School of Arts, Sciences and Humanities. Library)
+
+{\tiny CRB 8-4936}
 
 \medskip
+\ABNTEXfontereduzida
 \setlength{\fboxsep}{1cm}
-\fbox{\begin{minipage}[c][7.5cm]{12.5cm}
-Vartanian, Daniel
+\fbox{
+\begin{minipage}[c][6cm]{12cm}
+Azevedo, Daniel Kachvartanian de
+
+\hspace{0.5cm} {\imprimirtitulo}  / {\imprimirautor} ; supervisor, {\imprimirorientador}. -- {\imprimirdata}
+
+\hspace{0.5cm} {\thelastpage} p : il.
 
 \smallskip
-\hspace{0.5cm} {\imprimirtitulo}  / {\imprimirautor}; supervisor, {\imprimirorientador}. -- {\imprimirlocal}, {\imprimirdata}.
+\hspace{0.5cm} {\imprimirtipotrabalho} (\imprimirtituloacademico) -- {\imprimirprograma}, {\imprimirescola}, {\imprimiruniversidade}.
+
+\hspace{0.5cm} {\imprimirnotadeversao}.
 
 \smallskip
-\hspace{0.5cm} {\thelastpage}p. : il.
+\hspace{0.5cm} 1. Complexity science. 2. Chronobiology. 3. Biological rhythms. 4. Chronotypes. 5. Circadian phenotypes. 6. Entrainment. 7. Latitude. I. Rodrigues Neto, Camilo, supervisor II. Title.
 
-\smallskip
-\hspace{0.5cm} {\imprimirtipotrabalho} (\imprimirtituloacademico) -- {\imprimirprograma}, {\imprimirescola}, {\imprimiruniversidade}, {\imprimirdata}.
-
-\smallskip
-\hspace{0.5cm} {\imprimirnotadeversao}
-
-\smallskip
-\hspace{0.5cm} 1. Complexity science. 2. Chronobiology. 3. Biological rhythms. 4. Chronotypes. 5. Entrainment. 6. Latitude. I. Rodrigues Neto, Camilo, super. II. Title.
-
-\end{minipage}}
+\end{minipage}
+}
 \end{center}
+\vspace{\hugeskipamount}
 <!-- %:::% cataloging-record body end %:::% -->
 
 ## Approval sheet header

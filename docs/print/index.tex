@@ -1001,7 +1001,7 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{F1F3F5}}{}
 \makeatother
 \makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, sharp corners, borderline west={3pt}{0pt}{shadecolor}, colback={codebgcolor}, enhanced, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, enhanced, borderline west={3pt}{0pt}{shadecolor}, colback={codebgcolor}, frame hidden, breakable, sharp corners]}{\end{tcolorbox}}\fi
 \makeatother
 
 % -----
@@ -1045,36 +1045,40 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \hyphenpenalty=100000
 %:::% cataloging-record body begin %:::%
 I authorize the full or partial reproduction of this work by any conventional or electronic means for the purposes of study and research, provided that the source is cited.
-\ABNTEXfontereduzida
+\small
+
 
 \vfill
 \begin{center}
-Cataloging by the Library of the {\imprimirescola}
+CATALOGUING IN PUBLICATION
 
-Brenda Fontes Malheiros de Castro (CRB 8-7012); Sandra Tokarevicz (CRB 8-4936)
+(University of São Paulo. School of Arts, Sciences and Humanities. Library)
+
+{\tiny CRB 8-4936}
 
 \medskip
+\ABNTEXfontereduzida
 \setlength{\fboxsep}{1cm}
-\fbox{\begin{minipage}[c][7.5cm]{12.5cm}
-Vartanian, Daniel
+\fbox{
+\begin{minipage}[c][6cm]{12cm}
+Azevedo, Daniel Kachvartanian de
+
+\hspace{0.5cm} {\imprimirtitulo}  / {\imprimirautor} ; supervisor, {\imprimirorientador}. -- {\imprimirdata}
+
+\hspace{0.5cm} {\thelastpage} p : il.
 
 \smallskip
-\hspace{0.5cm} {\imprimirtitulo}  / {\imprimirautor}; supervisor, {\imprimirorientador}. -- {\imprimirlocal}, {\imprimirdata}.
+\hspace{0.5cm} {\imprimirtipotrabalho} (\imprimirtituloacademico) -- {\imprimirprograma}, {\imprimirescola}, {\imprimiruniversidade}.
+
+\hspace{0.5cm} {\imprimirnotadeversao}.
 
 \smallskip
-\hspace{0.5cm} {\thelastpage}p. : il.
+\hspace{0.5cm} 1. Complexity science. 2. Chronobiology. 3. Biological rhythms. 4. Chronotypes. 5. Circadian phenotypes. 6. Entrainment. 7. Latitude. I. Rodrigues Neto, Camilo, supervisor II. Title.
 
-\smallskip
-\hspace{0.5cm} {\imprimirtipotrabalho} (\imprimirtituloacademico) -- {\imprimirprograma}, {\imprimirescola}, {\imprimiruniversidade}, {\imprimirdata}.
-
-\smallskip
-\hspace{0.5cm} {\imprimirnotadeversao}
-
-\smallskip
-\hspace{0.5cm} 1. Complexity science. 2. Chronobiology. 3. Biological rhythms. 4. Chronotypes. 5. Entrainment. 6. Latitude. I. Rodrigues Neto, Camilo, super. II. Title.
-
-\end{minipage}}
+\end{minipage}
+}
 \end{center}
+\vspace{\hugeskipamount}
 %:::% cataloging-record body end %:::%
 \end{fichacatalografica}
 %:::% cataloging-record end %:::%
@@ -1162,7 +1166,7 @@ My partner in life, Salete Perroni (Sal).
 
 My Mother, for her unconditional love.
 
-My sister and my brother, for their love and companionship in life.
+My Sister and my Brother, for their love and companionship in life.
 
 My two friends and partners in science,
 \href{https://orcid.org/0000-0003-0004-4487}{Alicia Rafaelly Vilefort
@@ -1339,7 +1343,7 @@ se imaginava.
 
 \chapter{Introduction}\label{introduction}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, rightrule=.15mm, opacitybacktitle=0.6, toprule=.15mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, coltitle=black, bottomrule=.15mm, arc=.35mm, titlerule=0mm, left=2mm, colback=white, colbacktitle=quarto-callout-note-color!10!white]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1352,18 +1356,18 @@ polishing.
 
 There has been a long-standing debate in the chronobiology community
 regarding the relationship between latitude and circadian phenotypes
-(chronotypes)
-\autocite{randler2008,leocadio-miguel2017,zerbini2021,skeldon2021}, with
+(chronotypes) \autocite{pittendrigh1991,zerbini2021,skeldon2021}, with
 many believing this association is already well-established. This
 hypothesis stems from the varying amounts of solar radiation experienced
 by populations across different latitudes. Since light exposure is a
-primary zeitgeber ---a periodic environmental cue that influences or
-regulates biological rhythms--- such variations are thought to create
-noticeable differences in chronotype distributions globally. This thesis
-investigates the so-called latitude or environmental hypothesis,
-addressing the question: \emph{Is latitude associated with chronotype?}.
+primary zeitgeber --- a periodic environmental cue that influences or
+regulates biological rhythms --- such variations, along with temperature
+variations, are thought to create noticeable differences in chronotype
+distributions globally. This thesis investigates the so-called latitude
+or environmental hypothesis in human circadian phenotypes, addressing
+the question: \emph{Is latitude associated with chronotype?}
 
-The central hypothesis is that \emph{latitude is associated with
+The central hypothesis is that \emph{latitude is associated with human
 chronotype distributions}, with populations closer to the equator
 exhibiting, on average, a shorter or more morning-oriented circadian
 phenotype compared to those residing near the poles
@@ -1391,11 +1395,12 @@ with those obtained from a restricted model that excludes latitude as a
 predictor. This method of prodecure builds on an article published by
 \textcite{leocadio-miguel2017}, which investigated the relationship
 between latitude and chronotype in the Brazilian population. The present
-study extends this work by utilizing a larger dataset and more advanced
-statistical methods to test the hypothesis. The results will contribute
-to the ongoing debate on the latitude-chronotype relationship, offering
-new evidences into how environmental factors influence human circadian
-rhythms.
+study extends this work by utilizing a larger dataset, a more
+appropriate scale for measuring this phenomena
+\autocite{leocadio-miguel2014}, and more advanced statistical methods to
+test the hypothesis. The results will contribute to the ongoing debate
+on the latitude-chronotype relationship, offering new evidences into how
+environmental factors influence human circadian rhythms.
 
 The thesis is structured as a
 \href{https://en.wikipedia.org/wiki/Collection_of_articles}{collection
@@ -1422,7 +1427,7 @@ link: \url{https://doi.org/10.17605/OSF.IO/YGKTS}.
 
 \chapter{On chronobiology}\label{on-chronobiology}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, rightrule=.15mm, opacitybacktitle=0.6, toprule=.15mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, coltitle=black, bottomrule=.15mm, arc=.35mm, titlerule=0mm, left=2mm, colback=white, colbacktitle=quarto-callout-note-color!10!white]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1605,7 +1610,7 @@ with the exponential decline of Process S.}
 
 \chapter{On complexity science}\label{on-complexity-science}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-important-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, rightrule=.15mm, opacitybacktitle=0.6, toprule=.15mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, coltitle=black, bottomrule=.15mm, arc=.35mm, titlerule=0mm, left=2mm, colback=white, colbacktitle=quarto-callout-important-color!10!white]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1639,9 +1644,33 @@ behavior. Aggregate behavior.
 You are dealing with an emergence phenomenon when there is no need to
 look under the hood \autocite{krakauer2023}.
 
-\includegraphics{qmd/images/perez-villa-2023-figure-3.png}
+\begin{figure}[H]
 
-\includegraphics{qmd/images/perez-villa-2023-figure-1.png}
+\caption{\label{fig-chapter-3-perez-villa-2023-figure-1}An illustration
+depicting how the human circadian clock system works. (A) The circadian
+timing system receives light signals through the eyes, which are
+processed by the brain's central clock, the suprachiasmatic nucleus
+(SCN). This clock helps to orchestrate peripheral clocks, regulating
+body functions like hormone release, metabolism, and temperature. Other
+factors like feeding schedules and exercise also influence this process,
+ensuring the synchronization of body systems like immunity and
+metabolism. (B) Specific brain cells and chemicals manage this timing by
+adjusting the activity of neurons, which helps reset the clock and keeps
+it in tune with day-night cycles. These neurons also influence clocks in
+other body parts via neuronal and hormonal signals. (C) At a molecular
+level, a network of genes and proteins operates in a feedback loop,
+maintaining near 24-hour cycles. This ensures that various body systems,
+such as metabolism and immune function, follow daily rhythms.}
+
+\centering{
+
+\includegraphics[width=0.75\textwidth,height=\textheight]{qmd/images/perez-villa-2023-figure-1.png}
+
+\legend{Source: Reproduction of \textcite{perez-villa2023}.}
+
+}
+
+\end{figure}%
 
 The result of a \emph{juggling act} of billions of years of evolution.
 There are no specific functions. There's no proposed goal.
@@ -1663,7 +1692,26 @@ ranging from gene expression and physiology to behavior and cogitation
 It's an emergent phenomenon. It's not a property of the parts
 themselves. It's a property of the system as a whole.
 
-\includegraphics{qmd/images/flanagan-2021-figure-2.png}
+\begin{figure}[H]
+
+\caption{\label{fig-chapter-3-flanagan-2021-figure-2}This illustration
+shows how circadian rhythms influence key aspects of human metabolism.
+These rhythms impact hormone levels, body temperature, energy use, and
+metabolite concentrations in the body, independent of external factors
+like environment and behavior. The light/dark cycle and food intake help
+synchronize these internal clocks located throughout the body,
+regulating physiological processes like resting energy expenditure and
+melatonin secretion.}
+
+\centering{
+
+\includegraphics[width=0.75\textwidth,height=\textheight]{qmd/images/flanagan-2021-figure-2.png}
+
+\legend{Source: Reproduction of \textcite{flanagan2021}.}
+
+}
+
+\end{figure}%
 
 ``{[}\ldots{]} involve great numbers of parts undergoing a kaleidoscopic
 array of simultaneous interactions.'' \autocite{holland1992b}
@@ -1671,17 +1719,6 @@ array of simultaneous interactions.'' \autocite{holland1992b}
 In complex adaptive systems, \textbf{emergent properties} often occur
 when coevolving signals and boundaries generate \textbf{new levels of
 organization} \autocite{holland2012}.
-
-\includegraphics{qmd/images/holland-2012-figure-1.png}
-
-Structural levels
-
-\includegraphics{qmd/images/lewin-1993-figure-8.png}
-
-Fig. 8. Structural levels in the organization of the nervous system, a
-reflection of the hierarchical systems that may underlie the generation
-of higher cognitive functions, including consciousness. Courtesy of
-Patricia Churchland and Terrence Sejnowski.
 
 A system of many interacting parts where the system is \textbf{more than
 just the sum of its parts} (Mark Newman in \textcite{mitchell2013}).
@@ -1701,30 +1738,25 @@ Complexity science seeks to \textbf{explain emergent phenomena} or
 mechanisms that ``screen-off'' their constituent parts and thereby allow
 new levels of description and understanding \autocite{krakauer2024}.
 
-\includegraphics{qmd/images/sayama-2015-figure-1.png}
+\begin{figure}[H]
 
-The seven basics consist of 4 properties and 3 mechanisms that are
-common to all complex adaptive systems:
+\caption{\label{fig-chapter-3-sayama-2015-figure-1}This visual map
+organizes complex systems science into seven main areas. The fields of
+Nonlinear Dynamics, Systems Theory, and Game Theory represent its
+historical foundations, while newer areas include Pattern Formation,
+Evolution and Adaptation, Networks, and Collective Behavior. Together,
+these areas explore how complex systems emerge and self-organize over
+time and scale.}
 
-\begin{itemize}
-\tightlist
-\item
-  Aggregation (property)
-\item
-  Nonlinearity (property)
-\item
-  Flows (property)
-\item
-  Diversity (property)
-\item
-  Tags (mechanism)
-\item
-  Internal models (mechanism)
-\item
-  Building blocks (mechanism)
-\end{itemize}
+\centering{
 
-\autocite{holland1996}
+\includegraphics[width=0.75\textwidth,height=\textheight]{qmd/images/sayama-2015-figure-1.png}
+
+\legend{Source: Reproduction of \textcite{sayama2015}.}
+
+}
+
+\end{figure}%
 
 Other concepts: chaos, power laws \& factor sparsity, feedback loops,
 robustness, equilibrium states, path dependence, leverage points
@@ -1735,7 +1767,7 @@ Approaches to study and model circadian clocks.
 
 \chapter{On the latitude hypothesis}\label{on-the-latitude-hypothesis}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-important-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, rightrule=.15mm, opacitybacktitle=0.6, toprule=.15mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, coltitle=black, bottomrule=.15mm, arc=.35mm, titlerule=0mm, left=2mm, colback=white, colbacktitle=quarto-callout-important-color!10!white]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1765,7 +1797,7 @@ propensity for the synchronization of circadian rhythms in these
 populations with the light-dark cycle. This would reduce the amplitude
 and diversity of circadian phenotypes found due to a lower influence of
 individuals' characteristic endogenous periods
-(Figure~\ref{fig-chapter-2-roenneberg-2003-figure-7-f} illustrates this
+(Figure~\ref{fig-chapter-4-roenneberg-2003-figure-7-f} illustrates this
 effect). This would also give these populations a morningness
 characteristic when compared to populations living farther from the
 equator, where the opposite would occur -- greater amplitude and
@@ -1775,7 +1807,7 @@ compared to populations living near latitude 0°
 
 \begin{figure}[H]
 
-\caption{\label{fig-chapter-2-roenneberg-2003-figure-7-f}Different
+\caption{\label{fig-chapter-4-roenneberg-2003-figure-7-f}Different
 chronotype distributions, influenced by strong and weak zeitgebers --
 black for strong and hatched for weak. An illustration of the effect
 hypothesized by the latitude hypothesis.}
@@ -1789,6 +1821,53 @@ hypothesized by the latitude hypothesis.}
 }
 
 \end{figure}%
+
+\begin{figure}[H]
+
+\caption{\label{fig-chapter-4-hut-2013-figure-1}Annual changes in (a)
+twilight duration, (b) daylight hours, and (c) temperature across
+different latitudes. Each color shows a specific latitude range,
+illustrating how these factors vary throughout the year.}
+
+\centering{
+
+\includegraphics[width=1\textwidth,height=\textheight]{qmd/images/hut-2013-figure-1.png}
+
+\legend{Source: Reproduction from \textcite{hut2013}.}
+
+}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\caption{\label{fig-chapter-4-leocadio-miguel-2017-figure-2}Mean HO
+scores (±SE) along a latitudinal cline, showing corresponding annual
+average of solar irradiation level (W/m2).}
+
+\centering{
+
+\includegraphics[width=1\textwidth,height=\textheight]{qmd/images/leocadio-miguel-2017-figure-2.png}
+
+\legend{Source: Reproduction from \textcite{leocadio-miguel2017}.}
+
+}
+
+\end{figure}%
+
+``This last fact contradicts the otherwise plausible interpretation of
+our data that strength of Zeitgeber (and hence precision) is greatest
+when the light/dark ratio is 1:1. The strength of the Zeitgeber
+certainly depends on the light/dark ratio {[}5{]} and it may be expected
+to influence precision, too. However, unexplained additional factors
+must complicate the picture. It is unknown whether the fluctuations in
+precision have an ecological significance.'' \autocite{aschoff1972}
+
+``Latitude and longitude are key factors that influence how light--dark
+cycle interacts with the circadian rhythm of humans. Therefore, it is
+reasonable to assume that chronotype distribution of a population may
+vary as a result of different geographical location.''
+\autocite{leocadio-miguel2014}
 
 ``However, it is also our experience that some mathematically
 sophisticated scientists may lack the conceptual frame that links the
@@ -1848,14 +1927,16 @@ shown by \textcite{leocadio-miguel2017}, adding \(0.00388\) to the
 negligible by all standards. Again, the conclusion drawn by the authors
 of this study was not based on sound statistical thinking.
 
-y-axis illusion. unbalanced data.
+y-axis illusion. unbalanced data. Horner \& Östberg scale from 16-86.
+
+Solar irradiation used as a proxy for latitude.
 
 \bookmarksetup{startatroot}
 
 \chapter{Is latitude associated with
 chronotype?}\label{is-latitude-associated-with-chronotype}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, rightrule=.15mm, opacitybacktitle=0.6, toprule=.15mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, coltitle=black, bottomrule=.15mm, arc=.35mm, titlerule=0mm, left=2mm, colback=white, colbacktitle=quarto-callout-note-color!10!white]
 
 You are reading the work-in-progress of this thesis.
 
@@ -1866,7 +1947,7 @@ polishing.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, opacityback=0, colbacktitle=quarto-callout-warning-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-warning-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-warning-color-frame, rightrule=.15mm, opacitybacktitle=0.6, toprule=.15mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, coltitle=black, bottomrule=.15mm, arc=.35mm, titlerule=0mm, left=2mm, colback=white, colbacktitle=quarto-callout-warning-color!10!white]
 
 The results shown here are \textbf{preliminary}, so please take them
 with a grain of salt.
@@ -1880,7 +1961,7 @@ the appendices section.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Target journal}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, rightrule=.15mm, opacitybacktitle=0.6, toprule=.15mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Target journal}, coltitle=black, bottomrule=.15mm, arc=.35mm, titlerule=0mm, left=2mm, colback=white, colbacktitle=quarto-callout-note-color!10!white]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1894,7 +1975,7 @@ the appendices section.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-note-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, rightrule=.15mm, opacitybacktitle=0.6, toprule=.15mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, coltitle=black, bottomrule=.15mm, arc=.35mm, titlerule=0mm, left=2mm, colback=white, colbacktitle=quarto-callout-note-color!10!white]
 
 The following study was performed by Daniel Vartanian (DV), Mario
 Pedrazzoli (MP) and Camilo Rodrigues Neto (CR).
@@ -2118,7 +2199,10 @@ between sleep onset and sleep end on work-free days
 relation to latitude decimal degree intervals. Higher values of
 MSF\textsubscript{sc} indicate a tendency toward a late chronotype. The
 red line represents a linear regression, and the shaded area indicates a
-pointwise 95\% confidence interval.}
+pointwise 95\% confidence interval. Attention is needed when
+interpreting this chart. Note that the y-axis is limited, and the
+difference between the highest and lowest values is negligible
+considering the MCTQ scale.}
 
 \centering{
 
@@ -2374,7 +2458,7 @@ changes were made.
 
 \chapter{Conclusion}\label{conclusion}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, titlerule=0mm, coltitle=black, bottomtitle=1mm, breakable, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, opacityback=0, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, toptitle=1mm, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, colframe=quarto-callout-important-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, rightrule=.15mm, opacitybacktitle=0.6, toprule=.15mm, opacityback=0, toptitle=1mm, bottomtitle=1mm, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Important}, coltitle=black, bottomrule=.15mm, arc=.35mm, titlerule=0mm, left=2mm, colback=white, colbacktitle=quarto-callout-important-color!10!white]
 
 You are reading the work-in-progress of this thesis.
 
@@ -2385,11 +2469,20 @@ recommend reading it.
 
 \end{tcolorbox}
 
-Conclusions
+Fictum, deserunt mollit anim laborum astutumque! Quisque placerat
+facilisis egestas cillum dolore. Nec dubitamus multa iter quae et nos
+invenerat. Contra legem facit qui id facit quod lex prohibet. Quam diu
+etiam furor iste tuus nos eludet?
 
-Limitations
+\section{Limitations}\label{limitations}
 
-Future perspectives
+Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod
+tempor incidunt ut labore et dolore magna aliqua. Donec sed odio operae,
+eu vulputate felis rhoncus. Salutantibus vitae elit libero, a pharetra
+augue. Nihil hic munitissimus habendi senatus locus, nihil horum? A
+communi observantia non est recedendum.
+
+\section{Future perspectives}\label{future-perspectives}
 
 Initially, the thesis project proposed a global modeling approach to the
 phenomenon. This approach was maintained due to the scope of a master's
