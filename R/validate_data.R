@@ -12,7 +12,8 @@
 # library(stringr)
 # library(tidyr)
 
-source(here::here("R/utils.R"))
+source(here::here("R", "utils.R"))
+source(here::here("R", "get_lookup_data.R"))
 
 #' Validate `tidy_data()` output
 #'
@@ -80,6 +81,7 @@ rm_test_cases <- function(data) {
 
   pattern <- "^teste$|^teste | teste$"
 
+  # `dplyr::filter(is.na(track))` preserve cases with `NA` values in `track`.
   data |>
     dplyr::filter(!track == "teste" | is.na(track)) |>
     dplyr::filter(
@@ -94,7 +96,7 @@ rm_test_cases <- function(data) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(utils)
 
-source(here::here("R", "lookup_data.R"))
+source(here::here("R", "get_lookup_data.R"))
 
 # These cases were detected via manual inspection of the data.
 # Example: Cases when a respondent indicated that they were doing a

@@ -173,7 +173,8 @@ get_raw_data <- function(
             .fns = ~ iconv(.x, from = "UTF-8", to = "iso-8859-1")
           ),
           dplyr::across(
-            .cols = dplyr::everything(), .fns = ~ iconv(enc2utf8(.x))
+            .cols = dplyr::everything(),
+            .fns = ~ iconv(enc2utf8(.x))
           )
         )
     }

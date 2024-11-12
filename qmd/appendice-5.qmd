@@ -22,13 +22,23 @@ rutils:::quarto_status(
 
 ## About the data cleaning process
 
+Data munging and wrangling processes were performed following the data science program proposed by @wickham2023b.
+
+::: {#fig-wickham-at-al-2024-figure-1}
+![](images/wickham-at-al-2024-figure-1.png){width=75%}
+
+Source: Reproduced from @wickham2023b.
+
+Model of the data science process created by Wickham, Çetinkaya-Runde, and Grolemund [-@wickham2023b].
+:::
+
 ### Pipeline
 
 Like this document, the data cleaning process is 100% reproducible. It can be audit by verifying the code in the `targets` pipeline use (see `./_targets.R`). Learn morea about the `targets` R package [here](https://books.ropensci.org/targets/).
 
 ### Lookup tables
 
-Along with the data cleaning procedures, lookup tables were used to clean the text/character variables. These tables were created by manually inspecting the unique values of the raw data and adjusting common misspellings, synonyms, and other issues.
+Along with the data cleaning procedures, lookup tables were used to clean the text/character variables. These tables were created by manually inspecting the **unique values of the raw data** and adjusting common misspellings, synonyms, and other issues.
 
 Text/character variables: `track`, `names`, `email`, `country`, `state`, `municiplality`, `postalcode`, `sleep_drugs_which`, `sleep_disorder_which`, `medication_which`.
 
@@ -36,15 +46,19 @@ The lookup tables are available in the research compendium of this thesis. They 
 
 The matching of the variables `sleep_drugs_which`, `sleep_disorder_which`, `medication_which` is not complete. This variables were not used in the analysis, but they are available in the research compendium.
 
+Read the section about geographical information to learn more about the matching process.
+
 ## About the geographical information
 
-Geographic data were collected via postal code. When unavailable, the latitude and longitude of the reported city were used.
+Geographic data were collected by the variables `country`, `state`, `municipality`, and `postal code`. The unique values of those data were manually inspected and adjusted using lookup tables. The `municiplaity` values were first matched using string distance algorithms present in the [`stringdist`](https://github.com/markvanderloo/stringdist) R package and data from the Brazilian Institute of Geography and Statistics (IBGE) via the [`geobr`](https://ipeagit.github.io/geobr/index.html>) R package., other processes were then performed manually.
 
-The unique values of those data (i.e, variables `country`, `state`, `municipality`, `postalcode`) were manually inspected and adjusted using lookup tables. This was a hard task involving crossing information from different sources, such as the [ViaCEP](https://viacep.com.br/) and [OpenStreetMap](https://www.openstreetmap.org/) databases and the [Correios](https://www.correios.com.br/enviar/precisa-de-ajuda/tudo-sobre-cep) postal code documentation.
+This was a hard task involving crossing information from different sources, such as the [Qual o CEP](https://www.qualocep.com/), [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/overview), [ViaCEP](https://viacep.com.br/), and [OpenStreetMap](https://www.openstreetmap.org/) databases, along with the [Correios](https://www.correios.com.br/enviar/precisa-de-ajuda/tudo-sobre-cep) postal code documentation. Hence, the data matching shown in the lookup table was gathered considering not only one variable, but the whole set of geographical information.
+
+All values were also checked for ambiguities, including the municipalities names (e.g., the name *Aracoiba* could refer to the municipality of *Aracoiaba* in the state of *Ceará*, but could also refer to the municipality of *Araçoiaba da Serra* in the state of *São Paulo*). All values that had a similarity or pattern matching with one or more municipalities were manually inspected to avoid errors (see `get_more_than_one_geographical_match` function in the code repository). 
 
 ### Postal codes
 
-After removing all non-numeric characters form the brazillian postal codes (Código de Endereçamento Postal ([CEP](https://pt.wikipedia.org/wiki/C%C3%B3digo_de_Endere%C3%A7amento_Postal))), they were processed by the following rules:
+After removing all non-numeric characters frpm the Brazilian postal codes (Código de Endereçamento Postal ([CEP](https://pt.wikipedia.org/wiki/C%C3%B3digo_de_Endere%C3%A7amento_Postal))), they were processed by the following rules:
 
 - If they had 9 or more digits, they were truncated to 8 digits (the first 8 digits are the postal code).
 - If they between 5 and 7 digits, they were complemented with `0`s at the ending.
@@ -52,18 +66,18 @@ After removing all non-numeric characters form the brazillian postal codes (Cód
 
 In addition, a visual inspection was performed to check for inconsistencies.
 
-After this process, the postal codes were matched with the [ViaCEP](https://viacep.com.br/) database to check if they exist. Existing postal codes were than validated by the following rules:
+After this process, the postal codes were matched with the [Qual o CEP](https://www.qualocep.com/) database to check if they exist. Existing postal codes were than validated by the following rules:
 
-- If the postal code had not been modified, it was considered valid.
-- If the postal code had been modified, and the state and municipality were the same as the original postal code, it was considered valid.
-- Else, it was considered invalid. Invalid CEPs were descarted in the processed dataset.
+- If the postal code had not been modified and the state **or** the municipality was the same, it was considered valid.
+- If the postal code had been modified and the state and municipality were the same, it was considered valid.
+- Else, it was considered invalid. Invalid CEPs were discarded in the processed dataset.
 
-The final result can be seen in the lookup table files.
+The final result of the postal codes cleaning can be seen in the lookup table files.
 
 The `state` and `municipality` variables were adjusted using the data from the valid postal codes.
 
 ## Latitudes and longitudes
 
-The latitude and longitude of the cities were obtained using the [OpenStreetMap](https://www.openstreetmap.org/) database via the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) R package.
+Latitude and longitude values were obtained by reverse geocoding using the [Google Geocoding API](https://www.openstreetmap.org/) via the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) R package.
 
 The latitudes and longitudes values were extracted considering only the `municiplaity` and `postal_code` variables. The `state` and `country` variables were not used in the process.

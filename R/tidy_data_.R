@@ -11,7 +11,7 @@
 # library(stringr)
 # library(tidyr)
 
-source(here::here("R/lookup_data.R"))
+source(here::here("R", "get_lookup_data.R"))
 
 # library(cli)
 # library(here)
@@ -105,7 +105,7 @@ tidy_data_ <- function(
   cli::cli_progress_step("Tidying data")
 
   data |>
-    fix_var_names() |>
+    fix_col_names() |>
     fix_var_classes() |>
     look_and_replace_values(
       osf_pat = osf_pat,
@@ -120,7 +120,7 @@ tidy_data_ <- function(
 # library(dplyr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-fix_var_names <- function(data) {
+fix_col_names <- function(data) {
   prettycheck:::assert_tibble(data)
 
   data |>
