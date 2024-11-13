@@ -14,7 +14,7 @@ get_lookup_data <- function(
     public_key = here::here("_ssh", "id_rsa.pub"),
     private_key = here::here("_ssh", "id_rsa"),
     password = Sys.getenv("MASTERSTHESIS_PASSWORD")
-) {
+  ) {
   prettycheck:::assert_string(file, null.ok = TRUE)
   prettycheck:::assert_string(pattern)
   prettycheck:::assert_string(osf_pat, n.chars = 70)
@@ -22,20 +22,30 @@ get_lookup_data <- function(
   lockr:::assert_private_key(private_key, password = password)
   prettycheck:::assert_string(password, n.chars = 32)
 
-  osfr::osf_auth(osf_pat) |> rutils::shush()
-  osf_id <- "https://osf.io/cbqsa"
-  test <- try(osfr::osf_retrieve_node(osf_id), silent = TRUE)
-
   if (!is.null(file)) {
     prettycheck:::assert_file_exists(file, extension = c("rds", "lockr"))
-  } else if (!prettycheck:::test_internet()) {
+
+    if (stringr::str_detect(file, "\\.lockr$")) {
+      lockr::unlock_file(file, private_key = private_key, password = password)
+
+      file <- stringr::str_remove(file, "\\.lockr$")
+    }
+
+    lookup_data <- readr::read_rds(file)
+  } else {
     prettycheck:::assert_internet()
-  } else if (inherits(test, "try-error")) {
-    cli::cli_abort(paste0(
-      "The {.strong {cli::col_red('OSF PAT')}} provided is invalid. ",
-      "Please, check the access token and try again."
-    ))
-  }  else {
+
+    osfr::osf_auth(osf_pat) |> rutils::shush()
+    osf_id <- "https://osf.io/cbqsa"
+    test <- try(osfr::osf_retrieve_node(osf_id), silent = TRUE)
+
+    if (inherits(test, "try-error")) {
+      cli::cli_abort(paste0(
+        "The {.strong {cli::col_red('OSF PAT')}} provided is invalid. ",
+        "Please, check the access token and try again."
+      ))
+    }
+
     file <-
       osfr::osf_ls_files(
         osfr::osf_retrieve_node(osf_id),

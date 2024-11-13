@@ -24,7 +24,6 @@ write_unique_values_to_lookup_sheet <- function(
   prettycheck:::assert_interactive()
   prettycheck:::assert_internet()
 
-  googlesheets4::gs4_auth()
   ss <- googlesheets4::gs4_get(ss)
   prettycheck:::assert_subset(sheet, ss$sheets$name)
 

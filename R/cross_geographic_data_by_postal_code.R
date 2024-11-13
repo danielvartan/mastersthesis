@@ -19,16 +19,16 @@ source(here::here("R", "tidy_data_.R"))
 #   raw_data |>
 #   cross_geographic_data_by_postal_code(
 #     col = "municipality",
-#     value = "Americo",
+#     value = "Goiás",
 #     limit = Inf,
 #     col_merge = c("municipality", "state"),
-#     col_match = "municipality",
+#     col_match = "state",
 #     maxDist = 1
 #   )
 #
 # data |> nrow()
 # data |> dplyr::pull("id") |> utils::writeClipboard()
-# data |> dplyr::pull("state_qualocep") |> utils::writeClipboard()
+# data |> dplyr::pull("municipality_qualocep") |> utils::writeClipboard()
 #
 # data_na <- data|> dplyr::filter(is.na(.data$match))
 #
@@ -48,7 +48,7 @@ cross_geographic_data_by_postal_code <- function(
   prettycheck:::assert_tibble(raw_data)
   prettycheck:::assert_string(col)
   prettycheck:::assert_string(value)
-  prettycheck:::assert_choice(method, c("osm", "qualocep", "viacep"))
+  prettycheck:::assert_string(method)
   prettycheck:::assert_number(limit)
   prettycheck:::assert_character(col_merge)
   prettycheck:::assert_string(col_match)

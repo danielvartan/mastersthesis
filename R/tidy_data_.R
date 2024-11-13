@@ -12,6 +12,7 @@
 # library(tidyr)
 
 source(here::here("R", "get_lookup_data.R"))
+source(here::here("R", "look_and_replace.R"))
 
 # library(cli)
 # library(here)
@@ -59,6 +60,9 @@ source(here::here("R", "get_lookup_data.R"))
 #'  If you already configure it on `.Renviron`, use the default value. If not,
 #'  enter the key using the [`askpass()`][askpass::askpass()]
 #'  function (default: `Sys.getenv("MASTERSTHESIS_PASSWORD")`).
+#'  @param lookup_data (optional) a [`list`][base::list()] with the
+#'  lookup data. If not provided, the function will download it from the OSF
+#'  repository.
 #'
 #' @return An invisible [`tibble`][dplyr::tibble()] with a tidied, but not
 #'   validated, dataset.
@@ -89,18 +93,16 @@ tidy_data_ <- function(
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh/id_rsa.pub"),
     private_key = here::here("_ssh/id_rsa"),
-    password = Sys.getenv("MASTERSTHESIS_PASSWORD")
-) {
+    password = Sys.getenv("MASTERSTHESIS_PASSWORD"),
+    lookup_data = get_lookup_data()
+  ) {
+  prettycheck:::assert_internet()
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
   lockr:::assert_public_key(public_key)
   prettycheck:::assert_string(password, n.chars = 32)
   lockr:::assert_private_key(private_key, password = password)
-  prettycheck:::assert_internet()
-
-  ## TO DO:
-  ##
-  ## * Remove blank cases.
+  prettycheck:::assert_list(lookup_data)
 
   cli::cli_progress_step("Tidying data")
 
@@ -260,7 +262,10 @@ look_and_replace_values <- function(
   #   "medication_which"
   # )
 
-  char_vars <- c("track", "name", "email", "country", "state")
+  char_vars <- c(
+    "track", "name", "email", "country", "state", "municipality", "postal_code"
+  )
+
   out <- data
 
   lookup_data <- get_lookup_data(
@@ -284,16 +289,33 @@ look_and_replace_values <- function(
       )
   }
 
-  special_cases <-
-    lookup_data$special_cases |>
-    dplyr::mutate(id = as.integer(id))
+  if (any(!lookup_data$special_cases$id %in% out$id, na.rm = TRUE)) {
+    cli::cli_abort(paste0(
+      "There are special cases with IDs that are not in the dataset."
+    ))
+  }
 
-  for (i in seq_len(nrow(special_cases))) {
-    id_i <- special_cases$id[i]
-    var_i <- special_cases$var[i]
-    value_i <-
-      special_cases$value[i] |>
-      methods::as(class(out[[var_i]])[1])
+  if (any(!unique(lookup_data$special_cases$var) %in% names(out), na.rm = TRUE)) {
+    cli::cli_abort(paste0(
+      "There are special cases with variables that are not in the dataset."
+    ))
+  }
+
+  for (i in seq_len(nrow(lookup_data$special_cases))) {
+    id_i <- lookup_data$special_cases$id[i]
+    var_i <- lookup_data$special_cases$var[i]
+
+    if (inherits(out[[var_i]], "Date")) {
+      value_i <-
+        lookup_data$special_cases$value[i] |>
+        as.Date()
+    } else {
+      value_i <-
+        lookup_data$special_cases$value[i] |>
+        methods::as(class(out[[var_i]])[1])
+    }
+
+
 
     out <-
       out |>

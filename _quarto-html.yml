@@ -37,6 +37,7 @@ book:
     - qmd/appendice-4.qmd
     - qmd/appendice-5.qmd
     - qmd/appendice-6.qmd
+    - qmd/appendice-7.qmd
 
 format:
   html:

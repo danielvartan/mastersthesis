@@ -7,6 +7,7 @@
 # library(rutils) # github.com/danielvartan/rutils
 # library(utils)
 
+source(here::here("R", "fix_qualocep_data_values"))
 source(here::here("R", "save_and_lock.R"))
 
 # # Helpers
@@ -20,7 +21,7 @@ source(here::here("R", "save_and_lock.R"))
 
 write_qualocep_table_to_osf <- function(
     file,
-    purchase_date = lubridate::as_date("2020-01-14"),
+    purchase_date = lubridate::as_date("2024-11-12"),
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub")
   ) {
@@ -46,10 +47,17 @@ write_qualocep_table_to_osf <- function(
   raw_file <- file
 
   if (file |> stringr::str_detect("\\.zip$")) {
-    file <-
+    files <-
       file |>
-      utils::unzip(exdir = tempdir()) |>
+      utils::unzip(exdir = tempdir())
+
+    file <-
+      files |>
       stringr::str_subset("tabela_integrada\\.csv$")
+
+    file_geo <-
+      files |>
+      stringr::str_subset("qualocep_geo\\.csv$")
   }
 
   if (!stringr::str_detect(file, "tabela_integrada\\.csv$")) {
@@ -69,12 +77,12 @@ write_qualocep_table_to_osf <- function(
       col_names = TRUE,
       col_types = readr::cols(.default = "c")
     ) |>
-    dplyr::mutate(
-      dplyr::across(
-        .cols = dplyr::everything(),
-        .fns = ~ iconv(.x, from = "windows-1252", to = "UTF-8")
-      )
-    )
+    # dplyr::mutate( # For older QualoCEP data
+    #   dplyr::across(
+    #     .cols = dplyr::everything(),
+    #     .fns = ~ iconv(.x, from = "windows-1252", to = "UTF-8")
+    #   )
+    # )
 
   cli::cli_progress_step("Tidying data")
 
@@ -105,18 +113,37 @@ write_qualocep_table_to_osf <- function(
       federal_unit, state
     )
 
-  if (any(c("latitude", "longitude") %in% names(data))) {
-    data <- data |>
-      dplyr::mutate(
-        latitude = as.numeric(latitude),
-        longitude = as.numeric(longitude)
-      )
+  if ("file_geo" %in% ls()) {
+    if (!length(file_geo) == 0) {
+      data_geo <-
+        file_geo |>
+        readr::read_delim(
+          delim = "|",
+          na = c("", " ", "NA"),
+          col_names = TRUE,
+          col_types = readr::cols(.default = "c")
+        ) |>
+        dplyr::rename(postal_code = cep) |>
+        dplyr::mutate(
+          latitude = as.numeric(latitude),
+          longitude = as.numeric(longitude)
+        ) |>
+        rutils::shush()
+
+      data <-
+        data |>
+        dplyr::left_join(data_geo, by = "postal_code")
+    }
   }
+
+  data <-
+    data |>
+    fix_qualocep_data_values()
 
   cli::cli_progress_step("Saving data")
 
   file_name_pattern <- paste0("qualocep-", purchase_date)
-  raw_data_file_extension <- stringr::str_extract(file, "\\.\\w+$")
+  raw_data_file_extension <- stringr::str_extract(raw_file, "\\.\\w+$")
 
   temp_file <- file.path(
     tempdir(),

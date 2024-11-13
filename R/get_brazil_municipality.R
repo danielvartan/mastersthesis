@@ -24,11 +24,17 @@ source(here::here("R", "utils.R"))
 #
 # source(here::here("R", "get_brazil_municipality.R"))
 #
+# get_brazil_municipality(force = TRUE) |>
+#   dplyr::pull(municipality) |>
+#   sort() |>
+#   utils::writeClipboard()
+#
 # get_brazil_municipality(c("são paulo","dsdasddsa", NA, "rio de janeiro"))
 
-get_brazil_municipality <- function(x = NULL, year = 2017) {
+get_brazil_municipality <- function(x = NULL, year = 2017, force = FALSE) {
   prettycheck:::assert_internet()
   prettycheck:::assert_character(x, null.ok = TRUE)
+  prettycheck:::assert_flag(force)
 
   prettycheck:::assert_number(
     year,
@@ -40,7 +46,8 @@ get_brazil_municipality <- function(x = NULL, year = 2017) {
     tempdir(), paste0("brazil-municipalities-", year, ".rds")
   )
 
-  if (prettycheck:::test_file_exists(brazil_municipalities_file)) {
+  if (prettycheck:::test_file_exists(brazil_municipalities_file) &&
+      isFALSE(force)) {
     brazil_municipalities_data <- readr::read_rds(brazil_municipalities_file)
   } else {
     brazil_municipalities_data <-
@@ -61,7 +68,27 @@ get_brazil_municipality <- function(x = NULL, year = 2017) {
         federal_unit_code = as.integer(federal_unit_code),
         state = get_brazil_state(federal_unit),
         municipality_code = as.integer(municipality_code),
-        municipality = to_title_case_pt(municipality)
+        municipality = to_title_case_pt(
+          municipality,
+          articles = TRUE,
+          conjuctions = FALSE,
+          oblique_pronouns = FALSE,
+          prepositions = FALSE,
+          custom = c(
+            # E
+            "(.)\\bE( )\\b" = "\\1e\\2",
+            # Às
+            "(.)\\bÀ(s)?\\b" = "\\1à\\2",
+            # Da | Das | Do | Dos | De
+            "(.)\\bD(((a|o)(s)?)|(e))\\b" = "\\1d\\2",
+            # Em
+            "(.)\\bE(m)\\b" =  "\\1e\\2",
+            # Na | Nas | No | Nos
+            "(.)\\bN((a|o)(s)?)\\b" = "\\1n\\2",
+            # Del
+            "(.)\\bD(el)\\b" = "\\1d\\2"
+          )
+        )
       ) |>
       dplyr::relocate(
         country,

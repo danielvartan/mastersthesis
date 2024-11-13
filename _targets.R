@@ -5,10 +5,12 @@ library(tarchetypes)
 library(targets)
 
 source(here::here("R", "get_raw_data.R"))
+source(here::here("R", "get_lookup_data.R"))
 source(here::here("R", "tidy_data_.R"))
 source(here::here("R", "validate_data.R"))
 source(here::here("R", "analyze_data.R"))
 source(here::here("R", "filter_data.R"))
+source(here::here("R", "get_qualocep_data.R"))
 source(here::here("R", "add_geocode_data.R"))
 source(here::here("R", "lock_data.R"))
 
@@ -55,8 +57,12 @@ list(
     command = get_raw_data()
   ),
   targets::tar_target(
+    name = lookup_data,
+    command = get_lookup_data()
+  ),
+  targets::tar_target(
     name = tidy_data,
-    command = tidy_data_(raw_data)
+    command = tidy_data_(raw_data, lookup_data = lookup_data)
   ),
   targets::tar_target(
     name = validated_data,
@@ -70,6 +76,10 @@ list(
     name = filtered_data,
     command = filter_data(analyzed_data)
     ),
+  targets::tar_target(
+    name = qualocep_data,
+    command = get_qualocep_data(force = TRUE)
+  ),
   targets::tar_target(
     name = geocoded_data,
     command = add_geocode_data(filtered_data)

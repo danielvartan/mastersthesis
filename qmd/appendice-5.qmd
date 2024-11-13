@@ -52,7 +52,7 @@ Read the section about geographical information to learn more about the matching
 
 Geographic data were collected by the variables `country`, `state`, `municipality`, and `postal code`. The unique values of those data were manually inspected and adjusted using lookup tables. The `municiplaity` values were first matched using string distance algorithms present in the [`stringdist`](https://github.com/markvanderloo/stringdist) R package and data from the Brazilian Institute of Geography and Statistics (IBGE) via the [`geobr`](https://ipeagit.github.io/geobr/index.html>) R package., other processes were then performed manually.
 
-This was a hard task involving crossing information from different sources, such as the [Qual o CEP](https://www.qualocep.com/), [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/overview), [ViaCEP](https://viacep.com.br/), and [OpenStreetMap](https://www.openstreetmap.org/) databases, along with the [Correios](https://www.correios.com.br/enviar/precisa-de-ajuda/tudo-sobre-cep) postal code documentation. Hence, the data matching shown in the lookup table was gathered considering not only one variable, but the whole set of geographical information.
+This was a hard task involving crossing information from different sources, such as the [QualoCEP](https://www.qualocep.com/), [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/overview), [ViaCEP](https://viacep.com.br/), and [OpenStreetMap](https://www.openstreetmap.org/) databases, along with the Brazilian postal service ([Correios](https://www.correios.com.br/enviar/precisa-de-ajuda/tudo-sobre-cep)) postal code documentation. Hence, the data matching shown in the lookup table was gathered considering not only one variable, but the whole set of geographical information provided by the respondent. Special cases were coded in the lookup table named *special_cases*
 
 All values were also checked for ambiguities, including the municipalities names (e.g., the name *Aracoiba* could refer to the municipality of *Aracoiaba* in the state of *Ceará*, but could also refer to the municipality of *Araçoiaba da Serra* in the state of *São Paulo*). All values that had a similarity or pattern matching with one or more municipalities were manually inspected to avoid errors (see `get_more_than_one_geographical_match` function in the code repository). 
 
@@ -66,7 +66,7 @@ After removing all non-numeric characters frpm the Brazilian postal codes (Códi
 
 In addition, a visual inspection was performed to check for inconsistencies.
 
-After this process, the postal codes were matched with the [Qual o CEP](https://www.qualocep.com/) database to check if they exist. Existing postal codes were than validated by the following rules:
+After this process, the postal codes were matched with the [QualoCEP](https://www.qualocep.com/) database to check if they exist. Existing postal codes were than validated by the following rules:
 
 - If the postal code had not been modified and the state **or** the municipality was the same, it was considered valid.
 - If the postal code had been modified and the state and municipality were the same, it was considered valid.
@@ -78,6 +78,8 @@ The `state` and `municipality` variables were adjusted using the data from the v
 
 ## Latitudes and longitudes
 
-Latitude and longitude values were obtained by reverse geocoding using the [Google Geocoding API](https://www.openstreetmap.org/) via the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) R package.
+Latitudes and longitudes values consider only the `municiplaity` and `postal_code` variables. They were extracted from the [QualoCEP](https://www.qualocep.com/) database, which is the result of a reverse geocoding using the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview). See Appendice 6 to side by side comparison of the latitudes and longitudes from QualoCEP and Google Geocoding API.
 
-The latitudes and longitudes values were extracted considering only the `municiplaity` and `postal_code` variables. The `state` and `country` variables were not used in the process.
+For respondents  who did not provide a valid postal code, the latitude and longitude were extracted via the mean of the latitudes and longitudes associated with the municipality in the [QualoCEP](https://www.qualocep.com/) database.
+
+Finally, [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview, via the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) R package, was used on cases that didn't had a match in the [QualoCEP](https://www.qualocep.com/) database.

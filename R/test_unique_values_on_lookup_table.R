@@ -6,16 +6,12 @@ source(here::here("R", "utils.R"))
 
 test_unique_values_on_lookup_table <- function(
     sheet,
-    ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA",
-    setdiff = FALSE
-) {
+    ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA"
+  ) {
   prettycheck:::assert_string(sheet)
   prettycheck:::assert_string(ss)
-  prettycheck:::assert_flag(setdiff)
   prettycheck:::assert_interactive()
   prettycheck:::assert_internet()
-
-  googlesheets4::gs4_auth()
 
   ss <- googlesheets4::gs4_get(ss)
   prettycheck:::assert_subset(sheet, ss$sheets$name)
@@ -60,9 +56,5 @@ test_unique_values_on_lookup_table <- function(
     "{.strong {test_fun(test_identical)}}."
   ))
 
-  if (isTRUE(setdiff)) {
-    setdiff(unique_data, unique_lookup)
-  } else {
-    invisible()
-  }
+  c(test_length, test_fun)
 }

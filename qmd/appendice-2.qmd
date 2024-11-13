@@ -121,13 +121,13 @@ Age statistics of sample subjects
 #| message: false
 #| warning: false
 
-source(here::here("R/plot_brazil_uf_map.R"))
+source(here::here("R", "plot_brazil_state_map.R"))
 
 prettycheck:::assert_internet()
 
 brazil_uf_map <- 
   data |> 
-  plot_brazil_uf_map(option = "viridis", text_size = env_vars$base_size)
+  plot_brazil_state_map(option = "viridis", text_size = env_vars$base_size)
 ```
 
 [Source: Created by the author.]{.legend}

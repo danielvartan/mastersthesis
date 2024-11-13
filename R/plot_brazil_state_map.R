@@ -6,7 +6,7 @@ library(ggplot2)
 # library(stringr)
 # library(viridis)
 
-plot_brazil_uf_map <- function(data, option = "viridis", text_size = NULL) {
+plot_brazil_state_map <- function(data, option = "viridis", text_size = NULL) {
   option_choices <- c(
     "magma", "A", "inferno", "B", "plasma", "C", "viridis", "D",
     "cividis", "E", "rocket", "F", "mako", "G", "turbo", "H"

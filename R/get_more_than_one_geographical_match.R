@@ -14,33 +14,36 @@ source(here::here("R", "utils.R"))
 # lookup_data$municipality$key |> length()
 #
 # data <- get_more_than_one_geographical_match(
-#   x = lookup_data$municipality$key[seq(1, 1000)],
+#   x = lookup_data$municipality$key[seq(6001, 7000)],
 #   col = "municipality",
 #   maxDist = 1
 # )
 #
 # data$key |> utils:: writeClipboard()
-
+#
 # raw_data <- targets::tar_read("raw_data")
 #
-# Check with <https://sidra.ibge.gov.br/territorio>.
+# Check the municipality names here: <https://sidra.ibge.gov.br/territorio#/N6>.
 #
 # source(here::here("R", "cross_geographic_data_by_postal_code.R"))
 #
 # for (i in data$key) {
 #   raw_data |>
 #     cross_geographic_data_by_postal_code(
-#       col = "municipality",
-#       value = i,
-#       limit = Inf,
-#       col_merge = c("municipality", "state"),
-#       col_match = "municipality",
-#       maxDist = 1
-#     ) |>
-#     print(n = 100)
+#        col = "municipality",
+#        value = i,
+#        limit = Inf,
+#        col_merge = c("municipality", "state"),
+#        col_match = "municipality",
+#        maxDist = 1
+#      ) |>
+#      print(n = 100)
 #
-#   readline("Press enter to continue. ")
+#   readline("Press enter to continue: ")
 # }
+#
+# source(here::here("R", "get_brazil_municipality.R"))
+# get_brazil_municipality("Bauru")
 
 get_more_than_one_geographical_match <- function(
     x,

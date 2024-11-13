@@ -43,7 +43,7 @@ filter_geographic_data_and_get_address <- function(
   prettycheck:::assert_tibble(raw_data)
   prettycheck:::assert_string(col)
   prettycheck:::assert_string(value)
-  prettycheck:::assert_choice(method, c("osm", "qualocep", "viacep"))
+  prettycheck:::assert_string(method)
 
   filtered_data <-
     raw_data |>

@@ -12,15 +12,20 @@ library(rlang)
 # package for the data. More about the `iso-codes` package can be found at
 # <https://salsa.debian.org/iso-codes-team/iso-codes>.
 
-# utils::writeClipboard(get_country_names())
+# # Helpers
+#
+# source(here::here("R", "get_country_names.R"))
+#
+# get_country_names() |>
+#   sort() |>
+#   utils::writeClipboard()
 
 get_country_names <- function(format = "common name") {
   format_options <- c(
     "alpha 2", "alpha 3", "numeric", "name", "oficcial name", "common name"
   )
 
-  prettycheck:::assert_choice(code, format_options, null.ok = TRUE)
-  prettycheck:::assert_flag(na_rm)
+  prettycheck:::assert_choice(format, format_options)
 
   out <-
     ISOcodes::ISO_3166_1 |>

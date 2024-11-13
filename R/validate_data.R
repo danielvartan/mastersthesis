@@ -105,7 +105,14 @@ source(here::here("R", "get_lookup_data.R"))
 rm_invalid_cases_detected_manually <- function(data) {
   prettycheck:::assert_tibble(data)
 
-  cols <- get_lookup_data() |> names() |> utils::head(-1)
+  cols <-
+    get_lookup_data() |>
+    names() |>
+    stringr::str_subset(
+      pattern = "^geocodes$|^special_cases$",
+      negate = TRUE
+    )
+
   pattern <- "(?i)^R E M O V E$"
 
   data |>
@@ -113,6 +120,53 @@ rm_invalid_cases_detected_manually <- function(data) {
       !dplyr::if_any(
         .cols = dplyr::all_of(cols),
         .fns = ~ ifelse(is.na(.x), FALSE, stringr::str_detect(.x, pattern))
+      )
+    )
+}
+
+# library(dplyr)
+# library(hms)
+# library(lubridate)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
+
+na_mctq_blank_cases <- function(data) {
+  prettycheck:::assert_tibble(data)
+
+  data |>
+    dplyr::mutate(
+      dummy = dplyr::case_when(
+        wd == 0 &
+          bt_w == hms::hms(0) & sprep_w == hms::hms(0) &
+          slat_w == lubridate::dminutes(0) & se_w == hms::hms(0) &
+          si_w == lubridate::dminutes(0) &
+          bt_f == hms::hms(0) & sprep_f == hms::hms(0) &
+          slat_f == lubridate::dminutes(0) & se_f == hms::hms(0) &
+          si_f == lubridate::dminutes(0)
+        ~ TRUE,
+        TRUE ~ FALSE
+      )
+    ) |>
+    dplyr::mutate(
+      dplyr::across(
+        .cols = dplyr::matches("^wd$|_w$|_f$"),
+        .fns = ~ dplyr::if_else(dummy, rutils::na_as(.x), .x)
+      )
+    ) |>
+    dplyr::select(-dummy)
+}
+
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(stringr)
+
+validate_emails <- function(data) {
+  prettycheck:::assert_tibble(data)
+
+  data |>
+    dplyr::mutate(
+      email = dplyr::case_when(
+        stringr::str_detect(email,"^[[:alnum:]._-]+@[[:alnum:].-]+$") ~ email
       )
     )
 }
@@ -166,21 +220,6 @@ validate_ranges <- function(data) {
           dplyr::between(as.numeric(.x), 0,
                          as.numeric(lubridate::dhours(12))) ~ .x
         )
-      )
-    )
-}
-
-# library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(stringr)
-
-validate_emails <- function(data) {
-  prettycheck:::assert_tibble(data)
-
-  data |>
-    dplyr::mutate(
-      email = dplyr::case_when(
-        stringr::str_detect(email,"^[[:alnum:]._-]+@[[:alnum:].-]+$") ~ email
       )
     )
 }
@@ -371,38 +410,6 @@ validate_so <- function(data) {
       )
     ) |>
     dplyr::select(-so_w, -so_f, -dummy)
-}
-
-# library(dplyr)
-# library(hms)
-# library(lubridate)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-
-na_mctq_blank_cases <- function(data) {
-  prettycheck:::assert_tibble(data)
-
-  data |>
-    dplyr::mutate(
-      dummy = dplyr::case_when(
-        wd == 0 &
-          bt_w == hms::hms(0) & sprep_w == hms::hms(0) &
-          slat_w == lubridate::dminutes(0) & se_w == hms::hms(0) &
-          si_w == lubridate::dminutes(0) &
-          bt_f == hms::hms(0) & sprep_f == hms::hms(0) &
-          slat_f == lubridate::dminutes(0) & se_f == hms::hms(0) &
-          si_f == lubridate::dminutes(0)
-        ~ TRUE,
-        TRUE ~ FALSE
-      )
-    ) |>
-    dplyr::mutate(
-      dplyr::across(
-        .cols = dplyr::matches("^wd$|_w$|_f$"),
-        .fns = ~ dplyr::if_else(dummy, rutils::na_as(.x), .x)
-      )
-    ) |>
-    dplyr::select(-dummy)
 }
 
 # library(dplyr)

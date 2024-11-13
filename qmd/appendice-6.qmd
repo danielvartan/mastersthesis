@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Activities during the development of this thesis
+# Comparing QualoCEP geocoding with Google Geocoding API
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -14,148 +14,228 @@ source(here::here("R/_setup.R"))
 #| output: asis
 
 rutils:::quarto_status(
-  type = "polishing",
+  type = "complete",
   of_what = "of this thesis",
   latex_parskip = "\\microskip"
   )
 ```
 
-During the development of this thesis, several activities and results have been accomplished. These activities are important to note, as they demonstrate the path taken to arrive at this final document.
+## Overview
 
-## Courses
+This is a simple workflow to test the [QualoCEP](https://www.qualocep.com/) geocoding against [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview).
 
-The following graduate courses from the University of São Paulo (USP) were completed during the first year of the master's program.
+This thesis uses both services for geocoding the data. QualoCEP is a paid service that provides a large dataset of Brazillian postal codes and addresses. The aim is to compare the results of QualoCEP's latitute e longitude values with Google's results for consistency.
 
-* 2022/2: _SCX5000 - Mathematical and Computational Methods I_ (10 credits) (Concept: __C__);
-* 2022/2: _SCX5002 - Complex Systems I_ (10 credits) (Concept: __A__);
-* 2023/1: _SCX5001 - Mathematical and Computational Methods II_ (10 credits) (Concept: __A__);
-* 2023/1: _SCX5017 - Introduction to Data Science_ (10 credits) (Concept: __A__);
-* 2023/1: _EAH5001 - Pedagogic Preparation_ (4 credits) (Concept: __A__).
+::: {.callout-note}
+To run this notebook you will need to have a Google Geocoding API key in your [`.Renviron`](https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file) file. Learn more about it [here](https://jessecambon.github.io/tidygeocoder/articles/geocoder_services.html).
+:::
 
-Please note that the unfortunate __C__ concept above happened in the same semester when the author broke relations with his former supervisor (_Mario Pedrazzoli_).
+## Setting things up
 
-44 discipline credits were completed by this thesis publication date. An additional 12 special credits, related to an article publication (see @viana-mendes2023), were requested and approved by the Graduate Program Coordination Commission (CCP) in accordance with [program regulations](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019). In total, 56 credits were earned. A minimum of 50 credits is required for the thesis defense.
+```{r}
+#| eval: false
+#| output: false
 
-## Teaching internship
-
-Scholarship students under the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) are required to participate in the [Teaching Improvement Program (PAE)](www5.each.usp.br/pae/). This internship occur in the 2º semester of 2023.
-
-The internship responsibilities entailed serving as an Assistant Professor for the undergraduate course _ACH0042 - Problem-Based Learning II_ at USP. A comprehensive teaching plan [@vartanian2023e] was formulated during enrollment in the aforementioned graduate course _EAH5001_, and it is accessible through the following link.
-
-```{=latex}
-\smallskip
+library(leaflet)
+library(targets)
+library(tidygeocoder)
 ```
 
-\noindent Vartanian, D., Rodrigues Neto, C, & Bernardes, M. E. M. (2023). _Plano de ensino: ACH0042 - Resolução de Problemas II_. <https://doi.org/10.13140/RG.2.2.33335.50086>
+```{r}
+#| output: false
 
-## Publications
-
-The following article [@viana-mendes2023] was published during the development of this thesis.
-
-```{=latex}
-\smallskip
+source(here::here("R", "get_qualocep_data.R"))
+source(here::here("R", "render_brazil_address.R"))
+source(here::here("R", "utils.R"))
 ```
 
-\noindent Viana-Mendes, J., Benedito-Silva, A. A., Andrade, M. A. M., __Vartanian, D.__, Gonçalves, B. da S. B., Cipolla-Neto, J., & Pedrazzoli, M. (2023). Actigraphic characterization of sleep and circadian phenotypes of PER3 gene VNTR genotypes. _Chronobiology International_. <https://doi.org/10.1080/07420528.2023.2256858>
+```{r}
+#| include: false
 
-## Translations
-
-As a member and package developer of the [rOpenSci Initiative](https://ropensci.org/) (based in Berkeley, CA), the author is actively contributing to the [ongoing translation](https://github.com/ropensci/dev_guide/pull/717) of the [rOpenSci Developer Guide](https://devguide.ropensci.org/) into Portuguese. The aim is to create a more inclusive environment for individuals in Brazil and other Portuguese-speaking countries when developing for the [R programming language](https://www.r-project.org/).
-
-This endeavor is linked to the thesis, as the author's membership in rOpenSci began with the creation of the [{mctq} R package](https://docs.ropensci.org/mctq/) (listed below).
-
-## Conferences
-
-An abstract pertaining to the primary investigation was published and presented on a poster at the [Sao Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms](https://espca.fapesp.br/school/sao_paulo_school_of_advanced_science_on_ecology_of_human_sleep_and_biological_rhythms/101/) organized by the [São Paulo Research Foundation (FAPESP)](https://fapesp.br/en). This international school hosted 100 participants, including students and young researchers, with a diverse representation of 50 individuals from various states within Brazil and an additional 50 from international backgrounds. The event took place from November 16, 2022, to November 26, 2022.
-
-```{=latex}
-\smallskip
+set.seed(2024)
 ```
 
-<!-- @vartanian2022a -->
+## Importing QualOCep data
 
-\noindent Vartanian, D., & Pedrazzoli, M. (2022). _Ecology of sleep and circadian phenotypes of the Brazilian population_ \[Poster\]. São Paulo Research Foundation; São Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms. <https://doi.org/10.13140/RG.2.2.25343.07840>
+```{r}
+#| output: false
 
-```{=latex}
-\smallskip
+qualocep_data <- get_qualocep_data()
 ```
 
-In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation (SIICUSP) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartanian2022b. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of _Earth and Exact Sciences_.
+## Random test 1
 
-## Research compendia
+### QualOCep data
 
-This thesis, along with all the accompanying research, is structured and organized within the research compendium provided below.
+```{r}
+sample_data <- dplyr::sample_n(qualocep_data, 1)
 
-```{=latex}
-\smallskip
+sample_data |> as.list() |> list_as_tibble()
 ```
 
-<!-- @vartanian2023d -->
-
-\noindent Vartanian, D. (2023). _Is latitude associated with the regulation of circadian rhythms in humans?_ [Research compendium]. <https://danielvartan.github.io/mastersthesis/>
-
-## Data plans
-
-This research has also produced and published the following open data model and data plan.
-
-```{=latex}
-\smallskip
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
+  )
 ```
 
-<!-- @vartanian2023b -->
+### Google Geocoding API
 
-\noindent Vartanian, D. (2023). _Is latitude associated with the regulation of circadian rhythms in humans?_ [Data Management Plan]. DMPHub. <https://doi.org/10.48321/D1DW8P>
+```{r}
+google_data <- 
+  sample_data |>
+  dplyr::mutate(
+    address = render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
+    )
+  ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
+  )
 
-## Softwares
-
-The following R packages, [Quarto](https://quarto.org/) format (being used to write this thesis), and Python package were developed in relation with this thesis.
-
-```{=latex}
-\smallskip
+google_data |> as.list() |> list_as_tibble()
 ```
 
-<!-- @vartanian2022 -->
-
-\noindent Vartanian, D. (2022). _{entrainment}: a rule-based model of the 24h light/dark cycle entrainment phenomenon_ [Software, Python Package]. <https://github.com/danielvartan/entrainment>
-
-```{=latex}
-\microskip
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
+  )
 ```
 
-<!-- @vartanian2023 -->
+## Random test 2
 
-\noindent Vartanian, D. (2023). _{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)_ [Software, R Package v0.3.2]. <https://docs.ropensci.org/mctq/>
+### QualOCep data
 
-```{=latex}
-\microskip
+```{r}
+sample_data <- dplyr::sample_n(qualocep_data, 1)
+
+sample_data |> as.list() |> list_as_tibble()
 ```
 
-<!-- @vartanian2023b -->
-
-\noindent Vartanian, D. (2023). _{lockr}: easily encrypt/decrypt files_ [Software, R package v0.3.0]. <https://github.com/danielvartan/lockr>
-
-```{=latex}
-\microskip
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
+  )
 ```
 
-<!-- @vartanian2023c -->
+### Google Geocoding API
 
-\noindent Vartanian, D. (2023). _{lubritime}: an extension for the lubridate package_ [Software, R package]. <https://github.com/danielvartan/lubritime>
+```{r}
+google_data <- 
+  sample_data |>
+  dplyr::mutate(
+    address = render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
+    )
+  ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
+  )
 
-```{=latex}
-\microskip
+google_data |> as.list() |> list_as_tibble()
 ```
 
-<!-- @vartanian2023a -->
-
-\noindent Vartanian, D. (2023). _{abnt}: Quarto format for ABNT theses and dissertations_ [Software, LaTeX/R format, v0.3.0]. <https://github.com/danielvartan/abnt/>
-
-## Other projects
-
-The author is also currently working on the development of the project below.
-
-```{=latex}
-\smallskip
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
+  )
 ```
 
-\noindent Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). _Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor_ \[PhD project, University of Sao Paulo\]. <https://bit.ly/3S6O0MB>
+## Random test 3
+
+### QualOCep data
+
+```{r}
+sample_data <- dplyr::sample_n(qualocep_data, 1)
+
+sample_data |> as.list() |> list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
+  )
+```
+
+### Google Geocoding API
+
+```{r}
+google_data <- 
+  sample_data |>
+  dplyr::mutate(
+    address = render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
+    )
+  ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
+  )
+
+google_data |> as.list() |> list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
+  )
+```

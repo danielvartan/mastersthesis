@@ -13,13 +13,13 @@ update_lookup_data <- function(
     sheet_ignore = c("Documentation", "Codebook", "Validation", "Template"),
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub")
-) {
+  ) {
+  prettycheck:::assert_internet()
+  prettycheck:::assert_interactive()
   prettycheck:::assert_string(ss)
   prettycheck:::assert_character(sheet_ignore)
   prettycheck:::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
-  prettycheck:::assert_interactive()
-  prettycheck:::assert_internet()
 
   osfr::osf_auth(osf_pat) |> rutils::shush()
   osf_id <- "https://osf.io/cbqsa"
@@ -32,7 +32,6 @@ update_lookup_data <- function(
     ))
   }
 
-  googlesheets4::gs4_auth()
   ss <- googlesheets4::gs4_get(ss)
   sheets <- ss$sheets$name[!ss$sheets$name %in% sheet_ignore]
 
@@ -81,6 +80,10 @@ update_lookup_data <- function(
     rds_files <- c(rds_files, rds_file_i)
     csv_files <- c(csv_files, csv_file_i)
   }
+
+  lookup_data$special_cases <-
+    lookup_data$special_cases |>
+    dplyr::mutate(id = as.integer(id))
 
   rds_list_file <-
     lookup_data |>

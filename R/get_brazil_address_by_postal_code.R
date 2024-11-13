@@ -1,19 +1,18 @@
 # library(cli)
 # library(dplyr)
-# library(glue)
 # library(here)
 # library(jsonlite)
-# library(lubridate)
 # library(prettycheck) # github.com/danielvartan/prettycheck
-# library(stringdist)
 # library(stringr)
 # library(tidygeocoder)
 
 source(here::here("R", "fix_brazil_postal_code.R"))
 source(here::here("R", "get_brazil_fu.R"))
 source(here::here("R", "get_brazil_municipality.R"))
+source(here::here("R", "get_brazil_municipality_code.R"))
 source(here::here("R", "get_brazil_region.R"))
 source(here::here("R", "get_qualocep_data.R"))
+source(here::here("R", "render_brazil_address.R"))
 source(here::here("R", "utils.R"))
 
 #' Get a Brazilian address by its postal code via reverse geocoding
@@ -31,15 +30,22 @@ source(here::here("R", "utils.R"))
 #'
 #' The source of the data will depend on the method used. Run
 #' [`?tidygeocoder::geo`][tidygeocoder::geo()] to learn more. The only exception
-#' is the `"viacep"` method. This method will return the address data from the
-#' [ViaCEP API](https://viacep.com.br/).
+#' is the `"qualocep"` and `"viacep"` method. These methods will return the
+#' address data from the [QualoCEP](https://www.qualocep.com/) database and the
+#' [ViaCEP](https://viacep.com.br/) API, respectively.
 #'
 #' @param postal_code A [`character`][base::character()] vector with the postal
 #'   code(s) to be used to. The postal code must be in the format `XXXXX-XXX` or
 #'   `XXXXXXXX`, where `X` is a digit.
 #' @param method A [`character`][base::character()] value indicating the method
-#'   to be used to retrieve the address data. The available options are `"osm"`
-#'   and `"viacep"` (default: `viacep`).
+#'   to be used to retrieve the address data. The available options are `"osm"`,
+#'   `"google"`,`"qualocep"`, and `"viacep"` (default: `qualocep`).
+#' @param fix_code A [`logical`][base::logical()] flag indicating if the postal
+#'  code must be fixed before being used (default: `TRUE`).
+#' @param limit A [`numeric`][base::numeric()] value indicating the maximum
+#'   number of results to return (default: `10`). If the value is `Inf`, all
+#'   postal codes will be used.
+#'
 #'
 #' @return A [`tibble`][dplyr::tibble()] with the following columns:
 #'  - `postal_code`: The postal code.
@@ -68,17 +74,16 @@ get_brazil_address_by_postal_code <- function(
     postal_code,
     method = "qualocep",
     fix_code = TRUE,
-    limit = Inf
+    limit = 10
   ) {
   prettycheck:::assert_internet()
   prettycheck:::assert_atomic(postal_code)
-  prettycheck:::assert_choice(method, c("osm", "qualocep", "viacep"))
+  prettycheck:::assert_choice(method, c("osm", "google", "qualocep", "viacep"))
   prettycheck:::assert_flag(fix_code)
   prettycheck:::assert_number(limit)
 
   if (!is.infinite(limit)) {
-    prettycheck:::assert_integer_number(limit, lower = 1)
-
+    limit <- as.integer(ceiling(limit))
     postal_code <- postal_code[seq_len(min(length(postal_code), limit))]
   }
 
@@ -89,6 +94,8 @@ get_brazil_address_by_postal_code <- function(
 
   if (method == "osm") {
     get_brazil_address_by_postal_code_osm(postal_code, limit)
+  } else if (method == "google") {
+    get_brazil_address_by_postal_code_google(postal_code, limit)
   } else if (method == "qualocep") {
     get_brazil_address_by_postal_code_qualocep(postal_code, limit)
   } else if (method == "viacep") {
@@ -98,7 +105,7 @@ get_brazil_address_by_postal_code <- function(
 
 get_brazil_address_by_postal_code_osm <- function(
     postal_code,
-    limit = 100
+    limit = 10
   ) {
   postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
 
@@ -107,8 +114,7 @@ get_brazil_address_by_postal_code_osm <- function(
   prettycheck:::assert_number(limit)
 
   if (!is.infinite(limit)) {
-    prettycheck:::assert_integer_number(limit, lower = 1)
-
+    limit <- as.integer(ceiling(limit))
     postal_code <- postal_code[seq_len(min(length(postal_code), limit))]
   }
 
@@ -156,8 +162,7 @@ get_brazil_address_by_postal_code_osm <- function(
       longitude = NA_real_
     )
   } else {
-    out <-
-      out |>
+    out |>
       dplyr:: select(
         postal_code,
         osm_lat,
@@ -179,7 +184,7 @@ get_brazil_address_by_postal_code_osm <- function(
       ) |>
       dplyr::mutate(
         postal_code = fix_brazil_postal_code(postal_code),
-        municipality_code = NA_integer_,
+        municipality_code = get_brazil_municipality_code(municipality),
         region = get_brazil_region(state, "state"),
         address = render_brazil_address(
           street, complement, neighborhood, municipality, state, postal_code
@@ -197,24 +202,12 @@ get_brazil_address_by_postal_code_osm <- function(
         postal_code, street, complement, neighborhood, municipality_code,
         municipality, state, region, address, latitude, longitude
       )
-
-    match <- stringdist::amatch(
-      out$municipality |> to_ascii_and_lower(),
-      brazil_municipalities$municipality |> to_ascii_and_lower(),
-      maxDist = 1
-    )
-
-    out |>
-      dplyr::mutate(
-        municipality_code = brazil_municipalities$municipality_code[match],
-        municipality_code = as.integer(municipality_code)
-      )
   }
 }
 
-get_brazil_address_by_postal_code_qualocep <- function(
+get_brazil_address_by_postal_code_google <- function(
     postal_code,
-    limit = 1000
+    limit = 10
   ) {
   postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
 
@@ -223,27 +216,115 @@ get_brazil_address_by_postal_code_qualocep <- function(
   prettycheck:::assert_number(limit)
 
   if (!is.infinite(limit)) {
-    prettycheck:::assert_integer_number(limit, lower = 1)
-
+    limit <- as.integer(ceiling(limit))
     postal_code <- postal_code[seq_len(min(length(postal_code), limit))]
   }
 
-  if ("qualocep_data" %in% ls(envir = globalenv())) {
-    cli::cli_progress_step(paste0(
-      "Using the QualOCep table from the Global Enviroment (`qualocep`)."
-    ))
+  brazil_municipalities <- get_brazil_municipality(year = 2022)
 
-    qualocep_data <- get("qualocep_data", envir = globalenv())
+  out <-
+    dplyr::tibble(address = paste0(postal_code, ", Brazil")) |>
+    tidygeocoder::geocode(
+      address = address,
+      method = "google"
+    ) |>
+    tidygeocoder::reverse_geocode(
+      lat = lat,
+      long = long,
+      method = "google",
+      full_results = TRUE
+    )
+
+  out <-
+    out |>
+    dplyr::pull(address_components) |>
+    magrittr::extract2(1) |>
+    dplyr::as_tibble() |>
+    dplyr::mutate(
+      types = c(
+        "street_number",
+        "route",
+        "sublocality",
+        "administrative_area_level_1",
+        "administrative_area_level_2",
+        "county",
+        "postal_code"
+      )
+    ) |>
+    dplyr::select(-short_name) |>
+    tidyr::pivot_wider(
+      names_from = types,
+      values_from = long_name
+    ) |>
+    dplyr::bind_cols(
+      out |>
+        dplyr::transmute(
+          latitude = lat,
+          longitude = long
+        )
+    )
+
+  if (fix_brazil_postal_code(out$postal_code) == "42700000") {
+    dplyr::tibble(
+      postal_code = fix_brazil_postal_code(postal_code),
+      street = NA_character_,
+      complement = NA_character_,
+      neighborhood = NA_character_,
+      municipality_code = NA_integer_,
+      municipality = NA_character_,
+      state = NA_character_,
+      region = NA_character_,
+      address = NA_character_,
+      latitude = NA_real_,
+      longitude = NA_real_
+    )
   } else {
-    cli::cli_progress_step(paste0(
-      "Getting and saving the QualOCep table to the Global Enviroment ",
-      " (`qualocep`)."
-    ))
-
-    qualocep_data <- get_qualocep_data()
-
-    assign("qualocep_data", qualocep_data, envir = globalenv())
+    out |>
+      dplyr::select(-county) |>
+      dplyr::rename(
+        street = route,
+        complement = street_number,
+        neighborhood = sublocality,
+        municipality = administrative_area_level_1,
+        state = administrative_area_level_2
+      ) |>
+      dplyr::mutate(
+        postal_code = fix_brazil_postal_code(postal_code),
+        municipality_code = get_brazil_municipality_code(municipality),
+        region = get_brazil_region(state, "state"),
+        address = render_brazil_address(
+          street, complement, neighborhood, municipality, state, postal_code
+        )
+      ) |>
+      dplyr::mutate(
+        dplyr::across(
+          dplyr::where(is.character),
+          .fns = ~ dplyr::if_else(.x == "", NA_character_, .x)
+        )
+      ) |>
+      dplyr::relocate(
+        postal_code, street, complement, neighborhood, municipality_code,
+        municipality, state, region, address, latitude, longitude
+      )
   }
+}
+
+get_brazil_address_by_postal_code_qualocep <- function(
+    postal_code,
+    limit = 10
+  ) {
+  postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
+
+  prettycheck:::assert_internet()
+  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
+  prettycheck:::assert_number(limit)
+
+  if (!is.infinite(limit)) {
+    limit <- as.integer(ceiling(limit))
+    postal_code <- postal_code[seq_len(min(length(postal_code), limit))]
+  }
+
+  qualocep_data <- get_qualocep_data()
 
   out <-
     dplyr::tibble(postal_code = postal_code) |>
@@ -282,10 +363,7 @@ get_brazil_address_by_postal_code_qualocep <- function(
   }
 }
 
-get_brazil_address_by_postal_code_viacep <- function(
-    postal_code,
-    limit = 100
-  ) {
+get_brazil_address_by_postal_code_viacep <- function(postal_code, limit = 10) {
   postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
 
   prettycheck:::assert_internet()
@@ -293,8 +371,7 @@ get_brazil_address_by_postal_code_viacep <- function(
   prettycheck:::assert_number(limit)
 
   if (!is.infinite(limit)) {
-    prettycheck:::assert_integer_number(limit, lower = 1)
-
+    limit <- as.integer(ceiling(limit))
     postal_code <- postal_code[seq_len(min(length(postal_code), limit))]
   }
 
@@ -382,72 +459,4 @@ get_brazil_address_by_postal_code_viacep <- function(
         .fns = ~ dplyr::if_else(.x == "", NA_character_, .x)
       )
     )
-}
-
-render_brazil_address <- function(
-    street = NA_character_,
-    complement = NA_character_,
-    neighborhood = NA_character_,
-    municipality = NA_character_,
-    state = NA_character_,
-    postal_code = NA_character_
-) {
-  prettycheck:::assert_character(street)
-  prettycheck:::assert_character(complement)
-  prettycheck:::assert_character(neighborhood)
-  prettycheck:::assert_character(municipality)
-  prettycheck:::assert_character(state)
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
-
-  prettycheck::assert_identical(
-    street, complement, neighborhood, municipality, state, postal_code,
-    type = "length"
-  )
-
-  `%>%` <- dplyr::`%>%`
-  out <- character()
-
-  for (i in seq_along(postal_code)) {
-    out <-
-      glue::glue(
-        ifelse(is.na(street[i]) | street[i] == "", "", "{street[i]}, "),
-        ifelse(
-          is.na(complement[i]) | complement[i] == "",
-          "",
-          "{complement[i]}, "
-        ),
-        ifelse(
-          is.na(neighborhood)[i] | neighborhood[i] == "",
-          "",
-          "{neighborhood[i]}, "
-        ),
-        dplyr::case_when(
-          !(is.na(municipality[i]) | municipality[i] == "") &
-            !(is.na(state[i]) | state[i] == "") ~
-            "{municipality[i]}-{get_brazil_fu(state[i])}, ",
-          (is.na(municipality[i]) | municipality[i] == "") &
-            !(is.na(state[i]) | state[i] == "") ~
-            "{get_brazil_fu(state[i])}, ",
-          !(is.na(municipality[i]) | municipality[i] == "") ~ "{municipality[i]}, ",
-          TRUE ~ ""
-        ),
-        ifelse(
-          is.na(postal_code[i]) | postal_code[i] == "",
-          "",
-          paste0(
-            "{stringr::str_sub(postal_code[i], 1, 5)}",
-            "-",
-            "{stringr::str_sub(postal_code[i], 6, 8)}",
-            ", "
-          )
-        ),
-        "Brasil",
-        .na = "",
-        .null = ""
-      ) |>
-      as.character() %>%
-      append(out, .)
-  }
-
-  out
 }
