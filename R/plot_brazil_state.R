@@ -12,13 +12,13 @@ plot_brazil_state_map <- function(data, option = "viridis", text_size = NULL) {
     "cividis", "E", "rocket", "F", "mako", "G", "turbo", "H"
   )
 
+  prettycheck:::assert_internet()
   prettycheck:::assert_tibble(data)
-  prettycheck:::assert_subset("state", names(data))
+  prettycheck:::assert_subset("state_code", names(data))
   prettycheck:::assert_choice(option, option_choices, null.ok = TRUE)
   prettycheck:::assert_number(text_size, null.ok = TRUE)
-  prettycheck:::assert_internet()
 
-  brazil_uf_map <-
+  brazil_state_map <-
     geobr::read_state(year = 2020, showProgress = FALSE) |>
     rutils::shush() |>
     dplyr::mutate(
@@ -26,15 +26,15 @@ plot_brazil_state_map <- function(data, option = "viridis", text_size = NULL) {
       name_state = stringr::str_replace_all(name_state, " De ", " de ")
     )
 
-  uf_list <- unique(brazil_uf_map$name_state)
+  uf_list <- unique(brazil_state_map$name_state)
 
   out <-
     data |>
-    dplyr::count(state) |>
+    dplyr::count(state_code) |>
     dplyr::rename(name_state = state)
 
   plot <-
-    brazil_uf_map |>
+    brazil_state_map |>
     dplyr::left_join(out, by = "name_state") |>
     ggplot2::ggplot() +
     ggplot2::geom_sf(ggplot2::aes(fill = n)) +

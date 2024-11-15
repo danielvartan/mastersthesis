@@ -7,7 +7,7 @@
 # library(rutils) # github.com/danielvartan/rutils
 # library(utils)
 
-source(here::here("R", "fix_qualocep_data_values"))
+source(here::here("R", "fix_qualocep_data_values.R"))
 source(here::here("R", "save_and_lock.R"))
 
 # # Helpers
@@ -19,8 +19,8 @@ source(here::here("R", "save_and_lock.R"))
 # The OSF API often presents issues when uploading large files.
 # If you encounter any problems, try to upload the files manually.
 
-write_qualocep_table_to_osf <- function(
-    file,
+write_qualocep_data_to_osf <- function(
+    file, # 2024 version
     purchase_date = lubridate::as_date("2024-11-12"),
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub")
@@ -76,13 +76,7 @@ write_qualocep_table_to_osf <- function(
       na = c("", " ", "NA"),
       col_names = TRUE,
       col_types = readr::cols(.default = "c")
-    ) |>
-    # dplyr::mutate( # For older QualoCEP data
-    #   dplyr::across(
-    #     .cols = dplyr::everything(),
-    #     .fns = ~ iconv(.x, from = "windows-1252", to = "UTF-8")
-    #   )
-    # )
+    )
 
   cli::cli_progress_step("Tidying data")
 

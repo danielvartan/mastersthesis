@@ -1,15 +1,14 @@
-# # TODO:
-#
-# * Document functions.
-# * Add to {scaler} package.
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(stats)
 
 # Based on:
 #
 # Frey, B. B. (Ed.). (2022). The SAGE encyclopedia of research design (2. ed.).
 # SAGE Publications. https://doi.org/10.4135/9781071812082
 
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(stats)
+# # TO DO
+#
+# - Add to {scaler} package.
 
 cohens_d <- function(x, y, t = NULL, abs = TRUE) {
   prettycheck:::assert_numeric(x)

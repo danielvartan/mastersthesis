@@ -41,7 +41,7 @@ get_qualocep_data <- function(
   } else if ("qualocep_data" %in% ls(envir = globalenv()) && isFALSE(force)) {
     cli::cli_alert_info(
       paste0(
-        "Using the QualoCEP data from the Global Enviroment ",
+        "Using QualoCEP data from the Global Enviroment ",
         "(`qualocep_data`)."
       ),
       wrap = TRUE
@@ -52,7 +52,7 @@ get_qualocep_data <- function(
              isFALSE(force)) {
     cli::cli_alert_info(
       paste0(
-        "Using the QualoCEP file from the temporary directory."
+        "Using QualoCEP data file from the temporary directory."
       ),
       wrap = TRUE
     )

@@ -12,19 +12,25 @@ source(here::here("R", "get_brazil_address_by_postal_code.R"))
 # raw_data <- targets::tar_read("raw_data")
 #
 # source(here::here("R", "filter_geographic_data.R"))
-# raw_data |> filter_geographic_data("municipality", "Tab")
+# data |> filter_geographic_data("municipality", "Tab")
 #
 # source(here::here("R", "get_brazil_address_by_postal_code.R"))
 # get_brazil_address_by_postal_code("01223000") |> dplyr::glimpse()
 #
-# raw_data |> filter_geographic_data_and_get_address("municipality", "sp")
+# data |> filter_geographic_data_and_get_address("municipality", "sp")
 
-filter_geographic_data <- function(raw_data, col, value) {
-  prettycheck:::assert_tibble(raw_data)
+filter_geographic_data <- function(
+    data,
+    col,
+    value,
+    fix_col = TRUE
+  ) {
+  prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(col)
   prettycheck:::assert_string(value)
+  prettycheck:::assert_flag(fix_col)
 
-  data <- raw_data |> fix_col_names()
+  if (isTRUE(fix_col)) data <- data |> fix_col_names()
   col <- stringr::str_squish(col)
 
   prettycheck:::assert_choice(stringr::str_squish(col), names(data))
@@ -35,18 +41,20 @@ filter_geographic_data <- function(raw_data, col, value) {
 }
 
 filter_geographic_data_and_get_address <- function(
-    raw_data,
+    data,
     col,
     value,
-    method = "qualocep"
+    method = "qualocep",
+    fix_col = TRUE
   ) {
-  prettycheck:::assert_tibble(raw_data)
+  prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(col)
   prettycheck:::assert_string(value)
   prettycheck:::assert_string(method)
+  prettycheck:::assert_flag(fix_col)
 
   filtered_data <-
-    raw_data |>
+    data |>
     filter_geographic_data(col, value)
 
   filtered_data |> print()

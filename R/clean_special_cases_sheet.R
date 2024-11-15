@@ -27,6 +27,7 @@ clean_special_cases_sheet <- function(
 
   data <-
     data |>
+    dplyr::arrange(dplyr::desc(dplyr::row_number())) |>
     dplyr::distinct() |>
     dplyr::mutate(
       id = as.integer(id),

@@ -1,18 +1,14 @@
-# # TODO:
-#
-# * Document functions.
-
-## See <https://gt.rstudio.com/> & <https://gt.albert-rapp.de/>.
-
 # library(cli)
 # library(dplyr)
 # library(gt)
 # library(here)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R/test_normality.R"))
+source(here::here("R", "test_normality.R"))
 
-exploratory_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
+# See <https://gt.rstudio.com/> & <https://gt.albert-rapp.de/> to learn more.
+
+create_summary_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
   prettycheck:::assert_atomic(x)
   prettycheck:::assert_choice(big_mark, c(".", ","))
   prettycheck:::assert_choice(decimal_mark, c(".", ","))

@@ -10,6 +10,7 @@
 # library(stats)
 # library(tseries)
 
+source(here::here("R", "remove_outliers.R"))
 source(here::here("R/stats_sum.R"))
 source(here::here("R/utils-stats.R"))
 source(here::here("R/utils.R"))
@@ -30,10 +31,12 @@ test_normality <- function(x,
   prettycheck:::assert_atomic(x)
   prettycheck:::assert_multi_class(x, classes)
   prettycheck:::assert_string(name)
+
   prettycheck:::assert_hms(
     threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59"),
     null_ok = TRUE
   )
+
   prettycheck:::assert_flag(remove_outliers)
   prettycheck:::assert_number(iqr_mult)
   prettycheck:::assert_flag(log_transform)

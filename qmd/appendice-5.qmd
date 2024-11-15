@@ -58,7 +58,7 @@ All values were also checked for ambiguities, including the municipalities names
 
 ### Postal codes
 
-After removing all non-numeric characters frpm the Brazilian postal codes (Código de Endereçamento Postal ([CEP](https://pt.wikipedia.org/wiki/C%C3%B3digo_de_Endere%C3%A7amento_Postal))), they were processed by the following rules:
+After removing all non-numeric characters from the Brazilian postal codes (Código de Endereçamento Postal ([CEP](https://pt.wikipedia.org/wiki/C%C3%B3digo_de_Endere%C3%A7amento_Postal))), they were processed by the following rules:
 
 - If they had 9 or more digits, they were truncated to 8 digits (the first 8 digits are the postal code).
 - If they between 5 and 7 digits, they were complemented with `0`s at the ending.
@@ -66,15 +66,17 @@ After removing all non-numeric characters frpm the Brazilian postal codes (Códi
 
 In addition, a visual inspection was performed to check for inconsistencies.
 
-After this process, the postal codes were matched with the [QualoCEP](https://www.qualocep.com/) database to check if they exist. Existing postal codes were than validated by the following rules:
+After this process, the postal codes were matched with the [QualoCEP](https://www.qualocep.com/) database. Existing postal codes were than validated by the following rules:
 
-- If the postal code had not been modified and the state **or** the municipality was the same, it was considered valid.
-- If the postal code had been modified and the state and municipality were the same, it was considered valid.
+- If the postal code had **not** been modified **and** the state **or** the municipality was the same, it was considered valid.
+- If the postal code had been modified **and** the state and municipality were the same, it was considered valid.
 - Else, it was considered invalid. Invalid CEPs were discarded in the processed dataset.
 
-The final result of the postal codes cleaning can be seen in the lookup table files.
+Invalid postal codes were then matched with data derived from reverse geocoding using [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview) via the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) R package, which is stored in the thesis lookup tables. After that, the same process of validation was performed. The postal codes that were not validated were discarded from the final data.
 
-The `state` and `municipality` variables were adjusted using the data from the valid postal codes.
+Finally, the `state` and `municipality` variables were adjusted using the data from the valid postal codes.
+
+Non-Brazilian postal codes were not validated, but they were cleaned by removing non-digit characters and codes with 3 digits or less. They also went through a process da cleaning via visual inspection. Their values can be found in the `special_cases` lookup table.
 
 ## Latitudes and longitudes
 

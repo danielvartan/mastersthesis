@@ -4,6 +4,7 @@
 # library(lubridate)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(readr)
+library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
@@ -31,9 +32,15 @@ source(here::here("R", "utils.R"))
 #
 # get_brazil_municipality(c("são paulo","dsdasddsa", NA, "rio de janeiro"))
 
-get_brazil_municipality <- function(x = NULL, year = 2017, force = FALSE) {
+get_brazil_municipality <- function(
+    municipality = NULL,
+    state = NULL,
+    year = 2017,
+    force = FALSE
+  ) {
   prettycheck:::assert_internet()
-  prettycheck:::assert_character(x, null.ok = TRUE)
+  prettycheck:::assert_character(municipality, null.ok = TRUE)
+  prettycheck:::assert_character(state, null.ok = TRUE)
   prettycheck:::assert_flag(force)
 
   prettycheck:::assert_number(
@@ -103,21 +110,46 @@ get_brazil_municipality <- function(x = NULL, year = 2017, force = FALSE) {
     readr::write_rds(brazil_municipalities_data, brazil_municipalities_file)
   }
 
-  if (is.null(x)) {
+  if (is.null(municipality)) {
     brazil_municipalities_data
   } else {
-    x <-
-      x |>
+    municipality <-
+      municipality |>
       to_ascii_and_lower() |>
       stringr::str_remove_all("[^a-z'\\- ]") |>
       stringr::str_squish()
 
+    if (!is.null(state)) {
+      prettycheck::assert_identical(
+        municipality,
+        state,
+        type = "length"
+      )
+
+      state <-
+        state |>
+        to_ascii_and_lower() |>
+        stringr::str_remove_all("[^a-z'\\- ]") |>
+        stringr::str_squish()
+    }
+
     out <- dplyr::tibble()
 
-    for (i in x) {
-      data <-
-        brazil_municipalities_data |>
-        dplyr::filter(to_ascii_and_lower(municipality) %in% i)
+    for (i in seq_along(municipality)) {
+      if (is.null(state)) {
+        data <-
+          brazil_municipalities_data |>
+          dplyr::filter(
+            to_ascii_and_lower(municipality) %in% .env$municipality[i]
+          )
+      } else {
+        data <-
+          brazil_municipalities_data |>
+          dplyr::filter(
+            to_ascii_and_lower(municipality) %in% .env$municipality[i] &
+            to_ascii_and_lower(state) %in% .env$state[i]
+          )
+      }
 
       if (nrow(data) == 0) {
         out <-
@@ -129,7 +161,7 @@ get_brazil_municipality <- function(x = NULL, year = 2017, force = FALSE) {
               federal_unit = NA_character_,
               state = NA_character_,
               municipality_code = NA_integer_,
-              municipality = i
+              municipality = .env$municipality[i]
             )
           )
       } else {
@@ -139,4 +171,37 @@ get_brazil_municipality <- function(x = NULL, year = 2017, force = FALSE) {
 
     out
   }
+}
+
+# library(dplyr)
+# library(here)
+# library(lubridate)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+# Based on data from the Brazilian Institute of Geography and Statistics (IBGE)
+# via the `geobr` R package. See `./R/get_brazil_municipality.R` to learn more.
+
+# # Helpers
+#
+# source(here::here("R", "get_brazil_municipality.R"))
+#
+# get_brazil_municipality_code(c("são paulo","dsdasddsa", NA, "rio de janeiro"))
+
+get_brazil_municipality_code <- function(
+    municipality,
+    state = NULL,
+    year = 2017
+  ) {
+  prettycheck:::assert_internet()
+  prettycheck:::assert_character(municipality)
+  prettycheck:::assert_character(state, null.ok = TRUE)
+
+  prettycheck:::assert_number(
+    year,
+    lower = 1900,
+    upper = Sys.Date() |> lubridate::year()
+  )
+
+  get_brazil_municipality(municipality, state, year = year) |>
+    dplyr::pull(municipality_code)
 }

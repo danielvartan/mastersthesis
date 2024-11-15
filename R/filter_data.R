@@ -4,8 +4,9 @@
 # library(lubridate)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R/utils.R"))
-source(here::here("R/utils-stats.R"))
+source(here::here("R", "test_outlier.R"))
+source(here::here("R", "utils.R"))
+source(here::here("R", "utils-stats.R"))
 
 # filtered_data <- analyzed_data |> filter_data()
 
@@ -16,7 +17,7 @@ source(here::here("R/utils-stats.R"))
 # To mitigate this, data points exceeding 1.5 times the interquartile range
 # (IQR) above the third quartile (Q3) or below 1.5 times the IQR from the first
 # quartile (Q1) were filtered out. This outlier removal was applied solely to
-# the age and msf_sc variables.
+# the `age` and `msf_sc` variables.
 
 filter_data <- function(data) {
   prettycheck:::assert_tibble(data)
@@ -28,10 +29,11 @@ filter_data <- function(data) {
       lubridate::date(timestamp) >= lubridate::ymd("2017-10-15"),
       lubridate::date(timestamp) <= lubridate::ymd("2017-10-21"),
       country == "Brazil",
+      state %in% get_brazil_state_by_utc(-3, "state"),
       age >= 18
     ) |>
     dplyr::filter(
-      !is_outlier(age),
-      !is_outlier(transform_time(msf_sc))
+      !test_outlier(age, method = "iqr", iqr_mult = 1.5),
+      !test_outlier(transform_time(msf_sc), method = "iqr", iqr_mult = 1.5)
     )
 }

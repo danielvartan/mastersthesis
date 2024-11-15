@@ -13,6 +13,8 @@ source(here::here("R", "utils.R"))
 
 # # Helpers
 #
+# check_issues_with_the_lookup_tables()
+#
 # raw_data |>
 #   cross_geographic_data_by_postal_code(
 #     col = "municipality",
@@ -29,7 +31,7 @@ source(here::here("R", "utils.R"))
 #   dplyr::select(state, municipality) |>
 #   print(n = Inf)
 
-identify_issues_with_the_lookup_tables <- function() {
+check_issues_with_the_lookup_tables <- function() {
   data <-
     targets::tar_read("tidy_data") |>
     dplyr::filter(country == "Brazil")
@@ -204,58 +206,77 @@ lookup_table_issue_warning <- function(test, col_name, type = "length") {
   prettycheck:::assert_string(type)
 
   if (type == "length" && !length(test) == 0) {
-    cli::cli_alert_warning(paste0(
-      "There {cli::qty(length(test))}{?is/are} {.strong {length(test)}} ",
-      "value{?s} in the {.strong {cli::col_red(col_name)}} column that ",
-      "{cli::qty(length(test))}{?is/are} incorrect."
-    ))
+    cli::cli_alert_warning(
+      paste0(
+        "There {cli::qty(length(test))}{?is/are} {.strong {length(test)}} ",
+        "value{?s} in the {.strong {cli::col_red(col_name)}} column that ",
+        "{cli::qty(length(test))}{?is/are} incorrect."
+      ),
+      wrap = TRUE
+    )
 
     cli::cat_line()
     print(test)
     cli::cat_line()
   } else if (type == "logical" && any(test)) {
-    cli::cli_alert_warning(paste0(
-      "There {cli::qty(sum(test))}{?is/are} {.strong {sum(test)}} ",
-      "value{?s} in the {.strong {cli::col_red(col_name)}} column that ",
-      "{cli::qty(sum(test))}{?is/are} incorrect."
-    ))
+    cli::cli_alert_warning(
+      paste0(
+        "There {cli::qty(sum(test))}{?is/are} {.strong {sum(test)}} ",
+        "value{?s} in the {.strong {cli::col_red(col_name)}} column that ",
+        "{cli::qty(sum(test))}{?is/are} incorrect."
+      ),
+      wrap = TRUE
+    )
 
     cli::cat_line()
   } else if (type == "name" && any(test)) {
     test_length <- test[test == TRUE] |> length()
 
-    cli::cli_alert_warning(paste0(
-      "There {cli::qty(length(test))}{?is/are} {.strong {length(test)}} ",
-      "value{?s} in the {.strong {cli::col_red(col_name)}} column that ",
-      "{cli::qty(length(test))}{?is/are} incorrect."
-    ))
+    cli::cli_alert_warning(
+      paste0(
+        "There {cli::qty(length(test))}{?is/are} {.strong {length(test)}} ",
+        "value{?s} in the {.strong {cli::col_red(col_name)}} column that ",
+        "{cli::qty(length(test))}{?is/are} incorrect."
+      ),
+      wrap = TRUE
+    )
 
     cli::cat_line()
   } else if (type == "postal_code" && any(test)) {
-    cli::cli_alert_warning(paste0(
-      "There {cli::qty(test)}{?is/are} {.strong {length(test)}} value{?s} in ",
-      "the {.strong {cli::col_red(col_name)}} column that don't have 8 digits."
-    ))
+    cli::cli_alert_warning(
+      paste0(
+        "There {cli::qty(test)}{?is/are} {.strong {length(test)}} value{?s} ",
+        "in the {.strong {cli::col_red(col_name)}} column that don't have ",
+        "8 digits."
+      ),
+      wrap = TRUE
+    )
 
     cli::cat_line()
     print(test)
     cli::cat_line()
   }  else if (type == "special_cases_1" && !length(test) == 0) {
-    cli::cli_alert_warning(paste0(
-      "{.strong {length(test)}} {.strong {cli::col_blue('id')}} value{?s} ",
-      "in the {.strong {cli::col_red(col_name)}} table have more than ",
-      "4 entries."
-    ))
+    cli::cli_alert_warning(
+      paste0(
+        "{.strong {length(test)}} {.strong {cli::col_blue('id')}} value{?s} ",
+        "in the {.strong {cli::col_red(col_name)}} table have more than ",
+        "4 entries."
+      ),
+      wrap = TRUE
+    )
 
     cli::cat_line()
     print(test)
     cli::cat_line()
   } else if (type == "special_cases_2" && !length(test) == 0) {
-    cli::cli_alert_warning(paste0(
-      "There {cli::qty(length(test))}{?is/are} {.strong {length(test)}} ",
-      "duplicated value{?s} in the {.strong {cli::col_red(col_name)}} ",
-      "table."
-    ))
+    cli::cli_alert_warning(
+      paste0(
+        "There {cli::qty(length(test))}{?is/are} {.strong {length(test)}} ",
+        "duplicated value{?s} in the {.strong {cli::col_red(col_name)}} ",
+        "table."
+      ),
+      wrap = TRUE
+    )
 
     cli::cat_line()
     print(test)

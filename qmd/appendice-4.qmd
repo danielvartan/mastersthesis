@@ -45,7 +45,7 @@ library(workflows)
 
 ```{r}
 source(here::here("R", "get_brazil_region.R"))
-source(here::here("R", "get_brazil_state_by_utc.R"))
+source(here::here("R", "get_brazil_state.R"))
 source(here::here("R", "utils-stats.R"))
 ```
 
@@ -72,7 +72,7 @@ data <- targets::tar_make(script = "../_targets.R")
 #| output: false
 
 data <- 
-  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
+  targets::tar_read("filtered_data", store = here::here("_targets")) |>
   dplyr::select(country, region, state, sex, age, msf_sc) |>
   dplyr::arrange(state, sex, age) |>
   dplyr::mutate(state = factor(state, ordered = FALSE)) |>
@@ -180,7 +180,8 @@ pnad_data |> summarise_data("country")
 ## Comparing the sample data with the population data
 
 ```{r}
-data <- data |>
+data <- 
+  data |>
   dplyr::mutate(
     age_group = dplyr::case_when(
       age >= 18 & age < 20 ~ "18-19",

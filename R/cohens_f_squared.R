@@ -1,14 +1,12 @@
-# # TODO:
-#
-# * Document functions.
-# * Add to {scaler} package.
-
-# See https://doi.org/10.1037/0033-2909.112.1.155
-#     https://doi.org/10.3389/fpsyg.2012.00111
-# to learn more.
-
 # library(dplyr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
+
+# # TODO:
+#
+# - Add to {scaler} package.
+
+# See <https://doi.org/10.1037/0033-2909.112.1.155> and
+# <https://doi.org/10.3389/fpsyg.2012.00111> to learn more.
 
 cohens_f_squared <- function(base_r_squared, new_r_squared = NULL) {
   prettycheck:::assert_number(base_r_squared, lower = 0, upper = 1)
@@ -40,7 +38,10 @@ cohens_f_squared_effect_size <- function(f_squared) {
 # library(dplyr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-cohens_f_squared_summary <- function(base_r_squared, new_r_squared = NULL) {
+cohens_f_squared_summary <- function(
+    base_r_squared,
+    new_r_squared = NULL
+) {
   prettycheck:::assert_number(base_r_squared, lower = 0, upper = 1)
   prettycheck:::assert_number(
     new_r_squared, lower = 0, upper = 1, null.ok = TRUE

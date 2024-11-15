@@ -3,14 +3,15 @@
 # library(here)
 # library(jsonlite)
 # library(prettycheck) # github.com/danielvartan/prettycheck
+library(rlang)
 # library(stringr)
 # library(tidygeocoder)
 
 source(here::here("R", "fix_brazil_postal_code.R"))
 source(here::here("R", "get_brazil_fu.R"))
 source(here::here("R", "get_brazil_municipality.R"))
-source(here::here("R", "get_brazil_municipality_code.R"))
 source(here::here("R", "get_brazil_region.R"))
+source(here::here("R", "get_brazil_state.R"))
 source(here::here("R", "get_qualocep_data.R"))
 source(here::here("R", "render_brazil_address.R"))
 source(here::here("R", "utils.R"))
@@ -185,9 +186,11 @@ get_brazil_address_by_postal_code_osm <- function(
       dplyr::mutate(
         postal_code = fix_brazil_postal_code(postal_code),
         municipality_code = get_brazil_municipality_code(municipality),
+        state_code = get_brazil_state_code(state, "state"),
         region = get_brazil_region(state, "state"),
         address = render_brazil_address(
-          street, complement, neighborhood, municipality, state, postal_code
+          street, complement, neighborhood, municipality, state_code,
+          state, postal_code
         ),
         latitude = as.numeric(latitude),
         longitude = as.numeric(longitude)
@@ -238,24 +241,50 @@ get_brazil_address_by_postal_code_google <- function(
   out <-
     out |>
     dplyr::pull(address_components) |>
-    magrittr::extract2(1) |>
-    dplyr::as_tibble() |>
-    dplyr::mutate(
-      types = c(
+    purrr::map(function(x) {
+      selected_vars <- c(
         "street_number",
         "route",
         "sublocality",
         "administrative_area_level_1",
         "administrative_area_level_2",
-        "county",
+        "country",
         "postal_code"
       )
-    ) |>
-    dplyr::select(-short_name) |>
-    tidyr::pivot_wider(
-      names_from = types,
-      values_from = long_name
-    ) |>
+
+      vars <- character()
+
+      for (i in x$types) {
+        if (any(i %in% selected_vars)) {
+          vars <- c(vars, i[i %in% selected_vars])
+        } else {
+          vars <- c(vars, basename(tempfile("dump_var_")))
+        }
+      }
+
+      out <-
+        x |>
+        dplyr::as_tibble() |>
+        dplyr::mutate(types = vars) |>
+        dplyr::select(-short_name) |>
+        tidyr::pivot_wider(
+          names_from = types,
+          values_from = long_name
+        )
+
+      for (i in setdiff(selected_vars, vars)) {
+        out <-
+          out |>
+          dplyr::bind_cols(
+            dplyr::tibble(
+              !!as.symbol(i) := rep(NA_character_, nrow(out))
+            )
+          )
+      }
+
+      out |> dplyr::select(dplyr::all_of(selected_vars))
+    }) |>
+    purrr::map_df(dplyr::bind_rows) |>
     dplyr::bind_cols(
       out |>
         dplyr::transmute(
@@ -264,49 +293,58 @@ get_brazil_address_by_postal_code_google <- function(
         )
     )
 
-  if (fix_brazil_postal_code(out$postal_code) == "42700000") {
-    dplyr::tibble(
+  out |>
+    dplyr::select(
+      street_number,
+      route,
+      sublocality,
+      administrative_area_level_1,
+      administrative_area_level_2,
+      postal_code,
+      latitude,
+      longitude
+    ) |>
+    dplyr::rename(
+      street = route,
+      complement = street_number,
+      neighborhood = sublocality,
+      municipality = administrative_area_level_1,
+      state = administrative_area_level_2
+    ) |>
+    dplyr::mutate(
       postal_code = fix_brazil_postal_code(postal_code),
-      street = NA_character_,
-      complement = NA_character_,
-      neighborhood = NA_character_,
-      municipality_code = NA_integer_,
-      municipality = NA_character_,
-      state = NA_character_,
-      region = NA_character_,
-      address = NA_character_,
-      latitude = NA_real_,
-      longitude = NA_real_
-    )
-  } else {
-    out |>
-      dplyr::select(-county) |>
-      dplyr::rename(
-        street = route,
-        complement = street_number,
-        neighborhood = sublocality,
-        municipality = administrative_area_level_1,
-        state = administrative_area_level_2
-      ) |>
-      dplyr::mutate(
-        postal_code = fix_brazil_postal_code(postal_code),
-        municipality_code = get_brazil_municipality_code(municipality),
-        region = get_brazil_region(state, "state"),
-        address = render_brazil_address(
-          street, complement, neighborhood, municipality, state, postal_code
-        )
-      ) |>
-      dplyr::mutate(
-        dplyr::across(
-          dplyr::where(is.character),
-          .fns = ~ dplyr::if_else(.x == "", NA_character_, .x)
-        )
-      ) |>
-      dplyr::relocate(
-        postal_code, street, complement, neighborhood, municipality_code,
-        municipality, state, region, address, latitude, longitude
+      municipality_code = get_brazil_municipality_code(municipality, state),
+      state_code = get_brazil_state_code(state, "state"),
+      region = get_brazil_region(state, "state"),
+      address = render_brazil_address(
+        street, complement, neighborhood, municipality, state, postal_code
       )
-  }
+    ) |>
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::where(is.character),
+        .fns = ~ dplyr::if_else(.x == "", NA_character_, .x)
+      )
+    ) |>
+    dplyr::relocate(
+      postal_code, street, complement, neighborhood, municipality_code,
+      municipality, state_code, state, region, address, latitude, longitude
+    ) |>
+    dplyr::mutate(
+      latitude = as.numeric(latitude),
+      longitude = as.numeric(longitude)
+    ) |>
+    dplyr::mutate(
+      dummy = !postal_code == .env$postal_code,
+      postal_code = .env$postal_code
+    ) |>
+    dplyr::mutate(
+      dplyr::across(
+        .cols = -dplyr::all_of(c("postal_code", "dummy")),
+        .fns = ~ ifelse(dummy, NA, .x)
+      )
+    ) |>
+    dplyr::select(-dummy)
 }
 
 get_brazil_address_by_postal_code_qualocep <- function(
@@ -337,8 +375,9 @@ get_brazil_address_by_postal_code_qualocep <- function(
     out |>
       dplyr::select(
         postal_code, street, complement, neighborhood, municipality_code,
-        municipality, state, latitude, longitude
+        municipality, federal_unit_code, state, latitude, longitude
       ) |>
+      dplyr::rename(state_code = federal_unit_code) |>
       dplyr::mutate(
         region = get_brazil_region(state, "state"),
         address = render_brazil_address(
@@ -350,7 +389,7 @@ get_brazil_address_by_postal_code_qualocep <- function(
     out |>
       dplyr::select(
         postal_code, street, complement, neighborhood, municipality_code,
-        municipality, state
+        municipality, state_code, state
       ) |>
       dplyr::mutate(
         region = get_brazil_region(state, "state"),

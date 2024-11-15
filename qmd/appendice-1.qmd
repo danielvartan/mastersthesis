@@ -6,7 +6,7 @@
 #| label: setup
 #| include: false
 
-source(here::here("R/_setup.R"))
+source(here::here("R", "_setup.R"))
 options(scipen = 10, digits = 5)
 ```
 
@@ -20,6 +20,20 @@ rutils:::quarto_status(
   of_what = "of this thesis",
   latex_parskip = "\\microskip"
   )
+```
+
+## Overview
+
+## Setting things up
+
+```{r}
+#| eval: false
+
+library(dplyr)
+```
+
+```{r}
+source(here::here("R", "utils.R"))
 ```
 
 ## Question
@@ -302,37 +316,21 @@ data <- targets::tar_make(script = "../_targets.R")
 ```
 
 ```{r}
-utc_minus_3_states <- c(
-  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
-  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
-  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
-  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
-  "Rio Grande do Sul"
-)
+#| output: false
+
+data <- targets::tar_read("weighted_data", store = here::here("_targets"))
 ```
 
 ```{r}
-#| label: data-preparation
 #| message: false
 #| warning: false
 #| code-fold: false
 
-source(here::here("R/utils.R"))
-
-utc_minus_3_states <- c(
-  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
-  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
-  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
-  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
-  "Rio Grande do Sul"
-)
-
 data <- 
-  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
-  dplyr::filter(state %in% utc_minus_3_states) |>
-  dplyr::select(msf_sc, age, sex, state, latitude, longitude) |>
-  tidyr::drop_na(msf_sc, age, sex, latitude) |>
-  dplyr::mutate(msf_sc = transform_time(msf_sc))
+  data |>
+  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
+  dplyr::select(msf_sc, age, sex, state, latitude, longitude, cell_weight) |>
+  tidyr::drop_na(msf_sc, age, sex, latitude)
 ```
 
 ### A note about round-off errors
@@ -455,7 +453,9 @@ data <-
 
 ```{r}
 res_model <- stats::lm(
-  msf_sc_box_cox ~ age + sex, data = data
+  msf_sc_box_cox ~ age + sex, 
+  data = data,
+  weights = cell_weight
 )
 ```
 
@@ -526,11 +526,11 @@ $$
 #| message: false
 #| warning: false
 
-source(here::here("R/normality_sum.R"))
+source(here::here("R", "normality_summary.R"))
 
 res_model |>
   stats::residuals() |>
-  normality_sum()
+  normality_summary()
 ```
 
 [Source: Created by the author.]{.legend}
@@ -664,7 +664,8 @@ sprintf("%.50f", lambda) # The same lambda of the restricted model
 
 full_model <- stats::lm(
   msf_sc_box_cox ~ age + sex + latitude, 
-  data = data
+  data = data,
+  weights = cell_weight
   )
 ```
 
@@ -726,11 +727,11 @@ $$
 
 ::: {#tbl-appendice-chapter-6-full-model-residual-diag-normality-tests}
 ```{r}
-source(here::here("R/normality_sum.R"))
+source(here::here("R", "normality_summary.R"))
 
 full_model |>
   stats::residuals() |>
-  normality_sum()
+  normality_summary()
 ```
 
 [Source: Created by the author.]{.legend}
@@ -904,8 +905,8 @@ $$
 
 ::: {#tbl-appendice-chapter-6-hypothesis-test-effect-size}
 ```{r}
-source(here::here("R/cohens_f_squared.R"))
-source(here::here("R/utils-stats.R"))
+source(here::here("R", "cohens_f_squared.R"))
+source(here::here("R", "utils-stats.R"))
 
 cohens_f_squared_summary(
   adj_r_squared(res_model), 

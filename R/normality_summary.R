@@ -4,7 +4,7 @@
 
 source(here::here("R/test_normality.R"))
 
-normality_sum <- function(x, round = FALSE, digits = 5, ...) {
+normality_summary <- function(x, round = FALSE, digits = 5, ...) {
   prettycheck:::assert_numeric(x)
   prettycheck:::assert_flag(round)
   prettycheck:::assert_number(digits)

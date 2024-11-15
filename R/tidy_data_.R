@@ -263,10 +263,14 @@ look_and_replace_values <- function(
   # )
 
   char_vars <- c(
-    "track", "name", "email", "country", "state", "municipality", "postal_code"
+    "track", "name", "email", "country", "state", "municipality",
+    "postal_code"
   )
 
-  out <- data
+  out <-
+    data |>
+    # This will be used and then discarded in `geocode_data()`.
+    dplyr::mutate(postal_code_raw = postal_code)
 
   lookup_data <- get_lookup_data(
     osf_pat = osf_pat,
@@ -295,7 +299,10 @@ look_and_replace_values <- function(
     ))
   }
 
-  if (any(!unique(lookup_data$special_cases$var) %in% names(out), na.rm = TRUE)) {
+  if (any(
+    !unique(lookup_data$special_cases$var) %in% names(out),
+    na.rm = TRUE
+    )) {
     cli::cli_abort(paste0(
       "There are special cases with variables that are not in the dataset."
     ))
@@ -314,8 +321,6 @@ look_and_replace_values <- function(
         lookup_data$special_cases$value[i] |>
         methods::as(class(out[[var_i]])[1])
     }
-
-
 
     out <-
       out |>
@@ -392,6 +397,8 @@ select_vars <- function(data) {
       work, study, no_work_no_study, work_periods, study_periods,
 
       wd, bt_w, sprep_w, slat_w, se_w, si_w, alarm_w, le_w, bt_f,
-      sprep_f, slat_f, se_f, si_f, alarm_f, le_f
+      sprep_f, slat_f, se_f, si_f, alarm_f, le_f,
+
+      postal_code_raw
     )
 }

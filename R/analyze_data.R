@@ -158,5 +158,5 @@ analyze_data <- function(data, round = FALSE, hms = FALSE) {
     ) |>
     dplyr::select(-dummy_0, -dummy_7)
 
-  invisible(out)
+  out
 }

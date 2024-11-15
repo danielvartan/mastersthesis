@@ -41,7 +41,8 @@ update_lookup_data <- function(
 
   for (i in sheets) {
     data_i <- googlesheets4::read_sheet(
-      ss = ss, sheet = i,
+      ss = ss,
+      sheet = i,
       col_names = TRUE,
       col_types = "c",
       na = c("", "NA"),
@@ -84,6 +85,15 @@ update_lookup_data <- function(
   lookup_data$special_cases <-
     lookup_data$special_cases |>
     dplyr::mutate(id = as.integer(id))
+
+  lookup_data$geocodes <-
+    lookup_data$geocodes |>
+    dplyr::mutate(
+      municipality_code = as.integer(municipality_code),
+      state_code = as.integer(state_code),
+      latitude = as.numeric(latitude),
+      longitude = as.numeric(longitude)
+    )
 
   rds_list_file <-
     lookup_data |>

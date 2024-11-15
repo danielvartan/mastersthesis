@@ -500,7 +500,7 @@ Age pyramid of the sample subjects.
 #| fig-align: center
 #| fig-height: 7
 
-source(here::here("R/plot_age_pyramid.R"))
+source(here::here("R", "plot_age.R"))
 
 age_pyramid <- 
   data |> 
@@ -526,7 +526,7 @@ Relation between age and chronotype, divided by sex. Chronotype is represented b
 #| fig-align: center
 #| fig-height: 7
 
-source(here::here("R/plot_age_series.R"))
+source(here::here("R", "plot_age.R"))
 
 col <- "msf_sc"
 y_lab <- latex2exp::TeX("Local time ($MSF_{sc}$)")

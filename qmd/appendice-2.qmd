@@ -116,6 +116,8 @@ Age statistics of sample subjects
 
 ## Geographic distribution
 
+
+
 ::: {#fig-appendice-chapter-4-geographic-distribution}
 ```{r}
 #| message: false
@@ -146,7 +148,7 @@ Residential geographic distribution among sample subjects
 #| message: false
 #| warning: false
 
-source(here::here("R/plot_age_pyramid.R"))
+source(here::here("R", "plot_age.R"))
 
 age_pyramid <- 
   data |> 
@@ -215,7 +217,7 @@ Correlation matrix of main variables
 #| message: false
 #| warning: false
 
-source(here::here("R/plot_age_series.R"))
+source(here::here("R", "plot_age.R"))
 
 col <- "msf_sc"
 y_lab <- latex2exp::TeX("Local time ($MSF_{sc}$)")
@@ -247,7 +249,7 @@ Relation between age and chronotype, divided by sex. Chronotype is represented b
 #| message: false
 #| warning: false
 
-source(here::here("R/plot_age_series.R"))
+source(here::here("R", "plot_age.R"))
 
 col <- "weight"
 y_lab <- "Weight (kg)"
