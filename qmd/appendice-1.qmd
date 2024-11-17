@@ -227,13 +227,13 @@ Therefore, the same hypothesis will be tested three times with different predict
 
 - **Predictors for the restricted model**: age, sex, longitude, and GHI when the subjects filled the online questionnaire.
 
-- **Predictors for the full model**: (predictors for the restricted model) + annual average GHI, daylight duration in March equinox, June, and December solstices, and sunrise time and sunset when the subjects filled the online questionnaire.
+- **Predictors for the full model**: *predictors for the restricted model* + annual average GHI, daylight duration in March equinox, June, and December solstices, and sunrise time and sunset when the subjects filled the online questionnaire.
 
 #### Test 2
 
 - **Predictors for the restricted model**: age, sex, longitude, and GHI when the subjects filled the online questionnaire.
 
-- **Predictors for the full model**: (predictors for the restricted model) + annual average GHI, daylight duration in March equinox, June, and December solstices, and sunrise time and sunset when the subjects filled the online questionnaire + latitude.
+- **Predictors for the full model**: *predictors for the restricted model* + annual average GHI, daylight duration in March equinox, June, and December solstices, and sunrise time and sunset when the subjects filled the online questionnaire + latitude.
 
 #### Test 3
 
@@ -328,8 +328,8 @@ data <- targets::tar_read("weighted_data", store = here::here("_targets"))
 
 data <- 
   data |>
+  dplyr::select(sex, age, latitude, longitude, msf_sc, cell_weight) |>
   dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
-  dplyr::select(msf_sc, age, sex, state, latitude, longitude, cell_weight) |>
   tidyr::drop_na(msf_sc, age, sex, latitude)
 ```
 

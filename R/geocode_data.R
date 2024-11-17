@@ -2,12 +2,11 @@
 # library(dplyr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
+# library(tidyr)
 
 source(here::here("R", "get_brazil_municipality.R"))
-source(here::here("R", "get_brazil_fu.R"))
 source(here::here("R", "get_brazil_region.R"))
-source(here::here("R", "get_lookup_data.R"))
-source(here::here("R", "get_qualocep_data.R"))
+source(here::here("R", "get_geocode_lookup_data.R"))
 
 # # Helpers
 #
@@ -44,22 +43,18 @@ geocode_data <- function(
     validate_postal_codes() |>
     adjust_state_and_municipality_by_postal_code() |>
     add_region() |>
-    add_qualocep_geocode_data_by_postal_code() |>
-    add_qualocep_geocode_data_by_municipality()
+    add_geocode_data_by_postal_code() |>
+    add_geocode_data_by_municipality() |>
+    remove_invalid_postal_codes()
 }
 
 add_ibge_codes <- function(data) {
   prettycheck:::assert_tibble(data)
 
-  brazil_municipalties_data <- get_brazil_municipality(year = 2017)
-
   data |>
     dplyr::left_join(
-      brazil_municipalties_data |>
-        dplyr::select(
-          federal_unit_code, state, municipality_code, municipality
-        ) |>
-        dplyr::rename(state_code = federal_unit_code),
+      get_brazil_municipality(year = 2017) |>
+        dplyr::select(state_code, state, municipality_code, municipality),
       by = c("state", "municipality")
     ) |>
     dplyr::mutate(
@@ -81,52 +76,27 @@ add_ibge_codes <- function(data) {
 validate_postal_codes <- function(data) {
   prettycheck:::assert_tibble(data)
 
-  lookup_data <- get_lookup_data() |> rutils::shush()
-  qualocep_data <- get_qualocep_data() |> rutils::shush()
-
-  geocode_data <-
-    lookup_data$geocodes |>
-    dplyr::select(-dplyr::all_of(c("timestamp", "region", "source"))) |>
-    dplyr::mutate(
-      street_type = NA,
-      street_name = NA,
-      place = NA,
-      federal_unit = get_brazil_fu(state),
-      municipality_code = as.integer(municipality_code),
-      state_code = as.integer(state_code),
-      latitude = as.numeric(latitude),
-      longitude = as.numeric(longitude)
-    ) |>
-    dplyr::rename(federal_unit_code = state_code) |>
-    dplyr::select(
-      postal_code, street_type, street_name, street, complement, place,
-      neighborhood, municipality_code, municipality, federal_unit_code,
-      federal_unit, state, latitude, longitude
-    ) |>
-    dplyr::bind_rows(qualocep_data) |>
-    dplyr::distinct(postal_code, .keep_all = TRUE)
-
   data |>
     dplyr::left_join(
-      geocode_data |>
-        dplyr::select(federal_unit_code, municipality_code, postal_code) |>
-        dplyr::rename(state_code = federal_unit_code),
+      get_geocode_lookup_data() |>
+        rutils::shush() |>
+        dplyr::select(state_code, municipality_code, postal_code),
       by = "postal_code",
-      suffix = c("", "_qualocep")
+      suffix = c("", "_lookup_data")
     ) |>
     dplyr::mutate(
       was_postal_code_changed = !postal_code == postal_code_raw,
       validity_condition_1 = dplyr::if_else(
         !was_postal_code_changed &
-          (state_code == state_code_qualocep |
-             municipality_code == municipality_code_qualocep),
+          (state_code == state_code_lookup_data |
+             municipality_code == municipality_code_lookup_data),
         TRUE,
         FALSE
       ),
       validity_condition_2 = dplyr::if_else(
         was_postal_code_changed &
-          state_code == state_code_qualocep &
-          municipality_code == municipality_code_qualocep,
+          state_code == state_code_lookup_data &
+          municipality_code == municipality_code_lookup_data,
         TRUE,
         FALSE
       ),
@@ -143,40 +113,38 @@ validate_postal_codes <- function(data) {
 }
 
 adjust_state_and_municipality_by_postal_code <- function(data) {
-  qualocep_data <- get_qualocep_data() |> rutils::shush()
-
-  brazil_municipalties_data <- get_brazil_municipality(year = 2017)
-
   data |>
     dplyr::mutate(
       state_code = dplyr::if_else(
-        is_postal_code_valid,
-        state_code_qualocep,
+        is_postal_code_valid & country == "Brazil",
+        state_code_lookup_data,
         state_code
       ),
       municipality_code = dplyr::if_else(
-        is_postal_code_valid,
-        municipality_code_qualocep,
+        is_postal_code_valid & country == "Brazil",
+        municipality_code_lookup_data,
         municipality_code
       )
     ) |>
     dplyr::left_join(
-      brazil_municipalties_data |>
-        dplyr::select(
-          federal_unit_code, state, municipality_code, municipality
-        ) |>
-        dplyr::rename(state_code = federal_unit_code),
+      get_brazil_municipality(year = 2017) |>
+        dplyr::select(state_code, state, municipality_code, municipality),
       by = c("state_code", "municipality_code"),
       suffix = c("", "_geobr")
     ) |>
     dplyr::mutate(
-      state = state_geobr,
-      municipality = municipality_geobr
+      state = dplyr::if_else(country == "Brazil", state_geobr, state),
+      municipality = dplyr::if_else(
+        country == "Brazil",
+        municipality_geobr,
+        municipality
+      )
     )|>
     dplyr::select(
       -dplyr::all_of(
         c(
-          "state_code_qualocep", "municipality_code_qualocep",
+          "state_code_lookup_data",
+          "municipality_code_lookup_data",
           "state_geobr", "municipality_geobr"
         )
       )
@@ -191,25 +159,24 @@ add_region <- function(data) {
     dplyr::relocate(region, .after = country)
 }
 
-add_qualocep_geocode_data_by_postal_code <- function(data) {
+add_geocode_data_by_postal_code <- function(data) {
   prettycheck:::assert_tibble(data)
-
-  qualocep_data <- get_qualocep_data()
 
   data |>
     dplyr::left_join(
-      qualocep_data |>
+      get_geocode_lookup_data() |>
+        rutils::shush() |>
         dplyr::select(postal_code, latitude, longitude),
       by = "postal_code"
     ) |>
     dplyr::mutate(
       latitude = dplyr::if_else(
-        country == "Brazil",
+        is_postal_code_valid & country == "Brazil",
         latitude,
         NA_real_
       ),
       longitude = dplyr::if_else(
-        country == "Brazil",
+        is_postal_code_valid & country == "Brazil",
         longitude,
         NA_real_
       )
@@ -217,35 +184,31 @@ add_qualocep_geocode_data_by_postal_code <- function(data) {
     dplyr::relocate(latitude, longitude, .after = postal_code)
 }
 
-add_qualocep_geocode_data_by_municipality <- function(data) {
+add_geocode_data_by_municipality <- function(data) {
   prettycheck:::assert_tibble(data)
-
-  qualocep_data <- get_qualocep_data() |> rutils::shush()
-
-  qualocep_data_summary <-
-    qualocep_data |>
-    dplyr::summarise(
-      latitude = mean(latitude, na.rm = TRUE),
-      longitude = mean(longitude, na.rm = TRUE),
-      .by = c("federal_unit_code", "municipality_code")
-    ) |>
-    dplyr::rename(state_code = federal_unit_code)
 
   data |>
     dplyr::left_join(
-      qualocep_data_summary,
+      get_geocode_lookup_data() |>
+        rutils::shush() |>
+        dplyr::summarise(
+          latitude = mean(latitude, na.rm = TRUE),
+          longitude = mean(longitude, na.rm = TRUE),
+          .by = c("state_code", "municipality_code")
+        ) |>
+        tidyr::drop_na(),
       by = c("state_code", "municipality_code"),
-      suffix = c("", "_qualocep")
+      suffix = c("", "_lookup_data")
     ) |>
     dplyr::mutate(
       latitude = dplyr::if_else(
         is.na(latitude),
-        latitude_qualocep,
+        latitude_lookup_data,
         latitude
       ),
       longitude = dplyr::if_else(
         is.na(longitude),
-        longitude_qualocep,
+        longitude_lookup_data,
         longitude
       ),
       latitude = dplyr::if_else(
@@ -259,5 +222,19 @@ add_qualocep_geocode_data_by_municipality <- function(data) {
         NA_real_
       )
     ) |>
-    dplyr::select(-dplyr::ends_with("_qualocep"))
+    dplyr::select(-dplyr::ends_with("_lookup_data"))
+}
+
+remove_invalid_postal_codes <- function(data) {
+  prettycheck:::assert_tibble(data)
+
+  data |>
+    dplyr::mutate(
+      postal_code = dplyr::if_else(
+        !is_postal_code_valid & country == "Brazil",
+        NA_character_,
+        postal_code
+      )
+    )
+    # dplyr::select(-is_postal_code_valid)
 }

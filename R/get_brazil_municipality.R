@@ -65,14 +65,14 @@ get_brazil_municipality <- function(
       dplyr::as_tibble() |>
       dplyr::select(-geom) |>
       dplyr::rename(
-        federal_unit_code = code_state,
+        state_code = code_state,
         federal_unit = abbrev_state,
         municipality_code = code_muni,
         municipality = name_muni
       ) |>
       dplyr::mutate(
         country = "Brazil",
-        federal_unit_code = as.integer(federal_unit_code),
+        state_code = as.integer(state_code),
         state = get_brazil_state(federal_unit),
         municipality_code = as.integer(municipality_code),
         municipality = to_title_case_pt(
@@ -98,12 +98,12 @@ get_brazil_municipality <- function(
         )
       ) |>
       dplyr::relocate(
-        country,
-        federal_unit_code,
-        federal_unit,
-        state,
+        municipality,
         municipality_code,
-        municipality
+        state_code,
+        state,
+        federal_unit,
+        country
       ) |>
       rutils::shush()
 
@@ -156,12 +156,12 @@ get_brazil_municipality <- function(
           out |>
           dplyr::bind_rows(
             dplyr::tibble(
-              country = "Brazil",
-              federal_unit_code = NA_integer_,
-              federal_unit = NA_character_,
-              state = NA_character_,
+              municipality = .env$municipality[i],
               municipality_code = NA_integer_,
-              municipality = .env$municipality[i]
+              state_code = NA_integer_,
+              state = NA_character_,
+              federal_unit = NA_character_,
+              country = "Brazil"
             )
           )
       } else {

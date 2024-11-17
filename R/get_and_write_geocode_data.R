@@ -39,8 +39,6 @@ get_and_write_geocode_data <- function(
     setdiff(sheets_data$postal_code)
 
   if (length(postal_code) == 0) {
-    data
-
     cli::cli_alert_info(
       paste0(
         "All postal codes are already geocoded. ",

@@ -163,7 +163,7 @@ get_geocode_by_address_qualocep <- function(
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(tidygeocoder)
 
-source(here::here("R", "fix_brazil_postal_code.R"))
+source(here::here("R", "fix_postal_code.R"))
 source(here::here("R", "get_qualocep_data.R"))
 
 # # Helpers
@@ -177,7 +177,7 @@ get_geocode_by_postal_code <- function(
     fix_code = TRUE, # Just for Brazilian postal codes.
     limit = 10, # Inf for all.
     suffix = ", Brazil"
-) {
+  ) {
   prettycheck:::assert_internet()
   prettycheck:::assert_atomic(postal_code)
   prettycheck:::assert_choice(method, c("osm", "google", "qualocep"))
@@ -190,7 +190,7 @@ get_geocode_by_postal_code <- function(
     postal_code <- postal_code[seq_len(min(length(postal_code), limit))]
   }
 
-  if (isTRUE(fix_code)) postal_code <- postal_code |> fix_brazil_postal_code()
+  if (isTRUE(fix_code)) postal_code <- postal_code |> fix_postal_code()
 
   prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
 
@@ -209,7 +209,7 @@ get_geocode_by_postal_code_tidygeocoder <- function(
     limit = 10,
     suffix = ", Brazil"
 ) {
-  postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
+  postal_code <- fix_postal_code(postal_code, zero_na = FALSE)
 
   prettycheck:::assert_internet()
   prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
@@ -251,7 +251,7 @@ get_geocode_by_postal_code_tidygeocoder <- function(
 }
 
 get_geocode_by_postal_code_qualocep <- function(postal_code, limit = 10) {
-  postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
+  postal_code <- fix_postal_code(postal_code)
 
   prettycheck:::assert_internet()
   prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")

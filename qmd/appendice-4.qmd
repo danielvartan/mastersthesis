@@ -61,6 +61,10 @@ library(targets)
 
 Below, we load the data that was used for the hypothesis test before the balance procedure. You can visualize the data munging pipeline in the `_targets.R` file.
 
+::: {.callout-warning}
+Please note that these values refer to the group of **states in the Brazilian time zone UTC-3**, not the whole country.
+:::
+
 ```{r}
 #| eval: false
 #| output: false
@@ -73,11 +77,32 @@ data <- targets::tar_make(script = "../_targets.R")
 
 data <- 
   targets::tar_read("filtered_data", store = here::here("_targets")) |>
-  dplyr::select(country, region, state, sex, age, msf_sc) |>
-  dplyr::arrange(state, sex, age) |>
-  dplyr::mutate(state = factor(state, ordered = FALSE)) |>
   dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state")) |>
-  tidyr::drop_na()
+  dplyr::select(country, region, state, sex, age, msf_sc) |>
+  tidyr::drop_na(state, sex, age) |>
+  dplyr::mutate(
+    age_group = dplyr::case_when(
+      age >= 18 & age < 20 ~ "18-19",
+      age >= 20 & age < 25 ~ "20-24",
+      age >= 25 & age < 30 ~ "25-29",
+      age >= 30 & age < 40 ~ "30-39",
+      age >= 40 & age < 50 ~ "40-49",
+      age >= 50 & age < 60 ~ "50-59",
+      age >= 60 & age < 65 ~ "60-64",
+      age >= 65 ~ "65+"
+    ),
+    age_group = factor(
+      age_group,
+      levels = c(
+        "18-19", "20-24", "25-29", "30-39", "40-49", "50-59", "60-64", 
+        "65+"
+      ),
+      ordered = TRUE
+    )
+  ) |>
+  dplyr::relocate(age_group, .after = age)
+
+data
 ```
 
 ## Getting the population data
@@ -85,6 +110,10 @@ data <-
 The sample data was obtained in 2017 from October 15th to 21st by a broadcast of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. Here we use Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) for a estimate of the population distribution in this timeframe. The data used here can be accessed at the [IBGE's SIDRA](https://sidra.ibge.gov.br/tabela/6407) platform.
 
 The balance is made considering the distribution of the population related to the variables `state`, `sex` and `age`.
+
+::: {.callout-warning}
+Please note that these values refer to the group of **states in the Brazilian time zone UTC-3**, not the whole country.
+:::
 
 ```{r}
 #| message: false
@@ -94,7 +123,10 @@ prettycheck:::assert_internet()
 
 pnad_data <- 
   sidrar::get_sidra(
-    api = "/t/6407/n1/all/n3/all/v/606/p/2017/c2/all/c58/1144,1145,1152,2793,3299,3300,3301,3302,6798"
+    api = paste0(
+      "/t/6407/n1/all/n3/all/v/606/p/2017/c2/all/c58/1144,1145,",
+      "1152,2793,3299,3300,3301,3302,6798"
+    )
   ) |>
   dplyr::as_tibble() |>
   dplyr::select(
@@ -121,10 +153,7 @@ pnad_data <-
   dplyr::mutate(
     year = as.integer(year),
     country = "Brazil",
-    country = factor(country, ordered = FALSE),
     region = get_brazil_region(state, "state"),
-    region = factor(region, ordered = FALSE),
-    state = factor(state, ordered = FALSE),
     sex = dplyr::case_when(
       sex == "Homens" ~ "Male",
       sex == "Mulheres" ~ "Female"
@@ -144,11 +173,11 @@ pnad_data <-
     n = as.integer(n * 1000)
   ) |>
   dplyr::relocate(year, country, region, state, sex, age_group, n) |>
+  dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state")) |>
   dplyr::mutate(
     n_rel = n / sum(n),
     n_per = (n / sum(n)) * 100
-  ) |>
-  dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state"))
+  )
 
 pnad_data
 ```
@@ -179,33 +208,9 @@ pnad_data |> summarise_data("country")
 
 ## Comparing the sample data with the population data
 
-```{r}
-data <- 
-  data |>
-  dplyr::mutate(
-    age_group = dplyr::case_when(
-      age >= 18 & age < 20 ~ "18-19",
-      age >= 20 & age < 25 ~ "20-24",
-      age >= 25 & age < 30 ~ "25-29",
-      age >= 30 & age < 40 ~ "30-39",
-      age >= 40 & age < 50 ~ "40-49",
-      age >= 50 & age < 60 ~ "50-59",
-      age >= 60 & age < 65 ~ "60-64",
-      age >= 65 ~ "65+"
-    )
-  ) |>
-  dplyr::arrange(state, sex, age) |>
-  dplyr::mutate(age_group = factor(
-    age_group,
-    levels = c(
-      "18-19", "20-24", "25-29", "30-39", "40-49", "50-59", "60-64", "65+"
-    ),
-    ordered = TRUE)
-  ) |>
-  dplyr::relocate(age_group, .after = age)
-
-data
-```
+::: {.callout-warning}
+Please note that these values refer to the group of **states in the Brazilian time zone UTC-3**, not the whole country.
+:::
 
 ```{r}
 compare_sample(data, pnad_data, "age_group")
@@ -251,11 +256,6 @@ See <https://www.tidyverse.org/blog/2022/05/case-weights/> to learn more.
 ```{r}
 weights_data <- 
   pnad_data |>
-  dplyr::mutate(
-    n_rel = n / sum(n),
-    n_per = (n / sum(n)) * 100,
-    inv_prob_weight = parsnip::importance_weights(1 / (n / sum(n)))
-  )|>
   dplyr::left_join(
     data |> 
       dplyr::summarise(
@@ -266,15 +266,16 @@ weights_data <-
         n_rel = n / sum(n),
         n_per = (n / sum(n)) * 100
       ),
-    by = dplyr::all_of(c("country", "region", "state", "sex", "age_group")),
+    by = c("country", "region", "state", "sex", "age_group"),
     suffix = c("_pnad", "_sample")
   ) |>
   dplyr::relocate(year, .before = country) |>
   dplyr::mutate(
     cell_weight = parsnip::importance_weights(n_per_pnad / n_per_sample)
+    # inv_prob_weight = parsnip::importance_weights(1 / (n / sum(n)))
   ) |>
   dplyr::select(
-    country, region, state, sex, age_group, cell_weight, inv_prob_weight
+    country, region, state, sex, age_group, cell_weight
   ) |>
   dplyr::arrange(state, sex, age_group)
 
@@ -294,7 +295,7 @@ test_data <-
   ) |>
   dplyr::left_join(
     weights_data,
-    by = dplyr::all_of(c("country", "region", "state", "sex", "age_group"))
+    by = c("country", "region", "state", "sex", "age_group")
   )
 ```
 

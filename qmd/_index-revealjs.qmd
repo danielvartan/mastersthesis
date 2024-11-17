@@ -482,7 +482,7 @@ prettycheck:::assert_internet()
 
 brazil_uf_map <- 
   data |> 
-  plot_brazil_state_map(option = "viridis", text_size = base_size)
+  plot_brazil_state(option = "viridis", text_size = base_size)
 ```
 
 ## {background-iframe="https://censo2022.ibge.gov.br/panorama/" background-interactive=true}

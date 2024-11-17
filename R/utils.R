@@ -110,6 +110,20 @@ list_as_tibble <- function(list) {
     tidyr::pivot_longer(cols = dplyr::everything())
 }
 
+library(magrittr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+inverse_log_max <- function(x, base = exp(1)) {
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_number(base)
+
+  x |>
+    log(base) |>
+    max(na.rm = TRUE) |>
+    ceiling() %>% # Don't change the pipe!
+    `^`(base, .)
+}
+
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 to_ascii <- function(x, from = "UTF-8") {

@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Data visualizations
+# Exploratory data analysis
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -22,6 +22,12 @@ rutils:::quarto_status(
   )
 ```
 
+## Overview
+
+The data wrangling processes were performed using the  [`targets`](https://github.com/ropensci/targets) R package. The full pipeline can be seen in the `_targets.R` file at the root of the [research compendium](https://github.com/danielvartan/mastersthesis).
+
+The focus here is in the analysis sample. There is an indication when the full sample is used.
+
 ## Setting things up
 
 ```{r}
@@ -31,27 +37,37 @@ library(dplyr)
 library(here)
 library(janitor)
 library(magrittr)
+library(patchwork)
 library(rlang)
 library(sidrar)
 library(targets)
 library(tidyr)
+library(viridis)
 ```
 
 ```{r}
-source(here::here("R/utils-stats.R"))
+source(here::here("R", "plot_age.R"))
+source(here::here("R", "plot_brazil.R"))
+source(here::here("R", "plot_chronotype.R"))
+source(here::here("R", "plot_ggally.R"))
+source(here::here("R", "plot_ggcorrplot.R"))
+source(here::here("R", "plot_latitude_series.R"))
+source(here::here("R", "plot_world.R"))
+source(here::here("R", "utils.R"))
+source(here::here("R", "utils-stats.R"))
 ```
 
 ```{r}
 #| include: false
 
+library(ggplot2)
 library(magrittr)
+library(patchwork)
 library(rlang)
 library(targets)
 ```
 
-## Getting the sample data
-
-The data wrangling processes were performed using the  [`targets`](https://github.com/ropensci/targets) R package. The full pipeline can be seen in the `_targets.R` file at the root of the [research compendium](https://github.com/danielvartan/mastersthesis).
+## Importing the sample data
 
 ```{r}
 #| eval: false
@@ -60,18 +76,62 @@ The data wrangling processes were performed using the  [`targets`](https://githu
 data <- targets::tar_make(script = "../_targets.R")
 ```
 
-```{r}
-#| output: false
+### Full sample
 
-data <- 
-  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
-  dplyr::select(
-    age, sex, state, region, latitude, longitude, height, weight, work, study,
-    msf_sc, sjl, le_week, 
-    )
+```{r}
+geocoded_data <- targets::tar_read(
+  "geocoded_data", 
+  store = here::here("_targets")
+)
+```
+
+### Analysis sample
+
+```{r}
+weighted_data <- targets::tar_read(
+  "weighted_data", 
+  store = here::here("_targets")
+)
 ```
 
 ## Distribution of main variables
+
+```{r}
+#| eval: false
+#| include: false
+
+weighted_data |>
+  panel_tabset_var_dist(
+    cols = c(
+      "age",
+      "latitude",
+      "longitude",
+      "msf_sc",
+      "sjl",
+      "le_week"
+    ),
+    col_labels = c(
+      "Age frequencies among repondents.",
+      "Latitude frequencies among repondents",
+      "Longitude frequencies among repondents",
+      paste0(
+        "Frequencies of the sleep corrected mid-sleep point on free days", 
+        " (MSF~sc~) (proxy for the chronotype)."
+      ),
+      "Social Jet Lag (SJL) frequencies among respondents",
+      "Frequencies of average weekly light exposure (LE~week~)."
+    ),
+    source = c(
+      "Created by the author.",
+      "Created by the author.",
+      "Created by the author.",
+      "Created by the author.",
+      "Created by the author.",
+      "Created by the author."
+    ),
+    heading = "###"
+  )
+```
 
 ::: {#fig-appendice-chapter-4-distribution-of-main-variables}
 ```{r}
@@ -114,31 +174,374 @@ stats$stats |> list_as_tibble()
 Age statistics of sample subjects
 :::
 
-## Geographic distribution
+## Correlation matrix of the main variables
 
-
-
-::: {#fig-appendice-chapter-4-geographic-distribution}
+::: {#fig-appendice-chapter-4-correlation-matrix}
 ```{r}
 #| message: false
 #| warning: false
 
-source(here::here("R", "plot_brazil_state_map.R"))
+cols <- c("sex", "age", "latitude", "longitude", "msf_sc", "sjl", "le_week")
 
-prettycheck:::assert_internet()
-
-brazil_uf_map <- 
-  data |> 
-  plot_brazil_state_map(option = "viridis", text_size = env_vars$base_size)
+ggcorrplot <-
+  weighted_data |>
+  plot_ggcorrplot(
+    cols = cols, 
+    na_rm = TRUE, 
+    text_size = env_vars$base_size, 
+    hc_order = TRUE
+  )
 ```
 
 [Source: Created by the author.]{.legend}
 
-Residential geographic distribution among sample subjects
+Correlation matrix of main variables
 :::
 
-```{r}
+## Outlier diagnostic of main variables
 
+## Geographic distribution
+
+## Population (2017)
+
+See <https://sidra.ibge.gov.br/tabela/6579> to learn more.
+
+```{r}
+ibge_data_state <-
+  sidrar::get_sidra(api ="/t/6579/n3/all/v/all/p/2017") |>
+  rutils::shush() |>
+  dplyr::as_tibble() |>
+  janitor::clean_names() |>
+  dplyr::select(unidade_da_federacao_codigo, valor) |>
+  dplyr::rename(
+    state_code = unidade_da_federacao_codigo,
+    n = valor
+  ) |>
+  dplyr::mutate(state_code = as.integer(state_code)) |>
+  dplyr::relocate(state_code, n)
+```
+
+```{r}
+max_limit <- 
+  ibge_data_state |>
+  dplyr::pull(n) |>
+  inverse_log_max(10)
+
+plot_ibge_1 <- 
+  ibge_data_state |> 
+  plot_brazil_state(
+    "n", 
+    transform = "log10", # "identity"
+    # breaks = 10^(seq(1, log10(max_limit) - 1)),
+    print = FALSE
+  )
+
+plot_ibge_1
+```
+
+```{r}
+ibge_data_municipality <-
+  sidrar::get_sidra(api ="/t/6579/n6/all/v/all/p/2017") |>
+  rutils::shush() |>
+  dplyr::as_tibble() |>
+  janitor::clean_names() |>
+  dplyr::select(municipio_codigo, valor) |>
+  dplyr::rename(
+    municipality_code = municipio_codigo,
+    n = valor
+  ) |>
+  dplyr::mutate(municipality_code = as.integer(municipality_code)) |>
+  dplyr::relocate(municipality_code, n)
+```
+
+```{r}
+max_limit <- 
+  ibge_data_municipality |>
+  dplyr::pull(n) |>
+  inverse_log_max(10)
+
+plot_ibge_2 <- 
+  ibge_data_municipality |> 
+  plot_brazil_municipality(
+    "n",
+    transform = "log10", # "identity"
+    viridis = "plasma",
+    direction = -1,
+    breaks = 10^(seq(1, log10(max_limit) - 1)),
+    print = FALSE
+  )
+
+plot_ibge_2
+```
+
+```{r}
+max_limit <- 
+  ibge_data_municipality |>
+  dplyr::pull(n) |>
+  max()
+
+plot_ibge_3 <- 
+  ibge_data_municipality |> 
+  plot_brazil_municipality(
+    col_fill = "n",
+    transform = "log10", # "identity"
+    viridis = "plasma",
+    alpha = 0.7,
+    direction = -1,
+    breaks = c(100000, 500000, 1000000, 5000000, 10000000, 12000000),
+    point = TRUE,
+    print = FALSE
+  )
+
+plot_ibge_3
+```
+
+```{r}
+patchwork::wrap_plots(
+   plot_ibge_1, plot_ibge_3,
+   ncol = 2, 
+   nrow = 2,
+   widths = c(1, 1), 
+   heights = c(1, 1)
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm")
+  )
+```
+
+### Full sample
+
+```{r}
+plot_full_1 <- geocoded_data |> plot_world_countries(print = FALSE)
+
+plot_full_1
+```
+
+```{r}
+geocoded_data |> 
+  dplyr::pull(country) |> 
+  rutils:::drop_na() |>
+  unique() |>
+  length()
+```
+
+```{r}
+plot_full_2 <- geocoded_data |> plot_brazil_state(print = FALSE)
+
+plot_full_2
+```
+
+```{r}
+max_limit <- 
+  geocoded_data |>
+  dplyr::filter(country == "Brazil") |>
+  dplyr::count(municipality_code) |>
+  dplyr::pull(n) |>
+  inverse_log_max(10)
+
+plot_full_3 <- 
+  geocoded_data |> 
+  plot_brazil_municipality(
+    viridis = "plasma",
+    direction = -1,
+    breaks = 10^(seq(1, log10(max_limit) - 1)),
+    print = FALSE
+  )
+
+plot_full_3
+```
+
+```{r}
+max_limit <- 
+  geocoded_data |>
+  dplyr::filter(country == "Brazil") |>
+  dplyr::count(municipality_code) |>
+  dplyr::pull(n) |>
+  max()
+
+plot_full_4 <- 
+  geocoded_data |> 
+  plot_brazil_municipality(
+    viridis = "plasma",
+    alpha = 0.7,
+    direction = -1,
+    breaks = c(10, 500, 1000, 5000, 10000, 12000),
+    point = TRUE,
+    print = FALSE
+  )
+
+plot_full_4
+```
+
+```{r}
+plot_full_5 <- 
+  geocoded_data |> 
+  plot_brazil_point(
+    color_point = viridis::plasma(1, begin = 0.65, direction = 1) |>
+      stringr::str_trunc(7, ellipsis = ""),
+    print = FALSE
+  )
+
+plot_full_5
+```
+
+<!-- See <https://r-charts.com/ggplot2/combining-plots/>. -->
+
+```{r}
+patchwork::wrap_plots(
+   plot_full_2, plot_full_3, plot_full_4, plot_full_5,
+   ncol = 2, 
+   nrow = 2,
+   widths = c(1, 1), 
+   heights = c(1, 1)
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm")
+  )
+```
+
+### Analysis sample
+
+```{r}
+# library(targets)
+
+weighted_data <- targets::tar_read(
+  "weighted_data", 
+  store = here::here("_targets")
+)
+```
+
+```{r}
+plot_analysis_1 <- weighted_data |> plot_brazil_state(print = FALSE)
+
+plot_analysis_1
+```
+
+```{r}
+max_limit <- 
+  weighted_data |>
+  dplyr::filter(country == "Brazil") |>
+  dplyr::count(municipality_code) |>
+  dplyr::pull(n) |>
+  inverse_log_max(10)
+
+plot_analysis_2 <- 
+  weighted_data |> 
+  plot_brazil_municipality(
+    viridis = "plasma", # NULL
+    direction = -1,
+    breaks = 10^(seq(1, log10(max_limit))),
+    print = FALSE
+  )
+
+plot_analysis_2
+```
+
+```{r}
+max_limit <- 
+  weighted_data |>
+  dplyr::filter(country == "Brazil") |>
+  dplyr::count(municipality_code) |>
+  dplyr::pull(n) |>
+  max()
+  # inverse_log_max(10)
+
+plot_analysis_3 <- 
+  weighted_data |> 
+  plot_brazil_municipality(
+    viridis = "plasma",
+    alpha = 0.7,
+    direction = -1,
+    breaks = c(10, 500, 1000, 5000, 7500),
+    point = TRUE,
+    print = FALSE
+  )
+
+plot_analysis_3
+```
+
+```{r}
+plot_analysis_4 <- 
+  weighted_data |> 
+  plot_brazil_point(
+    color_point = viridis::plasma(1, begin = 0.65, direction = 1) |>
+      stringr::str_trunc(7, ellipsis = ""),
+    print = FALSE
+  )
+
+plot_analysis_4
+```
+
+<!-- See. <https://patchwork.data-imaginist.com/articles/patchwork.html> -->
+
+```{r}
+patchwork::wrap_plots(
+   plot_analysis_1, plot_analysis_2, plot_analysis_3, plot_analysis_4,
+   ncol = 2, 
+   nrow = 2
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm")
+  )
+```
+
+## Population *versus* Sample
+
+```{r}
+patchwork::wrap_plots(
+   plot_ibge_1, plot_full_2,
+   ncol = 2, 
+   nrow = 1
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm")
+  )
+```
+
+```{r}
+patchwork::wrap_plots(
+   plot_ibge_2, plot_full_3,
+   ncol = 2, 
+   nrow = 1
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm")
+  )
+```
+
+```{r}
+patchwork::wrap_plots(
+   plot_ibge_3, plot_full_4,
+   ncol = 2, 
+   nrow = 1
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm")
+  )
 ```
 
 ## Age pyramid
@@ -181,32 +584,6 @@ cowplot::plot_grid(
   label_y = 1
   )
 ```
-
-## Correlation matrix
-
-::: {#fig-appendice-chapter-4-correlation-matrix}
-```{r}
-#| message: false
-#| warning: false
-
-source(here::here("R/plot_ggcorrplot.R"))
-
-cols <- c("sex", "age", "latitude", "longitude", "msf_sc", "sjl", "le_week")
-
-ggcorrplot <-
-  data |>
-  plot_ggcorrplot(
-    cols = cols, 
-    na_rm = TRUE, 
-    text_size = env_vars$base_size, 
-    hc_order = TRUE
-  )
-```
-
-[Source: Created by the author.]{.legend}
-
-Correlation matrix of main variables
-:::
 
 ## Age and sex series
 

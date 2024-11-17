@@ -5,6 +5,14 @@
 # library(rutils) # github.com/danielvartan/rutils
 # library(targets)
 
+# # Helpers
+#
+# geocoded_data <- targets::tar_read("geocoded_data")
+# geocoded_data |> check_valid_dataset()
+#
+# weighted_data <- targets::tar_read("weighted_data")
+# weighted_data |> check_valid_dataset()
+
 check_valid_dataset <- function(data) {
   prettycheck:::assert_tibble(data)
 
@@ -83,89 +91,98 @@ check_valid_dataset <- function(data) {
 
   # !
 
-  cli::cat_line(); cli::cat_line()
-  cli::cli_h2("How many postal codes were valid?")
+  if ("is_postal_code_valid" %in% names(data)) {
+    cli::cat_line(); cli::cat_line()
+    cli::cli_h2("How many postal codes were valid? (Only Brazilian PC)")
 
-  total_valid_postal_codes <-
-    data |>
-    tidyr::drop_na(is_postal_code_valid) |>
-    dplyr::pull(is_postal_code_valid) |>
-    rutils:::drop_na() |>
-    magrittr::equals(TRUE) |>
-    sum()
+    total_valid_postal_codes <-
+      data |>
+      tidyr::drop_na(is_postal_code_valid) |>
+      dplyr::pull(is_postal_code_valid) |>
+      magrittr::equals(TRUE) |>
+      sum()
 
-  glue::glue(
-    "{format_number(total_valid_postal_codes)} ",
-    "({format_number(total_valid_postal_codes / total_have_postal_code, ",
-    "per = TRUE)}%) ",
-  ) |>
-    cat()
+    glue::glue(
+      "{format_number(total_valid_postal_codes)} ",
+      "({format_number(total_valid_postal_codes / total_have_postal_code, ",
+      "per = TRUE)}%) ",
+    ) |>
+      cat()
+  }
+
+  # !
+
+  if ("is_postal_code_valid" %in% names(data)) {
+    cli::cat_line(); cli::cat_line()
+    cli::cli_h2(
+      paste0(
+      "How many postal codes were invalid? (Only Brazilian PC) ",
+      "(These PC were removed from the dataset)."
+      )
+    )
+
+    total_invalid_postal_codes_1 <-
+      data |>
+      tidyr::drop_na(is_postal_code_valid) |>
+      dplyr::pull(is_postal_code_valid) |>
+      magrittr::equals(FALSE) |>
+      sum()
+
+    glue::glue(
+      "{format_number(total_invalid_postal_codes_1)} ",
+      "({format_number(total_invalid_postal_codes_1 / total_have_postal_code, ",
+      "per = TRUE)}%)",
+    ) |>
+      cat()
+  }
 
   # !
 
   cli::cat_line(); cli::cat_line()
-  cli::cli_h2("How many postal codes were invalid?")
-
-  cli::cli_h3(
+  cli::cli_h2(
     paste0(
-      "Considering only cases containing values in the `state` and ",
-      "`municipality` variables"
+      "How many cases are geocoded? (only Brazilian cases were geocoded)"
     )
   )
-  cli::cat_line()
 
-  total_invalid_postal_codes_1 <-
+  total_geocoded_cases <-
     data |>
-    tidyr::drop_na(is_postal_code_valid) |>
-    dplyr::pull(is_postal_code_valid) |>
-    rutils:::drop_na() |>
-    magrittr::equals(FALSE) |>
-    sum()
+    tidyr::drop_na(latitude) |>
+    dplyr::pull(latitude) |>
+    length()
 
   glue::glue(
-    "{format_number(total_invalid_postal_codes_1)} ",
-    "({format_number(total_invalid_postal_codes_1 / total_have_postal_code, ",
+    "{format_number(total_geocoded_cases)} ",
+    "({format_number(total_geocoded_cases / total_brazilians, ",
     "per = TRUE)}%)",
   ) |>
     cat()
 
-  cli::cat_line()
-  cli::cli_h3(
-    "Regardless of values in the `state` and `municipality` variables."
-  )
-  cli::cat_line()
-
-  total_invalid_postal_codes_2 <-
-    data |>
-    dplyr::mutate(
-      is_postal_code_valid = dplyr::if_else(
-        !is.na(postal_code) & is.na(is_postal_code_valid),
-        FALSE,
-        is_postal_code_valid
-      )
-    ) |>
-    tidyr::drop_na(is_postal_code_valid) |>
-    dplyr::pull(is_postal_code_valid) |>
-    rutils:::drop_na() |>
-    magrittr::equals(FALSE) |>
-    sum()
-
-  glue::glue(
-    "{format_number(total_invalid_postal_codes_2)} ",
-    "({format_number(total_invalid_postal_codes_2 / total_have_postal_code, ",
-    "per = TRUE)}%) ",
-  ) |>
-    cat()
-
   # !
 
+  cli::cat_line(); cli::cat_line()
   cli::cli_h2(
     paste0(
-      "How many cases could not be coded (by ZIP code or municipality) ",
-      "before filtering for analysis?"
+      "How many cases could not be coded because of missing data (state and ",
+      "municipality) (only Brazilian cases were geocoded)?"
     )
   )
-  cli::cat_line()
+
+  total_missing_state_municipality_cases <-
+    data |>
+    dplyr::filter(
+      country == "Brazil",
+      is.na(state) | is.na(municipality)
+    ) |>
+    nrow()
+
+  glue::glue(
+    "{format_number(total_missing_state_municipality_cases)} ",
+    "({format_number(total_missing_state_municipality_cases / ",
+    "total_brazilians, ",
+    "per = TRUE)}%)",
+  ) |>
+    cat()
 
   invisible()
 }

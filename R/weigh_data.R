@@ -8,6 +8,19 @@
 source(here::here("R", "get_brazil_region.R"))
 source(here::here("R", "get_brazil_state.R"))
 
+# Please note that the weigths refer to the group of states in the Brazilian
+# time zone UTC-3, not the whole country.
+
+# # Helpers
+#
+# weighted_data <- targets::tar_read("weighted_data")
+#
+# weighted_data |>
+#   dplyr::summarise(
+#     cell_weight = mean(cell_weight),
+#     .by = c(state, sex, age_group)) |>
+#   dplyr::arrange(state, sex, age_group)
+
 weigh_data <- function(data) {
   parameters <- c("country", "region", "state", "sex", "age")
 
@@ -67,16 +80,16 @@ weigh_data <- function(data) {
       n = as.integer(n * 1000)
     ) |>
     dplyr::relocate(year, country, region, state, sex, age_group, n) |>
+    dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state")) |>
     dplyr::mutate(
       n_rel = n / sum(n),
       n_per = (n / sum(n)) * 100
-    ) |>
-    dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state"))
+    )
 
   out <-
     data |>
     dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state")) |>
-    tidyr::drop_na(state, sex, age) |>
+    tidyr::drop_na(sex, age, state) |>
     dplyr::mutate(
       age_group = dplyr::case_when(
         age >= 18 & age < 20 ~ "18-19",
@@ -101,10 +114,6 @@ weigh_data <- function(data) {
 
   weights_data <-
     pnad_data |>
-    dplyr::mutate(
-      n_rel = n / sum(n),
-      n_per = (n / sum(n)) * 100
-    )|>
     dplyr::left_join(
       out |>
         dplyr::summarise(
@@ -115,11 +124,12 @@ weigh_data <- function(data) {
           n_rel = n / sum(n),
           n_per = (n / sum(n)) * 100
         ),
-      by = dplyr::all_of(c("country", "region", "state", "sex", "age_group")),
+      by = c("country", "region", "state", "sex", "age_group"),
       suffix = c("_pnad", "_sample")
     ) |>
     dplyr::mutate(
       cell_weight = parsnip::importance_weights(n_per_pnad / n_per_sample)
+      # inv_prob_weight = parsnip::importance_weights(1 / (n / sum(n)))
     ) |>
     dplyr::select(
       country, region, state, sex, age_group, cell_weight
@@ -129,6 +139,6 @@ weigh_data <- function(data) {
   out |>
     dplyr::left_join(
       weights_data,
-      by = dplyr::all_of(c("country", "region", "state", "sex", "age_group"))
+      by = c("country", "region", "state", "sex", "age_group")
     )
 }

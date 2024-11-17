@@ -26,6 +26,7 @@ book:
 format:
   abnt-pdf:
     zotero: true
+    toc-depth: 2
     biblio-style: apa
     biblio-title: REFERENCES
     biblio-footnote: >

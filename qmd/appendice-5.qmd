@@ -72,7 +72,9 @@ After this process, the postal codes were matched with the [QualoCEP](https://ww
 - If the postal code had been modified **and** the state and municipality were the same, it was considered valid.
 - Else, it was considered invalid. Invalid CEPs were discarded in the processed dataset.
 
-Invalid postal codes were then matched with data derived from reverse geocoding using [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview) via the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) R package, which is stored in the thesis lookup tables. After that, the same process of validation was performed. The postal codes that were not validated were discarded from the final data.
+Invalid postal codes were then matched with data derived from reverse geocoding using [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview) via the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) R package, which is stored in the thesis lookup tables. After that, the same process of validation was performed. The API data was able to reduce invalid postal codes from 563 ro 292, a 48.13% reduction. The postal codes that were not validated were discarded from the final data.
+
+It's important to note that some postal codes could not be evaluated because they were missing the state or municipality information. These postal codes were maintained, but no geocode data was associated with them.
 
 Finally, the `state` and `municipality` variables were adjusted using the data from the valid postal codes.
 

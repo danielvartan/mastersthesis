@@ -58,7 +58,7 @@ compare_sample <- function(sample_data, pop_data, by) {
         dplyr::mutate(
           n_rel = n / sum(n)
         ),
-      by = dplyr::all_of(by),
+      by = by,
       suffix = c("_sample", "_pop")
     ) |>
     dplyr::mutate(

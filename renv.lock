@@ -1836,6 +1836,18 @@
       ],
       "Hash": "7ce2733a9826b3aeb1775d56fd305472"
     },
+    "maps": {
+      "Package": "maps",
+      "Version": "3.4.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "graphics",
+        "utils"
+      ],
+      "Hash": "5f7886e53a3b39d4a110c7bd7fce9164"
+    },
     "markdown": {
       "Package": "markdown",
       "Version": "1.13",
@@ -2250,7 +2262,7 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "prettycheck",
       "RemoteUsername": "danielvartan",
-      "RemoteSha": "4d16b06b42179bf5b20530186a6a0d861291bed6",
+      "RemoteSha": "517e473c1ffeccac6184b20639c8429a317dff60",
       "Requirements": [
         "R",
         "checkmate",
@@ -2269,7 +2281,7 @@
         "tibble",
         "utils"
       ],
-      "Hash": "98dc77865a395850628db6a8d2fd55c8"
+      "Hash": "78e0d6eedf8e2385b43c17a76bcd1d48"
     },
     "prettyunits": {
       "Package": "prettyunits",

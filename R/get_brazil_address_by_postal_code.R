@@ -3,11 +3,12 @@
 # library(here)
 # library(jsonlite)
 # library(prettycheck) # github.com/danielvartan/prettycheck
+# library(purrr)
 library(rlang)
 # library(stringr)
 # library(tidygeocoder)
 
-source(here::here("R", "fix_brazil_postal_code.R"))
+source(here::here("R", "fix_postal_code.R"))
 source(here::here("R", "get_brazil_fu.R"))
 source(here::here("R", "get_brazil_municipality.R"))
 source(here::here("R", "get_brazil_region.R"))
@@ -88,7 +89,7 @@ get_brazil_address_by_postal_code <- function(
     postal_code <- postal_code[seq_len(min(length(postal_code), limit))]
   }
 
-  if (isTRUE(fix_code)) postal_code <- postal_code |> fix_brazil_postal_code()
+  if (isTRUE(fix_code)) postal_code <- postal_code |> fix_postal_code()
 
   prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
 
@@ -108,7 +109,7 @@ get_brazil_address_by_postal_code_osm <- function(
     postal_code,
     limit = 10
   ) {
-  postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
+  postal_code <- fix_postal_code(postal_code)
 
   prettycheck:::assert_internet()
   prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
@@ -118,8 +119,6 @@ get_brazil_address_by_postal_code_osm <- function(
     limit <- as.integer(ceiling(limit))
     postal_code <- postal_code[seq_len(min(length(postal_code), limit))]
   }
-
-  brazil_municipalities <- get_brazil_municipality(year = 2022)
 
   out <-
     dplyr::tibble(postal_code = postal_code) |>
@@ -150,12 +149,13 @@ get_brazil_address_by_postal_code_osm <- function(
 
   if (!"osm_lat" %in% names(out)) {
     dplyr::tibble(
-      postal_code = fix_brazil_postal_code(postal_code),
+      postal_code = fix_postal_code(postal_code),
       street = NA_character_,
       complement = NA_character_,
       neighborhood = NA_character_,
       municipality_code = NA_integer_,
       municipality = NA_character_,
+      state_code = NA_integer_,
       state = NA_character_,
       region = NA_character_,
       address = NA_character_,
@@ -184,13 +184,13 @@ get_brazil_address_by_postal_code_osm <- function(
         longitude = osm_lon
       ) |>
       dplyr::mutate(
-        postal_code = fix_brazil_postal_code(postal_code),
+        postal_code = fix_postal_code(postal_code),
         municipality_code = get_brazil_municipality_code(municipality),
         state_code = get_brazil_state_code(state, "state"),
         region = get_brazil_region(state, "state"),
         address = render_brazil_address(
-          street, complement, neighborhood, municipality, state_code,
-          state, postal_code
+          street, complement, neighborhood, municipality, state,
+          postal_code
         ),
         latitude = as.numeric(latitude),
         longitude = as.numeric(longitude)
@@ -203,7 +203,7 @@ get_brazil_address_by_postal_code_osm <- function(
       ) |>
       dplyr::relocate(
         postal_code, street, complement, neighborhood, municipality_code,
-        municipality, state, region, address, latitude, longitude
+        municipality, state_code, state, region, address, latitude, longitude
       )
   }
 }
@@ -212,7 +212,7 @@ get_brazil_address_by_postal_code_google <- function(
     postal_code,
     limit = 10
   ) {
-  postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
+  postal_code <- fix_postal_code(postal_code)
 
   prettycheck:::assert_internet()
   prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
@@ -222,8 +222,6 @@ get_brazil_address_by_postal_code_google <- function(
     limit <- as.integer(ceiling(limit))
     postal_code <- postal_code[seq_len(min(length(postal_code), limit))]
   }
-
-  brazil_municipalities <- get_brazil_municipality(year = 2022)
 
   out <-
     dplyr::tibble(address = paste0(postal_code, ", Brazil")) |>
@@ -308,11 +306,11 @@ get_brazil_address_by_postal_code_google <- function(
       street = route,
       complement = street_number,
       neighborhood = sublocality,
-      municipality = administrative_area_level_1,
-      state = administrative_area_level_2
+      municipality = administrative_area_level_2,
+      state = administrative_area_level_1
     ) |>
     dplyr::mutate(
-      postal_code = fix_brazil_postal_code(postal_code),
+      postal_code = fix_postal_code(postal_code),
       municipality_code = get_brazil_municipality_code(municipality, state),
       state_code = get_brazil_state_code(state, "state"),
       region = get_brazil_region(state, "state"),
@@ -351,7 +349,7 @@ get_brazil_address_by_postal_code_qualocep <- function(
     postal_code,
     limit = 10
   ) {
-  postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
+  postal_code <- fix_postal_code(postal_code)
 
   prettycheck:::assert_internet()
   prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
@@ -375,9 +373,8 @@ get_brazil_address_by_postal_code_qualocep <- function(
     out |>
       dplyr::select(
         postal_code, street, complement, neighborhood, municipality_code,
-        municipality, federal_unit_code, state, latitude, longitude
+        municipality, state_code, state, latitude, longitude
       ) |>
-      dplyr::rename(state_code = federal_unit_code) |>
       dplyr::mutate(
         region = get_brazil_region(state, "state"),
         address = render_brazil_address(
@@ -403,7 +400,7 @@ get_brazil_address_by_postal_code_qualocep <- function(
 }
 
 get_brazil_address_by_postal_code_viacep <- function(postal_code, limit = 10) {
-  postal_code <- fix_brazil_postal_code(postal_code, zero_na = FALSE)
+  postal_code <- fix_postal_code(postal_code)
 
   prettycheck:::assert_internet()
   prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
@@ -473,12 +470,13 @@ get_brazil_address_by_postal_code_viacep <- function(postal_code, limit = 10) {
 
   out |>
     dplyr::transmute(
-      postal_code = fix_brazil_postal_code(cep),
+      postal_code = fix_postal_code(cep),
       street = logradouro,
       complement = complemento,
       neighborhood = bairro,
       municipality_code = ibge,
       municipality = localidade,
+      state_code = get_brazil_state_code(estado, "state"),
       state = estado,
       region = get_brazil_region(estado, "state")
     ) |>

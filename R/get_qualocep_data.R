@@ -61,7 +61,7 @@ get_qualocep_data <- function(
   } else {
     prettycheck:::assert_internet()
 
-    cli::cli_progress_step("Downloading the QualoCEP data from OSF.")
+    cli::cli_progress_step("Downloading QualoCEP data from OSF.")
 
     osfr::osf_auth(osf_pat) |> rutils::shush()
     osf_id <- "https://osf.io/cbqsa"
@@ -97,7 +97,7 @@ get_qualocep_data <- function(
 
   if (isTRUE(save_to_globalenv)) {
     cli::cli_progress_step(paste0(
-      "Saving the QualoCEP data to the Global Enviroment (`qualocep_data`)."
+      "Saving QualoCEP data to the Global Enviroment (`qualocep_data`)."
     ))
 
     assign("qualocep_data", out, envir = globalenv())

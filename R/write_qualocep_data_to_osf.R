@@ -25,11 +25,11 @@ write_qualocep_data_to_osf <- function(
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub")
   ) {
+  prettycheck:::assert_internet()
   prettycheck:::assert_file_exists(file, access = "r")
   prettycheck:::assert_date(purchase_date)
   prettycheck:::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
-  prettycheck:::assert_internet()
 
   osfr::osf_auth(osf_pat) |> rutils::shush()
   osf_id <- "https://osf.io/cbqsa"
@@ -92,19 +92,19 @@ write_qualocep_data_to_osf <- function(
       neighborhood = bairro,
       municipality_code = cod_cidade,
       municipality = cidade,
-      federal_unit_code = cod_estado,
-      federal_unit = uf,
-      state = estado
+      state_code = cod_estado,
+      state = estado,
+      federal_unit = uf
     ) |>
     dplyr::mutate(
       street = paste0(street_type, " ", street_name),
       municipality_code = as.integer(municipality_code),
-      federal_unit_code = as.integer(federal_unit_code)
+      state_code = as.integer(state_code)
     ) |>
     dplyr::relocate(
       postal_code, street_type, street_name, street, complement, place,
-      neighborhood, municipality_code, municipality, federal_unit_code,
-      federal_unit, state
+      neighborhood, municipality_code, municipality, state_code, state,
+      federal_unit
     )
 
   if ("file_geo" %in% ls()) {
