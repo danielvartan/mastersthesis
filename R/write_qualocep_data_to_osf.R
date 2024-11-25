@@ -14,7 +14,7 @@ source(here::here("R", "save_and_lock.R"))
 #
 # file <- rstudioapi::selectFile()
 
-# # Notes
+# # Note
 #
 # The OSF API often presents issues when uploading large files.
 # If you encounter any problems, try to upload the files manually.
@@ -42,7 +42,7 @@ write_qualocep_data_to_osf <- function(
     ))
   }
 
-  cli::cli_progress_step("Importing data")
+  cli::cli_progress_step("Importing data.")
 
   raw_file <- file
 
@@ -78,7 +78,7 @@ write_qualocep_data_to_osf <- function(
       col_types = readr::cols(.default = "c")
     )
 
-  cli::cli_progress_step("Tidying data")
+  cli::cli_progress_step("Tidying data.")
 
   data <-
     data |>
@@ -134,7 +134,7 @@ write_qualocep_data_to_osf <- function(
     data |>
     fix_qualocep_data_values()
 
-  cli::cli_progress_step("Saving data")
+  cli::cli_progress_step("Locking and saving data.")
 
   file_name_pattern <- paste0("qualocep-", purchase_date)
   raw_data_file_extension <- stringr::str_extract(raw_file, "\\.\\w+$")
@@ -175,7 +175,7 @@ write_qualocep_data_to_osf <- function(
   # file.size(rds_file) / 1e+6
   # file.size(csv_file) / 1e+6
 
-  cli::cli_progress_step("Uploading data to OSF")
+  cli::cli_progress_step("Uploading data to OSF.")
 
   osfr::osf_upload(
     x = osfr::osf_retrieve_node(osf_id),

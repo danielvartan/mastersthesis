@@ -1,0 +1,109 @@
+<!-- %:::% .common h1 begin %:::% -->
+# Question and  hypothesis
+<!-- %:::% .common h1 end %:::% -->
+
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R", "_setup.R"))
+options(scipen = 10, digits = 5)
+```
+
+```{r}
+#| label: status
+#| echo: false
+#| output: asis
+
+rutils:::quarto_status(
+  type = "drafting",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
+```
+
+```{r}
+#| include: false
+
+library(magrittr)
+library(targets)
+```
+
+```{r}
+#| include: false
+
+source(here::here("R", "utils.R"))
+```
+
+```{r}
+#| eval: false
+#| output: false
+#| code-fold: false
+
+targets::tar_make(script = "../_targets.R")
+```
+
+```{r}
+#| output: false
+
+geocoded_data <- targets::tar_read(
+  "geocoded_data", 
+  store = here::here("_targets")
+)
+```
+
+```{r}
+#| output: false
+
+weighted_data <- targets::tar_read(
+  "weighted_data", 
+  store = here::here("_targets")
+)
+```
+
+## Overview
+
+The aim of this document is to reinstate and detail the thesis object and objective, along with the methods and steps taken to build the models and test the hypothesis.
+
+## Question
+
+Every scientific work should be guided by a question. The question that guides this one is the following:
+
+::: {.center-x}
+**Is latitude associated with chronotype?**
+:::
+
+The primary objective is to model and test the hypothesis ingrained in the question, in the context of human circadian rhythms, by critically examining whether a significant association and effect size exist between latitude and circadian phenotypes in the Brazilian population.
+
+## Hypothesis
+
+To approach this question, I applied Popper’s hypothetico-deductive method, also known as the *method of conjecture and refutation* [@popper1979, p. 164]. The basic structure of this approach can be summarized as follows:
+
+```{mermaid}
+%%| label: fig-mermaid
+%%| fig-cap: Simplified schema of Popper’s hypothetico-deductive method.
+%%| fig-align: center
+
+flowchart LR
+  A(P1) --> B(TT)
+  B --> C(EE)
+  C --> D(P2)
+```
+
+> Here $\text{P}_1$, is the **problem** from which we start, $\text{TT}$ (the ‘tentative theory’) is the imaginative conjectural solution which we first reach, for example our first **tentative interpretation**. $\text{EE}$ (‘**error- elimination**’) consists of a severe critical examination of our conjecture, our tentative interpretation: it consists, for example, of the critical use of documentary evidence and, if we have at this early stage more than one conjecture at our disposal, it will also consist of a critical discussion and comparative evaluation of the competing conjectures. $\text{P}_2$ is the problem situation as it emerges from our first critical attempt to solve our problems. It leads up to our second attempt (**and so on**) [@popper1979, p. 164].
+
+My tentative theory or main hypothesis, as stated in Chapter 1, was the following:
+
+__Hypothesis__
+: *Latitude is associated with chronotype distributions*, with populations closer to the equator exhibiting, on average, a shorter or more morning-oriented circadian phenotype compared to those residing near the poles.
+
+This hypothesis traces back to the first discussions about chrnobiology (as a discipline) and can be seen on many studies, like: @hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003.
+
+As a procedure method, an improved approach to Null Hypothesis Significance Testing ([NHST](https://en.wikipedia.org/wiki/Statistical_hypothesis_test)), rooted in the original Neyman-Pearson framework for data testing is employed [@neyman1928; @neyman1928a; @perezgonzalez2015] i the schema that follows.
+
+$$
+\begin{cases}
+\text{H}_{0}: \text{Latitude is not associated with chronotype} \\
+\text{H}_{a}: \text{Latitude is associated with chronotype}
+\end{cases}
+$$

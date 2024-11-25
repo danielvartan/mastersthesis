@@ -9,12 +9,14 @@ library(ggplot2)
 
 source(here::here("R/utils.R"))
 
-plot_ggcorrplot <- function(data,
-                            cols,
-                            na_rm = TRUE,
-                            text_size = NULL,
-                            label = TRUE,
-                            hc_order = TRUE) {
+plot_ggcorrplot <- function(
+    data,
+    cols,
+    na_rm = TRUE,
+    text_size = NULL,
+    label = TRUE,
+    hc_order = TRUE
+  ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_character(cols)
   prettycheck:::assert_subset(cols, names(data))

@@ -1,0 +1,304 @@
+# library(cli)
+# library(dplyr)
+library(magrittr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(purrr)
+# library(rutils) # github.com/danielvartan/rutils
+# library(tidyr)
+
+source(here::here("R", "get_inpe_data.R"))
+source(here::here("R", "get_time_and_date_data.R"))
+
+# # Helpers
+#
+# data <- targets::tar_read("geocoded_data")
+#
+# test <- data |> dplyr::sample_n(1)
+#
+# suntools::sunriset(
+#   matrix(c(test$longitude[1], test$latitude[1]), nrow = 1),
+#   dateTime = test$timestamp[1],
+#   direction = "sunrise", # "sunrise"
+#   POSIXct.out = TRUE
+# ) |>
+#   dplyr::pull(time)
+#
+# suncalc::getSunlightTimes(
+#   date = lubridate::date(test$timestamp[1]),
+#   lat = test$latitude[1],
+#   lon = test$longitude[1],
+#   tz = "America/Sao_Paulo"
+# ) |>
+#   magrittr::extract2("sunrise")
+#
+# get_geocode_by_address("Greenwich, UK", method = "osm")
+
+add_solar_data <- function(
+    data,
+    inpe_data = get_inpe_data(),
+    time_and_date_data = get_time_and_date_data()
+  ) {
+  assertion_vars <- c("timestamp", "latitude", "longitude")
+
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_subset(assertion_vars, names(data))
+  prettycheck:::assert_tibble(inpe_data)
+  prettycheck:::assert_tibble(time_and_date_data)
+
+  cli::cli_progress_step("Adding solar data")
+
+  data |>
+    add_ghi(inpe_data) |>
+    add_equinox_and_solstice(time_and_date_data) |>
+    add_sun_time() |>
+    nest_solar_vars()
+}
+
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+source(here::here("R", "get_inpe_data.R"))
+
+add_ghi <- function(data, inpe_data = get_inpe_data()) {
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_tibble(inpe_data)
+
+  data |>
+    dplyr::left_join(
+      inpe_data,
+      by = dplyr::join_by(
+        closest(latitude >= latitude),
+        closest(longitude >= longitude)
+      ),
+      suffix = c("", "_inpe")
+    ) |>
+    dplyr::mutate(
+      month =
+        timestamp |>
+        lubridate::month(
+          abbr = FALSE,
+          label = TRUE,
+          locale = "en"
+        ) |>
+        tolower(),
+      ghi_month = dplyr::case_when(
+        month == "january" ~ january,
+        month == "february" ~ february,
+        month == "march" ~ march,
+        month == "april" ~ april,
+        month == "may" ~ may,
+        month == "june" ~ june,
+        month == "july" ~ july,
+        month == "august" ~ august,
+        month == "september" ~ september,
+        month == "october" ~ october,
+        month == "november" ~ november,
+        month == "december" ~ december
+      )
+    ) |>
+    dplyr::rename(ghi_annual = annual) |>
+    dplyr::select(-dplyr::ends_with("_inpe")) |>
+    dplyr::select(
+      -dplyr::all_of(
+        c(
+          "month", "january", "february", "march", "april", "may", "june",
+          "july", "august", "september", "october", "november", "december"
+        )
+      )
+    ) |>
+    dplyr::relocate(ghi_month, ghi_annual, .after = longitude)
+}
+
+# library(dplyr)
+library(magrittr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(tidyr)
+
+source(here::here("R", "get_time_and_date_data.R"))
+
+add_equinox_and_solstice <- function(
+    data,
+    time_and_date_data = get_time_and_date_data()
+  ) {
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_tibble(time_and_date_data)
+
+  data |>
+    dplyr::left_join(
+      time_and_date_data |>
+        dplyr::filter(
+          year %in% (
+            data |>
+              dplyr::pull(timestamp) |>
+              lubridate::year() |>
+              unique() %>%
+              c((.[1]) - 1, .)
+          )
+        ) |>
+        dplyr::select(-year) |>
+        dplyr::mutate(
+          dplyr::across(
+            .cols = dplyr::everything(),
+            .fns = ~ lubridate::with_tz(.x, tz = "America/Sao_Paulo")
+          )
+        ) |>
+        tidyr::expand(
+          march_equinox, june_solstice, september_equinox,
+          december_solstice
+        ),
+      by = dplyr::join_by(
+        closest(timestamp >= march_equinox),
+        closest(timestamp >= june_solstice),
+        closest(timestamp >= september_equinox),
+        closest(timestamp >= december_solstice)
+      )
+    ) |>
+    dplyr::relocate(
+      march_equinox, june_solstice, september_equinox, december_solstice,
+      .after = ghi_annual
+    )
+}
+
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(suntools)
+
+add_sun_time <- function(data) {
+  prettycheck:::assert_tibble(data)
+
+  data |>
+    dplyr::mutate(
+      dplyr::across(
+        .cols = dplyr::all_of(
+          c(
+            "march_equinox", "june_solstice", "september_equinox",
+            "december_solstice"
+          )
+        ),
+        .fns = ~ suntools::sunriset(
+          matrix(
+            c(
+              longitude |> tidyr::replace_na(51.48208), # Placeholder
+              latitude |> tidyr::replace_na(-0.0045417) # Placeholder
+            ),
+            nrow = dplyr::n()
+          ),
+          dateTime = .x,
+          direction = "sunrise", # "sunset"
+          POSIXct.out = TRUE
+        ) |>
+          dplyr::pull(time),
+        .names = "{.col}_sunrise"
+      ),
+      dplyr::across(
+        .cols = dplyr::all_of(
+          c(
+            "march_equinox", "june_solstice", "september_equinox",
+            "december_solstice"
+          )
+        ),
+        .fns = ~ suntools::sunriset(
+          matrix(
+            c(
+              longitude |> tidyr::replace_na(51.48208), # Placeholder
+              latitude |> tidyr::replace_na(-0.0045417) # Placeholder
+            ),
+            nrow = dplyr::n()
+          ),
+          dateTime = .x,
+          direction = "sunset",
+          POSIXct.out = TRUE
+        ) |>
+          dplyr::pull(time),
+        .names = "{.col}_sunset"
+      ),
+      dplyr::across(
+        .cols = dplyr::matches("_sunrise$|_sunset$"),
+        .fns = ~ dplyr::if_else(
+          is.na(latitude) | is.na(longitude),
+          NA,
+          .x
+        )
+      )
+    ) |>
+    dplyr::mutate(
+      dplyr::across(
+        .cols = dplyr::all_of(
+          c(
+            "march_equinox", "june_solstice", "september_equinox",
+            "december_solstice"
+          )
+        ),
+        .fns = ~
+          (get(paste0(dplyr::cur_column(), "_sunset")) -
+             get(paste0(dplyr::cur_column(), "_sunrise"))) |>
+          lubridate::as.duration(),
+        .names = "{.col}_daylight"
+      )
+    ) |>
+    dplyr::relocate(dplyr::matches("^march_"), .before = june_solstice) |>
+    dplyr::relocate(dplyr::matches("^june_"), .before = september_equinox) |>
+    dplyr::relocate(
+      dplyr::matches("^september_"), .before = december_solstice
+    ) |>
+    dplyr::relocate(dplyr::matches("^december_"), .before = height)
+}
+
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(purrr)
+# library(tidyr)
+
+nest_solar_vars <- function(data) {
+  prettycheck:::assert_tibble(data)
+
+  data |>
+    tidyr::nest(
+      ghi = c(ghi_month, ghi_annual),
+      march_equinox = c(
+        march_equinox, march_equinox_sunrise, march_equinox_sunset,
+        march_equinox_daylight
+      ),
+      june_solstice = c(
+        june_solstice, june_solstice_sunrise, june_solstice_sunset,
+        june_solstice_daylight
+      ),
+      september_equinox = c(
+        september_equinox, september_equinox_sunrise,
+        september_equinox_sunset, september_equinox_daylight
+      ),
+      december_solstice = c(
+        december_solstice, december_solstice_sunrise,
+        december_solstice_sunset, december_solstice_daylight
+      )
+    ) |>
+    dplyr::mutate(
+      ghi = ghi |>
+        purrr::map(
+         .f = ~ .x |>
+           dplyr::rename_with(.fn = ~ c("month", "annual"))
+      )
+    ) |>
+    dplyr::mutate(
+      dplyr::across(
+        .cols = dplyr::all_of(
+          c(
+            "march_equinox", "june_solstice", "september_equinox",
+            "december_solstice"
+          )
+        ),
+        .fns = ~ .x |>
+          purrr::map(
+            .f = ~ .x |>
+              dplyr::rename_with(
+                .fn = ~ c("moment", "sunrise", "sunset", "daylight")
+              )
+          )
+      )
+    ) |>
+    dplyr::relocate(
+      ghi, march_equinox, june_solstice, september_equinox,
+      december_solstice,
+      .after = longitude
+    )
+}

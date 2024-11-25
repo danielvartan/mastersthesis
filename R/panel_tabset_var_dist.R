@@ -2,7 +2,7 @@
 # library(glue)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R", "stats_sum.R"))
+source(here::here("R", "stats_summary.R"))
 source(here::here("R", "test_normality.R"))
 source(here::here("R", "utils.R"))
 
@@ -43,7 +43,7 @@ panel_tabset_var_dist <- function(
     out <- c(
       out,
       glue::glue(
-        "
+      "
       {heading} {col_labels[i]}
 
       ::: {{#tbl-var-dist-stats-{cols[i]}}}
@@ -52,7 +52,7 @@ panel_tabset_var_dist <- function(
 
       data |>
         dplyr::pull({cols[i]}) |>
-        stats_sum(name = '{col_labels[i]}')
+        stats_summary(name = '{col_labels[i]}')
       ```
 
       Source: {source[i]}
@@ -95,7 +95,7 @@ panel_tabset_var_dist <- function(
     "\n\n",
     "Also, don't forget to source the scripts below in the file.",
     "\n\n",
-    "`source(here::here('R', 'stats_sum.R'))`", "\n",
+    "`source(here::here('R', 'stats_summary.R'))`", "\n",
     "`source(here::here('R', 'test_normality.R'))`", "\n",
     "`source(here::here('R'', 'utils.R')))`"
   ))

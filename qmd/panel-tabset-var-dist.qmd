@@ -1,0 +1,129 @@
+:::: {.panel-tabset}
+### Age (years)
+
+::: {#tbl-var-dist-stats-age}
+```{r}
+#| code-fold: true
+
+data |>
+  dplyr::pull(age) |>
+  stats_summary(name = 'Age (years)')
+```
+
+Source: Created by the author.
+
+Statistics for the `age` variable.
+:::
+
+::: {#fig-var-dist-hist-age}
+```{r}
+#| code-fold: true
+
+data |>
+  dplyr::pull(age) |>
+  test_normality(name = 'Age (years)')
+```
+
+Source: Created by the author.
+
+Histogram of the `age` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+### Latitude (degrees)
+
+::: {#tbl-var-dist-stats-latitude}
+```{r}
+#| code-fold: true
+
+data |>
+  dplyr::pull(latitude) |>
+  stats_summary(name = 'Latitude (degrees)')
+```
+
+Source: Created by the author.
+
+Statistics for the `latitude` variable.
+:::
+
+::: {#fig-var-dist-hist-latitude}
+```{r}
+#| code-fold: true
+
+data |>
+  dplyr::pull(latitude) |>
+  test_normality(name = 'Latitude (degrees)')
+```
+
+Source: Created by the author.
+
+Histogram of the `latitude` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+### Longitude (degrees)
+
+::: {#tbl-var-dist-stats-longitude}
+```{r}
+#| code-fold: true
+
+data |>
+  dplyr::pull(longitude) |>
+  stats_summary(name = 'Longitude (degrees)')
+```
+
+Source: Created by the author.
+
+Statistics for the `longitude` variable.
+:::
+
+::: {#fig-var-dist-hist-longitude}
+```{r}
+#| code-fold: true
+
+data |>
+  dplyr::pull(longitude) |>
+  test_normality(name = 'Longitude (degrees)')
+```
+
+Source: Created by the author.
+
+Histogram of the `longitude` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+### MSF~sc~ (Chronotype proxy) (local time)
+
+::: {#tbl-var-dist-stats-msf_sc}
+```{r}
+#| code-fold: true
+
+data |>
+  dplyr::pull(msf_sc) |>
+  stats_summary(name = 'MSF~sc~ (Chronotype proxy) (local time)')
+```
+
+Source: Created by the author.
+
+Statistics for the `msf_sc` variable.
+:::
+
+::: {#fig-var-dist-hist-msf_sc}
+```{r}
+#| code-fold: true
+
+data |>
+  dplyr::pull(msf_sc) |>
+  test_normality(name = 'MSF~sc~ (Chronotype proxy) (local time)')
+```
+
+Source: Created by the author.
+
+Histogram of the `msf_sc` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+::::

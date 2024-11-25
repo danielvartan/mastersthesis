@@ -21,13 +21,31 @@ rutils:::quarto_status(
   )
 ```
 
-::: {.callout-warning}
-The results shown here are __preliminary__, so please take them with a grain of salt.
+```{r}
+#| eval: false
+#| output: false
+#| code-fold: false
 
-\microskip
+targets::tar_make(script = "../_targets.R")
+```
 
-The data has not yet been fully cleaned, balanced, and cross-referenced with the secondary databases. Think of these results as a low-resolution preview of the final results. The step-by-step analysis can be seen in the appendices section.
-:::
+```{r}
+#| output: false
+
+geocoded_data <- targets::tar_read(
+  "geocoded_data", 
+  store = here::here("_targets")
+)
+```
+
+```{r}
+#| output: false
+
+weighted_data <- targets::tar_read(
+  "weighted_data", 
+  store = here::here("_targets")
+)
+```
 
 ::: {.callout-note}
 ## Target journal
@@ -65,7 +83,32 @@ The main zeitgeber known today is the light, particularly the sun’s light [@kh
 
 Recently there have been attempts to test the latitude hypothesis in different settings, but, at least in humans, none of them have been successful in seeing a significant effect size related to the latitudinal cline. Some of these approaches worked with secondary data and with small samples. One of the most serious attempts of testing this hypothesis was made by Leocadio-Miguel et al. [-@leocadio-miguel2017]. They measured the chronotype of $12,884$ Brazillian subjects on a wide latitudinal spectrum using the Morningness–Eveningness Questionnaire (MEQ). Their results showed a negligible effect size. One possible reason for this is that the MEQ measures psychological traits and not biological states [@roenneberg2019], i.e., the circadian oscillation itself, therefore, it’s not the best way to answer the question [@leocadio-miguel2014].
 
-This article brings a novel attempt to test the latitude hypothesis, using, this time, a biological approach provided by the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. Furthermore, the test was carried out on the biggest chronotype sample ever collected in a same country. A sample made of $76,744$ subjects, all living in the same timezone in Brazil, with only one week of difference between questionnaire responses.
+This article brings a novel attempt to test the latitude hypothesis, using, this time, a biological approach provided by the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. Furthermore, the test was carried out on the biggest chronotype sample ever collected in a same country. A sample made of `{r} weighted_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` subjects, all living in the same timezone in Brazil, with only one week of difference between questionnaire responses [@fig-chapter-5-sample-geographical-distribution]. The unfiltered valid sample comprises `{r} geocoded_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` participants from all Brazilian states.
+
+::: {#fig-chapter-5-sample-geographical-distribution}
+```{r}
+#| message: false
+#| warning: false
+
+source(here::here("R", "plot_brazil.R"))
+
+weighted_data |> 
+  plot_brazil_municipality(
+    viridis = "cividis", # "cividis"
+    alpha = 0.75,
+    direction = -1,
+    color_brewer = "YlGnBu",
+    breaks = c(10, 500, 1000, 5000, 7500),
+    point = TRUE,
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+[Source: Created by the author.]{.legend}
+
+Geographical distribution of the sample used in the analysis: (`{r} weighted_data |> nrow() |> format(big.mark = ",") %>% paste0("n = ", .) |> format_to_md_latex()`). Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017. Size and color scale are in $\log_{10}$.
+:::
 
 ### Results
 
@@ -73,51 +116,19 @@ The local time of the sleep corrected midpoint between sleep onset and sleep end
 
 That’s the midsleep point of Brazilian subjects with an intermediate/average chronotype. One can imagine, following the 7-9h sleep recommendation for healthy adults of the American Academy of Sleep Medicine (AASM) [@watson2015], that this average person would, if he/she had no social obligations, typically wake up at about $\text{08:28:35}$.
 
-```{r}
-#| output: false
-
-source(here::here("R/utils.R"))
-
-utc_minus_3_states <- c(
-  "Amapá", "Pará", "Maranhão", "Tocantins", "Piauí", "Ceará",
-  "Rio Grande do Norte", "Paraíba", "Pernambuco", "Alagoas", "Sergipe",
-  "Bahia", "Distrito Federal", "Goiás", "Minas Gerais", "Espírito Santo",
-  "Rio de Janeiro", "São Paulo", "Paraná", "Santa Catarina",
-  "Rio Grande do Sul"
-)
-
-# data <- targets::tar_make(script = "../_targets.R")
-
-data <- 
-  targets::tar_read("geocoded_data", store = here::here("_targets")) |>
-  dplyr::filter(state %in% utc_minus_3_states) |>
-  dplyr::select(msf_sc, age, sex, state, latitude, longitude) |>
-  tidyr::drop_na(msf_sc, age, sex, latitude)
-```
-
 ::: {#fig-chapter-5-chronotype-distribution}
 ```{r}
 #| message: false
 #| warning: false
 
-source(here::here("R/plot_chronotype.R"))
+source(here::here("R", "plot_chronotype.R"))
 
-data |> 
-  plot_chronotype(
-    col = "msf_sc", 
-    x_lab = "Frequency (%)",
-    y_lab = latex2exp::TeX("Local time ($MSF_{sc}$)"),
-    col_width = 0.8,
-    col_border = 0.6,
-    text_size = env_vars$base_size,
-    chronotype_cuts = FALSE,
-    legend_position = "right"
-  )
+weighted_data |> plot_chronotype(text_size = env_vars$base_size)
 ```
 
 [Source: Created by the author. Based on data visualization found in @roenneberg2019b.]{.legend}
 
-Distribution of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The categorical cut-offs follow a quantile approach going from extremely early ($0 |- 0.11$) to the extremely late ($0.88 - 1$).
+Distribution of the local time for the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
 :::
 
 The MSF~sc~ curve had a skewness of $0.284$ and a kurtosis of $2.773$. However, the distribution was not normal accordingly to Kolmogorov-Smirnov test ($\text{D} = 0.03717$; $\text{p-value} = 2e-16$) and D'Agostino Skewness test ($\text{Z3} = 31.525$; $\text{p-value} = 2.2e-16$) [see @dagostino1990; also @thode2002, p. 46, p. 101].
@@ -134,37 +145,87 @@ It's important to note that a causal and linear relationship between latitude an
 
 For the latitude hypothesis to be true, there must be a significant association between these two variables when the most common covariates are controlled. Predictive models, in this case, are an adequate method for testing this.
 
-The results show that even with a wide latitudinal spectrum and with a big and aligned sample of biological states the latitude effect does not reveal itself in a non-negligible size. Several studies indicate the existence of this effect on the chronotype [@hut2013; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003], but, at this time, at least in humans, no empirical evidence can support this claim. Our results are very similar to Leocadio-Miguel et al. [-@leocadio-miguel2017], which also found a negligible effect size (Cohen’s $f^{2} = 0.004143174$). The inconsistency of the latitude effect can be visualized in @fig-chapter-5-chronotype-distribution-by-latitude.
+The results show that even with a wide latitudinal spectrum and with a big and aligned sample of biological states the latitude effect does not reveal itself in a non-negligible size. Several studies indicate the existence of this effect on the chronotype [@hut2013; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003], but, at this time, at least in humans, no empirical evidence can support this claim. Our results are very similar to Leocadio-Miguel et al. [-@leocadio-miguel2017], which also found a negligible effect size (Cohen’s $f^{2} = 0.004143174$). The inconsistency of the latitude effect can be visualized in @fig-chapter-5-chronotype-latitude-series.
 
-::: {#fig-chapter-5-chronotype-distribution-by-latitude}
+::: {#fig-chapter-5-chronotype-latitude-series}
 ```{r}
 #| message: false
 #| warning: false
 
-source(here::here("R/plot_latitude_series.R"))
+source(here::here("R", "plot_latitude_series.R"))
 
-data |>
-  dplyr::filter(age <= 50) |>
-  plot_latitude_series(
-    col = "msf_sc", 
-    y_lab = latex2exp::TeX("$MSF_{sc} \\pm SEM$"), 
-    line_width = 2, 
-    point_size = 3,
-    error_bar_width = 0.5, 
-    error_bar_linewidth = 1, 
-    error_bar = TRUE,
-    text_size = env_vars$base_size
-  )
+weighted_data |> 
+  plot_latitude_series(text_size = env_vars$base_size)
 ```
 
 [Source: Created by the author. Based on data visualization found in @leocadio-miguel2017.]{.legend}
 
-Distribution of mean aggregates of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of MSF~sc~ indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval. Attention is needed when interpreting this chart. Note that the y-axis is limited, and the difference between the highest and lowest values is negligible considering the MCTQ scale.
+Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The red line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
 :::
+
+It's also important to point out that this seemly weak relationship shown in @fig-chapter-5-chronotype-latitude-series is of very similar magnitude from the one @leocadio-miguel2017 found (see @leocadio-miguel2017, Figure 2), with the difference that it isn't masked by a distorted y-axis — see the supplemental materials to view a resescaled version of the mentioned figure.
 
 Despite the lack of evidence, is not uncommon to hear talks insisting that this effect is real and already confirmed. We suspect that this behavior may be derived from a lack of understanding of statistical models and techniques. Although it may be logical and aligned with the overall theory for the evolution of biological temporal systems, it’s our role as scientists to eliminate contractions, not pursue them.
 
+::: {#fig-chapter-5-chronotype-geographical-distribution}
+```{r}
+limits <- # Interquartile range (IQR): Q3 - Q1
+  c(
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      transform_time() |>
+      quantile(0.25, na.rm = TRUE),
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      transform_time() |>
+      quantile(0.75, na.rm = TRUE)
+  )
+
+weighted_data |> 
+  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
+  plot_brazil_state(
+    col_fill = "msf_sc",
+    transform = "identity",
+    viridis = "cividis",
+    direction = -1,
+    binned = FALSE,
+    labels = labels_hms,
+    limits = limits, # !!!
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+[Source: Created by the author.]{.legend}
+
+Geographical distribution of mean MSF~sc~ values by Brazilian state. The figure shows the mean mid-sleep on free days sleep-corrected (MSF~sc) values aggregated by state, illustrating how chronotype varies with latitude in Brazil. MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values correspond to later chronotypes. The color scale was not transformed and it has as limits the first and third quartile (interquartile range). While the map suggests a potential latitudinal pattern, differences in mean MSF~sc~ values across states are small and fall within a narrow range relative to the scale of the Munich ChronoType Questionnaire (MCTQ), limiting the significance of these variations.
+:::
+
 The absence of a strong entrainment with the solar zeitgeber shows that the entrainment phenomenon is more complex than we previously imagined. Other hypotheses for the human circadian entrainment, like the entrainment to self-selected light, proposed by Anna Skeldon and Derk-Jan Dijk [-@skeldon2021], need to be tested and may produce significant results. Methods and techiniques for complex systems, like causal loop diagrams and agent-based models (ABM), may help to unravel this phenomenon more properly.
+
+::: {#fig-chapter-5-analysis-sample-geo-distribution-by-chronotype}
+```{r}
+#| message: false
+#| warning: false
+
+source(here::here("R", "plot_brazil.R"))
+
+weighted_data |> 
+  plot_brazil_municipality(
+    viridis = "plasma",
+    alpha = 0.75,
+    direction = -1,
+    breaks = c(10, 500, 1000, 5000, 7500),
+    point = TRUE,
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+[Source: Created by the author.]{.legend}
+
+Geographical distribution of the sample used in the analysis: (`{r} weighted_data |> nrow() |> format(big.mark = ",") %>% paste0("n = ", .) |> format_to_md_latex()`) grouped by chronotypes.
+:::
 
 It’s important to notice that the results shown here are preliminary. The data still needs some cleaning and to be balanced with Brazil's latest population census. The latitude coordinates used in the analysis are related to subjects' residential state capital and, hence, have low resolution. Even with these results, it may be that a significant latitude effect can still appear at the end of the research.
 

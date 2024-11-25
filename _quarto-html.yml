@@ -31,13 +31,13 @@ book:
         - qmd/chapter-6.qmd
     - qmd/references.qmd
   appendices:
-    - qmd/appendice-1.qmd
-    - qmd/appendice-2.qmd
-    - qmd/appendice-3.qmd
-    - qmd/appendice-4.qmd
-    - qmd/appendice-5.qmd
-    - qmd/appendice-6.qmd
-    - qmd/appendice-7.qmd
+    - qmd/supplementary-material-1.qmd
+    - qmd/supplementary-material-2.qmd
+    - qmd/supplementary-material-3.qmd
+    - qmd/supplementary-material-4.qmd
+    - qmd/supplementary-material-5.qmd
+    - qmd/supplementary-material-6.qmd
+    - qmd/supplementary-material-7.qmd
 
 format:
   html:

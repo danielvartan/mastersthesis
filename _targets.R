@@ -9,9 +9,11 @@ source(here::here("R", "tidy_data_.R"))
 source(here::here("R", "validate_data.R"))
 source(here::here("R", "analyze_data.R"))
 source(here::here("R", "geocode_data.R"))
+source(here::here("R", "add_solar_data.R"))
+source(here::here("R", "anonymize_data.R"))
 source(here::here("R", "filter_data.R"))
 source(here::here("R", "weigh_data.R"))
-source(here::here("R", "lock_data.R"))
+source(here::here("R", "lock_and_store_data.R"))
 
 targets::tar_option_set(
   packages = c(
@@ -72,12 +74,24 @@ list(
     command = geocode_data(analyzed_data)
   ),
   targets::tar_target(
+    name = added_data,
+    command = add_solar_data(geocoded_data)
+  ),
+  targets::tar_target(
+    name = anonymized_data,
+    command = anonymize_data(added_data)
+  ),
+  targets::tar_target(
     name = filtered_data,
-    command = filter_data(geocoded_data)
+    command = filter_data(anonymized_data)
   ),
   targets::tar_target(
     name = weighted_data,
     command = weigh_data(filtered_data)
   )
-  # tarchetypes::tar_quarto(name = book, path = here::here())
+  # targets::tar_target(
+  #   name = locked_data,
+  #   command = lock_and_store_data(weighted_data)
+  # )
 )
+

@@ -1,0 +1,623 @@
+<!-- %:::% .common h1 begin %:::% -->
+# Model and hypothesis test A
+<!-- %:::% .common h1 end %:::% -->
+
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R", "_setup.R"))
+```
+
+```{r}
+#| include: false
+
+library(magrittr)
+library(targets)
+```
+
+```{r}
+#| include: false
+
+source(here::here("R", "utils.R"))
+```
+
+## Overview
+
+The aim of this document is to test the thesis hypothesis (**Test A**) following the method delineated in the methodology supplemental material.
+
+## Setting things up
+
+```{r}
+#| eval: false
+
+library(dplyr)
+library(stringr)
+```
+
+```{r}
+#| include: false
+
+library(magrittr)
+```
+
+```{r}
+#| output: false
+
+source(here::here("R", "stats_summary.R"))
+source(here::here("R", "test_normality.R"))
+source(here::here("R", "utils.R"))
+source(here::here("R", "utils-stats.R"))
+```
+
+## Importing the data
+
+```{r}
+#| eval: false
+#| output: false
+#| code-fold: false
+
+targets::tar_make(script = "../_targets.R")
+```
+
+```{r}
+#| output: false
+
+geocoded_data <- targets::tar_read(
+  "geocoded_data", 
+  store = here::here("_targets")
+)
+```
+
+```{r}
+#| output: false
+
+weighted_data <- targets::tar_read(
+  "weighted_data", 
+  store = here::here("_targets")
+)
+```
+
+## Restricted model
+
+### Model building
+
+::: {#tbl-appendice-chapter-6-restricted-model-box-cox}
+```{r}
+#| message: false
+#| warning: false
+
+
+box_cox <- MASS::boxcox(msf_sc ~ age + sex, data = data)
+```
+
+[Source: Created by the author. See @box1964 to learn more.]{.legend}
+
+Profile of log-likelihoods for the parameter ($\lambda$) of the Box-Cox power transformation for the restricted model
+:::
+
+Since MSF~sc~ $> 0$, Box-Cox family of transformations for the dependent variable is given by [See @box1964, p. 214]:
+
+$$
+y^{(\lambda)} = 
+\begin{cases}
+\cfrac{y^\lambda - 1}{\lambda} &  (\lambda \neq 0) \\
+\log(y) &  (\lambda = 0)
+\end{cases}
+$$
+
+```{r}
+# recipes::step_BoxCox()
+
+lambda <- box_cox$x[which.max(box_cox$y)]
+
+sprintf("%.50f", lambda) # Only ~16 digit precision
+```
+
+```{r}
+sprintf("%.50f", head(data$msf_sc, 3))
+```
+
+```{r}
+sprintf("%.50f", head(((data$msf_sc^lambda - 1) / lambda), 3))
+```
+
+```{r}
+msf_sc_128 <- Rmpfr::mpfr(data$msf_sc, 128)
+
+msf_sc_trans <- (msf_sc_128^lambda - 1) / lambda
+
+# head(Rmpfr::formatMpfr(msf_sc_res, 50), 3)
+head(msf_sc_trans, 3)
+```
+
+```{r}
+msf_sc_trans <- msf_sc_trans |> Rmpfr::asNumeric()
+
+sprintf("%.50f", head(msf_sc_trans, 3))
+```
+
+```{r}
+data <- 
+  data |> 
+  dplyr::mutate(
+    msf_sc_box_cox = msf_sc_trans,
+    msf_sc_ln = log(msf_sc),
+    msf_sc_log10 = log10(msf_sc),
+    msf_sc_log2 = log2(msf_sc)
+  )
+```
+
+```{r}
+res_model <- stats::lm(
+  msf_sc_box_cox ~ age + sex, 
+  data = data,
+  weights = cell_weight
+)
+```
+
+::: {#tbl-appendice-chapter-6-restricted-model-summary-stats-1}
+```{r}
+broom::tidy(res_model)
+```
+
+[Source: Created by the author.]{.legend}
+
+Summarized information about the components of the restricted model
+:::
+
+::: {#tbl-appendice-chapter-6-restricted-model-summary-stats-2}
+```{r}
+broom::glance(res_model) |> tidyr::pivot_longer(cols = dplyr::everything())
+```
+
+[Source: Created by the author.]{.legend}
+
+Summarized statistics about the restricted model
+:::
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+res_model |> summary()
+```
+
+### Performing model diagnostics
+
+::: {.callout-warning}
+Before using objective assumption tests (e.g., Anderson–Darling test), it's important to note that they may be not advisable in some contexts. In larger samples, these tests can be overly sensitive to minor deviations, while in smaller samples, they may not detect significant deviations. Additionally, they might overlook visual patterns that are not captured by a single metric. Therefore, visual assessment of diagnostic plots may be a better way [@shatz2024; @kozak2018; @schucany2006]. For a straightforward critique of normality tests specifically, refer to [this](https://towardsdatascience.com/stop-testing-for-normality-dba96bb73f90) article by @greener2020.
+:::
+
+#### Normality
+
+::: {#tbl-appendice-chapter-6-restricted-model-residual-diag-stats}
+```{r}
+#| message: false
+#| warning: false
+
+source(here::here("R", "stats_summary.R"))
+source(here::here("R", "utils.R"))
+
+res_model |>
+  stats::residuals() |>
+  stats_summary()
+```
+
+[Source: Created by the author.]{.legend}
+
+Statistics about the restricted model residuals.
+:::
+
+It is important to note that the Kolmogorov-Smirnov and Pearson chi-square test are here just for reference since many authors don't recommend using them when testing for normality [@dagostino1990].
+
+Learn more about normality tests in @thode2002.
+
+$$
+\begin{cases}
+\text{H}_{0}: \text{Normality} \\
+\text{H}_{a}: \text{Nonnormality}
+\end{cases}
+$$
+
+::: {#tbl-appendice-chapter-6-restricted-model-residual-diag-normality-tests}
+```{r}
+#| message: false
+#| warning: false
+
+source(here::here("R", "normality_summary.R"))
+
+res_model |>
+  stats::residuals() |>
+  normality_summary()
+```
+
+[Source: Created by the author.]{.legend}
+
+Normality tests about the restricted model residuals
+:::
+
+Correlation between observed residuals and expected residuals under normality.
+
+```{r}
+#| code-fold: false
+
+res_model |> olsrr::ols_test_correlation()
+```
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-diag-correlation}
+```{r}
+source(here::here("R/test_normality.R"))
+
+# res_model |> olsrr::ols_plot_resid_qq()
+
+res_model |> 
+  stats::residuals() |>
+  test_normality()
+```
+
+[Source: Created by the author.]{.legend}
+
+Histogram of the restricted model residuals with a kernel density estimate, along with a quantile-quantile (Q-Q) plot between the residuals and the theoretical quantiles of the normal distribution
+:::
+
+#### Common variance
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-diag-fit-values-1}
+```{r}
+res_model |> olsrr::ols_plot_resid_fit()
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the fitted values of the restricted model and its residuals.
+:::
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-diag-fit-values-2}
+```{r}
+res_model |> plot(3)
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the fitted values of the restricted model and its standardized residuals
+:::
+
+```{r}
+#| eval: false
+#| include: false
+#| code-fold: false
+
+res_model |> lmtest::bptest()
+```
+
+```{r}
+#| code-fold: false
+
+# See also:
+# res_model |> lmtest::bptest()
+
+res_model |> olsrr::ols_test_breusch_pagan()
+```
+
+```{r}
+#| code-fold: false
+
+res_model |> olsrr::ols_test_score()
+```
+
+#### Independence
+
+Variance inflation factor (VIF)
+: \hspace{20cm} "Indicator of the effect that the other independent variables have on the standard error of a regression coefficient. The variance inflation factor is directly related to the tolerance value ($\text{VIF}_{i} = 1/\text{TO}L$). Large VIF values also indicate a high degree of collinearity or multicollinearity among the independent variables" [@hair2019, p. 265].
+
+```{r}
+res_model |> olsrr::ols_coll_diag()
+```
+
+#### Measures of influence
+
+Leverage points
+: \hspace{20cm} "Type of _influential observation_ defined by one aspect of influence termed _leverage_. These observations are substantially different on one or more independent variables, so that they affect the estimation of one or more _regression coefficients_" [@hair2019, p. 262].
+
+::: {#fig-appendice-chapter-6-restricted-model-residual-diag-leverage}
+```{r}
+res_model |> olsrr::ols_plot_resid_lev()
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the restricted model studentized residuals and their leverage/influence
+:::
+
+## Full model
+
+### Model building
+
+::: {#tbl-appendice-chapter-6-full-model-box-cox}
+```{r}
+box_cox <- MASS::boxcox(
+  msf_sc ~ age + sex + latitude, data = data
+  )
+```
+
+[Source: Created by the author. See @box1964 to learn more.]{.legend}
+
+Profile of log-likelihoods for the parameter ($\lambda$) of the Box-Cox power transformation for the full model
+:::
+
+```{r}
+#| code-fold: false
+
+sprintf("%.50f", box_cox$x[which.max(box_cox$y)]) # lambda
+```
+
+```{r}
+#| code-fold: false
+
+sprintf("%.50f", lambda) # The same lambda of the restricted model
+```
+
+```{r}
+#| code-fold: false
+
+full_model <- stats::lm(
+  msf_sc_box_cox ~ age + sex + latitude, 
+  data = data,
+  weights = cell_weight
+  )
+```
+
+::: {#tbl-appendice-chapter-6-full-model-summary-stats-1}
+```{r}
+broom::tidy(full_model)
+```
+
+[Source: Created by the author.]{.legend}
+
+Summarized information about the components of the full model
+:::
+
+::: {#tbl-appendice-chapter-6-full-model-summary-stats-2}
+```{r}
+broom::glance(full_model) |>
+  tidyr::pivot_longer(cols = dplyr::everything())
+```
+
+[Source: Created by the author.]{.legend}
+
+Summarized statistics about the full model
+:::
+
+```{r}
+#| code-fold: false
+
+full_model |> summary()
+```
+
+### Residual diagnostics
+
+#### Normality
+
+::: {#tbl-appendice-chapter-6-full-model-residual-diag-stats}
+```{r}
+source(here::here("R", "stats_summary.R"))
+source(here::here("R", "utils.R"))
+
+full_model |>
+  stats::residuals() |>
+  stats_summary()
+```
+
+[Source: Created by the author.]{.legend}
+
+Statistics about the full model residuals
+:::
+
+It is important to note that the Kolmogorov-Smirnov and Pearson chi-square test are here just for reference since some authors don't recommend using them when testing for normality [@dagostino1990].
+
+$$
+\begin{cases}
+\text{H}_{0}: \text{Normality} \\
+\text{H}_{a}: \text{Nonnormality}
+\end{cases}
+$$
+
+::: {#tbl-appendice-chapter-6-full-model-residual-diag-normality-tests}
+```{r}
+source(here::here("R", "normality_summary.R"))
+
+full_model |>
+  stats::residuals() |>
+  normality_summary()
+```
+
+[Source: Created by the author.]{.legend}
+
+Normality tests about the full model residuals.
+:::
+
+Correlation between observed residuals and expected residuals under normality
+
+```{r}
+#| code-fold: false
+
+full_model |> olsrr::ols_test_correlation()
+```
+
+::: {#fig-appendice-chapter-6-full-model-residual-diag-correlation}
+```{r}
+source(here::here("R/test_normality.R"))
+
+hist_plot <- full_model |>
+  stats::residuals() |>
+  plot_hist(print = FALSE)
+
+qq_plot <- full_model |> 
+  stats::residuals() |>
+  plot_qq(print = FALSE)
+
+cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
+```
+
+[Source: Created by the author.]{.legend}
+
+Histogram of the full model residuals with a kernel density estimate, along with a quantile-quantile (Q-Q) plot between the residuals and the theoretical quantiles of the normal distribution
+:::
+
+#### Common variance
+
+::: {#fig-appendice-chapter-6-full-model-residual-diag-fit-values-1}
+```{r}
+full_model |> olsrr::ols_plot_resid_fit()
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the fitted values of the full model and its residuals
+:::
+
+::: {#fig-appendice-chapter-6-full-model-residual-diag-fit-values-2}
+```{r}
+full_model |> plot(3)
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the fitted values of the full model and its standardized residuals
+:::
+
+```{r}
+#| eval: false
+#| include: false
+#| code-fold: false
+
+full_model |> lmtest::bptest()
+```
+
+```{r}
+#| code-fold: false
+
+full_model |> olsrr::ols_test_breusch_pagan()
+```
+
+```{r}
+#| code-fold: false
+
+full_model |> olsrr::ols_test_score()
+```
+
+#### Independence
+
+Variance inflation factor (VIF)
+: \hspace{20cm} "Indicator of the effect that the other independent variables have on the standard error of a regression coefficient. The variance inflation factor is directly related to the tolerance value ($\text{VIF}_{i} = 1/\text{TO}L$). Large VIF values also indicate a high degree of collinearity or multicollinearity among the independent variables" [@hair2019, p. 265].
+
+```{r}
+full_model |> olsrr::ols_coll_diag()
+```
+
+#### Measures of influence
+
+Leverage points
+: \hspace{20cm} "Type of _influential observation_ defined by one aspect of influence termed _leverage_. These observations are substantially different on one or more independent variables, so that they affect the estimation of one or more _regression coefficients_" [@hair2019, p. 262].
+
+::: {#fig-appendice-chapter-6-full-model-residual-diag-leverage}
+```{r}
+full_model |> olsrr::ols_plot_resid_lev()
+```
+
+[Source: Created by the author.]{.legend}
+
+Relation between the full model studentized residuals and their leverage/influence
+:::
+
+## Hypothesis test
+
+$$
+\begin{cases}
+\text{H}_{0}: \text{R}^{2}_{r} >= \text{R}^{2}_{f} \\
+\text{H}_{a}: \text{R}^{2}_{r} < \text{R}^{2}_{f}
+\end{cases}
+$$
+
+$$
+\text{F} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r} / (k_{f} - k_{R})}{(1 - \text{R}^{2}_{f}) / (\text{N} - k_{f} - 1)}
+$$
+
+$$
+\text{F} = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
+$$
+
+```{=latex}
+\smallskip
+```
+
+::: {#tbl-appendice-chapter-6-hypothesis-test-r-squared-comparison}
+```{r}
+source(here::here("R/utils-stats.R"))
+
+dplyr::tibble(
+  name = c("r_squared_res", "r_squared_full", "diff"),
+  value = c(
+  r_squared(res_model), r_squared(full_model), 
+  r_squared(full_model) - r_squared(res_model)
+  )
+)
+```
+
+[Source: Created by the author.]{.legend}
+
+Comparison between the coefficients of determination ($\text{R}^2$) of the restricted and full model
+:::
+
+```{r}
+#| code-fold: false
+
+print(stats::anova(res_model, full_model))
+```
+
+```{r}
+#| code-fold: false
+
+source(here::here("R/utils-stats.R"))
+
+n <- nrow(data)
+k_res <- length(stats::coefficients(res_model)) - 1
+k_full <- length(stats::coefficients(full_model)) - 1
+
+((r_squared(full_model) - r_squared(res_model)) / (k_full - k_res)) / 
+  ((1 - r_squared(full_model)) / (n  - k_full - 1))
+```
+
+$$
+f^{2} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r}}{1 - \text{R}^{2}_{f}}
+$$
+
+$$
+f^{2} = \cfrac{\text{Additional Var. Explained}}{\text{Var. unexplained}}
+$$
+
+```{=latex}
+\smallskip
+```
+
+::: {#tbl-appendice-chapter-6-hypothesis-test-effect-size}
+```{r}
+source(here::here("R", "cohens_f_squared.R"))
+source(here::here("R", "utils-stats.R"))
+
+cohens_f_squared_summary(
+  adj_r_squared(res_model), 
+  adj_r_squared(full_model)
+  )
+```
+
+[Source: Created by the author. See @cohen1988 and @cohen1992 to learn more.]{.legend}
+
+Effect size between the restricted and full model based on Cohen's $f^2$
+:::
+
+## Test 2
+
+## Test 3

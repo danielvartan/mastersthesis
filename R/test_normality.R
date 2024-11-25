@@ -10,20 +10,21 @@
 # library(stats)
 # library(tseries)
 
-source(here::here("R", "remove_outliers.R"))
-source(here::here("R/stats_sum.R"))
-source(here::here("R/utils-stats.R"))
-source(here::here("R/utils.R"))
+source(here::here("R", "stats_summary.R"))
+source(here::here("R", "utils.R"))
+source(here::here("R", "utils-stats.R"))
 
-test_normality <- function(x,
-                           name = "x",
-                           threshold = hms::parse_hms("12:00:00"),
-                           remove_outliers = FALSE,
-                           iqr_mult = 1.5,
-                           log_transform = FALSE,
-                           density_line = TRUE,
-                           text_size = NULL,
-                           print = TRUE) {
+test_normality <- function(
+    x,
+    name = "x",
+    threshold = hms::parse_hms("12:00:00"),
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    log_transform = FALSE,
+    density_line = TRUE,
+    text_size = NULL,
+    print = TRUE
+  ) {
   classes <- c(
     "numeric", "Duration", "difftime", "hms", "POSIXt", "Interval"
   )
@@ -127,13 +128,13 @@ test_normality <- function(x,
   grid_plot <- cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
 
   out <- list(
-    stats = stats_sum(
+    stats = stats_summary(
       x,
       threshold = NULL,
       na_rm = TRUE,
       remove_outliers = FALSE,
       hms_format = TRUE,
-      print = print
+      as_list = TRUE
     ),
     params = list(
       name = name,

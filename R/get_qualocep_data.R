@@ -7,6 +7,10 @@
 # library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
+# QualoCEP is a databse of Brazillian addresses and postal codes, geocoded
+# using the Google Geocoding API. See <https://www.qualocep.com/> and the
+# methodology supplemental material to learn more.
+
 get_qualocep_data <- function(
     file = NULL,
     pattern = "qualocep-2024-11-12.rds",
@@ -37,7 +41,7 @@ get_qualocep_data <- function(
       file <- stringr::str_remove(file, "\\.lockr$")
     }
 
-    lookup_data <- readr::read_rds(file)
+    out <- readr::read_rds(file)
   } else if ("qualocep_data" %in% ls(envir = globalenv()) && isFALSE(force)) {
     cli::cli_alert_info(
       paste0(
@@ -82,10 +86,10 @@ get_qualocep_data <- function(
       osfr::osf_download(path = tempdir(), conflicts = "overwrite") |>
       magrittr::extract2("local_path")
 
-    olf_file_pattern <- stringr::str_remove(file, "\\.lockr$")
+    old_file_pattern <- stringr::str_remove(file, "\\.lockr$")
 
-    if (prettycheck:::test_file_exists(olf_file_pattern)) {
-      file.remove(olf_file_pattern)
+    if (prettycheck:::test_file_exists(old_file_pattern)) {
+      file.remove(old_file_pattern)
     }
 
     lockr::unlock_file(file, private_key = private_key, password = password)

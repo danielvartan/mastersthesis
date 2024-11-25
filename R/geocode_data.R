@@ -1,5 +1,6 @@
 # library(cli)
 # library(dplyr)
+# library(geobr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
@@ -7,6 +8,7 @@
 source(here::here("R", "get_brazil_municipality.R"))
 source(here::here("R", "get_brazil_region.R"))
 source(here::here("R", "get_geocode_lookup_data.R"))
+source(here::here("R", "utils-plots.R"))
 
 # # Helpers
 #
@@ -26,27 +28,38 @@ source(here::here("R", "get_geocode_lookup_data.R"))
 
 geocode_data <- function(
     data,
-    lookup_data = get_lookup_data(),
-    qualocep_data = get_qualocep_data()
+    year = 2017,
+    geocode_lookup_data = get_geocode_lookup_data()
   ) {
   geo_vars <- c("country", "state", "municipality", "postal_code")
 
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_subset(geo_vars, names(data))
-  prettycheck:::assert_list(lookup_data)
-  prettycheck:::assert_tibble(qualocep_data)
+  prettycheck:::assert_tibble(geocode_lookup_data)
+
+  prettycheck:::assert_number(
+    year,
+    lower = 1900,
+    upper = Sys.Date() |> lubridate::year()
+  )
 
   cli::cli_progress_step("Geocoding the data")
 
   data |>
     add_ibge_codes() |>
-    validate_postal_codes() |>
+    validate_postal_codes(geocode_lookup_data) |>
     adjust_state_and_municipality_by_postal_code() |>
     add_region() |>
-    add_geocode_data_by_postal_code() |>
-    add_geocode_data_by_municipality() |>
-    remove_invalid_postal_codes()
+    add_geocode_data_by_postal_code(geocode_lookup_data) |>
+    add_geocode_data_by_municipality(geocode_lookup_data) |>
+    remove_invalid_postal_codes() |>
+    validate_brazil_geocodes(year = year)
 }
+
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+source(here::here("R", "get_brazil_municipality.R"))
 
 add_ibge_codes <- function(data) {
   prettycheck:::assert_tibble(data)
@@ -73,12 +86,22 @@ add_ibge_codes <- function(data) {
     dplyr::relocate(municipality_code, .before = municipality)
 }
 
-validate_postal_codes <- function(data) {
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
+
+source(here::here("R", "get_geocode_lookup_data.R"))
+
+validate_postal_codes <- function(
+    data,
+    geocode_lookup_data = get_geocode_lookup_data()
+  ) {
   prettycheck:::assert_tibble(data)
+  prettycheck:::assert_tibble(geocode_lookup_data)
 
   data |>
     dplyr::left_join(
-      get_geocode_lookup_data() |>
+      geocode_lookup_data |>
         rutils::shush() |>
         dplyr::select(state_code, municipality_code, postal_code),
       by = "postal_code",
@@ -112,7 +135,14 @@ validate_postal_codes <- function(data) {
     )
 }
 
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+source(here::here("R", "get_brazil_municipality.R"))
+
 adjust_state_and_municipality_by_postal_code <- function(data) {
+  prettycheck:::assert_tibble(data)
+
   data |>
     dplyr::mutate(
       state_code = dplyr::if_else(
@@ -151,6 +181,11 @@ adjust_state_and_municipality_by_postal_code <- function(data) {
     )
 }
 
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+source(here::here("R", "get_brazil_region.R"))
+
 add_region <- function(data) {
   prettycheck:::assert_tibble(data)
 
@@ -159,12 +194,22 @@ add_region <- function(data) {
     dplyr::relocate(region, .after = country)
 }
 
-add_geocode_data_by_postal_code <- function(data) {
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
+
+source(here::here("R", "get_geocode_lookup_data.R"))
+
+add_geocode_data_by_postal_code <- function(
+    data,
+    geocode_lookup_data = get_geocode_lookup_data()
+  ) {
   prettycheck:::assert_tibble(data)
+  prettycheck:::assert_tibble(geocode_lookup_data)
 
   data |>
     dplyr::left_join(
-      get_geocode_lookup_data() |>
+      geocode_lookup_data |>
         rutils::shush() |>
         dplyr::select(postal_code, latitude, longitude),
       by = "postal_code"
@@ -184,12 +229,23 @@ add_geocode_data_by_postal_code <- function(data) {
     dplyr::relocate(latitude, longitude, .after = postal_code)
 }
 
-add_geocode_data_by_municipality <- function(data) {
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
+# library(tidyr)
+
+source(here::here("R", "get_geocode_lookup_data.R"))
+
+add_geocode_data_by_municipality <- function(
+    data,
+    geocode_lookup_data = get_geocode_lookup_data()
+  ) {
   prettycheck:::assert_tibble(data)
+  prettycheck:::assert_tibble(geocode_lookup_data)
 
   data |>
     dplyr::left_join(
-      get_geocode_lookup_data() |>
+      geocode_lookup_data |>
         rutils::shush() |>
         dplyr::summarise(
           latitude = mean(latitude, na.rm = TRUE),
@@ -225,6 +281,9 @@ add_geocode_data_by_municipality <- function(data) {
     dplyr::select(-dplyr::ends_with("_lookup_data"))
 }
 
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
 remove_invalid_postal_codes <- function(data) {
   prettycheck:::assert_tibble(data)
 
@@ -237,4 +296,22 @@ remove_invalid_postal_codes <- function(data) {
       )
     )
     # dplyr::select(-is_postal_code_valid)
+}
+
+# library(dplyr)
+# library(geobr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
+
+source(here::here("R", "utils-plots.R"))
+
+validate_brazil_geocodes <- function(data, year = 2017) {
+  prettycheck:::assert_tibble(data)
+
+  data |>
+    filter_points_on_land(
+      geobr::read_country(year = year, showProgress = FALSE) |>
+        dplyr::pull(geom) |>
+        rutils::shush()
+    )
 }

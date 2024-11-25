@@ -14,6 +14,10 @@ library(targets)
 library(xml2)
 # library(yaml)
 
+# Load functions -----
+
+source(here::here("R/utils.R"))
+
 # Set general options -----
 
 options(
@@ -68,7 +72,7 @@ knitr::opts_chunk$set(
 # Set `ggplot2` -----
 
 ggplot2::theme_set(
-  ggplot2::theme_gray(
+  ggplot2::theme_bw(
     base_size = base_size,
     base_family = env_vars$sansfont,
     base_line_size = base_size / 22, # `ggplot2::theme_gray` default

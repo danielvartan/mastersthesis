@@ -20,63 +20,85 @@ library(rlang)
 # library(stats)
 # library(tidyr)
 
-source(here::here("R/utils.R"))
-source(here::here("R/utils-plots.R"))
+source(here::here("R", "utils.R"))
+source(here::here("R", "utils-plots.R"))
+
+# # Helpers
+#
+# # Possible bins
+# out |>
+#   dplyr::transmute(
+#     interval = cut(
+#       !!as.symbol(col_msf_sc),
+#       breaks = seq( # Two-day timeline
+#         from  = 0 + (15 * 60), # 15 minutes (left buffer)
+#         to = ((60 * 60 * 24) * 2) + (15 * 60), # 48 hours + 15 minutes
+#         by = 30 * 60 # 30 minutes
+#       ),
+#       dig.lab = 10
+#     )
+#   ) |>
+#   dplyr::pull(interval) |>
+#   levels() |>
+#   cut_mean() |>
+#   as.POSIXct(tz = "UTC")
 
 plot_chronotype <- function(
     data,
-    col = "msf_sc",
-    x_lab = "Frequency (%)",
-    y_lab = col,
+    col_msf_sc = "msf_sc",
     col_width = 0.8,
-    col_border = 0.6,
-    text_size = NULL,
+    col_border = 0.1,
+    x_label = "Frequency (%)",
+    y_label = latex2exp::TeX("Local time ($MSF_{sc}$)"),
+    fill_label = NULL, # "Chronotype"
+    theme = "bw",
+    legend = TRUE,
     legend_position = "right",
-    chronotype_cuts = FALSE
+    text_size = NULL,
+    print = TRUE,
+    ...
   ) {
-  prettycheck:::assert_tibble(data, min.rows = 1, min.cols = 1)
-  prettycheck:::assert_choice(col, names(data))
-  prettycheck:::assert_multi_class(x_lab, c("character", "latexexpression"))
-  prettycheck:::assert_length(x_lab, len = 1)
-  prettycheck:::assert_multi_class(y_lab, c("character", "latexexpression"))
-  prettycheck:::assert_length(y_lab, len = 1)
-  prettycheck:::assert_number(col_width)
-  prettycheck:::assert_number(col_border)
-  prettycheck:::assert_number(text_size, null.ok = TRUE)
-  prettycheck:::assert_choice(legend_position, c("left","top", "right", "bottom"))
-  prettycheck:::assert_flag(chronotype_cuts)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_choice(col_msf_sc, names(data))
+  prettycheck:::assert_number(col_width, lower = 0)
+  prettycheck:::assert_number(col_border, lower = 0)
+  prettycheck:::assert_flag(print)
 
-  if (is.null(y_lab)) {
-    if (hms::is_hms(data[[col]])) {
-      y_lab <- paste0("Local time (", col, ")")
-    } else if (lubridate::is.duration(data[[col]])) {
-      y_lab <- paste0("Duration (", col, ")")
+  if (is.null(y_label)) {
+    if (hms::is_hms(data[[col_msf_sc]])) {
+      y_label <- paste0("Local time (", col_msf_sc, ")")
+    } else if (lubridate::is.duration(data[[col_msf_sc]])) {
+      y_label <- paste0("Duration (", col_msf_sc, ")")
     } else {
-      y_lab <- col
+      y_label <- col_msf_sc
     }
   }
 
   out <-
     data |>
-    dplyr::select(!!as.symbol(col)) |>
+    dplyr::select(!!as.symbol(col_msf_sc)) |>
     tidyr::drop_na() |>
-    dplyr::mutate(!!as.symbol(col) := transform_time(!!as.symbol(col)))
+    dplyr::mutate(
+      !!as.symbol(col_msf_sc) := transform_time(!!as.symbol(col_msf_sc))
+    )
 
   aes <-
     out |>
     dplyr::group_by(
-      interval = cut(
-        !!as.symbol(col),
-        breaks = seq(
-          0 + (15 * 60), ((60 * 60 * 24) * 2) + (15 * 60),
-          by = 30 * 60
-          ),
+      interval = cut( # Possibles bins.
+        !!as.symbol(col_msf_sc),
+        breaks = seq( # Two-day timeline: 1970-01-01--1970-01-02
+          from  = 0 + (15 * 60), # 15 minutes (left buffer)
+          to = ((60 * 60 * 24) * 2) + (15 * 60), # 48 hours + 15 minutes
+          by = 30 * 60 # 30 minutes
+        ),
         dig.lab = 10
       )
     ) |>
     dplyr::summarise(freq = dplyr::n()) |>
     dplyr::mutate(
       order = seq_along(interval),
+      # Transform bins in `Interval` objects.
       interval = transform_cut_levels(as.character(interval)),
       freq = (freq / sum(freq)) * 100,
       label =
@@ -92,41 +114,7 @@ plot_chronotype <- function(
   # -----|---------------|---------------|---------------|------
   #    00:15           00:45           01:15           01:45
 
-  ## See `ggplot2::cut_interval()`.
-  probs <- c(
-    0 / 3 / 3,
-    1 / 3 / 3,
-    2 / 3 / 3,
-    3 / 3 / 3,
-    6 / 3 / 3,
-    7 / 3 / 3,
-    8 / 3 / 3,
-    9 / 3 / 3
-  )
-
-  fill <-
-    out |>
-    dplyr::group_by(
-      interval = cut(
-        !!as.symbol(col),
-        breaks = quantile(
-          transform_time(rutils:::drop_na(!!as.symbol(col))),
-          probs
-        ),
-        dig.lab = 10,
-        include.lowest = TRUE
-      )
-    ) |>
-    dplyr::summarise(freq = dplyr::n()) |>
-    dplyr::mutate(
-      order = seq_along(interval),
-      interval = transform_cut_levels(as.character(interval)),
-      freq = (freq / sum(freq)) * 100,
-      label = c(
-        "Extremely early", "Moderately early", "Slightly early",
-        "Intermediate", "Slightly late", "Moderately late", "Extremely late"
-        )
-    )
+  fill <- data |> get_chronotype_cutoffs(col_msf_sc = "msf_sc")
 
   out <-
     aes |>
@@ -179,43 +167,26 @@ plot_chronotype <- function(
     ) +
     ggplot2::scale_x_continuous(minor_breaks = NULL) +
     ggplot2::scale_y_discrete(labels = labels_char_hms) +
-    # ggplot2::scale_fill_manual(
-    #     values = c(
-    #       "#fde725", "#90d743", "#35b779", "#21918c", "#31688e", "#443983",
-    #       "#440154"
-    #     )
-    # ) +
     ggplot2::scale_fill_manual(
       values = c(
-        "#FF1E00", "#FF7C00", "#FDD400", "#00CB00", "#009DF5", "#0040F7",
-        "#981EAF"
+        "#FF1E00", "#FF7C00", "#FDD400", "#00CB00", "#009DF5",
+        "#0040F7", "#981EAF"
       )
     ) +
-    ggplot2::labs(x = x_lab, y = y_lab, fill = "Chronotype") +
-    ggplot2::theme(
-      # panel.grid.major.y = ggplot2::element_line(
-      #     size = 0.6,
-      #     linetype = "longdash",
-      #     colour = "#C4C4C4"
-      # ),
-      # panel.grid.major.x = ggplot2::element_line(
-      #     size = 0,
-      #     linetype = "blank",
-      #     colour = "white"
-      # ),
-      # panel.grid.minor.x = ggplot2::element_line(
-      #     size = 0,
-      #     linetype = "blank",
-      #     colour = "white"
-      # ),
-      text = ggplot2::element_text(size = text_size),
-      legend.position = legend_position
+    add_labels(
+      x = x_label,
+      y = y_label,
+      fill = fill_label
+    ) +
+    add_theme(
+      theme = theme,
+      legend = TRUE,
+      legend_position = legend_position,
+      text_size = text_size,
+      ...
     )
 
-  if (isTRUE(chronotype_cuts)) {
-    invisible(fill)
-  } else {
-    print(plot)
-    invisible(plot)
-  }
+  if (isTRUE(print)) print(plot)
+
+  invisible(plot)
 }

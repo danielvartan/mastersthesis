@@ -1134,6 +1134,23 @@
       ],
       "Hash": "aad38d027d0dd18621e213919c20a65f"
     },
+    "gginnards": {
+      "Package": "gginnards",
+      "Version": "0.2.0-1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "ggplot2",
+        "magrittr",
+        "methods",
+        "rlang",
+        "stringr",
+        "tibble",
+        "utils"
+      ],
+      "Hash": "e91b4e22315b5fe48f9acdac06c8b8a1"
+    },
     "ggplot2": {
       "Package": "ggplot2",
       "Version": "3.5.1",
@@ -1158,6 +1175,27 @@
         "withr"
       ],
       "Hash": "44c6a2f8202d5b7e878ea274b1092426"
+    },
+    "ggspatial": {
+      "Package": "ggspatial",
+      "Version": "1.1.9",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "abind",
+        "ggplot2",
+        "glue",
+        "grid",
+        "methods",
+        "rlang",
+        "rosm",
+        "scales",
+        "sf",
+        "tibble",
+        "tidyr"
+      ],
+      "Hash": "0a4e5ed181eb823957df790ec11a28fc"
     },
     "ggstats": {
       "Package": "ggstats",
@@ -1582,6 +1620,16 @@
       ],
       "Hash": "5baae149f1082f466df9d1442ba7aa65"
     },
+    "jpeg": {
+      "Package": "jpeg",
+      "Version": "0.1-10",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "031a0b683d001a7519202f0628fc0358"
+    },
     "jquerylib": {
       "Package": "jquerylib",
       "Version": "0.1.4",
@@ -1877,13 +1925,6 @@
         "lubridate"
       ],
       "Hash": "8b5b58633f31bf9f5eb4a6ee3ff9d38d"
-    },
-    "measurements": {
-      "Package": "measurements",
-      "Version": "1.5.1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "41048afe78a532294e39e3a43142ea0c"
     },
     "memoise": {
       "Package": "memoise",
@@ -2262,7 +2303,7 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "prettycheck",
       "RemoteUsername": "danielvartan",
-      "RemoteSha": "517e473c1ffeccac6184b20639c8429a317dff60",
+      "RemoteSha": "dbe83404007cc8c0874092c8e9fc73dba5368163",
       "Requirements": [
         "R",
         "checkmate",
@@ -2281,7 +2322,7 @@
         "tibble",
         "utils"
       ],
-      "Hash": "78e0d6eedf8e2385b43c17a76bcd1d48"
+      "Hash": "a84fd13cb00b557c84b8f94197dd88e8"
     },
     "prettyunits": {
       "Package": "prettyunits",
@@ -2647,6 +2688,22 @@
       ],
       "Hash": "062470668513dcda416927085ee9bdc7"
     },
+    "rosm": {
+      "Package": "rosm",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "curl",
+        "glue",
+        "jpeg",
+        "png",
+        "progress",
+        "rlang",
+        "wk"
+      ],
+      "Hash": "fcd529f183c4163a91430d7b7bbaece5"
+    },
     "rprojroot": {
       "Package": "rprojroot",
       "Version": "2.0.4",
@@ -3001,6 +3058,19 @@
         "vctrs"
       ],
       "Hash": "960e2ae9e09656611e0b8214ad543207"
+    },
+    "suntools": {
+      "Package": "suntools",
+      "Version": "1.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "methods",
+        "sf",
+        "stats"
+      ],
+      "Hash": "4a6a1d9d3a0ca173df4a4cb49ec32433"
     },
     "survival": {
       "Package": "survival",

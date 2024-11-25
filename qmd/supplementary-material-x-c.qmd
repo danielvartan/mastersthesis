@@ -44,6 +44,7 @@ library(tidygeocoder)
 ```{r}
 #| output: false
 
+source(here::here("R", "get_brazil_fu.R"))
 source(here::here("R", "get_qualocep_data.R"))
 source(here::here("R", "render_brazil_address.R"))
 source(here::here("R", "utils.R"))

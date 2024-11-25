@@ -123,3 +123,93 @@ std_error <- function(x){
 
   stats::sd(x, na.rm = TRUE) / sqrt(length(x))
 }
+
+# This is based on: <https://stackoverflow.com/a/61354463/8258804>
+
+# library(dplyr)
+# library(methods)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+mode <- function(x) {
+  prettycheck:::assert_atomic(x)
+
+  out <-
+    dplyr::tibble(x = x) |>
+    dplyr::count(x) |>
+    dplyr::arrange(dplyr::desc(n))
+
+  if (out$n[1] == 1 | is.na(out$n[1]) |
+      out$n[1] == out$n[2]) {
+    methods::as(NA, class(x)[1])
+  } else {
+    out$x[1]
+  }
+}
+
+get_midpoint <- function(cuts) {
+  prettycheck:::assert_factor(cuts)
+
+  out <- cuts |> levels() |> magrittr::extract(as.numeric(cuts))
+
+  get_fun <- function(x) {
+    x |>
+      stringr::str_remove_all("\\(|\\[|\\)|\\]") |>
+      stringr::str_split(",") |>
+      unlist() |>
+      as.numeric() |>
+      mean()
+  }
+
+  out |> sapply(get_fun)
+}
+
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(stats)
+
+test_outlier <- function(
+    x,
+    method = "iqr",
+    iqr_mult = 1.5,
+    sd_mult = 3
+  ) {
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_choice(method, c("iqr", "sd"))
+  prettycheck:::assert_number(iqr_mult)
+  prettycheck:::assert_number(sd_mult)
+
+  if (method == "iqr") {
+    iqr <- stats::IQR(x, na.rm = TRUE)
+    min <- stats::quantile(x, 0.25, na.rm = TRUE) - (iqr_mult * iqr)
+    max <- stats::quantile(x, 0.75, na.rm = TRUE) + (iqr_mult * iqr)
+  } else if (method == "sd") {
+    min <- mean(x, na.rm = TRUE) - (sd_mult * stats::sd(x, na.rm = TRUE))
+    max <- mean(x, na.rm = TRUE) + (sd_mult * stats::sd(x, na.rm = TRUE))
+  }
+
+  dplyr::if_else(x > min & x < max, FALSE, TRUE, missing = FALSE)
+}
+
+library(magrittr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+remove_outliers <- function(
+    x,
+    method = "iqr",
+    iqr_mult = 1.5,
+    sd_mult = 3
+  ) {
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_choice(method, c("iqr", "sd"))
+  prettycheck:::assert_number(iqr_mult, lower = 1)
+  prettycheck:::assert_number(sd_mult, lower = 0)
+
+  x |>
+    test_outlier(
+      method = method,
+      iqr_mult = iqr_mult,
+      sd_mult = sd_mult
+    ) %>% # Don't change the pipe.
+    `!`() %>% # Don't change the pipe.
+    magrittr::extract(x, .)
+}

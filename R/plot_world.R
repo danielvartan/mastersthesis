@@ -40,7 +40,7 @@ plot_world_countries <- function(
     color_high = NULL,
     color_brewer = "YlOrRd", # RColorBrewer::display.brewer.all()
     color_na = NA,
-    color_border = "gray90",
+    color_border = "gray75",
     color_bg = "white",
     linewidth = 0.1,
     binned = TRUE,
@@ -50,9 +50,9 @@ plot_world_countries <- function(
     x_label = NULL, # "Longitude"
     y_label = NULL, # Latitude"
     fill_label = NULL,
+    theme = "bw",
     legend = TRUE,
     text_size = NULL,
-    theme = "default",
     print = TRUE
   ) {
   prettycheck:::assert_tibble(data)
@@ -66,6 +66,9 @@ plot_world_countries <- function(
   prettycheck:::assert_color(color_bg, na_ok = TRUE)
   prettycheck:::assert_number(linewidth, lower = 0, na.ok = TRUE)
   prettycheck:::assert_flag(print)
+
+  world_data <-
+
 
   plot <-
     data |>
@@ -86,11 +89,7 @@ plot_world_countries <- function(
       name_col_ref = "ID"
     ) |>
     dplyr::right_join(
-      maps::map(
-        "world",
-        plot = FALSE,
-        fill = TRUE
-      ) |>
+      maps::map("world", plot = FALSE, fill = TRUE) |>
         sf::st_as_sf(),
       by = "ID"
     ) |>

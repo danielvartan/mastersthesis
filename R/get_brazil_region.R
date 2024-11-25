@@ -3,7 +3,6 @@
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 source(here::here("R", "utils.R"))
-source(here::here("R", "utils-checks.R"))
 
 # Based on data from the Brazilian Institute of Geography and Statistics (IBGE).
 # See <https://sidra.ibge.gov.br/territorio> to learn more.
@@ -18,7 +17,6 @@ get_brazil_region <- function(x = NULL, type = "fu") {
   if (is.null(x)) {
     c("Central-West", "North", "Northeast", "South", "Southeast")
   } else if (type == "fu") {
-    # assert_brazil_fu(x)
 
     dplyr::case_when(
       x == "ac" ~ "North",
@@ -50,7 +48,6 @@ get_brazil_region <- function(x = NULL, type = "fu") {
       x == "to" ~ "North"
     )
   } else if (type == "state") {
-    # assert_brazil_region(x)
 
     dplyr::case_when(
       x == "acre" ~ "North",

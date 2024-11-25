@@ -454,12 +454,11 @@ Local time of the sleep corrected midpoint between sleep onset and sleep end on 
 #| warning: false
 
 library(magrittr)
-source(here::here("R/stats_sum.R"))
+source(here::here("R", "stats_summary.R"))
 
 data |> 
   magrittr::extract2("msf_sc") |>
-  stats_sum(print = FALSE) |>
-  list_as_tibble() |>
+  stats_summary() |>
   knitr::kable()
 ```
 
@@ -653,12 +652,11 @@ Local time of the sleep corrected midpoint between sleep onset and sleep end on 
 #| warning: false
 
 library(magrittr)
-source(here::here("R/stats_sum.R"))
+source(here::here("R", "stats_summary.R"))
 
 data |> 
   magrittr::extract2("msf_sc") |>
-  stats_sum(print = FALSE) |>
-  list_as_tibble() |>
+  stats_summary() |>
   knitr::kable()
 ```
 

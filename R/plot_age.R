@@ -11,22 +11,31 @@ library(rlang)
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-plots.R"))
 
-# # TO DO
+# # To do
 #
 # - Add option to cut-offs like Roenneberg et al. (2007).
 #    See cut-offs above 60.
 # - Create `plot_msf_sc series()`.
 
-plot_age_series <- function(data,
-                            col = "msf_sc",
-                            y_lab = col,
-                            line_width = 2,
-                            boundary = 0.5,
-                            point_size = 1,
-                            error_bar_width = 0.5,
-                            error_bar_linewidth = 0.5,
-                            error_bar = TRUE,
-                            text_size = NULL) {
+plot_age_series <- function(
+    data,
+    col = "msf_sc",
+    line_width = 2,
+    boundary = 0.5,
+    point_size = 1,
+    error_bar_width = 0.5,
+    error_bar_linewidth = 0.5,
+    error_bar = TRUE,
+    date_breaks = "30 mins",
+    minor_breaks = NULL,
+    title = NULL,
+    subtitle = NULL,
+    x_label = "Age",
+    y_label = latex2exp::TeX("$MSF_{sc}$"), # "$MSF_{sc} \\pm SEM$"
+    theme = "bw",
+    text_size = NULL,
+    print = TRUE
+  ) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
 
   prettycheck:::assert_tibble(data)
@@ -34,22 +43,28 @@ plot_age_series <- function(data,
   prettycheck:::assert_subset(col, names(data))
   prettycheck:::assert_subset(c("sex", "age", col), names(data))
   prettycheck:::assert_multi_class(data[[col]], col_classes)
-  prettycheck:::assert_multi_class(y_lab, c("character", "latexexpression"))
-  prettycheck:::assert_length(y_lab, len = 1)
+  prettycheck:::assert_multi_class(y_label, c("character", "latexexpression"))
+  prettycheck:::assert_length(y_label, len = 1)
   prettycheck:::assert_number(line_width)
   prettycheck:::assert_number(boundary)
   prettycheck:::assert_number(point_size)
   prettycheck:::assert_number(error_bar_width)
   prettycheck:::assert_number(error_bar_linewidth)
   prettycheck:::assert_flag(error_bar)
-  prettycheck:::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_string(date_breaks)
 
-  if (y_lab == col && hms::is_hms(data[[col]])) {
-    y_lab = paste0("Local time (", col, " +- SEM)")
+  prettycheck:::assert_multi_class(
+    minor_breaks, c("waiver", "numeric"), null.ok = TRUE
+  )
+
+  prettycheck:::assert_flag(print)
+
+  if (y_label == col && hms::is_hms(data[[col]])) {
+    y_label = paste0("Local time (", col, " +- SEM)")
   }
 
-  if (y_lab == col && prettycheck:::test_duration(data[[col]])) {
-    y_lab = paste0("Duration (", col, " +- SEM)")
+  if (y_label == col && prettycheck:::test_duration(data[[col]])) {
+    y_label = paste0("Duration (", col, " +- SEM)")
   }
 
   data <-
@@ -104,7 +119,6 @@ plot_age_series <- function(data,
       size = point_size
     ) +
     ggplot2::scale_x_discrete(breaks = label_decimal_fix) +
-    ggplot2::labs(x = "Age", y = y_lab) +
     viridis::scale_color_viridis(
       name = "Sex",
       begin = 0.25,
@@ -112,10 +126,25 @@ plot_age_series <- function(data,
       discrete = TRUE,
       option = "viridis"
     ) +
-    ggplot2::theme(text = ggplot2::element_text(size = text_size))
+    add_labels(
+      title = title,
+      subtitle = subtitle,
+      x = x_label,
+      y = y_label
+    ) +
+    add_theme(
+      theme = theme,
+      text_size = text_size
+    )
 
   if (inherits(data[[col]], c("POSIXt", "hms", "Duration"))) {
-    plot <- plot + ggplot2::scale_y_datetime(date_labels = "%H:%M:%S")
+    plot <-
+      plot +
+      ggplot2::scale_y_datetime(
+        date_breaks = date_breaks,
+        minor_breaks = minor_breaks,
+        date_labels = "%H:%M:%S",
+      )
   }
 
   if (isTRUE(error_bar)) {
@@ -137,7 +166,8 @@ plot_age_series <- function(data,
       )
   }
 
-  print(plot)
+  if (isTRUE(print)) print(plot)
+
   invisible(plot)
 }
 
@@ -149,19 +179,33 @@ library(ggplot2)
 # library(tidyr)
 # library(viridis)
 
-plot_age_pyramid <- function(data,
-                             interval = 10,
-                             na_rm = TRUE,
-                             text_size = NULL){
+source(here::here("R", "utils.R"))
+source(here::here("R", "utils-plots.R"))
+
+## To do
+##
+## - Create a `pretty_breaks()` function.
+
+plot_age_pyramid <- function(
+    data,
+    interval = 10,
+    breaks = NULL,
+    na_rm = TRUE,
+    theme = "bw",
+    text_size = NULL,
+    print = TRUE
+  ){
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_subset(c("sex", "age"), names(data))
   prettycheck:::assert_number(interval)
+  prettycheck:::assert_numeric(breaks, null_ok = TRUE)
+  prettycheck::assert_pick(interval, breaks, min_pick = 1)
   prettycheck:::assert_flag(na_rm)
   prettycheck:::assert_number(text_size, null.ok = TRUE)
 
-  ## TODO:
-  ##
-  ## * Create a `pretty_breaks()` function.
+  if (is.null(breaks)) {
+    breaks <- pretty(data$age, n = interval)
+  }
 
   plot <- rutils::shush(
     data |>
@@ -169,7 +213,7 @@ plot_age_pyramid <- function(data,
       dplyr::mutate(
         age_group = cut(
           age,
-          breaks = pretty(age, n = interval),
+          breaks = breaks,
           right = FALSE,
           include.lowest = TRUE
         )
@@ -188,11 +232,13 @@ plot_age_pyramid <- function(data,
         discrete = TRUE,
         option = "viridis"
       ) +
-      ggplot2::theme(
-        text = ggplot2::element_text(size = text_size)
+      add_theme(
+        theme = theme,
+        text_size = text_size
       )
   )
 
-  print(plot)
+  if (isTRUE(print)) print(plot)
+
   invisible(plot)
 }

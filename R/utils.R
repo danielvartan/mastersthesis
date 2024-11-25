@@ -1,3 +1,17 @@
+change_sign <- function(x) x * (-1)
+
+# library(here)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(stringr)
+
+to_relative_path <- function(path) {
+  prettycheck:::assert_string(path)
+
+  path <- stringr::str_remove(path, here::here())
+
+  paste0(".", path)
+}
+
 # library(hms)
 # library(lubritime) # github.com/danielvartan/lubritime
 # library(prettycheck) # github.com/danielvartan/prettycheck
@@ -113,6 +127,18 @@ list_as_tibble <- function(list) {
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
+format_to_md_latex <- function(x, key = "$") {
+  prettycheck:::assert_atomic(x)
+  prettycheck:::assert_string(key)
+
+  x |>
+    stringr::str_replace_all("\\$", "\\\\$") %>%
+    paste0(key, ., key)
+}
+
+library(magrittr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
 inverse_log_max <- function(x, base = exp(1)) {
   prettycheck:::assert_numeric(x)
   prettycheck:::assert_number(base)
@@ -172,4 +198,26 @@ cli_test_fun <- function(test) {
   } else {
     cli::col_red
   }
+}
+
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(stringr)
+
+# x <- c("BRT", "EST", "BRT")
+# paired_vector <- c("EST" = "EST", "BRT" = "America/Sao_Paulo")
+# look_and_replace_chr(x, paired_vector)
+look_and_replace_chr <- function(x, paired_vector) {
+  prettycheck:::assert_atomic(x)
+  prettycheck:::assert_atomic(paired_vector)
+  prettycheck:::assert_character(names(paired_vector), null.ok = FALSE)
+
+  x <- stringr::str_squish(x)
+
+  dplyr::case_when(
+    x %in% names(paired_vector) ~
+      paired_vector[match(x, names(paired_vector))],
+    TRUE ~ NA
+  ) |>
+    unname()
 }

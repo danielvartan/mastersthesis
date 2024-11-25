@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Activities during the development of this thesis
+# Works and activities during the development of this thesis
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}

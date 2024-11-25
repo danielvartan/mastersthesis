@@ -31,7 +31,7 @@ get_lookup_data <- function(
       file <- stringr::str_remove(file, "\\.lockr$")
     }
 
-    lookup_data <- readr::read_rds(file)
+    out <- readr::read_rds(file)
   } else {
     prettycheck:::assert_internet()
 
@@ -57,8 +57,8 @@ get_lookup_data <- function(
 
   lockr::unlock_file(file, private_key = private_key, password = password)
   file <- stringr::str_remove(file, "\\.lockr$")
-  lookup_data <- readr::read_rds(file)
+  out <- readr::read_rds(file)
   lockr::lock_file(file, public_key = public_key, remove_file = TRUE)
 
-  invisible(lookup_data)
+  invisible(out)
 }

@@ -115,7 +115,7 @@ tidy_data_ <- function(
       private_key = private_key
     ) |>
     fix_character_vars() |>
-    nest_vars() |>
+    nest_work_vars() |>
     select_vars()
 }
 
@@ -164,7 +164,10 @@ fix_var_classes <- function(data) {
   data |>
     dplyr::mutate(
       id = as.integer(id),
-      timestamp = lubridate::ymd_hms(paste(date, time)),
+      timestamp = lubridate::ymd_hms(
+        paste(date, time),
+        tz = "America/Sao_Paulo"
+      ),
       birth_date = lubridate::ymd(birth_date, quiet = TRUE),
       sex = factor(
         as.numeric(sex),
@@ -366,7 +369,7 @@ fix_character_vars <- function(data) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(tidyr)
 
-nest_vars <- function(data) {
+nest_work_vars <- function(data) {
   prettycheck:::assert_tibble(data)
 
   data |>

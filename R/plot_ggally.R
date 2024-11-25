@@ -3,25 +3,31 @@ library(GGally)
 library(ggplot2)
 # library(hms)
 # library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
 # library(viridis)
 
-source(here::here("R/utils.R"))
+source(here::here("R", "utils.R"))
+source(here::here("R", "utils-plots.R"))
 
-# ggplot2::aes(colour = sex)
-plot_ggally <- function(data,
-                        cols,
-                        mapping = NULL,
-                        axis_labels = "none",
-                        na_rm = TRUE,
-                        text_size = NULL) {
+plot_ggally <- function(
+    data,
+    cols = names(data),
+    mapping = NULL, # ggplot2::aes(colour = sex)
+    axis_labels = "none",
+    na_rm = TRUE,
+    theme = "bw",
+    text_size = NULL,
+    print = TRUE,
+    ...
+  ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_character(cols)
   prettycheck:::assert_subset(cols, names(data))
   prettycheck:::assert_class(mapping, "uneval", null.ok = TRUE)
   prettycheck:::assert_choice(axis_labels, c("show", "internal", "none"))
   prettycheck:::assert_flag(na_rm)
-  prettycheck:::assert_number(text_size, null.ok = TRUE)
+  prettycheck:::assert_flag(print)
 
   out <-
     data|>
@@ -40,23 +46,23 @@ plot_ggally <- function(data,
       )
     )
 
-  if (isTRUE(na_rm)) {
-    out <- out|> tidyr::drop_na(dplyr::all_of(cols))
-  }
+  if (isTRUE(na_rm)) out <- out |> tidyr::drop_na()
 
   if (is.null(mapping)) {
     plot <-
       out|>
       GGally::ggpairs(
         lower = list(continuous = "smooth"),
-        axisLabels = axis_labels
+        axisLabels = axis_labels,
+        ...
       )
   } else {
     plot <-
       out|>
       GGally::ggpairs(
         mapping = mapping,
-        axisLabels = axis_labels
+        axisLabels = axis_labels,
+        ...
       ) +
       viridis::scale_color_viridis(
         begin = 0.25,
@@ -72,11 +78,16 @@ plot_ggally <- function(data,
       )
   }
 
-  plot <- plot +
-    ggplot2::theme(
-      text = ggplot2::element_text(size = text_size)
+  plot <-
+    plot +
+    add_theme(
+      theme = theme,
+      text_size = text_size,
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank()
     )
 
-  print(plot)
+  if (isTRUE(print)) print(plot)
+
   invisible(plot)
 }

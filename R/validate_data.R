@@ -6,6 +6,7 @@
 # library(lubritime) # github.com/danielvartan/lubritime
 # library(mctq)
 # library(prettycheck) # github.com/danielvartan/prettycheck
+# library(purrr)
 # library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
 # library(scaler) # github.com/danielvartan/scaler
@@ -166,7 +167,10 @@ validate_emails <- function(data) {
   data |>
     dplyr::mutate(
       email = dplyr::case_when(
-        stringr::str_detect(email,"^[[:alnum:]._-]+@[[:alnum:].-]+$") ~ email
+        stringr::str_detect(
+          email,
+          "^[[:alnum:]._-]+@[[:alnum:].-]+$"
+        ) ~ email
       )
     )
 }
@@ -226,6 +230,7 @@ validate_ranges <- function(data) {
 
 # library(dplyr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
+# library(purrr)
 library(rlang)
 # library(stringr)
 # library(tidyr)
@@ -285,8 +290,7 @@ validate_work_study <- function(data){
       )
   }
 
-  out <-
-    out |>
+  out |>
     tidyr::nest(
       work_periods = c(
         work_morning, work_afternoon, work_evening, work_wee_hours
@@ -297,9 +301,19 @@ validate_work_study <- function(data){
     ) |>
     dplyr::relocate(work_periods, .after = study) |>
     dplyr::relocate(study_periods, .after = work_periods)|>
-    dplyr::select(-dummy)
-
-  out
+    dplyr::select(-dummy) |>
+    dplyr::mutate(
+      dplyr::across(
+        .cols = dplyr::all_of(c("work_periods", "study_periods")),
+        .fns = ~ .x |>
+          purrr::map(
+            .f = ~ .x |>
+              dplyr::rename_with(
+                .fn = ~ c("morning", "afternoon", "evening", "wee_hours")
+              )
+          )
+      )
+    )
 }
 
 # library(dplyr)
@@ -435,8 +449,7 @@ remove_duplicates_and_blanks <- function(data) {
     dplyr::ungroup() |>
     dplyr::select(length)
 
-  out <-
-    data |>
+  data |>
     dplyr::bind_cols(count) |>
     dplyr::arrange(dplyr::desc(length)) |>
     dplyr::group_by(email, birth_date) |>
@@ -464,6 +477,4 @@ remove_duplicates_and_blanks <- function(data) {
     dplyr::filter(!dup == TRUE, length > 8) |>
     dplyr::select(-dup, -length) |>
     dplyr::arrange(id)
-
-  out
 }

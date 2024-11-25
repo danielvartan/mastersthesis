@@ -4,7 +4,7 @@
 # library(lubridate)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R", "test_outlier.R"))
+source(here::here("R", "get_brazil_state.R"))
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-stats.R"))
 

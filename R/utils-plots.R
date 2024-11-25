@@ -3,18 +3,21 @@
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 
-labels_hms <- function(x, type = "even") {
+labels_hms <- function(x, type = NULL) {
   classes <- c("numeric", "Duration", "difftime", "hms", "POSIXct",
                "POSIXlt", "Interval")
 
   prettycheck:::assert_multi_class(x, classes)
 
-  if (hms::is_hms(x)) out <- lubritime:::fix_hms(x)
-
-  out <-
-    out |>
-    hms::as_hms() |>
-    substr(1, 5)
+  if (hms::is_hms(x)) {
+    out <- lubritime:::fix_hms(x)
+  } else {
+    out <-
+      x |>
+      lubritime::cycle_time(lubridate::ddays()) |>
+      hms::as_hms() |>
+      substr(1, 5)
+  }
 
   if (!is.null(type)) out <- out |> rutils:::label_jump(type = type)
 
@@ -228,42 +231,38 @@ cut_mean <- function(x, round = TRUE) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(sf)
 
-filter_points_on_land <- function(data, geom) {
+filter_points_on_land <- function(data, geometry) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_subset(c("longitude", "latitude"), names(data))
-  prettycheck:::assert_class(geom, "sf")
+  prettycheck:::assert_class(geometry, "sfc_MULTIPOLYGON")
 
-  box <-
-    geom |>
-    magrittr::extract2("geom") |>
-    sf::st_bbox()
+  box <- geometry |> sf::st_bbox()
+
+  data <-
+    data |>
+    dplyr::mutate(row_number = dplyr::row_number()) |>
+    dplyr::relocate(row_number)
+
+  na_cases <-
+    data |>
+    dplyr::select(row_number, latitude, longitude) |>
+    dplyr::filter(is.na(latitude) | is.na(longitude))
 
   points <-
     data |>
-    dplyr::filter(
-      longitude > box$xmin,
-      longitude < box$xmax,
-      latitude > box$ymin,
-      latitude < box$ymax
+    dplyr::select(row_number, latitude, longitude) |>
+    tidyr::drop_na() |>
+    sf::st_as_sf(
+      coords = c("longitude", "latitude"),
+      crs = sf::st_crs(geometry)
     ) |>
-    sf::st_as_sf(coords = c("longitude", "latitude"), crs = sf::st_crs(geom))
+    sf::st_filter(geometry)
 
-  points <-
-    points |>
-    dplyr::mutate(on_land = lengths(sf::st_within(points, geom))) |>
-    dplyr::filter(on_land == 1) |>
-    dplyr::select(-on_land)
+  valid_rows <- c(points$row_number, na_cases$row_number)
 
-  points <-
-    points |>
-    sf::st_coordinates() |>
-    dplyr::as_tibble() |>
-    dplyr::bind_cols(points) |>
-    dplyr::mutate(
-      latitude = Y,
-      longitude = X
-    ) |>
-    dplyr::select(-X, -Y)
+  data |>
+    dplyr::filter(row_number %in% valid_rows) |>
+    dplyr::select(-row_number)
 }
 
 # library(cli)
@@ -278,7 +277,7 @@ get_map_fill_data <- function(
     col_code,
     name_col_value = "n",
     name_col_ref = col_code
-) {
+  ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(col_fill, null.ok = TRUE)
   prettycheck:::assert_choice(col_fill, names(data), null.ok = TRUE)
@@ -326,7 +325,21 @@ get_map_fill_data <- function(
   }
 }
 
-# library(ggplot2)
+# library(gginnards)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+rm_scale <- function(plot) {
+  prettycheck:::assert_class(plot, "gg")
+
+  # plot$layers[[3]]$constructor[[1]][[3]]
+  # plot$layers[[3]] <- NULL
+
+  plot |>
+    gginnards::delete_layers("GeomScaleBar") |>
+    gginnards::delete_layers("GeomNorthArrow")
+}
+
+library(ggplot2)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(viridis)
 
@@ -335,11 +348,13 @@ add_color_scale <- function(
     alpha = 1,
     direction = 1,
     color_brewer = "YlOrRd",
-    color_low,
-    color_high,
+    color_low = NULL,
+    color_high = NULL,
     color_na = NA,
+    binary = FALSE,
     binned = FALSE,
     breaks = ggplot2::waiver(),
+    labels = ggplot2::waiver(),
     limits = NULL,
     point = FALSE,
     transform = "identity",
@@ -350,12 +365,14 @@ add_color_scale <- function(
   prettycheck:::assert_choice(direction, c(-1, 1))
 
   prettycheck:::assert_choice(
-    color_brewer, RColorBrewer::brewer.pal.info |> row.names()
+    color_brewer, RColorBrewer::brewer.pal.info |> row.names(), null.ok = TRUE
   )
 
   prettycheck:::assert_color(color_na, na_ok = TRUE)
+  prettycheck:::assert_flag(binary)
   prettycheck:::assert_flag(binned)
-  prettycheck:::assert_multi_class(breaks, c("waiver", "numeric"))
+  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
 
   prettycheck:::assert_multi_class(
     limits, c("numeric", "function"), null.ok = TRUE
@@ -364,6 +381,8 @@ add_color_scale <- function(
   prettycheck:::assert_flag(point)
   prettycheck:::assert_multi_class(transform, c("character", "transform"))
 
+
+  if (isTRUE(binary)) binned <- FALSE
 
   if (is.null(viridis)) {
     if (is.null(color_low) || is.null(color_high)) {
@@ -378,6 +397,7 @@ add_color_scale <- function(
         high = color_high,
         na.value = color_na,
         breaks = breaks,
+        labels = labels,
         limits = limits,
         transform = transform,
         ...
@@ -389,6 +409,18 @@ add_color_scale <- function(
         high = color_high,
         na.value = color_na,
         breaks = breaks,
+        labels = labels,
+        limits = limits,
+        transform = transform,
+        ...
+      )
+    } else if (isTRUE(binary)) {
+      ggplot2::scale_fill_continuous(
+        low = color_high,
+        high = color_high,
+        na.value = color_na,
+        breaks = breaks,
+        labels = labels,
         limits = limits,
         transform = transform,
         ...
@@ -399,6 +431,7 @@ add_color_scale <- function(
         high = color_high,
         na.value = color_na,
         breaks = breaks,
+        labels = labels,
         limits = limits,
         transform = transform,
         ...
@@ -412,6 +445,7 @@ add_color_scale <- function(
         direction = direction,
         na.value = color_na,
         breaks = breaks,
+        labels = labels,
         limits = limits,
         transform = transform,
         ...
@@ -426,6 +460,7 @@ add_color_scale <- function(
         ),
         na.value = color_na,
         breaks = breaks,
+        labels = labels,
         limits = limits,
         transform = transform,
         ...
@@ -437,6 +472,7 @@ add_color_scale <- function(
         direction = direction,
         na.value = color_na,
         breaks = breaks,
+        labels = labels,
         limits = limits,
         transform = transform,
         ...
@@ -445,25 +481,34 @@ add_color_scale <- function(
   }
 }
 
-# library(ggplot2)
+library(ggplot2)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 add_labels <- function(
     title = NULL,
     subtitle = NULL,
-    x_label = "Longitude",
-    y_label = "Latitude",
+    x_label = NULL,
+    y_label = NULL,
     color_label = NULL,
     fill_label = NULL,
     size_label = NULL
   ) {
-  prettycheck:::assert_string(title, null.ok = TRUE)
-  prettycheck:::assert_string(subtitle, null.ok = TRUE)
-  prettycheck:::assert_string(x_label, null.ok = TRUE)
-  prettycheck:::assert_string(y_label, null.ok = TRUE)
-  prettycheck:::assert_string(color_label, null.ok = TRUE)
-  prettycheck:::assert_string(fill_label, null.ok = TRUE)
-  prettycheck:::assert_string(size_label, null.ok = TRUE)
+  class_options <- c("character", "latexexpression")
+
+  prettycheck:::assert_length(title, len = 1, null_ok = TRUE)
+  prettycheck:::assert_multi_class(title, class_options, null.ok = TRUE)
+  prettycheck:::assert_length(subtitle, len = 1, null_ok = TRUE)
+  prettycheck:::assert_multi_class(subtitle, class_options, null.ok = TRUE)
+  prettycheck:::assert_length(x_label, len = 1, null_ok = TRUE)
+  prettycheck:::assert_multi_class(x_label, class_options, null.ok = TRUE)
+  prettycheck:::assert_length(y_label, len = 1, null_ok = TRUE)
+  prettycheck:::assert_multi_class(y_label, class_options, null.ok = TRUE)
+  prettycheck:::assert_length(color_label, len = 1, null_ok = TRUE)
+  prettycheck:::assert_multi_class(color_label, class_options, null.ok = TRUE)
+  prettycheck:::assert_length(fill_label, len = 1, null_ok = TRUE)
+  prettycheck:::assert_multi_class(fill_label, class_options, null.ok = TRUE)
+  prettycheck:::assert_length(size_label, len = 1, null_ok = TRUE)
+  prettycheck:::assert_multi_class(size_label, class_options, null.ok = TRUE)
 
   ggplot2::labs(
     x = x_label,
@@ -476,12 +521,13 @@ add_labels <- function(
   )
 }
 
-# library(ggplot2)
+library(ggplot2)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 add_theme <- function(
-    theme = "default",
+    theme = "gray",
     legend = TRUE,
+    legend_position = "right",
     text_size = NULL,
     ...
   ) {
@@ -490,13 +536,17 @@ add_theme <- function(
     "classic", "test", "void"
   )
 
-  prettycheck:::assert_choice(theme, theme_choices, null.ok = TRUE)
+  legend_position_choices <- c(
+    "none", "left", "right", "bottom", "top", "inside"
+  )
+
+  prettycheck:::assert_choice(theme, theme_choices)
   prettycheck:::assert_flag(legend)
+  prettycheck:::assert_choice(legend_position, legend_position_choices)
   prettycheck:::assert_number(text_size, null.ok = TRUE)
 
   theme_fun <- switch(
     theme,
-    default = ggplot2::theme,
     gray = ggplot2::theme_gray,
     bw = ggplot2::theme_bw,
     linedraw = ggplot2::theme_linedraw,
@@ -508,11 +558,12 @@ add_theme <- function(
     test = ggplot2::theme_test
   )
 
-  theme_fun(
-    legend.position = ifelse(isTRUE(legend), "right", "none"),
-    text = ggplot2::element_text(size = text_size),
-    ...
-  )
+  theme_fun() +
+    ggplot2::theme(
+      legend.position = ifelse(isTRUE(legend), legend_position, "none"),
+      text = ggplot2::element_text(size = text_size),
+      ...
+    )
 }
 
 # library(cli)

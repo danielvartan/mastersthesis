@@ -1,0 +1,1126 @@
+<!-- %:::% .common h1 begin %:::% -->
+# Exploratory data analysis
+<!-- %:::% .common h1 end %:::% -->
+
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R/_setup.R"))
+options(scipen = 10, digits = 5)
+```
+
+```{r}
+#| label: status
+#| echo: false
+#| output: asis
+
+rutils:::quarto_status(
+  type = "polishing",
+  of_what = "of this thesis",
+  latex_parskip = "\\microskip"
+  )
+```
+
+## Overview
+
+This document focus in providing a comprehensive overview of the data collected in the survey. It focuses on the analysis sample, with explicit indications provided whenever the full sample is used. The analysis sample is a subset of the full sample, and includes only Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
+
+The data munging and wrangling processes were conducted using the [`targets`](https://github.com/ropensci/targets) R package. The complete pipeline is documented in the [`_targets.R`](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R) file, located in the root directory of the [core repository](https://github.com/danielvartan/mastersthesis).
+
+## Setting the enviroment
+
+```{r}
+#| eval: false
+
+library(dplyr)
+library(here)
+library(geobr)
+library(janitor)
+library(magrittr)
+library(patchwork)
+library(rlang)
+library(sidrar)
+library(stringr)
+library(targets)
+library(tidyr)
+library(viridis)
+```
+
+```{r}
+#| include: false
+
+library(ggplot2)
+library(magrittr)
+library(patchwork)
+library(rlang)
+library(targets)
+```
+
+```{r}
+#| output: false
+
+source(here::here("R", "categorize_msf_sc.R"))
+source(here::here("R", "get_brazil_region.R"))
+source(here::here("R", "panel_tabset_var_dist.R"))
+source(here::here("R", "plot_age.R"))
+source(here::here("R", "plot_brazil.R"))
+source(here::here("R", "plot_chronotype.R"))
+source(here::here("R", "plot_ggally.R"))
+source(here::here("R", "plot_ggcorrplot.R"))
+source(here::here("R", "plot_latitude_series.R"))
+source(here::here("R", "plot_world.R"))
+source(here::here("R", "stats_summary.R"))
+source(here::here("R", "utils.R"))
+source(here::here("R", "utils-stats.R"))
+```
+
+## Importing the sample data
+
+```{r}
+#| eval: false
+#| output: false
+#| code-fold: false
+
+targets::tar_make(script = "../_targets.R")
+```
+
+### Full sample
+
+```{r}
+#| code-fold: false
+
+geocoded_data <- targets::tar_read(
+  "geocoded_data", 
+  store = here::here("_targets")
+)
+```
+
+### Analysis sample
+
+```{r}
+#| code-fold: false
+
+weighted_data <- targets::tar_read(
+  "weighted_data", 
+  store = here::here("_targets")
+)
+```
+
+## Distribution of main variables
+
+```{r}
+#| eval: false
+#| include: false
+
+weighted_data |>
+  panel_tabset_var_dist(
+    cols = c(
+      "age",
+      "latitude",
+      "longitude",
+      "msf_sc"
+    ),
+    col_labels = c(
+      "Age (years)",
+      "Latitude (degrees)",
+      "Longitude (degrees)",
+      "MSF~sc~ (Chronotype proxy) (local time)"
+    ),
+    source = c(
+      "Created by the author.",
+      "Created by the author.",
+      "Created by the author.",
+      "Created by the author."
+    ),
+    heading = "###"
+  )
+```
+
+{{< include ./qmd/panel-tabset-var-dist.qmd >}}
+
+## Correlation matrix of the main variables
+
+## Full sample
+
+::: {#fig-appendice-correlation-matrix-full-sample}
+```{r}
+#| message: false
+#| warning: false
+
+geocoded_data |> 
+  plot_ggally(
+    cols = c(
+      "sex", 
+      "age", 
+      "latitude", 
+      "longitude", 
+      "msf_sc"
+    ),
+    mapping = ggplot2::aes(colour = sex)
+  ) |> 
+  rutils::shush()
+```
+
+Source: Created by the author.
+
+Correlation matrix of main variables (**Full sample**).
+:::
+
+##  Analysis sample
+
+::: {#fig-appendice-correlation-matrix-analysis-sample}
+```{r}
+#| message: false
+#| warning: false
+
+weighted_data |> 
+  plot_ggally(
+    cols = c(
+      "sex", 
+      "age", 
+      "latitude", 
+      "longitude", 
+      "msf_sc"
+    ),
+    mapping = ggplot2::aes(colour = sex)
+  ) |> 
+  rutils::shush()
+```
+
+Source: Created by the author.
+
+Correlation matrix of main variables (**Analysis sample**).
+:::
+
+## Outlier diagnostic of main variables
+
+## Frequency comparisons between the sample and population
+
+See appendix 4.
+
+## Geographic distribution
+
+## Latitudinal and longitudinal range
+
+### Brazil
+
+Click [here](https://anuario.ibge.gov.br/2023/territorio/posicao-e-extensao.html) to learn more about Brazil's extreme points.
+
+::: {#tbl-appendice-1-logitudinal-range-brazil}
+```{r}
+#| message: false
+#| warning: false
+
+box <- 
+  geobr::read_country(2017) |> 
+  rutils::shush() |> 
+  dplyr::pull(geom) |>
+  sf::st_bbox() |>
+  as.list()
+
+dplyr::tibble(
+    name = c("min", "max", "range"),
+    latitude = c(
+      box$ymin, 
+      box$ymax, 
+      box$ymax - box$ymin
+    ),
+    longitude = c(
+      box$xmin, 
+      box$xmax, 
+      box$xmax - box$xmin
+    )
+)
+```
+
+[Source: Brazilian Institute of Geography and Statistics ([IBGE](https://www.ibge.gov.br/)), via the shapefiles provided by the [`geobr`](https://ipeagit.github.io/geobr/) R package]{.legend}
+
+Brazil's extreme points (**full sample**).
+:::
+
+### Full sample
+
+::: {#tbl-appendice-1-logitudinal-range-full-sample}
+```{r}
+#| message: false
+#| warning: false
+
+box <-
+  geocoded_data |>
+  dplyr::filter(country == "Brazil") |>
+  dplyr::summarise(
+    xmin = min(longitude, na.rm = TRUE),
+    xmax = max(longitude, na.rm = TRUE),
+    xrange = xmax - xmin,
+    ymin = min(latitude, na.rm = TRUE),
+    ymax = max(latitude, na.rm = TRUE),
+    yrange = ymax - ymin
+  ) |>
+  as.list()
+
+dplyr::tibble(
+    name = c("min", "max", "range"),
+    latitude = c(
+      box$ymin, 
+      box$ymax, 
+      box$ymax - box$ymin
+    ),
+    longitude = c(
+      box$xmin, 
+      box$xmax, 
+      box$xmax - box$xmin
+    )
+)
+```
+
+[Source: Created by the author.]{.legend}
+
+Latitude and longitude statistics of respondents (**Full sample**).
+:::
+
+### Analysis sample
+
+::: {#tbl-appendice-1-logitudinal-range-analysis-sample}
+```{r}
+#| message: false
+#| warning: false
+
+box <-
+  weighted_data |>
+  dplyr::filter(country == "Brazil") |>
+  dplyr::summarise(
+    xmin = min(longitude, na.rm = TRUE),
+    xmax = max(longitude, na.rm = TRUE),
+    xrange = xmax - xmin,
+    ymin = min(latitude, na.rm = TRUE),
+    ymax = max(latitude, na.rm = TRUE),
+    yrange = ymax - ymin
+  ) |>
+  as.list()
+
+dplyr::tibble(
+    name = c("min", "max", "range"),
+    latitude = c(
+      box$ymin, 
+      box$ymax, 
+      box$ymax - box$ymin
+    ),
+    longitude = c(
+      box$xmin, 
+      box$xmax, 
+      box$xmax - box$xmin
+    )
+)
+```
+
+[Source: Created by the author.]{.legend}
+
+Latitude and longitude statistics of respondents (**Analysis sample**).
+:::
+
+## Population ($N$) (2017)
+
+Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) population estimates of the population distribution is used in the same timeframe of the sample (2017) [@ibgel]. The data can be accessed at the [IBGE's SIDRA](https://sidra.ibge.gov.br/tabela/6579) platform (IBGE's Table 6579).
+
+IBGE's [Table 6579](https://sidra.ibge.gov.br/tabela/6579) was used instead of [Table 6407](https://sidra.ibge.gov.br/tabela/6407) because the later does not have the same level of detail for the municipalities.
+
+```{r}
+ibge_6579_data_state <-
+  sidrar::get_sidra(api ="/t/6579/n3/all/v/all/p/2017") |>
+  rutils::shush() |>
+  dplyr::as_tibble() |>
+  janitor::clean_names() |>
+  dplyr::select(unidade_da_federacao_codigo, valor) |>
+  dplyr::rename(
+    state_code = unidade_da_federacao_codigo,
+    n = valor
+  ) |>
+  dplyr::mutate(state_code = as.integer(state_code)) |>
+  dplyr::relocate(state_code, n)
+```
+
+```{r}
+plot_6579_ibge_1 <- 
+  ibge_6579_data_state |> 
+  plot_brazil_state(
+    "n", 
+    transform = "log10",
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+ibge_6579_data_municipality <-
+  sidrar::get_sidra(api ="/t/6579/n6/all/v/all/p/2017") |>
+  rutils::shush() |>
+  dplyr::as_tibble() |>
+  janitor::clean_names() |>
+  dplyr::select(municipio_codigo, valor) |>
+  dplyr::rename(
+    municipality_code = municipio_codigo,
+    n = valor
+  ) |>
+  dplyr::mutate(municipality_code = as.integer(municipality_code)) |>
+  dplyr::relocate(municipality_code, n)
+```
+
+```{r}
+max_limit <- 
+  ibge_6579_data_municipality |>
+  dplyr::pull(n) |>
+  inverse_log_max(10)
+
+plot_6579_ibge_2 <- 
+  ibge_6579_data_municipality |> 
+  plot_brazil_municipality(
+    "n",
+    transform = "log10",
+    viridis = "plasma",
+    direction = -1,
+    breaks = 10^(seq(1, log10(max_limit) - 1)),
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+plot_6579_ibge_3 <- 
+  ibge_6579_data_municipality |> 
+  plot_brazil_municipality(
+    col_fill = "n",
+    transform = "log10",
+    viridis = "plasma",
+    alpha = 0.75,
+    direction = -1,
+    breaks = c(100000, 500000, 1000000, 5000000, 10000000, 12000000),
+    point = TRUE,
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+plot_ibge_panel <- 
+  patchwork::wrap_plots(
+    plot_6579_ibge_1 |> rm_scale(),
+    plot_6579_ibge_2 |> rm_scale(), 
+    plot_6579_ibge_3 |> rm_scale(),
+    ncol = 2, 
+    nrow = 2,
+    widths = c(1, 1), 
+    heights = c(1, 1)
+  ) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme_void() &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm"),
+    text = ggplot2::element_text(size = 9)
+  )
+
+plot_ibge_panel
+```
+
+### Full sample
+
+```{r}
+#| include: false
+
+geocoded_data |> 
+  dplyr::pull(country) |> 
+  rutils:::drop_na() |>
+  unique() |>
+  length()
+```
+
+```{r}
+plot_full_1 <- 
+  geocoded_data |> 
+  plot_world_countries(
+    transform = "log10",
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+plot_full_2 <- 
+  geocoded_data |> 
+  plot_brazil_state(
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+max_limit <- 
+  geocoded_data |>
+  dplyr::filter(country == "Brazil") |>
+  dplyr::count(municipality_code) |>
+  dplyr::pull(n) |>
+  inverse_log_max(10)
+
+plot_full_3 <- 
+  geocoded_data |> 
+  plot_brazil_municipality(
+    transform = "log10",
+    viridis = "plasma",
+    direction = -1,
+    breaks = 10^(seq(1, log10(max_limit) - 1)),
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+max_limit <- 
+  geocoded_data |>
+  dplyr::filter(country == "Brazil") |>
+  dplyr::count(municipality_code) |>
+  dplyr::pull(n) |>
+  max()
+
+plot_full_4 <- 
+  geocoded_data |> 
+  plot_brazil_municipality(
+    transform = "log10",
+    viridis = "plasma",
+    alpha = 0.75,
+    direction = -1,
+    color_border = "gray75",
+    breaks = c(10, 500, 1000, 5000, 10000, 12000),
+    point = TRUE,
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+plot_full_5 <- 
+  geocoded_data |> 
+  plot_brazil_point(
+    color_point = viridis::plasma(1, begin = 0.65, direction = 1) |>
+      stringr::str_trunc(7, ellipsis = ""),
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+<!-- See <https://r-charts.com/ggplot2/combining-plots/>. -->
+
+```{r}
+patchwork::wrap_plots(
+   plot_full_2 |> rm_scale(), 
+   plot_full_3 |> rm_scale(), 
+   plot_full_4 |> rm_scale(), 
+   plot_full_5 |> rm_scale(),
+   ncol = 2, 
+   nrow = 2,
+   widths = c(1, 1), 
+   heights = c(1, 1)
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme_void() &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm"),
+    text = ggplot2::element_text(size = 9)
+  )
+```
+
+### Analysis sample
+
+```{r}
+plot_analysis_1 <- 
+  weighted_data |> 
+  plot_brazil_state(
+    transform = "log10",
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+max_limit <- 
+  weighted_data |>
+  dplyr::filter(country == "Brazil") |>
+  dplyr::count(municipality_code) |>
+  dplyr::pull(n) |>
+  inverse_log_max(10)
+
+plot_analysis_2 <- 
+  weighted_data |> 
+  plot_brazil_municipality(
+    transform = "log10",
+    viridis = "cividis",
+    direction = -1,
+    breaks = 10^(seq(1, log10(max_limit))),
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+plot_analysis_3 <- 
+  weighted_data |> 
+  plot_brazil_municipality(
+    transform = "log10",
+    viridis = "plasma",
+    alpha = 0.75,
+    direction = -1,
+    breaks = c(10, 500, 1000, 5000, 7500),
+    point = TRUE,
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+plot_analysis_4 <- 
+  weighted_data |> 
+  plot_brazil_point(
+    color_point = viridis::plasma(1, begin = 0.65, direction = 1) |>
+      stringr::str_trunc(7, ellipsis = ""),
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+<!-- See. <https://patchwork.data-imaginist.com/articles/patchwork.html> -->
+
+```{r}
+patchwork::wrap_plots(
+   plot_analysis_1 |> rm_scale(), 
+   plot_analysis_2 |> rm_scale(), 
+   plot_analysis_3 |> rm_scale(), 
+   plot_analysis_4 |> rm_scale(),
+   ncol = 2, 
+   nrow = 2
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme_void() &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm"),
+    text = ggplot2::element_text(size = 9)
+  )
+```
+
+## Population *versus* Sample
+
+```{r}
+patchwork::wrap_plots(
+   plot_6579_ibge_1 |> rm_scale(), 
+   plot_full_2 |> rm_scale(),
+   ncol = 2, 
+   nrow = 1
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme_void() &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm"),
+    text = ggplot2::element_text(size = 9)
+  )
+```
+
+```{r}
+patchwork::wrap_plots(
+   plot_6579_ibge_2 |> rm_scale(), 
+   plot_full_3 |> rm_scale(),
+   ncol = 2, 
+   nrow = 1
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme_void() &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm"),
+    text = ggplot2::element_text(size = 9)
+  )
+```
+
+
+
+```{r}
+patchwork::wrap_plots(
+   plot_6579_ibge_3 |> rm_scale(), 
+   plot_full_4 |> rm_scale(),
+   ncol = 2, 
+   nrow = 1
+) +
+  patchwork::plot_annotation(tag_levels = "A") &
+  ggplot2::theme_void() &
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    legend.key.size = ggplot2::unit(0.5, "cm"),
+    text = ggplot2::element_text(size = 9)
+  )
+```
+
+## Age distributions
+
+::: {.callout-note}
+The models were created using cell weights to account for unbalances.
+:::
+
+## Brazil
+
+See <https://sidra.ibge.gov.br/tabela/6407> to learn more about the data.
+
+```{r}
+#| message: false
+#| warning: false
+
+prettycheck:::assert_internet()
+
+ibge_6407_data <- 
+  sidrar::get_sidra(
+    api = paste0(
+      "/t/6407/n3/all/v/606/p/2017/c2/allxt/c58/1140,1141,1144,1145,1152,", 
+      "2793,3299,3300,3301,3350,6798,40291,118282"
+    )
+  ) |>
+  dplyr::as_tibble() |>
+  janitor::clean_names() |>
+  dplyr::select(
+    valor, unidade_da_federacao_codigo, unidade_da_federacao, ano, sexo,
+    grupo_de_idade
+  ) |>
+  dplyr::rename(
+    n = valor,
+    state_code = unidade_da_federacao_codigo,
+    state = unidade_da_federacao,
+    year = ano,
+    sex = sexo,
+    age_group = grupo_de_idade
+  ) |>
+  dplyr::arrange(state, sex, age_group) |>
+  dplyr::mutate(
+    year = as.integer(year),
+    country = "Brazil",
+    region = get_brazil_region(state, "state"),
+    state_code = as.integer(state_code),
+    sex = dplyr::case_match(
+      sex,
+      "Homens" ~ "Male",
+      "Mulheres" ~ "Female"
+    ),
+    sex = factor(sex, ordered = FALSE),
+    age_group = dplyr::case_match(
+      age_group,
+      "0 a 4 anos" ~ "0-4",
+      "5 a 9 anos" ~ "5-9",
+      "10 a 13 anos" ~ "10-13",
+      "14 a 15 anos" ~ "14-15",
+      "16 a 17 anos" ~ "16-17",
+      "18 a 19 anos" ~ "18-19",
+      "20 a 24 anos" ~ "20-24",
+      "25 a 29 anos" ~ "25-29",
+      "30 a 39 anos" ~ "30-39",
+      "40 a 49 anos" ~ "40-49",
+      "50 a 59 anos" ~ "50-59",
+      "60 a 64 anos" ~ "60-64",
+      "65 anos ou mais" ~ "65+"
+    ),
+    age_group = factor(age_group, ordered = TRUE),
+    age_group_midpoint = dplyr::case_when(
+      age_group == "0-4" ~ 2,
+      age_group == "5-9" ~ 7,
+      age_group == "10-13" ~ 11.5,
+      age_group == "14-15" ~ 14.5,
+      age_group == "16-17" ~ 16.5,
+      age_group == "18-19" ~ 18.5,
+      age_group == "20-24" ~ 22,
+      age_group == "25-29" ~ 27,
+      age_group == "30-39" ~ 34.5,
+      age_group == "40-49" ~ 44.5,
+      age_group == "50-59" ~ 54.5,
+      age_group == "60-64" ~ 62,
+      age_group == "65+" ~ 65 + 62 - 54.5 # 65 + 62 - 54.5
+    ),
+    n = as.integer(n * 1000)
+  ) |>
+  dplyr::relocate(
+    year, country, region, state_code, state, sex, age_group, 
+    age_group_midpoint, n
+  )
+
+ibge_6407_data
+```
+
+**Unit**: Thousands of people.
+
+```{r}
+#| message: false
+#| warning: false
+
+source(here::here("R", "plot_age.R"))
+
+plot_ibge_6407_age_1 <- 
+  ibge_6407_data |> 
+  dplyr::rename(age = age_group_midpoint) |>
+  dplyr::mutate(n = n / 1000) |>
+  dplyr::select(sex, age, n) |>
+  tidyr::uncount(n) |>
+  plot_age_pyramid(
+    breaks = c(0, 10, 20, 30, 40, 50, 60, 65, 90), 
+    na_rm = TRUE, 
+    text_size = env_vars$base_size
+  )
+```
+
+**Unit**: Thousands of people.
+
+```{r}
+plot_ibge_6407_age_2 <- 
+  ibge_6407_data |> 
+  dplyr::rename(age = age_group_midpoint) |>
+  dplyr::mutate(n = n / 1000) |>
+  dplyr::select(state_code, age, n) |>
+  tidyr::uncount(n) |>
+  plot_brazil_state(
+    "age",
+    transform = "identity",
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+## Full sample
+
+```{r}
+#| message: false
+#| warning: false
+
+source(here::here("R", "plot_age.R"))
+
+plot_full_age_1<- 
+  geocoded_data |> 
+  plot_age_pyramid(
+    interval = 10, 
+    na_rm = TRUE, 
+    text_size = env_vars$base_size
+  )
+```
+
+```{r}
+plot_full_age_2 <- 
+  geocoded_data |> 
+  plot_brazil_state(
+    col_fill = "age",
+    transform = "identity",
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+plot_full_age_3 <- 
+  geocoded_data |> 
+  plot_brazil_municipality(
+    col_fill = "age", # Means
+    viridis = "plasma",
+    direction = -1,
+    transform = "identity",
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+## Analysis sample
+
+```{r}
+#| message: false
+#| warning: false
+
+plot_analysis_age_1 <- 
+  weighted_data |> 
+  plot_age_pyramid(
+    interval = 10,
+    na_rm = TRUE, 
+    text_size = env_vars$base_size
+  )
+```
+
+```{r}
+plot_analysis_age_2 <- 
+  geocoded_data |> 
+  plot_brazil_state(
+    col_fill = "age", # Means
+    text_size = env_vars$base_size,
+    transform = "identity",
+    print = TRUE
+  )
+```
+
+```{r}
+plot_analysis_age_3 <- 
+  weighted_data |> 
+  plot_brazil_municipality(
+    col_fill = "age", # Means
+    viridis = "plasma",
+    direction = -1,
+    transform = "identity",
+    print = TRUE
+  )
+```
+
+## Age and sex series
+
+### Age/sex _versus_ chronotype (**Full sample**)
+
+::: {#fig-appendice-1-age-sex-chronotype-series}
+```{r}
+#| message: false
+#| warning: false
+
+plot_age_sex_series <- 
+  geocoded_data |>
+  dplyr::filter(age <= 50) |>
+  plot_age_series(
+    col = "msf_sc", 
+    line_width = 2, 
+    boundary = 0.5, 
+    point_size = 1,
+    error_bar_width = 0.5, 
+    error_bar_linewidth = 0.5,
+    error_bar = TRUE,
+    date_breaks = "15 mins",
+    text_size = env_vars$base_size
+  )
+```
+
+[Source: Created by the author. Based on data visualization found in @roenneberg2007a.]{.legend}
+
+Relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+:::
+
+::: {#fig-appendice-2-roenneberg-2007-figure-4}
+![](images/roenneberg-2007-figure-4.png)
+
+Source: Reproduction from @roenneberg2019b.
+
+Distribution of European chronotypes by age, as shown in @roenneberg2007a (for comparison).
+:::
+
+### Age/sex _versus_ weight (**Full sample**)
+
+::: {#fig-appendice-1-age-sex-weigth-series}
+```{r}
+#| message: false
+#| warning: false
+
+plot_age_sex_weigth_series <-
+  geocoded_data |>
+  dplyr::filter(age <= 50) |>
+  plot_age_series(
+    col = "weight", 
+    line_width = 2, 
+    boundary = 0.5, 
+    point_size = 1,
+    error_bar_width = 0.5, 
+    error_bar_linewidth = 0.5,
+    error_bar = TRUE,
+    y_label = "Weight (kg)", 
+    text_size = env_vars$base_size
+  )
+```
+
+[Source: Created by the author. Based on data visualization found in @roenneberg2007a.]{.legend}
+
+Relation between age and weight (kg), divided by sex and aggregated by the mean. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+:::
+
+## Chronotype distribution (**Analysis sample**)
+
+::: {#fig-appendice-1-chronotype-distribution-analysis-sample}
+```{r}
+#| message: false
+#| warning: false
+
+weighted_data |> plot_chronotype(text_size = env_vars$base_size)
+```
+
+[Source: Created by the author. Based on data visualization found in @roenneberg2019b.]{.legend}
+
+Distribution of the local time for the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
+:::
+
+::: {#fig-appendice-2-roenneberg-2019-figure-1}
+![](images/roenneberg-2019-figure-1.png)
+
+Source: Reproduction from @roenneberg2019b.
+
+Distribution of European chronotypes, as shown in @roenneberg2019b (for comparison).
+:::
+
+## Latitude series (**Analysis sample**)
+
+::: {#fig-appendice-1-chronotype-latitude-series}
+```{r}
+#| message: false
+#| warning: false
+
+source(here::here("R", "plot_latitude_series.R"))
+
+weighted_data |> 
+  plot_latitude_series(text_size = env_vars$base_size)
+```
+
+[Source: Created by the author. Based on data visualization found in @leocadio-miguel2017.]{.legend}
+
+Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The red line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+:::
+
+## Chronotype geographical distribution
+
+```{r}
+#| eval: false
+#| include: false
+
+msf_sc_cutoffs <- weighted_data |> get_chronotype_cutoffs("msf_sc")
+
+limits <- 
+  c(
+    msf_sc_cutoffs$interval |> dplyr::first() |> lubridate::int_start(),
+    msf_sc_cutoffs$interval |> dplyr::last() |> lubridate::int_end()
+  ) |>
+  as.numeric()
+```
+
+```{r}
+limits <- # Interquartile range (IQR): Q3 - Q1
+  c(
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      transform_time() |>
+      quantile(0.25, na.rm = TRUE),
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      transform_time() |>
+      quantile(0.75, na.rm = TRUE)
+  )
+
+weighted_data |> 
+  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
+  plot_brazil_state(
+    col_fill = "msf_sc",
+    transform = "identity",
+    viridis = "cividis",
+    direction = -1,
+    binned = FALSE,
+    labels = labels_hms,
+    limits = limits, # !!!
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+limits <- # Interquartile range (IQR): Q3 - Q1
+  c(
+    weighted_data |> 
+      dplyr::pull(msf_sc) |> 
+      transform_time() |> 
+      quantile(0.25, na.rm = TRUE),
+    weighted_data |> 
+      dplyr::pull(msf_sc) |> 
+      transform_time() |> 
+      quantile(0.75, na.rm = TRUE)
+  )
+
+weighted_data |> 
+  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
+  plot_brazil_municipality(
+    col_fill = "msf_sc",
+    transform = "identity",
+    viridis = "cividis",
+    direction = -1,
+    binned = FALSE,
+    breaks = seq(90000, 115000, 5000),
+    labels = labels_hms,
+    limits = limits,
+    point = FALSE,
+    legend = TRUE,
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+weighted_data |> 
+  dplyr::mutate(
+    msf_sc_category = categorize_msf_sc(msf_sc),
+    msf_sc_category = factor(
+      msf_sc_category, 
+      levels = c(
+        "Extremely early", "Moderately early", "Slightly early",
+        "Intermediate", "Slightly late", "Moderately late", 
+        "Extremely late"
+      ),
+      ordered = TRUE
+    )
+  ) |>
+  plot_brazil_point(
+    col_group = "msf_sc_category",
+    transform = "identity",
+    viridis = "cividis",
+    direction = -1,
+    size = 0.5,
+    alpha = 0.75,
+    legend = TRUE,
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+plot <- 
+  weighted_data |> 
+  dplyr::mutate(
+    msf_sc_category = categorize_msf_sc(msf_sc),
+    msf_sc_category = factor(
+      msf_sc_category, 
+      levels = c(
+        "Extremely early", "Moderately early", "Slightly early",
+        "Intermediate", "Slightly late", "Moderately late", 
+        "Extremely late"
+      ),
+      ordered = TRUE
+    )
+  ) |>
+  plot_brazil_point(
+    col_group = "msf_sc_category",
+    viridis = "cividis",
+    direction = -1,
+    size = 0.1,
+    alpha = 1,
+    legend = FALSE,
+    text_size = env_vars$base_size,
+    print = FALSE,
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+
+plot |>
+  rm_scale() +
+  ggplot2::facet_wrap(~msf_sc_category, ncol = 4, nrow = 2)
+```
