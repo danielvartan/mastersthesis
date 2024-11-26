@@ -39,5 +39,5 @@ filter_data <- function(data) {
       !test_outlier(age, method = "iqr", iqr_mult = 1.5),
       !test_outlier(transform_time(msf_sc), method = "iqr", iqr_mult = 1.5)
     ) |>
-    tidyr::drop_na(sex, age, state, latitude, longitude)
+    tidyr::drop_na(msf_sc, sex, age, state, latitude, longitude)
 }

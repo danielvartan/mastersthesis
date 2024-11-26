@@ -4,12 +4,24 @@
 
 source(here::here("R/test_normality.R"))
 
-normality_summary <- function(x, round = FALSE, digits = 5, ...) {
-  prettycheck:::assert_numeric(x)
+normality_summary <- function(
+    data,
+    col,
+    round = FALSE,
+    digits = 5,
+    ...
+  ) {
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_choice(col, names(data))
+  prettycheck:::assert_numeric(data[[col]])
   prettycheck:::assert_flag(round)
   prettycheck:::assert_number(digits)
 
-  stats <- test_normality(x, print = FALSE, ...)
+  x <- data |> dplyr::pull(col)
+
+  stats <-
+    data |>
+    test_normality(col = col, print = FALSE, ...)
 
   out <- dplyr::tibble(
     test = c(
@@ -64,8 +76,8 @@ normality_summary <- function(x, round = FALSE, digits = 5, ...) {
       ifelse(is.null(stats$shapiro), NA, stats$shapiro$p.value),
       ifelse(is.null(stats$sf), NA, stats$sf$p.value)
     )
-  ) |>
-    dplyr::select(test, p_value)
+  )
+    # dplyr::select(test, p_value)
 
   if (isTRUE(round)) {
     out |>

@@ -9,20 +9,6 @@
 source(here::here("R/_setup.R"))
 ```
 
-```{r}
-#| label: status
-#| echo: false
-#| output: asis
-
-# library(rutils) # https://github.com/danielvartan/rutils
-
-rutils:::quarto_status(
-  type = "drafting",
-  of_what = "of this thesis",
-  latex_parskip = "\\microskip"
-  )
-```
-
 Fictum, deserunt mollit anim laborum astutumque! Quisque placerat facilisis egestas cillum dolore. Nec dubitamus multa iter quae et nos invenerat. Contra legem facit qui id facit quod lex prohibet. Quam diu etiam furor iste tuus nos eludet?
 
 ## Limitations

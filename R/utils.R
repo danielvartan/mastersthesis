@@ -60,34 +60,6 @@ midday_trigger <- function(x, trigger = hms::parse_hm("22:00")) {
   }
 }
 
-# library(lubridate)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-
-# TODO: Move to `lubritime`.
-test_timeline_link <- function(x, tz = "UTC") {
-  prettycheck:::assert_multi_class(x, c("numeric", "POSIXt"))
-  prettycheck:::assert_choice(tz, OlsonNames())
-
-  x <- x |> rutils:::drop_na()
-
-  if (is.numeric(x)) x <- x |> lubridate::as_datetime(tz = tz)
-
-  dates <-
-    x |>
-    lubridate::date() |>
-    unique()
-
-  if (((lubridate::as_date("1970-01-01") %in% dates) &&
-       length(dates) == 2) ||
-      ((lubridate::as_date("1970-01-02") %in% dates) &&
-       length(dates) == 1)) {
-    TRUE
-  } else {
-    FALSE
-  }
-}
-
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 # TODO: Move to `rutils`.
@@ -127,13 +99,18 @@ list_as_tibble <- function(list) {
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-format_to_md_latex <- function(x, key = "$") {
-  prettycheck:::assert_atomic(x)
+format_to_md_latex <- function(x, after = NULL, round = 3, key = "$") {
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_string(after, null.ok = TRUE)
+  prettycheck:::assert_number(round, lower = 0)
   prettycheck:::assert_string(key)
 
+  if (is.null(after)) after <- ""
+
   x |>
-    stringr::str_replace_all("\\$", "\\\\$") %>%
-    paste0(key, ., key)
+    round(round) %>% # Don't change the pipe!
+    # stringr::str_replace_all("\\$", "\\\\$") %>%
+    paste0(key, ., after, key)
 }
 
 library(magrittr)

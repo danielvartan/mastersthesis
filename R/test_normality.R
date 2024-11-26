@@ -1,55 +1,59 @@
-# library(cowplot)
 # library(fBasics)
 # library(here)
 # library(hms)
 # library(lubridate)
 # library(moments)
 # library(nortest)
+# library(patchwork)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(stats)
 # library(tseries)
 
+source(here::here("R", "plot_hist.R"))
+source(here::here("R", "plot_qq.R"))
 source(here::here("R", "stats_summary.R"))
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-stats.R"))
 
 test_normality <- function(
-    x,
-    name = "x",
-    threshold = hms::parse_hms("12:00:00"),
+    data,
+    col,
+    name = col,
     remove_outliers = FALSE,
     iqr_mult = 1.5,
     log_transform = FALSE,
     density_line = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
     text_size = NULL,
     print = TRUE
   ) {
   classes <- c(
-    "numeric", "Duration", "difftime", "hms", "POSIXt", "Interval"
+    "numeric", "integer", "Duration", "difftime", "hms", "POSIXt", "Interval"
   )
 
-  prettycheck:::assert_atomic(x)
-  prettycheck:::assert_multi_class(x, classes)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_choice(col, names(data))
+  prettycheck:::assert_multi_class(data[[col]], classes)
   prettycheck:::assert_string(name)
+  prettycheck:::assert_flag(remove_outliers)
+  prettycheck:::assert_number(iqr_mult, lower = 1)
+  prettycheck:::assert_flag(log_transform)
+  prettycheck:::assert_flag(density_line)
 
   prettycheck:::assert_hms(
     threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59"),
     null_ok = TRUE
   )
 
-  prettycheck:::assert_flag(remove_outliers)
-  prettycheck:::assert_number(iqr_mult)
-  prettycheck:::assert_flag(log_transform)
-  prettycheck:::assert_flag(density_line)
   prettycheck:::assert_number(text_size, null.ok = TRUE)
   prettycheck:::assert_flag(print)
 
+  x <- data |> dplyr::pull(col)
   n <- x |> length()
   class = x |> class()
-  is_temporal <- x |> prettycheck:::test_temporal()
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
-  n_rm_na <- x |> length()
+  n_rm_na <- x |> rutils:::drop_na() |> length()
 
   if (prettycheck:::test_temporal(x)) {
     x <- x |> transform_time(threshold = threshold)
@@ -110,32 +114,42 @@ test_normality <- function(
     shapiro <- NULL
   }
 
-  if (isTRUE(is_temporal) && isFALSE(log_transform)) {
+  if (isTRUE(prettycheck:::test_temporal(x)) && isFALSE(log_transform)) {
     x <- x |> lubridate::as_datetime(tz = tz)
   }
 
-  qq_plot <- x |> plot_qq(text_size = text_size, print = FALSE)
+  qq_plot <-
+    dplyr::tibble(x = x) |>
+    plot_qq(
+      col = "x",
+      text_size = text_size,
+      print = FALSE
+    )
 
   hist_plot <-
-    x |>
+    dplyr::tibble(x = x) |>
     plot_hist(
-      x_lab = name,
-      text_size = text_size,
+      col = "x",
       density_line = density_line,
+      x_label = name,
+      text_size = text_size,
       print = FALSE
       )
 
-  grid_plot <- cowplot::plot_grid(hist_plot, qq_plot, ncol = 2, nrow = 1)
+  grid_plot <- patchwork::wrap_plots(hist_plot, qq_plot,  ncol = 2)
 
   out <- list(
-    stats = stats_summary(
-      x,
-      threshold = NULL,
-      na_rm = TRUE,
-      remove_outliers = FALSE,
-      hms_format = TRUE,
-      as_list = TRUE
-    ),
+    stats =
+      dplyr::tibble(x = x) |>
+      stats_summary(
+        "x",
+        name = name,
+        na_rm = TRUE,
+        remove_outliers = FALSE,
+        hms_format = TRUE,
+        threshold = NULL,
+        as_list = TRUE
+      ),
     params = list(
       name = name,
       class = class,
@@ -163,86 +177,4 @@ test_normality <- function(
   if (isTRUE(print)) print(grid_plot)
 
   invisible(out)
-}
-
-# library(dplyr)
-library(ggplot2)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-
-plot_qq <- function(x,
-                    text_size = NULL,
-                    na_rm = TRUE,
-                    print = TRUE) {
-  prettycheck:::assert_atomic(x)
-  prettycheck:::assert_multi_class(x, c("numeric", "POSIXt"))
-  prettycheck:::assert_number(text_size, null.ok = TRUE)
-  prettycheck:::assert_flag(na_rm)
-  prettycheck:::assert_flag(print)
-
-  if (isTRUE(na_rm)) x <- x |> rutils:::drop_na()
-
-  plot <-
-    dplyr::tibble(y = x) |>
-    ggplot2::ggplot(ggplot2::aes(sample = y)) +
-    ggplot2::stat_qq() +
-    ggplot2::stat_qq_line(color = "red", linewidth = 1) +
-    ggplot2::labs(
-      x = "Theoretical quantiles (Std. normal)",
-      y = "Sample quantiles"
-    ) +
-    ggplot2::theme(text = ggplot2::element_text(size = text_size))
-
-  if (inherits(x, "POSIXt")) {
-    plot <- plot + ggplot2::scale_y_datetime(date_labels = "%H:%M")
-  }
-
-  if (isTRUE(print)) print(plot)
-  invisible(plot)
-}
-
-# library(dplyr)
-library(ggplot2)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-
-plot_hist <- function(x,
-                      x_lab = "x",
-                      stat = "density",
-                      text_size = NULL,
-                      density_line = TRUE,
-                      na_rm = TRUE,
-                      print = TRUE) {
-  prettycheck:::assert_atomic(x)
-  prettycheck:::assert_multi_class(x, c("numeric", "POSIXt"))
-  prettycheck:::assert_string(x_lab)
-  prettycheck:::assert_choice(stat, c("count", "density"))
-  prettycheck:::assert_number(text_size, null.ok = TRUE)
-  prettycheck:::assert_flag(density_line)
-  prettycheck:::assert_flag(na_rm)
-  prettycheck:::assert_flag(print)
-
-  if (isTRUE(na_rm)) x <- x |> rutils:::drop_na()
-  y_lab <- ifelse(stat == "count", "Frequency", "Density")
-
-  plot <-
-    dplyr::tibble(y = x) |>
-    ggplot2::ggplot(ggplot2::aes(x = y)) +
-    ggplot2::geom_histogram(
-      ggplot2::aes(y = ggplot2::after_stat(!!as.symbol(stat))),
-      bins = 30, color = "white"
-    ) +
-    ggplot2::labs(x = x_lab, y = y_lab) +
-    ggplot2::theme(text = ggplot2::element_text(size = text_size))
-
-  if (stat == "density" && isTRUE(density_line)) {
-    plot <- plot + ggplot2::geom_density(color = "red", linewidth = 1)
-  }
-
-  if (inherits(x, "POSIXt")) {
-    plot <- plot + ggplot2::scale_x_datetime(date_labels = "%H:%M:%S")
-  }
-
-  if (isTRUE(print)) print(plot)
-  invisible(plot)
 }

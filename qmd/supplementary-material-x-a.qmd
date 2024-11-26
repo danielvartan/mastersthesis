@@ -7,19 +7,6 @@
 #| include: false
 
 source(here::here("R/_setup.R"))
-options(scipen = 10, digits = 5)
-```
-
-```{r}
-#| label: status
-#| echo: false
-#| output: asis
-
-rutils:::quarto_status(
-  type = "polishing",
-  of_what = "of this thesis",
-  latex_parskip = "\\microskip"
-  )
 ```
 
 ## Overview
@@ -310,3 +297,37 @@ Reproduction of Figure 2 from @leocadio-miguel2017 with a fixed x-axis scale and
 
 
 With @fig-sm-x-new-leocadio-miguel-2017-figure-2-new-scale, it becomes clear that the data provided by the authors does not demonstrate a relevant effect size.
+
+## Other issues in the article
+
+> We conducted a first regression of HO scores only on the covariates (age, longitude, and solar irradiation when the subjects filled the online questionnaire) and cofactors (sex, daylight saving time (DST), and season) ($\text{R^{2}} = 0.05964$, $\text{F}(8,12845) = 101.8$, $p < 2.2e-16$)
+
+The $\text{F}$-test indicates $8$ predictors, yet only $6$ are mentioned in the text. This discrepancy is not clarified, leaving uncertainty about the additional predictors included in the model.
+
+> [continuing from the last quote] ... and a second regression including the annual average solar irradiation, sunrise time, sunset time and daylight duration in March equinox, June, and December solstices for each volunteer ($\text{R^{2}} = 0.06667$, $\text{F}(27,12853) = 33.8$, $p < 2.2e-16$).
+
+In this case, the $\text{F}$-test indicates $27$ predictors. However, adding the $8$ predictors from the first regression to the $10$ newly mentioned variables yields a total of $18$ predictors, not $27$. This inconsistency is not addressed in the text.
+
+> Testing for nested models, we obtained a significant reduction of residual sum of squares ($\text{F}(2,12884) = 31.983$, $p = 1.395e-14$), [...]
+
+The degrees of freedom difference ($df = 2$) suggests that the two previously described models were not directly compared in this nested test. This raises further questions about the models used, as the discrepancy is not explained.
+
+> We also obtained an effect size estimate of Cohen’s $f^{2} = (0.06352 - 0.05964) / (1 - 0.06352) = 0.004143174$
+
+The higher $\text{R}^{2}$ value ($0.06352$) differs from the previously reported $\text{R}^{2}$ ($0.06667$). This inconsistency is not justified, and the effect size is negligible. Latitude-related predictors explained only $0.388\%$ of the variability ($(0.06352 - 0.05964) \times 100$). Nonetheless, the authors interpreted this result as evidence of an association.
+
+> We tested the residuals of the second regression with Kolmogorov-Smirnov normality test and obtained a significant result ($\text{D} = 0.42598$, $p < 2.2e-16$).
+
+This result violates the assumptions of linear regression.
+
+Objective assumption tests (e.g., Anderson–Darling test) is not advisable for larger samples, since they can be overly sensitive to minor deviations. Additionally, they might overlook visual patterns that are not captured by a single metric [@shatz2024; @kozak2018; @schucany2006].
+
+Nevertheless, the authors did not mention this in the text.
+
+> The irradiation (W/m2) data by latitude was acquired from the NASA website (http://aom.giss.nasa.gov). We retrieved monthly average data and calculated the annual mean for each latitude degree.
+
+The type of irradiation (e.g., global, direct, or diffuse) was not specified, nor was it included in the supplementary materials. This omission is crucial, as different irradiation types can yield substantially different results.
+
+> [...] a second regression including the annual average solar irradiation, sunrise time, sunset time and daylight duration in March equinox, June, and December solstices for each volunteer
+
+The inclusion of sunrise time, sunset time, and daylight duration (sunset - sunrise) likely introduced multicollinearity due to their inherent correlation. The study does not acknowledge or address this potential issue.

@@ -9,17 +9,6 @@
 source(here::here("R/_setup.R"))
 ```
 
-```{r}
-#| echo: false
-#| output: asis
-
-rutils:::quarto_status(
-  type = "polishing",
-  of_what = "of this thesis",
-  latex_parskip = "\\microskip"
-  )
-```
-
 During the development of this thesis, several activities and results have been accomplished. These activities are important to note, as they demonstrate the path taken to arrive at this final document.
 
 ## Courses
@@ -90,7 +79,7 @@ This thesis, along with all the accompanying research, is structured and organiz
 \smallskip
 ```
 
-<!-- @vartanian2023d -->
+<!-- @vartanian2024 -->
 
 \noindent Vartanian, D. (2023). _Is latitude associated with the regulation of circadian rhythms in humans?_ [Research compendium]. <https://danielvartan.github.io/mastersthesis/>
 

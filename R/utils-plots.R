@@ -1,3 +1,10 @@
+# library(grDevices)
+
+gg_color_hue <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  grDevices::hcl(h = hues, l = 65, c = 100)[1:n]
+}
+
 # library(hms)
 # library(lubritime) # github.com/danielvartan/lubritime
 # library(prettycheck) # github.com/danielvartan/prettycheck
@@ -54,114 +61,6 @@ label_decimal_fix <- function(x){
   }
 
   out
-}
-
-# library(here)
-# library(hms)
-# library(lubritime) # github.com/danielvartan/lubritime
-library(magrittr)
-# library(mctq)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-# library(stats)
-
-source(here::here("R/test_normality.R"))
-
-summarise_inline <- function(data,
-                             col,
-                             x_label = col,
-                             test_norm = FALSE) {
-  classes <- c("numeric", "Duration", "difftime", "hms", "POSIXct",
-               "POSIXlt", "Interval")
-
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_choice(col, names(data))
-  prettycheck:::assert_string(x_label)
-  prettycheck:::assert_flag(test_norm)
-  prettycheck:::assert_multi_class(data[[col]], classes)
-
-  # R CMD Check variable bindings fix (see: https://bit.ly/3z24hbU) -----
-  . <- NULL
-
-  n <- paste0(
-    "n = ",
-    prettyNum(length(which(!(is.na(data[[col]])))), big.mark = ",")
-  )
-
-  if (prettycheck:::test_temporal(data[[col]], rm = "Period")) {
-    data[[col]] <- mctq:::extract_seconds(data[[col]])
-  }
-
-  if (isTRUE(test_norm)) {
-    test <- data |> test_normality(col)
-
-    if ("test_shapiro" %in% names(test)) {
-      value <-
-        test$test_shapiro$p.value |>
-        round(digits = 3) |>
-        format(nsmall = 3, scientific = FALSE)
-
-      if (test$test_shapiro$p.value > 0.05) {
-        test <- paste0(
-          "SW p-value \u2248 ",
-          value,
-
-          " (Can assume normality)"
-          )
-      } else {
-        test <- paste0(
-          "SW p-value \u2248 ",
-          value,
-          " (Cannot assume normality)"
-          )
-      }
-    } else if ("test_lcks" %in% names(test)) {
-      value <-
-        test$test_lcks$p.value |>
-        round(digits = 3) |>
-        format(nsmall = 3, scientific = FALSE)
-
-      if (test$test_lcks$p.value > 0.05) {
-        test <- paste0(
-          "LcKS p-value \u2248 ",
-          value,
-
-          " (Can assume normality)"
-          )
-      } else {
-        test <- paste0(
-          "LcKS p-value \u2248 ",
-          value,
-
-          " (Cannot assume normality)"
-          )
-      }
-    }
-  }
-
-  mean <-
-    data[[col]] |>
-    mean(na.rm = TRUE) |>
-    lubritime::cycle_time(lubridate::dhours(24)) |>
-    round() |>
-    hms::hms() %>% # Don't change the pipe.
-    paste0("Mean = ", .)
-
-  sd <-
-    data[[col]] |>
-    stats::sd(na.rm = TRUE) |>
-    lubritime::cycle_time(lubridate::dhours(24)) |>
-    round() |>
-    hms::hms() %>% # Don't change the pipe.
-    paste0("SD = ", .)
-
-  if (isFALSE(test_norm) && !(is.na(mean)) && !(is.na(sd))) {
-    paste0(x_label, ": ", n, " | ",  mean, " | ",  sd)
-  } else if (!(is.na(mean)) && !(is.na(sd)) && !(is.na(test))) {
-    paste0(x_label, ": ", n, " | ",  mean, " | ",  sd, " | ", test)
-  } else {
-    paste0(x_label, ": ", n)
-  }
 }
 
 # library(cli)

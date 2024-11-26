@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Sample balance procedure
+# Sample Balance Procedure
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -9,22 +9,13 @@
 source(here::here("R/_setup.R"))
 ```
 
-```{r}
-#| echo: false
-#| output: asis
-
-rutils:::quarto_status(
-  type = "polishing",
-  of_what = "of this thesis",
-  latex_parskip = "\\microskip"
-  )
-```
-
 ## Overview
 
-This document shows the procedure for balancing the sample used for the hypothesis test. Like other documents of this thesis, it is 100% reproducible.
+This document outlines the procedure for balancing the sample used in the hypothesis test.
 
-## Setting this up
+As with all analyses in this thesis, the process is fully reproducible and was conducted using the [R programming language](https://www.r-project.org/) [@rcoreteam] along with the [Quarto](https://quarto.org/) publishing system [@allaire].
+
+## Setting the Enviroment
 
 ```{r}
 #| eval: false
@@ -57,7 +48,7 @@ library(rlang)
 library(targets)
 ```
 
-## Getting the sample data
+## Loading and Processing Sample Data
 
 Below, we load the data that was used for the hypothesis test before the balance procedure. You can visualize the data munging pipeline in the `_targets.R` file.
 
@@ -105,7 +96,7 @@ data <-
 data
 ```
 
-## Getting the population data
+## Getting Population Data
 
 The sample data was obtained in 2017 from October 15th to 21st by a broadcast of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. Here we use Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) for a estimate of the population distribution in this timeframe [@ibgee]. The data can be accessed at the [IBGE's SIDRA](https://sidra.ibge.gov.br/tabela/6407) platform (IBGE's Table 6407).
 
@@ -206,7 +197,7 @@ summarise_data(ibge_6407_data, "region")
 ibge_6407_data |> summarise_data("country")
 ```
 
-## Comparing the sample data with the population data
+## Comparing Sample Data With the Population Data
 
 ::: {.callout-warning}
 Please note that these values refer to the group of **states in the Brazilian time zone UTC-3**, not the whole country.
@@ -232,7 +223,7 @@ compare_sample(data, ibge_6407_data, "region")
 compare_sample(data, ibge_6407_data, "country")
 ```
 
-## Adjusting sample data with the population data
+## Adjusting Sample Data with the Population Data
 
 The tables above indicate an overrepresentation of states like São Paulo and Rio de Janeiro, while states such as Amapá and Tocantins are underrepresented. To achieve a balanced sample, we applied a cell weighting procedure [see @kalton2003] based on the characteristics of `state`, `sex` and `age group`, using data from the 2017 PNAD as a reference.
 
@@ -299,7 +290,7 @@ test_data <-
   )
 ```
 
-## Fiting a model with the weights
+## Fiting a Model with Weights
 
 ```{r}
 model <- 

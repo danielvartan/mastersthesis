@@ -9,17 +9,6 @@
 source(here::here("R/_setup.R"))
 ```
 
-```{r}
-#| echo: false
-#| output: asis
-
-rutils:::quarto_status(
-  type = "complete",
-  of_what = "of this thesis",
-  latex_parskip = "\\microskip"
-  )
-```
-
 ## Overview
 
 This is a simple workflow to test the [QualoCEP](https://www.qualocep.com/) geocoding against [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview).
@@ -30,11 +19,10 @@ This thesis uses both services for geocoding the data. QualoCEP is a paid servic
 To run this notebook you will need to have a Google Geocoding API key in your [`.Renviron`](https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file) file. Learn more about it [here](https://jessecambon.github.io/tidygeocoder/articles/geocoder_services.html).
 :::
 
-## Setting things up
+## Setting the enviroment
 
 ```{r}
 #| eval: false
-#| output: false
 
 library(leaflet)
 library(targets)

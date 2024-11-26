@@ -1,0 +1,231 @@
+:::: {.panel-tabset}
+### MSF~sc~ (Chronotype proxy) (seconds)
+
+::: {#tbl-sm-6-var-distribution-stats-msf-sc}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'msf_sc',
+    name = 'MSF~sc~ (Chronotype proxy) (seconds)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `msf_sc` variable.
+:::
+
+::: {#fig-sm-6-var-distribution-histogram-msf-sc}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'msf_sc',
+    name = 'MSF~sc~ (Chronotype proxy) (seconds)'
+  )
+```
+
+Histogram of the `msf_sc` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-6-var-distribution-box-plot-msf-sc}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'msf_sc'
+  )
+```
+
+Boxplot of the `msf_sc` variable.
+:::
+
+### Age (years)
+
+::: {#tbl-sm-6-var-distribution-stats-age}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'age',
+    name = 'Age (years)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `age` variable.
+:::
+
+::: {#fig-sm-6-var-distribution-histogram-age}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'age',
+    name = 'Age (years)'
+  )
+```
+
+Histogram of the `age` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-6-var-distribution-box-plot-age}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'age'
+  )
+```
+
+Boxplot of the `age` variable.
+:::
+
+### Latitude (decimal degrees)
+
+::: {#tbl-sm-6-var-distribution-stats-latitude}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'latitude',
+    name = 'Latitude (decimal degrees)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `latitude` variable.
+:::
+
+::: {#fig-sm-6-var-distribution-histogram-latitude}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'latitude',
+    name = 'Latitude (decimal degrees)'
+  )
+```
+
+Histogram of the `latitude` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-6-var-distribution-box-plot-latitude}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'latitude'
+  )
+```
+
+Boxplot of the `latitude` variable.
+:::
+
+### Longitude (decimal degrees)
+
+::: {#tbl-sm-6-var-distribution-stats-longitude}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'longitude',
+    name = 'Longitude (decimal degrees)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `longitude` variable.
+:::
+
+::: {#fig-sm-6-var-distribution-histogram-longitude}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'longitude',
+    name = 'Longitude (decimal degrees)'
+  )
+```
+
+Histogram of the `longitude` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-6-var-distribution-box-plot-longitude}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'longitude'
+  )
+```
+
+Boxplot of the `longitude` variable.
+:::
+
+### Monthly average global horizontal irradiance (Wh/m²)
+
+::: {#tbl-sm-6-var-distribution-stats-ghi-month}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'ghi_month',
+    name = 'Monthly average global horizontal irradiance (Wh/m²)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `ghi_month` variable.
+:::
+
+::: {#fig-sm-6-var-distribution-histogram-ghi-month}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'ghi_month',
+    name = 'Monthly average global horizontal irradiance (Wh/m²)'
+  )
+```
+
+Histogram of the `ghi_month` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-6-var-distribution-box-plot-ghi-month}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'ghi_month'
+  )
+```
+
+Boxplot of the `ghi_month` variable.
+:::
+::::

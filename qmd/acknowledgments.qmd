@@ -10,31 +10,21 @@ source(here::here("R/_setup.R"))
 ```
 
 <!-- %:::% acknowledgments body begin %:::% -->
-I would like to acknowledge and express my gratitude to the following persons and organizations. Without them, this work would not have been possible:
+This work would not have been possible without the support, love, and guidance of many remarkable individuals and organizations. I extend my deepest gratitude to:
 
 ```{=latex}
 \smallskip
 ```
 
-My partner in life, Salete Perroni (Sal).
+My beloved partner, Salete Perroni (Sal), whose unwavering support has been my constant source of strength. My mother, for her unconditional love, and my sister and brother, for their companionship throughout life's journey.
 
-My Mother, for her unconditional love.
+My scientific collaborators and dear friends, Alicia Rafaelly Vilefort Sales and Maria Augusta Medeiros de Andrade. Professor Humberto Miguel Garay Malpartida, for his steadfast support, unwavering principles, and integrity, which shone through when it was most needed.
 
-My Sister and my Brother, for their love and companionship in life.
+My supervisor, Professor Camilo Rodrigues Neto, who introduced me to complexity science in 2012, guided my dissertation with patience, and demonstrated exceptional virtue in mediating a challenging supervisory transition. Professor Carlos Molina Mendes, who handled this transition with remarkable speed, impartiality, and professionalism.
 
-My two friends and partners in science, [Alicia Rafaelly Vilefort Sales](https://orcid.org/0000-0003-0004-4487) and [Maria Augusta Medeiros de Andrade](https://orcid.org/0000-0002-9283-9967).
+My cherished friends: Alex Azevedo Martins, Augusto Amado, Carina (Cacau) Prado, Ítalo Alves Bezerra do Nascimento, Júlia Mafra, Letícia Nery de Figueiredo, Marcelo Ricardo Fernandes Roschel, Reginaldo Noveli, Sílvia Capelanes, and Vanessa Simon Silva.
 
-My friend and Professor [Humberto Miguel Garay Malpartida](https://orcid.org/0000-0002-1164-2055), for his support; for his principles; and for his integrity, which was demonstrated when the need arose.
-
-My supervisor, Professor [Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695), for introducing me to and teaching me about the complexity science since 2012; for supervising my dissertation; for the patience and the virtue in taking on and mediating the process of transitioning my Master's supervision after the breakdown of relations with my former supervisor.
-
-Professor [Carlos Molina Mendes](https://orcid.org/0000-0003-2916-4415), for his speed, impartiality, patience, and virtuous approach in mediating the process of transitioning of my Master's supervision.
-
-My fellow friends: Alex Azevedo Martins; Amanda Moreira; Augusto Amado, Carina (Cacau) Prado; Ítalo Alves Bezerra do Nascimento; Júlia Mafra; Letícia Nery de Figueiredo; Marcelo Ricardo Fernandes Roschel; Reginaldo Noveli; Sílvia Capelanes; and Vanessa Simon Silva.
-
-USP's Support Program for Student Permanence and Education ([PAPFE](https://prip.usp.br/apoio-estudantil/)), which enabled me to get this far.
-
-The Coordination for the Improvement of Higher Education Personnel ([CAPES](https://www.gov.br/capes/)), for funding this work and enabling my presence in graduate studies.
+Finally, this journey was made possible by the institutional support of USP's Support Program for Student Permanence and Education (PAPFE) and the Coordination for the Improvement of Higher Education Personnel (CAPES), whose contributions have been invaluable.
 
 ::: {.content-visible when-format="html"}
 <br>

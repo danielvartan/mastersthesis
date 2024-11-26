@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Hypothesis Test A
+# Hypothesis Test B
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -11,7 +11,7 @@ source(here::here("R", "_setup.R"))
 
 ## Overview
 
-This document focuses on testing the thesis hypothesis (**Test A**) using the methods described in the supplemental material titled *Methods*.
+This document focuses on testing the thesis hypothesis (**Test B**) using the methods described in the supplemental material titled *Methods*.
 
 The assumptions addressed here are those relevant to general linear models, with further information available in the supplemental material titled *Overview of General Linear Models*.
 
@@ -118,30 +118,13 @@ This data processing is performed solely for the purpose of the analysis. The va
 
 data <- 
   targets::tar_read("weighted_data", store = here::here("_targets")) |>
-  dplyr::select(
-    msf_sc, age, sex, longitude, ghi, march_equinox, june_solstice,
-    december_solstice, cell_weight
-  ) |>
+  dplyr::select(msf_sc, age, sex, latitude, longitude, ghi, cell_weight) |>
   tidyr::unnest(
     cols = dplyr::everything(),
       names_sep = "_",
       names_repair = "universal"
   ) |>
-  dplyr::select(-dplyr::matches("_moment$|_sunrise$|_sunset$")) |>
-  dplyr::mutate(
-    # dplyr::across(
-    #   .cols = dplyr::matches("_sunrise$|_sunset$"),
-    #   .fns = ~ .x |> as.numeric()
-    # ),
-    # dplyr::across(
-    #   .cols = dplyr::matches("_sunrise$|_sunset$"),
-    #   .fns = ~ .x |> hms::as_hms() |> as.numeric()
-    # ),
-    dplyr::across(
-      .cols = dplyr::ends_with("_daylight"),
-      .fns = ~ .x |> as.numeric()
-    )
-  ) |>
+  dplyr::select(-ghi_annual) |>
   dplyr::mutate(
     msf_sc = dplyr::case_when(
       all(
@@ -156,12 +139,6 @@ data <-
         as.numeric()
     )
   ) |>
-  # dplyr::mutate( # Scaling or centering do not help.
-  #   dplyr::across(
-  #     -dplyr::all_of(c("sex", "cell_weight")),
-  #     ~ .x |> scale() |> as.numeric()
-  #   )
-  # ) |>
   tidyr::drop_na()
 ```
 
@@ -188,7 +165,7 @@ pre_pwr <- pwrss::pwrss.f.reg(
 )
 ```
 
-::: {#fig-sm-5-power-analysis}
+::: {#fig-sm-6-power-analysis}
 ```{r}
 #| code-fold: true
 
@@ -222,23 +199,20 @@ data |>
     col_labels = c(
       "MSF~sc~ (Chronotype proxy) (seconds)",
       "Age (years)",
+      "Latitude (decimal degrees)",
       "Longitude (decimal degrees)",
-      "Monthly average global horizontal irradiance (Wh/m²)",
-      "Annual average global horizontal irradiance (Wh/m²)",
-      "Daylight on the March equinox (seconds)",
-      "Daylight on the June solstice (seconds)",
-      "Daylight on the December solstice (seconds)"
+      "Monthly average global horizontal irradiance (Wh/m²)"
     ),
     heading = "###",
-    suffix = "sm-5"
+    suffix = "sm-6"
   )
 ```
 
-{{< include ./qmd/_panel-tabset-var-distribution-sm-5.qmd >}}
+{{< include ./qmd/_panel-tabset-var-distribution-sm-6.qmd >}}
 
 ## Examining Correlations
 
-::: {#fig-sm-5-correlation-matrix}
+::: {#fig-sm-6-correlation-matrix}
 ```{r}
 data |> 
   plot_ggally(
@@ -246,9 +220,9 @@ data |>
       "msf_sc",
       "age",
       "sex",
+      "latitude",
       "longitude",
-      "ghi_month",
-      "ghi_annual"
+      "ghi_month"
     ),
     mapping = ggplot2::aes(colour = sex)
   ) |> 
@@ -298,7 +272,7 @@ fit <- workflow |> parsnip::fit(data)
 fit_restricted <- fit
 ```
 
-::: {#tbl-sm-5-restricted-model-fit-1}
+::: {#tbl-sm-6-restricted-model-fit-1}
 ```{r}
 #| code-fold: true
 
@@ -320,7 +294,7 @@ fit |>
   janitor::adorn_rounding(5)
 ```
 
-::: {#tbl-sm-5-restricted-model-fit-2}
+::: {#tbl-sm-6-restricted-model-fit-2}
 ```{r}
 #| code-fold: true
 
@@ -360,7 +334,7 @@ report::report(fit_engine_2)
 
 #### Predictions
 
-::: {#fig-sm-5-restricted-model-fit}
+::: {#fig-sm-6-restricted-model-fit}
 ```{r}
 #| code-fold: true
 
@@ -417,7 +391,7 @@ Relation between observed and predicted values. The red line is a 45-degree line
 
 Posterior predictive checks are a Bayesian technique used to assess model fit by comparing observed data to data simulated from the [posterior predictive distribution](https://en.wikipedia.org/wiki/Posterior_predictive_distribution) (i.e., the distribution of potential unobserved values given the observed data). These checks help identify systematic discrepancies between the observed and simulated data, providing insight into whether the chosen model (or distributional family) is appropriate. Ideally, the model-predicted lines should closely match the observed data patterns.
 
-::: {#fig-sm-5-restricted-model-fit-comparison}
+::: {#fig-sm-6-restricted-model-fit-comparison}
 ```{r}
 #| code-fold: true
 
@@ -465,7 +439,7 @@ Assumption 2
 
 ##### Visual Inspection
 
-::: {#fig-sm-5-restricted-model-residual-diag-normality-1}
+::: {#fig-sm-6-restricted-model-residual-diag-normality-1}
 ```{r}
 #| code-fold: true
 
@@ -478,7 +452,7 @@ fit_engine |>
 Histogram of the model residuals with a kernel density estimate, along with a quantile-quantile (Q-Q) plot between the residuals and the theoretical quantiles of the normal distribution.
 :::
 
-::: {#fig-sm-5-restricted-model-residual-diag-normality-2}
+::: {#fig-sm-6-restricted-model-residual-diag-normality-2}
 ```{r}
 #| code-fold: true
 
@@ -504,7 +478,7 @@ fit |>
 Boxplot of model residuals with outliers highlighted in red.
 :::
 
-::: {#tbl-sm-5-restricted-model-residual-diag-normality-1}
+::: {#tbl-sm-6-restricted-model-residual-diag-normality-1}
 ```{r}
 #| code-fold: true
 
@@ -540,7 +514,7 @@ $$
 \end{cases}
 $$
 
-::: {#tbl-sm-5-restricted-model-residual-diag-normality-2}
+::: {#tbl-sm-6-restricted-model-residual-diag-normality-2}
 ```{r}
 #| code-fold: true
 
@@ -572,7 +546,7 @@ It is important to clarify that the linear assumption pertains to **linearity in
 
 **Assumption 3** is satisfied, as the relationship between the variables is fairly linear.
 
-::: {#fig-sm-5-restricted-model-residual-diag-fitted-values-1}
+::: {#fig-sm-6-restricted-model-residual-diag-fitted-values-1}
 ```{r}
 #| code-fold: true
 
@@ -596,7 +570,7 @@ plot |> print() |> rutils::shush()
 Residual plot showing the relationship between fitted values and residuals. The dashed black line represent zero residuals, indicating an ideal model fit. The red line indicate the conditional mean of residuals.
 :::
 
-::: {#fig-sm-5-restricted-model-residual-diag-linearity-1}
+::: {#fig-sm-6-restricted-model-residual-diag-linearity-1}
 ```{r}
 #| code-fold: true
 
@@ -662,7 +636,7 @@ Assumption 4
 # https://sscc.wisc.edu/sscc/pubs/RegDiag-R/homoscedasticity.html#:~:text=We%20must%20plot%20the%20residuals%20against%20the%20fitted%20values%20and%20against%20each%20of%20the%20predictors.
 ```
 
-::: {#fig-sm-5-restricted-model-diag-homoscedasticity-1}
+::: {#fig-sm-6-restricted-model-diag-homoscedasticity-1}
 ```{r}
 #| code-fold: true
 
@@ -713,11 +687,11 @@ data |>
       "Monthly average global horizontal irradiance (Wh/m²)"
     ),
     heading = "######",
-    suffix = "sm-5-restricted-model"
+    suffix = "sm-6-restricted-model"
   )
 ```
 
-{{< include ./qmd/_panel-tabset-var-homoscedasticity-sm-5-restricted-model.qmd >}}
+{{< include ./qmd/_panel-tabset-var-homoscedasticity-sm-6-restricted-model.qmd >}}
 
 ##### Breusch-Pagan Test
 
@@ -781,7 +755,7 @@ Many authors don't consider autocorrelation tests for linear regression models, 
 
 ##### Visual Inspection
 
-::: {#fig-sm-5-restricted-model-diag-independence-1}
+::: {#fig-sm-6-restricted-model-diag-independence-1}
 ```{r}
 #| code-fold: true
 
@@ -797,7 +771,7 @@ Time series plot of the residuals along with its AutoCorrelation Function (ACF) 
 
 @tbl-model-residual-diag-independence-1 shows the relative importance of independent variables in determining the response variable. It highlights how much each variable uniquely contributes to the R-squared value, beyond what is explained by the other predictors.
 
-::: {#tbl-sm-5-restricted-model-residual-diag-independence-1}
+::: {#tbl-sm-6-restricted-model-residual-diag-independence-1}
 ```{r}
 #| code-fold: true
 
@@ -896,7 +870,7 @@ diag_sum_plots$VIF +
 Variance Inflation Factors (VIF) for each predictor variable. VIFs below 5 are considered acceptable. Between 5 and 10, the variable should be examined. Above 10, the variable must considered highly collinear.
 :::
 
-::: {#tbl-sm-5-restricted-model-residual-diag-colinearity-1}
+::: {#tbl-sm-6-restricted-model-residual-diag-colinearity-1}
 ```{r}
 #| code-fold: true
 
@@ -906,7 +880,7 @@ fit_engine |> olsrr::ols_vif_tol()
 Variance Inflation Factors (VIF) and tolerance values for each predictor variable.
 :::
 
-::: {#tbl-sm-5-restricted-model-residual-diag-colinearity-2}
+::: {#tbl-sm-6-restricted-model-residual-diag-colinearity-2}
 ```{r}
 #| code-fold: true
 
@@ -920,7 +894,7 @@ Variance Inflation Factors (VIF) and tolerance values for each predictor variabl
 
 The [condition index](https://en.wikipedia.org/wiki/Condition_number) is a measure of multicollinearity in a regression model. It is based on the [eigenvalues](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) of the correlation matrix of the predictors. A condition index of 30 or higher is generally considered indicative of significant collinearity [@belsley2004, p. 112-114].
 
-::: {#tbl-sm-5-restricted-model-residual-diag-colinearity-2}
+::: {#tbl-sm-6-restricted-model-residual-diag-colinearity-2}
 ```{r}
 #| code-fold: true
 
@@ -954,7 +928,7 @@ Standardized residuals are a rescaling of the residual to a common basis by divi
 fit_engine |> stats::rstandard() |> head()
 ```
 
-::: {#fig-sm-5-restricted-model-diag-influence-1}
+::: {#fig-sm-6-restricted-model-diag-influence-1}
 ```{r}
 #| code-fold: true
 
@@ -997,7 +971,7 @@ fit_engine |> olsrr::ols_plot_resid_stand()
 fit_engine |> stats::rstudent() |> head()
 ```
 
-::: {#fig-sm-5-restricted-model-diag-influence-2}
+::: {#fig-sm-6-restricted-model-diag-influence-2}
 ```{r}
 #| code-fold: true
 
@@ -1023,7 +997,7 @@ dplyr::tibble(
 Studentized residuals for each observation.
 :::
 
-::: {#fig-sm-5-restricted-model-diag-influence-3}
+::: {#fig-sm-6-restricted-model-diag-influence-3}
 ```{r}
 #| code-fold: true
 
@@ -1048,7 +1022,7 @@ fit |>
 Relation between studentized residuals and fitted values.
 :::
 
-::: {#fig-sm-5-restricted-model-diag-influence-4}
+::: {#fig-sm-6-restricted-model-diag-influence-4}
 ```{r}
 #| code-fold: true
 
@@ -1102,7 +1076,7 @@ The hat value indicates how distinct an observation’s predictor values are fro
 fit_engine |> stats::hatvalues() |> head()
 ```
 
-::: {#fig-sm-5-restricted-model-diag-influence-5}
+::: {#fig-sm-6-restricted-model-diag-influence-5}
 ```{r}
 #| code-fold: true
 
@@ -1149,7 +1123,7 @@ Learn more about Cook's D in: @cook1977; @cook1979.
 fit_engine |> stats::cooks.distance() |> head()
 ```
 
-::: {#fig-sm-5-restricted-model-diag-influence-6}
+::: {#fig-sm-6-restricted-model-diag-influence-6}
 ```{r}
 #| code-fold: true
 
@@ -1168,7 +1142,7 @@ q |> ggplot2::ggplot_gtable() |> ggplotify::as.ggplot()
 Cook's distance for each observation along with a threshold line at $4 / (n - k - 1)$.
 :::
 
-::: {#fig-sm-5-restricted-model-diag-influence-7}
+::: {#fig-sm-6-restricted-model-diag-influence-7}
 ```{r}
 #| code-fold: true
 
@@ -1249,7 +1223,7 @@ Learn more about DDFITS in: @welsch1977 and @belsley2004.
 fit_engine |> stats::dffits() |> head()
 ```
 
-::: {#fig-sm-5-restricted-model-diag-influence-8}
+::: {#fig-sm-6-restricted-model-diag-influence-8}
 ```{r}
 #| code-fold: true
 
@@ -1281,11 +1255,12 @@ fit_engine |> stats::dfbeta() |> head()
 fit_engine |>
   panel_tabset_coef_dfbetas(
     heading = "######",
-    suffix = "sm-5-restricted-model"
+    suffix = "sm-6-restricted-model"
   )
 ```
 
-{{< include ./qmd/_panel-tabset-coef-dfbetas-sm-5-restricted-model.qmd >}}
+{{< include ./qmd/_panel-tabset-coef-dfbetas-sm-6-restricted-model.qmd >}}
+
 
 ##### Hadi's Measure
 
@@ -1293,7 +1268,7 @@ Hadi’s measure of influence is based on the idea that influential observations
 
 Learn more about Hadi's measure in: @chatterjee2012.
 
-::: {#fig-sm-5-restricted-model-diag-influence-12}
+::: {#fig-sm-6-restricted-model-diag-influence-12}
 ```{r}
 #| code-fold: true
 
@@ -1311,7 +1286,7 @@ plot +
 Hadi's influence measure for each observation.
 :::
 
-::: {#fig-sm-5-restricted-model-diag-influence-13}
+::: {#fig-sm-6-restricted-model-diag-influence-13}
 ```{r}
 #| code-fold: true
 
@@ -1329,32 +1304,6 @@ Potential-residual plot classifying unusual observations as high-leverage points
 
 ### Fitting the Model
 
-<!-- See: <https://stats.stackexchange.com/questions/25804/why-would-r-return-na-as-a-lm-coefficient> -->
-
-```{r}
-#| eval: false
-#| include: false
-#| code-fold: false
-
-form <- as.formula(
-    paste0(
-      "msf_sc ~ ",
-      paste0(
-        c(
-          "age", "sex", "longitude", "ghi_month", "ghi_annual",
-          "march_equinox_sunrise", "march_equinox_sunset",
-          "march_equinox_daylight", "june_solstice_sunrise",
-          "june_solstice_sunset", "june_solstice_daylight",
-          "september_equinox_sunrise", "september_equinox_sunset",
-          "september_equinox_daylight", "december_solstice_sunrise",
-          "december_solstice_sunset", "december_solstice_daylight"
-        ), 
-        collapse = " + "
-      )
-    )
-)
-```
-
 ```{r}
 #| code-fold: false
 
@@ -1362,11 +1311,7 @@ form <- as.formula(
     paste0(
       "msf_sc ~ ",
       paste0(
-        c(
-          "age", "sex", "longitude", "ghi_month", 
-          "ghi_annual", "march_equinox_daylight", "june_solstice_daylight",
-          "december_solstice_daylight"
-        ), 
+        c("age", "sex", "longitude", "ghi_month",  "latitude"), 
         collapse = " + "
       )
     )
@@ -1407,7 +1352,7 @@ fit <- workflow |> parsnip::fit(data)
 fit_full <- fit
 ```
 
-::: {#tbl-sm-5-full-model-fit-1}
+::: {#tbl-sm-6-full-model-fit-1}
 ```{r}
 #| code-fold: true
 
@@ -1429,7 +1374,7 @@ fit |>
   janitor::adorn_rounding(5)
 ```
 
-::: {#tbl-sm-5-full-model-fit-2}
+::: {#tbl-sm-6-full-model-fit-2}
 ```{r}
 #| code-fold: true
 
@@ -1469,7 +1414,7 @@ report::report(fit_engine_2)
 
 #### Predictions
 
-::: {#fig-sm-5-full-model-fit}
+::: {#fig-sm-6-full-model-fit}
 ```{r}
 #| code-fold: true
 
@@ -1526,7 +1471,7 @@ Relation between observed and predicted values. The red line is a 45-degree line
 
 Posterior predictive checks are a Bayesian technique used to assess model fit by comparing observed data to data simulated from the [posterior predictive distribution](https://en.wikipedia.org/wiki/Posterior_predictive_distribution) (i.e., the distribution of potential unobserved values given the observed data). These checks help identify systematic discrepancies between the observed and simulated data, providing insight into whether the chosen model (or distributional family) is appropriate. Ideally, the model-predicted lines should closely match the observed data patterns.
 
-::: {#fig-sm-5-full-model-fit-comparison}
+::: {#fig-sm-6-full-model-fit-comparison}
 ```{r}
 #| code-fold: true
 
@@ -1574,7 +1519,7 @@ Assumption 2
 
 ##### Visual Inspection
 
-::: {#fig-sm-5-full-model-residual-diag-normality-1}
+::: {#fig-sm-6-full-model-residual-diag-normality-1}
 ```{r}
 #| code-fold: true
 
@@ -1587,7 +1532,7 @@ fit_engine |>
 Histogram of the model residuals with a kernel density estimate, along with a quantile-quantile (Q-Q) plot between the residuals and the theoretical quantiles of the normal distribution.
 :::
 
-::: {#fig-sm-5-full-model-residual-diag-normality-2}
+::: {#fig-sm-6-full-model-residual-diag-normality-2}
 ```{r}
 #| code-fold: true
 
@@ -1613,7 +1558,7 @@ fit |>
 Boxplot of model residuals with outliers highlighted in red.
 :::
 
-::: {#tbl-sm-5-full-model-residual-diag-normality-1}
+::: {#tbl-sm-6-full-model-residual-diag-normality-1}
 ```{r}
 #| code-fold: true
 
@@ -1649,7 +1594,7 @@ $$
 \end{cases}
 $$
 
-::: {#tbl-sm-5-full-model-residual-diag-normality-2}
+::: {#tbl-sm-6-full-model-residual-diag-normality-2}
 ```{r}
 #| code-fold: true
 
@@ -1681,7 +1626,7 @@ It is important to clarify that the linear assumption pertains to **linearity in
 
 **Assumption 3** is satisfied, as the relationship between the variables is fairly linear.
 
-::: {#fig-sm-5-full-model-residual-diag-fitted-values-1}
+::: {#fig-sm-6-full-model-residual-diag-fitted-values-1}
 ```{r}
 #| code-fold: true
 
@@ -1705,7 +1650,7 @@ plot |> print() |> rutils::shush()
 Residual plot showing the relationship between fitted values and residuals. The dashed black line represent zero residuals, indicating an ideal model fit. The red line indicate the conditional mean of residuals.
 :::
 
-::: {#fig-sm-5-full-model-residual-diag-linearity-1}
+::: {#fig-sm-6-full-model-residual-diag-linearity-1}
 ```{r}
 #| code-fold: true
 
@@ -1771,7 +1716,7 @@ Assumption 4
 # https://sscc.wisc.edu/sscc/pubs/RegDiag-R/homoscedasticity.html#:~:text=We%20must%20plot%20the%20residuals%20against%20the%20fitted%20values%20and%20against%20each%20of%20the%20predictors.
 ```
 
-::: {#fig-sm-5-full-model-diag-homoscedasticity-1}
+::: {#fig-sm-6-full-model-diag-homoscedasticity-1}
 ```{r}
 #| code-fold: true
 
@@ -1818,19 +1763,16 @@ data |>
     col_labels = c(
       "MSF~sc~ (Chronotype proxy) (seconds)",
       "Age (years)",
+      "Latitude (decimal degrees)",
       "Longitude (decimal degrees)",
-      "Monthly average global horizontal irradiance (Wh/m²)",
-      "Annual average global horizontal irradiance (Wh/m²)",
-      "Daylight on the March equinox (seconds)",
-      "Daylight on the June solstice (seconds)",
-      "Daylight on the December solstice (seconds)"
+      "Monthly average global horizontal irradiance (Wh/m²)"
     ),
     heading = "######",
-    suffix = "sm-5-full-model"
+    suffix = "sm-6-full-model"
   )
 ```
 
-{{< include ./qmd/_panel-tabset-var-homoscedasticity-sm-5-full-model.qmd >}}
+{{< include ./qmd/_panel-tabset-var-homoscedasticity-sm-6-full-model.qmd >}}
 
 ##### Breusch-Pagan Test
 
@@ -1894,7 +1836,7 @@ Many authors don't consider autocorrelation tests for linear regression models, 
 
 ##### Visual Inspection
 
-::: {#fig-sm-5-full-model-diag-independence-1}
+::: {#fig-sm-6-full-model-diag-independence-1}
 ```{r}
 #| code-fold: true
 
@@ -1910,7 +1852,7 @@ Time series plot of the residuals along with its AutoCorrelation Function (ACF) 
 
 @tbl-model-residual-diag-independence-1 shows the relative importance of independent variables in determining the response variable. It highlights how much each variable uniquely contributes to the R-squared value, beyond what is explained by the other predictors.
 
-::: {#tbl-sm-5-full-model-residual-diag-independence-1}
+::: {#tbl-sm-6-full-model-residual-diag-independence-1}
 ```{r}
 #| code-fold: true
 
@@ -1977,7 +1919,7 @@ fit_engine |>
 
 #### Colinearity/Multicollinearity
 
-Daylight duration for the March equinox, June solstice, and December solstice exhibited high multicollinearity, with a variance inflation factor (VIF) greater than $1000$. However, since these variables are grouped as latitude proxies, this does not significantly impact the analysis. The primary focus is on the combined effect of the group, rather than the individual contributions of each variable.
+No high degree of colinearity was observed among the independent variables.
 
 ##### Variance Inflation Factor (VIF)
 
@@ -2010,7 +1952,7 @@ diag_sum_plots$VIF +
 Variance Inflation Factors (VIF) for each predictor variable. VIFs below 5 are considered acceptable. Between 5 and 10, the variable should be examined. Above 10, the variable must considered highly collinear.
 :::
 
-::: {#tbl-sm-5-full-model-residual-diag-colinearity-1}
+::: {#tbl-sm-6-full-model-residual-diag-colinearity-1}
 ```{r}
 #| code-fold: true
 
@@ -2020,7 +1962,7 @@ fit_engine |> olsrr::ols_vif_tol()
 Variance Inflation Factors (VIF) and tolerance values for each predictor variable.
 :::
 
-::: {#tbl-sm-5-full-model-residual-diag-colinearity-2}
+::: {#tbl-sm-6-full-model-residual-diag-colinearity-2}
 ```{r}
 #| code-fold: true
 
@@ -2034,7 +1976,7 @@ Variance Inflation Factors (VIF) and tolerance values for each predictor variabl
 
 The [condition index](https://en.wikipedia.org/wiki/Condition_number) is a measure of multicollinearity in a regression model. It is based on the [eigenvalues](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) of the correlation matrix of the predictors. A condition index of 30 or higher is generally considered indicative of significant collinearity [@belsley2004, p. 112-114].
 
-::: {#tbl-sm-5-full-model-residual-diag-colinearity-2}
+::: {#tbl-sm-6-full-model-residual-diag-colinearity-2}
 ```{r}
 #| code-fold: true
 
@@ -2068,7 +2010,7 @@ Standardized residuals are a rescaling of the residual to a common basis by divi
 fit_engine |> stats::rstandard() |> head()
 ```
 
-::: {#fig-sm-5-full-model-diag-influence-1}
+::: {#fig-sm-6-full-model-diag-influence-1}
 ```{r}
 #| code-fold: true
 
@@ -2111,7 +2053,7 @@ fit_engine |> olsrr::ols_plot_resid_stand()
 fit_engine |> stats::rstudent() |> head()
 ```
 
-::: {#fig-sm-5-full-model-diag-influence-2}
+::: {#fig-sm-6-full-model-diag-influence-2}
 ```{r}
 #| code-fold: true
 
@@ -2137,7 +2079,7 @@ dplyr::tibble(
 Studentized residuals for each observation.
 :::
 
-::: {#fig-sm-5-full-model-diag-influence-3}
+::: {#fig-sm-6-full-model-diag-influence-3}
 ```{r}
 #| code-fold: true
 
@@ -2162,7 +2104,7 @@ fit |>
 Relation between studentized residuals and fitted values.
 :::
 
-::: {#fig-sm-5-full-model-diag-influence-4}
+::: {#fig-sm-6-full-model-diag-influence-4}
 ```{r}
 #| code-fold: true
 
@@ -2216,7 +2158,7 @@ The hat value indicates how distinct an observation’s predictor values are fro
 fit_engine |> stats::hatvalues() |> head()
 ```
 
-::: {#fig-sm-5-full-model-diag-influence-5}
+::: {#fig-sm-6-full-model-diag-influence-5}
 ```{r}
 #| code-fold: true
 
@@ -2263,7 +2205,7 @@ Learn more about Cook's D in: @cook1977; @cook1979.
 fit_engine |> stats::cooks.distance() |> head()
 ```
 
-::: {#fig-sm-5-full-model-diag-influence-6}
+::: {#fig-sm-6-full-model-diag-influence-6}
 ```{r}
 #| code-fold: true
 
@@ -2282,7 +2224,7 @@ q |> ggplot2::ggplot_gtable() |> ggplotify::as.ggplot()
 Cook's distance for each observation along with a threshold line at $4 / (n - k - 1)$.
 :::
 
-::: {#fig-sm-5-full-model-diag-influence-7}
+::: {#fig-sm-6-full-model-diag-influence-7}
 ```{r}
 #| code-fold: true
 
@@ -2363,7 +2305,7 @@ Learn more about DDFITS in: @welsch1977 and @belsley2004.
 fit_engine |> stats::dffits() |> head()
 ```
 
-::: {#fig-sm-5-full-model-diag-influence-8}
+::: {#fig-sm-6-full-model-diag-influence-8}
 ```{r}
 #| code-fold: true
 
@@ -2395,11 +2337,11 @@ fit_engine |> stats::dfbeta() |> head()
 fit_engine |>
   panel_tabset_coef_dfbetas(
     heading = "######",
-    suffix = "sm-5-full-model"
+    suffix = "sm-6-full-model"
   )
 ```
 
-{{< include ./qmd/_panel-tabset-coef-dfbetas-sm-5-full-model.qmd >}}
+{{< include ./qmd/_panel-tabset-coef-dfbetas-sm-6-full-model.qmd >}}
 
 ##### Hadi's Measure
 
@@ -2407,7 +2349,7 @@ Hadi’s measure of influence is based on the idea that influential observations
 
 Learn more about Hadi's measure in: @chatterjee2012.
 
-::: {#fig-sm-5-full-model-diag-influence-12}
+::: {#fig-sm-6-full-model-diag-influence-12}
 ```{r}
 #| code-fold: true
 
@@ -2425,7 +2367,7 @@ plot +
 Hadi's influence measure for each observation.
 :::
 
-::: {#fig-sm-5-full-model-diag-influence-13}
+::: {#fig-sm-6-full-model-diag-influence-13}
 ```{r}
 #| code-fold: true
 
@@ -2455,7 +2397,7 @@ $$
 
 ### F-test
 
-The results indicate that the F-test is significant ($\alpha < 0.05$), meaning that the model including the latitude variables differs from the model without them.
+The results indicate that the F-test is significant ($\alpha < 0.05$), meaning that the model including the latitude variable differs from the model without it.
 
 $$
 \text{F} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r} / (k_{f} - k_{R})}{(1 - \text{R}^{2}_{f}) / (\text{N} - k_{f} - 1)}
@@ -2496,7 +2438,7 @@ $$
 0.02 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}} \quad \text{or} \quad \text{R}^{2} = \cfrac{0.02}{1.02} \eqsim 0.01960784
 $$
 
-::: {#tbl-sm-5-hypothesis-test-1}
+::: {#tbl-sm-6-hypothesis-test-1}
 ```{r}
 #| code-fold: true
 
@@ -2514,7 +2456,7 @@ adj_r_squared_restricted
 Confidence interval for the adjusted R-squared of the **restricted model**. LCL correspond to the lower limit, and UCL to the upper limit.
 :::
 
-::: {#tbl-sm-5-hypothesis-test-2}
+::: {#tbl-sm-6-hypothesis-test-2}
 ```{r}
 #| code-fold: true
 
@@ -2532,7 +2474,7 @@ adj_r_squared_full
 Confidence interval for the adjusted R-squared of the **full model**. LCL correspond to the lower limit, and UCL to the upper limit.
 :::
 
-::: {#tbl-sm-5-hypothesis-test-3}
+::: {#tbl-sm-6-hypothesis-test-3}
 ```{r}
 dplyr::tibble(
   name = c(
@@ -2551,7 +2493,7 @@ dplyr::tibble(
 Comparison between the coefficients of determination ($\text{R}^2$) of the restricted and full models.
 :::
 
-::: {#tbl-sm-5-hypothesis-test-4}
+::: {#tbl-sm-6-hypothesis-test-4}
 ```{r}
 cohens_f_squared_summary(
   adj_r_squared_restricted$LCL, 

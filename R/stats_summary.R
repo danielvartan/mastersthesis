@@ -1,18 +1,19 @@
+# library(dplyr)
 # library(here)
 # library(hms)
 # library(lubridate)
 # library(moments)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(purrr)
-# library(rutils) # github.com/danielvartan/rutils
 # library(stats)
-# library(tidyr)
 
 source(here::here("R", "utils.R"))
+source(here::here("R", "utils-checks.R"))
 source(here::here("R", "utils-stats.R"))
 
 stats_summary <- function(
-    x,
+    data,
+    col,
     name = NULL,
     na_rm = TRUE,
     remove_outliers = FALSE,
@@ -21,7 +22,10 @@ stats_summary <- function(
     threshold = hms::parse_hms("12:00:00"),
     as_list = FALSE
   ) {
-  prettycheck:::assert_atomic(x)
+  prettycheck:::assert_tibble(data)
+  prettycheck:::assert_string(col)
+  prettycheck:::assert_choice(col, names(data))
+  prettycheck:::assert_atomic(data[[col]])
   prettycheck:::assert_string(name, null.ok = TRUE)
   prettycheck:::assert_flag(na_rm)
   prettycheck:::assert_flag(remove_outliers)
@@ -35,7 +39,7 @@ stats_summary <- function(
 
   prettycheck:::assert_flag(as_list)
 
-  is_temporal <- x |> prettycheck:::test_temporal()
+  x <- data |> dplyr::pull(col)
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
 
   if (prettycheck:::test_temporal(x)) {
@@ -75,7 +79,7 @@ stats_summary <- function(
       ))
   }
 
-  if (is_temporal && isTRUE(hms_format)) {
+  if (prettycheck:::test_temporal(x) && isTRUE(hms_format)) {
     if (test_timeline_link(x)) {
       out <- purrr::map(
         .x = out,
@@ -92,12 +96,28 @@ stats_summary <- function(
     out$kurtosis <- moments::kurtosis(x, na.rm = na_rm)
   }
 
-  if (!is.numeric(x) && !is_temporal) {
-    out <-
-      out |>
-      append(list(
-        count = dplyr::tibble(col = x) |> dplyr::count(col)
-      ))
+  if (!is.numeric(x) && !prettycheck:::test_temporal(x)) {
+    out <- list(
+      n = length(x),
+      n_rm_na = length(x[!is.na(x)]),
+      n_na = length(x[is.na(x)]),
+      n_unique = length(unique(x)),
+      mode = mode(x)
+    )
+
+    data_count <-
+      dplyr::tibble(x = x) |>
+      dplyr::count(x) |>
+      dplyr::group_by(row = dplyr::row_number()) |>
+      dplyr::group_split()
+
+    for (i in data_count) {
+      out <-
+        i$n |>
+        magrittr::set_names(i$x) |>
+        as.list() %>%
+        c(out, .)
+    }
   }
 
   if (!is.null(name)) out <- append(out, list(name = name), after = 0)

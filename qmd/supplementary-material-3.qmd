@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Exploratory data analysis
+# Exploratory Data Analysis
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -7,43 +7,43 @@
 #| include: false
 
 source(here::here("R/_setup.R"))
-options(scipen = 10, digits = 5)
-```
-
-```{r}
-#| label: status
-#| echo: false
-#| output: asis
-
-rutils:::quarto_status(
-  type = "polishing",
-  of_what = "of this thesis",
-  latex_parskip = "\\microskip"
-  )
 ```
 
 ## Overview
 
-This document focus in providing a comprehensive overview of the data collected in the survey. It focuses on the analysis sample, with explicit indications provided whenever the full sample is used. The analysis sample is a subset of the full sample, and includes only Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
+This document focus in providing a comprehensive overview of the data collected in the survey.
 
-The data munging and wrangling processes were conducted using the [`targets`](https://github.com/ropensci/targets) R package. The complete pipeline is documented in the [`_targets.R`](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R) file, located in the root directory of the [core repository](https://github.com/danielvartan/mastersthesis).
+It focuses on the sample used on the analysis, with explicit indications provided whenever the full sample is used. The analysis sample is a subset of the full sample, and includes only Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
 
-## Setting the enviroment
+## Setting the Enviroment
 
 ```{r}
 #| eval: false
 
+library(cli)
 library(dplyr)
-library(here)
+library(fBasics)
 library(geobr)
+library(ggplot2)
+library(here)
+library(hms)
 library(janitor)
+library(lubridate)
+library(lubritime) # github.com/danielvartan/lubritime
 library(magrittr)
+library(moments)
+library(nortest)
 library(patchwork)
+library(prettycheck) # github.com/danielvartan/prettycheck
+library(purrr)
 library(rlang)
+library(rutils) # github.com/danielvartan/rutils
 library(sidrar)
+library(stats)
 library(stringr)
 library(targets)
 library(tidyr)
+library(tseries)
 library(viridis)
 ```
 
@@ -52,9 +52,7 @@ library(viridis)
 
 library(ggplot2)
 library(magrittr)
-library(patchwork)
 library(rlang)
-library(targets)
 ```
 
 ```{r}
@@ -62,20 +60,26 @@ library(targets)
 
 source(here::here("R", "categorize_msf_sc.R"))
 source(here::here("R", "get_brazil_region.R"))
-source(here::here("R", "panel_tabset_var_dist.R"))
+source(here::here("R", "panel_tabset_var_distribution.R"))
 source(here::here("R", "plot_age.R"))
+source(here::here('R', 'plot_box_plot.R'))
 source(here::here("R", "plot_brazil.R"))
 source(here::here("R", "plot_chronotype.R"))
 source(here::here("R", "plot_ggally.R"))
 source(here::here("R", "plot_ggcorrplot.R"))
+source(here::here('R', 'plot_hist.R'))
 source(here::here("R", "plot_latitude_series.R"))
+source(here::here('R', 'plot_qq.R'))
 source(here::here("R", "plot_world.R"))
 source(here::here("R", "stats_summary.R"))
+source(here::here('R', 'test_normality.R'))
 source(here::here("R", "utils.R"))
-source(here::here("R", "utils-stats.R"))
+source(here::here('R', 'utils-checks.R'))
+source(here::here('R', 'utils-plots.R'))
+source(here::here('R', 'utils-stats.R'))
 ```
 
-## Importing the sample data
+## Loading data
 
 ```{r}
 #| eval: false
@@ -85,70 +89,91 @@ source(here::here("R", "utils-stats.R"))
 targets::tar_make(script = "../_targets.R")
 ```
 
-### Full sample
+### Full Sample
 
 ```{r}
 #| code-fold: false
 
-geocoded_data <- targets::tar_read(
-  "geocoded_data", 
-  store = here::here("_targets")
-)
+anonymized_data <- 
+  targets::tar_read("anonymized_data", store = here::here("_targets")) |>
+  tidyr::unnest(
+    cols = dplyr::everything(),
+      names_sep = "_",
+      names_repair = "universal"
+  )
 ```
 
-### Analysis sample
+### Analysis Sample
 
 ```{r}
 #| code-fold: false
 
-weighted_data <- targets::tar_read(
-  "weighted_data", 
-  store = here::here("_targets")
-)
+weighted_data <- 
+  targets::tar_read("weighted_data", store = here::here("_targets")) |>
+  tidyr::unnest(
+    cols = dplyr::everything(),
+      names_sep = "_",
+      names_repair = "universal"
+  )
 ```
 
-## Distribution of main variables
+## Distribution of Main Variables
 
 ```{r}
 #| eval: false
 #| include: false
 
 weighted_data |>
-  panel_tabset_var_dist(
+  panel_tabset_var_distribution(
+    data_name = "weighted_data",
     cols = c(
-      "age",
+      "msf_sc", 
+      "age", 
       "latitude",
-      "longitude",
-      "msf_sc"
+      "longitude", 
+      "ghi_month", 
+      "ghi_annual", 
+      "march_equinox_sunrise", 
+      "march_equinox_sunset", 
+      "march_equinox_daylight", 
+      "june_solstice_sunrise", 
+      "june_solstice_sunset", 
+      "june_solstice_daylight", 
+      "september_equinox_sunrise", 
+      "september_equinox_sunset", 
+      "september_equinox_daylight", 
+      "december_solstice_sunrise", 
+      "december_solstice_sunset", 
+      "december_solstice_daylight"
     ),
     col_labels = c(
+      "MSF~sc~ (Chronotype proxy) (local time)",
       "Age (years)",
-      "Latitude (degrees)",
-      "Longitude (degrees)",
-      "MSF~sc~ (Chronotype proxy) (local time)"
+      "Latitude (decimal degrees)",
+      "Longitude (decimal degrees)",
+      "Monthly average global horizontal irradiance (Wh/m²)",
+      "Annual average global horizontal irradiance (Wh/m²)",
+      "Daylight on the March equinox (seconds)",
+      "Daylight on the June solstice (seconds)",
+      "Daylight on the December solstice (seconds)"
     ),
-    source = c(
-      "Created by the author.",
-      "Created by the author.",
-      "Created by the author.",
-      "Created by the author."
-    ),
-    heading = "###"
+    heading = "###",
+    suffix = "sm-3"
   )
 ```
 
-{{< include ./qmd/panel-tabset-var-dist.qmd >}}
+{{< include ./qmd/_panel-tabset-var-distribution-sm-3.qmd >}}
 
-## Correlation matrix of the main variables
+## Correlation Matrix of the Main Variables
 
-## Full sample
+### Full Sample
 
 ::: {#fig-appendice-correlation-matrix-full-sample}
 ```{r}
 #| message: false
 #| warning: false
 
-geocoded_data |> 
+anonymized_data |> 
   plot_ggally(
     cols = c(
       "sex", 
@@ -167,7 +192,7 @@ Source: Created by the author.
 Correlation matrix of main variables (**Full sample**).
 :::
 
-##  Analysis sample
+###  Analysis Sample
 
 ::: {#fig-appendice-correlation-matrix-analysis-sample}
 ```{r}
@@ -193,17 +218,15 @@ Source: Created by the author.
 Correlation matrix of main variables (**Analysis sample**).
 :::
 
-## Outlier diagnostic of main variables
+## ComparisonS Between Sample and Population
 
-## Frequency comparisons between the sample and population
-
-See appendix 4.
+See Supplementary Material 4.
 
 ## Geographic distribution
 
-## Latitudinal and longitudinal range
+### Latitudinal and Longitudinal Range
 
-### Brazil
+#### Brazil
 
 Click [here](https://anuario.ibge.gov.br/2023/territorio/posicao-e-extensao.html) to learn more about Brazil's extreme points.
 
@@ -239,7 +262,7 @@ dplyr::tibble(
 Brazil's extreme points (**full sample**).
 :::
 
-### Full sample
+#### Full Sample
 
 ::: {#tbl-appendice-1-logitudinal-range-full-sample}
 ```{r}
@@ -247,7 +270,7 @@ Brazil's extreme points (**full sample**).
 #| warning: false
 
 box <-
-  geocoded_data |>
+  anonymized_data |>
   dplyr::filter(country == "Brazil") |>
   dplyr::summarise(
     xmin = min(longitude, na.rm = TRUE),
@@ -279,7 +302,7 @@ dplyr::tibble(
 Latitude and longitude statistics of respondents (**Full sample**).
 :::
 
-### Analysis sample
+#### Analysis Sample
 
 ::: {#tbl-appendice-1-logitudinal-range-analysis-sample}
 ```{r}
@@ -319,7 +342,7 @@ dplyr::tibble(
 Latitude and longitude statistics of respondents (**Analysis sample**).
 :::
 
-## Population ($N$) (2017)
+### Brazil
 
 Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) population estimates of the population distribution is used in the same timeframe of the sample (2017) [@ibgel]. The data can be accessed at the [IBGE's SIDRA](https://sidra.ibge.gov.br/tabela/6579) platform (IBGE's Table 6579).
 
@@ -425,12 +448,12 @@ plot_ibge_panel <-
 plot_ibge_panel
 ```
 
-### Full sample
+### Full Sample
 
 ```{r}
 #| include: false
 
-geocoded_data |> 
+anonymized_data |> 
   dplyr::pull(country) |> 
   rutils:::drop_na() |>
   unique() |>
@@ -439,7 +462,7 @@ geocoded_data |>
 
 ```{r}
 plot_full_1 <- 
-  geocoded_data |> 
+  anonymized_data |> 
   plot_world_countries(
     transform = "log10",
     text_size = env_vars$base_size,
@@ -449,7 +472,7 @@ plot_full_1 <-
 
 ```{r}
 plot_full_2 <- 
-  geocoded_data |> 
+  anonymized_data |> 
   plot_brazil_state(
     text_size = env_vars$base_size,
     print = TRUE
@@ -458,14 +481,14 @@ plot_full_2 <-
 
 ```{r}
 max_limit <- 
-  geocoded_data |>
+  anonymized_data |>
   dplyr::filter(country == "Brazil") |>
   dplyr::count(municipality_code) |>
   dplyr::pull(n) |>
   inverse_log_max(10)
 
 plot_full_3 <- 
-  geocoded_data |> 
+  anonymized_data |> 
   plot_brazil_municipality(
     transform = "log10",
     viridis = "plasma",
@@ -478,14 +501,14 @@ plot_full_3 <-
 
 ```{r}
 max_limit <- 
-  geocoded_data |>
+  anonymized_data |>
   dplyr::filter(country == "Brazil") |>
   dplyr::count(municipality_code) |>
   dplyr::pull(n) |>
   max()
 
 plot_full_4 <- 
-  geocoded_data |> 
+  anonymized_data |> 
   plot_brazil_municipality(
     transform = "log10",
     viridis = "plasma",
@@ -501,7 +524,7 @@ plot_full_4 <-
 
 ```{r}
 plot_full_5 <- 
-  geocoded_data |> 
+  anonymized_data |> 
   plot_brazil_point(
     color_point = viridis::plasma(1, begin = 0.65, direction = 1) |>
       stringr::str_trunc(7, ellipsis = ""),
@@ -534,7 +557,7 @@ patchwork::wrap_plots(
   )
 ```
 
-### Analysis sample
+### Analysis Sample
 
 ```{r}
 plot_analysis_1 <- 
@@ -614,7 +637,7 @@ patchwork::wrap_plots(
   )
 ```
 
-## Population *versus* Sample
+### Population *versus* Sample
 
 ```{r}
 patchwork::wrap_plots(
@@ -672,13 +695,13 @@ patchwork::wrap_plots(
   )
 ```
 
-## Age distributions
+## Age Distributions
 
 ::: {.callout-note}
 The models were created using cell weights to account for unbalances.
 :::
 
-## Brazil
+### Brazil
 
 See <https://sidra.ibge.gov.br/tabela/6407> to learn more about the data.
 
@@ -801,7 +824,7 @@ plot_ibge_6407_age_2 <-
   )
 ```
 
-## Full sample
+### Full Sample
 
 ```{r}
 #| message: false
@@ -810,7 +833,7 @@ plot_ibge_6407_age_2 <-
 source(here::here("R", "plot_age.R"))
 
 plot_full_age_1<- 
-  geocoded_data |> 
+  anonymized_data |> 
   plot_age_pyramid(
     interval = 10, 
     na_rm = TRUE, 
@@ -820,7 +843,7 @@ plot_full_age_1<-
 
 ```{r}
 plot_full_age_2 <- 
-  geocoded_data |> 
+  anonymized_data |> 
   plot_brazil_state(
     col_fill = "age",
     transform = "identity",
@@ -831,7 +854,7 @@ plot_full_age_2 <-
 
 ```{r}
 plot_full_age_3 <- 
-  geocoded_data |> 
+  anonymized_data |> 
   plot_brazil_municipality(
     col_fill = "age", # Means
     viridis = "plasma",
@@ -842,7 +865,7 @@ plot_full_age_3 <-
   )
 ```
 
-## Analysis sample
+### Analysis Sample
 
 ```{r}
 #| message: false
@@ -859,7 +882,7 @@ plot_analysis_age_1 <-
 
 ```{r}
 plot_analysis_age_2 <- 
-  geocoded_data |> 
+  anonymized_data |> 
   plot_brazil_state(
     col_fill = "age", # Means
     text_size = env_vars$base_size,
@@ -880,9 +903,9 @@ plot_analysis_age_3 <-
   )
 ```
 
-## Age and sex series
+## Age and Sex Series
 
-### Age/sex _versus_ chronotype (**Full sample**)
+### Age/sex _versus_ Chronotype (**Full Sample**)
 
 ::: {#fig-appendice-1-age-sex-chronotype-series}
 ```{r}
@@ -890,7 +913,7 @@ plot_analysis_age_3 <-
 #| warning: false
 
 plot_age_sex_series <- 
-  geocoded_data |>
+  anonymized_data |>
   dplyr::filter(age <= 50) |>
   plot_age_series(
     col = "msf_sc", 
@@ -918,7 +941,7 @@ Source: Reproduction from @roenneberg2019b.
 Distribution of European chronotypes by age, as shown in @roenneberg2007a (for comparison).
 :::
 
-### Age/sex _versus_ weight (**Full sample**)
+### Age/sex _versus_ Weight (**Full Sample**)
 
 ::: {#fig-appendice-1-age-sex-weigth-series}
 ```{r}
@@ -926,7 +949,7 @@ Distribution of European chronotypes by age, as shown in @roenneberg2007a (for c
 #| warning: false
 
 plot_age_sex_weigth_series <-
-  geocoded_data |>
+  anonymized_data |>
   dplyr::filter(age <= 50) |>
   plot_age_series(
     col = "weight", 
@@ -969,7 +992,7 @@ Source: Reproduction from @roenneberg2019b.
 Distribution of European chronotypes, as shown in @roenneberg2019b (for comparison).
 :::
 
-## Latitude series (**Analysis sample**)
+## Latitude Series
 
 ::: {#fig-appendice-1-chronotype-latitude-series}
 ```{r}
@@ -987,7 +1010,7 @@ weighted_data |>
 Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The red line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
 :::
 
-## Chronotype geographical distribution
+## Chronotype Geographical Distribution
 
 ```{r}
 #| eval: false

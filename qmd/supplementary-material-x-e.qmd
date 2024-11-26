@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# An overview of general linear models
+# Overview of general linear models
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -7,7 +7,6 @@
 #| include: false
 
 source(here::here("R", "_setup.R"))
-options(scipen = 10, digits = 5)
 ```
 
 ## Overview

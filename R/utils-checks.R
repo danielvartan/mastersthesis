@@ -1,3 +1,31 @@
+# library(lubridate)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
+
+# TODO: Move to `lubritime`.
+test_timeline_link <- function(x, tz = "UTC") {
+  prettycheck:::assert_multi_class(x, c("numeric", "POSIXt"))
+  prettycheck:::assert_choice(tz, OlsonNames())
+
+  x <- x |> rutils:::drop_na()
+
+  if (is.numeric(x)) x <- x |> lubridate::as_datetime(tz = tz)
+
+  dates <-
+    x |>
+    lubridate::date() |>
+    unique()
+
+  if (((lubridate::as_date("1970-01-01") %in% dates) &&
+       length(dates) == 2) ||
+      ((lubridate::as_date("1970-01-02") %in% dates) &&
+       length(dates) == 1)) {
+    TRUE
+  } else {
+    FALSE
+  }
+}
+
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 

@@ -1,0 +1,161 @@
+:::: {.panel-tabset}
+###### MSF~sc~ (Chronotype proxy) (seconds)
+
+::: {#tbl-sm-6-full-model-diag-homoscedasticity-msf-sc}
+```{r}
+#| code-fold: true
+
+plot <-
+  fit |>
+  stats::predict(data) |>
+  dplyr::mutate(
+    .sd_resid =
+      fit |>
+      parsnip::extract_fit_engine() |>
+      stats::rstandard() |>
+      abs() |>
+      sqrt()
+  ) |>
+  dplyr::bind_cols(data) |>
+  ggplot2::ggplot(ggplot2::aes(msf_sc, .sd_resid)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(color = 'red') +
+  ggplot2::labs(
+    x = 'MSF~sc~ (Chronotype proxy) (seconds)',
+    y = latex2exp::TeX('$\\sqrt{|Standardized \\ Residuals|}$')
+  )
+
+plot |> print() |> rutils::shush()
+```
+
+Relation between `msf_sc` and the model standardized residuals.
+:::
+
+###### Age (years)
+
+::: {#tbl-sm-6-full-model-diag-homoscedasticity-age}
+```{r}
+#| code-fold: true
+
+plot <-
+  fit |>
+  stats::predict(data) |>
+  dplyr::mutate(
+    .sd_resid =
+      fit |>
+      parsnip::extract_fit_engine() |>
+      stats::rstandard() |>
+      abs() |>
+      sqrt()
+  ) |>
+  dplyr::bind_cols(data) |>
+  ggplot2::ggplot(ggplot2::aes(age, .sd_resid)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(color = 'red') +
+  ggplot2::labs(
+    x = 'Age (years)',
+    y = latex2exp::TeX('$\\sqrt{|Standardized \\ Residuals|}$')
+  )
+
+plot |> print() |> rutils::shush()
+```
+
+Relation between `age` and the model standardized residuals.
+:::
+
+###### Latitude (decimal degrees)
+
+::: {#tbl-sm-6-full-model-diag-homoscedasticity-longitude}
+```{r}
+#| code-fold: true
+
+plot <-
+  fit |>
+  stats::predict(data) |>
+  dplyr::mutate(
+    .sd_resid =
+      fit |>
+      parsnip::extract_fit_engine() |>
+      stats::rstandard() |>
+      abs() |>
+      sqrt()
+  ) |>
+  dplyr::bind_cols(data) |>
+  ggplot2::ggplot(ggplot2::aes(longitude, .sd_resid)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(color = 'red') +
+  ggplot2::labs(
+    x = 'Latitude (decimal degrees)',
+    y = latex2exp::TeX('$\\sqrt{|Standardized \\ Residuals|}$')
+  )
+
+plot |> print() |> rutils::shush()
+```
+
+Relation between `longitude` and the model standardized residuals.
+:::
+
+###### Longitude (decimal degrees)
+
+::: {#tbl-sm-6-full-model-diag-homoscedasticity-ghi-month}
+```{r}
+#| code-fold: true
+
+plot <-
+  fit |>
+  stats::predict(data) |>
+  dplyr::mutate(
+    .sd_resid =
+      fit |>
+      parsnip::extract_fit_engine() |>
+      stats::rstandard() |>
+      abs() |>
+      sqrt()
+  ) |>
+  dplyr::bind_cols(data) |>
+  ggplot2::ggplot(ggplot2::aes(ghi_month, .sd_resid)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(color = 'red') +
+  ggplot2::labs(
+    x = 'Longitude (decimal degrees)',
+    y = latex2exp::TeX('$\\sqrt{|Standardized \\ Residuals|}$')
+  )
+
+plot |> print() |> rutils::shush()
+```
+
+Relation between `ghi_month` and the model standardized residuals.
+:::
+
+###### Monthly average global horizontal irradiance (Wh/m²)
+
+::: {#tbl-sm-6-full-model-diag-homoscedasticity-latitude}
+```{r}
+#| code-fold: true
+
+plot <-
+  fit |>
+  stats::predict(data) |>
+  dplyr::mutate(
+    .sd_resid =
+      fit |>
+      parsnip::extract_fit_engine() |>
+      stats::rstandard() |>
+      abs() |>
+      sqrt()
+  ) |>
+  dplyr::bind_cols(data) |>
+  ggplot2::ggplot(ggplot2::aes(latitude, .sd_resid)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(color = 'red') +
+  ggplot2::labs(
+    x = 'Monthly average global horizontal irradiance (Wh/m²)',
+    y = latex2exp::TeX('$\\sqrt{|Standardized \\ Residuals|}$')
+  )
+
+plot |> print() |> rutils::shush()
+```
+
+Relation between `latitude` and the model standardized residuals.
+:::
+::::

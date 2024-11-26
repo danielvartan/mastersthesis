@@ -1,0 +1,369 @@
+:::: {.panel-tabset}
+### MSF~sc~ (Chronotype proxy) (seconds)
+
+::: {#tbl-sm-5-var-distribution-stats-msf-sc}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'msf_sc',
+    name = 'MSF~sc~ (Chronotype proxy) (seconds)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `msf_sc` variable.
+:::
+
+::: {#fig-sm-5-var-distribution-histogram-msf-sc}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'msf_sc',
+    name = 'MSF~sc~ (Chronotype proxy) (seconds)'
+  )
+```
+
+Histogram of the `msf_sc` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-5-var-distribution-box-plot-msf-sc}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'msf_sc'
+  )
+```
+
+Boxplot of the `msf_sc` variable.
+:::
+
+### Age (years)
+
+::: {#tbl-sm-5-var-distribution-stats-age}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'age',
+    name = 'Age (years)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `age` variable.
+:::
+
+::: {#fig-sm-5-var-distribution-histogram-age}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'age',
+    name = 'Age (years)'
+  )
+```
+
+Histogram of the `age` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-5-var-distribution-box-plot-age}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'age'
+  )
+```
+
+Boxplot of the `age` variable.
+:::
+
+### Longitude (decimal degrees)
+
+::: {#tbl-sm-5-var-distribution-stats-longitude}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'longitude',
+    name = 'Longitude (decimal degrees)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `longitude` variable.
+:::
+
+::: {#fig-sm-5-var-distribution-histogram-longitude}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'longitude',
+    name = 'Longitude (decimal degrees)'
+  )
+```
+
+Histogram of the `longitude` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-5-var-distribution-box-plot-longitude}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'longitude'
+  )
+```
+
+Boxplot of the `longitude` variable.
+:::
+
+### Monthly average global horizontal irradiance (Wh/m²)
+
+::: {#tbl-sm-5-var-distribution-stats-ghi-month}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'ghi_month',
+    name = 'Monthly average global horizontal irradiance (Wh/m²)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `ghi_month` variable.
+:::
+
+::: {#fig-sm-5-var-distribution-histogram-ghi-month}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'ghi_month',
+    name = 'Monthly average global horizontal irradiance (Wh/m²)'
+  )
+```
+
+Histogram of the `ghi_month` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-5-var-distribution-box-plot-ghi-month}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'ghi_month'
+  )
+```
+
+Boxplot of the `ghi_month` variable.
+:::
+
+### Annual average global horizontal irradiance (Wh/m²)
+
+::: {#tbl-sm-5-var-distribution-stats-ghi-annual}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'ghi_annual',
+    name = 'Annual average global horizontal irradiance (Wh/m²)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `ghi_annual` variable.
+:::
+
+::: {#fig-sm-5-var-distribution-histogram-ghi-annual}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'ghi_annual',
+    name = 'Annual average global horizontal irradiance (Wh/m²)'
+  )
+```
+
+Histogram of the `ghi_annual` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-5-var-distribution-box-plot-ghi-annual}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'ghi_annual'
+  )
+```
+
+Boxplot of the `ghi_annual` variable.
+:::
+
+### Daylight on the March equinox (seconds)
+
+::: {#tbl-sm-5-var-distribution-stats-march-equinox-daylight}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'march_equinox_daylight',
+    name = 'Daylight on the March equinox (seconds)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `march_equinox_daylight` variable.
+:::
+
+::: {#fig-sm-5-var-distribution-histogram-march-equinox-daylight}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'march_equinox_daylight',
+    name = 'Daylight on the March equinox (seconds)'
+  )
+```
+
+Histogram of the `march_equinox_daylight` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-5-var-distribution-box-plot-march-equinox-daylight}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'march_equinox_daylight'
+  )
+```
+
+Boxplot of the `march_equinox_daylight` variable.
+:::
+
+### Daylight on the June solstice (seconds)
+
+::: {#tbl-sm-5-var-distribution-stats-june-solstice-daylight}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'june_solstice_daylight',
+    name = 'Daylight on the June solstice (seconds)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `june_solstice_daylight` variable.
+:::
+
+::: {#fig-sm-5-var-distribution-histogram-june-solstice-daylight}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'june_solstice_daylight',
+    name = 'Daylight on the June solstice (seconds)'
+  )
+```
+
+Histogram of the `june_solstice_daylight` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-5-var-distribution-box-plot-june-solstice-daylight}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'june_solstice_daylight'
+  )
+```
+
+Boxplot of the `june_solstice_daylight` variable.
+:::
+
+### Daylight on the December solstice (seconds)
+
+::: {#tbl-sm-5-var-distribution-stats-december-solstice-daylight}
+```{r}
+#| code-fold: true
+
+data |>
+  stats_summary(
+    col = 'december_solstice_daylight',
+    name = 'Daylight on the December solstice (seconds)',
+    as_list = FALSE
+  )
+```
+
+Statistics for the `december_solstice_daylight` variable.
+:::
+
+::: {#fig-sm-5-var-distribution-histogram-december-solstice-daylight}
+```{r}
+#| code-fold: true
+
+data |>
+  test_normality(
+    col = 'december_solstice_daylight',
+    name = 'Daylight on the December solstice (seconds)'
+  )
+```
+
+Histogram of the `december_solstice_daylight` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-5-var-distribution-box-plot-december-solstice-daylight}
+```{r}
+#| code-fold: true
+
+data |>
+  plot_box_plot(
+    col = 'december_solstice_daylight'
+  )
+```
+
+Boxplot of the `december_solstice_daylight` variable.
+:::
+::::

@@ -1,0 +1,79 @@
+```{r}
+#| include: false
+
+data <- 
+  anonymized_data |> 
+  dplyr::filter(country == "Brazil")
+```
+
+```{r}
+#| include: false
+
+sex_per <- 
+  data |> 
+  dplyr::summarise(
+    n = dplyr::n(), 
+    .by = sex
+  ) |>
+  dplyr::mutate(n_per = (n / sum(n)) * 100)
+
+male_per <- 
+  sex_per |> 
+  dplyr::filter(sex == "Male") |>
+  dplyr::pull(n_per)
+
+female_per <- 
+  sex_per |> 
+  dplyr::filter(sex == "Female") |>
+  dplyr::pull(n_per)
+```
+
+Based on 2017 data from the Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) [@ibgee], Brazil had $51.919\%$ of females and $48.081\%$ of males with an age equal to or greater than 18 years old. The full sample is skewed for female subjects, with `r format_to_md_latex(female_per, "\\%")` of females and `r format_to_md_latex(male_per, "\\%")` of male subjects.
+
+```{r}
+#| include: false
+
+total_age_mean <- 
+  data |>
+  dplyr::pull(age) |>
+  mean(na.rm = TRUE)
+
+total_age_sd <- 
+  data |>
+  dplyr::pull(age) |>
+  stats::sd(na.rm = TRUE)
+
+age_mean_sd <- 
+  data |> 
+  dplyr::summarise(
+    mean = mean(age, na.rm = TRUE),
+    sd = stats::sd(age, na.rm = TRUE),
+    .by = c("sex")
+  )
+
+male_age_mean <- 
+  age_mean_sd |> 
+  dplyr::filter(sex == "Male") |>
+  dplyr::pull(mean)
+
+male_age_sd <- 
+  age_mean_sd |> 
+  dplyr::filter(sex == "Male") |>
+  dplyr::pull(sd)
+
+female_age_mean <- 
+  age_mean_sd |> 
+  dplyr::filter(sex == "Female") |>
+  dplyr::pull(mean)
+
+female_age_sd <- 
+  age_mean_sd |> 
+  dplyr::filter(sex == "Female") |>
+  dplyr::pull(sd)
+```
+
+Subjects' mean age is `r format_to_md_latex(total_age_mean)` years ($\text{SD} = 9.252$; $\text{Max.} = 58.786$). Female subjects have a mean age of $31.787$ years ($\text{SD} = 9.364$; $\text{Max.} = 58.786$) and male subjects $32.464$ years ($\text{SD} = 9.012$; $\text{Max.} = 58.772$). For comparison, based on the 2017 IBGE-PNAD data [@ibgee], Brazil’s population with an age equal to or greater than $18$ years old had a mean age of $44.277$ years ($\text{SD} = 17.221$), with a mean age of $44.987$ years ($\text{SD} = 17.511$) for female subjects and a mean age of $43.499$ years ($\text{SD} = 16.864$) for male subjects.
+
+Considering the five regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census [@ibge2022], the Southeast region is home to $41.784\%$ of Brazil’s population, followed by the Northeast ($26.910\%$), South ($14.741\%$), North ($8.544\%$), and Midwest ($8.021\%$) regions. $62.454\%$ of the sample is located in the Southeast region, $11.797\%$ in the Northeast, $17.861\%$ in the South, $1.682\%$ in the North, and $6.205\%$ in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).
+
+The sample latitudinal range was $30.211$ decimal degrees ($\text{Min.} = -30.109$; $\text{Max.} = 0.10177$) with a longitudinal span of $16.378$ decimal degrees ($\text{Min.} = -51.342$; $\text{Max.} = -34.964$). For comparison, Brazil has a latitudinal range of $39.024$ decimal degrees ($\text{Min.} = -33.752$; $\text{Max.} = 5.2719$) and a longitudinal span of $39.198$ decimal degrees ($\text{Min.} = -34.793$; $\text{Max.} = -73.991$). 

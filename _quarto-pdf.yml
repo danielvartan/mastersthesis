@@ -18,8 +18,6 @@ book:
   chapters:
     - index.qmd
     - qmd/chapter-2.qmd
-    - qmd/chapter-3.qmd
-    - qmd/chapter-4.qmd
     - qmd/chapter-5.qmd
     - qmd/chapter-6.qmd
 

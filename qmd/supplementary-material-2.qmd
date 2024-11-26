@@ -9,23 +9,60 @@
 source(here::here("R", "_setup.R"))
 ```
 
+```{r}
+#| include: false
+
+library(magrittr)
+```
+
+```{r}
+#| include: false
+
+source(here::here("R", "utils.R"))
+```
+
+```{r}
+#| eval: false
+#| output: false
+
+targets::tar_make(script = "../_targets.R")
+```
+
+```{r}
+#| output: false
+
+anonymized_data <- targets::tar_read(
+  "anonymized_data", 
+  store = here::here("_targets")
+)
+```
+
+```{r}
+#| output: false
+
+weighted_data <- targets::tar_read(
+  "weighted_data", 
+  store = here::here("_targets")
+)
+```
+
 ## Overview
 
-This document provides a detailed explanation of the methods and steps involved in building the models and testing the thesis hypothesis.
+This document focus in providing a detailed explanation of the methods and steps involved in building the models and testing the thesis hypothesis.
 
 For a comprehensive review of the thesis question and hypothesis, please refer to other supplementary materials.
 
-## Approach and procedure method
+## Approach and Procedure Method
 
 This study adopted the hypothetical-deductive method, also known as the method of conjecture and refutation [@popper1979, p. 164], to approach problem-solving. As a procedural method, it utilized an enhanced version of Null Hypothesis Significance Testing (NHST), grounded in the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015].
 
-## Measurement instrument
+## Measurement Instrument
 
 Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MSF~sc~) on work-free days, accounting for any potential sleep compensation due to sleep deficits on workdays [@roenneberg2012].
 
 Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
 
-::: {#fig-appendice-1-age-sex-chronotype-series}
+::: {#fig-s-2--mctq-variables}
 ![](images/mctq-figure-1.png)
 
 Source: Create by the author.
@@ -37,7 +74,7 @@ Variables of the Munich ChronoType Questionnaire scale (a sleep log). In its sta
 
 The validated dataset used for analysis is made up of `{r} weighted_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
 
-The unfiltered valid sample comprises `{r} geocoded_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of $120,265$ individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The unfiltered valid sample comprises `{r} anonymized_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of $120,265$ individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
 ::: {#fig-appendice-1-age-sex-chronotype-series}
 ![](images/globo-2017-figure-1.png)
@@ -51,51 +88,15 @@ A survey conducted in 2019 by the Brazilian Institute of Geography and Statistic
 
 Daylight Saving Time (DST) began in Brazil at midnight on October 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that we asked subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample would be the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the data.
 
-Based on the 2022 census [@ibgea], Brazil had $52.263\%$ of females and $47.737\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with $66.297\%$ of females and $33.703\%$ of male subjects.
+To balance the sample, a weighting procedure was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil's state as reference This procedure can be found on the *Sample balance procedure* supplementary material.
 
-The subjects' mean age is $32.015$ years ($\text{SD} = 9.252$; $\text{Max.} = 58.786$). Female subjects have a mean age of $31.787$ years ($\text{SD} = 9.364$; $\text{Max.} = 58.786$) and male subjects $32.464$ years ($\text{SD} = 9.012$; $\text{Max.} = 58.772$). For comparison, based on the 2022 census [@ibgeb], Brazil’s population with an age equal to or greater than $18$ years old had a mean age of $44.277$ years ($\text{SD} = 17.221$), with a mean age of $44.987$ years ($\text{SD} = 17.511$) for female subjects and a mean age of $43.499$ years ($\text{SD} = 16.864$) for male subjects.
+More information about the sample can be found on the *Exploratory data analysis* supplementary material.
 
-Considering the five regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census [@ibge2022], the Southeast region is home to $41.784\%$ of Brazil’s population, followed by the Northeast ($26.910\%$), South ($14.741\%$), North ($8.544\%$), and Midwest ($8.021\%$) regions. $62.454\%$ of the sample is located in the Southeast region, $11.797\%$ in the Northeast, $17.861\%$ in the South, $1.682\%$ in the North, and $6.205\%$ in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).
+## Secondary Data
 
-The sample latitudinal range was $30.211$ decimal degrees ($\text{Min.} = -30.109$; $\text{Max.} = 0.10177$) with a longitudinal span of $16.378$ decimal degrees ($\text{Min.} = -51.342$; $\text{Max.} = -34.964$). For comparison, Brazil has a latitudinal range of $39.024$ decimal degrees ($\text{Min.} = -33.752$; $\text{Max.} = 5.2719$) and a longitudinal span of $39.198$ decimal degrees ($\text{Min.} = -34.793$; $\text{Max.} = -73.991$). 
+Secondary data were collected from various sources to complement the analysis. These data include geographical information, solar irradiance data, and solar time data.
 
-## Data wrangling
-
-The data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016] [@fig-sm-2-wickham-at-al-2024-figure-1]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
-
-::: {#fig-sm-2-wickham-at-al-2024-figure-1}
-![](images/wickham-at-al-2024-figure-1.png){width=75%}
-
-Source: Reproduced from @wickham2023b.
-
-Model of the data science process created by Wickham, Çetinkaya-Runde, and Grolemund [-@wickham2023b].
-:::
-
-The [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html) provided a pipeline for data munging. You can see this pipeline on the `_target.R` file in the root of thesis code repository or by clicking [here](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R).
-
-````{r}
-#| output: asis
-
-glue::glue("
-  ``` {{.r filename='_targets.R'}}
-  {paste0(readLines(here::here('_targets.R')), collapse = '\n')}
-  ```
-")
-````
-
-Along with the data cleaning procedures, lookup tables were used to clean the text/character variables. These tables were created by manually inspecting the **unique values of the raw data** and adjusting common misspellings, synonyms, and other issues.
-
-Text/character variables: `track`, `names`, `email`, `country`, `state`, `municiplality`, `postalcode`, `sleep_drugs_which`, `sleep_disorder_which`, `medication_which`.
-
-The lookup tables are available in the research compendium of this thesis. They had to be encrypted because of the sensitive information they contain. If you need access, please contact the author.
-
-The matching of the variables `sleep_drugs_which`, `sleep_disorder_which`, `medication_which` is not complete. This variables were not used in the analysis, but they are available in the research compendium.
-
-Read the section about geographical information to learn more about the matching process.
-
-## Secondary data
-
-### Geocode data
+### Geographical Data
 
 Geographic data were collected by the variables `country`, `state`, `municipality`, and `postal code`. The unique values of those data were manually inspected and adjusted using lookup tables. The `municiplaity` values were first matched using string distance algorithms present in the [`stringdist`](https://github.com/markvanderloo/stringdist) R package and data from the Brazilian Institute of Geography and Statistics (IBGE) via the [`geobr`](https://ipeagit.github.io/geobr/index.html>) R package., other processes were then performed manually.
 
@@ -127,15 +128,15 @@ Finally, the `state` and `municipality` variables were adjusted using the data f
 
 Non-Brazilian postal codes were not validated, but they were cleaned by removing non-digit characters and codes with 3 digits or less. They also went through a process da cleaning via visual inspection. Their values can be found in the `special_cases` lookup table.
 
-#### Latitudes and longitudes
+#### Latitudes and Longitudes
 
-Latitudes and longitudes values consider only the `municiplaity` and `postal_code` variables. They were extracted from the QualoCEP database, which is the result of a reverse geocoding using the Google Geocoding API. See Appendice 6 to side by side comparison of the latitudes and longitudes from QualoCEP and Google Geocoding API.
+Latitudes and longitudes values consider only the `municipality` and `postal_code` variables. They were extracted from the QualoCEP database, which is the result of a reverse geocoding using the Google Geocoding API. See Appendice 6 to side by side comparison of the latitudes and longitudes from QualoCEP and Google Geocoding API.
 
 For respondents  who did not provide a valid postal code, the latitude and longitude were extracted via the mean of the latitudes and longitudes associated with the municipality in the QualoCEP database.
 
 Finally, Google Geocoding API, via the `tidygeocoder` R package, was used on cases that didn't had a match in the QualoCEP database.
 
-### Solar irradiance data
+### Solar Irradiance Data
 
 The solar irradiance data is based on Brazil's National Institute for Space Research (INPE) 2017 Laboratory of Modeling and Studies of Renewable Energy Resources (LABREN) 2017 [Solar Energy Atlas](https://labren.ccst.inpe.br/atlas_2017.html) [@pereira2017]. In particular, it was used the Global Horizontal Irradiance (GHI) data, which is the total amount of irradiance received from above by a surface horizontal to the ground.
 
@@ -149,13 +150,173 @@ Source: Adapted from @pereira2017.
 Components of solar irradiance. $G_{0}$ = Extraterrestrial irradiance. $G_{n}$ = Direct normal irradiance. $G_{dif}$ = Diffuse horizontal irradiance. $G_{dir}$ = Direct horizontal irradiance. $G$ = Global horizontal irradiance. $G_{i}$ = Inclined plane irradiance.
 :::
 
-### Solar time data
+### Solar Time Data
 
 The [`suntools`](https://doi.org/10.32614/CRAN.package.suntools) R package [@bivand] was used to calculate the local of time of sunrise, sunset, and daylight duration for a given date and location. `suntools` functions are based on equations provided by @meeus1991 and by the United States's National Oceanic & Atmospheric Administration ([NOAA](https://gml.noaa.gov/grad/solcalc/calcdetails.html)).
 
 The data and time of the equinox and solstices were gathered from the [Time and Date AS](https://www.timeanddate.com/calendar/seasons.html?year=2000&n=1440) service [@timeanddateas]. For validity, this data was checked with the equations from @meeus1991 and the results of the National Aeronautics and Space Administration (NASA) [ModelE AR5 Simulations](https://data.giss.nasa.gov/modelE/ar5plots/srvernal.html) [@nasa].
 
-## Hypothesis test
+## Data Management Plan
+
+A data management plan for this study was created and published using the California Digital Library's [DMP Tool](https://dmptool.org/) [@vartanian2024]. It is available at <https://doi.org/10.17605/OSF.IO/3JZ7K>.
+
+All data are stored in the study's research compendium on the Open Source Framework ([OSF](https://osf.io)), hosted on Google Cloud servers in the USA. Access to the compendium is restricted, and data are encrypted using a 4096-bit RSA key pair ([Rivest-Shamir-Adleman](https://en.wikipedia.org/wiki/RSA_(cryptosystem))), along with a unique 32-byte project password.
+
+Access to the data requires authorization from the author on the Open Science Framework ([OSF](https://osf.io)) and the installation of the necessary encryption keys.
+
+## Data Wrangling
+
+Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016] [@fig-sm-2-wickham-at-al-2024-figure-1]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
+
+::: {#fig-sm-2-wickham-at-al-2024-figure-1}
+![](images/wickham-at-al-2024-figure-1.png){width=75%}
+
+Source: Reproduced from @wickham2023b.
+
+Model of the data science process created by Wickham, Çetinkaya-Runde, and Grolemund [-@wickham2023b].
+:::
+
+### Pipeline
+
+The pipeline for data processing is based on the framework outlined in the [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html). You can view and reproduce this pipeline in the `_target.R` file located at the root of the thesis code repository.
+
+````{r}
+#| output: asis
+
+glue::glue(
+  "
+  ``` {{.r filename='_targets.R'}}
+  {paste0(readLines(here::here('_targets.R')), collapse = '\n')}
+  ```
+  "
+)
+````
+
+### Lookup Tables
+
+Along with the data cleaning procedures described in the pipeline, lookup tables were employed to clean text and character variables. These tables were created by manually inspecting the **unique values of the raw data** and correcting common misspellings, synonyms, and other inconsistencies. The tables are stored in the research compendium of this thesis.
+
+Text/character variables: `track`, `names`, `email`, `country`, `state`, `municiplality`, `postalcode`, `sleep_drugs_which`, `sleep_disorder_which`, `medication_which`.
+
+The lookup tables are available in the research compendium of this thesis. They had to be encrypted because of the sensitive information they contain. If you need access, please contact the author.
+
+The matching of the variables `sleep_drugs_which`, `sleep_disorder_which`, `medication_which` is not complete. This variables were not used in the analysis, but they are available in the research compendium.
+
+Read the section about geographical information to learn more about the matching process.
+
+### Circular Statistics
+
+MCTQ is based on local time data, which are circular in nature (i.e., it cycles every 24 hours). Performing statistics with this kind of variables is challenging, since it can have different values depending on each arc/interval of the circle is used.
+
+For example, the distance between 23:00 (the values here are always in the 24 hour scale) and 01:00 can be 02:00 or 22:00 depending on the direction of the measurement. Hence, the analysis will always have to choose a direction [@fig-sm-2-circular-time-representation].
+
+::: {#fig-sm-2-circular-time-representation}
+```
+               - <--- h ---> +
+                    origin
+                . . . 0 . . .
+             .                 .
+            .                   .
+           .                     .
+          .                       .
+         .                         .
+         18                        6
+         .                         .
+          .                       .
+           .                     .
+            .                   .
+             .                 .
+                . . . 12 . . .
+
+18 + 6 = 0h
+```
+
+Source: Create by the author.
+
+Circular time representation.
+:::
+
+The analysis assumed as a method for dealing with this issue the adaptation of the values using the 12:00 hour as a reference point. This method is appropriated when dealing with sleep data.
+
+Consider the local time of sleep onset. We can observe that some subjects start sleeping before midnight, while others sleep after midnight. By the context of the data, we know that the circle arc/interval [@fig-sm-2-circular-time-intervals] here is the shorter one, since the great majority of people don't usually sleep in daytime and for more than 12 hours.
+
+::: {#fig-sm-2-circular-time-intervals}
+``
+             day 1                        day 2
+     x                  y         x                  y
+   06:00              22:00     06:00              22:00
+-----|------------------|---------|------------------|----->
+              16h           8h             16h
+          longer int.  shorter int.   longer int.
+``
+
+Source: Create by the author.
+
+Possible intervals for circular time.
+:::
+
+Using the 12:00 hour a threshold, it's possible to calculate the correct distance between times during the calculations. This method link the values in a two-day timeline, with values equal or greater than 12:00 allocated on day 1, and values with less than 12:00 allocated on day 2. This way, the distance between 23:00 and 01:00 is 02:00, the distance between 01:00 and 23:00 is 22:00 (i.e., there is no gap between data points) [@fig-sm-2-sleep-onset-treatment].
+
+::: {#fig-sm-2-sleep-onset-treatment}
+```{r}
+# library(dplyr)
+# library(ggplot2)
+# library(here)
+# library(lubritime)
+# library(patchwork)
+# library(tidyr)
+
+source(here::here("R", "plot_hist.R"))
+
+weighted_data <- targets::tar_read(
+  "weighted_data", 
+  store = here::here("_targets")
+)
+
+plot_1 <- 
+  weighted_data |>
+  dplyr::select(so_f) |>
+  tidyr::drop_na() |>
+  plot_hist(
+    col = "so_f",
+    x_label = "Local time of sleep onset",
+    print = FALSE
+  )
+
+plot_2 <- 
+  weighted_data |>
+  dplyr::select(so_f) |>
+  dplyr::mutate(
+    so_f = lubritime:::link_to_timeline(
+      so_f,
+      threshold = hms::parse_hms("12:00:00")
+    )
+  ) |>
+  tidyr::drop_na() |>
+  plot_hist(
+    col = "so_f",
+    x_label = "Local time of sleep onset",
+    print = FALSE
+  )
+
+patchwork::wrap_plots(
+  plot_1, plot_2,
+  ncol = 2
+)
+```
+
+Source: Create by the author.
+
+Histogram of the local time of sleep onset (SO) with (right) and without (left) the 12:000 treatment.
+:::
+
+### Round-Off Errors
+
+The R programming language [only stores values up to 53 binary bits](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f), that's about `r format_to_md_latex((53 * log10(2)) |> round(3))` digits of precision ($x = 53 \log_{10}(2)$). Since MCTQ deals with self-reported local time of day (e.g., 02:30) and duration (e.g., 15 minutes), a greater floating-point precision is unnecessary. Even with multiple computations, round-off errors wouldn't significantly impact the phenomenon under study.
+
+Even considering that `POSIXct` objects are used in the models, there is still a good margin of precision – POSIXct objects are data-time objects measured by the amount of seconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time) (1970-01-01).
+
+## Hypothesis Test
 
 The study hypothesis was tested using nested models general linear models of multiple linear regressions. The main idea of nested models is to verify the effect of the inclusion of one or more predictors in the model variance explanation (i.e., the $\text{R}^{2}$) [@allen1997; @maxwell2018]. This can be made by creating a restricted model and then comparing it with a full model. Hence, the hypothesis can be schematized as follows.
 
@@ -220,9 +381,9 @@ In Cohen's words:
 
 > What is really intended by the invalid affirmation of a null hypothesis is not that the population ES [Effect Size] is literally zero, but **rather that it is negligible, or trivial** [@cohen1988, p. 16].
 
-> SMALL EFFECT SIZE: $f^2 = .02$. Translated into \text{R}^{2} (9.2.5) or partial \text{R}^{2} for Case 1 (9.1.8), this gives $.02 / (1 + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested [@cohen1988, p. 413].
+> SMALL EFFECT SIZE: $f^2 = .02$. Translated into \text{R}^{2} or partial \text{R}^{2} for Case 1, this gives $.02 / (1 + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested [@cohen1988, p. 413].
 
-> But in many circumstances, all that is intended by "proving" the null hypothesis is that the ES is not necessarily zero but **small enough to be negligible**, i.e., no larger than $i$ (Section 1.5.5). How large $i$ is will vary with the substantive context. Assume, for example, that ES is expressed as $f^2$, and that the context is such as to consider $f^2$ no larger than $.02$ to be negligible; thus $i$ = .02  [@cohen1988, p. 461].
+> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES is not necessarily zero but **small enough to be negligible**, i.e., no larger than $i$. How large $i$ is will vary with the substantive context. Assume, for example, that ES is expressed as $f^2$, and that the context is such as to consider $f^2$ no larger than $.02$ to be negligible; thus $i$ = .02  [@cohen1988, p. 461].
 
 $$
 \text{MES} = \text{Cohen's } f^2 \text{small threshold} = 0.02 \\
@@ -247,48 +408,54 @@ In summary, the decision rule for the hypothesis test is as follows:
   - The F-test is not significant, or
   - The F-test is significant, but $\Delta \ \text{Adjusted} \ \text{R}^{2} \leq 0.01960784$.
 
-As usual, the significance level ($\alpha$) was set at $0.05$, allowing a 5% chance of a [Type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors). A power analysis will be performed to determine the necessary sample size for detecting a significant effect, targeting a power ($1 - \beta$) of $0.8$.
+As usual, the significance level ($\alpha$) was set at $0.05$, allowing a 5% chance of a [Type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors). A power analysis was performed to determine the necessary sample size for detecting a significant effect, targeting a power ($1 - \beta$) of $0.99$.
 
-Assumption checks include:
+It's important to emphasize that this thesis is not trying to establishing causality, only association. Predictive models alone should never be used to infer causal relationships [@arif2022].
 
-- Assessing the normality of residuals through visual inspections, such as [Q-Q plots](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot), and statistical tests like the [Shapiro-Wilk test](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test).
+## Statistical Analysis
 
-- Multicollinearity was assed by calculating variance inflation factors ([VIF](https://en.wikipedia.org/wiki/Variance_inflation_factor)), with a VIF above 10 indicating potential issues. Influential points will be examined using [Cook's distance](https://en.wikipedia.org/wiki/Cook%27s_distance) and leverage values to identify any points that may disproportionately affect model outcomes.
+In addition to the analyses described in the hypothesis testing subsection, several other evaluations were conducted to ensure the validity of the results, including: power analysis, visual inspection of variable distributions (e.g., Q-Q plots), assessment of residual normality, checks for multicollinearity, and examination of leverage and influential points.
 
-::: {.callout-warning}
-It is important to note that relying on objective assumption tests is not advisable in this context. In larger samples, these tests can be overly sensitive to minor deviations, and in smaller samples, they may fail to detect significant ones. Furthermore, they can miss visual patterns that a single metric cannot capture [@shatz2024; @kozak2018; @schucany2006]. Therefore, visual inspection of diagnostic plots was deemed a more effective method for assessing the model assumptions in this case.
-:::
+All analyses were performed using computational notebooks and are fully reproducible. Detailed documentation is available in the supplementary materials.
 
-::: {.callout-warning}
-It's also important to emphasize that this thesis is not trying to establishing causality, only association. Predictive models alone should never be used to infer causal relationships [@arif2022].
-:::
+## Model Predictors
 
-## Predictors
+Two modeling approaches were used to assess the impact of latitude and related environmental variables on the outcome of interest. Each approach builds on predictors inspired by the methods in @leocadio-miguel2017 while addressing methodological inconsistencies and data limitations.
 
-In order to replicate @leocadio-miguel2017 article, it was used the covariates age, longitude, and solar irradiation when the subjects filled the online questionnaire, with sex, daylight saving time (DST), and season as a cofactors. The thesis sample have data for all these variables with exception of DST and season. Since the data was collected in a single week, it wouldn't make sense to use these two variables, hence, they were not included in the model.
+### Identified Inconsistencies
 
-As a latitude proxy, the same authors used the annual average solar irradiation, along with local time of sunrise, sunset, and daylight duration in March equinox and in June and December solstices. All these variables can be integrated with the sample. This analysis will also perform another test using only the latitude variable as a new predictor in the full model. Therefore, the same hypothesis will be tested three times with different predictors, as follows.
+During the replication of @leocadio-miguel2017, several inconsistencies were identified:
 
-There are many types of solar radiation, unfortunately, @leocadio-miguel2017 did not declare what type was used, but is reasonable to think they used the global horizontal solar irradiation (GHI) as a proxy for solar radiation. The GHI is the total amount of irradiation received from above by a surface horizontal to the ground. You can find more information in about these metrics in @pereira2017.
+1. **Variable usage mismatch**: The number of covariates listed in the results section does not align with those used in the $\text{F}$-test parameters for the restricted and full models.
+2. **Multicollinearity issues**: The inclusion of sunrise, sunset, and daylight duration (derived as sunset - sunrise) for the March equinox and the June and December solstices introduces multicollinearity due to the interdependence of these variables.
 
-### Model and test A
+### Selection of Predictors
 
-- **Predictors for the restricted model**: age, sex, longitude, and GHI when the subjects filled the online questionnaire (by the GHI month average in their geographic coordinates).
+The restricted model in @leocadio-miguel2017 included age, longitude, and solar irradiation when the subjects filled the online questionnaire as covariates, with sex, daylight saving time (DST), and season as cofactors. The full model added, annual average solar irradiation, sunrise time, sunset time, and daylight duration for the March equinox and the June and December solstices. However, in this study:
 
-- **Predictors for the full model**: *predictors for the restricted model* + annual average GHI; and local time of sunrise, sunset, and daylight duration in the closest March and September equinox and June and December solstices.
+- **DST and season**: Are excluded, as data were collected within a single week, rendering these variables redundant.
+- **Latitude proxies**: Annual average solar irradiation and daylight duration for the March equinox and the June and December solstices were included. However, sunrise and sunset time coefficients were not estimable and had to be omitted. This was due to their high collinearity ($r > 0.999$). Centralization or standardization of the predictors did not resolve this issue.
 
-### Model and test B
+As in @leocadio-miguel2017, the measure of daylight duration in September equinox was not included due to the high correlation with the March equinox ($r > 0.993$), making it statistically indistinguishable from the latter ($p > 0.05$). This was expected, since the day at the equinoxes must be approximately the same length (from the Latin, *aequĭnoctĭum*, meaning the time of equal days and nights [@latinitium]).
 
-- **Predictors for the restricted model**: age, sex, longitude, and GHI when the subjects filled the online questionnaire (by the GHI month average in their geographic coordinates).
+Daylight duration for the March equinox, June solstice, and December solstice exhibited high multicollinearity, with a variance inflation factor (VIF) exceeding $1000$. However, since these variables are part of the same group (latitude proxies), this does not pose a significant issue for the analysis. The focus is on the collective effect of the group rather than the contributions of individual variables.
 
-- **Predictors for the full model**: *predictors for the restricted model* + annual average GHI; local time of sunrise, sunset, and daylight duration in the closest March and September equinox and June and December solstices; **and** latitude.
+### Tests and Predictors
 
-### Model and test C
+To evaluate the hypotheses, two tests were conducted with distinct sets of predictors:
 
-- **Predictors for the restricted model**: age, sex, longitude, and GHI when the subjects filled the online questionnaire (by the GHI month average in their geographic coordinates).
+#### Test A
 
-- **Predictors for the full model**: (predictors for the restricted model) **and** latitude.
+- **Restricted Model Predictors**
+  - Age, sex, longitude, and Global Horizontal Irradiance (GHI) at the time of questionnaire completion (monthly GHI average for participants' geographic coordinates).
 
-It's important to note that the inclusion of some these variables may produce issues regarding multicollinearity. If this occur, the variables will be removed from the model.
+- **Full Model Predictors**
+  - *Restricted model predictors* + annual GHI average and daylight duration for the nearest March and September equinoxes, and the June and December solstices.
 
-A power analysis will be performed to determine the necessary sample size for each test. Considering the original sample size this probably will not be an issue.
+#### Test B
+
+- **Restricted Model Predictors**
+  - Age, sex, longitude, and GHI at the time of questionnaire completion (monthly GHI average for participants' geographic coordinates).
+
+- **Full Model Predictors**
+  - *Restricted model predictors* + latitude.
