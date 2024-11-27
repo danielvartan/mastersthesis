@@ -15,7 +15,8 @@ panel_tabset_var_distribution <- function(
     source = rep("Created by the author.", length(cols)),
     heading = "###",
     data_name = "data",
-    suffix = ""
+    suffix = "",
+    root = ".."
   ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_character(cols, min.len = 1, any.missing = FALSE)
@@ -25,6 +26,7 @@ panel_tabset_var_distribution <- function(
   prettycheck:::assert_string(heading, pattern = "^#*")
   prettycheck:::assert_string(data_name)
   prettycheck:::assert_string(suffix)
+  prettycheck:::assert_string(root)
 
   if (!file.exists(here::here("qmd"))) dir.create(here::here("qmd"))
 
@@ -127,7 +129,7 @@ panel_tabset_var_distribution <- function(
     readr::write_lines(file)
 
   include_string <- glue::glue(
-    "{{{{< include {to_relative_path(file)} >}}}}"
+    "{{{{< include {to_relative_path(file, root)} >}}}}"
   )
 
   cli::cli_alert_info(glue:::glue(

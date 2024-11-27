@@ -105,38 +105,23 @@ Assumption 1
 ```{r}
 #| eval: false
 #| output: false
-#| code-fold: false
 
-targets::tar_make(script = "../_targets.R")
+targets::tar_make(script = here::here("_targets.R"))
 ```
 
 This data processing is performed solely for the purpose of the analysis. The variables undergo numerical transformations to streamline the modeling process and minimize potential errors.
 
 ```{r}
 #| output: false
-#| code-fold: false
 
 data <- 
   targets::tar_read("weighted_data", store = here::here("_targets")) |>
   dplyr::select(
-    msf_sc, age, sex, longitude, ghi, march_equinox, june_solstice,
-    december_solstice, cell_weight
+    msf_sc, age, sex, longitude, ghi_month, ghi_annual, 
+    march_equinox_daylight, june_solstice_daylight,
+    december_solstice_daylight, cell_weight
   ) |>
-  tidyr::unnest(
-    cols = dplyr::everything(),
-      names_sep = "_",
-      names_repair = "universal"
-  ) |>
-  dplyr::select(-dplyr::matches("_moment$|_sunrise$|_sunset$")) |>
   dplyr::mutate(
-    # dplyr::across(
-    #   .cols = dplyr::matches("_sunrise$|_sunset$"),
-    #   .fns = ~ .x |> as.numeric()
-    # ),
-    # dplyr::across(
-    #   .cols = dplyr::matches("_sunrise$|_sunset$"),
-    #   .fns = ~ .x |> hms::as_hms() |> as.numeric()
-    # ),
     dplyr::across(
       .cols = dplyr::ends_with("_daylight"),
       .fns = ~ .x |> as.numeric()
@@ -156,12 +141,6 @@ data <-
         as.numeric()
     )
   ) |>
-  # dplyr::mutate( # Scaling or centering do not help.
-  #   dplyr::across(
-  #     -dplyr::all_of(c("sex", "cell_weight")),
-  #     ~ .x |> scale() |> as.numeric()
-  #   )
-  # ) |>
   tidyr::drop_na()
 ```
 
@@ -175,7 +154,18 @@ data |>
 
 ## Conducting a Power Analysis
 
-The results indicate that at least `r format_to_md_latex(pre_pwr$n)` observations per variable are required to achieve a power of $0.99$ ($1 - \beta$, the probability of **not** committing a [type II error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)) and a significance level ($\alpha$) of $0.01$ ($0.99$ probability of **not** committing a [type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)). TThe dataset contains `r format_to_md_latex(nrow(data))` observations, which exceeds this requirement.
+```{r}
+#| include: false
+
+pre_pwr <- pwrss::pwrss.f.reg(
+  f2 = 0.02, # Minimal Effect Size (MES).
+  k = length(data) - 2, # Number of predictors (-msf_sc, -cell_weight).
+  power = 0.99,
+  alpha = 0.01
+)
+```
+
+The results indicate that at least `{r} format_to_md_latex(pre_pwr$n)` observations per variable are required to achieve a power of $0.99$ ($1 - \beta$) (the probability of **not** committing a [type II error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)) and a significance level ($\alpha$) of $0.01$ ($0.99$ probability of **not** committing a [type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)). The dataset contains `{r} format_to_md_latex(nrow(data))` observations, which exceeds this requirement.
 
 ```{r}
 #| code-fold: false
@@ -234,7 +224,7 @@ data |>
   )
 ```
 
-{{< include ./qmd/_panel-tabset-var-distribution-sm-5.qmd >}}
+{{< include ../qmd/_panel-tabset-var-distribution-sm-5.qmd >}}
 
 ## Examining Correlations
 
@@ -717,7 +707,7 @@ data |>
   )
 ```
 
-{{< include ./qmd/_panel-tabset-var-homoscedasticity-sm-5-restricted-model.qmd >}}
+{{< include ../qmd/_panel-tabset-var-homoscedasticity-sm-5-restricted-model.qmd >}}
 
 ##### Breusch-Pagan Test
 
@@ -795,7 +785,7 @@ Time series plot of the residuals along with its AutoCorrelation Function (ACF) 
 
 ##### Correlations
 
-@tbl-model-residual-diag-independence-1 shows the relative importance of independent variables in determining the response variable. It highlights how much each variable uniquely contributes to the R-squared value, beyond what is explained by the other predictors.
+@tbl-sm-5-restricted-model-residual-diag-independence-1 shows the relative importance of independent variables in determining the response variable. It highlights how much each variable uniquely contributes to the R-squared value, beyond what is explained by the other predictors.
 
 ::: {#tbl-sm-5-restricted-model-residual-diag-independence-1}
 ```{r}
@@ -1285,7 +1275,7 @@ fit_engine |>
   )
 ```
 
-{{< include ./qmd/_panel-tabset-coef-dfbetas-sm-5-restricted-model.qmd >}}
+{{< include ../qmd/_panel-tabset-coef-dfbetas-sm-5-restricted-model.qmd >}}
 
 ##### Hadi's Measure
 
@@ -1830,7 +1820,7 @@ data |>
   )
 ```
 
-{{< include ./qmd/_panel-tabset-var-homoscedasticity-sm-5-full-model.qmd >}}
+{{< include ../qmd/_panel-tabset-var-homoscedasticity-sm-5-full-model.qmd >}}
 
 ##### Breusch-Pagan Test
 
@@ -1908,7 +1898,7 @@ Time series plot of the residuals along with its AutoCorrelation Function (ACF) 
 
 ##### Correlations
 
-@tbl-model-residual-diag-independence-1 shows the relative importance of independent variables in determining the response variable. It highlights how much each variable uniquely contributes to the R-squared value, beyond what is explained by the other predictors.
+@tbl-sm-5-full-model-residual-diag-independence-1 shows the relative importance of independent variables in determining the response variable. It highlights how much each variable uniquely contributes to the R-squared value, beyond what is explained by the other predictors.
 
 ::: {#tbl-sm-5-full-model-residual-diag-independence-1}
 ```{r}
@@ -2399,7 +2389,7 @@ fit_engine |>
   )
 ```
 
-{{< include ./qmd/_panel-tabset-coef-dfbetas-sm-5-full-model.qmd >}}
+{{< include ../qmd/_panel-tabset-coef-dfbetas-sm-5-full-model.qmd >}}
 
 ##### Hadi's Measure
 
@@ -2574,11 +2564,6 @@ Is latitude associated with chronotype?
 
 The answer is **No**. Latitude does not significantly contribute to explaining the variance in chronotype, and therefore, it cannot be considered associated with the circadian phenotype.
 
-## Final Remarks
+<br>
 
-For any questions regarding these computations, please contact the author at <danvartan@mail.com>.
-
-<!-- ## References {.unnumbered} -->
-
-<!-- ::: {#refs} -->
-<!-- ::: -->
+For questions regarding these computations, please contact the author at <danvartan@mail.com>.

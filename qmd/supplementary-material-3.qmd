@@ -6,7 +6,7 @@
 #| label: setup
 #| include: false
 
-source(here::here("R/_setup.R"))
+source(here::here("R", "_setup.R"))
 ```
 
 ## Overview
@@ -51,6 +51,7 @@ library(viridis)
 #| include: false
 
 library(ggplot2)
+library(lubridate)
 library(magrittr)
 library(rlang)
 ```
@@ -86,7 +87,7 @@ source(here::here('R', 'utils-stats.R'))
 #| output: false
 #| code-fold: false
 
-targets::tar_make(script = "../_targets.R")
+targets::tar_make(script = here::here("_targets.R"))
 ```
 
 ### Full Sample
@@ -95,12 +96,7 @@ targets::tar_make(script = "../_targets.R")
 #| code-fold: false
 
 anonymized_data <- 
-  targets::tar_read("anonymized_data", store = here::here("_targets")) |>
-  tidyr::unnest(
-    cols = dplyr::everything(),
-      names_sep = "_",
-      names_repair = "universal"
-  )
+  targets::tar_read("anonymized_data", store = here::here("_targets"))
 ```
 
 ### Analysis Sample
@@ -109,12 +105,7 @@ anonymized_data <-
 #| code-fold: false
 
 weighted_data <- 
-  targets::tar_read("weighted_data", store = here::here("_targets")) |>
-  tidyr::unnest(
-    cols = dplyr::everything(),
-      names_sep = "_",
-      names_repair = "universal"
-  )
+  targets::tar_read("weighted_data", store = here::here("_targets"))
 ```
 
 ## Distribution of Main Variables
@@ -153,8 +144,17 @@ weighted_data |>
       "Longitude (decimal degrees)",
       "Monthly average global horizontal irradiance (Wh/m²)",
       "Annual average global horizontal irradiance (Wh/m²)",
+      "Sunrise on the March equinox (date-time seconds)",
+      "Sunset on the March equinox (seconds)",
       "Daylight on the March equinox (seconds)",
+      "Sunrise on the June solstice (seconds)",
+      "Sunset on the June solstice (seconds)",
       "Daylight on the June solstice (seconds)",
+      "Sunrise on the September solstice (seconds)",
+      "Sunset on the September solstice (seconds)",
+      "Daylight on the September solstice (seconds)",
+      "Sunrise on the December solstice (seconds)",
+      "Sunset on the December solstice (seconds)",
       "Daylight on the December solstice (seconds)"
     ),
     heading = "###",
@@ -162,7 +162,7 @@ weighted_data |>
   )
 ```
 
-{{< include ./qmd/_panel-tabset-var-distribution-sm-3.qmd >}}
+{{< include ../qmd/_panel-tabset-var-distribution-sm-3.qmd >}}
 
 ## Correlation Matrix of the Main Variables
 

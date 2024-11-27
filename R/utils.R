@@ -4,12 +4,13 @@ change_sign <- function(x) x * (-1)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(stringr)
 
-to_relative_path <- function(path) {
+to_relative_path <- function(path, root = ".") {
   prettycheck:::assert_string(path)
+  prettycheck:::assert_string(root)
 
   path <- stringr::str_remove(path, here::here())
 
-  paste0(".", path)
+  paste0(root, path)
 }
 
 # library(hms)
@@ -107,9 +108,10 @@ format_to_md_latex <- function(x, after = NULL, round = 3, key = "$") {
 
   if (is.null(after)) after <- ""
 
-  x |>
-    round(round) %>% # Don't change the pipe!
-    # stringr::str_replace_all("\\$", "\\\\$") %>%
+  x <-
+    x |>
+    round(round) |>
+    format(big.mark = ",", scientific = FALSE) %>% # Don't change the pipe!
     paste0(key, ., after, key)
 }
 

@@ -6,28 +6,27 @@
 #| label: setup
 #| include: false
 
-source(here::here("R/_setup.R"))
+source(here::here("R", "_setup.R"))
 ```
 
 ```{r}
 #| eval: false
-#| output: false
-#| code-fold: false
+#| include: false
 
-targets::tar_make(script = "../_targets.R")
+targets::tar_make(script = here::here("_targets.R"))
 ```
 
 ```{r}
-#| output: false
+#| include: false
 
-geocoded_data <- targets::tar_read(
-  "geocoded_data", 
+anonymized_data <- targets::tar_read(
+  "anonymized_data", 
   store = here::here("_targets")
 )
 ```
 
 ```{r}
-#| output: false
+#| include: false
 
 weighted_data <- targets::tar_read(
   "weighted_data", 
@@ -35,21 +34,19 @@ weighted_data <- targets::tar_read(
 )
 ```
 
-::: {.content-visible when-format="html"}
+:::: {.content-visible when-format="html"}
 ::: {.callout-note}
 The following study was designed for publication in the journal [*Scientific Reports*](https://www.nature.com/srep/) ([IF 2023: 3.8/JCR](https://jcr.clarivate.com/jcr) | [A1/2017–2020](https://sucupira-legado.capes.gov.br/sucupira/)) and structured in accordance with the journal's [submission guidelines](https://www.nature.com/srep/author-instructions/submission-guidelines).
 :::
-:::
+::::
 
 <!-- Statement of Significance -->
 
 ## Abstract
 
-\noindent **Chronotypes are temporal phenotypes that reflect our internal temporal organization, a product of evolutionary pressures enabling organisms to anticipate events. These intrinsic rhythms are modulated by zeitgebers — environmental stimuli that entrain these biological oscillations, with light exposure being the primary mechanism. Given light's role in these systems, previous research hypothesized that latitude might significantly influence chronotypes, suggesting that populations near the equator would exhibit more morning-leaning characteristics due to more consistent light-dark cycles, while populations near the poles might display more evening-leaning tendencies with a potentially freer expression of intrinsic rhythms. To test this hypothesis, we analyzed chronotype data from a large sample of 65,823 subjects across diverse latitudes in Brazil. Our results revealed that latitude show only negligible effect sizes on chronotype, indicating that the entrainment phenomenon is far more complex than previously conceived. These findings challenge simplified environmental models of biological timing and underscore the need for more nuanced investigations into the mechanisms underlying temporal phenotypes, opening new avenues for understanding the intricate relationship between environmental cues and individual circadian rhythms.**
+\noindent __Chronotypes are temporal phenotypes that reflect our internal temporal organization, a product of evolutionary pressures enabling organisms to anticipate events. These intrinsic rhythms are modulated by zeitgebers — environmental stimuli that entrain these biological oscillations, with light exposure being the primary mechanism. Given light's role in these systems, previous research hypothesized that latitude might significantly influence chronotypes, suggesting that populations near the equator would exhibit more morning-leaning characteristics due to more consistent light-dark cycles, while populations near the poles might display more evening-leaning tendencies with a potentially freer expression of intrinsic rhythms. To test this hypothesis, we analyzed chronotype data from a large sample of 65,823 subjects across diverse latitudes in Brazil. Our results revealed that latitude show only negligible effect sizes on chronotype, indicating that the entrainment phenomenon is far more complex than previously conceived. These findings challenge simplified environmental models of biological timing and underscore the need for more nuanced investigations into the mechanisms underlying temporal phenotypes, opening new avenues for understanding the intricate relationship between environmental cues and individual circadian rhythms.__
 
-## Main text
-
-### Introduction
+## Introduction
 
 Humans can differ from one another in many ways. These observable traits, like hair color or height, are called phenotypes and are also presented in the way that our body functions.
 
@@ -61,7 +58,7 @@ The main zeitgeber known today is the light, particularly the sun’s light [@kh
 
 Recently there have been attempts to test the latitude hypothesis in different settings, but, at least in humans, none of them have been successful in seeing a significant effect size related to the latitudinal cline. Some of these approaches worked with secondary data and with small samples. One of the most serious attempts of testing this hypothesis was made by Leocadio-Miguel et al. [-@leocadio-miguel2017]. They measured the chronotype of $12,884$ Brazillian subjects on a wide latitudinal spectrum using the Morningness–Eveningness Questionnaire (MEQ). Their results showed a negligible effect size. One possible reason for this is that the MEQ measures psychological traits and not biological states [@roenneberg2019], i.e., the circadian oscillation itself, therefore, it’s not the best way to answer the question [@leocadio-miguel2014].
 
-This article brings a novel attempt to test the latitude hypothesis, using, this time, a biological approach provided by the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. Furthermore, the test was carried out on the biggest chronotype sample ever collected in a same country. A sample made of `{r} weighted_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` subjects, all living in the same timezone in Brazil, with only one week of difference between questionnaire responses [@fig-chapter-5-sample-geographical-distribution]. The unfiltered valid sample comprises `{r} geocoded_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` participants from all Brazilian states.
+This article brings a novel attempt to test the latitude hypothesis, using, this time, a biological approach provided by the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. Furthermore, the test was carried out on the biggest chronotype sample ever collected in a same country. A sample made of `{r} weighted_data |> nrow() |> format_to_md_latex()` subjects, all living in the same timezone in Brazil, with only one week of difference between questionnaire responses [@fig-chapter-5-sample-geographical-distribution]. The unfiltered valid sample comprises `{r} anonymized_data |> nrow() |> format_to_md_latex()` participants from all Brazilian states.
 
 ::: {#fig-chapter-5-sample-geographical-distribution}
 ```{r}
@@ -72,6 +69,7 @@ source(here::here("R", "plot_brazil.R"))
 
 weighted_data |> 
   plot_brazil_municipality(
+    transform = "log10",
     viridis = "cividis", # "cividis"
     alpha = 0.75,
     direction = -1,
@@ -85,10 +83,10 @@ weighted_data |>
 
 [Source: Created by the author.]{.legend}
 
-Geographical distribution of the sample used in the analysis: (`{r} weighted_data |> nrow() |> format(big.mark = ",") %>% paste0("n = ", .) |> format_to_md_latex()`). Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017. Size and color scale are in $\log_{10}$.
+Geographical distribution of the sample used in the analysis: ($`{r} weighted_data |> nrow() |> format(big.mark = ",") %>% paste0("n = ", .)`$). Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017. Size and color scale are in $\log_{10}$.
 :::
 
-### Results
+## Results
 
 The local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype, had an overall mean of $\text{04:28:35}$. The distribution curve is shown in @fig-chapter-5-chronotype-distribution.
 
@@ -117,7 +115,7 @@ Another model was created on top of the first one, adding the latitude as a pred
 
 An $\text{F}$ test for nested models showed a significant reduction of the residual sum of squares ($\text{F}(1, 76740) = 568.94$, $\text{p-value} = 2e-16$), meaning that the latitude seems to produce an effect on the chronotype. However, when estimating Cohen’s $f^2$ effect size, the result was negligible [@cohen1992] $((0.06069 - 0.05373) / (1 - 0.06069) = 0.00740$).
 
-### Discussion
+## Discussion
 
 It's important to note that a causal and linear relationship between latitude and chronotype is an _a priori_ assumption. The objective of this study is to test or falsify this hypothesis.
 
@@ -181,32 +179,6 @@ Geographical distribution of mean MSF~sc~ values by Brazilian state. The figure 
 
 The absence of a strong entrainment with the solar zeitgeber shows that the entrainment phenomenon is more complex than we previously imagined. Other hypotheses for the human circadian entrainment, like the entrainment to self-selected light, proposed by Anna Skeldon and Derk-Jan Dijk [-@skeldon2021], need to be tested and may produce significant results. Methods and techiniques for complex systems, like causal loop diagrams and agent-based models (ABM), may help to unravel this phenomenon more properly.
 
-::: {#fig-chapter-5-analysis-sample-geo-distribution-by-chronotype}
-```{r}
-#| message: false
-#| warning: false
-
-source(here::here("R", "plot_brazil.R"))
-
-weighted_data |> 
-  plot_brazil_municipality(
-    viridis = "plasma",
-    alpha = 0.75,
-    direction = -1,
-    breaks = c(10, 500, 1000, 5000, 7500),
-    point = TRUE,
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
-```
-
-[Source: Created by the author.]{.legend}
-
-Geographical distribution of the sample used in the analysis: (`{r} weighted_data |> nrow() |> format(big.mark = ",") %>% paste0("n = ", .) |> format_to_md_latex()`) grouped by chronotypes.
-:::
-
-It’s important to notice that the results shown here are preliminary. The data still needs some cleaning and to be balanced with Brazil's latest population census. The latitude coordinates used in the analysis are related to subjects' residential state capital and, hence, have low resolution. Even with these results, it may be that a significant latitude effect can still appear at the end of the research.
-
 Despite the several strengths that the dataset used in this study has, it is also important to notice its weaknesses and limitations. The fact that all the subjects were measured in the Spring season is one of them. Since the objective is to catch individuals in different seasonal patterns, the ideal moment to collect this kind of data is in the wintertime, when there is a greater insolation gradient between the equator and the poles. Another one is that this dataset can be influenced by the presence of a Daylight Saving Time (DST) event. This latter issue is explored in more detail in the methods section.
 
 ## Methods
@@ -236,8 +208,6 @@ The subjects' mean age is $32.015$ years ($\text{SD} = 9.252$; $\text{Max.} = 58
 Considering the five regions of Brazil, the sample is mostly skewed for the Southeast, the most populated region. According to Brazil’s 2022 census [@ibge2022], the Southeast region is home to $41.784\%$ of Brazil’s population, followed by the Northeast ($26.910\%$), South ($14.741\%$), North ($8.544\%$), and Midwest ($8.021\%$) regions. $62.454\%$ of the sample is located in the Southeast region, $11.797\%$ in the Northeast, $17.861\%$ in the South, $1.682\%$ in the North, and $6.205\%$ in the Midwest region. Note that a lack of subjects in the North and Midwest region is justified by the sample timezone inclusion criteria (UTC-3).
 
 The sample latitudinal range was $30.211$ decimal degrees ($\text{Min.} = -30.109$; $\text{Max.} = 0.10177$) with a longitudinal span of $16.378$ decimal degrees ($\text{Min.} = -51.342$; $\text{Max.} = -34.964$). For comparison, Brazil has a latitudinal range of $39.024$ decimal degrees ($\text{Min.} = -33.752$; $\text{Max.} = 5.2719$) and a longitudinal span of $39.198$ decimal degrees ($\text{Min.} = -34.793$; $\text{Max.} = -73.991$). 
-
-__The results shown in this article are just a preliminary view of the data analysis__. The latitudes and longitudes of each subject are represented by the coordinates of his/her state’s capital (a low resolution). The final results will have the latitude and longitude coordinates based on subjects' postal codes and will also use a balanced dataset following the latest Brazil census.
 
 ### Data wrangling
 
@@ -283,8 +253,6 @@ Financial support was provided by the [Coordination for the Improvement of Highe
 The author declares that the study was carried out without any commercial or financial connections that could be seen as a possible competing interest.
 
 ## Additional information
-
-__This manuscript shows only preliminary results and should not be considered as a document ready for journal submission.__
 
 See the appendices section for supplementary information.
 

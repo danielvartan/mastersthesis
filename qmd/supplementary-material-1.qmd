@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Research Question, Objective, and Hypothesis
+# Question, Objective and Hypothesis
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -13,7 +13,7 @@ source(here::here("R", "_setup.R"))
 
 This document provides a detailed outline of the thesis's research question, objective, and hypothesis.
 
-## Research Question
+## Question
 
 Every scientific inquiry should be guided by a central question. For this study, the guiding question is:
 

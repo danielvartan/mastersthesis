@@ -1,0 +1,230 @@
+<!-- %:::% .common h1 begin %:::% -->
+# Comparative Assessment of QualoCEP and Google Geocoding API Performance
+<!-- %:::% .common h1 end %:::% -->
+
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R", "_setup.R"))
+```
+
+## Overview
+
+This is a simple workflow to test the [QualoCEP](https://www.qualocep.com/) geocoding against [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview).
+
+This thesis uses both services for geocoding the data. QualoCEP is a paid service that provides a large dataset of Brazillian postal codes and addresses. The aim is to compare the results of QualoCEP's latitute e longitude values with Google's results for consistency.
+
+::: {.callout-note}
+To run this notebook you will need to have a Google Geocoding API key in your [`.Renviron`](https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file) file. Learn more about it [here](https://jessecambon.github.io/tidygeocoder/articles/geocoder_services.html).
+:::
+
+## Setting the enviroment
+
+```{r}
+#| eval: false
+
+library(leaflet)
+library(targets)
+library(tidygeocoder)
+```
+
+```{r}
+#| output: false
+
+source(here::here("R", "get_brazil_fu.R"))
+source(here::here("R", "get_qualocep_data.R"))
+source(here::here("R", "render_brazil_address.R"))
+source(here::here("R", "utils.R"))
+```
+
+```{r}
+#| include: false
+
+set.seed(2024)
+```
+
+## Importing QualOCep data
+
+```{r}
+#| output: false
+
+qualocep_data <- get_qualocep_data()
+```
+
+## Random test 1
+
+### QualOCep data
+
+```{r}
+sample_data <- dplyr::sample_n(qualocep_data, 1)
+
+sample_data |> as.list() |> list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
+  )
+```
+
+### Google Geocoding API
+
+```{r}
+google_data <- 
+  sample_data |>
+  dplyr::mutate(
+    address = render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
+    )
+  ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
+  )
+
+google_data |> as.list() |> list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
+  )
+```
+
+## Random test 2
+
+### QualOCep data
+
+```{r}
+sample_data <- dplyr::sample_n(qualocep_data, 1)
+
+sample_data |> as.list() |> list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
+  )
+```
+
+### Google Geocoding API
+
+```{r}
+google_data <- 
+  sample_data |>
+  dplyr::mutate(
+    address = render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
+    )
+  ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
+  )
+
+google_data |> as.list() |> list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
+  )
+```
+
+## Random test 3
+
+### QualOCep data
+
+```{r}
+sample_data <- dplyr::sample_n(qualocep_data, 1)
+
+sample_data |> as.list() |> list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
+  )
+```
+
+### Google Geocoding API
+
+```{r}
+google_data <- 
+  sample_data |>
+  dplyr::mutate(
+    address = render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
+    )
+  ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
+  )
+
+google_data |> as.list() |> list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |> 
+  leaflet::addTiles() |> 
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
+  )
+```

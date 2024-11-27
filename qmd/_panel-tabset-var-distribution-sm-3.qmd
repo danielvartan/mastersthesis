@@ -13,8 +13,6 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Statistics for the `msf_sc` variable.
 :::
 
@@ -28,8 +26,6 @@ weighted_data |>
     name = 'MSF~sc~ (Chronotype proxy) (local time)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `msf_sc` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -45,8 +41,6 @@ weighted_data |>
     col = 'msf_sc'
   )
 ```
-
-Source: Created by the author.
 
 Boxplot of the `msf_sc` variable.
 :::
@@ -65,8 +59,6 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Statistics for the `age` variable.
 :::
 
@@ -80,8 +72,6 @@ weighted_data |>
     name = 'Age (years)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `age` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -97,8 +87,6 @@ weighted_data |>
     col = 'age'
   )
 ```
-
-Source: Created by the author.
 
 Boxplot of the `age` variable.
 :::
@@ -117,8 +105,6 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Statistics for the `latitude` variable.
 :::
 
@@ -132,8 +118,6 @@ weighted_data |>
     name = 'Latitude (decimal degrees)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `latitude` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -149,8 +133,6 @@ weighted_data |>
     col = 'latitude'
   )
 ```
-
-Source: Created by the author.
 
 Boxplot of the `latitude` variable.
 :::
@@ -169,8 +151,6 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Statistics for the `longitude` variable.
 :::
 
@@ -184,8 +164,6 @@ weighted_data |>
     name = 'Longitude (decimal degrees)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `longitude` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -201,8 +179,6 @@ weighted_data |>
     col = 'longitude'
   )
 ```
-
-Source: Created by the author.
 
 Boxplot of the `longitude` variable.
 :::
@@ -221,8 +197,6 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Statistics for the `ghi_month` variable.
 :::
 
@@ -236,8 +210,6 @@ weighted_data |>
     name = 'Monthly average global horizontal irradiance (Wh/m²)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `ghi_month` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -253,8 +225,6 @@ weighted_data |>
     col = 'ghi_month'
   )
 ```
-
-Source: Created by the author.
 
 Boxplot of the `ghi_month` variable.
 :::
@@ -273,8 +243,6 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Statistics for the `ghi_annual` variable.
 :::
 
@@ -288,8 +256,6 @@ weighted_data |>
     name = 'Annual average global horizontal irradiance (Wh/m²)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `ghi_annual` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -306,12 +272,10 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Boxplot of the `ghi_annual` variable.
 :::
 
-### Sunrise on the March equinox (date-time/seconds)
+### Sunrise on the March equinox (date-time seconds)
 
 ::: {#tbl-sm-3-var-distribution-stats-march-equinox-sunrise}
 ```{r}
@@ -320,12 +284,10 @@ Boxplot of the `ghi_annual` variable.
 weighted_data |>
   stats_summary(
     col = 'march_equinox_sunrise',
-    name = 'Sunrise on the March equinox (date-time/seconds)',
+    name = 'Sunrise on the March equinox (date-time seconds)',
     as_list = FALSE
   )
 ```
-
-Source: Created by the author.
 
 Statistics for the `march_equinox_sunrise` variable.
 :::
@@ -337,11 +299,9 @@ Statistics for the `march_equinox_sunrise` variable.
 weighted_data |>
   test_normality(
     col = 'march_equinox_sunrise',
-    name = 'Sunrise on the March equinox (date-time/seconds)'
+    name = 'Sunrise on the March equinox (date-time seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `march_equinox_sunrise` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -358,12 +318,10 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Boxplot of the `march_equinox_sunrise` variable.
 :::
 
-### Sunset on the March equinox (date-time/seconds)
+### Sunset on the March equinox (seconds)
 
 ::: {#tbl-sm-3-var-distribution-stats-march-equinox-sunset}
 ```{r}
@@ -372,12 +330,10 @@ Boxplot of the `march_equinox_sunrise` variable.
 weighted_data |>
   stats_summary(
     col = 'march_equinox_sunset',
-    name = 'Sunset on the March equinox (date-time/seconds)',
+    name = 'Sunset on the March equinox (seconds)',
     as_list = FALSE
   )
 ```
-
-Source: Created by the author.
 
 Statistics for the `march_equinox_sunset` variable.
 :::
@@ -389,11 +345,9 @@ Statistics for the `march_equinox_sunset` variable.
 weighted_data |>
   test_normality(
     col = 'march_equinox_sunset',
-    name = 'Sunset on the March equinox (date-time/seconds)'
+    name = 'Sunset on the March equinox (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `march_equinox_sunset` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -409,8 +363,6 @@ weighted_data |>
     col = 'march_equinox_sunset'
   )
 ```
-
-Source: Created by the author.
 
 Boxplot of the `march_equinox_sunset` variable.
 :::
@@ -429,8 +381,6 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Statistics for the `march_equinox_daylight` variable.
 :::
 
@@ -444,8 +394,6 @@ weighted_data |>
     name = 'Daylight on the March equinox (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `march_equinox_daylight` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -462,12 +410,10 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Boxplot of the `march_equinox_daylight` variable.
 :::
 
-### Sunrise on the June solstice (date-time/seconds)
+### Sunrise on the June solstice (seconds)
 
 ::: {#tbl-sm-3-var-distribution-stats-june-solstice-sunrise}
 ```{r}
@@ -476,12 +422,10 @@ Boxplot of the `march_equinox_daylight` variable.
 weighted_data |>
   stats_summary(
     col = 'june_solstice_sunrise',
-    name = 'Sunrise on the June solstice (date-time/seconds)',
+    name = 'Sunrise on the June solstice (seconds)',
     as_list = FALSE
   )
 ```
-
-Source: Created by the author.
 
 Statistics for the `june_solstice_sunrise` variable.
 :::
@@ -493,11 +437,9 @@ Statistics for the `june_solstice_sunrise` variable.
 weighted_data |>
   test_normality(
     col = 'june_solstice_sunrise',
-    name = 'Sunrise on the June solstice (date-time/seconds)'
+    name = 'Sunrise on the June solstice (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `june_solstice_sunrise` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -514,12 +456,10 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Boxplot of the `june_solstice_sunrise` variable.
 :::
 
-### Sunset on the June solstice (date-time/seconds)
+### Sunset on the June solstice (seconds)
 
 ::: {#tbl-sm-3-var-distribution-stats-june-solstice-sunset}
 ```{r}
@@ -528,12 +468,10 @@ Boxplot of the `june_solstice_sunrise` variable.
 weighted_data |>
   stats_summary(
     col = 'june_solstice_sunset',
-    name = 'Sunset on the June solstice (date-time/seconds)',
+    name = 'Sunset on the June solstice (seconds)',
     as_list = FALSE
   )
 ```
-
-Source: Created by the author.
 
 Statistics for the `june_solstice_sunset` variable.
 :::
@@ -545,11 +483,9 @@ Statistics for the `june_solstice_sunset` variable.
 weighted_data |>
   test_normality(
     col = 'june_solstice_sunset',
-    name = 'Sunset on the June solstice (date-time/seconds)'
+    name = 'Sunset on the June solstice (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `june_solstice_sunset` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -565,8 +501,6 @@ weighted_data |>
     col = 'june_solstice_sunset'
   )
 ```
-
-Source: Created by the author.
 
 Boxplot of the `june_solstice_sunset` variable.
 :::
@@ -585,8 +519,6 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Statistics for the `june_solstice_daylight` variable.
 :::
 
@@ -600,8 +532,6 @@ weighted_data |>
     name = 'Daylight on the June solstice (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `june_solstice_daylight` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -618,12 +548,10 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Boxplot of the `june_solstice_daylight` variable.
 :::
 
-### Sunrise on the September equinox (date-time/seconds)
+### Sunrise on the September solstice (seconds)
 
 ::: {#tbl-sm-3-var-distribution-stats-september-equinox-sunrise}
 ```{r}
@@ -632,12 +560,10 @@ Boxplot of the `june_solstice_daylight` variable.
 weighted_data |>
   stats_summary(
     col = 'september_equinox_sunrise',
-    name = 'Sunrise on the September equinox (date-time/seconds)',
+    name = 'Sunrise on the September solstice (seconds)',
     as_list = FALSE
   )
 ```
-
-Source: Created by the author.
 
 Statistics for the `september_equinox_sunrise` variable.
 :::
@@ -649,11 +575,9 @@ Statistics for the `september_equinox_sunrise` variable.
 weighted_data |>
   test_normality(
     col = 'september_equinox_sunrise',
-    name = 'Sunrise on the September equinox (date-time/seconds)'
+    name = 'Sunrise on the September solstice (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `september_equinox_sunrise` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -670,12 +594,10 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Boxplot of the `september_equinox_sunrise` variable.
 :::
 
-### Sunset on the September equinox (date-time/seconds)
+### Sunset on the September solstice (seconds)
 
 ::: {#tbl-sm-3-var-distribution-stats-september-equinox-sunset}
 ```{r}
@@ -684,12 +606,10 @@ Boxplot of the `september_equinox_sunrise` variable.
 weighted_data |>
   stats_summary(
     col = 'september_equinox_sunset',
-    name = 'Sunset on the September equinox (date-time/seconds)',
+    name = 'Sunset on the September solstice (seconds)',
     as_list = FALSE
   )
 ```
-
-Source: Created by the author.
 
 Statistics for the `september_equinox_sunset` variable.
 :::
@@ -701,11 +621,9 @@ Statistics for the `september_equinox_sunset` variable.
 weighted_data |>
   test_normality(
     col = 'september_equinox_sunset',
-    name = 'Sunset on the September equinox (date-time/seconds)'
+    name = 'Sunset on the September solstice (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `september_equinox_sunset` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -722,12 +640,10 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Boxplot of the `september_equinox_sunset` variable.
 :::
 
-### Daylight on the September equinox (seconds)
+### Daylight on the September solstice (seconds)
 
 ::: {#tbl-sm-3-var-distribution-stats-september-equinox-daylight}
 ```{r}
@@ -736,12 +652,10 @@ Boxplot of the `september_equinox_sunset` variable.
 weighted_data |>
   stats_summary(
     col = 'september_equinox_daylight',
-    name = 'Daylight on the September equinox (seconds)',
+    name = 'Daylight on the September solstice (seconds)',
     as_list = FALSE
   )
 ```
-
-Source: Created by the author.
 
 Statistics for the `september_equinox_daylight` variable.
 :::
@@ -753,11 +667,9 @@ Statistics for the `september_equinox_daylight` variable.
 weighted_data |>
   test_normality(
     col = 'september_equinox_daylight',
-    name = 'Daylight on the September equinox (seconds)'
+    name = 'Daylight on the September solstice (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `september_equinox_daylight` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -774,12 +686,10 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Boxplot of the `september_equinox_daylight` variable.
 :::
 
-### Sunrise on the December solstice (date-time/seconds)
+### Sunrise on the December solstice (seconds)
 
 ::: {#tbl-sm-3-var-distribution-stats-december-solstice-sunrise}
 ```{r}
@@ -788,12 +698,10 @@ Boxplot of the `september_equinox_daylight` variable.
 weighted_data |>
   stats_summary(
     col = 'december_solstice_sunrise',
-    name = 'Sunrise on the December solstice (date-time/seconds)',
+    name = 'Sunrise on the December solstice (seconds)',
     as_list = FALSE
   )
 ```
-
-Source: Created by the author.
 
 Statistics for the `december_solstice_sunrise` variable.
 :::
@@ -805,11 +713,9 @@ Statistics for the `december_solstice_sunrise` variable.
 weighted_data |>
   test_normality(
     col = 'december_solstice_sunrise',
-    name = 'Sunrise on the December solstice (date-time/seconds)'
+    name = 'Sunrise on the December solstice (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `december_solstice_sunrise` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -826,12 +732,10 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Boxplot of the `december_solstice_sunrise` variable.
 :::
 
-### Sunset on the December solstice (date-time/seconds)
+### Sunset on the December solstice (seconds)
 
 ::: {#tbl-sm-3-var-distribution-stats-december-solstice-sunset}
 ```{r}
@@ -840,12 +744,10 @@ Boxplot of the `december_solstice_sunrise` variable.
 weighted_data |>
   stats_summary(
     col = 'december_solstice_sunset',
-    name = 'Sunset on the December solstice (date-time/seconds)',
+    name = 'Sunset on the December solstice (seconds)',
     as_list = FALSE
   )
 ```
-
-Source: Created by the author.
 
 Statistics for the `december_solstice_sunset` variable.
 :::
@@ -857,11 +759,9 @@ Statistics for the `december_solstice_sunset` variable.
 weighted_data |>
   test_normality(
     col = 'december_solstice_sunset',
-    name = 'Sunset on the December solstice (date-time/seconds)'
+    name = 'Sunset on the December solstice (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `december_solstice_sunset` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -877,8 +777,6 @@ weighted_data |>
     col = 'december_solstice_sunset'
   )
 ```
-
-Source: Created by the author.
 
 Boxplot of the `december_solstice_sunset` variable.
 :::
@@ -897,8 +795,6 @@ weighted_data |>
   )
 ```
 
-Source: Created by the author.
-
 Statistics for the `december_solstice_daylight` variable.
 :::
 
@@ -912,8 +808,6 @@ weighted_data |>
     name = 'Daylight on the December solstice (seconds)'
   )
 ```
-
-Source: Created by the author.
 
 Histogram of the `december_solstice_daylight` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -929,8 +823,6 @@ weighted_data |>
     col = 'december_solstice_daylight'
   )
 ```
-
-Source: Created by the author.
 
 Boxplot of the `december_solstice_daylight` variable.
 :::

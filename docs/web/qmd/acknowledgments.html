@@ -17,6 +17,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,7 +71,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -63,7 +98,16 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+}</script><script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean",
+  "openSidebar": false
+}
+</script><script async="" src="https://hypothes.is/embed.js"></script><script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <meta property="og:title" content="Acknowledgments – Is latitude associated with chronotype?">
 <meta property="og:description" content="">
@@ -206,20 +250,62 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/appendice-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Model building and hypothesis tests</span></span></a>
+  <a href="../qmd/supplementary-material-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Question, Objective and Hypothesis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/appendice-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Data visualizations</span></span></a>
+  <a href="../qmd/supplementary-material-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/appendice-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Activities during the development of this thesis</span></span></a>
+  <a href="../qmd/supplementary-material-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Sample Balance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Hypothesis Test A</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Hypothesis Test B</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Works and Activities Developed During the Thesis</span></span></a>
   </div>
 </li>
       </ul>
@@ -228,12 +314,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://doi.org/10.17605/OSF.IO/YGKTS"><i class="bi bi-link-45deg"></i>{{&lt; iconify simple-icons:osf &gt;}}</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/acknowledgments.html">Preliminary sections</a></li><li class="breadcrumb-item"><a href="../qmd/acknowledgments.html">Acknowledgments</a></li></ol></nav><div class="quarto-title">
-<h1 class="title">Acknowledgments</h1>
+<div class="quarto-title-block"><div><h1 class="title">Acknowledgments</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -247,21 +333,18 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><!-- %:::% .common h1 begin %:::% --><!-- %:::% .common h1 end %:::% --><!-- %:::% acknowledgments body begin %:::% --><p>I would like to acknowledge and express my gratitude to the following persons and organizations. Without them, this work would not have been possible:</p>
-<p>My partner in life, Salete Perroni (Sal).</p>
-<p>My Mother, for her unconditional love.</p>
-<p>My sister and my brother, for their love and companionship in life.</p>
-<p>My two friends and partners in science, <a href="https://orcid.org/0000-0003-0004-4487">Alicia Rafaelly Vilefort Sales</a> and <a href="https://orcid.org/0000-0002-9283-9967">Maria Augusta Medeiros de Andrade</a>.</p>
-<p>My friend and Professor <a href="https://orcid.org/0000-0002-1164-2055">Humberto Miguel Garay Malpartida</a>, for his support; for his principles; and for his integrity, which was demonstrated when the need arose.</p>
-<p>My supervisor, Professor <a href="https://orcid.org/0000-0001-6783-6695">Camilo Rodrigues Neto</a>, for introducing me to and teaching me about the complexity science since 2012; for supervising my dissertation; for the patience and the virtue in taking on and mediating the process of transitioning my Master’s supervision after the breakdown of relations with my former supervisor.</p>
-<p>Professor <a href="https://orcid.org/0000-0003-2916-4415">Carlos Molina Mendes</a>, for his speed, impartiality, patience, and virtuous approach in mediating the process of transitioning of my Master’s supervision.</p>
-<p>My fellow friends: Alex Azevedo Martins; Amanda Moreira; Augusto Amado, Carina (Cacau) Prado; Ítalo Alves Bezerra do Nascimento; Júlia Mafra; Letícia Nery de Figueiredo; Marcelo Ricardo Fernandes Roschel; Reginaldo Noveli; Sílvia Capelanes; and Vanessa Simon Silva.</p>
-<p>USP’s Support Program for Student Permanence and Education (<a href="https://prip.usp.br/apoio-estudantil/">PAPFE</a>), which enabled me to get this far.</p>
-<p>The Coordination for the Improvement of Higher Education Personnel (<a href="https://www.gov.br/capes/">CAPES</a>), for funding this work and enabling my presence in graduate studies.</p>
+</header><!-- %:::% .common h1 begin %:::% --><!-- %:::% .common h1 end %:::% --><!-- %:::% acknowledgments body begin %:::% --><p>This work would not have been possible without the support, love, and guidance of many remarkable individuals and organizations. I extend my deepest gratitude to:</p>
+<p>My beloved partner, Salete Perroni (Sal), whose unwavering support has been my constant source of strength. My mother, for her unconditional love, and my sister and brother, for their companionship throughout life’s journey.</p>
+<p>My scientific collaborators and dear friends, Alicia Rafaelly Vilefort Sales and Maria Augusta Medeiros de Andrade. Professor Humberto Miguel Garay Malpartida, for his steadfast support, unwavering principles, and integrity, which shone through when it was most needed.</p>
+<p>My supervisor, Professor Camilo Rodrigues Neto, who introduced me to complexity science in 2012, guided my dissertation with patience, and demonstrated exceptional virtue in mediating a challenging supervisory transition. Professor Carlos Molina Mendes, who handled this transition with remarkable speed, impartiality, and professionalism.</p>
+<p>My cherished friends: Alex Azevedo Martins, Augusto Amado, Carina (Cacau) Prado, Ítalo Alves Bezerra do Nascimento, Júlia Mafra, Letícia Nery de Figueiredo, Marcelo Ricardo Fernandes Roschel, Reginaldo Noveli, Sílvia Capelanes, and Vanessa Simon Silva.</p>
+<p>Finally, this journey was made possible by the institutional support of USP’s Support Program for Student Permanence and Education (PAPFE) and the Coordination for the Improvement of Higher Education Personnel (CAPES), whose contributions have been invaluable.</p>
 <p><br></p>
 <p>This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (<a href="https://www.gov.br/capes/">CAPES</a>) - Finance Code 001. Grant number: 88887.703720/2022-00.</p>
 <!-- %:::% acknowledgments body end %:::% -->
 
+
+<!-- -->
 
 
 </main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -354,6 +437,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
     clipboardModal.on('success', onCopySuccess);
   }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/danielvartan\.github\.io\/mastersthesis\/");
@@ -370,6 +504,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -693,7 +832,53 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text">Epigraph</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- %:::% .common h1 begin %:::% --&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu"># Acknowledgments {.unnumbered}</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- %:::% .common h1 end %:::% --&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R/_setup.R"</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- %:::% acknowledgments body begin %:::% --&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>This work would not have been possible without the support, love, and guidance of many remarkable individuals and organizations. I extend my deepest gratitude to:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{=latex}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">\smallskip</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>My beloved partner, Salete Perroni (Sal), whose unwavering support has been my constant source of strength. My mother, for her unconditional love, and my sister and brother, for their companionship throughout life's journey.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>My scientific collaborators and dear friends, Alicia Rafaelly Vilefort Sales and Maria Augusta Medeiros de Andrade. Professor Humberto Miguel Garay Malpartida, for his steadfast support, unwavering principles, and integrity, which shone through when it was most needed.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>My supervisor, Professor Camilo Rodrigues Neto, who introduced me to complexity science in 2012, guided my dissertation with patience, and demonstrated exceptional virtue in mediating a challenging supervisory transition. Professor Carlos Molina Mendes, who handled this transition with remarkable speed, impartiality, and professionalism.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>My cherished friends: Alex Azevedo Martins, Augusto Amado, Carina (Cacau) Prado, Ítalo Alves Bezerra do Nascimento, Júlia Mafra, Letícia Nery de Figueiredo, Marcelo Ricardo Fernandes Roschel, Reginaldo Noveli, Sílvia Capelanes, and Vanessa Simon Silva.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Finally, this journey was made possible by the institutional support of USP's Support Program for Student Permanence and Education (PAPFE) and the Coordination for the Improvement of Higher Education Personnel (CAPES), whose contributions have been invaluable.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>&lt;br&gt;</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{=latex}</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">\smallskip</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">\begingroup</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">\renewcommand{\baselinestretch}{1}</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>\noindent This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (<span class="co">[</span><span class="ot">CAPES</span><span class="co">](https://www.gov.br/capes/)</span>) - Finance Code 001. Grant number: 88887.703720/2022-00.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{=latex}</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">\endgroup</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- %:::% acknowledgments body end %:::% --&gt;</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

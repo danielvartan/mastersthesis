@@ -20,7 +20,8 @@ panel_tabset_coef_dfbetas <- function(
     source = rep("Created by the author.", length(coef)),
     heading = "###",
     fit_engine_name = "fit_engine",
-    suffix = ""
+    suffix = "",
+    root = ".."
   ) {
   prettycheck:::assert_class(fit_engine, "lm")
 
@@ -36,6 +37,7 @@ panel_tabset_coef_dfbetas <- function(
   prettycheck:::assert_string(heading, pattern = "^#*")
   prettycheck:::assert_string(fit_engine_name)
   prettycheck:::assert_string(suffix)
+  prettycheck:::assert_string(root)
 
   if (!file.exists(here::here("qmd"))) dir.create(here::here("qmd"))
 
@@ -117,7 +119,7 @@ panel_tabset_coef_dfbetas <- function(
     readr::write_lines(file)
 
   include_string <- glue::glue(
-    "{{{{< include {to_relative_path(file)} >}}}}"
+    "{{{{< include {to_relative_path(file, root)} >}}}}"
   )
 
   cli::cli_alert_info(glue:::glue(

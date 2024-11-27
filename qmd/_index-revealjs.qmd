@@ -404,7 +404,7 @@ __MCTQ standard version__
 See: <https://dmphub.cdlib.org/dmps/doi:10.48321/D1DW8P>
 
 ::: footer
-[@vartanian2023b]
+[@vartanian2024]
 :::
 
 ## {background-iframe="https://dbdiagram.io/e/5e6c84484495b02c3b883aff/6555ee6d3be14957871dd472" background-interactive=true}

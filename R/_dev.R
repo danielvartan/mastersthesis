@@ -48,6 +48,9 @@
 # source(here::here("R", "_pre-render-html.R"))
 # source(here::here("R", "_pre-render-revealjs.R"))
 #
+# --cache
+# --no-cache
+# --cache-refresh
 # quarto render
 # quarto render --profile gfm
 # quarto render --profile pdf

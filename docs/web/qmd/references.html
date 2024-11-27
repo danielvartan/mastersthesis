@@ -17,6 +17,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -45,7 +79,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../qmd/appendice-1.html" rel="next">
+<link href="../qmd/supplementary-material-1.html" rel="next">
 <link href="../qmd/chapter-6.html" rel="prev">
 <link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -56,7 +90,8 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -82,7 +117,17 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean",
+  "openSidebar": false
+}
+</script><script async="" src="https://hypothes.is/embed.js"></script><script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <meta property="og:title" content="References – Is latitude associated with chronotype?">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Is latitude associated with chronotype?">
@@ -224,20 +269,62 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/appendice-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Model building and hypothesis tests</span></span></a>
+  <a href="../qmd/supplementary-material-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Question, Objective and Hypothesis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/appendice-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Data visualizations</span></span></a>
+  <a href="../qmd/supplementary-material-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/appendice-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Activities during the development of this thesis</span></span></a>
+  <a href="../qmd/supplementary-material-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Sample Balance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Hypothesis Test A</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Hypothesis Test B</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Works and Activities Developed During the Thesis</span></span></a>
   </div>
 </li>
       </ul>
@@ -246,12 +333,12 @@ div.csl-indent {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://doi.org/10.17605/OSF.IO/YGKTS"><i class="bi bi-link-45deg"></i>{{&lt; iconify simple-icons:osf &gt;}}</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">References</h1>
+<div class="quarto-title-block"><div><h1 class="title">References</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -281,6 +368,21 @@ Allaire, J. J., Teague, C., Xie, Y., &amp; Dervieux, C. (n.d.).
 Allen, M. P. (1997). <em>Understanding regression analysis</em>. Plenum
 Press.
 </div>
+<div id="ref-anderson1962" class="csl-entry" role="listitem">
+Anderson, T. W. (1962). On the distribution of the two-sample <span class="nocase">Cramer-von Mises</span> criterion. <em>The Annals of
+Mathematical Statistics</em>, <em>33</em>(3), 1148–1159. <a href="https://doi.org/10.1214/aoms/1177704477">https://doi.org/10.1214/aoms/1177704477</a>
+</div>
+<div id="ref-anderson1952" class="csl-entry" role="listitem">
+Anderson, T. W., &amp; Darling, D. A. (1952). Asymptotic theory of
+certain "goodness of fit" criteria based on stochastic processes.
+<em>The Annals of Mathematical Statistics</em>, <em>23</em>(2), 193–212.
+<a href="https://www.jstor.org/stable/2236446">https://www.jstor.org/stable/2236446</a>
+</div>
+<div id="ref-anderson1954" class="csl-entry" role="listitem">
+Anderson, T. W., &amp; Darling, D. A. (1954). A test of goodness of fit.
+<em>Journal of the American Statistical Association</em>,
+<em>49</em>(268), 765–769. <a href="https://doi.org/10.1080/01621459.1954.10501232">https://doi.org/10.1080/01621459.1954.10501232</a>
+</div>
 <div id="ref-andrade2024" class="csl-entry" role="listitem">
 Andrade, T. G. de, &amp; Beale, A. D. (2024). Darwin and the biological
 rhythms. <em>PNAS Nexus</em>, <em>3</em>(8), pgae318. <a href="https://doi.org/10.1093/pnasnexus/pgae318">https://doi.org/10.1093/pnasnexus/pgae318</a>
@@ -303,9 +405,26 @@ Aschoff, J., Daan, S., Figala, J., &amp; Müller, K. (1972). Precision of
 entrained circadian activity rhythms under natural photoperiodic
 conditions. <em>Naturwissenschaften</em>, <em>59</em>(6), 276–277. <a href="https://research.rug.nl/files/14698568/1972NaturwissAschoff.pdf">https://research.rug.nl/files/14698568/1972NaturwissAschoff.pdf</a>
 </div>
-<div id="ref-boccara2010" class="csl-entry" role="listitem">
-Boccara, N. (2010). <em>Modeling complex systems</em> (2nd ed.).
-Springer New York. <a href="https://doi.org/10.1007/978-1-4419-6562-2">https://doi.org/10.1007/978-1-4419-6562-2</a>
+<div id="ref-belsley2004" class="csl-entry" role="listitem">
+Belsley, D. A., Kuh, E., &amp; Welsch, R. E. (2004). <em>Regression
+diagnostics: Identifying influential data and sources of
+collinearity</em>. John Wiley &amp; Sons. <a href="https://doi.org/10.1002/0471725153">https://doi.org/10.1002/0471725153</a>
+</div>
+<div id="ref-bera1981" class="csl-entry" role="listitem">
+Bera, A. K., &amp; Jarque, C. M. (1981). Efficient tests for normality,
+homoscedasticity and serial independence of regression residuals:
+<span>Monte Carlo Evidence</span>. <em>Economics Letters</em>,
+<em>7</em>(4), 313–318. <a href="https://doi.org/10.1016/0165-1765(81)90035-5">https://doi.org/10.1016/0165-1765(81)90035-5</a>
+</div>
+<div id="ref-bivand" class="csl-entry" role="listitem">
+Bivand, R., &amp; Luque, S. (n.d.). <em>Suntools: Calculate sun
+position, sunrise, sunset, solar noon and twilight</em> [Computer
+software]. <a href="https://doi.org/10.32614/CRAN.package.suntools">https://doi.org/10.32614/CRAN.package.suntools</a>
+</div>
+<div id="ref-bonett2002" class="csl-entry" role="listitem">
+Bonett, D. G., &amp; Seier, E. (2002). A test of normality with high
+uniform power. <em>Computational Statistics &amp; Data Analysis</em>,
+<em>40</em>(3), 435–445. <a href="https://doi.org/10.1016/S0167-9473(02)00074-9">https://doi.org/10.1016/S0167-9473(02)00074-9</a>
 </div>
 <div id="ref-borbely1982" class="csl-entry" role="listitem">
 Borbély, A. A. (1982). A two process model of sleep regulation.
@@ -316,22 +435,45 @@ Borbély, A. A., Daan, S., Wirz-Justice, A., &amp; Deboer, T. (2016). The
 two-process model of sleep regulation: A reappraisal. <em>Journal of
 Sleep Research</em>, <em>25</em>(2), 131–143. <a href="https://doi.org/10.1111/jsr.12371">https://doi.org/10.1111/jsr.12371</a>
 </div>
-<div id="ref-box1964" class="csl-entry" role="listitem">
-Box, G. E. P., &amp; Cox, D. R. (1964). An analysis of transformations.
-<em>Journal of the Royal Statistical Society: Series B
-(Methodological)</em>, <em>26</em>(2), 211–243. <a href="https://doi.org/10.1111/j.2517-6161.1964.tb00553.x">https://doi.org/10.1111/j.2517-6161.1964.tb00553.x</a>
+<div id="ref-box1970" class="csl-entry" role="listitem">
+Box, G. E. P., &amp; Pierce, D. A. (1970). Distribution of residual
+autocorrelations in autoregressive-integrated moving average time series
+models. <em>Journal of the American Statistical Association</em>,
+<em>65</em>(332), 1509–1526. <a href="https://doi.org/10.1080/01621459.1970.10481180">https://doi.org/10.1080/01621459.1970.10481180</a>
+</div>
+<div id="ref-breusch1979" class="csl-entry" role="listitem">
+Breusch, T. S., &amp; Pagan, A. R. (1979). A simple test for
+heteroscedasticity and random coefficient variation.
+<em>Econometrica</em>, <em>47</em>(5), 1287–1294. <a href="https://doi.org/10.2307/1911963">https://doi.org/10.2307/1911963</a>
+</div>
+<div id="ref-cambon2021" class="csl-entry" role="listitem">
+Cambon, J., Hernangómez, D., Belanger, C., &amp; Possenriede, D. (2021).
+Tidygeocoder: <span>An R</span> package for geocoding. <em>Journal of
+Open Source Software</em>, <em>6</em>(65), 3544. <a href="https://doi.org/10.21105/joss.03544">https://doi.org/10.21105/joss.03544</a>
 </div>
 <div id="ref-cambridgeuniversitypress" class="csl-entry" role="listitem">
 Cambridge University Press. (n.d.). <em>Cambridge dictionary</em>.
 Retrieved September 21, 2023, from <a href="https://dictionary.cambridge.org/">https://dictionary.cambridge.org/</a>
 </div>
+<div id="ref-chatterjee2012" class="csl-entry" role="listitem">
+Chatterjee, S., &amp; Hadi, A. S. (2012). <em>Regression analysis by
+example</em> (5th ed.). Wiley.
+</div>
 <div id="ref-cohen1988" class="csl-entry" role="listitem">
 Cohen, J. (1988). <em>Statistical power analysis for the behavioral
 sciences</em> (2nd ed.). Lawrence Erlbaum Associates.
 </div>
+<div id="ref-cohen1990" class="csl-entry" role="listitem">
+Cohen, J. (1990). Things <span>I</span> have learned (so far).
+<em>American Psychologist</em>, <em>45</em>(12), 1304–1312. <a href="https://doi.org/10.1037/10109-028">https://doi.org/10.1037/10109-028</a>
+</div>
 <div id="ref-cohen1992" class="csl-entry" role="listitem">
 Cohen, J. (1992). A power primer. <em>Psychological Bulletin</em>,
 <em>112</em>(1), 155–159. <a href="https://doi.org/10.1037/0033-2909.112.1.155">https://doi.org/10.1037/0033-2909.112.1.155</a>
+</div>
+<div id="ref-cohen1994" class="csl-entry" role="listitem">
+Cohen, J. (1994). The earth is round (p<span><span class="math inline">&lt;</span></span>.05). <em>American
+Psychologist</em>, <em>49</em>(12), 997–1003. <a href="https://doi.org/10.1037/0003-066X.49.12.997">https://doi.org/10.1037/0003-066X.49.12.997</a>
 </div>
 <div id="ref-cohen2002" class="csl-entry" role="listitem">
 Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. S. (2002).
@@ -342,10 +484,39 @@ sciences</em> (3rd ed.). Lawrence Erlbaum Associates.
 Cold Spring Harbor Laboratory. (n.d.). <em>1960: Biological clocks, vol.
 <span>XXV</span></em>. Retrieved July 17, 2023, from <a href="https://symposium.cshlp.org/site/misc/topic25.xhtml">https://symposium.cshlp.org/site/misc/topic25.xhtml</a>
 </div>
+<div id="ref-cook1977" class="csl-entry" role="listitem">
+Cook, R. D. (1977). Detection of influential observation in linear
+regression. <em>Technometrics</em>, <em>19</em>(1), 15–18. <a href="https://doi.org/10.1080/00401706.1977.10489493">https://doi.org/10.1080/00401706.1977.10489493</a>
+</div>
+<div id="ref-cook1979" class="csl-entry" role="listitem">
+Cook, R. D. (1979). Influential observations in linear regression.
+<em>Journal of the American Statistical Association</em>,
+<em>74</em>(365), 169–174. <a href="https://doi.org/10.1080/01621459.1979.10481634">https://doi.org/10.1080/01621459.1979.10481634</a>
+</div>
+<div id="ref-cramer1928" class="csl-entry" role="listitem">
+Cramér, H. (1928). On the composition of elementary errors:
+<span>First</span> paper: <span>Mathematical</span> deductions.
+<em>Scandinavian Actuarial Journal</em>, <em>1928</em>(1), 13–74. <a href="https://doi.org/10.1080/03461238.1928.10416862">https://doi.org/10.1080/03461238.1928.10416862</a>
+</div>
+<div id="ref-dagostino1971" class="csl-entry" role="listitem">
+D’Agostino, R. B. (1971). An omnibus test of normality for moderate and
+large size samples. <em>Biometrika</em>, <em>58</em>(2), 341–348. <a href="https://doi.org/10.1093/biomet/58.2.341">https://doi.org/10.1093/biomet/58.2.341</a>
+</div>
 <div id="ref-dagostino1990" class="csl-entry" role="listitem">
 D’Agostino, R. B., &amp; Belanger, A. (1990). A suggestion for using
 powerful and informative tests of normality. <em>The American
 Statistician</em>, <em>44</em>(4), 316–321. <a href="https://doi.org/10.2307/2684359">https://doi.org/10.2307/2684359</a>
+</div>
+<div id="ref-dagostino1973" class="csl-entry" role="listitem">
+D’Agostino, R. B., &amp; Pearson, E. S. (1973). Tests for departure from
+normality. <span>Empirical</span> results for the distributions of b2
+and √b1. <em>Biometrika</em>, <em>60</em>(3), 613–622. <a href="https://doi.org/10.1093/biomet/60.3.613">https://doi.org/10.1093/biomet/60.3.613</a>
+</div>
+<div id="ref-dallal1986" class="csl-entry" role="listitem">
+Dallal, G. E., &amp; Wilkinson, L. (1986). An analytic approximation to
+the distribution of <span>Lilliefors</span>’s test statistic for
+normality. <em>The American Statistician</em>, <em>40</em>(4), 294–296.
+<a href="https://doi.org/10.1080/00031305.1986.10475419">https://doi.org/10.1080/00031305.1986.10475419</a>
 </div>
 <div id="ref-demairan1729" class="csl-entry" role="listitem">
 de Mairan, J.-J. (1729). Observation botanique. <em>Histoire de
@@ -355,6 +526,21 @@ physique tirés des registres de cette Académie</em>, 35. <a href="http://www.b
 <div id="ref-degroot2012" class="csl-entry" role="listitem">
 DeGroot, M. H., &amp; Schervish, M. J. (2012). <em>Probability and
 statistics</em> (4th ed.). Addison-Wesley.
+</div>
+<div id="ref-durbin1950" class="csl-entry" role="listitem">
+Durbin, J., &amp; Watson, G. S. (1950). Testing for serial correlation
+in least squares regression. <span>I</span>. <em>Biometrika</em>,
+<em>37</em>(3-4), 409–428. <a href="https://doi.org/10.1093/biomet/37.3-4.409">https://doi.org/10.1093/biomet/37.3-4.409</a>
+</div>
+<div id="ref-durbin1951" class="csl-entry" role="listitem">
+Durbin, J., &amp; Watson, G. S. (1951). Testing for serial correlation
+in least squares regression. <span>II</span>. <em>Biometrika</em>,
+<em>38</em>(1-2), 159–178. <a href="https://doi.org/10.1093/biomet/38.1-2.159">https://doi.org/10.1093/biomet/38.1-2.159</a>
+</div>
+<div id="ref-durbin1971" class="csl-entry" role="listitem">
+Durbin, J., &amp; Watson, G. S. (1971). Testing for serial correlation
+in least squares regression. <span>III</span>. <em>Biometrika</em>,
+<em>58</em>(1), 1–19. <a href="https://doi.org/10.1093/biomet/58.1.1">https://doi.org/10.1093/biomet/58.1.1</a>
 </div>
 <div id="ref-ehret1974" class="csl-entry" role="listitem">
 Ehret, C. F. (1974). The sense of time: Evidence for its molecular basis
@@ -383,6 +569,10 @@ Foster, R. G., &amp; Kreitzman, L. (2005). <em>Rhythms of life: The
 biological clocks that control the daily lives of every living
 thing</em>. Profile Books.
 </div>
+<div id="ref-fox2016" class="csl-entry" role="listitem">
+Fox, J. (2016). <em>Applied regression analysis and generalized linear
+models</em> (3rd ed.). Sage.
+</div>
 <div id="ref-frommlet2016" class="csl-entry" role="listitem">
 Frommlet, F., Bogdan, M., &amp; Ramsey, D. (2016). <em>Phenotype and
 genotype: The search for influential genes</em> (Vol. 18). Springer
@@ -398,6 +588,14 @@ Phillip, J. M., Wirtz, D., &amp; Muñoz-Barrutia, A. (2021). Use of the
 p-values as a size-dependent function to address practical differences
 when analyzing large datasets. <em>Scientific Reports</em>,
 <em>11</em>(1, 1), 20942. <a href="https://doi.org/10.1038/s41598-021-00199-5">https://doi.org/10.1038/s41598-021-00199-5</a>
+</div>
+<div id="ref-google" class="csl-entry" role="listitem">
+Google. (n.d.). <em>Google <span>Geocoding API</span></em> [dataset].
+Google. <a href="https://developers.google.com/maps/documentation/geocoding">https://developers.google.com/maps/documentation/geocoding</a>
+</div>
+<div id="ref-greener2020" class="csl-entry" role="listitem">
+Greener, R. (2020, August 4). <em>Stop testing for normality</em>.
+Medium. <a href="https://towardsdatascience.com/stop-testing-for-normality-dba96bb73f90">https://towardsdatascience.com/stop-testing-for-normality-dba96bb73f90</a>
 </div>
 <div id="ref-hair2019" class="csl-entry" role="listitem">
 Hair, J. F. (2019). <em>Multivariate data analysis</em> (8th ed.).
@@ -416,7 +614,7 @@ Holland, J. H. (2014). <em>Complexity: A very short introduction</em>.
 Oxford University Press.
 </div>
 <div id="ref-horne1976" class="csl-entry" role="listitem">
-Horne, J. A., &amp; Ostberg, O. (1976). A self-assessment questionnaire
+Horne, J. A., &amp; Östberg, O. (1976). A self-assessment questionnaire
 to determine morningness-eveningness in human circadian rhythms.
 <em>International Journal of Chronobiology</em>, <em>4</em>(2), 97–110.
 </div>
@@ -439,13 +637,18 @@ Instituto Brasileiro de Geografia e Estatística. (n.d.-a). <em>Tabela
 segundo a condição no domicílio e compartilhamento da responsabilidade
 pelo domicílio</em> [Tabela]. SIDRA. <a href="https://sidra.ibge.gov.br/tabela/1378">https://sidra.ibge.gov.br/tabela/1378</a>
 </div>
-<div id="ref-ibgec" class="csl-entry" role="listitem">
+<div id="ref-ibgee" class="csl-entry" role="listitem">
 Instituto Brasileiro de Geografia e Estatística. (n.d.-b). <em>Tabela
-4714: População residente, área territorial e densidade demográfica</em>
-[Table]. SIDRA. Retrieved November 11, 2023, from <a href="https://sidra.ibge.gov.br/Tabela/4714">https://sidra.ibge.gov.br/Tabela/4714</a>
+6407: População residente, por sexo e grupos de idade</em> [Table].
+SIDRA. Retrieved November 16, 2023, from <a href="https://sidra.ibge.gov.br/tabela/6407">https://sidra.ibge.gov.br/tabela/6407</a>
+</div>
+<div id="ref-ibgel" class="csl-entry" role="listitem">
+Instituto Brasileiro de Geografia e Estatística. (n.d.-c). <em>Tabela
+6579: População residente estimada</em> [Table]. SIDRA. Retrieved
+November 16, 2023, from <a href="https://sidra.ibge.gov.br/Tabela/3939">https://sidra.ibge.gov.br/Tabela/3939</a>
 </div>
 <div id="ref-ibgeb" class="csl-entry" role="listitem">
-Instituto Brasileiro de Geografia e Estatística. (n.d.-c). <em>Tabela
+Instituto Brasileiro de Geografia e Estatística. (n.d.-d). <em>Tabela
 9514: <span>População</span> residente, por sexo, idade e forma de
 declaração da idade</em> [Tabela]. SIDRA. Retrieved November 11, 2023,
 from <a href="https://sidra.ibge.gov.br/tabela/9514">https://sidra.ibge.gov.br/tabela/9514</a>
@@ -461,21 +664,41 @@ Instituto Brasileiro de Geografia e Estatística. (2022). <em>Censo
 demográfico 2022 : população por idade e sexo : resultados do
 universo</em>. IBGE. <a href="https://biblioteca.ibge.gov.br/index.php/biblioteca-catalogo?view=detalhes&amp;id=73102">https://biblioteca.ibge.gov.br/index.php/biblioteca-catalogo?view=detalhes&amp;id=73102</a>
 </div>
+<div id="ref-jarque1980" class="csl-entry" role="listitem">
+Jarque, C. M., &amp; Bera, A. K. (1980). Efficient tests for normality,
+homoscedasticity and serial independence of regression residuals.
+<em>Economics Letters</em>, <em>6</em>(3), 255–259. <a href="https://doi.org/10.1016/0165-1765(80)90024-5">https://doi.org/10.1016/0165-1765(80)90024-5</a>
+</div>
+<div id="ref-jarque1987" class="csl-entry" role="listitem">
+Jarque, C. M., &amp; Bera, A. K. (1987). A test for normality of
+observations and regression residuals. <em>International Statistical
+Review</em>, <em>55</em>(2), 163–172. <a href="https://doi.org/10.2307/1403192">https://doi.org/10.2307/1403192</a>
+</div>
+<div id="ref-kalton2003" class="csl-entry" role="listitem">
+Kalton, G., &amp; Flores-Cervantes, I. (2003). Weighting methods.
+<em>Journal of Official Statistics</em>, <em>19</em>(2), 81–97.
+</div>
 <div id="ref-khalsa2003" class="csl-entry" role="listitem">
 Khalsa, S. B. S., Jewett, M. E., Cajochen, C., &amp; Czeisler, C. A.
 (2003). A phase response curve to single bright light pulses in human
 subjects. <em>The Journal of Physiology</em>, <em>549</em>(3), 945–952.
 <a href="https://doi.org/10.1113/jphysiol.2003.040477">https://doi.org/10.1113/jphysiol.2003.040477</a>
 </div>
+<div id="ref-koenker1981" class="csl-entry" role="listitem">
+Koenker, R. (1981). A note on studentizing a test for
+heteroscedasticity. <em>Journal of Econometrics</em>, <em>17</em>(1),
+107–112. <a href="https://doi.org/10.1016/0304-4076(81)90062-2">https://doi.org/10.1016/0304-4076(81)90062-2</a>
+</div>
+<div id="ref-kolmogorov1933" class="csl-entry" role="listitem">
+Kolmogorov, A. (1933). Sulla determinazione empirica di una legge di
+distribuzione. <em>Giornale dell’Istituto Italiano degli Attuari</em>,
+<em>4</em>.
+</div>
 <div id="ref-kozak2018" class="csl-entry" role="listitem">
 Kozak, M., &amp; Piepho, H.-P. (2018). What’s normal anyway?
 <span>Residual</span> plots are more telling than significance tests
 when checking <span>ANOVA</span> assumptions. <em>Journal of Agronomy
 and Crop Science</em>, <em>204</em>(1), 86–98. <a href="https://doi.org/10.1111/jac.12220">https://doi.org/10.1111/jac.12220</a>
-</div>
-<div id="ref-krakauer2023" class="csl-entry" role="listitem">
-Krakauer, D. (Director). (2023, February 17). <em>What is
-complexity?</em> Santa Fe Institute. <a href="https://www.youtube.com/watch?v=JR93X7xK05o">https://www.youtube.com/watch?v=JR93X7xK05o</a>
 </div>
 <div id="ref-krakauer2024" class="csl-entry" role="listitem">
 Krakauer, D., &amp; Wolpert, D. (2024, September 4). The reality
@@ -503,15 +726,29 @@ latitude: A comparison between <span>Horne–Östberg</span> and
 <span>Munich Chronotype</span> questionnaires. <em>Annals of Human
 Biology</em>, <em>41</em>(2), 107–110. <a href="https://doi.org/10.3109/03014460.2013.832795">https://doi.org/10.3109/03014460.2013.832795</a>
 </div>
+<div id="ref-lilliefors1967" class="csl-entry" role="listitem">
+Lilliefors, H. W. (1967). On the <span>Kolmogorov-Smirnov</span> test
+for normality with mean and variance unknown. <em>Journal of the
+American Statistical Association</em>, <em>62</em>(318), 399–402. <a href="https://doi.org/10.1080/01621459.1967.10482916">https://doi.org/10.1080/01621459.1967.10482916</a>
+</div>
 <div id="ref-lin2013" class="csl-entry" role="listitem">
 Lin, M., Lucas, H. C., &amp; Shmueli, G. (2013). Research commentary—too
 big to fail: Large samples and the p-value problem. <em>Information
 Systems Research</em>, <em>24</em>(4), 906–917. <a href="https://doi.org/10.1287/isre.2013.0480">https://doi.org/10.1287/isre.2013.0480</a>
 </div>
+<div id="ref-ljung1978" class="csl-entry" role="listitem">
+Ljung, G. M., &amp; Box, G. E. P. (1978). On a measure of lack of fit in
+time series models. <em>Biometrika</em>, <em>65</em>(2), 297–303. <a href="https://doi.org/10.1093/biomet/65.2.297">https://doi.org/10.1093/biomet/65.2.297</a>
+</div>
 <div id="ref-marques2003" class="csl-entry" role="listitem">
 Marques, N., &amp; Menna-Barreto, L. (Eds.). (2003). <em>Cronobiologia:
 princípios e aplicações</em> (3. ed. rev. e ampl.). Editora da
 Universidade de São Paulo.
+</div>
+<div id="ref-massey1951" class="csl-entry" role="listitem">
+Massey, F. J. (1951). The <span>Kolmogorov-Smirnov</span> test for
+goodness of fit. <em>Journal of the American Statistical
+Association</em>, <em>46</em>(253), 68–78. <a href="https://doi.org/10.1080/01621459.1951.10500769">https://doi.org/10.1080/01621459.1951.10500769</a>
 </div>
 <div id="ref-matias2022" class="csl-entry" role="listitem">
 Matias, V. A., Serrano, C., Vartanian, D., Pedrazzoli, M., &amp;
@@ -525,6 +762,9 @@ Symposium</span> of <span>Undergraduate Research</span>
 Maxwell, S. E., Delaney, H. D., &amp; Kelley, K. (2018). <em>Designing
 experiments and analyzing data: A model comparison perspective</em> (3rd
 ed.). Routledge.
+</div>
+<div id="ref-meeus1991" class="csl-entry" role="listitem">
+Meeus, J. (1991). <em>Astronomical algorithms</em>. Willmann-Bell.
 </div>
 <div id="ref-menna-barreto2003" class="csl-entry" role="listitem">
 Menna-Barreto, L. (2003). O tempo na biologia. In <em>Cronobiologia:
@@ -549,6 +789,26 @@ phase-response curve to light. <em>Neuroscience Letters</em>,
 Mitchell, M. (2013). <em>Introduction to complexity</em> [Online
 course]. <a href="https://www.complexityexplorer.org/courses/">https://www.complexityexplorer.org/courses/</a>
 </div>
+<div id="ref-nahhas2024" class="csl-entry" role="listitem">
+Nahhas, R. W. (2024). <em>Introduction to regression methods for public
+health using <span>R</span></em>. <a href="https://www.bookdown.org/rwnahhas/RMPH/">https://www.bookdown.org/rwnahhas/RMPH/</a>
+</div>
+<div id="ref-nasa" class="csl-entry" role="listitem">
+National Aeronautics and Space Administration, &amp; Goddard Institute
+for Space Studies. (n.d.). <em>Data.<span>GISS</span>: Time and
+<span>Date</span> of vernal <span>Equinox</span></em>. Retrieved
+November 24, 2024, from <a href="https://data.giss.nasa.gov/modelE/ar5plots/srvernal.html">https://data.giss.nasa.gov/modelE/ar5plots/srvernal.html</a>
+</div>
+<div id="ref-newey1987" class="csl-entry" role="listitem">
+Newey, W. K., &amp; West, K. D. (1987). A simple, positive
+semi-definite, heteroskedasticity and autocorrelation consistent
+covariance matrix. <em>Econometrica</em>, <em>55</em>(3), 703–708. <a href="https://doi.org/10.2307/1913610">https://doi.org/10.2307/1913610</a>
+</div>
+<div id="ref-newey1994" class="csl-entry" role="listitem">
+Newey, W. K., &amp; West, K. D. (1994). Automatic lag selection in
+covariance matrix estimation. <em>The Review of Economic Studies</em>,
+<em>61</em>(4), 631–653. <a href="https://doi.org/10.2307/2297912">https://doi.org/10.2307/2297912</a>
+</div>
 <div id="ref-neyman1928" class="csl-entry" role="listitem">
 Neyman, J., &amp; Pearson, E. S. (1928a). On the use and interpretation
 of certain test criteria for purposes of statistical inference: Part
@@ -568,10 +828,21 @@ Scientific.
 Nobel Prize Outreach AB. (n.d.). <em>Press release</em>. The Nobel
 Prize. Retrieved September 28, 2023, from <a href="https://www.nobelprize.org/prizes/medicine/2017/press-release/">https://www.nobelprize.org/prizes/medicine/2017/press-release/</a>
 </div>
+<div id="ref-openstreetmap" class="csl-entry" role="listitem">
+OpenStreetMap contributors. (n.d.). <em><span>OpenStreetMap</span></em>
+[dataset]. OpenStreetMap Foundation. <a href="https://www.openstreetmap.org">https://www.openstreetmap.org</a>
+</div>
 <div id="ref-paranjpe2005" class="csl-entry" role="listitem">
 Paranjpe, D. A., &amp; Sharma, V. K. (2005). Evolution of temporal order
 in living organisms. <em>Journal of Circadian Rhythms</em>, <em>3</em>.
 <a href="https://doi.org/10.1186/1740-3391-3-7">https://doi.org/10.1186/1740-3391-3-7</a>
+</div>
+<div id="ref-pearson1900" class="csl-entry" role="listitem">
+Pearson, K. (1900). X. <span>On</span> the criterion that a given system
+of deviations from the probable in the case of a correlated system of
+variables is such that it can be reasonably supposed to have arisen from
+random sampling. <em>The London, Edinburgh, and Dublin Philosophical
+Magazine and Journal of Science</em>, <em>50</em>(302), 157–175. <a href="https://doi.org/10.1080/14786440009463897">https://doi.org/10.1080/14786440009463897</a>
 </div>
 <div id="ref-pereira2017" class="csl-entry" role="listitem">
 Pereira, E. B., Martins, F. R., Gonçalves, A. R., Costa, R., Lima, F. J.
@@ -616,10 +887,18 @@ Posit Team. (n.d.). <em><span>RStudio</span>: Integrated development
 environment for <span>R</span></em> [Computer software]. Posit Software.
 <a href="http://www.posit.co">http://www.posit.co</a>
 </div>
+<div id="ref-qualocep2024" class="csl-entry" role="listitem">
+Qual o cep. (2024). <em>Banco de CEP e código IBGE</em> [dataset]. <a href="https://www.qualocep.com/">https://www.qualocep.com/</a>
+</div>
 <div id="ref-rcoreteam" class="csl-entry" role="listitem">
 R Core Team. (n.d.). <em>R: A language and environment for statistical
 computing</em> [Computer software]. R Foundation for Statistical
 Computing. <a href="https://www.R-project.org">https://www.R-project.org</a>
+</div>
+<div id="ref-ramsey1969" class="csl-entry" role="listitem">
+Ramsey, J. B. (1969). Tests for specification errors in classical linear
+least-squares regression analysis. <em>Journal of the Royal Statistical
+Society. Series B (Methodological)</em>, <em>31</em>(2), 350–371. <a href="https://doi.org/10.1111/j.2517-6161.1969.tb00796.x">https://doi.org/10.1111/j.2517-6161.1969.tb00796.x</a>
 </div>
 <div id="ref-randler2008" class="csl-entry" role="listitem">
 Randler, C. (2008). Morningness‐eveningness comparison in adolescents
@@ -634,7 +913,11 @@ on a systematic review. <em>Scientific Reports</em>, <em>7</em>(1),
 </div>
 <div id="ref-redeglobo2017" class="csl-entry" role="listitem">
 Rede Globo (Director). (2017, October 15). <em>Metade da população se
-sente mal no horário de verão, revela pesquisa</em>. Rede Globo. <a href="https://globoplay.globo.com/v/6219513/">https://globoplay.globo.com/v/6219513/</a>
+sente mal no horário de verão, revela pesquisa</em>. Rede Globo. <a href="https://g1.globo.com/fantastico/noticia/2017/10/metade-da-populacao-se-sente-mal-no-horario-de-verao-revela-pesquisa.html">https://g1.globo.com/fantastico/noticia/2017/10/metade-da-populacao-se-sente-mal-no-horario-de-verao-revela-pesquisa.html</a>
+</div>
+<div id="ref-reis2020" class="csl-entry" role="listitem">
+Reis, C. (2020). <em>Sleep patterns in portugal</em> [PhD thesis,
+Universidade de Lisboa]. <a href="http://hdl.handle.net/10451/54147">http://hdl.handle.net/10451/54147</a>
 </div>
 <div id="ref-roenneberg2012" class="csl-entry" role="listitem">
 Roenneberg, T. (2012). What is chronotype? <em>Sleep and Biological
@@ -706,6 +989,16 @@ tests for normality do not validate the one-sample <span>Student</span>
 t. <em>Communications in Statistics - Theory and Methods</em>,
 <em>35</em>(12), 2275–2286. <a href="https://doi.org/10.1080/03610920600853308">https://doi.org/10.1080/03610920600853308</a>
 </div>
+<div id="ref-shapiro1972" class="csl-entry" role="listitem">
+Shapiro, S. S., &amp; Francia, R. S. (1972). An approximate analysis of
+variance test for normality. <em>Journal of the American Statistical
+Association</em>, <em>67</em>(337), 215–216. <a href="https://doi.org/10.1080/01621459.1972.10481232">https://doi.org/10.1080/01621459.1972.10481232</a>
+</div>
+<div id="ref-shapiro1965" class="csl-entry" role="listitem">
+Shapiro, S. S., &amp; Wilk, M. B. (1965). An analysis of variance test
+for normality (complete samples)†. <em>Biometrika</em>,
+<em>52</em>(3-4), 591–611. <a href="https://doi.org/10.1093/biomet/52.3-4.591">https://doi.org/10.1093/biomet/52.3-4.591</a>
+</div>
 <div id="ref-shatz2024" class="csl-entry" role="listitem">
 Shatz, I. (2024). Assumption-checking rather than (just) testing: The
 importance of visualization and effect size in statistical diagnostics.
@@ -717,8 +1010,21 @@ the circadian melatonin rhythm in humans: <span>Entrained</span> to
 local clock time, social time, light exposure or sun time? <em>Journal
 of Pineal Research</em>, <em>71</em>(1), e12746. <a href="https://doi.org/10.1111/jpi.12746">https://doi.org/10.1111/jpi.12746</a>
 </div>
+<div id="ref-smirnov1948" class="csl-entry" role="listitem">
+Smirnov, N. (1948). Table for estimating the goodness of fit of
+empirical distributions. <em>Annals of Mathematical Statistics</em>,
+<em>19</em>, 279–281.
+</div>
+<div id="ref-struck2024" class="csl-entry" role="listitem">
+Struck, J. (2024). <em>Regression <span>Diagnostics</span> with
+<span>R</span></em>. University of Wisconsin-Madison. <a href="https://sscc.wisc.edu/sscc/pubs/RegDiag-R/">https://sscc.wisc.edu/sscc/pubs/RegDiag-R/</a>
+</div>
 <div id="ref-thode2002" class="csl-entry" role="listitem">
 Thode, H. C. (2002). <em>Testing for normality</em>. Marcel Dekker.
+</div>
+<div id="ref-timeanddateas" class="csl-entry" role="listitem">
+Time and Date AS. (n.d.). <em>Solstices &amp; equinoxes for
+<span>UTC</span> (2000—2049)</em>. Retrieved November 24, 2024, from <a href="https://www.timeanddate.com/calendar/seasons.html?year=2000&amp;n=1440">https://www.timeanddate.com/calendar/seasons.html?year=2000&amp;n=1440</a>
 </div>
 <div id="ref-vartanian2022b" class="csl-entry" role="listitem">
 Vartanian, D. (2022). <em>{Actverse}: Tools for actigraphy data
@@ -733,6 +1039,14 @@ for theses and dissertations that adhere to the standards of the
 <div id="ref-vartanian2023e" class="csl-entry" role="listitem">
 Vartanian, D. (2023b). <em>Plano de ensino: ACH0042 - Resolução de
 Problemas II</em>. <a href="https://doi.org/10.13140/RG.2.2.33335.50086">https://doi.org/10.13140/RG.2.2.33335.50086</a>
+</div>
+<div id="ref-vartanian2024" class="csl-entry" role="listitem">
+Vartanian, D. (2024). <em>Is latitude associated with chronotype?
+[<span>Data Management Plan</span>]</em>. DMPHub. <a href="https://doi.org/10.48321/D1B5C8068D">https://doi.org/10.48321/D1B5C8068D</a>
+</div>
+<div id="ref-viacep" class="csl-entry" role="listitem">
+ViaCEP. (n.d.). <em>ViaCEP API: consulte CEPs de todo o Brasil</em>
+[dataset]. <a href="https://viacep.com.br">https://viacep.com.br</a>
 </div>
 <div id="ref-viana-mendes2023" class="csl-entry" role="listitem">
 Viana-Mendes, J., Benedito-Silva, A. A., Andrade, M. A. M., Vartanian,
@@ -750,6 +1064,13 @@ consensus statement of the <span>American Academy</span> of <span>Sleep
 Medicine</span> and <span>Sleep Research Society</span>. <em>Journal of
 Clinical Sleep Medicine</em>, <em>11</em>(6), 591–592. <a href="https://doi.org/10.5664/jcsm.4758">https://doi.org/10.5664/jcsm.4758</a>
 </div>
+<div id="ref-welsch1977" class="csl-entry" role="listitem">
+Welsch, R., &amp; Kuh, E. (1977). <em>Linear regression diagnostics</em>
+(Working Paper 0173; p. 44). National Bureau of Economic Research. <a href="https://doi.org/10.3386/w0173">https://doi.org/10.3386/w0173</a>
+</div>
+<div id="ref-krakauer2023" class="csl-entry" role="listitem">
+<em>What is complexity?</em> (2023, February 17). Santa Fe Institute. <a href="https://www.youtube.com/watch?v=JR93X7xK05o">https://www.youtube.com/watch?v=JR93X7xK05o</a>
+</div>
 <div id="ref-wickham2016" class="csl-entry" role="listitem">
 Wickham, H. (2016). <em>ggplot2: Elegant graphics for data analysis</em>
 (2nd ed.). Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-24277-4">https://doi.org/10.1007/978-3-319-24277-4</a>
@@ -757,6 +1078,11 @@ Wickham, H. (2016). <em>ggplot2: Elegant graphics for data analysis</em>
 <div id="ref-wickham2023a" class="csl-entry" role="listitem">
 Wickham, H., &amp; Bryan, J. (2023). <em>R packages</em> (2nd ed.).
 O’Reilly Media. <a href="https://r-pkgs.org/">https://r-pkgs.org/</a>
+</div>
+<div id="ref-wickham2023b" class="csl-entry" role="listitem">
+Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for
+data science: Import, tidy, transform, visualize, and model data</em>
+(2nd ed.). O’Reilly Media. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>
 </div>
 <div id="ref-wilkinson2016" class="csl-entry" role="listitem">
 Wilkinson, M. D., Dumontier, M., Aalbersberg, Ij. J., Appleton, G.,
@@ -774,6 +1100,8 @@ onset. <em>Journal of Pineal Research</em>, <em>70</em>(3), e12723. <a href="htt
 </div>
 </div>
 
+
+<!-- -->
 
 
 </main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -866,6 +1194,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
     clipboardModal.on('success', onCopySuccess);
   }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/danielvartan\.github\.io\/mastersthesis\/");
@@ -882,6 +1261,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1201,11 +1585,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../qmd/appendice-1.html" class="pagination-link" aria-label="Model building and hypothesis tests">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Model building and hypothesis tests</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../qmd/supplementary-material-1.html" class="pagination-link" aria-label="Question, Objective and Hypothesis">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Question, Objective and Hypothesis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- %:::% .common h1 begin %:::% --&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu"># References {.unnumbered}</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- %:::% .common h1 end %:::% --&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R/_setup.R"</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>In accordance with the <span class="co">[</span><span class="ot">American Psychological Association (APA) Style</span><span class="co">](https://apastyle.apa.org/)</span>, 7th edition.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

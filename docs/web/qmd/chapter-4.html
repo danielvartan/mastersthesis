@@ -17,6 +17,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -57,7 +91,8 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -83,7 +118,16 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+}</script><script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean",
+  "openSidebar": false
+}
+</script><script async="" src="https://hypothes.is/embed.js"></script><script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -251,20 +295,62 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/appendice-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Model building and hypothesis tests</span></span></a>
+  <a href="../qmd/supplementary-material-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Question, Objective and Hypothesis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/appendice-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Data visualizations</span></span></a>
+  <a href="../qmd/supplementary-material-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/appendice-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Activities during the development of this thesis</span></span></a>
+  <a href="../qmd/supplementary-material-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Sample Balance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Hypothesis Test A</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Hypothesis Test B</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Works and Activities Developed During the Thesis</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,14 +359,14 @@ window.Quarto = {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://doi.org/10.17605/OSF.IO/YGKTS"><i class="bi bi-link-45deg"></i>{{&lt; iconify simple-icons:osf &gt;}}</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/chapter-1.html">Chapters</a></li><li class="breadcrumb-item"><a href="../qmd/chapter-4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">On the latitude hypothesis</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title">
+<div class="quarto-title-block"><div><h1 class="title">
 <span class="chapter-number">4</span>&nbsp; <span class="chapter-title">On the latitude hypothesis</span>
-</h1>
+</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -294,18 +380,7 @@ window.Quarto = {
   
 
 
-</header><!-- %:::% .common h1 begin %:::% --><!-- %:::% .common h1 end %:::% --><div class="callout callout-style-simple callout-important">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>You are reading the work-in-progress of this thesis.</p>
-<p>This chapter is currently a dumping ground for ideas, and I don’t recommend reading it.</p>
-</div>
-</div>
-</div>
-<p>Although many theories related to sleep and circadian rhythms are well-established in science, it is still necessary to verify and test them in larger samples to obtain a more accurate picture of the mechanisms related to the ecology of sleep and chronotypes. This project undertakes this commitment with the aim of investigating a hypothesis that is still relatively untested but widely accepted in chronobiology, which suggests that latitude is associated with the regulation of circadian rhythms <span class="citation" data-cites="hut2013 leocadio-miguel2014 leocadio-miguel2017 pittendrigh1991 randler2008 randler2017 roenneberg2003">(<a href="references.html#ref-hut2013" role="doc-biblioref">Hut et al., 2013</a>; <a href="references.html#ref-leocadio-miguel2014" role="doc-biblioref">Leocadio-Miguel et al., 2014</a>, <a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>; <a href="references.html#ref-pittendrigh1991" role="doc-biblioref">Pittendrigh et al., 1991</a>; <a href="references.html#ref-randler2008" role="doc-biblioref">Randler, 2008</a>; <a href="references.html#ref-randler2017" role="doc-biblioref">Randler &amp; Rahafar, 2017</a>; <a href="references.html#ref-roenneberg2003" role="doc-biblioref">Roenneberg et al., 2003</a>)</span>.</p>
+</header><!-- %:::% .common h1 begin %:::% --><!-- %:::% .common h1 end %:::% --><p>Although many theories related to sleep and circadian rhythms are well-established in science, it is still necessary to verify and test them in larger samples to obtain a more accurate picture of the mechanisms related to the ecology of sleep and chronotypes. This project undertakes this commitment with the aim of investigating a hypothesis that is still relatively untested but widely accepted in chronobiology, which suggests that latitude is associated with the regulation of circadian rhythms <span class="citation" data-cites="hut2013 leocadio-miguel2014 leocadio-miguel2017 pittendrigh1991 randler2008 randler2017 roenneberg2003">(<a href="references.html#ref-hut2013" role="doc-biblioref">Hut et al., 2013</a>; <a href="references.html#ref-leocadio-miguel2014" role="doc-biblioref">Leocadio-Miguel et al., 2014</a>, <a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>; <a href="references.html#ref-pittendrigh1991" role="doc-biblioref">Pittendrigh et al., 1991</a>; <a href="references.html#ref-randler2008" role="doc-biblioref">Randler, 2008</a>; <a href="references.html#ref-randler2017" role="doc-biblioref">Randler &amp; Rahafar, 2017</a>; <a href="references.html#ref-roenneberg2003" role="doc-biblioref">Roenneberg et al., 2003</a>)</span>.</p>
 <p>The latitude hypothesis is based on the idea that regions located at latitudes close to the poles, on average, experience less annual sunlight exposure compared to regions near the equator. Therefore, it is deduced that regions near latitude 0° have a stronger solar zeitgeber, which, according to chronobiology theories, should lead to a greater propensity for the synchronization of circadian rhythms in these populations with the light-dark cycle. This would reduce the amplitude and diversity of circadian phenotypes found due to a lower influence of individuals’ characteristic endogenous periods (<a href="#fig-chapter-4-roenneberg-2003-figure-7-f" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> illustrates this effect). This would also give these populations a morningness characteristic when compared to populations living farther from the equator, where the opposite would occur – greater amplitude and diversity of circadian phenotypes and an eveningness characteristic compared to populations living near latitude 0° <span class="citation" data-cites="roenneberg2003">(<a href="references.html#ref-roenneberg2003" role="doc-biblioref">Roenneberg et al., 2003</a>)</span>.</p>
 <div id="fig-chapter-4-roenneberg-2003-figure-7-f" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-chapter-4-roenneberg-2003-figure-7-f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -320,12 +395,21 @@ Figure&nbsp;4.1: Different chronotype distributions, influenced by strong and we
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-chapter-4-hut-2013-figure-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.2: Annual changes in (a) twilight duration, (b) daylight hours, and (c) temperature across different latitudes. Each color shows a specific latitude range, illustrating how these factors vary throughout the year.
 </figcaption><div aria-describedby="fig-chapter-4-hut-2013-figure-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="images/hut-2013-figure-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="images/hut-2013-figure-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <p><span class="legend">Source: Reproduction from <span class="citation" data-cites="hut2013">Hut et al. (<a href="references.html#ref-hut2013" role="doc-biblioref">2013</a>)</span>.</span></p>
 </div>
 </figure>
 </div>
-<p>“This last fact contradicts the otherwise plausible interpreta- tion of our data that strength of Zeitgeber (and hence pre- cision) is greatest when the light/dark ratio is 1:1. The strength of the Zeitgeber certainly depends on the light/dark ratio [5] and it may be expected to influence precision, too. However, unexplained additional factors must complicate the picture. It is unknown whether the fluctuations in precision have an ecological significance.” <span class="citation" data-cites="aschoff1972">(<a href="references.html#ref-aschoff1972" role="doc-biblioref">Aschoff et al., 1972</a>)</span></p>
+<div id="fig-chapter-4-leocadio-miguel-2017-figure-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-chapter-4-leocadio-miguel-2017-figure-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Mean HO scores (±SE) along a latitudinal cline, showing corresponding annual average of solar irradiation level (W/m2).
+</figcaption><div aria-describedby="fig-chapter-4-leocadio-miguel-2017-figure-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><img src="images/leocadio-miguel-2017-figure-2.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><span class="legend">Source: Reproduction from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span>.</span></p>
+</div>
+</figure>
+</div>
+<p>“This last fact contradicts the otherwise plausible interpretation of our data that strength of Zeitgeber (and hence precision) is greatest when the light/dark ratio is 1:1. The strength of the Zeitgeber certainly depends on the light/dark ratio [5] and it may be expected to influence precision, too. However, unexplained additional factors must complicate the picture. It is unknown whether the fluctuations in precision have an ecological significance.” <span class="citation" data-cites="aschoff1972">(<a href="references.html#ref-aschoff1972" role="doc-biblioref">Aschoff et al., 1972</a>)</span></p>
 <p>“Latitude and longitude are key factors that influence how light–dark cycle interacts with the circadian rhythm of humans. Therefore, it is reasonable to assume that chronotype distribution of a population may vary as a result of different geographical location.” <span class="citation" data-cites="leocadio-miguel2014">(<a href="references.html#ref-leocadio-miguel2014" role="doc-biblioref">Leocadio-Miguel et al., 2014</a>)</span></p>
 <p>“However, it is also our experience that some mathematically sophisticated scientists may lack the conceptual frame that links the mathematical procedures to the substantive scientific task in a particular case” <span class="citation" data-cites="cohen2002">(<a href="references.html#ref-cohen2002" role="doc-biblioref">Cohen et al., 2002</a>)</span>.</p>
 <p>Effect sizes. Statistical ritual versus statistical thinking <span class="citation" data-cites="gigerenzer2004">(<a href="references.html#ref-gigerenzer2004" role="doc-biblioref">Gigerenzer, 2004</a>)</span>.</p>
@@ -338,8 +422,11 @@ Figure&nbsp;4.2: Annual changes in (a) twilight duration, (b) daylight hours, an
 </ol>
 <p>Considering the particular emphasis that the solar zeitgeber has on the entrainment of biological rhythms (as demonstrated in many experiments), it would not be reasonable to assume that the latitude hypothesis could be supported without at least a non-negligible effect size. Although the latitude association claimed by many authors implies not just a linear relationship but also a significant effect on chronotype, considering the biological construct of chronotype, the approach that incorporates a minimum effect size (MES) is not new. In fact, when Neyman and Pearson published their schema for data testing, a MES was required.</p>
 <p>Even assuming a very low threshold, similar to the claim of 2% variance explained by latitude as a predictor, the hypothesis does not hold. As shown by <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span>, adding <span class="math inline">\(0.00388\)</span> to the <span class="math inline">\(\text{R}^2\)</span> results in Cohen’s <span class="math inline">\(f^2 = (0.06352 - 0.05964) / (1 - 0.06352) = 0.004143174\)</span>, which is negligible by all standards. Again, the conclusion drawn by the authors of this study was not based on sound statistical thinking.</p>
-<p>y-axis illusion. unbalanced data.</p>
+<p>y-axis illusion. unbalanced data. Horner &amp; Östberg scale from 16-86.</p>
+<p>Solar irradiation used as a proxy for latitude.</p>
 
+
+<!-- -->
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-algina2007" class="csl-entry" role="listitem">
@@ -476,6 +563,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
     clipboardModal.on('success', onCopySuccess);
   }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/danielvartan\.github\.io\/mastersthesis\/");
@@ -492,6 +630,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -815,7 +958,72 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Is latitude associated with chronotype?</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- %:::% .common h1 begin %:::% --&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu"># On the latitude hypothesis</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- %:::% .common h1 end %:::% --&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R"</span>, <span class="st">"_setup.R"</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Although many theories related to sleep and circadian rhythms are well-established in science, it is still necessary to verify and test them in larger samples to obtain a more accurate picture of the mechanisms related to the ecology of sleep and chronotypes. This project undertakes this commitment with the aim of investigating a hypothesis that is still relatively untested but widely accepted in chronobiology, which suggests that latitude is associated with the regulation of circadian rhythms <span class="co">[</span><span class="ot">@hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003</span><span class="co">]</span>.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>The latitude hypothesis is based on the idea that regions located at latitudes close to the poles, on average, experience less annual sunlight exposure compared to regions near the equator. Therefore, it is deduced that regions near latitude 0° have a stronger solar zeitgeber, which, according to chronobiology theories, should lead to a greater propensity for the synchronization of circadian rhythms in these populations with the light-dark cycle. This would reduce the amplitude and diversity of circadian phenotypes found due to a lower influence of individuals' characteristic endogenous periods (@fig-chapter-4-roenneberg-2003-figure-7-f illustrates this effect). This would also give these populations a morningness characteristic when compared to populations living farther from the equator, where the opposite would occur – greater amplitude and diversity of circadian phenotypes and an eveningness characteristic compared to populations living near latitude 0° <span class="co">[</span><span class="ot">@roenneberg2003</span><span class="co">]</span>.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>::: {#fig-chapter-4-roenneberg-2003-figure-7-f}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/roenneberg-2003-figure-7-f.png)</span>{width=75%}</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Source: Adapted from @roenneberg2003.</span><span class="co">]</span>{.legend}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Different chronotype distributions, influenced by strong and weak zeitgebers -- black for strong and hatched for weak. An illustration of the effect hypothesized by the latitude hypothesis.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>::: {#fig-chapter-4-hut-2013-figure-1}</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/hut-2013-figure-1.png)</span>{width=100%}</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Source: Reproduction from @hut2013.</span><span class="co">]</span>{.legend}</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Annual changes in (a) twilight duration, (b) daylight hours, and (c) temperature across different latitudes. Each color shows a specific latitude range, illustrating how these factors vary throughout the year.</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>::: {#fig-chapter-4-leocadio-miguel-2017-figure-2}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/leocadio-miguel-2017-figure-2.png)</span>{width=100%}</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Source: Reproduction from @leocadio-miguel2017.</span><span class="co">]</span>{.legend}</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Mean HO scores (±SE) along a latitudinal cline, showing corresponding annual average of solar irradiation level (W/m2).</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>"This last fact contradicts the otherwise plausible interpretation of our data that strength of Zeitgeber (and hence precision) is greatest when the light/dark ratio is 1:1. The strength of the Zeitgeber certainly depends on the light/dark ratio <span class="co">[</span><span class="ot">5</span><span class="co">]</span> and it may be expected to influence precision, too. However, unexplained additional factors must complicate the picture. It is unknown whether the fluctuations in precision have an ecological significance." <span class="co">[</span><span class="ot">@aschoff1972</span><span class="co">]</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>"Latitude and longitude are key factors that influence how light–dark cycle interacts with the circadian rhythm of humans. Therefore, it is reasonable to assume that chronotype distribution of a population may vary as a result of different geographical location." <span class="co">[</span><span class="ot">@leocadio-miguel2014</span><span class="co">]</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>"However, it is also our experience that some mathematically sophisticated scientists may lack the conceptual frame that links the mathematical procedures to the substantive scientific task in a particular case" <span class="co">[</span><span class="ot">@cohen2002</span><span class="co">]</span>.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>Effect sizes. Statistical ritual versus statistical thinking <span class="co">[</span><span class="ot">@gigerenzer2004</span><span class="co">]</span>.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>A p-value is not evidence of the existence of an effect., it's only indirect evidence at best. Large samples and the p-value problem <span class="co">[</span><span class="ot">@lin2013</span><span class="co">]</span>. P-values as an exponential model of data sizes <span class="co">[</span><span class="ot">@mariscal2021</span><span class="co">]</span>. A small p-value does not imply that there is an important effect; it only tells us something about the plausibility of the effect. You need to have a meaningful effect to have an interesting result, and the p-value doesn't tell you that.</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>Confidence intervals for an effect size measure in multiple linear regression <span class="co">[</span><span class="ot">@algina2007</span><span class="co">]</span>. Setting hypotheses with effect sizes: minimal effect size <span class="co">[</span><span class="ot">@perezgonzalez2015</span><span class="co">]</span>.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>The original article had two issues regarding data testing, commonly related to null hypothesis significance tests (NHST). It is not within the scope of this article to discuss all the issues regarding NHST; for that, I recommend checking @perezgonzalez2015. The two main methodological issues regarding the hypothesis test in the original article were: </span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Using the p-value instead of the effect size as a criterion for rejecting or accepting the alternative hypothesis;</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Failing to integrate a minimum effect size in the alternative hypothesis. A test without the latter can create serious distortions in the interpretation of the results, since even a negligible effect could lead to the acceptance of the alternative hypothesis.</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>Considering the particular emphasis that the solar zeitgeber has on the entrainment of biological rhythms (as demonstrated in many experiments), it would not be reasonable to assume that the latitude hypothesis could be supported without at least a non-negligible effect size. Although the latitude association claimed by many authors implies not just a linear relationship but also a significant effect on chronotype, considering the biological construct of chronotype, the approach that incorporates a minimum effect size (MES) is not new. In fact, when Neyman and Pearson published their schema for data testing, a MES was required.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>Even assuming a very low threshold, similar to the claim of 2% variance explained by latitude as a predictor, the hypothesis does not hold. As shown by @leocadio-miguel2017, adding $0.00388$ to the $\text{R}^2$ results in Cohen’s $f^2 = (0.06352 - 0.05964) / (1 - 0.06352) = 0.004143174$, which is negligible by all standards. Again, the conclusion drawn by the authors of this study was not based on sound statistical thinking.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>y-axis illusion. unbalanced data. Horner &amp; Östberg scale from 16-86.</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>Solar irradiation used as a proxy for latitude.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

@@ -1,10 +1,10 @@
 # library(dplyr)
 # library(here)
-# library(lubridate)
+library(lubridate)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R/get_chronotype_cutoffs.R"))
-source(here::here("R/utils.R"))
+source(here::here("R", "get_chronotype_cutoffs.R"))
+source(here::here("R", "utils.R"))
 
 categorize_msf_sc <- function(x) {
   prettycheck:::assert_hms(x)

@@ -76,18 +76,4 @@ plots$plots[[5]] +
 Standardized DFBETAS values for each observation concerning the
 `ghi_month` coefficient.
 :::
-
-###### latitude
-
-::: {#tbl-sm-6-restricted-model-diag-influence-latitude}
-```{r}
-#| code-fold: true
-
-plots$plots[[6]] +
- ggplot2::labs(title = 'latitude coefficient')
-```
-
-Standardized DFBETAS values for each observation concerning the
-`latitude` coefficient.
-:::
 ::::

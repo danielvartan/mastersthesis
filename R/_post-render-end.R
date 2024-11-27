@@ -45,7 +45,7 @@ output_docs_new_files <-
 output_docs_new_dirs <- list.dirs(
   path = get(paste0("output_dir_", env_vars$format)),
   full.names = FALSE
-)[-1]  %>%
+)[-1] %>%
   here::here(get(paste0("output_docs_", env_vars$format)), .)
 
 for (i in output_docs_old_files) {

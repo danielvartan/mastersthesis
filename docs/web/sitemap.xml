@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/index.html</loc>
-    <lastmod>2024-10-25T16:21:45.370Z</lastmod>
+    <lastmod>2024-11-27T00:44:20.673Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/acknowledgments.html</loc>
-    <lastmod>2024-10-18T10:57:45.720Z</lastmod>
+    <lastmod>2024-11-26T18:44:06.940Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/epigraph.html</loc>
@@ -18,46 +18,74 @@
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/foreign-abstract.html</loc>
-    <lastmod>2024-10-17T19:20:21.656Z</lastmod>
+    <lastmod>2024-10-30T22:38:21.685Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-1.html</loc>
-    <lastmod>2024-10-25T16:20:04.750Z</lastmod>
+    <lastmod>2024-11-26T22:42:19.846Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-2.html</loc>
-    <lastmod>2024-10-18T21:16:18.729Z</lastmod>
+    <lastmod>2024-11-26T22:42:15.861Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-3.html</loc>
-    <lastmod>2024-10-25T05:10:36.076Z</lastmod>
+    <lastmod>2024-11-26T22:42:14.029Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-4.html</loc>
-    <lastmod>2024-10-25T05:42:30.331Z</lastmod>
+    <lastmod>2024-11-26T22:42:06.343Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-5.html</loc>
-    <lastmod>2024-10-18T10:12:40.311Z</lastmod>
+    <lastmod>2024-11-26T20:50:33.766Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-6.html</loc>
-    <lastmod>2024-10-18T21:25:04.465Z</lastmod>
+    <lastmod>2024-11-26T22:41:53.730Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/references.html</loc>
     <lastmod>2024-10-13T21:27:11.108Z</lastmod>
   </url>
   <url>
-    <loc>https://danielvartan.github.io/mastersthesis/qmd/appendice-1.html</loc>
-    <lastmod>2024-10-18T11:30:14.119Z</lastmod>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-1.html</loc>
+    <lastmod>2024-11-26T19:03:42.104Z</lastmod>
   </url>
   <url>
-    <loc>https://danielvartan.github.io/mastersthesis/qmd/appendice-2.html</loc>
-    <lastmod>2024-10-17T21:29:54.051Z</lastmod>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-2.html</loc>
+    <lastmod>2024-11-26T20:43:20.323Z</lastmod>
   </url>
   <url>
-    <loc>https://danielvartan.github.io/mastersthesis/qmd/appendice-3.html</loc>
-    <lastmod>2024-10-18T10:42:55.773Z</lastmod>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-3.html</loc>
+    <lastmod>2024-11-26T22:41:41.636Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-4.html</loc>
+    <lastmod>2024-11-26T22:41:36.606Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-5.html</loc>
+    <lastmod>2024-11-27T00:17:10.542Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-6.html</loc>
+    <lastmod>2024-11-26T23:50:27.111Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-7.html</loc>
+    <lastmod>2024-11-26T22:41:22.387Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-8.html</loc>
+    <lastmod>2024-11-26T19:48:30.833Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-9.html</loc>
+    <lastmod>2024-11-26T22:41:15.529Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-10.html</loc>
+    <lastmod>2024-11-26T22:41:09.277Z</lastmod>
   </url>
 </urlset>

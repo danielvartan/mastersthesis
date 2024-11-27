@@ -94,4 +94,3 @@ list(
   #   command = lock_and_store_data(weighted_data)
   # )
 )
-

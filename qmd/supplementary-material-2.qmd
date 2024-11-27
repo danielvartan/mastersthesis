@@ -23,13 +23,13 @@ source(here::here("R", "utils.R"))
 
 ```{r}
 #| eval: false
-#| output: false
+#| include: false
 
-targets::tar_make(script = "../_targets.R")
+targets::tar_make(script = here::here("_targets.R"))
 ```
 
 ```{r}
-#| output: false
+#| include: false
 
 anonymized_data <- targets::tar_read(
   "anonymized_data", 
@@ -38,7 +38,7 @@ anonymized_data <- targets::tar_read(
 ```
 
 ```{r}
-#| output: false
+#| include: false
 
 weighted_data <- targets::tar_read(
   "weighted_data", 
@@ -72,9 +72,9 @@ Variables of the Munich ChronoType Questionnaire scale (a sleep log). In its sta
 
 ## Sample
 
-The validated dataset used for analysis is made up of `{r} weighted_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
+The validated dataset used for analysis is made up of `{r} weighted_data |> nrow() |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
 
-The unfiltered valid sample comprises `{r} anonymized_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of $120,265$ individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The unfiltered valid sample comprises `{r} anonymized_data |> nrow() |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of $120,265$ individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
 ::: {#fig-appendice-1-age-sex-chronotype-series}
 ![](images/globo-2017-figure-1.png)
@@ -312,7 +312,7 @@ Histogram of the local time of sleep onset (SO) with (right) and without (left) 
 
 ### Round-Off Errors
 
-The R programming language [only stores values up to 53 binary bits](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f), that's about `r format_to_md_latex((53 * log10(2)) |> round(3))` digits of precision ($x = 53 \log_{10}(2)$). Since MCTQ deals with self-reported local time of day (e.g., 02:30) and duration (e.g., 15 minutes), a greater floating-point precision is unnecessary. Even with multiple computations, round-off errors wouldn't significantly impact the phenomenon under study.
+The R programming language [only stores values up to 53 binary bits](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f), that's about `{r} format_to_md_latex(53 * log10(2))` digits of precision ($x = 53 \log_{10}(2)$). Since MCTQ deals with self-reported local time of day (e.g., 02:30) and duration (e.g., 15 minutes), a greater floating-point precision is unnecessary. Even with multiple computations, round-off errors wouldn't significantly impact the phenomenon under study.
 
 Even considering that `POSIXct` objects are used in the models, there is still a good margin of precision – POSIXct objects are data-time objects measured by the amount of seconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time) (1970-01-01).
 

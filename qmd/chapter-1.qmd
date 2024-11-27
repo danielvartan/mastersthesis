@@ -5,7 +5,16 @@
 #| label: setup
 #| include: false
 
-source(here::here("R/_setup.R"))
+source(here::here("R", "_setup.R"))
+```
+
+```{r}
+#| include: false
+
+anonymized_data <- targets::tar_read(
+  "anonymized_data", 
+  store = here::here("_targets")
+)
 ```
 
 <!-- %:::% index pdf begin %:::% -->
@@ -15,7 +24,7 @@ The central hypothesis is that *latitude is associated with human chronotype dis
 
 This study came to be by a healthy debate that I had with my ex-supervisor about this hypothesis, primarily because of the results that he and others chronobiology scientists published on the matter in 2017 on Nature's Scientific Report journal [@leocadio-miguel2017]. In this paper, the authors conclude, as the theory seemed to suggest, that there is a significant association between latitude and chronotype in the Brazilian population. However, these results were not as clear as the author suggested, and the methodology used to test the hypothesis was not the most appropriate. This thesis aims to revisit this hypothesis using a different statistical approach and a larger dataset to provide a more accurate and reliable answer to the research question.
 
-In the following chapters, the latitude hypothesis is explored using Popper's hypothetical-deductive method [@popper1979] and an improved approach to Null Hypothesis Significance Testing (NHST), rooted in the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015]. This exploration involves a series of analyses conducted on a large dataset comprising `{r} anonymized_data |> nrow() |> format(big.mark = ",") |> format_to_md_latex()` individuals, collected from the Brazilian population in 2017. The dataset is based on the Munich Chronotype Questionnaire (MCTQ) [@roenneberg2003; @roenneberg2012a], and contains data on sleep habits and demographic characteristics from all Brazil's states.
+In the following chapters, the latitude hypothesis is explored using Popper's hypothetical-deductive method [@popper1979] and an improved approach to Null Hypothesis Significance Testing (NHST), rooted in the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015]. This exploration involves a series of analyses conducted on a large dataset comprising `{r} anonymized_data |> nrow() |> format_to_md_latex()` individuals, collected from the Brazilian population in 2017. The dataset is based on the Munich Chronotype Questionnaire (MCTQ) [@roenneberg2003; @roenneberg2012a], and contains data on sleep habits and demographic characteristics from all Brazil's states.
 
 The analyses utilize nested multiple regression models to evaluate the additional variance explained and the effect size when latitude is included as a predictor of chronotype. The results are then compared with those obtained from a restricted model that does not have latitude as a predictor. This method of procedure builds on the method used in @leocadio-miguel2017. The results will contribute to the ongoing debate on the latitude-chronotype relationship, offering new evidences into how environmental factors influence human circadian rhythms.
 

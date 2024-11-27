@@ -6,7 +6,7 @@
 #| label: setup
 #| include: false
 
-source(here::here("R/_setup.R"))
+source(here::here("R", "_setup.R"))
 ```
 
 The dimension of time, manifest in the form of rhythms and cycles, like the alternating patterns of day and night as well as the annual transition of seasons, was consistently featured in the evolutionary journey of not only the human species but also all other life forms on our planet. These rhythms and cycles brought with them evolutionary pressures, resulting in the development of a temporal organization that allowed organisms to survive and reproduce in response to the conditions imposed by the environments they inhabited [@pittendrigh1981; @menna-barreto2003]. An example of this organization can be observed in the presence of different activity-rest patterns among living beings as they adapt to certain temporal niches, such as the diurnal behavior of humans and the nocturnal behavior of cats and some rodents [@foster2005].

@@ -22,7 +22,8 @@ panel_tabset_var_homoscedasticity <- function(
     heading = "###",
     data_name = "data",
     fit_name = "fit",
-    suffix = ""
+    suffix = "",
+    root = ".."
   ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_class(fit, "workflow")
@@ -34,6 +35,7 @@ panel_tabset_var_homoscedasticity <- function(
   prettycheck:::assert_string(data_name)
   prettycheck:::assert_string(fit_name)
   prettycheck:::assert_string(suffix)
+  prettycheck:::assert_string(root)
 
   if (!file.exists(here::here("qmd"))) dir.create(here::here("qmd"))
 
@@ -114,7 +116,7 @@ panel_tabset_var_homoscedasticity <- function(
     readr::write_lines(file)
 
   include_string <- glue::glue(
-    "{{{{< include {to_relative_path(file)} >}}}}"
+    "{{{{< include {to_relative_path(file, root)} >}}}}"
   )
 
   cli::cli_alert_info(glue:::glue(

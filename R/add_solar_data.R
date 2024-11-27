@@ -50,8 +50,7 @@ add_solar_data <- function(
   data |>
     add_ghi(inpe_data) |>
     add_equinox_and_solstice(time_and_date_data) |>
-    add_sun_time() |>
-    nest_solar_vars()
+    add_sun_time()
 }
 
 # library(dplyr)
@@ -242,63 +241,4 @@ add_sun_time <- function(data) {
       dplyr::matches("^september_"), .before = december_solstice
     ) |>
     dplyr::relocate(dplyr::matches("^december_"), .before = height)
-}
-
-# library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(purrr)
-# library(tidyr)
-
-nest_solar_vars <- function(data) {
-  prettycheck:::assert_tibble(data)
-
-  data |>
-    tidyr::nest(
-      ghi = c(ghi_month, ghi_annual),
-      march_equinox = c(
-        march_equinox, march_equinox_sunrise, march_equinox_sunset,
-        march_equinox_daylight
-      ),
-      june_solstice = c(
-        june_solstice, june_solstice_sunrise, june_solstice_sunset,
-        june_solstice_daylight
-      ),
-      september_equinox = c(
-        september_equinox, september_equinox_sunrise,
-        september_equinox_sunset, september_equinox_daylight
-      ),
-      december_solstice = c(
-        december_solstice, december_solstice_sunrise,
-        december_solstice_sunset, december_solstice_daylight
-      )
-    ) |>
-    dplyr::mutate(
-      ghi = ghi |>
-        purrr::map(
-         .f = ~ .x |>
-           dplyr::rename_with(.fn = ~ c("month", "annual"))
-      )
-    ) |>
-    dplyr::mutate(
-      dplyr::across(
-        .cols = dplyr::all_of(
-          c(
-            "march_equinox", "june_solstice", "september_equinox",
-            "december_solstice"
-          )
-        ),
-        .fns = ~ .x |>
-          purrr::map(
-            .f = ~ .x |>
-              dplyr::rename_with(
-                .fn = ~ c("moment", "sunrise", "sunset", "daylight")
-              )
-          )
-      )
-    ) |>
-    dplyr::relocate(
-      ghi, march_equinox, june_solstice, september_equinox,
-      december_solstice,
-      .after = longitude
-    )
 }

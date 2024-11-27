@@ -6,6 +6,7 @@ library(downlit)
 # library(extrafont)
 # library(here)
 # library(knitr)
+library(lubridate)
 library(magrittr)
 library(ggplot2)
 library(rlang)
@@ -16,7 +17,7 @@ library(xml2)
 
 # Load functions -----
 
-source(here::here("R/utils.R"))
+source(here::here("R", "utils.R"))
 
 # Set general options -----
 
@@ -75,7 +76,7 @@ ggplot2::theme_set(
   ggplot2::theme_bw(
     base_size = base_size,
     base_family = env_vars$sansfont,
-    base_line_size = base_size / 22, # `ggplot2::theme_gray` default
-    base_rect_size = base_size / 22 # `ggplot2::theme_gray` default
+    base_line_size = base_size / 22,
+    base_rect_size = base_size / 22
   )
 )

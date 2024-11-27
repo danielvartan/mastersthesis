@@ -3,8 +3,10 @@ library(ggplot2)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(tidyr)
 
+source(here::here("R", "utils.R"))
 source(here::here("R", "utils-plots.R"))
 source(here::here("R", "utils-stats.R"))
+
 
 plot_box_plot <- function(
     data,
@@ -12,7 +14,7 @@ plot_box_plot <- function(
     viridis = NULL,
     # color_brewer = "Set1", # RColorBrewer::display.brewer.all(),
     jitter = FALSE,
-    label = NULL,
+    label = col,
     title = NULL,
     subtitle = NULL,
     x_label = "Variable",
@@ -26,7 +28,6 @@ plot_box_plot <- function(
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_character(col)
   prettycheck:::assert_subset(col, names(data))
-  for (i in col) prettycheck:::assert_numeric(data[[i]])
   assert_color_options(viridis = viridis)
   prettycheck:::assert_flag(jitter)
 
@@ -35,10 +36,17 @@ plot_box_plot <- function(
   #   RColorBrewer::brewer.pal.info |> rownames()
   # )
 
-  prettycheck:::assert_character(label, null.ok = TRUE)
+  prettycheck:::assert_character(label)
   prettycheck:::assert_flag(print)
 
-  if (is.null(label)) label <- col
+  for (i in col) {
+    if (prettycheck:::test_temporal(data[[i]])) {
+      data[[i]] <- data[[i]] |> transform_time()
+    } else {
+      prettycheck:::assert_numeric(data[[i]])
+    }
+  }
+
   names(col) <- label
 
   data <-

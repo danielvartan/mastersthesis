@@ -1,19 +1,20 @@
 # See <https://git-scm.com/docs/gitignore>.
 
-_freeze/
-_print/
-_slides/
-_web/
-_targets/
-_temp/
-_ssh/
-.auth/
-.quarto/
+/_freeze/
+/_print/
+/_slides/
+/_web/
+/_targets/
+/_temp/
+/_ssh/
+/.auth/
+/.quarto/
+/index_cache/
+/site_libs/
+
 .Rapp.history
 .RData
 .Renviron
 .Rhistory
 .Rproj.user
 .Ruserdata
-
-/.quarto/

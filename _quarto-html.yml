@@ -38,19 +38,31 @@ book:
     - qmd/supplementary-material-5.qmd
     - qmd/supplementary-material-6.qmd
     - qmd/supplementary-material-7.qmd
+    - qmd/supplementary-material-8.qmd
+    - qmd/supplementary-material-9.qmd
+    - qmd/supplementary-material-10.qmd
+  comments:
+    hypothesis:
+      theme: clean
+      openSidebar: false
 
 format:
   html:
     date-format: "YYYY-MM-DD"
     open-graph: true
     locale: en
-    number-depth: 5
-    code-link: true
     code-fold: true
+    code-link: true
+    code-tools: true
     cap-location: top
-    fig-align: center
     df-print: paged
+    fig-align: center
+    number-depth: 5
     reader-mode: false
     callout-appearance: simple
     csl: csl/english-apa-author-date.csl
     theme: [cosmo, scss/web.scss]
+    link-external-newwindow: true
+    other-links:
+      - text: "Research compendium"
+        href: "https://doi.org/10.17605/OSF.IO/YGKTS"

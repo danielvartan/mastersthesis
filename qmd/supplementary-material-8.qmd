@@ -1,0 +1,69 @@
+<!-- %:::% .common h1 begin %:::% -->
+# Overview of General Linear Models
+<!-- %:::% .common h1 end %:::% -->
+
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R", "_setup.R"))
+```
+
+## Overview
+
+This document present basic concepts and assumptions regarding general linear models. The main goal is to provide a reference for the model diagnostics that will be performed in the other sections of the thesis supplementary material.
+
+## Problems of Multiple Linear Regression
+
+> [...] A problem of this type is called a problem of multiple linear regression because we are considering the regression of $Y$ on $k$ variables $X_{1}, \dots, X_{k}$, rather than on just a single variable $X$, and we are assuming also that this regression is a linear function of the parameters $\beta_{0}, \dots, \beta_{k}$. In a problem of multiple linear regressions, we obtain $n$ vectors of observations ($x_{i1}. \dots, x_{ik}, Y_{i}$), for $i = 1, \dots, n$. Here $x_{ij}$ is the observed value of the variable $X_{j}$ for the $i$th observation. The $E(Y)$ is given by the relation
+
+$$
+E(Y_{i}) = \beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}
+$$
+
+[@degroot2012, p. 738]
+
+## Definitions
+
+Residuals/Fitted values
+: \hspace{20cm} For $i = 1, \dots, n$, the observed values of $\hat{y} = \hat{\beta}_{0} + \hat{\beta}_{1} x_{i}$ are called _fitted values_. For $i = 1, \dots, n$, the observed values of $e_{i} = y_{i} - \hat{y}_{i}$ are called _residuals_ [@degroot2012, p. 717].
+
+> [...] regression problems in which the observations $Y_{i}, \dots, Y_{n}$ [...] we shall assume that each observation $Y_{i}$ has a normal distribution, that the observations $Y_{1}, \dots, Y_{n}$ are independent, and that the observations $Y_{1}, \dots, Y_{n}$ have the same variance $\sigma^{2}$. Instead of a single predictor being associated with each $Y_{i}$, we assume that a $p$-dimensional vector $z_{i} = (z_{i0}, \dots, z_{ip - 1})$ is associated with each $Y_{i}$"  [@degroot2012, p. 736].
+
+General linear model
+: The statistical model in which the observations $Y_{1}, \dots, Y_{n}$ satisfy the following assumptions [@degroot2012, p. 738].
+
+## Assumptions
+
+Assumption 1
+: \hspace{20cm} __Predictor is known__. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012, p. 736].
+
+Assumption 2
+: \hspace{20cm} __Normality__. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012, p. 737].
+
+(Normality of the error term distribution [@hair2019, p. 287])
+
+Assumption 3
+: \hspace{20cm} __Linear mean__. There is a vector of parameters  $\beta = (\beta_{0}, \dots, \beta_{p - 1})$ such that the conditional mean of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ has the form
+
+$$
+z_{i0} \beta_{0} + z_{i1} \beta_{1} + \cdots + z_{ip - 1} \beta_{p - 1}
+$$
+
+for $i = 1, \dots, n$ [@degroot2012, p. 737].
+
+(Linearity of the phenomenon measured [@hair2019, p. 287])
+
+::: {.callout-warning}
+It is important to clarify that the linear assumption pertains to **linearity in the parameters** or equivalently, linearity in the coefficients. This means that each predictor is multiplied by its corresponding regression coefficient. However, this does not imply that the relationship between the predictors and the response variable is linear. In fact, a linear model can still effectively capture non-linear relationships between predictors and the response variable by utilizing transformations of the predictors [@cohen2002].
+:::
+
+Assumption 4
+: \hspace{20cm} __Common variance__ (homoscedasticity). There is as parameter $\sigma^{2}$ such the conditional variance of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ is $\sigma^{2}$ for $i = 1, \dots, n$.
+
+(Constant variance of the error terms [@hair2019, p. 287])
+
+Assumption 5
+: \hspace{20cm} __Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012, p. 737].
+
+(Independence of the error terms [@hair2019, p. 287])
