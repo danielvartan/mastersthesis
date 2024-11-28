@@ -47,7 +47,7 @@ The central hypothesis of this study, as outlined in Chapter 1, is:
 __Hypothesis__
 : *Latitude is associated with chronotype distributions*, with populations closer to the equator exhibiting, on average, a shorter or more morning-oriented circadian phenotype compared to those residing near the poles.
 
-This hypothesis is grounded in early discussions in chronobiology and is supported by numerous studies, including: @hut2013; @leocadio-miguel2014; @leocadio-miguel2017; @pittendrigh1991; @randler2008; @randler2017; @roenneberg2003.
+This hypothesis is grounded in early discussions in chronobiology and is supported by numerous studies, including: @bohlen1973; @pittendrigh1991; @roenneberg2003; @randler2008; @hut2013; @leocadio-miguel2017; @randler2017.
 
 To evaluate the hypothesis, the study adopts an improved approach to Null Hypothesis Significance Testing ([NHST](https://en.wikipedia.org/wiki/Statistical_hypothesis_test)), rooted in the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015]. The hypotheses are formally stated as follows:
 

@@ -36,7 +36,7 @@ Finally, this journey was made possible by the institutional support of USP's Su
 \renewcommand{\baselinestretch}{1}
 ```
 
-\noindent This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil ([CAPES](https://www.gov.br/capes/)) - Finance Code 001. Grant number: 88887.703720/2022-00.
+\noindent This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil ([CAPES](https://www.gov.br/capes/)) - Finance Code 001, Grant number 88887.703720/2022-00.
 
 ```{=latex}
 \endgroup

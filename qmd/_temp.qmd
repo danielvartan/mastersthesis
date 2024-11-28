@@ -1,3 +1,18 @@
+## Chapter 5
+
+
+<!-- $\text{`{r} weighted_data |> dplyr::pull(msf_sc) |> mean() |> hms::as_hms() |> lubritime::round_time()`}$ -->
+
+<!-- $\text{`{r} weighted_data |> dplyr::pull(msf_sc) |> stats::sd() |> hms::as_hms() |> lubritime::round_time()`}$ -->
+
+The local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSFsc), which serves as the MCTQ proxy for measuring chronotype, had an overall mean of  $\text{04:28:41}$ and a standard deviation of $\text{01:26:13}$. The distribution curve is shown in @fig-chapter-5-chronotype-distribution.
+
+<!-- $\text{`{r} weighted_data |> dplyr::pull(msf_sc) |> mean() %>% `+`(hms::parse_hm("04:00")) |> hms::as_hms() |> lubritime::round_time()`}$ -->
+
+This represents the midsleep point for Brazilian subjects with an intermediate or average chronotype. Considering the 7–9 hours of sleep recommended for healthy adults by the American Academy of Sleep Medicine (AASM) [@watson2015], one could imagine that this average individual, in the absence of social restrains, would typically wake up at approximately $\text{08:28:41}$.
+
+## Methods - Sample
+
 ```{r}
 #| include: false
 
@@ -10,7 +25,7 @@ data <-
 #| include: false
 
 sex_per <- 
-  data |> 
+  weighted_data |> 
   dplyr::summarise(
     n = dplyr::n(), 
     .by = sex

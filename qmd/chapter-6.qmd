@@ -9,15 +9,25 @@
 source(here::here("R", "_setup.R"))
 ```
 
-Fictum, deserunt mollit anim laborum astutumque! Quisque placerat facilisis egestas cillum dolore. Nec dubitamus multa iter quae et nos invenerat. Contra legem facit qui id facit quod lex prohibet. Quam diu etiam furor iste tuus nos eludet?
+This study revealed, using the largest dataset on chronotype in a single time zone, as far as the existing literature suggests, balanced to reflect the population at the time of collection, that the latitude hypothesis is not supported by the data (Cohen's $f^2 = 0.012137120$). The findings align with those of @leocadio-miguel2017, who reported a similar effect size (Cohen's $f^2 = 0.004143174$). However, the earlier study did not consider a minimum effect size criterion, leading to a misleading conclusion.
+
+Several factors could explain the lack of an association between latitude and chronotype ― or, as Jürgen Aschoff might have phrased it, the absence of "ecological significance" [@aschoff1972]. For instance, if latitude does affect the circadian system, the effect may be too small to detect or could be overshadowed by other influences, such as social habits, work schedules, or the use of artificial light [@bohlen1973; @skeldon2021]. Additionally, the difference in solar exposure across latitudes may be insufficient to produce a meaningful effect on the circadian system, which is highly sensitive to light. Even minor variations in light exposure can yield significant physiological responses, suggesting that latitude alone may not be a strong determinant of chronotype.
+
+These results suggest that the relationship between latitude and the circadian system is far more complex than anticipated. In human contexts, the perception of such an effect may have arisen from statistical misinterpretations, driven by ritualistic reliance on Null Hypothesis Significance Testing (NHST) and confirmation bias, rather than a critical evaluation of the data.
 
 ## Limitations
 
-Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Donec sed odio operae, eu vulputate felis rhoncus. Salutantibus vitae elit libero, a pharetra augue. Nihil hic munitissimus habendi senatus locus, nihil horum? A communi observantia non est recedendum.
+While this study provides valuable insights, it is essential to acknowledge certain limitations that may influence the interpretation of the findings. First, the data collection occurred predominantly during a single week in spring, as summer approached, which limited the photoperiod variability between regions. A better approach would involve data collection across different seasons, particularly during winter, when photoperiod differences are more pronounced between equatorial and polar regions.
 
-## Future perspectives
+Additionally, the use of the Munich Chronotype Questionnaire (MCTQ), while a validated instrument, introduces the potential for recall and social desirability biases inherent to self-reported measures. However, the large sample size likely mitigates these biases, as predicted by the law of large numbers [@degroot2012, p. 352]. Furthermore, at the time of data collection, the MCTQ had not yet been officially validated in Portuguese (this was only introduced in 2020 by @reis2020a), which may have introduced minor inconsistencies, though its nature as a sleep log suggests this impact was minimal.
 
-Initially, the thesis project proposed a global modeling approach to the phenomenon. This approach was maintained due to the scope of a master's degree program. As can be seen from the results of this and other studies, no non-negligible effect regarding latitude and chronotype was identified. It is possible, however, that this phenomenon, if it exists, could be observed through a local approach using an agent-based model. This approach would allow the simulation of an environment where agents have varying light exposure and considering their endogenous rhythms and the phase-response curve of the circadian clock to light. The data from this thesis could be used to calibrate validate the model.
+Another factor to consider is the timing of data collection relative to the start of Daylight Saving Time (DST) in Brazil. On the day data collection commenced (October 15th, 2017 – $80.15%$ of the data were collected on this day), a significant portion of respondents had just adjusted their clocks forward by one hour. While this could theoretically influence their responses, the questions were specifically designed to capture daily routines, which were not affected by the DST adjustment at that moment. Furthermore, any potential effect of DST would likely strengthen the latitude hypothesis; however, this was not supported by the data.
+
+These limitations, while noteworthy, do not undermine the study's findings but rather highlight areas for refinement in future research.
+
+## Directions for Future Research
+
+This thesis proposed using a global modeling approach to investigate the latitude-chronotype relationship. However, as demonstrated by the results of this study and others, no significant effect of latitude on chronotype was identified. That said, it remains possible that if such a phenomenon exists, it could be captured through a localized approach, such as agent-based modeling. This approach would simulate an environment where agents are exposed to varying light levels, while accounting for their endogenous rhythms and the circadian clock's phase-response curve to light. The data from this thesis could serve to calibrate and validate this model.
 
 <!-- textual end -->
 

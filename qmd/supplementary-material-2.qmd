@@ -72,7 +72,7 @@ Variables of the Munich ChronoType Questionnaire scale (a sleep log). In its sta
 
 ## Sample
 
-The validated dataset used for analysis is made up of `{r} weighted_data |> nrow() |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
+The dataset used for analysis is made up of `{r} weighted_data |> nrow() |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
 
 The unfiltered valid sample comprises `{r} anonymized_data |> nrow() |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of $120,265$ individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
@@ -322,7 +322,7 @@ The study hypothesis was tested using nested models general linear models of mul
 
 - __Null hypothesis__ ($\text{H}_{0}$): Adding *latitude* does not meaningfully improve the model’s fit, indicating that the change in adjusted $\text{R}^{2}$ is negligible or the F-test is not significant (considering a type I error probability ($\alpha$) of $0.05$).
 
-- __Alternative Hypothesis__ ($\text{H}_{a}$): Adding *latitude* significantly improves the model’s fit, indicating that the change in adjusted $\text{R}^{2}$ is greater than the Minimum Effect Size (MES), and the F-test is significant  (considering a type I error probability ($\alpha$) of $0.05$).
+- __Alternative Hypothesis__ ($\text{H}_{a}$): Adding *latitude* meaningfully improves the model’s fit, indicating that the change in adjusted $\text{R}^{2}$ is greater than the Minimum Effect Size (MES), and the F-test is significant  (considering a type I error probability ($\alpha$) of $0.05$).
 
 $$
 \begin{cases}
@@ -402,7 +402,7 @@ In other words, the latitude must explain at least $1.960784\%$ of the variance 
 In summary, the decision rule for the hypothesis test is as follows:
 
 - **Reject** $\text{H}_{0}$ **if both**:
-  - The F-test is significant.
+  - The F-test is not significant.
   - $\Delta \ \text{Adjusted} \ \text{R}^{2} > 0.01960784$;
 - **Fail to reject** $\text{H}_{0}$ **if either**:
   - The F-test is not significant, or

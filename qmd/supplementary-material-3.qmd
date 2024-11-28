@@ -474,6 +474,7 @@ plot_full_1 <-
 plot_full_2 <- 
   anonymized_data |> 
   plot_brazil_state(
+    transform = "log10",
     text_size = env_vars$base_size,
     print = TRUE
   )

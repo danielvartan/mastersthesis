@@ -2,9 +2,9 @@
 
 <!-- quarto render --profile gfm -->
 <!-- badges: start -->
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![OSF
 DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/YGKTS-1284C5.svg)](https://doi.org/10.17605/OSF.IO/YGKTS)
 [![License:
@@ -19,7 +19,7 @@ MIT](https://img.shields.io/badge/license-MIT-green.png)](https://choosealicense
 
 This repository contains the [Quarto
 book](https://quarto.org/docs/books/) of my master’s thesis: *Is
-latitude associated with chronotype?*. The research compendium is
+latitude associated with chronotype?* The research compendium is
 accessible via [The Open Science Framework](https://osf.io/) by clicking
 [here](https://doi.org/10.17605/OSF.IO/YGKTS).
 
@@ -30,8 +30,8 @@ Friends)](https://doi.org/10.1080/00031305.2017.1375986).
 
 ## How to use
 
-The analyses contained in this thesis are 100% reproducible. They were
-made using the [R programming language](https://www.r-project.org/) and
+All analyses in this thesis are fully reproducible and were conducted
+using the [R programming language](https://www.r-project.org/) alongside
 the [Quarto](https://quarto.org/) publishing system. The
 [`renv`](https://rstudio.github.io/renv/) package was used to ensure
 that the R environment used can be restored (see `renv.lock`). All the
@@ -92,12 +92,12 @@ MIT](https://img.shields.io/badge/license-MIT-green.png)](https://opensource.org
 [![License: CC BY
 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-Code related to this repository is released under the [MIT
-license](https://opensource.org/license/mit/). Documents are released
-under the [Creative Commons Attribution 4.0 International
-license](https://creativecommons.org/licenses/by/4.0/).
+The code accompanying this thesis is distributed under the [MIT
+License](https://opensource.org/license/mit/). All documents are
+released under the [Creative Commons Attribution 4.0 International
+Public License](https://creativecommons.org/licenses/by/4.0/).
 
-The research data is under a private license and is not publicly
+The research data is subject to a private license and is not publicly
 available due to privacy and ethical considerations.
 
 ## Citation
@@ -108,7 +108,7 @@ Vartanian, D. (2024). *Is latitude associated with chronotype?*
 \[Master’s thesis, University of São Paulo\].
 <https://doi.org/10.17605/OSF.IO/YGKTS>
 
-A BibTeX entry for LaTeX users is
+A BibTeX entry for LaTeX users is:
 
     @mastersthesis{vartanian2024,
       title = {Is latitude associated with chronotype?},
@@ -123,9 +123,9 @@ A BibTeX entry for LaTeX users is
 
 ## Acknowledgments
 
-This Master’s thesis was developed in the Graduate Program in Modeling
-Complex Systems ([PPG-SCX](https://sites.usp.br/scx/en/apresentacao/))
-at the University of São Paulo ([USP](https://www5.usp.br/)), under the
+This thesis was developed in the Graduate Program in Modeling Complex
+Systems ([PPG-SCX](https://sites.usp.br/scx/en/apresentacao/)) at the
+University of São Paulo ([USP](https://www5.usp.br/)), under the
 supervision of [Prof. Dr. Camilo Rodrigues
 Neto](https://orcid.org/0000-0001-6783-6695).
 
@@ -133,4 +133,4 @@ Neto](https://orcid.org/0000-0001-6783-6695).
 
 This study was financed by the Coordenação de Aperfeiçoamento de Pessoal
 de Nível Superior - Brazil ([CAPES](https://www.gov.br/capes/)) -
-Finance Code 001, Grant Number: 88887.703720/2022-00.
+Finance Code 001, Grant Number 88887.703720/2022-00.

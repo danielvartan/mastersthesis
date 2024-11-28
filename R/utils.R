@@ -100,18 +100,30 @@ list_as_tibble <- function(list) {
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-format_to_md_latex <- function(x, after = NULL, round = 3, key = "$") {
+format_to_md_latex <- function(
+    x,
+    after = NULL,
+    round = 3,
+    decimal_mark = ".",
+    big_mark = ",",
+    key = "$"
+  ) {
   prettycheck:::assert_numeric(x)
   prettycheck:::assert_string(after, null.ok = TRUE)
+  prettycheck:::assert_string(decimal_mark)
+  prettycheck:::assert_string(big_mark)
   prettycheck:::assert_number(round, lower = 0)
   prettycheck:::assert_string(key)
 
   if (is.null(after)) after <- ""
 
-  x <-
-    x |>
+  x |>
     round(round) |>
-    format(big.mark = ",", scientific = FALSE) %>% # Don't change the pipe!
+    format(
+      decimal.mark = decimal_mark,
+      big.mark = big_mark,
+      scientific = FALSE
+    ) %>% # Don't change the pipe!
     paste0(key, ., after, key)
 }
 

@@ -39,7 +39,6 @@ book:
     - qmd/supplementary-material-6.qmd
     - qmd/supplementary-material-7.qmd
     - qmd/supplementary-material-8.qmd
-    - qmd/supplementary-material-9.qmd
     - qmd/supplementary-material-10.qmd
   comments:
     hypothesis:
@@ -62,7 +61,3 @@ format:
     callout-appearance: simple
     csl: csl/english-apa-author-date.csl
     theme: [cosmo, scss/web.scss]
-    link-external-newwindow: true
-    other-links:
-      - text: "Research compendium"
-        href: "https://doi.org/10.17605/OSF.IO/YGKTS"
