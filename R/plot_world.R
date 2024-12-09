@@ -33,18 +33,21 @@ plot_world_countries <- function(
     col_fill = NULL,
     col_country = "country",
     transform = "log10", # See ?ggplot2::scale_fill_gradient
+    thematic = TRUE,
+    thematic_direction = 1,
     viridis = "viridis",
-    alpha = 1,
-    direction = 1,
+    viridis_direction = 1,
+    viridis_alpha = 1,
+    color_brewer = "YlOrRd", # RColorBrewer::display.brewer.all()
     color_low = NULL,
     color_high = NULL,
-    color_brewer = "YlOrRd", # RColorBrewer::display.brewer.all()
     color_na = NA,
     color_border = "gray75",
     color_bg = "white",
     linewidth = 0.1,
     binned = TRUE,
     breaks = ggplot2::waiver(),
+    reverse = TRUE,
     title = NULL,
     subtitle = NULL,
     x_label = NULL, # "Longitude"
@@ -53,7 +56,8 @@ plot_world_countries <- function(
     theme = "bw",
     legend = TRUE,
     text_size = NULL,
-    print = TRUE
+    print = TRUE,
+    quiet = FALSE
   ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_subset("country", names(data))
@@ -66,9 +70,7 @@ plot_world_countries <- function(
   prettycheck:::assert_color(color_bg, na_ok = TRUE)
   prettycheck:::assert_number(linewidth, lower = 0, na.ok = TRUE)
   prettycheck:::assert_flag(print)
-
-  world_data <-
-
+  prettycheck:::assert_flag(quiet)
 
   plot <-
     data |>
@@ -86,7 +88,8 @@ plot_world_countries <- function(
     get_map_fill_data(
       col_fill = col_fill,
       col_code = col_country,
-      name_col_ref = "ID"
+      name_col_ref = "ID",
+      quiet = quiet
     ) |>
     dplyr::right_join(
       maps::map("world", plot = FALSE, fill = TRUE) |>
@@ -109,17 +112,18 @@ plot_world_countries <- function(
       # limits = c(-180, 180)
     ) +
     add_color_scale(
+      thematic = thematic,
+      thematic_direction = thematic_direction,
       viridis = viridis,
-      alpha = alpha,
-      direction = direction,
+      viridis_direction = viridis_direction,
+      viridis_alpha = viridis_alpha,
       color_low = color_low,
       color_high = color_high,
       color_brewer = color_brewer,
       color_na = color_na,
       binned = binned,
       breaks = breaks,
-      limits = NULL,
-      point = FALSE,
+      reverse = reverse,
       transform = transform
     ) +
     add_labels(

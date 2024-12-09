@@ -46,7 +46,12 @@ french,
 spanish,
 brazil,
 english
-]{abntex2}\usepackage{array}
+]{abntex2}
+% \usepackage{showframe}
+
+% The package order matters!
+
+\usepackage{array}
 \usepackage{booktabs}
 \usepackage{calc}
 \usepackage{caption}
@@ -72,14 +77,14 @@ english
 \usepackage{parskip}
 \usepackage{pdfpages}
 \usepackage[table]{xcolor}
-
 \usepackage{hyperref}
 
 \ifPDFTeX
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
-\fi\newlength{\microskipamount}
+\usepackage{unicode-math}
+\fi
+\newlength{\microskipamount}
 \newlength{\tinyskipamount}
 \newlength{\hugeskipamount}
 
@@ -104,11 +109,12 @@ english
 \setaftersubsubsecskip{\smallskipamount}
 \setbeforeparaskip{\medskipamount}
 \setafterparaskip{0\smallskipamount}
-% \setparahook{\addvspace{\smallskipamount}}% Set page -----
+% \setparahook{\addvspace{\smallskipamount}}
+% Set page -----
 
 \setlength{\headsep}{1cm}
 \setlength{\footskip}{1cm}
-\checkandfixthelayout
+\checkandfixthelayout[fixed]
 
 % Set text spacing -----
 
@@ -139,7 +145,8 @@ english
 
 \setlength{\footnotemargin}{0.5em} % Equal to `\footmarkwidth`
 \let\svfootnoterule\footnoterule % Equal to `\footmarksep`
-\renewcommand\footnoterule{\svfootnoterule\vspace{1ex}}\newcommand{\capaname}{Capa}
+\renewcommand\footnoterule{\vspace{1ex}\svfootnoterule\vspace{1ex}}
+\newcommand{\capaname}{Capa}
 \newcommand{\fichacatalograficaname}{Ficha catalográfica}
 \newcommand{\resumoestrangeironame}{Resumo}
 \newcommand{\glossarioname}{Glossário}
@@ -278,7 +285,8 @@ english
   \renewcommand{\subsectionautorefname}{sous-section}
   \renewcommand{\subsubsectionautorefname}{sous-sous-section}
   \renewcommand{\paragraphautorefname}{sous-sous-sous-section}
-}% See `babel.tex` for language changes.
+}
+% See `babel.tex` for language changes.
 % See `toc.text` for changes related to the ToC.
 
 % Set page numbering -----
@@ -430,7 +438,7 @@ english
   \imprimirautor
 
   \vfill
-  \bfseries\imprimirtitulo
+  \textbf{\imprimirtitulo}
 
   \vfill
   \bfseries\imprimirnotadeversao\normalfont
@@ -601,7 +609,8 @@ english
   \end{appendix}
   \setboolean{abntex@apendiceousecao}{false}
   \bookmarksetup{startatroot}
-}\definecolor{blue}{HTML}{2905C3}
+}
+\definecolor{blue}{HTML}{2905C3}
 
 % See <https://getbootstrap.com/docs/4.0/utilities/colors/>.
 \definecolor{quarto-blue}{HTML}{2780E3}
@@ -617,24 +626,29 @@ english
 \definecolor{quarto-medium-gray}{HTML}{CFD0D1}
 \definecolor{quarto-ligther-gray}{HTML}{F1F3F5}
 
-\definecolor{bs-link-color}{HTML}{39729E}% \usepackage{graphicx}
+\definecolor{bs-link-color}{HTML}{39729E}
+% Quarto's default settings -----
+
+% \usepackage{graphicx} % Already loaded in `packages.tex`.
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 
+% Set distance from top of page to first float -----
+
 \makeatletter
-\setlength{\@fptop}{5pt} % Set distance from top of page to first float
+\setlength{\@fptop}{5pt}
 \makeatother
 
 % Set captions and legends -----
@@ -664,7 +678,8 @@ english
 
 \AtEndEnvironment{figure}{
   \addvspace{\smallskipamount}
-}\renewcommand{\arraystretch}{1.5}
+}
+\renewcommand{\arraystretch}{1.5}
 \setlength{\aboverulesep}{0ex}
 \setlength{\belowrulesep}{0ex}
 
@@ -690,14 +705,23 @@ english
 
 % Set theorem environment -----
 
-\AtEndEnvironment{theorem}{\vspace{\bigskipamount}}\providecommand{\tightlist}{
+\AtEndEnvironment{theorem}{\vspace{\bigskipamount}}
+\providecommand{\tightlist}{
 \setlength{\itemsep}{0ex}\setlength{\parskip}{0\baselineskip}}
 
 % \setlist[enumerate]{leftmargin=1cm)}
-% \setlist[itemize]{leftmargin=2cm}\makeatletter
+% \setlist[itemize]{leftmargin=2cm}
+\makeatletter
 \newcommand*{\getlength}[1]{\strip@pt#1}
-\makeatother\title{Is Latitude Associated with Chronotype?}
-\titulo{Is Latitude Associated with Chronotype?}
+\makeatother
+\title{
+\MakeTitlecase{Is Latitude Associated with Chronotype?}
+
+}
+
+\titulo{
+\MakeTitlecase{Is Latitude Associated with Chronotype?}
+}
 
 
 \author{Daniel Kachvartanian de Azevedo}
@@ -741,7 +765,8 @@ english
 
 \programa{Graduate Program in Complex Systems Modeling}
 
-\notadeversao{Original version}
+\notadeversao{\MakeTitlecase{Original version}}
+
 \hypersetup{
 pdftitle={Is Latitude Associated with Chronotype?},
 pdfauthor={Daniel Kachvartanian de Azevedo},
@@ -755,7 +780,8 @@ citecolor={blue},
 urlcolor={blue},
 pdfcreator={LaTeX via pandoc},
 bookmarksdepth=5
-}% Set sections skips (`\cftchapterpresnum`)
+}
+% Set sections skips (`\cftchapterpresnum`)
 
 \setlength{\cftbeforebookskip}{0\baselineskip}
 \setlength{\cftbeforepartskip}{\bigskipamount}
@@ -834,7 +860,8 @@ bookmarksdepth=5
 % \setlength{\cftbeforepartskip}{\bigskipamount}
 \newcommand{\tocskiptwo}{
   % \addtocontents{toc}{\protect\vspace{\tinyskipamount}}
-}\usepackage[
+}
+\usepackage[
 style=apa,backend=biber,,language=english,,url=true,,useprefix=false,,giveninits=true
 ]{biblatex}
 
@@ -870,7 +897,9 @@ Psychological Association (APA) Style, 7th edition.}
 
 \AtBeginBibliography{\vspace{0.5\baselineskip}}
 \AtEveryBibitem{\clearfield{annotation}}
-\renewcommand{\bibfont}{\ABNTEXfontereduzida}% Use upquote if available, for straight quotes in verbatim environments
+\renewcommand{\bibfont}{\ABNTEXfontereduzida}
+
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
   \usepackage[]{microtype}
@@ -1001,7 +1030,7 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{F1F3F5}}{}
 \makeatother
 \makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, frame hidden, sharp corners, enhanced, colback={codebgcolor}, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, enhanced, sharp corners, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, breakable, colback={codebgcolor}]}{\end{tcolorbox}}\fi
 \makeatother
 
 % -----
@@ -1444,8 +1473,8 @@ movement of the sensitive plant (\emph{mimosa pudica}) by isolating it
 from the light-dark cycle and found that the plant continued to move its
 leaves periodically
 (Figure~\ref{fig-chapter-2-nobel-prize-2017-de-mairan-experiment})
-\autocite{demairan1729,rotenberg2003}. Charles Darwin also wrote about
-the movement observed in plants and made thematic explorations of these
+\autocite{mairan1729,rotenberg2003}. Charles Darwin also wrote about the
+movement observed in plants and made thematic explorations of these
 intriguing ``periodical phenomena'' \autocite{andrade2024}. The search
 for this internal timekeeper in living beings only began to solidify in
 the 20th century through the efforts of scientists like Jürgen Aschoff,
@@ -1476,7 +1505,7 @@ plant (\emph{mimosa pudica}) observed by Jacques d'Ortous de Mairan in
 
 \centering{
 
-\includegraphics[width=0.5\textwidth,height=\textheight]{qmd/images/nobel-prize-outreach-ab-2017-de-mairan-experiment.png}
+\includegraphics[width=0.5\linewidth,height=\textheight,keepaspectratio]{qmd/images/nobel-prize-outreach-ab-2017-de-mairan-experiment.png}
 
 \legend{Source: Reproduction from \textcite{nobelprizeoutreachab}.}
 
@@ -1506,7 +1535,7 @@ German \emph{zeit}, meaning time, and \emph{geber}, meaning donor
 \autocite{cambridgeuniversitypress}). These zeitgebers act as
 synchronizers by entraining the phases of the rhythms
 \autocite{khalsa2003,kuhlman2018}
-Figure~\ref{fig-chapter-2-kuhlman-2018-figure-2b}. Among the known
+(Figure~\ref{fig-chapter-2-kuhlman-2018-figure-2b}). Among the known
 zeitgebers are, for example, meal timing and changes in environmental
 temperature \autocite{aschoff1981,roenneberg2016}. However, the most
 influential of them is the light-dark cycle (or, simply, light
@@ -1523,7 +1552,7 @@ zeitgeber (input). The rectangles represent the light-dark cycle.}
 
 \centering{
 
-\includegraphics[width=0.75\textwidth,height=\textheight]{qmd/images/kuhlman-2018-figure-2b.png}
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{qmd/images/kuhlman-2018-figure-2b.png}
 
 \legend{Source: Adapted from \textcite{kuhlman2018}.}
 
@@ -1579,7 +1608,7 @@ Process \(\text{S}\).}
 
 \centering{
 
-\includegraphics[width=0.75\textwidth,height=\textheight]{qmd/images/borbely-1982-figure-4.png}
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{qmd/images/borbely-1982-figure-4.png}
 
 \legend{Source: Adapted from \textcite{borbely1982}.}
 
@@ -1593,7 +1622,7 @@ through sleep patterns. The MCTQ asks individuals about their sleep
 habits, such as the times they go to bed and wake up on workdays and
 work-free days. Based on this information, the MCTQ calculates the local
 time of the midpoint of sleep on work-free days
-Figure~\ref{fig-chapter-2-mctq-variables} and, if sleep deprivation is
+(Figure~\ref{fig-chapter-2-mctq-variables}) and, if sleep deprivation is
 detected on workdays, adjusts the measurement accordingly. This
 midpoint, reflecting sleep without social obligations, is thought to
 represent the unabridged expression of the circadian rhythm. Given its
@@ -1618,7 +1647,7 @@ time in bed.}
 
 \centering{
 
-\includegraphics{qmd/images/mctq-figure-1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/images/mctq-figure-1.png}}
 
 Source: Create by the author.
 
@@ -1651,7 +1680,7 @@ review is provided by \textcite{randler2017}).
 The hypothesis, also called \emph{environment hypothesis}, posits that
 regions closer to the poles receive, on average, less annual sunlight
 compared to regions near the equator
-Figure~\ref{fig-chapter-4-hut-2013-figure-1}. Consequently, regions
+(Figure~\ref{fig-chapter-4-hut-2013-figure-1}). Consequently, regions
 around latitude 0° are thought to have a stronger solar zeitgeber.
 According to chronobiological theories, this stronger zeitgeber would
 enhance the synchronization of circadian rhythms with the light-dark
@@ -1663,7 +1692,7 @@ In contrast, populations near the poles experience a weaker solar
 zeitgeber, leading to greater variability and amplitude of circadian
 phenotypes. This disparity translates into differences in chronotype:
 equatorial populations tend to exhibit a morningness orientation, while
-populations at higher latitudes tend toward eveningness
+populations at higher and low latitudes tend toward eveningness
 \autocite{bohlen1973,roenneberg2003}.
 
 \begin{figure}[H]
@@ -1675,26 +1704,9 @@ how these factors vary throughout the year.}
 
 \centering{
 
-\includegraphics[width=0.95\textwidth,height=\textheight]{qmd/images/hut-2013-figure-1.png}
+\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{qmd/images/hut-2013-figure-1.png}
 
 \legend{Source: Reproduction from \textcite{hut2013}.}
-
-}
-
-\end{figure}%
-
-\begin{figure}[H]
-
-\caption{\label{fig-chapter-4-roenneberg-2003-figure-7-f}Different
-chronotype distributions, influenced by strong and weak zeitgebers --
-black for strong and hatched for weak. An illustration of the effect
-hypothesized by the latitude hypothesis.}
-
-\centering{
-
-\includegraphics[width=0.75\textwidth,height=\textheight]{qmd/images/roenneberg-2003-figure-7-f.png}
-
-\legend{Source: Adapted from \textcite{roenneberg2003}.}
 
 }
 
@@ -1706,11 +1718,28 @@ data reveals that it is not as clear as it seems. For example,
 latitude and chronotype in a sample of \(12,884\) Brazilian
 participants. However, the effect size was negligible, with latitude
 explaining only about \(0.388\%\) of the variance in chronotype
-Figure~\ref{fig-chapter-4-leocadio-miguel-2017-figure-2}. Considering
+(Figure~\ref{fig-chapter-4-leocadio-miguel-2017-figure-2}). Considering
 the particular emphasis that the solar zeitgeber has on the entrainment
 of biological rhythms (as demonstrated in many experiments), it would
 not be reasonable to assume that the latitude hypothesis could be
 supported without at least a non-negligible effect size.
+
+\begin{figure}[H]
+
+\caption{\label{fig-chapter-4-roenneberg-2003-figure-7-f}Different
+chronotype distributions, influenced by strong and weak zeitgebers --
+black for strong and hatched for weak. An illustration of the effect
+hypothesized by the latitude hypothesis.}
+
+\centering{
+
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{qmd/images/roenneberg-2003-figure-7-f.png}
+
+\legend{Source: Adapted from \textcite{roenneberg2003}.}
+
+}
+
+\end{figure}%
 
 The findings of \textcite{leocadio-miguel2017} are not consistent with
 the hypothesis that latitude is a strong predictor of chronotype, as the
@@ -1720,24 +1749,25 @@ studies relying on Null Hypothesis Significance Testing (NHST)
 \autocite{perezgonzalez2015}. A p-value does not measure the effect
 size; instead, it represents the probability of observing the data (or
 something more extreme) assuming the null hypothesis is true, thus
-quantifying the likelihood of a type I error.
+quantifying the likelihood of a type I error
+\autocite{cohen1994,wasserstein2016}.
 
 \begin{figure}[H]
 
-\caption{\label{fig-chapter-4-leocadio-miguel-2017-figure-2}The mean
-scores (±SE) on the Horne \& Östberg (HO) chronotype scale
-\autocite{horne1976} are presented across a latitudinal gradient, along
-with the corresponding annual average solar irradiation levels (W/m²).
-The HO scale comprises 19 items, with total scores ranging from 16 to
-86; lower scores indicate a stronger evening orientation, while higher
-scores reflect a greater morning orientation. Notably, the y-axis
-exaggerates the visual impact of the differences, as it represents a
-range of only about 4.5 points, which may overstate the perceived
-significance of the effect.}
+\caption{\label{fig-chapter-4-leocadio-miguel-2017-figure-2}Mean scores
+(±SE) on the Horne \& Östberg (HO) chronotype scale \autocite{horne1976}
+are presented across a latitudinal gradient, along with the
+corresponding annual average solar irradiation levels (W/m²). The HO
+scale comprises 19 items, with total scores ranging from 16 to 86; lower
+scores indicate a stronger evening orientation, while higher scores
+reflect a greater morning orientation. Notably, the y-axis exaggerates
+the visual impact of the differences, as it represents a range of only
+about 4.5 points, which may overstate the perceived significance of the
+effect.}
 
 \centering{
 
-\includegraphics[width=0.75\textwidth,height=\textheight]{qmd/images/leocadio-miguel-2017-figure-2.png}
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{qmd/images/leocadio-miguel-2017-figure-2.png}
 
 \legend{Source: Reproduction from \textcite{leocadio-miguel2017}.}
 
@@ -1749,12 +1779,14 @@ Several factors may invalidate this hypothesis, such as local clock time
 and social constraints \autocite{skeldon2021}. To gain a more accurate
 understanding of the mechanisms underlying chronotype expression, it
 remains crucial to test this hypothesis in larger samples. This study
-aims to address that gap. In the following sections, the hypothesis will
-be tested using one of the largest chronotype datasets, to the author's
-knowledge, with geocoding information integrated for a comprehensive
-analysis. The approach will adhere to sound statistical principles,
-incorporating a minimum effect size in the alternative hypothesis, as
-originally proposed by Neyman and Pearson
+aims to address that gap.
+
+In the following sections, the hypothesis will be tested using one of
+the largest chronotype datasets, to the author's knowledge, with
+geocoding information integrated for a comprehensive analysis. The
+approach will adhere to sound statistical principles, incorporating a
+minimum effect size in the alternative hypothesis, as originally
+proposed by Neyman and Pearson data testing framework
 \autocite{neyman1928,neyman1928a}.
 
 \newpage
@@ -1855,7 +1887,7 @@ dataset on chronotype in a single country, as far as the existing
 literature suggests, comprising \(65\,824\) respondents, all living
 within the same timezone in Brazil and completing the survey within a
 one-week window
-Figure~\ref{fig-chapter-5-sample-geographical-distribution}.
+(Figure~\ref{fig-chapter-5-sample-geographical-distribution}).
 
 \begin{figure}[H]
 
@@ -1869,7 +1901,7 @@ UTC-3 timezone, who completed the survey between October 15 and 21,
 
 \centering{
 
-\includegraphics{qmd/chapter-5_files/figure-pdf/unnamed-chunk-7-1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-7-1.png}}
 
 \legend{Source: Created by the author.}
 
@@ -1882,8 +1914,8 @@ UTC-3 timezone, who completed the survey between October 15 and 21,
 The local time of the sleep-corrected midpoint between sleep onset and
 sleep end on work-free days (MSFsc), which serves as the MCTQ proxy for
 measuring chronotype, had an overall mean of \(\text{04:28:41}\) and a
-standard deviation of \(\text{01:26:13}\). The distribution curve is
-shown in Figure~\ref{fig-chapter-5-chronotype-distribution}.
+standard deviation of \(\text{01:26:13}\). The distribution is shown in
+Figure~\ref{fig-chapter-5-chronotype-distribution}.
 
 This represents the midsleep point for Brazilian subjects with an
 intermediate or average chronotype. Considering the 7--9 hours of sleep
@@ -1902,7 +1934,7 @@ extremely early (\(0 |- 0.11\)) to extremely late (\(0.88 - 1\)).}
 
 \centering{
 
-\includegraphics{qmd/chapter-5_files/figure-pdf/unnamed-chunk-8-1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-8-1.png}}
 
 \legend{Source: Created by the author. Based on data visualization found
 in \textcite{roenneberg2019b}.}
@@ -1988,7 +2020,7 @@ latitudes are minimal relative to the Munich ChronoType Questionnaire
 
 \centering{
 
-\includegraphics{qmd/chapter-5_files/figure-pdf/unnamed-chunk-9-1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-9-1.png}}
 
 \legend{Source: Created by the author.}
 
@@ -2028,7 +2060,7 @@ Questionnaire (MCTQ), limiting the significance of these variations.}
 
 \centering{
 
-\includegraphics{qmd/chapter-5_files/figure-pdf/unnamed-chunk-10-1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-10-1.png}}
 
 \legend{Source: Created by the author.}
 
@@ -2087,11 +2119,10 @@ Household Sample Survey
 (\href{https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html}{PNAD
 Contínua}) \autocite{ibgee}, Brazil had \(51.919\%\) of females and
 \(48.081\%\) of males with an age equal to or greater than 18 years old.
-The full sample is skewed for female subjects, with \(66\.433\%\) of
-females and \(33\.567\%\) of male subjects. To balance the sample, a
-weighting procedure was applied to the data. The weights were calculated
-by cell weighting, using the sex, age group and Brazil's state as
-reference.
+The sample is skewed for female subjects, with \(66\.433\%\) of females
+and \(33\.567\%\) of male subjects. To balance the sample, a weighting
+procedure was applied to the data. The weights were calculated by cell
+weighting, using the sex, age group and Brazil's state as reference.
 
 A survey conducted in 2019 by the Brazilian Institute of Geography and
 Statistics (IBGE) \autocite*{ibge2021} found that \(82.17\%\) of
@@ -2107,7 +2138,7 @@ range of \(39.023\) decimal degrees (\(\text{Min.} = -33.751\);
 \(\text{Max.} = 5.272\)) and a longitudinal span of \(45.155\) decimal
 degrees (\(\text{Min.} = -73.990\); \(\text{Max.} = -28.836\)).
 
-More information about the sample can be found on the supplementary
+More information about the sample can be found in the supplementary
 materials.
 
 \subsection{Data wrangling}\label{data-wrangling}
@@ -2121,7 +2152,7 @@ packages. The \href{https://www.tidyverse.org/}{tidyverse} and
 and other R packages adherents of the tidy tools manifesto
 \autocite{wickham2023a} were prioritized. The MCTQ data was analyzed
 using the \texttt{mctq} rOpenSci peer-reviewed package
-\autocite{vartanian2023}. All processes were made in order to provide
+\autocite{vartaniana}. All processes were made in order to provide
 result reproducibility and to be in accordance with the FAIR principles
 \autocite{wilkinson2016}.
 
@@ -2181,7 +2212,7 @@ mind, this analysis used Cohen's \(f^{2}\) threshold for
 small/negligible effects, the Minimum Effect Size (MES) is defined as
 0.02 \autocites[413]{cohen1988}[157]{cohen1992}. For comparison, Cohen's
 threshold for medium effects is \(0.15\), and for large effects is
-\(0.35\) \autocites[413-414]{cohen1988}[157]{cohen1992}.
+\(0.35\).
 
 Knowing Cohen's \(f^2\), is possible to calculated the equivalent
 \(\text{R}^{2}\):
@@ -2290,14 +2321,22 @@ changes were made.
 
 \chapter{Conclusion}\label{conclusion}
 
-This study revealed, using the largest dataset on chronotype in a single
-time zone, as far as the existing literature suggests, balanced to
-reflect the population at the time of collection, that the latitude
-hypothesis is not supported by the data (Cohen's \(f^2 = 0.012137120\)).
-The findings align with those of \textcite{leocadio-miguel2017}, who
-reported a similar effect size (Cohen's \(f^2 = 0.004143174\)). However,
-the earlier study did not consider a minimum effect size criterion,
-leading to a misleading conclusion.
+According to Popper, the aim of science is to provide ``satisfactory
+explanations of whatever strikes us as being in need of explanation''
+\autocite[193]{popper1979}. This study, using what is arguably the
+largest dataset on chronotype collected within a single time
+zone---balanced to reflect population proportions at the time of data
+collection---found no support for the latitude hypothesis (Cohen's
+\(f^2 = 0.012137120\)). This result contributes meaningful evidence to
+the understanding of circadian rhythm regulation, offering a clear and
+satisfactory answer to the central research question of this thesis:
+``Is latitude associated with chronotype?'' The answer is \textbf{No}.
+
+These findings are consistent with those of
+\textcite{leocadio-miguel2017}, who reported a similar effect size
+(Cohen's \(f^2 = 0.004143174\)). However, the earlier study did not
+apply a minimum effect size criterion, leading to a misleading
+conclusion.
 
 Several factors could explain the lack of an association between
 latitude and chronotype ― or, as Jürgen Aschoff might have phrased it,
@@ -2309,8 +2348,8 @@ such as social habits, work schedules, or the use of artificial light
 exposure across latitudes may be insufficient to produce a meaningful
 effect on the circadian system, which is highly sensitive to light. Even
 minor variations in light exposure can yield significant physiological
-responses, suggesting that latitude alone may not be a strong
-determinant of chronotype.
+responses, suggesting that latitude alone may not be a strong predictor
+of chronotype.
 
 These results suggest that the relationship between latitude and the
 circadian system is far more complex than anticipated. In human
@@ -2342,10 +2381,10 @@ though its nature as a sleep log suggests this impact was minimal.
 
 Another factor to consider is the timing of data collection relative to
 the start of Daylight Saving Time (DST) in Brazil. On the day data
-collection commenced (October 15th, 2017 -- \(80.15%
-\) of the data were collected on this day), a significant portion of
-respondents had just adjusted their clocks forward by one hour. While
-this could theoretically influence their responses, the questions were
+collection commenced (October 15th, 2017 -- \(80.153\%\) of the data
+used in this analysis were collected on this day), a significant portion
+of respondents adjusted their clocks forward by one hour. While this
+could theoretically influence their responses, the questions were
 specifically designed to capture daily routines, which were not affected
 by the DST adjustment at that moment. Furthermore, any potential effect
 of DST would likely strengthen the latitude hypothesis; however, this

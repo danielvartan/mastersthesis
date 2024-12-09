@@ -2558,7 +2558,7 @@ Based on the hypothesis test results, **we must reject the alternative hypothesi
 
 With reference to the criteria outlined in the methodology supplementary material, we can now address the following question:
 
-::: {style="text-align: center; font-size: 1.1em; font-weight: bold; color: #ea7701; padding-top: 1em; padding-bottom: 1em;"}
+::: {style="text-align: center; font-size: 1.1em; font-weight: bold; color: #EA7701; padding-top: 1em; padding-bottom: 1em;"}
 Is latitude associated with chronotype?
 :::
 

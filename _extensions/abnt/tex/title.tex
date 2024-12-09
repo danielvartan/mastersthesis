@@ -1,6 +1,12 @@
 $if(title)$
-\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
-\titulo{$title$}
+\title{
+$if(sentence-case)$\MakeTitlecase{$title$}$else$$title$$endif$
+$if(thanks)$\thanks{$thanks$}$endif$
+}
+
+\titulo{
+$if(sentence-case)$\MakeTitlecase{$title$}$else$$title$$endif$
+}
 $endif$
 
 $if(subtitle)$
@@ -73,5 +79,9 @@ $endif$
 $endif$
 
 $if(version-note)$
+$if(sentence-case)$
+\notadeversao{\MakeTitlecase{$version-note$}}
+$else$
 \notadeversao{$version-note$}
+$endif$
 $endif$

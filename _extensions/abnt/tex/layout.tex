@@ -2,7 +2,7 @@
 
 \setlength{\headsep}{1cm}
 \setlength{\footskip}{1cm}
-\checkandfixthelayout
+\checkandfixthelayout[fixed]
 
 % Set text spacing -----
 
@@ -105,4 +105,4 @@ $endif$
 
 \setlength{\footnotemargin}{0.5em} % Equal to `\footmarkwidth`
 \let\svfootnoterule\footnoterule % Equal to `\footmarksep`
-\renewcommand\footnoterule{\svfootnoterule\vspace{1ex}}
+\renewcommand\footnoterule{\vspace{1ex}\svfootnoterule\vspace{1ex}}

@@ -18,12 +18,14 @@ library(hms)
 library(lubritime)
 library(rutils) # github.com/danielvartan/rutils
 library(stats)
+library(targets)
 ```
 
 ```{r}
 #| include: false
 
 library(magrittr)
+library(targets)
 ```
 
 ```{r}
@@ -75,7 +77,7 @@ The primary zeitgeber influencing biological rhythms is light, particularly sunl
 
 Recent efforts to test the latitude hypothesis in humans have largely been unsuccessful in identifying a significant effect related to latitude. Many of these studies used secondary data or small sample sizes. A notable attempt was made by Leocadio-Miguel et al. [-@leocadio-miguel2017], who measured the chronotype of $12,884$ Brazilian subjects across a wide latitudinal range using the Morningness–Eveningness Questionnaire (MEQ). Their findings showed a negligible effect size. One possible explanation is that the MEQ measures psychological traits rather than the biological states of circadian rhythms themselves [@roenneberg2019], meaning it might not be the most suitable tool for testing the hypothesis [@leocadio-miguel2014].
 
-This study presents a novel attempt to test the latitude hypothesis, using a biological approach through the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. In addition, it utilizes the largest dataset on chronotype in a single country, as far as the existing literature suggests, comprising `{r} weighted_data |> nrow() |> format_to_md_latex()` respondents, all living within the same timezone in Brazil and completing the survey within a one-week window [@fig-chapter-5-sample-geographical-distribution].
+This study presents a novel attempt to test the latitude hypothesis, using a biological approach through the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003]. In addition, it utilizes the largest dataset on chronotype in a single country, as far as the existing literature suggests, comprising `{r} weighted_data |> nrow() |> format_to_md_latex()` respondents, all living within the same timezone in Brazil and completing the survey within a one-week window (@fig-chapter-5-sample-geographical-distribution).
 
 ::: {#fig-chapter-5-sample-geographical-distribution}
 ```{r}
@@ -84,13 +86,13 @@ This study presents a novel attempt to test the latitude hypothesis, using a bio
 
 source(here::here("R", "plot_brazil.R"))
 
-weighted_data |> 
+plot_analysis_3 <- 
+  weighted_data |> 
   plot_brazil_municipality(
     transform = "log10",
-    viridis = "cividis", # "cividis"
+    thematic = TRUE,
+    thematic_direction = -1,
     alpha = 0.75,
-    direction = -1,
-    color_brewer = "YlGnBu",
     breaks = c(10, 500, 1000, 5000, 7500),
     point = TRUE,
     text_size = env_vars$base_size,
@@ -116,7 +118,11 @@ This represents the midsleep point for Brazilian subjects with an intermediate o
 
 source(here::here("R", "plot_chronotype.R"))
 
-weighted_data |> plot_chronotype(text_size = env_vars$base_size)
+weighted_data |> 
+  plot_chronotype(
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
 ```
 
 [Source: Created by the author. Based on data visualization found in @roenneberg2019b.]{.legend}
@@ -146,7 +152,10 @@ The results indicate that, despite a broad latitudinal spectrum and a large, wel
 source(here::here("R", "plot_latitude_series.R"))
 
 weighted_data |> 
-  plot_latitude_series(text_size = env_vars$base_size)
+  plot_latitude_series(
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
 ```
 
 [Source: Created by the author.]{.legend}
@@ -158,35 +167,35 @@ The absence of a clear relationship between latitude and chronotype can be attri
 
 ::: {#fig-chapter-5-chronotype-geographical-distribution}
 ```{r}
+source(here::here("R", "plot_brazil.R"))
+source(here::here("R", "utils.R"))
+
 limits <- # Interquartile range (IQR): Q3 - Q1
   c(
     weighted_data |>
       dplyr::pull(msf_sc) |>
       transform_time() |>
-      quantile(0.25, na.rm = TRUE),
+      stats::quantile(0.25, na.rm = TRUE),
     weighted_data |>
       dplyr::pull(msf_sc) |>
       transform_time() |>
-      quantile(0.75, na.rm = TRUE)
+      stats::quantile(0.75, na.rm = TRUE)
   )
 
-plot <-
-  weighted_data |> 
+weighted_data |> 
   dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
   plot_brazil_state(
     col_fill = "msf_sc",
     transform = "identity",
-    viridis = "cividis",
-    direction = -1,
+    thematic = TRUE, # Best in viridis/viridis.
     binned = FALSE,
+    breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
     labels = labels_hms,
     limits = limits, # !!!
     text_size = env_vars$base_size,
-    print = FALSE
-  ) |>
-  rutils::shush()
-
-plot |> print() |> rutils::shush()
+    print = TRUE,
+    quiet = TRUE
+  )
 ```
 
 [Source: Created by the author.]{.legend}
@@ -200,7 +209,15 @@ This study points to a more intricate relationship between latitude and the circ
 
 ### Measurement instrument
 
-Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MSF~sc~) on work-free days, accounting for any potential sleep compensation due to sleep deficits on workdays [@roenneberg2012].
+Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MS) (@fig-chapter-5-mctq-variables) on work-free days (MSF), accounting for any potential sleep compensation due to sleep deficits (sc = sleep correction) on workdays (MSF~sc~) [@roenneberg2012].
+
+::: {#fig-chapter-5-mctq-variables}
+![](images/mctq-figure-1.png)
+
+[Source: Created by the author.]{.legend}
+
+Variables of the Munich ChronoType Questionnaire scale (a sleep log). In its standard version, these variables are collected in the context of workdays and work-free days. BT = Local time of going to bed. SPrep = Local time of preparing to sleep. SLat = Sleep latency *or* time to fall asleep after preparing to sleep. SO = Local time of sleep onset. SD = Sleep duration. MS = Local time of mid-sleep. SE = Local time of sleep. Alarm = A logical value indicating if the respondent uses an alarm clock to wake up. SE = Local time of sleep end. SI = "Sleep inertia" (despite the name, this variable represents the time the respondent takes to get up after sleep end). GU = Local time of getting out of bed. TBT = Total time in bed.
+:::
 
 Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
 
@@ -242,7 +259,7 @@ More information about the sample can be found in the supplementary materials.
 
 ### Data wrangling
 
-Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
+Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartaniana]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
 
 ### Hypothesis test
 

@@ -13,7 +13,7 @@ date: today
 format:
   revealjs:
     locale: en
-    lang: en-us
+    lang: en
     code-link: true
     code-fold: true
     link-external-newwindow: true
@@ -26,7 +26,7 @@ format:
     chalkboard: true
     auto-stretch: true
     fig-align: center
-    theme: [default, scss/slides.scss]
+    theme: [default, brand, scss/slides.scss]
     pdf-max-pages-per-slide: 1
     menu:
       titleSelector: [h1 h2]

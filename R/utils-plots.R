@@ -1,8 +1,387 @@
+# library(ggplot2)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+source(here::here("R", "utils.R"))
+
+# See <https://ggplot2-book.org/extensions#sec-new-scales> to learn more.
+
+scale_brand <- function(
+    aesthetics = "color",
+    scale_type = "c",
+    color_type = "seq",
+    direction = 1,
+    na.value = "grey50", # Must follow ggplot2 arg names.
+    reverse = FALSE,
+    ...
+  ) {
+  # See <https://ggplot2.tidyverse.org/reference/scale_viridis.html>.
+  scale_type_choices <- c(
+    "d", "discrete",
+    "c", "continuous",
+    "b", "binned"
+  )
+
+  # See <https://ggplot2.tidyverse.org/reference/scale_brewer.html>.
+  color_type_choices <- c(
+    "seq", "sequential",
+    "div", "diverging",
+    "qual", "qualitative"
+  )
+
+  prettycheck:::assert_string(aesthetics)
+  prettycheck:::assert_choice(scale_type, scale_type_choices)
+  prettycheck:::assert_choice(color_type, color_type_choices)
+  prettycheck:::assert_choice(direction, c(-1, 1))
+  prettycheck:::assert_color(na.value, na_ok = TRUE)
+  prettycheck:::assert_flag(reverse)
+
+  if (scale_type %in% c("d", "discrete")) {
+    scale_fun <- ggplot2::discrete_scale
+  } else if (scale_type %in% c("c", "continuous")) {
+    scale_fun <- ggplot2::continuous_scale
+  } else if (scale_type %in% c("b", "binned")) {
+    scale_fun <- ggplot2::binned_scale
+  }
+
+  if (color_type %in% c("seq", "sequential")) {
+    palette <- \(x) color_brand_sequential(x, direction = direction)
+  } else if (color_type %in% c("div", "diverging")) {
+    palette <- \(x) color_brand_diverging(x, direction = direction)
+  } else if (color_type %in% c("qual", "qualitative")) {
+    palette <- \(x) color_brand_qualitative(x, direction = direction)
+  }
+
+  arg_list <- list(
+    aesthetics = aesthetics,
+    palette = palette,
+    na.value = na.value
+  )
+
+  if (identical(scale_fun, ggplot2::continuous_scale)) {
+    arg_list <- c(
+      arg_list,
+      list(guide =ggplot2::guide_colourbar(reverse = reverse))
+    )
+  } else if (identical(scale_fun, ggplot2::binned_scale)) {
+    arg_list <- c(
+      arg_list,
+      list(guide = ggplot2::guide_colorsteps(reverse = reverse))
+    )
+  } else if (identical(scale_fun, ggplot2::discrete_scale)) {
+    arg_list <- c(
+      arg_list,
+      list(guide = ggplot2::guide_legend(reverse = reverse))
+    )
+  }
+
+  do.call(
+    what = scale_fun,
+    args = c(
+      list(...)[names(list(...)) %in% names(formals(scale_fun))],
+      arg_list
+    ) |>
+      clean_arg_list()
+  )
+}
+
+source(here::here("R", "utils.R"))
+
+scale_color_brand_d <- function(
+    aesthetics = "color",
+    scale_type = "d",
+    color_type = "seq",
+    direction = 1,
+    ...
+  ) {
+  do.call("scale_brand", grab_fun_par())
+}
+
+scale_color_brand_c <- function(
+    aesthetics = "color",
+    scale_type = "c",
+    color_type = "seq",
+    direction = 1,
+    ...
+  ) {
+  do.call("scale_brand", grab_fun_par())
+}
+
+scale_color_brand_b <- function(
+    aesthetics = "color",
+    scale_type = "b",
+    color_type = "seq",
+    direction = 1,
+    ...
+  ) {
+  do.call("scale_brand", grab_fun_par())
+}
+
+scale_colour_brand_d <- scale_color_brand_d
+scale_colour_brand_c <- scale_color_brand_c
+scale_colour_brand_b <- scale_color_brand_b
+
+scale_fill_brand_d <- function(
+    aesthetics = "fill",
+    scale_type = "d",
+    color_type = "seq",
+    direction = 1,
+    ...
+  ) {
+  do.call("scale_brand", grab_fun_par())
+}
+
+scale_fill_brand_c <- function(
+    aesthetics = "fill",
+    scale_type = "c",
+    color_type = "seq",
+    direction = 1,
+    ...
+  ) {
+  do.call("scale_brand", grab_fun_par())
+}
+
+scale_fill_brand_b <- function(
+    aesthetics = "fill",
+    scale_type = "b",
+    color_type = "seq",
+    direction = 1,
+    ...
+  ) {
+  do.call("scale_brand", grab_fun_par())
+}
+
+# library(dplyr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+color_brand_sequential <- function(n, direction = 1) {
+  prettycheck:::assert_numeric(n, lower = 0, min_len = 1)
+  prettycheck:::assert_choice(direction, c(-1, 1))
+
+  colors <- c(
+    get_brand_color("primary"),
+    get_brand_color("secondary")
+  )
+
+  if (length(n > 1) && all(dplyr::between(n, 0, 1), na.rm = TRUE)) {
+    make_color_vector(
+      n_prop = n,
+      direction = direction,
+      colors = colors
+    )
+  } else {
+    make_color_vector(
+      n = n,
+      direction = direction,
+      colors = colors
+    )
+  }
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+color_brand_diverging <- function(n, direction = 1) {
+  prettycheck:::assert_numeric(n, lower = 0, min_len = 1)
+  prettycheck:::assert_choice(direction, c(-1, 1))
+
+  colors <- c(
+    get_brand_color("primary"),
+    get_brand_color("white"),
+    get_brand_color("secondary")
+  )
+
+  if (length(n > 1) && all(dplyr::between(n, 0, 1), na.rm = TRUE)) {
+    make_color_vector(
+      n_prop = n,
+      direction = direction,
+      colors = colors
+    )
+  } else {
+    make_color_vector(
+      n = n,
+      direction = direction,
+      colors = colors
+    )
+  }
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+color_brand_qualitative <- function(n, direction = 1) {
+  prettycheck:::assert_integerish(n, lower = 1, min.len = 1)
+  prettycheck:::assert_choice(direction, c(-1, 1))
+
+  base <- c(
+    "#EA7701", # orange (primary)
+    "#142A32", # black (secondary)
+    "#964D01", # brown
+    "#D67C20",
+    "#4F5556", # grey (tertiary)
+    "#2B4A5E",
+    "#F5BD83", # light-orange
+    "#F08C3E",
+    "#CC5A15",
+    "#B23300"
+  )
+
+  if (direction == -1) base <- rev(base)
+
+  rep(base, length.out = n)
+}
+
+# library(here)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(yaml)
+
+get_brand_color <- function(color) {
+  brands_list <- yaml::read_yaml(here::here("_brand.yml"))
+
+  palette_names <- brands_list$color$palette |> names()
+  theme_names <- brands_list$color |> names()
+
+  choices <- c(palette_names, theme_names)
+
+  prettycheck:::assert_choice(color, choices)
+
+  if (color %in% theme_names) {
+    for (i in theme_names) {
+      if (color == i) {
+        color <- brands_list$color[[i]]
+      }
+    }
+  }
+
+  brands_list$color$palette[[color]]
+}
+
+# library(here)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(yaml)
+
+get_brand_font <- function(type) {
+  brands_list <- yaml::read_yaml(here::here("_brand.yml"))
+
+  choices <- c(
+    "base", "headings", "monospace", "monospace-inline", "monospace-block"
+  )
+
+  choices <- choices[choices %in% names(brands_list$typography)]
+
+  prettycheck:::assert_choice(type, choices)
+
+  if (is.null(names(brands_list$typography[[type]]))) {
+    brands_list$typography[[type]]
+  } else {
+    brands_list$typography[[type]]$family
+  }
+}
+
+# library(grDevices)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+# # Helper
+#
+# get_brand_color_tint(c(1, seq(100, 1000, 100))) |> vector_to_c()
+#
+# c(1, seq(100, 1000, 100))
+# #> [1]    1  100  200  300  400  500  600  700  800  900 1000
+#
+# c("#000000", "#2E1700", "#5D2F00", "#8C4700", "#BA5F00", "#E97600",
+#   "#EE9233", "#F2AD66", "#F6C899", "#FAE3CC", "#FFFFFF")
+
+get_brand_color_tint <- function(
+    position = 500,
+    color = "primary",
+    n = 1000
+  ) {
+  prettycheck:::assert_integerish(position, lower = 0, upper = 1000)
+  prettycheck:::assert_integer_number(n, lower = 1)
+
+  color <- get_brand_color(color)
+
+  color_fun <- grDevices::colorRampPalette(c("black", color, "white"))
+  color_values <- color_fun(n)
+
+  color_values[position]
+}
+
+# library(grDevices)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+# # Helpers
+#
+# make_color_vector(10) |> vector_to_c()
+# make_color_vector(n_prop = c(0.1, 0.5, 0.99)) |> vector_to_c()
+
+make_color_vector <- function(
+    n = NULL,
+    colors = c(get_brand_color("primary"), get_brand_color("secondary")),
+    direction = 1,
+    values = NULL,
+    n_prop = NULL,
+    n_prop_res = 10000,
+    ...
+  ) {
+  prettycheck:::assert_integerish(n, lower = 1, null.ok = TRUE)
+  for (i in colors) prettycheck:::assert_color(i)
+  prettycheck:::assert_choice(direction, c(-1, 1))
+
+  prettycheck:::assert_numeric(
+    n_prop, lower = 0, upper = 1, null_ok = TRUE
+  )
+
+  prettycheck:::assert_integer_number(n_prop_res, lower = 1)
+
+  if (direction == -1) colors <- rev(colors)
+
+  color_fun <- function(n) {
+    color_ramp_fun <- grDevices::colorRampPalette(colors, ...)
+
+    dplyr::case_when(
+      n == 0 ~ color_ramp_fun(1),
+      is.na(n) ~ NA,
+      TRUE ~ color_ramp_fun(n)
+    )
+  }
+
+  if (!is.null(n_prop)) {
+    n <- n_prop * n_prop_res
+    n <- ifelse(n == 0, 1, n)
+
+    color_values <- color_fun(n_prop_res)[n]
+    n <- length(n)
+  } else {
+    color_values <- color_fun(n)
+  }
+
+  if (!is.null(values)){
+    prettycheck:::assert_atomic(values, len = n)
+
+    names(color_values) <- as.character(values)
+  }
+
+  color_values
+}
+
 # library(grDevices)
 
 gg_color_hue <- function(n) {
   hues = seq(15, 375, length = n + 1)
   grDevices::hcl(h = hues, l = 65, c = 100)[1:n]
+}
+
+# library(ggplot2)
+
+# Colors based on a data visualization found in @roenneberg2019b.
+
+scale_fill_rainbow <- function(direction = 1) {
+  colors <- c(
+    "#FF1E00", "#FF7C00", "#FDD400", "#00CB00", "#009DF5",
+    "#0040F7", "#981EAF"
+  )
+
+  if (direction == -1) colors <- rev(colors)
+
+  ggplot2::scale_fill_manual(values = colors)
 }
 
 # library(hms)
@@ -175,7 +554,8 @@ get_map_fill_data <- function(
     col_fill = NULL,
     col_code,
     name_col_value = "n",
-    name_col_ref = col_code
+    name_col_ref = col_code,
+    quiet = FALSE
   ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(col_fill, null.ok = TRUE)
@@ -184,6 +564,7 @@ get_map_fill_data <- function(
   prettycheck:::assert_choice(col_code, names(data))
   prettycheck:::assert_string(name_col_value)
   prettycheck:::assert_string(name_col_ref)
+  prettycheck:::assert_flag(quiet)
 
   if (is.null(col_fill)) {
     data |>
@@ -211,7 +592,8 @@ get_map_fill_data <- function(
           "{.strong {cli::col_blue(col_fill)}} will be aggregated ",
           "using the mean."
         )
-      )
+      ) |>
+        rutils::shush(quiet)
 
       out |>
         dplyr::summarise(
@@ -243,35 +625,43 @@ library(ggplot2)
 # library(viridis)
 
 add_color_scale <- function(
+    thematic = TRUE,
+    thematic_direction = 1,
     viridis = "viridis",
-    alpha = 1,
-    direction = 1,
+    viridis_direction = 1,
+    viridis_alpha = 1,
     color_brewer = "YlOrRd",
     color_low = NULL,
     color_high = NULL,
     color_na = NA,
     binary = FALSE,
     binned = FALSE,
-    breaks = ggplot2::waiver(),
+    breaks = ggplot2::waiver(), # Just for continuous or binned scales.
+    n_breaks = NULL,
     labels = ggplot2::waiver(),
+    reverse = FALSE,
     limits = NULL,
     point = FALSE,
     transform = "identity",
     ...
   ) {
-  assert_color_options(color_low, color_high, viridis)
-  prettycheck:::assert_number(alpha, lower = 0, upper = 1)
-  prettycheck:::assert_choice(direction, c(-1, 1))
+  prettycheck:::assert_flag(thematic)
+  prettycheck:::assert_choice(thematic_direction, c(-1, 1))
+  prettycheck:::assert_choice(viridis_direction, c(-1, 1))
+  prettycheck:::assert_number(viridis_alpha, lower = 0, upper = 1)
 
   prettycheck:::assert_choice(
     color_brewer, RColorBrewer::brewer.pal.info |> row.names(), null.ok = TRUE
   )
 
+  assert_color_options(color_low, color_high, viridis)
   prettycheck:::assert_color(color_na, na_ok = TRUE)
   prettycheck:::assert_flag(binary)
   prettycheck:::assert_flag(binned)
   prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  prettycheck:::assert_integer_number(n_breaks, lower = 1, null.ok = TRUE)
   prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
+  prettycheck:::assert_flag(reverse)
 
   prettycheck:::assert_multi_class(
     limits, c("numeric", "function"), null.ok = TRUE
@@ -283,11 +673,111 @@ add_color_scale <- function(
 
   if (isTRUE(binary)) binned <- FALSE
 
-  if (is.null(viridis)) {
+  if (isTRUE(thematic)) {
+    if (isTRUE(point)) {
+      scale_color_brand_c(
+        direction = thematic_direction,
+        na.value = color_na,
+        breaks = breaks,
+        n.breaks = n_breaks,
+        labels = labels,
+        reverse = reverse,
+        limits = limits,
+        transform = transform,
+        ...
+      )
+    } else if (isTRUE(binned)) {
+      scale_fill_brand_b(
+        direction = thematic_direction,
+        na.value = color_na,
+        breaks = breaks,
+        n.breaks = n_breaks,
+        labels = labels,
+        reverse = reverse,
+        limits = limits,
+        transform = transform,
+        ...
+      )
+    } else if (isTRUE(binary)) {
+      scale_fill_brand_c(
+        direction = thematic_direction,
+        na.value = color_na,
+        breaks = breaks,
+        n.breaks = n_breaks,
+        labels = labels,
+        reverse = reverse,
+        limits = limits,
+        transform = transform,
+        ...
+      )
+    } else {
+      scale_fill_brand_c(
+        direction = thematic_direction,
+        na.value = color_na,
+        breaks = breaks,
+        n.breaks = n_breaks,
+        labels = labels,
+        reverse = reverse,
+        limits = limits,
+        transform = transform,
+        ...
+      )
+    }
+  } else if (is.null(viridis)) {
+    if (isTRUE(point)) {
+      viridis::scale_color_viridis(
+        alpha = viridis_alpha,
+        option = viridis,
+        direction = viridis_direction,
+        na.value = color_na,
+        breaks = breaks,
+        n.breaks = n_breaks,
+        labels = labels,
+        limits = limits,
+        transform = transform,
+        ...
+      )
+    } else if (isTRUE(binned)) {
+      ggplot2::scale_fill_stepsn(
+        colors = viridis::viridis(
+          30,
+          alpha = viridis_alpha,
+          direction = viridis_direction,
+          option = viridis
+        ),
+        na.value = color_na,
+        breaks = breaks,
+        n.breaks = n_breaks,
+        labels = labels,
+        limits = limits,
+        transform = transform,
+        ...
+      )
+    } else {
+      viridis::scale_fill_viridis(
+        alpha = viridis_alpha,
+        option = viridis,
+        direction = viridis_direction,
+        na.value = color_na,
+        breaks = breaks,
+        n.breaks = n_breaks,
+        labels = labels,
+        limits = limits,
+        transform = transform,
+        ...
+      )
+    }
+  } else if (is.null(color_brewer)) {
     if (is.null(color_low) || is.null(color_high)) {
       colors <- RColorBrewer::brewer.pal(5, color_brewer)
-      color_low <- dplyr::first(colors)
-      color_high <- dplyr::last(colors)
+
+      if (direction == 1) {
+        color_low <- dplyr::first(colors)
+        color_high <- dplyr::last(colors)
+      } else {
+        color_low <- dplyr::last(colors)
+        color_high <- dplyr::first(colors)
+      }
     }
 
     if (isTRUE(point)) {
@@ -296,6 +786,7 @@ add_color_scale <- function(
         high = color_high,
         na.value = color_na,
         breaks = breaks,
+        n.breaks = n_breaks,
         labels = labels,
         limits = limits,
         transform = transform,
@@ -308,6 +799,7 @@ add_color_scale <- function(
         high = color_high,
         na.value = color_na,
         breaks = breaks,
+        n.breaks = n_breaks,
         labels = labels,
         limits = limits,
         transform = transform,
@@ -319,6 +811,7 @@ add_color_scale <- function(
         high = color_high,
         na.value = color_na,
         breaks = breaks,
+        n.breaks = n_breaks,
         labels = labels,
         limits = limits,
         transform = transform,
@@ -330,47 +823,7 @@ add_color_scale <- function(
         high = color_high,
         na.value = color_na,
         breaks = breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    }
-  } else {
-    if (isTRUE(point)) {
-      viridis::scale_color_viridis(
-        alpha = alpha,
-        option = viridis,
-        direction = direction,
-        na.value = color_na,
-        breaks = breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else if (isTRUE(binned)) {
-      ggplot2::scale_fill_stepsn(
-        colors = viridis::viridis(
-          30,
-          alpha = alpha,
-          direction = direction,
-          option = viridis
-        ),
-        na.value = color_na,
-        breaks = breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else {
-      viridis::scale_fill_viridis(
-        alpha = alpha,
-        option = viridis,
-        direction = direction,
-        na.value = color_na,
-        breaks = breaks,
+        n.breaks = n_breaks,
         labels = labels,
         limits = limits,
         transform = transform,
@@ -424,7 +877,7 @@ library(ggplot2)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 add_theme <- function(
-    theme = "gray",
+    theme = "bw",
     legend = TRUE,
     legend_position = "right",
     text_size = NULL,

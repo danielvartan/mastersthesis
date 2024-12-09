@@ -3,6 +3,8 @@ library(ggplot2)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 
+# DEPRECATED
+
 plot_nominal_vars <- function(data) {
   nominal_vars <- c(
     "sex", "sleep_drugs", "sleep_disorder", "medication",

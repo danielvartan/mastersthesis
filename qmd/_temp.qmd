@@ -1,6 +1,5 @@
 ## Chapter 5
 
-
 <!-- $\text{`{r} weighted_data |> dplyr::pull(msf_sc) |> mean() |> hms::as_hms() |> lubritime::round_time()`}$ -->
 
 <!-- $\text{`{r} weighted_data |> dplyr::pull(msf_sc) |> stats::sd() |> hms::as_hms() |> lubritime::round_time()`}$ -->

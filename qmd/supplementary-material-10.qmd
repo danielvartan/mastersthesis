@@ -29,7 +29,7 @@ Please note that the unfortunate __C__ concept above happened in the same semest
 
 Scholarship students under the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) are required to participate in the [Teaching Improvement Program (PAE)](www5.each.usp.br/pae/). This internship occur in the 2º semester of 2023.
 
-The internship responsibilities entailed serving as an Assistant Professor for the undergraduate course _ACH0042 - Problem-Based Learning II_ at USP. A comprehensive teaching plan [@vartanian2023e] was formulated during enrollment in the aforementioned graduate course _EAH5001_, and it is accessible through the following link.
+The internship responsibilities entailed serving as an Assistant Professor for the undergraduate course _ACH0042 - Problem-Based Learning II_ at USP. A comprehensive teaching plan [@vartanian2023b] was formulated during enrollment in the aforementioned graduate course _EAH5001_, and it is accessible through the following link.
 
 ```{=latex}
 \smallskip

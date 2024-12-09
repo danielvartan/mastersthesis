@@ -1,3 +1,5 @@
+brand: false
+
 project:
   type: book
   output-dir: _print

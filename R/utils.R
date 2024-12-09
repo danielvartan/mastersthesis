@@ -212,3 +212,78 @@ look_and_replace_chr <- function(x, paired_vector) {
   ) |>
     unname()
 }
+
+# Credits: B. Christian Kamgang
+# Source: Adapted from
+# <https://stackoverflow.com/questions/66329835/
+# how-to-get-all-parameters-passed-into-a-function-with-their-values>
+
+grab_fun_par <- function() {
+  args_names <- ls(envir = parent.frame(), all.names = TRUE, sorted = FALSE)
+
+  if ("..." %in% args_names) {
+    dots <- eval(quote(list(...)), envir = parent.frame())
+  } else {
+    dots = list()
+  }
+
+  args_names <- sapply(setdiff(args_names, "..."), as.name)
+
+  if(length(args_names)) {
+    not_dots <- lapply(args_names, eval, envir = parent.frame())
+  } else {
+    not_dots <- list()
+  }
+
+  out <- c(not_dots, dots)
+
+  out[names(out) != ""]
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+rm_caps <- function(x, start = TRUE, end = TRUE) {
+  prettycheck:::assert_flag(start)
+  prettycheck:::assert_flag(end)
+
+  if (isTRUE(start)) x <- x[-1]
+  if (isTRUE(end)) x <- x[-length(x)]
+
+  x
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+clean_arg_list <- function(list) {
+  prettycheck:::assert_multi_class(list, c("list", "pairlist"))
+  prettycheck:::assert_list(as.list(list), names = "named")
+
+  list <- list |> nullify_list()
+
+  out <- list()
+
+  for (i in seq_along(list)) {
+    if (!names(list[i]) %in% names(out)) {
+      out <- c(out, list[i])
+    }
+  }
+
+  out
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+nullify_list <- function(list) {
+  prettycheck:::assert_multi_class(list, c("list", "pairlist"))
+  prettycheck:::assert_list(as.list(list), names = "named")
+
+  for (i in names(list)) {
+    if (!is.null(list[[i]]) && is.atomic(list[[i]])) {
+      if (any(list[[i]] == "", na.rm = TRUE)) {
+        list[i] <- list(NULL)
+      }
+    }
+  }
+
+  list
+}

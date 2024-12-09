@@ -115,7 +115,7 @@ Distribution of HO scores for the entire sample of @leocadio-miguel2017 data. Ea
 
 ## The Figure
 
-One of the key issues with the data presented in @leocadio-miguel2017 is that it relies on negligible associations, yet the authors present them in a way that suggests a strong effect. The article's Figure 2 [@fig-sm-x-leocadio-miguel-2017-figure-2] illustrates this. At first glance, it appears to show a good fit and a strong relationship between latitude and the chronotype proxy (in this case, the HO score). However, a closer analysis reveals that it is a clear example of the Y-axis illusion.
+One of the key issues with the data presented in @leocadio-miguel2017 is that it relies on negligible associations, yet the authors present them in a way that suggests a strong effect. The article's Figure 2 (@fig-sm-x-leocadio-miguel-2017-figure-2) illustrates this. At first glance, it appears to show a good fit and a strong relationship between latitude and the chronotype proxy (in this case, the HO score). However, a closer analysis reveals that it is a clear example of the Y-axis illusion.
 
 ::: {#fig-sm-x-leocadio-miguel-2017-figure-2}
 ![](../images/leocadio-miguel-2017-figure-2.png){width=75%}

@@ -1,14 +1,14 @@
 # See <https://git-scm.com/docs/gitignore>.
 
+/.auth/
+/.quarto/
 /_freeze/
 /_print/
 /_slides/
-/_web/
+/_ssh/
 /_targets/
 /_temp/
-/_ssh/
-/.auth/
-/.quarto/
+/_web/
 /index_cache/
 /site_libs/
 

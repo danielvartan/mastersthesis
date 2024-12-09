@@ -10,7 +10,7 @@ profile:
   default: pdf
 
 book:
-  title: "Is latitude associated with chronotype?"
+  title: "Is Latitude Associated with Chronotype?"
 #  author: "Daniel Kachvartanian de Azevedo"
   keyword: >
     Complexity science. Complex systems. Chronobiology. Biological rhythms.
@@ -31,5 +31,5 @@ citation:
   type: thesis
   url: https://danielvartan.github.io/mastersthesis/
 
-google-scholar: false
+google-scholar: true
 bibliography: references.bib

@@ -1,3 +1,5 @@
+brand: false
+
 project:
   render: [README.qmd]
   post-render: "R/_post-render-gfm.R"

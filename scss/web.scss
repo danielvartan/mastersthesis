@@ -1,94 +1,132 @@
 /*-- scss:defaults --*/
 
-// See <https://quarto.org/docs/output-formats/html-themes.htm>.
+// See: <https://quarto.org/docs/output-formats/html-themes.htm>.
+// See: <https://quarto.org/docs/authoring/brand.html>.
 
-// Colors ----------
-//
-// - #EA7701 (PANTONE Lugano Sunset Orange)
-// - #2780E3 (Bootswatch's Cosmo primary color)
+$body-color: $secondary;
 
-$primary: #ea7701 !default;
-$font-size-root: 18px !default;
+$content-padding-top: 1.25rem;
+
+$callout-color-note: $primary;
+$callout-color-tip: $primary;
+$callout-color-caution: $primary;
+$callout-color-warning: $primary;
+$callout-color-important: $primary;
 
 /*-- scss:rules --*/
-
-.sidebar-title {
-  color: #ea7701;
-}
 
 .center-x {
   display: inline-block;
   text-align: center;
 }
 
+/* Navigation ----- */
+
+div.sidebar-item-container a:hover {
+  color: $primary !important;
+}
+
 div.sidebar-item-container .active {
   font-weight: bold;
 }
 
-.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active{
+.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active {
   font-weight: bold;
 }
 
-img.quarto-cover-image {
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+.sidebar-item .chapter-number .active {
+  color: $primary;
 }
 
-/* Headings ---------- */
+div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, div.sidebar-item-container .sidebar-link>code {
+  color: $primary;
+}
+
+// #quarto-margin-sidebar.sidebar.margin-sidebar {
+//   margin-top: 1.25rem
+// }
+
+/* Headings ----- */
 
 #title-block-header.quarto-title-block.default .quarto-title h1.title {
+  color: $tertiary;
   margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+h1.unnumbered {
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+.header-section-number {
+  color: $tertiary;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 .header-section-number {
+  color: $tertiary;
+  font-weight: normal;
+}
+
+h1 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 1.4rem;
-  font-weight: 600;
 }
 
 h3 {
   margin-top: 1.5em;
   font-size: 1.2rem;
-  font-weight: 500;
 }
 
-h4 {
+h6, .h6, h5, .h5, h4, .h4 {
   margin-top: 1.5em;
   font-size: 1.1rem;
 }
 
-h5 {
-  margin-top: 1.5em;
-  font-size: 1rem;
+/* Breadcrumbs ----- */
+
+.breadcrumb {
+  color: $brand-black-725;
 }
 
-.quarto-section-identifier {
-  color: #6c6c6c;
-  font-weight: normal;
+.breadcrumb a:any-link {
+  color: $brand-black-725;
+  text-decoration: none;
 }
 
-/* Code ---------- */
+/* Code ----- */
 
 code {
-  color: #373a3c;
+  color: $secondary;
 }
 
 code a:any-link {
   text-decoration: underline;
-  text-decoration-color: #ccc;
+  text-decoration-color: $tertiary;
 }
 
-pre {
-  background-image: linear-gradient(160deg,#f8f8f8 0,#f1f1f1 100%);
+.code-tools-button {
+  color: $secondary;
 }
 
-/* Captions ---------- */
+/* Captions ----- */
 
-legend {
-    font-size: .9rem;
-    color: #747a7f;
+.panel-caption, .figure-caption, .subfigure-caption, .table-caption, figcaption, caption {
+  color: $tertiary;
+  font-size: 0.9rem;
 }
 
-quarto-float-caption-top {
-  margin-bottom: 1.5em;
+.legend {
+  font-size: .9rem;
+  color: $tertiary;
+}
+
+.quarto-float-caption-top {
+  margin-bottom: 2em;
 }

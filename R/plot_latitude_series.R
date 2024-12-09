@@ -18,6 +18,7 @@ plot_latitude_series <- function(
     col = "msf_sc",
     type = "boxplot",
     group_width = 1,
+    line_color = get_brand_color("primary"), # "red"
     linewidth = 2,
     size_point = 2,
     error_bar = TRUE,
@@ -44,6 +45,7 @@ plot_latitude_series <- function(
   prettycheck:::assert_numeric(data[["latitude"]])
   prettycheck:::assert_multi_class(data[[col]], col_classes)
   prettycheck:::assert_choice(type, c("boxplot", "point"))
+  prettycheck:::assert_color(line_color)
   prettycheck:::assert_number(linewidth, lower = 0)
   prettycheck:::assert_number(size_point, lower = 0)
   prettycheck:::assert_flag(error_bar)
@@ -104,7 +106,7 @@ plot_latitude_series <- function(
       method = "lm",
       formula = y ~ x,
       linewidth = linewidth,
-      color = "red",
+      color = line_color,
       alpha = 0.75
     ) +
     ggplot2::scale_x_reverse(limits = limits,) +
@@ -158,6 +160,8 @@ plot_latitude_series_boxplot <- function(data, col) {
       shape = 4
     )
 }
+
+# DEPRECATED
 
 plot_latitude_series_point <- function(data, col, error_bar) {
   prettycheck:::assert_tibble(data)

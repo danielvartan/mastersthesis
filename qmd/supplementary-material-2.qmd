@@ -58,11 +58,11 @@ This study adopted the hypothetical-deductive method, also known as the method o
 
 ## Measurement Instrument
 
-Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MSF~sc~) on work-free days, accounting for any potential sleep compensation due to sleep deficits on workdays [@roenneberg2012].
+Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MS) (@fig-chapter-5-mctq-variables) on work-free days (MSF), accounting for any potential sleep compensation due to sleep deficits (sc = sleep correction) on workdays (MSF~sc~) [@roenneberg2012].
 
 Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
 
-::: {#fig-s-2--mctq-variables}
+::: {#fig-s-2-mctq-variables}
 ![](images/mctq-figure-1.png)
 
 Source: Create by the author.
@@ -166,7 +166,7 @@ Access to the data requires authorization from the author on the Open Science Fr
 
 ## Data Wrangling
 
-Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016] [@fig-sm-2-wickham-at-al-2024-figure-1]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
+Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016] (@fig-sm-2-wickham-at-al-2024-figure-1). All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
 
 ::: {#fig-sm-2-wickham-at-al-2024-figure-1}
 ![](images/wickham-at-al-2024-figure-1.png){width=75%}
@@ -208,7 +208,7 @@ Read the section about geographical information to learn more about the matching
 
 MCTQ is based on local time data, which are circular in nature (i.e., it cycles every 24 hours). Performing statistics with this kind of variables is challenging, since it can have different values depending on each arc/interval of the circle is used.
 
-For example, the distance between 23:00 (the values here are always in the 24 hour scale) and 01:00 can be 02:00 or 22:00 depending on the direction of the measurement. Hence, the analysis will always have to choose a direction [@fig-sm-2-circular-time-representation].
+For example, the distance between 23:00 (the values here are always in the 24 hour scale) and 01:00 can be 02:00 or 22:00 depending on the direction of the measurement. Hence, the analysis will always have to choose a direction (@fig-sm-2-circular-time-representation).
 
 ::: {#fig-sm-2-circular-time-representation}
 ```
@@ -238,7 +238,7 @@ Circular time representation.
 
 The analysis assumed as a method for dealing with this issue the adaptation of the values using the 12:00 hour as a reference point. This method is appropriated when dealing with sleep data.
 
-Consider the local time of sleep onset. We can observe that some subjects start sleeping before midnight, while others sleep after midnight. By the context of the data, we know that the circle arc/interval [@fig-sm-2-circular-time-intervals] here is the shorter one, since the great majority of people don't usually sleep in daytime and for more than 12 hours.
+Consider the local time of sleep onset. We can observe that some subjects start sleeping before midnight, while others sleep after midnight. By the context of the data, we know that the circle arc/interval (@fig-sm-2-circular-time-intervals) here is the shorter one, since the great majority of people don't usually sleep in daytime and for more than 12 hours.
 
 ::: {#fig-sm-2-circular-time-intervals}
 ``
@@ -255,7 +255,7 @@ Source: Create by the author.
 Possible intervals for circular time.
 :::
 
-Using the 12:00 hour a threshold, it's possible to calculate the correct distance between times during the calculations. This method link the values in a two-day timeline, with values equal or greater than 12:00 allocated on day 1, and values with less than 12:00 allocated on day 2. This way, the distance between 23:00 and 01:00 is 02:00, the distance between 01:00 and 23:00 is 22:00 (i.e., there is no gap between data points) [@fig-sm-2-sleep-onset-treatment].
+Using the 12:00 hour a threshold, it's possible to calculate the correct distance between times during the calculations. This method link the values in a two-day timeline, with values equal or greater than 12:00 allocated on day 1, and values with less than 12:00 allocated on day 2. This way, the distance between 23:00 and 01:00 is 02:00, the distance between 01:00 and 23:00 is 22:00 (i.e., there is no gap between data points) (@fig-sm-2-sleep-onset-treatment).
 
 ::: {#fig-sm-2-sleep-onset-treatment}
 ```{r}

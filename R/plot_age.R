@@ -20,6 +20,8 @@ source(here::here("R", "utils-plots.R"))
 plot_age_series <- function(
     data,
     col = "msf_sc",
+    thematic = TRUE,
+    viridis = "viridis",
     line_width = 2,
     boundary = 0.5,
     point_size = 1,
@@ -43,6 +45,8 @@ plot_age_series <- function(
   prettycheck:::assert_subset(col, names(data))
   prettycheck:::assert_subset(c("sex", "age", col), names(data))
   prettycheck:::assert_multi_class(data[[col]], col_classes)
+  prettycheck:::assert_flag(thematic)
+  assert_color_options(viridis = viridis)
   prettycheck:::assert_multi_class(y_label, c("character", "latexexpression"))
   prettycheck:::assert_length(y_label, len = 1)
   prettycheck:::assert_number(line_width)
@@ -119,18 +123,24 @@ plot_age_series <- function(
       size = point_size
     ) +
     ggplot2::scale_x_discrete(breaks = label_decimal_fix) +
-    viridis::scale_color_viridis(
-      name = "Sex",
-      begin = 0.25,
-      end = 0.75,
-      discrete = TRUE,
-      option = "viridis"
-    ) +
+    {
+      if (isTRUE(thematic)) {
+        scale_color_brand_d()
+      } else {
+        viridis::scale_color_viridis(
+          begin = 0.5,
+          end = 0.75,
+          discrete = TRUE,
+          option = viridis
+        )
+      }
+    } +
     add_labels(
+       x = x_label,
+      y = y_label,
       title = title,
       subtitle = subtitle,
-      x = x_label,
-      y = y_label
+      color = "Sex"
     ) +
     add_theme(
       theme = theme,
@@ -189,6 +199,8 @@ source(here::here("R", "utils-plots.R"))
 plot_age_pyramid <- function(
     data,
     interval = 10,
+    thematic = TRUE,
+    viridis = "viridis",
     breaks = NULL,
     na_rm = TRUE,
     theme = "bw",
@@ -198,14 +210,14 @@ plot_age_pyramid <- function(
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_subset(c("sex", "age"), names(data))
   prettycheck:::assert_number(interval)
+  prettycheck:::assert_flag(thematic)
+  assert_color_options(viridis = viridis)
   prettycheck:::assert_numeric(breaks, null_ok = TRUE)
   prettycheck::assert_pick(interval, breaks, min_pick = 1)
   prettycheck:::assert_flag(na_rm)
   prettycheck:::assert_number(text_size, null.ok = TRUE)
 
-  if (is.null(breaks)) {
-    breaks <- pretty(data$age, n = interval)
-  }
+  if (is.null(breaks)) breaks <- pretty(data$age, n = interval)
 
   plot <- rutils::shush(
     data |>
@@ -224,13 +236,22 @@ plot_age_pyramid <- function(
         split = "sex",
         na.rm = na_rm
       ) +
-      ggplot2::labs(x = "Frequency", y = "Age group") +
-      viridis::scale_fill_viridis(
-        name = "Sex",
-        begin = 0.5,
-        end = 0.75,
-        discrete = TRUE,
-        option = "viridis"
+      {
+        if (isTRUE(thematic)) {
+          scale_fill_brand_d()
+        } else {
+          viridis::scale_fill_viridis(
+            begin = 0.5,
+            end = 0.75,
+            discrete = TRUE,
+            option = viridis
+          )
+        }
+      } +
+      add_labels(
+        x = "Frequency",
+        y = "Age group",
+        fill = "Sex"
       ) +
       add_theme(
         theme = theme,

@@ -4,20 +4,22 @@
 
 library(downlit)
 # library(extrafont)
+library(ggplot2)
 # library(here)
 # library(knitr)
 library(lubridate)
 library(magrittr)
-library(ggplot2)
 library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
 library(targets)
+# library(thematic)
 library(xml2)
 # library(yaml)
 
 # Load functions -----
 
 source(here::here("R", "utils.R"))
+source(here::here("R", "utils-plots.R"))
 
 # Set general options -----
 
@@ -38,7 +40,12 @@ options(
 set.seed(2024)
 
 env_vars <- yaml::read_yaml(here::here("_variables.yml"))
-base_size <- 10
+
+if (env_vars$format == "html") {
+  base_size <- 11
+} else {
+  base_size <- 10
+}
 
 env_vars$base_size <- base_size
 
@@ -65,8 +72,8 @@ if (is.null(env_vars$sansfont)) {
 knitr::clean_cache()
 
 knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
+  # comment = "#>",
+  # collapse = TRUE,
   root.dir = here::here()
 )
 
@@ -79,4 +86,25 @@ ggplot2::theme_set(
     base_line_size = base_size / 22,
     base_rect_size = base_size / 22
   )
+)
+
+thematic::thematic_set_theme(
+  thematic::thematic_theme(
+    bg = get_brand_color("white") |> paste0("00"),
+    fg = get_brand_color("secondary"),
+    accent = get_brand_color("primary"),
+    font = thematic::font_spec(
+      families = get_brand_font("base"),
+      install = TRUE
+    )
+  ) +
+    ggplot2::theme(
+      panel.background = ggplot2::element_rect(fill = "transparent"),
+      plot.background = ggplot2::element_rect(fill = "transparent", color = NA),
+      panel.grid.major = ggplot2::element_blank(),
+      panel.grid.minor = ggplot2::element_blank(),
+      legend.background = ggplot2::element_rect(fill = "transparent"),
+      legend.box.background = ggplot2::element_rect(fill = "transparent"),
+      legend.frame = ggplot2::element_blank()
+    )
 )

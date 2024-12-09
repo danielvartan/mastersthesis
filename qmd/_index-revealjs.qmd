@@ -392,7 +392,7 @@ __MCTQ standard version__
 ## {background-iframe="https://docs.ropensci.org/mctq/" background-interactive=true}
 
 ::: footer
-[@vartanian2023]
+[@vartaniana]
 :::
 
 ## {background-iframe="https://web.archive.org/web/20231013021623/https://developers.google.com/maps/documentation/geocoding/overview" background-interactive=true}

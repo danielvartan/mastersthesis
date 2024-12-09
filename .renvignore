@@ -1,0 +1,29 @@
+# Same sintax as `.gitignore`.
+# See <https://git-scm.com/docs/gitignore> to lern more.
+# See <https://rstudio.github.io/renv/reference/dependencies.html?q=.renvignore#ignoring-files> to learn more.
+
+/.auth/
+/.quarto/
+/_extensions/
+/_freeze/
+/_print/
+/_slides/
+/_ssh/
+/_targets/
+/_temp/
+/_web/
+/index_cache/
+/site_libs/
+/csl/
+/docs/
+/images/
+/scss/
+/tex/
+
+.lintr
+.Rapp.history
+.RData
+.Renviron
+.Rhistory
+.Rproj.user
+.Ruserdata

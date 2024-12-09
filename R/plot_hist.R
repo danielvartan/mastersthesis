@@ -13,6 +13,7 @@ plot_hist <- function(
     bins = 30,
     stat = "density",
     density_line = TRUE,
+    line_color = get_brand_color("primary"), # "red"
     na_rm = TRUE,
     title = NULL,
     subtitle = NULL,
@@ -31,6 +32,7 @@ plot_hist <- function(
   prettycheck:::assert_number(bins, lower = 1)
   prettycheck:::assert_choice(stat, c("count", "density"))
   prettycheck:::assert_flag(density_line)
+  prettycheck:::assert_color(line_color)
   prettycheck:::assert_flag(na_rm)
   prettycheck:::assert_flag(print)
 
@@ -62,7 +64,7 @@ plot_hist <- function(
     )
 
   if (stat == "density" && isTRUE(density_line)) {
-    plot <- plot + ggplot2::geom_density(color = "red", linewidth = 1)
+    plot <- plot + ggplot2::geom_density(color = line_color, linewidth = 1)
   }
 
   if (isTRUE(print)) print(plot)

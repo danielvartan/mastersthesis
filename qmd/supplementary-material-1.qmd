@@ -17,7 +17,7 @@ This document provides a detailed outline of the thesis's research question, obj
 
 Every scientific inquiry should be guided by a central question. For this study, the guiding question is:
 
-::: {style="text-align: center; font-size: 1.1em; font-weight: bold; color: #ea7701; padding-top: 1em; padding-bottom: 1em;"}
+::: {style="text-align: center; font-size: 1.1em; font-weight: bold; color: #EA7701; padding-top: 1em; padding-bottom: 1em;"}
 Is latitude associated with chronotype?
 :::
 
