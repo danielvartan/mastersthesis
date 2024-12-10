@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# On the Latitude Hypothesis
+# On the Latitude Hypothesis {#sec-on-the-latitude-hypothesis}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -30,10 +30,10 @@ Some authors claim to found this association, but a closer look at the data reve
 
 [Source: Adapted from @roenneberg2003.]{.legend}
 
-Different chronotype distributions, influenced by strong and weak zeitgebers -- orange for strong and black for weak. An illustration of the effect hypothesized by the latitude hypothesis.
+Different chronotype distributions, influenced by strong and weak zeitgebers -- orange for strong (leptokurtic) and black for weak (platykurtic). An illustration of the effect hypothesized by the latitude hypothesis.
 :::
 
-The findings of @leocadio-miguel2017 are not consistent with the hypothesis that latitude is a strong predictor of chronotype, as the reported effect size is too small to be considered practically significant [@cohen1988]. This highlights a common limitation of studies relying on Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. A p-value does not measure the effect size; instead, it represents the probability of observing the data (or something more extreme) assuming the null hypothesis is true, thus quantifying the likelihood of a type I error [@cohen1994; @wasserstein2016].
+The findings of @leocadio-miguel2017 are not consistent with the hypothesis that latitude is a strong predictor of chronotype, as the reported effect size is too small to be considered practically significant [@cohen1988]. This highlights a common limitation of studies relying on Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. A p-value does not measure the effect size; instead, it represents the conditional probability of observing the data/test statistic (or something more extreme) assuming the null hypothesis is true, thus quantifying the likelihood of a type I error [@cohen1994; @wasserstein2016].
 
 ::: {#fig-chapter-4-leocadio-miguel-2017-figure-2}
 ![](images/leocadio-miguel-2017-figure-2.png){width=75%}

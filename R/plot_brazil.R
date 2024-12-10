@@ -11,17 +11,6 @@ library(rlang)
 
 source(here::here("R", "utils-plots.R"))
 
-# # Helpers
-#
-# geocoded_data <- targets::tar_read("geocoded_data")
-# geocoded_data |> plot_brazil_point()
-#
-# weighted_data <- targets::tar_read("weighted_data")
-#
-# # Note that this data went through a filtering process that relied not
-# # only on latitude, but also in sex and age (`tidyr::drop_na()`).
-# weighted_data |> plot_brazil_point()
-
 plot_brazil_point <- function(
     data,
     col_latitude = "latitude",

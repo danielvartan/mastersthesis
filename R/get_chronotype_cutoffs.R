@@ -30,10 +30,15 @@ source(here::here("R/utils-plots.R"))
 #   as.POSIXct(tz = "UTC") |>
 #   sort()
 
-get_chronotype_cutoffs <- function(data, col_msf_sc = "msf_sc") {
+get_chronotype_cutoffs <- function(
+    data,
+    col_msf_sc = "msf_sc",
+    pretty = TRUE
+  ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(col_msf_sc)
   prettycheck:::assert_choice(col_msf_sc, names(data))
+  prettycheck:::assert_flag(pretty)
 
   out <-
     data |>
@@ -59,7 +64,8 @@ get_chronotype_cutoffs <- function(data, col_msf_sc = "msf_sc") {
     9 / 3 / 3
   )
 
-  out |>
+  out <-
+    out |>
     dplyr::group_by(
       interval = cut(
         !!as.symbol(col_msf_sc),
@@ -81,4 +87,23 @@ get_chronotype_cutoffs <- function(data, col_msf_sc = "msf_sc") {
         "Intermediate", "Slightly late", "Moderately late", "Extremely late"
       )
     )
+
+  if (isTRUE(pretty)) {
+    out |>
+      dplyr::mutate(
+        interval = paste0(
+          interval |>
+            lubridate::int_start() |>
+            hms::as_hms() |>
+            lubritime::round_time(),
+          "-",
+          interval |>
+            lubridate::int_end() |>
+            hms::as_hms() |>
+            lubritime::round_time()
+        )
+      )
+  } else {
+    out
+  }
 }

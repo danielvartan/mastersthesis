@@ -26,7 +26,7 @@ book:
       chapters:
         - qmd/chapter-1.qmd
         - qmd/chapter-2.qmd
-        - qmd/chapter-3.qmd
+        # - qmd/chapter-3.qmd
         - qmd/chapter-4.qmd
         - qmd/chapter-5.qmd
         - qmd/chapter-6.qmd
@@ -71,6 +71,7 @@ format:
     callout-appearance: simple
     csl: csl/english-apa-author-date.csl
     repo-actions: true
+    link-external-icon: false
     link-external-newwindow: false
     theme:
       - cosmo

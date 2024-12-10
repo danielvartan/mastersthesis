@@ -122,7 +122,7 @@ plot_chronotype <- function(
   # -----|---------------|---------------|---------------|------
   #    00:15           00:45           01:15           01:45
 
-  fill <- data |> get_chronotype_cutoffs(col_msf_sc = "msf_sc")
+  fill <- data |> get_chronotype_cutoffs(col_msf_sc = "msf_sc", pretty = FALSE)
 
   out <-
     aes |>

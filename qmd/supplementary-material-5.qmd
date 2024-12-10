@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Hypothesis Test A
+# Hypothesis Test A {#sec-sm-hypothesis-test-a}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -157,7 +157,7 @@ data |>
 ```{r}
 #| include: false
 
-pre_pwr <- pwrss::pwrss.f.reg(
+pwr_analysis <- pwrss::pwrss.f.reg(
   f2 = 0.02, # Minimal Effect Size (MES).
   k = length(data) - 2, # Number of predictors (-msf_sc, -cell_weight).
   power = 0.99,
@@ -165,12 +165,12 @@ pre_pwr <- pwrss::pwrss.f.reg(
 )
 ```
 
-The results indicate that at least `{r} format_to_md_latex(pre_pwr$n)` observations per variable are required to achieve a power of $0.99$ ($1 - \beta$) (the probability of **not** committing a [type II error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)) and a significance level ($\alpha$) of $0.01$ ($0.99$ probability of **not** committing a [type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)). The dataset contains `{r} format_to_md_latex(nrow(data))` observations, which exceeds this requirement.
+The results indicate that at least `{r} pwr_analysis$n |> format_to_md_latex()` observations per variable are required to achieve a power of $0.99$ ($1 - \beta$) (the probability of **not** committing a [type II error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)) and a significance level ($\alpha$) of $0.01$ ($0.99$ probability of **not** committing a [type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)). The dataset contains `{r} format_to_md_latex(nrow(data))` observations, which exceeds this requirement.
 
 ```{r}
 #| code-fold: false
 
-pre_pwr <- pwrss::pwrss.f.reg(
+pwr_analysis <- pwrss::pwrss.f.reg(
   f2 = 0.02, # Minimal Effect Size (MES).
   k = length(data) - 2, # Number of predictors (-msf_sc, -cell_weight).
   power = 0.99,
@@ -183,10 +183,10 @@ pre_pwr <- pwrss::pwrss.f.reg(
 #| code-fold: true
 
 pwrss::power.f.test(
-  ncp = pre_pwr$ncp,
-  df1 = pre_pwr$df1,
-  df2 = pre_pwr$df2,
-  alpha = pre_pwr$parms$alpha,
+  ncp = pwr_analysis$ncp,
+  df1 = pwr_analysis$df1,
+  df2 = pwr_analysis$df2,
+  alpha = pwr_analysis$parms$alpha,
   plot = TRUE
 )
 ```
@@ -195,6 +195,16 @@ Source: Created by the author.
 
 Power analysis for the hypothesis test.
 :::
+
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    hta_pwr_analysis = pwr_analysis
+  )
+)
+```
 
 ## Examining Distributions
 
@@ -292,9 +302,9 @@ fit_restricted <- fit
 ```{r}
 #| code-fold: true
 
-fit |>
-  broom::tidy() |> 
-  janitor::adorn_rounding(5)
+fit_coefs <- fit |> broom::tidy()
+
+fit_coefs |> janitor::adorn_rounding(5)
 ```
 
 Output from the model fitting process showing the estimated coefficients, standard errors, test statistics, and p-values for the terms in the linear regression model.
@@ -314,8 +324,9 @@ fit |>
 ```{r}
 #| code-fold: true
 
-fit |> 
-  broom::glance() |> 
+fit_stats <- fit |> broom::glance()
+
+fit_stats |> 
   tidyr::pivot_longer(cols = dplyr::everything()) |>
   janitor::adorn_rounding(10)
 ```
@@ -344,6 +355,17 @@ fit_engine_restricted <- fit_engine_2
 #| code-fold: false
 
 report::report(fit_engine_2)
+```
+
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    hta_restricted_model_fit_coefs = fit_coefs,
+    hta_restricted_model_fit_stats = fit_stats
+  )
+)
 ```
 
 ### Evaluating the Model Fit
@@ -1401,9 +1423,9 @@ fit_full <- fit
 ```{r}
 #| code-fold: true
 
-fit |>
-  broom::tidy() |> 
-  janitor::adorn_rounding(5)
+fit_coefs <- fit |> broom::tidy()
+
+fit_coefs |> janitor::adorn_rounding(5)
 ```
 
 Output from the model fitting process showing the estimated coefficients, standard errors, test statistics, and p-values for the terms in the linear regression model.
@@ -1423,8 +1445,9 @@ fit |>
 ```{r}
 #| code-fold: true
 
-fit |> 
-  broom::glance() |> 
+fit_stats <- fit |> broom::glance()
+
+fit_stats |> 
   tidyr::pivot_longer(cols = dplyr::everything()) |>
   janitor::adorn_rounding(10)
 ```
@@ -1453,6 +1476,17 @@ fit_engine_full <- fit_engine_2
 #| code-fold: false
 
 report::report(fit_engine_2)
+```
+
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    hta_full_model_fit_coefs = fit_coefs,
+    hta_full_model_fit_stats = fit_stats
+  )
+)
 ```
 
 ### Evaluating the Model Fit
@@ -2454,7 +2488,9 @@ $$
 ```{r}
 #| code-fold: false
 
-print(stats::anova(fit_engine_restricted, fit_engine_full))
+f_test <- stats::anova(fit_engine_restricted, fit_engine_full)
+
+print(f_test)
 ```
 
 ```{r}
@@ -2468,6 +2504,16 @@ k_full <- length(stats::coefficients(fit_engine_full)) - 1
 
 ((r_squared(fit_engine_full) - r_squared(fit_engine_restricted)) / 
     (k_full - k_res)) / ((1 - r_squared(fit_engine_full)) / (n  - k_full - 1))
+```
+
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    hta_f_test = f_test
+  )
+)
 ```
 
 ### Effect Size
@@ -2543,14 +2589,31 @@ Comparison between the coefficients of determination ($\text{R}^2$) of the restr
 
 ::: {#tbl-sm-5-hypothesis-test-4}
 ```{r}
-cohens_f_squared_summary(
+effect_size <- cohens_f_squared_summary(
   adj_r_squared_restricted$LCL, 
   adj_r_squared_full$UCL
   )
+
+effect_size
 ```
 
 Effect size between the restricted and full models based on Cohen's $f^2$.
 :::
+
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    hta_restricted_model_adj_r_squared = adj_r_squared_restricted,
+    hta_full_model_adj_r_squared = adj_r_squared_full,
+    hta_effect_size = 
+      effect_size |> 
+      tidyr::pivot_wider() |> 
+      dplyr::mutate(f_squared = f_squared |> as.numeric())
+  )
+)
+```
 
 ## Conclusion
 

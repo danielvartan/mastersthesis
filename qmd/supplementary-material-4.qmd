@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Sample Balance
+# Sample Balance {#sec-sm-sample-balance}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -98,7 +98,7 @@ data
 
 ## Getting the Population Data
 
-The sample data was obtained in 2017 from October 15th to 21st by a broadcast of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. Here we use Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) for a estimate of the population distribution in this timeframe [@ibgee]. The data can be accessed at the [IBGE's SIDRA](https://sidra.ibge.gov.br/tabela/6407) platform (IBGE's Table 6407).
+The sample data was obtained in 2017 from October 15th to 21st by a broadcast of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. Here the Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) its used for a estimate of the population distribution in this timeframe [@ibgee]. The data can be accessed at the [IBGE's SIDRA](https://sidra.ibge.gov.br/tabela/6407) platform (IBGE's Table 6407).
 
 The balance is made considering the distribution of the population related only to the variables `state`, `sex` and `age`.
 
@@ -223,6 +223,23 @@ compare_sample(data, ibge_6407_data, "region")
 compare_sample(data, ibge_6407_data, "country")
 ```
 
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    sa_analysis_sample_rel_comparison_age_group = 
+      compare_sample(data, ibge_6407_data, "age_group"),
+    sb_analysis_sample_rel_comparison_sex = 
+      compare_sample(data, ibge_6407_data, "sex"),
+    sb_analysis_sample_rel_comparison_state = 
+      compare_sample(data, ibge_6407_data, "state"),
+    sb_analysis_sample_rel_comparison_region = 
+      compare_sample(data, ibge_6407_data, "region")
+  )
+)
+```
+
 ## Adjusting Sample Data with the Population Data
 
 The tables above indicate an overrepresentation of states like São Paulo and Rio de Janeiro, while states such as Amapá and Tocantins are underrepresented. To achieve a balanced sample, we applied a cell weighting procedure [see @kalton2003] based on the characteristics of `state`, `sex` and `age group`, using data from the 2017 PNAD as a reference.
@@ -290,7 +307,7 @@ test_data <-
   )
 ```
 
-## Fiting a Model with Weights
+## Testing Fiting a Model with the Weights
 
 ```{r}
 #| code-fold: false

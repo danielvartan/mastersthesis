@@ -9,7 +9,10 @@ source(here::here("R", "utils.R"))
 categorize_msf_sc <- function(x) {
   prettycheck:::assert_hms(x)
 
-  fill <- dplyr::tibble(msf_sc = x) |> get_chronotype_cutoffs("msf_sc")
+  fill <-
+    dplyr::tibble(msf_sc = x) |>
+    get_chronotype_cutoffs("msf_sc", pretty = FALSE)
+
   x <- x |> lubritime:::link_to_timeline()
 
   dplyr::case_when(

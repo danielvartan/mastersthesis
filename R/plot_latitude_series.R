@@ -109,7 +109,7 @@ plot_latitude_series <- function(
       color = line_color,
       alpha = 0.75
     ) +
-    ggplot2::scale_x_reverse(limits = limits,) +
+    ggplot2::scale_x_reverse(limits = limits) +
     add_labels(
       title = title,
       subtitle = subtitle,

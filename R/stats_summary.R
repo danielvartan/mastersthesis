@@ -39,12 +39,26 @@ stats_summary <- function(
 
   prettycheck:::assert_flag(as_list)
 
-  x <- data |> dplyr::pull(col)
+  x <- data |> dplyr::pull(col) # For `hms` values, the tz doesn't matter.
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
+  x_sample <- x [1]
 
   if (prettycheck:::test_temporal(x)) {
     if (lubridate::is.POSIXt(x)) {
       x <- x |> as.numeric()
+    } else if (hms::is_hms(x)) {
+      if (all(
+        hms::as_hms(min(x, na.rm = TRUE)) < hms::parse_hm("12:00") &
+        hms::as_hms(max(x, na.rm = TRUE)) < hms::parse_hm("12:00"),
+        na.rm = TRUE
+      )) {
+        x <- x |> as.numeric()
+      } else {
+        x <-
+          x |>
+          lubritime:::link_to_timeline(threshold = threshold) |>
+          as.numeric()
+      }
     } else {
       x <- x |> transform_time(threshold = threshold)
     }
@@ -79,7 +93,7 @@ stats_summary <- function(
       ))
   }
 
-  if (prettycheck:::test_temporal(x) && isTRUE(hms_format)) {
+  if (prettycheck:::test_temporal(x_sample) && isTRUE(hms_format)) {
     if (test_timeline_link(x)) {
       out <- purrr::map(
         .x = out,
@@ -96,13 +110,13 @@ stats_summary <- function(
     out$kurtosis <- moments::kurtosis(x, na.rm = na_rm)
   }
 
-  if (!is.numeric(x) && !prettycheck:::test_temporal(x)) {
-    out <- list(
-      n = length(x),
-      n_rm_na = length(x[!is.na(x)]),
-      n_na = length(x[is.na(x)]),
-      n_unique = length(unique(x)),
-      mode = mode(x)
+  if (!is.numeric(x_sample) && !prettycheck:::test_temporal(x_sample)) {
+    out <- c(
+      out,
+      list(
+        n_unique = length(unique(x)),
+        mode = mode(x)
+      )
     )
 
     data_count <-

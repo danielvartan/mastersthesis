@@ -1,4 +1,16 @@
-change_sign <- function(x) x * (-1)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+change_sign <- function(x, flag = TRUE) {
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_flag(flag)
+
+  if (isTRUE(flag)) {
+    x * (-1)
+  } else {
+    x
+  }
+}
+
 
 # library(here)
 # library(prettycheck) # github.com/danielvartan/prettycheck
@@ -97,12 +109,41 @@ list_as_tibble <- function(list) {
     tidyr::pivot_longer(cols = dplyr::everything())
 }
 
+# library(prettycheck) # github.com/danielvartan/prettycheck
+library(yaml)
+
+write_in_results_yml <- function(
+    x,
+    path = here::here("_results.yml"),
+    digits = 10
+  ) {
+  prettycheck:::assert_list(x)
+  prettycheck:::assert_file_exists(path)
+
+  out <- yaml::read_yaml(path)
+
+  for (i in seq_along(x)) {
+    if (is.numeric(x[[i]])) {
+      x[[i]] <- x[[i]] |> signif(10)
+    }
+
+    if (names(x)[i] %in% names(out)) {
+      out[[names(x)[i]]] <- x[[i]]
+    } else {
+      out <- c(out, x[i])
+    }
+  }
+
+  yaml::write_yaml(out, path)
+}
+
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 format_to_md_latex <- function(
     x,
     after = NULL,
+    before = NULL,
     round = 3,
     decimal_mark = ".",
     big_mark = ",",
@@ -110,6 +151,7 @@ format_to_md_latex <- function(
   ) {
   prettycheck:::assert_numeric(x)
   prettycheck:::assert_string(after, null.ok = TRUE)
+  prettycheck:::assert_string(before, null.ok = TRUE)
   prettycheck:::assert_string(decimal_mark)
   prettycheck:::assert_string(big_mark)
   prettycheck:::assert_number(round, lower = 0)
@@ -124,7 +166,8 @@ format_to_md_latex <- function(
       big.mark = big_mark,
       scientific = FALSE
     ) %>% # Don't change the pipe!
-    paste0(key, ., after, key)
+    paste0(key, before, ., after, key) |>
+    I()
 }
 
 library(magrittr)

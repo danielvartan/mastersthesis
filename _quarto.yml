@@ -11,14 +11,11 @@ profile:
 
 book:
   title: "Is Latitude Associated with Chronotype?"
-#  author: "Daniel Kachvartanian de Azevedo"
   keyword: >
     Complexity science. Complex systems. Chronobiology. Biological rhythms.
     Chronotypes. Circadian phenotypes. Sleep. Entrainment. Latitude. MCTQ.
   language: en
   license: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
-  publisher: "University of São Paulo"
-  publisher-place: "São Paulo, SP, Brazil"
   submitted: 2024
   favicon: images/favicon.png
   url: https://danielvartan.github.io/mastersthesis/
@@ -29,7 +26,11 @@ book:
 
 citation:
   type: thesis
+  publisher: "University of São Paulo"
+  publisher-place: "São Paulo, SP, Brazil"
+  doi: "10.17605/OSF.IO/YGKTS"
   url: https://danielvartan.github.io/mastersthesis/
+  pdf-url: https://danielvartan.github.io/mastersthesis/print/index.pdf
 
 google-scholar: true
 bibliography: references.bib

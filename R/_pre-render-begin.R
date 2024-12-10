@@ -101,6 +101,10 @@ for (i in var_files){
 
 env_vars |> yaml::write_yaml(env_vars_file_path)
 
+# Create result variables -----
+
+source(here::here("R", "_pre-render-vars.R"))
+
 # Scan Quarto files for citations and add them to references.bib -----
 
 quarto_yml_pdf_path <- here::here("_quarto-pdf.yml")

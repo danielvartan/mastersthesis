@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Works and Activities Developed During the Thesis
+# Works and Activities Developed During the Thesis {#sec-sm-works-and-activities}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}

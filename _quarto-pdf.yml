@@ -44,7 +44,7 @@ format:
     university: "University of São Paulo"
     school: "School of Arts, Sciences and Humanities"
     program: "Graduate Program in Complex Systems Modeling"
-    version-note: "Original version"
+    version-note: "Corrected version"
     include-in-header: tex/include-in-header.tex
     include-before-body: tex/include-before-body.tex
     include-after-body: tex/include-after-body.tex

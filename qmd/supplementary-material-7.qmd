@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Comparative Assessment of QualoCEP and Google Geocoding API Performance
+# Comparative Assessment of QualoCEP and Google Geocoding API Performance {#sec-sm-qualocep}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}

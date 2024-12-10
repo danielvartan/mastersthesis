@@ -88,8 +88,6 @@ weigh_data <- function(data) {
 
   out <-
     data |>
-    dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state")) |>
-    tidyr::drop_na(sex, age, state) |>
     dplyr::mutate(
       age_group = dplyr::case_when(
         age >= 18 & age < 20 ~ "18-19",

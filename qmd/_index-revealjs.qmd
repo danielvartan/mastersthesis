@@ -525,16 +525,11 @@ Relation between age and chronotype, divided by sex. Chronotype is represented b
 #| fig-align: center
 #| fig-height: 7
 
-source(here::here("R", "plot_age.R"))
-
-col <- "msf_sc"
-y_lab <- latex2exp::TeX("Local time ($MSF_{sc}$)")
+source(here::here("R", "plot_series.R"))
 
 data |>
   dplyr::filter(age <= 50) |>
-  plot_age_series(
-    col = col, 
-    y_lab = y_lab, 
+  plot_series(
     line_width = 2, 
     boundary = 0.5, 
     point_size = 2,

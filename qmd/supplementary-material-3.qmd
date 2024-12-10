@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Exploratory Data Analysis
+# Exploratory Data Analysis {#sec-sm-exploratory-data-analysis}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -14,6 +14,8 @@ source(here::here("R", "_setup.R"))
 This document focus in providing a comprehensive overview of the data collected in the survey.
 
 It focuses on the sample used on the analysis, with explicit indications provided whenever the full sample is used. The analysis sample is a subset of the full sample, and includes only Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
+
+Please note that the models were created using cell weights to account for sample unbalances. For more information on the sample balance, see the Supplementary Material [-@sec-sm-sample-balance].
 
 ## Setting the Enviroment
 
@@ -61,6 +63,7 @@ library(rlang)
 
 source(here::here("R", "categorize_msf_sc.R"))
 source(here::here("R", "get_brazil_region.R"))
+source(here::here("R", "get_chronotype_cutoffs.R"))
 source(here::here("R", "panel_tabset_var_distribution.R"))
 source(here::here("R", "plot_age.R"))
 source(here::here('R', 'plot_box_plot.R'))
@@ -71,6 +74,7 @@ source(here::here("R", "plot_ggcorrplot.R"))
 source(here::here('R', 'plot_hist.R'))
 source(here::here("R", "plot_latitude_series.R"))
 source(here::here('R', 'plot_qq.R'))
+source(here::here("R", "plot_series.R"))
 source(here::here("R", "plot_world.R"))
 source(here::here("R", "stats_summary.R"))
 source(here::here('R', 'test_normality.R'))
@@ -168,7 +172,7 @@ weighted_data |>
 
 ### Full Sample
 
-::: {#fig-appendice-correlation-matrix-full-sample}
+::: {#fig-sm-correlation-matrix-full-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -188,7 +192,7 @@ Correlation matrix of main variables (**Full sample**).
 
 ###  Analysis Sample
 
-::: {#fig-appendice-correlation-matrix-analysis-sample}
+::: {#fig-sm-correlation-matrix-analysis-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -212,19 +216,13 @@ Source: Created by the author.
 Correlation matrix of main variables (**Analysis sample**).
 :::
 
-## ComparisonS Between Sample and Population
-
-See Supplementary Material 4.
-
-## Geographic distribution
-
-### Latitudinal and Longitudinal Range
+## Latitudinal and Longitudinal Range
 
 #### Brazil
 
 Click [here](https://anuario.ibge.gov.br/2023/territorio/posicao-e-extensao.html) to learn more about Brazil's extreme points.
 
-::: {#tbl-appendice-1-logitudinal-range-brazil}
+::: {#tbl-sm-1-logitudinal-range-brazil}
 ```{r}
 #| message: false
 #| warning: false
@@ -236,7 +234,7 @@ box <-
   sf::st_bbox() |>
   as.list()
 
-dplyr::tibble(
+brazil_lat_lon <- dplyr::tibble(
     name = c("min", "max", "range"),
     latitude = c(
       box$ymin, 
@@ -249,6 +247,8 @@ dplyr::tibble(
       box$xmax - box$xmin
     )
 )
+
+brazil_lat_lon
 ```
 
 Source: Brazilian Institute of Geography and Statistics ([IBGE](https://www.ibge.gov.br/)), via the shapefiles provided by the [`geobr`](https://ipeagit.github.io/geobr/) R package.
@@ -256,9 +256,19 @@ Source: Brazilian Institute of Geography and Statistics ([IBGE](https://www.ibge
 Brazil's extreme points (**full sample**).
 :::
 
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_brazil_lat_lon = brazil_lat_lon
+  )
+)
+```
+
 #### Full Sample
 
-::: {#tbl-appendice-1-logitudinal-range-full-sample}
+::: {#tbl-sm-1-logitudinal-range-full-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -276,7 +286,7 @@ box <-
   ) |>
   as.list()
 
-dplyr::tibble(
+full_sample_lat_lon <- dplyr::tibble(
     name = c("min", "max", "range"),
     latitude = c(
       box$ymin, 
@@ -289,6 +299,8 @@ dplyr::tibble(
       box$xmax - box$xmin
     )
 )
+
+full_sample_lat_lon
 ```
 
 Source: Created by the author.
@@ -296,9 +308,19 @@ Source: Created by the author.
 Latitude and longitude statistics of respondents (**Full sample**).
 :::
 
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_full_sample_lat_lon = full_sample_lat_lon
+  )
+)
+```
+
 #### Analysis Sample
 
-::: {#tbl-appendice-1-logitudinal-range-analysis-sample}
+::: {#tbl-sm-1-logitudinal-range-analysis-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -316,7 +338,7 @@ box <-
   ) |>
   as.list()
 
-dplyr::tibble(
+analysis_sample_lat_lon <- dplyr::tibble(
     name = c("min", "max", "range"),
     latitude = c(
       box$ymin, 
@@ -329,11 +351,29 @@ dplyr::tibble(
       box$xmax - box$xmin
     )
 )
+
+analysis_sample_lat_lon
 ```
 
 Source: Created by the author.
 
 Latitude and longitude statistics of respondents (**Analysis sample**).
+:::
+
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_analysis_sample_lat_lon = analysis_sample_lat_lon
+  )
+)
+```
+
+## Population distributions
+
+::: {.callout-note}
+For numerical comparisons, refer to Supplementary Material [-@sec-sm-sample-balance].
 :::
 
 ### Brazil
@@ -446,6 +486,20 @@ plot_ibge_panel <-
 plot_ibge_panel
 ```
 
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_brazil_pop_2017_n = 
+      sidrar::get_sidra(api ="/t/6579/n1/all/v/all/p/2017") |>
+      rutils::shush() |>
+      dplyr::as_tibble() |>
+      dplyr::pull(Valor)
+  )
+)
+```
+
 ### Full Sample
 
 ```{r}
@@ -469,6 +523,23 @@ plot_full_1 <-
     text_size = env_vars$base_size,
     print = TRUE
   )
+```
+
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_full_sample_non_brazilians_n = 
+      anonymized_data |> 
+      dplyr::filter(country != "Brazil") |> 
+      nrow(),
+    ea_full_sample_brazilians_n =
+      anonymized_data |> 
+      dplyr::filter(country == "Brazil") |> 
+      nrow()
+  )
+)
 ```
 
 ```{r}
@@ -560,6 +631,16 @@ patchwork::wrap_plots(
   )
 ```
 
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_full_sample_n = anonymized_data |> nrow()
+  )
+)
+```
+
 ### Analysis Sample
 
 ```{r}
@@ -643,7 +724,17 @@ patchwork::wrap_plots(
   )
 ```
 
-### Population *versus* Sample
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_analysis_sample_n = weighted_data |> nrow()
+  )
+)
+```
+
+### Brazil (Population) *versus* Sample
 
 ```{r}
 patchwork::wrap_plots(
@@ -702,10 +793,6 @@ patchwork::wrap_plots(
 ```
 
 ## Age Distributions
-
-::: {.callout-note}
-The models were created using cell weights to account for unbalances.
-:::
 
 ### Brazil
 
@@ -792,7 +879,39 @@ ibge_6407_data <-
 ibge_6407_data
 ```
 
-**Unit**: Thousands of people.
+::: {.callout-warning}
+The statistics shown is this section are estimations based on the age group midpoints, hence, it must be interpreted with caution. $n$ is presented in thousands of people.
+:::
+
+```{r}
+ibge_6407_data |> 
+  dplyr::rename(age = age_group_midpoint) |>
+  dplyr::mutate(n = n / 1000) |>
+  dplyr::select(age, n) |>
+  tidyr::uncount(n) |>
+  stats_summary("age")
+```
+
+```{r}
+ibge_6407_data |> 
+  dplyr::rename(age = age_group_midpoint) |>
+  dplyr::mutate(n = n / 1000) |>
+  summary_by("age", "sex", "n")
+```
+
+```{r}
+ibge_6407_data |> 
+  dplyr::rename(age = age_group_midpoint) |>
+  dplyr::mutate(n = n / 1000) |>
+  summary_by("age", "region", "n")
+```
+
+```{r}
+ibge_6407_data |> 
+  dplyr::rename(age = age_group_midpoint) |>
+  dplyr::mutate(n = n / 1000) |>
+  summary_by("age", "state", "n")
+```
 
 ```{r}
 #| message: false
@@ -811,8 +930,6 @@ plot_ibge_6407_age_1 <-
     print = TRUE
   )
 ```
-
-**Unit**: Thousands of people.
 
 ```{r}
 plot_ibge_6407_age_2 <- 
@@ -833,7 +950,81 @@ plot_ibge_6407_age_2 <-
   )
 ```
 
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_brazil_age_stats =
+      ibge_6407_data |> 
+      dplyr::rename(age = age_group_midpoint) |>
+      dplyr::mutate(n = n / 1000) |>
+      dplyr::select(age, n) |>
+      tidyr::uncount(n) |>
+      stats_summary("age", as_list = TRUE) |>
+      dplyr::as_tibble(),
+    ea_brazil_age_stats_by_sex =
+      ibge_6407_data |> 
+      dplyr::rename(age = age_group_midpoint) |>
+      dplyr::mutate(n = n / 1000) |>
+      summary_by("age", "sex", "n") |>
+      dplyr::mutate(
+        dplyr::across(
+          .cols = dplyr::all_of(c("n", "n_rm_na", "n_na")),
+          .fns = ~ as.numeric(.x) * 1000
+        )
+      ),
+    data_ibge_6407_age_stats_by_region =
+      ibge_6407_data |> 
+      dplyr::rename(age = age_group_midpoint) |>
+      dplyr::mutate(n = n / 1000) |>
+      summary_by("age", "region", "n") |>
+      dplyr::mutate(
+        dplyr::across(
+          .cols = dplyr::all_of(c("n", "n_rm_na", "n_na")),
+          .fns = ~ as.numeric(.x) * 1000
+        )
+      ),
+    ea_brazil_age_stats_by_state =
+      ibge_6407_data |> 
+      dplyr::rename(age = age_group_midpoint) |>
+      dplyr::mutate(n = n / 1000) |>
+      summary_by("age", "state", "n") |>
+      dplyr::mutate(
+        dplyr::across(
+          .cols = dplyr::all_of(c("n", "n_rm_na", "n_na")),
+          .fns = ~ as.numeric(.x) * 1000
+        )
+      )
+  )
+)
+```
+
 ### Full Sample
+
+```{r}
+anonymized_data |>
+  dplyr::filter(country == "Brazil") |>
+  stats_summary("age")
+```
+
+```{r}
+anonymized_data |>
+  dplyr::filter(country == "Brazil") |>
+  summary_by("age", "sex")
+```
+
+```{r}
+anonymized_data |>
+  dplyr::filter(country == "Brazil") |>
+  summary_by("age", "region")
+```
+
+```{r}
+anonymized_data |>
+  dplyr::filter(country == "Brazil") |>
+  summary_by("age", "state")
+```
 
 ```{r}
 #| message: false
@@ -879,7 +1070,70 @@ plot_full_age_3 <-
   )
 ```
 
+::: {#fig-sm-1-age-sex-weigth-series}
+```{r}
+#| message: false
+#| warning: false
+
+plot_age_sex_weigth_series <-
+  anonymized_data |>
+  dplyr::filter(age <= 50) |>
+  plot_series(
+    col_y = "weight", 
+    y_label = "Weight (kg)", 
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+Source: Created by the author. Based on data visualization found in @roenneberg2007a.
+
+Relation between age and weight (kg), divided by sex and aggregated by the mean. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+:::
+
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_full_sample_age_stats = 
+      anonymized_data |>
+      dplyr::filter(country == "Brazil") |>
+      stats_summary("age", as_list = TRUE) |>
+      dplyr::as_tibble(),
+    ea_full_sample_age_stats_by_sex =
+      anonymized_data |>
+      dplyr::filter(country == "Brazil") |>
+      summary_by("age", "sex"),
+    ea_full_sample_age_stats_by_region = 
+      anonymized_data |>
+      dplyr::filter(country == "Brazil") |>
+      summary_by("age", "region"),
+    ea_full_sample_age_stats_by_state =
+      anonymized_data |>
+      dplyr::filter(country == "Brazil") |>
+      summary_by("age", "state")
+  )
+)
+```
+
 ### Analysis Sample
+
+```{r}
+weighted_data |> stats_summary("age")
+```
+
+```{r}
+weighted_data |> summary_by("age", "sex")
+```
+
+```{r}
+weighted_data |> summary_by("age", "region")
+```
+
+```{r}
+weighted_data |> summary_by("age", "state")
+```
 
 ```{r}
 #| message: false
@@ -924,11 +1178,80 @@ plot_analysis_age_3 <-
   )
 ```
 
-## Age and Sex Series
+```{r}
+#| include: false
 
-### Age/sex _versus_ Chronotype (**Full Sample**)
+write_in_results_yml(
+  list(
+    ea_analysis_sample_age_stats = 
+      weighted_data |>
+      stats_summary("age", as_list = TRUE) |>
+      dplyr::as_tibble(),
+    ea_analysis_sample_age_stats_by_sex =
+      weighted_data |>
+      summary_by("age", "sex"),
+    ea_analysis_sample_age_stats_by_region = 
+      weighted_data |>
+      summary_by("age", "region"),
+    ea_analysis_sample_age_stats_by_state =
+      weighted_data |>
+      summary_by("age", "state")
+  )
+)
+```
 
-::: {#fig-appendice-1-age-sex-chronotype-series}
+## Weight Distributions
+
+### Full Sample
+
+::: {#fig-sm-1-weight-latitude-series}
+```{r}
+#| message: false
+#| warning: false
+
+weighted_data |>
+  dplyr::filter(!test_outlier(weight)) |>
+  plot_latitude_series(
+    col = "weight",
+    y_label = "Weight (kg)",
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+Source: Created by the author.
+
+Boxplots of mean weight values (kg) aggregated by 1° latitude intervals, illustrating the relationship between latitude and weight. The × symbol points to the mean. The red line represents a linear regression.
+:::
+
+## Chronotype distributions
+
+### Full Sample
+
+```{r}
+anonymized_data |>
+  dplyr::filter(country == "Brazil") |>
+  stats_summary("msf_sc", as_list = TRUE) |>
+  dplyr::as_tibble() |>
+  dplyr::mutate(
+    dplyr::across(
+      .cols = dplyr::where(hms::is_hms),
+      .fns = lubritime::round_time
+    ),
+    dplyr::across(
+      .cols = dplyr::everything(),
+      .fns = as.character
+    )
+  ) |>
+  tidyr::pivot_longer(cols = dplyr::everything())
+```
+
+```{r}
+anonymized_data |> get_chronotype_cutoffs()
+```
+
+
+::: {#fig-sm-1-age-sex-chronotype-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -936,26 +1259,18 @@ plot_analysis_age_3 <-
 plot_age_sex_series <- 
   anonymized_data |>
   dplyr::filter(age <= 50) |>
-  plot_age_series(
-    col = "msf_sc", 
-    line_width = 2, 
-    boundary = 0.5, 
-    point_size = 1,
-    error_bar_width = 0.5, 
-    error_bar_linewidth = 0.5,
-    error_bar = TRUE,
-    date_breaks = "15 mins",
+  plot_series(
     text_size = env_vars$base_size,
     print = TRUE
   )
 ```
 
-[Source: Created by the author. Based on data visualization found in @roenneberg2007a.]{.legend}
+Source: Created by the author. Based on data visualization found in @roenneberg2007a.
 
 Relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
 :::
 
-::: {#fig-appendice-2-roenneberg-2007-figure-4}
+::: {#fig-sm-2-roenneberg-2007-figure-4}
 ![](images/roenneberg-2007-figure-4.png)
 
 Source: Reproduction from @roenneberg2019b.
@@ -963,38 +1278,86 @@ Source: Reproduction from @roenneberg2019b.
 Distribution of European chronotypes by age, as shown in @roenneberg2007a (for comparison).
 :::
 
-### Age/sex _versus_ Weight (**Full Sample**)
-
-::: {#fig-appendice-1-age-sex-weigth-series}
 ```{r}
 #| message: false
 #| warning: false
 
-plot_age_sex_weigth_series <-
+plot_age_sex_series <- 
   anonymized_data |>
-  dplyr::filter(age <= 50) |>
-  plot_age_series(
-    col = "weight", 
-    line_width = 2, 
-    boundary = 0.5, 
-    point_size = 1,
-    error_bar_width = 0.5, 
-    error_bar_linewidth = 0.5,
-    error_bar = TRUE,
-    y_label = "Weight (kg)", 
+  dplyr::filter(!test_outlier(weight)) |>
+  plot_series(
+    col_x = "weight",
+    x_label = "Weigth",
+    date_breaks = "30 min",
     text_size = env_vars$base_size,
     print = TRUE
   )
 ```
 
-[Source: Created by the author. Based on data visualization found in @roenneberg2007a.]{.legend}
+```{r}
+#| include: false
 
-Relation between age and weight (kg), divided by sex and aggregated by the mean. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
-:::
+write_in_results_yml(
+  list(
+    ea_full_sample_msf_sc_stats = 
+      anonymized_data |>
+      dplyr::filter(country == "Brazil") |>
+      stats_summary("msf_sc", as_list = TRUE) |>
+      dplyr::as_tibble() |>
+      dplyr::mutate(
+        dplyr::across(
+          .cols = dplyr::where(hms::is_hms),
+          .fns = lubritime::round_time
+        )
+      ),
+    ea_full_sample_chronotype_cutoffs = 
+      anonymized_data |> 
+      get_chronotype_cutoffs()
+  )
+)
+```
 
-## Chronotype distribution (**Analysis sample**)
+### Analysis Sample
 
-::: {#fig-appendice-1-chronotype-distribution-analysis-sample}
+```{r}
+weighted_data |>
+  stats_summary("msf_sc", as_list = TRUE) |>
+  dplyr::as_tibble() |>
+  dplyr::mutate(
+    dplyr::across(
+      .cols = dplyr::where(hms::is_hms),
+      .fns = lubritime::round_time
+    ),
+    dplyr::across(
+      .cols = dplyr::everything(),
+      .fns = as.character
+    )
+  ) |>
+  tidyr::pivot_longer(cols = dplyr::everything())
+```
+
+```{r}
+weighted_data |> get_chronotype_cutoffs()
+```
+
+```{r}
+weighted_data |>
+  dplyr::mutate(
+    msf_sc_category = categorize_msf_sc(msf_sc),
+    msf_sc_category = factor(
+      msf_sc_category, 
+      levels = c(
+        "Extremely early", "Moderately early", "Slightly early",
+        "Intermediate", "Slightly late", "Moderately late", 
+        "Extremely late"
+      ),
+      ordered = TRUE
+    )
+  ) |>
+  summary_by("msf_sc", "msf_sc_category")
+```
+
+::: {#fig-sm-1-chronotype-distribution-analysis-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -1006,12 +1369,12 @@ weighted_data |>
   )
 ```
 
-[Source: Created by the author. Based on data visualization found in @roenneberg2019b.]{.legend}
+Source: Created by the author. Based on data visualization found in @roenneberg2019b.
 
 Distribution of the local time for the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
 :::
 
-::: {#fig-appendice-2-roenneberg-2019-figure-1}
+::: {#fig-sm-2-roenneberg-2019-figure-1}
 ![](images/roenneberg-2019-figure-1.png)
 
 Source: Reproduction from @roenneberg2019b.
@@ -1019,41 +1382,78 @@ Source: Reproduction from @roenneberg2019b.
 Distribution of European chronotypes, as shown in @roenneberg2019b (for comparison).
 :::
 
-## Latitude Series
+```{r}
+weighted_data |> summary_by("msf_sc", "sex")
+```
 
-::: {#fig-appendice-1-chronotype-latitude-series}
+```{r}
+weighted_data |>
+  dplyr::mutate(
+    age_group = dplyr::case_when(
+      dplyr::between(age, 0, 4) ~ "0-4",
+      dplyr::between(age, 5, 9) ~ "5-9",
+      dplyr::between(age, 10, 13) ~ "10-13",
+      dplyr::between(age, 14, 15) ~ "14-15",
+      dplyr::between(age, 16, 17) ~ "16-17",
+      dplyr::between(age, 18, 19) ~ "18-19",
+      dplyr::between(age, 20, 24) ~ "20-24",
+      dplyr::between(age, 25, 29) ~ "25-29",
+      dplyr::between(age, 30, 39) ~ "30-39",
+      dplyr::between(age, 40, 49) ~ "40-49",
+      dplyr::between(age, 50, 59) ~ "50-59",
+      dplyr::between(age, 60, 64) ~ "60-64",
+      age >= 65 ~ "65+"
+    )
+  ) |>
+  summary_by("msf_sc", "age_group")
+```
+
+::: {#fig-sm-1-age-sex-chronotype-series}
 ```{r}
 #| message: false
 #| warning: false
 
-source(here::here("R", "plot_latitude_series.R"))
-
-weighted_data |> 
-  plot_latitude_series(
+plot_age_sex_series <- 
+  weighted_data |>
+  dplyr::filter(age <= 50) |>
+  plot_series(
     text_size = env_vars$base_size,
     print = TRUE
   )
 ```
 
-[Source: Created by the author. Based on data visualization found in @leocadio-miguel2017.]{.legend}
+Source: Created by the author. Based on data visualization found in @roenneberg2007a.
 
-Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The red line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+Relation between age and chronotype, divided by sex and aggregated by the mean (Analysis sample). Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
 :::
 
-## Chronotype Geographical Distribution
+Source: Reproduction from @roenneberg2019b.
+
+Distribution of European chronotypes by age, as shown in @roenneberg2007a (for comparison).
+:::
 
 ```{r}
-#| eval: false
-#| include: false
+#| message: false
+#| warning: false
 
-msf_sc_cutoffs <- weighted_data |> get_chronotype_cutoffs("msf_sc")
+plot_age_sex_series <- 
+  weighted_data |>
+  dplyr::filter(!test_outlier(weight), weight > 45) |>
+  plot_series(
+    col_x = "weight",
+    x_label = "Weigth",
+    date_breaks = "30 min",
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
 
-limits <- 
-  c(
-    msf_sc_cutoffs$interval |> dplyr::first() |> lubridate::int_start(),
-    msf_sc_cutoffs$interval |> dplyr::last() |> lubridate::int_end()
-  ) |>
-  as.numeric()
+```{r}
+weighted_data |> summary_by("msf_sc", "region")
+```
+
+```{r}
+weighted_data |> summary_by("msf_sc", "state")
 ```
 
 ```{r}
@@ -1173,4 +1573,102 @@ plot <-
 plot |>
   rm_scale() +
   ggplot2::facet_wrap(~msf_sc_category, ncol = 4, nrow = 2)
+```
+
+::: {#fig-sm-1-chronotype-latitude-series}
+```{r}
+#| message: false
+#| warning: false
+
+source(here::here("R", "plot_latitude_series.R"))
+
+weighted_data |> 
+  plot_latitude_series(
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+Source: Created by the author.
+
+Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The red line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+:::
+
+```{r}
+#| message: false
+#| warning: false
+
+weighted_data |>
+  plot_series(
+    col_x = "latitude",
+    x_label = "Latitude",
+    date_breaks = "15 min",
+    reverse = TRUE,
+    change_sign = TRUE,
+    text_size = env_vars$base_size,
+    print = TRUE
+  )
+```
+
+```{r}
+#| include: false
+
+write_in_results_yml(
+  list(
+    ea_analysis_sample_msf_sc_stats = 
+      weighted_data |>
+      stats_summary("msf_sc", as_list = TRUE) |>
+      dplyr::as_tibble() |>
+      dplyr::mutate(
+        dplyr::across(
+          .cols = dplyr::where(hms::is_hms),
+          .fns = lubritime::round_time
+        )
+      ),
+    ea_analysis_sample_chronotype_cutoffs = 
+      weighted_data |> get_chronotype_cutoffs(),
+    ea_analysis_sample_msf_sc_stats_by_category =
+      weighted_data |>
+      dplyr::mutate(
+        msf_sc_category = categorize_msf_sc(msf_sc),
+        msf_sc_category = factor(
+          msf_sc_category, 
+          levels = c(
+            "Extremely early", "Moderately early", "Slightly early",
+            "Intermediate", "Slightly late", "Moderately late", 
+            "Extremely late"
+          ),
+          ordered = TRUE
+        )
+      ) |>
+      summary_by("msf_sc", "msf_sc_category"),
+    ea_analysis_sample_msf_sc_stats_by_sex =
+      weighted_data |> 
+      summary_by("msf_sc", "sex"),
+    ea_analysis_sample_msf_sc_stats_by_age_group =
+      weighted_data |>
+      dplyr::mutate(
+        age_group = dplyr::case_when(
+          dplyr::between(age, 0, 4) ~ "0-4",
+          dplyr::between(age, 5, 9) ~ "5-9",
+          dplyr::between(age, 10, 13) ~ "10-13",
+          dplyr::between(age, 14, 15) ~ "14-15",
+          dplyr::between(age, 16, 17) ~ "16-17",
+          dplyr::between(age, 18, 19) ~ "18-19",
+          dplyr::between(age, 20, 24) ~ "20-24",
+          dplyr::between(age, 25, 29) ~ "25-29",
+          dplyr::between(age, 30, 39) ~ "30-39",
+          dplyr::between(age, 40, 49) ~ "40-49",
+          dplyr::between(age, 50, 59) ~ "50-59",
+          dplyr::between(age, 60, 64) ~ "60-64",
+          age >= 65 ~ "65+"
+        )
+      ) |>
+      summary_by("msf_sc", "age_group"),
+    ea_analysis_sample_msf_sc_stats_by_region =
+      weighted_data |> summary_by("msf_sc", "region"),
+    ea_analysis_sample_msf_sc_stats_by_state =
+      weighted_data |> summary_by("msf_sc", "state")
+  )
+)
 ```

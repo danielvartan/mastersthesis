@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Methods
+# Methods {#sec-sm-methods}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -48,9 +48,9 @@ weighted_data <- targets::tar_read(
 
 ## Overview
 
-This document focus in providing a detailed explanation of the methods and steps involved in building the models and testing the thesis hypothesis.
+This document  focuses on providing a detailed explanation of the methods and steps involved in building the models and testing the thesis hypothesis.
 
-For a comprehensive review of the thesis question and hypothesis, please refer to other supplementary materials.
+For a comprehensive review of the thesis question and hypothesis, please refer to Supplementary Material [-@sec-sm-question].
 
 ## Approach and Procedure Method
 
@@ -58,23 +58,23 @@ This study adopted the hypothetical-deductive method, also known as the method o
 
 ## Measurement Instrument
 
-Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MS) (@fig-chapter-5-mctq-variables) on work-free days (MSF), accounting for any potential sleep compensation due to sleep deficits (sc = sleep correction) on workdays (MSF~sc~) [@roenneberg2012].
+Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MS) (@fig-sm-2-mctq-variables) on work-free days (MSF), accounting for any potential sleep compensation due to sleep deficits (sc = sleep correction) on workdays (Final abbreviation: MSF~sc~) [@roenneberg2012].
 
-Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
+Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization, can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
 
-::: {#fig-s-2-mctq-variables}
+::: {#fig-sm-2-mctq-variables}
 ![](images/mctq-figure-1.png)
 
-Source: Create by the author.
+Source: Created by the author.
 
-Variables of the Munich ChronoType Questionnaire scale (a sleep log). In its standard version, these variables are collected in the context of workdays and work-free days. BT = Local time of going to bed. SPrep = Local time of preparing to sleep. SLat = Sleep latency *or* time to fall asleep after preparing to sleep. SO = Local time of sleep onset. SD = Sleep duration. MS = Local time of mid-sleep. SE = Local time of sleep. Alarm = A logical value indicating if the respondent uses an alarm clock to wake up. SE = Local time of sleep end. SI = "Sleep inertia" (despite the name, this variable represents the time the respondent takes to get up after sleep end). GU = Local time of getting out of bed. TBT = Total time in bed.
+Variables of the Munich ChronoType Questionnaire scale (A sleep log). In its standard version, these variables are collected in the context of workdays and work-free days. BT = Local time of going to bed. SPrep = Local time of preparing to sleep. SLat = Sleep latency *or* time to fall asleep after preparing to sleep. SO = Local time of sleep onset. SD = Sleep duration. MS = Local time of mid-sleep. SE = Local time of sleep. Alarm = A logical value indicating if the respondent uses an alarm clock to wake up. SE = Local time of sleep end. SI = "Sleep inertia" (despite the name, this variable represents the time the respondent takes to get up after sleep end). GU = Local time of getting out of bed. TBT = Total time in bed.
 :::
 
 ## Sample
 
-The dataset used for analysis is made up of `{r} weighted_data |> nrow() |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
+The dataset used for analysis is made up of `{r} results_vars$analysis_data_nrow |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
 
-The unfiltered valid sample comprises `{r} anonymized_data |> nrow() |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of $120,265$ individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The unfiltered valid sample comprises `{r} results_vars$full_data_nrow |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of `{r} results_vars$raw_data_nrow |> format_to_md_latex()` individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
 ::: {#fig-appendice-1-age-sex-chronotype-series}
 ![](images/globo-2017-figure-1.png)
@@ -88,9 +88,9 @@ A survey conducted in 2019 by the Brazilian Institute of Geography and Statistic
 
 Daylight Saving Time (DST) began in Brazil at midnight on October 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. We believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that we asked subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample would be the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the data.
 
-To balance the sample, a weighting procedure was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil's state as reference This procedure can be found on the *Sample balance procedure* supplementary material.
+To balance the sample, a weighting procedure was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil's state as reference This procedure can be found on Supplementary Material [-@sec-sm-sample-balance].
 
-More information about the sample can be found on the *Exploratory data analysis* supplementary material.
+More information about the sample can be found on Supplementary Material [-@sec-sm-exploratory-data-analysis].
 
 ## Secondary Data
 
@@ -231,7 +231,7 @@ For example, the distance between 23:00 (the values here are always in the 24 ho
 18 + 6 = 0h
 ```
 
-Source: Create by the author.
+Source: Created by the author.
 
 Circular time representation.
 :::
@@ -250,7 +250,7 @@ Consider the local time of sleep onset. We can observe that some subjects start 
           longer int.  shorter int.   longer int.
 ``
 
-Source: Create by the author.
+Source: Created by the author.
 
 Possible intervals for circular time.
 :::
@@ -305,7 +305,7 @@ patchwork::wrap_plots(
 )
 ```
 
-Source: Create by the author.
+Source: Created by the author.
 
 Histogram of the local time of sleep onset (SO) with (right) and without (left) the 12:000 treatment.
 :::
@@ -318,11 +318,16 @@ Even considering that `POSIXct` objects are used in the models, there is still a
 
 ## Hypothesis Test
 
-The study hypothesis was tested using nested models general linear models of multiple linear regressions. The main idea of nested models is to verify the effect of the inclusion of one or more predictors in the model variance explanation (i.e., the $\text{R}^{2}$) [@allen1997; @maxwell2018]. This can be made by creating a restricted model and then comparing it with a full model. Hence, the hypothesis can be schematized as follows.
+The study hypothesis was tested using nested multiple linear regressions. The primary concept of nested models is to evaluate the effect of adding one or more predictors on the model’s variance explanation (i.e., the $\text{R}^{2}$) [@allen1997; @maxwell2018]. This is achieved by creating a restricted model ($r$) and comparing it with a full model ($f$). The hypothesis can be outlined as follows:
 
-- __Null hypothesis__ ($\text{H}_{0}$): Adding *latitude* does not meaningfully improve the model’s fit, indicating that the change in adjusted $\text{R}^{2}$ is negligible or the F-test is not significant (considering a type I error probability ($\alpha$) of $0.05$).
+Null hypothesis ($\text{H}_{0}$)
+: Adding *latitude* does not meaningfully improve the model’s fit. This implies that the change in adjusted $\text{R}^{2}$ is negligible, or the F-test is not significant, given a type I error probability ($\alpha$) of $0.05$.
 
-- __Alternative Hypothesis__ ($\text{H}_{a}$): Adding *latitude* meaningfully improves the model’s fit, indicating that the change in adjusted $\text{R}^{2}$ is greater than the Minimum Effect Size (MES), and the F-test is significant  (considering a type I error probability ($\alpha$) of $0.05$).
+Alternative Hypothesis ($\text{H}_{a}$)
+: Adding *latitude* meaningfully improves the model’s fit. This implies that the change in adjusted $\text{R}^{2}$ exceeds the expected Minimum Effect Size (MES), and the F-test is significant, given a type I error probability ($\alpha$) of $0.05$.
+
+::: {#cnj-hypothesis-test}
+### Data Test – Full Version
 
 $$
 \begin{cases}
@@ -330,32 +335,66 @@ $$
 \text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES} \quad \text{and} \quad \text{F-test is significant} \ (\alpha < 0.05)
 \end{cases}
 $$
+:::
 
 Where:
 
 $$
 \Delta \ \text{Adjusted} \ \text{R}^{2} = \text{Adjusted} \ \text{R}^{2}_{f} - \text{Adjusted} \ \text{R}^{2}_{r}
-$$
+$$ {#eq-adjusted-r-squared-delta}
 
-The general equation for the F-test for nested models [@allen1997, p. 113] is:
+and $\text{MES}$ is a Minimum Effect Size, a threshold for detecting significant changes.
+
+$\text{R}^{2}$ is a statistic that represents the proportion of variance explained in the relationship between two or more variables (goodness of fit) [@frey2022, p. 1339]. It ranges from $1$ (perfect prediction) to $0$ (no prediction) and can be defined as [@degroot2012, p. 748]:
 
 $$
-\text{F} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r} / (k_{f} - k_{R})}{(1 - \text{R}^{2}_{f}) / (\text{N} - k_{f} - 1)}
-$$
+\text{R}^{2} = 1 - \cfrac{\text{SS}_{\text{residual}}}{\text{SS}_{\text{total}}} = 1 - \cfrac{\sum \limits^{n}_{i = 1} (y_{i} - \hat{y}_{i})^{2}}{\sum \limits^{n}_{i = 1} (y_{i} - \overline{y})^{2}} = 1 -  \cfrac{\text{Unexplained Variance}}{\text{Total Variance}} = \cfrac{\text{Explained Variance}}{\text{Total Variance}}
+$$ {#eq-r-squared}
 
 Where:
 
-* $\text{R}^{2}_{F}$ = Coefficient of determination for the __full__ model;
-* $\text{R}^{2}_{R}$ = Coefficient of determination for the __restricted__ model;
-* $k_{F}$ = Number of independent variables in the full model;
-* $k_{R}$ = Number of independent variables in the restricted model;
-* $\text{N}$ = Number of observations in the sample.
+- $y_{i}$ = Observed value of the dependent variable;
+- $\hat{y}_{i}$ = Predicted value of the dependent variable;
+- $\overline{y}$ = Mean of the dependent variable;
+- $\text{SS}_{\text{residual}}$ = Sum of the squared prediction errors (residuals) across all observations [@degroot2012, p. 748; @hair2019, p. 264];
+- $\text{SS}_{\text{total}}$ = Total sum of squares or the total amount of variation that exists to be explained by the independent variables. Is equivalent by the sum of the squared difference between the observed value and the mean of the dependent variable (baseline prediction) [@degroot2012, p. 748; @hair2019, p. 265].
+
+Here, $\text{R}^{2}$ is the proportion of the variance in the dependent variable that is predictable from the independent variables.
+
+The adjusted $\text{R}^{2}$ is a modified version of $\text{R}^{2}$ that adjusts for the number of predictors in the model. It can be defined as:
+
+$$
+\text{Adjusted} \ \text{R}^{2} = 1 - \cfrac{\text{SS}_{\text{residual}} / \text{df}_{\text{residual}}}{\text{SS}_{\text{total}} / \text{df}_{\text{total}}} = 1 - \cfrac{(1 - \text{R}^{2}) \times (\text{n} - 1)}{\text{n} - k - 1}
+$$ {#eq-adjusted-r-squared}
+
+Where:
+
+- $\text{n}$ = Number of observations in the sample;
+- $k$ = Number of independent variables in the model.
+- $\text{df}_{\text{residual}}$ = Degrees of freedom of the residual sum of squaress = $n - k - 1$.
+- $\text{df}_{\text{total}}$ = Degrees of freedom of the total sum of squares = $n - 1$.
+
+The F-test serves as to determine wether the ratio of variances is different from zero (i.e., statistically significant) considering a baseline prediction [@hair2019, p. 300]. In this case, the baseline prediction is the restricted model. The general equation for the F-test for nested models [@allen1997, p. 113] can be defined as:
+
+$$
+\text{F} = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r} / (k_{f} - k_{R})}{(1 - \text{R}^{2}_{f}) / (\text{n} - k_{f} - 1)}
+$$ {#eq-f-test-for-nested-models}
+
+Where:
+
+* $\text{R}^{2}_{F}$ = Coefficient of determination for the **full** model;
+* $\text{R}^{2}_{R}$ = Coefficient of determination for the **restricted** model;
+* $k_{f}$ = Number of independent variables in the full model;
+* $k_{r}$ = Number of independent variables in the restricted model;
+* $\text{n}$ = Number of observations in the sample.
 
 $$
 \text{F} = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
 $$
 
-A MES must always be used in any data testing. The effect-size was present in the original Neyman and Pearson framework [@neyman1928; @neyman1928a], but unfortunately this practice fade away with the use of p-values, one of the many issues that came with the Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. While p-values are estimates of type 1 error (in Neyman–Pearson’s approaches, or like-approaches), that's not the main thing we are interested while doing a hypothesis test, what is really being test is the effect size (i.e., a practical significance). Another major issue to only relying on p-values is that the estimated p-value tends to decrease when the sample size is increased, hence, focusing just on p-values with large sample sizes results in the rejection of the null hypothesis, making it not meaningful in this specific situation [@lin2013; @mariscal2021].
+A MES must always be present in any data testing. The effect-size was present in the original Neyman and Pearson framework [@neyman1928; @neyman1928a], but unfortunately this practice fade away with the indiscriminate use of p-values, one of the many issues that came with the Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. While p-values are estimates of type 1 error (in Neyman–Pearson’s approaches, or like-approaches), that's not the main thing we are interested while doing a hypothesis test, what is really being test is the effect size (i.e., a practical significance). Another major issue to only relying on p-values is that the estimated p-value tends to decrease when the sample size is increased, hence, focusing just on p-values with large sample sizes results in the rejection of the null hypothesis, making it not meaningful in this specific situation [@lin2013; @mariscal2021; @hair2019].
+
+> Although larger $\text{R}^{2}$ values result in higher $\text{F}$ values, **the researcher must base any assessment of practical significance separate from statistical significance**. Because statistical significance is really an assessment of the impact of sampling error, the researcher must be cautious of always assuming that statistically significant results are also practically significant. **This caution is particularly relevant in the case of large samples** where even small $\text{R}^{2}$ values (e.g., $5\%$ or $10\%$) can be statistically significant, but such levels of explanation would not be acceptable for further action on a practical basis. [@hair2019, p. 300]
 
 Publications related to issues regarding the misuse of p-value are plenty. For more on the matter, I recommend @perezgonzalez2015 review of Fisher's and Neyman-Pearson's data test proposals, @lin2013 and @mariscal2021 studies about large Samples and the p-value problem, and Cohen's essays on the subject (like @cohen1990 and @cohen1994).
 
@@ -401,20 +440,20 @@ In other words, the latitude must explain at least $1.960784\%$ of the variance 
 
 In summary, the decision rule for the hypothesis test is as follows:
 
-- **Reject** $\text{H}_{0}$ **if both**:
-  - The F-test is not significant.
+- **Reject** $\text{H}_{0}$ **if both** of the following conditions are met:
+  - The F-test is significant.
   - $\Delta \ \text{Adjusted} \ \text{R}^{2} > 0.01960784$;
-- **Fail to reject** $\text{H}_{0}$ **if either**:
+- **Fail to reject** $\text{H}_{0}$ **if either** of the following conditions are met:
   - The F-test is not significant, or
   - The F-test is significant, but $\Delta \ \text{Adjusted} \ \text{R}^{2} \leq 0.01960784$.
 
 As usual, the significance level ($\alpha$) was set at $0.05$, allowing a 5% chance of a [Type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors). A power analysis was performed to determine the necessary sample size for detecting a significant effect, targeting a power ($1 - \beta$) of $0.99$.
 
-It's important to emphasize that this thesis is not trying to establishing causality, only association. Predictive models alone should never be used to infer causal relationships [@arif2022].
+It's important to emphasize that this thesis is not investigating causality, only association. Predictive models alone should never be used to infer causal relationships [@arif2022].
 
-## Statistical Analysis
+## Statistical Analyses
 
-In addition to the analyses described in the hypothesis testing subsection, several other evaluations were conducted to ensure the validity of the results, including: power analysis, visual inspection of variable distributions (e.g., Q-Q plots), assessment of residual normality, checks for multicollinearity, and examination of leverage and influential points.
+In addition to the analyses described in the *Hypothesis Test* subsection, several other evaluations were conducted to ensure the validity of the results, including: a power analysis, the visual inspection of variable distributions (e.g., Q-Q plots), assessment of residual normality, checks for multicollinearity, and examination of leverage and influential points.
 
 All analyses were performed using computational notebooks and are fully reproducible. Detailed documentation is available in the supplementary materials.
 

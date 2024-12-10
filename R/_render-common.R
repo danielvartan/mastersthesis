@@ -47,3 +47,11 @@ env_vars_file_path <- here::here("_variables.yml")
 if (!prettycheck:::test_file_exists(env_vars_file_path)) {
   rutils:::create_file(env_vars_file_path)
 }
+
+# Create `_results.yml` if it doesn't exist -----
+
+results_vars_file_path <- here::here("_results.yml")
+
+if (!prettycheck:::test_file_exists(results_vars_file_path)) {
+  rutils:::create_file(results_vars_file_path)
+}

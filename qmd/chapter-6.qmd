@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Conclusion
+# Conclusion {#sec-conclusion}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -7,16 +7,6 @@
 #| include: false
 
 source(here::here("R", "_setup.R"))
-```
-
-```{r}
-#| eval: false
-#| include: false
-
-library(dplyr)
-library(lubritime)
-library(magrittr)
-library(targets)
 ```
 
 According to Popper, the aim of science is to provide "satisfactory explanations of whatever strikes us as being in need of explanation" [@popper1979, p. 193]. This study, using what is arguably the largest dataset on chronotype collected within a single time zone—balanced to reflect population proportions at the time of data collection—found no support for the latitude hypothesis (Cohen's $f^2 = 0.012137120$). This result contributes meaningful evidence to the understanding of circadian rhythm regulation, offering a clear and satisfactory answer to the central research question of this thesis: "Is latitude associated with chronotype?" The answer is **No**.
@@ -33,20 +23,7 @@ While this study provides valuable insights, it is essential to acknowledge cert
 
 Additionally, the use of the Munich Chronotype Questionnaire (MCTQ), while a validated instrument, introduces the potential for recall and social desirability biases inherent to self-reported measures. However, the large sample size likely mitigates these biases, as predicted by the law of large numbers [@degroot2012, p. 352]. Furthermore, at the time of data collection, the MCTQ had not yet been officially validated in Portuguese (this was only introduced in 2020 by @reis2020a), which may have introduced minor inconsistencies, though its nature as a sleep log suggests this impact was minimal.
 
-```{r}
-#| eval: false
-#| include: false
-
-weighted_data <- targets::tar_read("weighted_data")
-
-weighted_data |> 
-  dplyr::filter(lubridate::date(timestamp) == as.Date("2017-10-15")) |> 
-  nrow() |>
-  magrittr::divide_by(weighted_data |> nrow()) |>
-  magrittr::multiply_by(100)
-```
-
-Another factor to consider is the timing of data collection relative to the start of Daylight Saving Time (DST) in Brazil. On the day data collection commenced (October 15th, 2017 – $80.153\%$ of the data used in this analysis were collected on this day), a significant portion of respondents adjusted their clocks forward by one hour. While this could theoretically influence their responses, the questions were specifically designed to capture daily routines, which were not affected by the DST adjustment at that moment. Furthermore, any potential effect of DST would likely strengthen the latitude hypothesis; however, this was not supported by the data.
+Another factor to consider is the timing of data collection relative to the start of Daylight Saving Time (DST) in Brazil. On the day data collection commenced (October 15th, 2017 – `{r} analysis_data_per_nrow_2017_10_15 |> format_to_md_latex()` $80.153\%$ of the data used in this analysis were collected on this day), a significant portion of respondents adjusted their clocks forward by one hour. While this could theoretically influence their responses, the questions were specifically designed to capture daily routines, which were not affected by the DST adjustment at that moment. Furthermore, any potential effect of DST would likely strengthen the latitude hypothesis; however, this was not supported by the data.
 
 These limitations, while noteworthy, do not undermine the study's findings but rather highlight areas for refinement in future research.
 
