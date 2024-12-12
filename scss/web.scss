@@ -3,21 +3,20 @@
 // See: <https://quarto.org/docs/output-formats/html-themes.htm>.
 // See: <https://quarto.org/docs/authoring/brand.html>.
 
-$body-color: $secondary;
-
 $content-padding-top: 1.25rem;
 
-$callout-color-note: $primary;
-$callout-color-tip: $primary;
-$callout-color-caution: $primary;
-$callout-color-warning: $primary;
-$callout-color-important: $primary;
+$callout-color-note: #EA7701;
+$callout-color-tip: #EA7701;
+$callout-color-caution: #EA7701;
+$callout-color-warning: #EA7701;
+$callout-color-important: #EA7701;
 
 /*-- scss:rules --*/
 
-.center-x {
-  display: inline-block;
-  text-align: center;
+/* Body ----- */
+
+body {
+  color: $brand-gray;
 }
 
 /* Navigation ----- */
@@ -129,4 +128,11 @@ code a:any-link {
 
 .quarto-float-caption-top {
   margin-bottom: 2em;
+}
+
+/* Others ----- */
+
+.center-x {
+  display: inline-block;
+  text-align: center;
 }

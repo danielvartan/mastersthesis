@@ -13,37 +13,15 @@ source(here::here("R", "_setup.R"))
 #| include: false
 
 library(magrittr)
+library(tidyr)
+library(patchwork)
+library(targets)
 ```
 
 ```{r}
 #| include: false
 
 source(here::here("R", "utils.R"))
-```
-
-```{r}
-#| eval: false
-#| include: false
-
-targets::tar_make(script = here::here("_targets.R"))
-```
-
-```{r}
-#| include: false
-
-anonymized_data <- targets::tar_read(
-  "anonymized_data", 
-  store = here::here("_targets")
-)
-```
-
-```{r}
-#| include: false
-
-weighted_data <- targets::tar_read(
-  "weighted_data", 
-  store = here::here("_targets")
-)
 ```
 
 ## Overview
@@ -72,9 +50,9 @@ Variables of the Munich ChronoType Questionnaire scale (A sleep log). In its sta
 
 ## Sample
 
-The dataset used for analysis is made up of `{r} results_vars$analysis_data_nrow |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
+The dataset used for analysis is made up of `{r} results_vars$ea_analysis_sample_n |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
 
-The unfiltered valid sample comprises `{r} results_vars$full_data_nrow |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of `{r} results_vars$raw_data_nrow |> format_to_md_latex()` individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The unfiltered valid sample comprises `{r} results_vars$ea_full_sample_n |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of `{r} results_vars$raw_data_nrow |> format_to_md_latex()` individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
 ::: {#fig-appendice-1-age-sex-chronotype-series}
 ![](images/globo-2017-figure-1.png)

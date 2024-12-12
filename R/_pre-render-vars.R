@@ -12,9 +12,15 @@ raw_data <- targets::tar_read(
   store = here::here("_targets")
 )
 
+weighted_data <- targets::tar_read(
+  "weighted_data",
+  store = here::here("_targets")
+)
+
 # Chapter 6 -----
 
-analysis_data_per_nrow_2017_10_15 <- weighted_data |>
+analysis_sample_per_nrow_2017_10_15 <-
+  weighted_data |>
   dplyr::filter(lubridate::date(timestamp) == as.Date("2017-10-15")) |>
   nrow() |>
   magrittr::divide_by(weighted_data |> nrow()) |>
@@ -45,15 +51,14 @@ analysis_data_per_nrow_2017_10_15 <- weighted_data |>
 write_in_results_yml(
   list(
     pr_raw_data_nrow = raw_data |> nrow(),
-    pr_analysis_sample_per_nrow_2017_10_15 = analysis_data_per_nrow_2017_10_15
+    pr_analysis_sample_per_nrow_2017_10_15 = analysis_sample_per_nrow_2017_10_15
   )
 )
 
 rm(
   raw_data,
-  anonymized_data,
   weighted_data,
-  pr_analysis_data_per_nrow_2017_10_15
+  analysis_data_per_nrow_2017_10_15
 )
 
 results_vars <- yaml::read_yaml(here::here("_results.yml"))

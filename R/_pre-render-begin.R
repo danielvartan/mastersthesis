@@ -101,7 +101,7 @@ for (i in var_files){
 
 env_vars |> yaml::write_yaml(env_vars_file_path)
 
-# Create result variables -----
+# Create `_results.yml` variables -----
 
 source(here::here("R", "_pre-render-vars.R"))
 
