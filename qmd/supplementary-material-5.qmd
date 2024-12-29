@@ -579,7 +579,7 @@ for $i = 1, \dots, n$ [@degroot2012, p. 737].
 
 (Linearity of the phenomenon measured [@hair2019, p. 287])
 
-It is important to clarify that the linear assumption pertains to **linearity in the parameters** or equivalently, linearity in the coefficients. This means that each predictor is multiplied by its corresponding regression coefficient. However, this does not imply that the relationship between the predictors and the response variable is linear. In fact, a linear model can still effectively capture non-linear relationships between predictors and the response variable by utilizing transformations of the predictors [@cohen2002].
+It is important to clarify that the linear assumption pertains to **linearity in the parameters** or equivalently, linearity in the coefficients. This means that each predictor is multiplied by its corresponding regression coefficient. However, this does not imply that the relationship between the predictors and the response variable is linear. In fact, a linear model can still effectively capture non-linear relationships between predictors and the response variable by utilizing transformations of the predictors [@cohen2002, p. 195].
 :::
 
 **Assumption 3** is satisfied, as the relationship between the variables is fairly linear.
@@ -1700,7 +1700,7 @@ for $i = 1, \dots, n$ [@degroot2012, p. 737].
 
 (Linearity of the phenomenon measured [@hair2019, p. 287])
 
-It is important to clarify that the linear assumption pertains to **linearity in the parameters** or equivalently, linearity in the coefficients. This means that each predictor is multiplied by its corresponding regression coefficient. However, this does not imply that the relationship between the predictors and the response variable is linear. In fact, a linear model can still effectively capture non-linear relationships between predictors and the response variable by utilizing transformations of the predictors [@cohen2002].
+It is important to clarify that the linear assumption pertains to **linearity in the parameters** or equivalently, linearity in the coefficients. This means that each predictor is multiplied by its corresponding regression coefficient. However, this does not imply that the relationship between the predictors and the response variable is linear. In fact, a linear model can still effectively capture non-linear relationships between predictors and the response variable by utilizing transformations of the predictors [@cohen2002, p. 195].
 :::
 
 **Assumption 3** is satisfied, as the relationship between the variables is fairly linear.

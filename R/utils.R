@@ -202,6 +202,7 @@ to_ascii_and_lower <- function(x, from = "UTF-8") {
   x |> to_ascii(from) |> tolower()
 }
 
+# library(clipr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 vector_to_c <- function(x, quote = TRUE, clipboard = TRUE) {
@@ -214,7 +215,7 @@ vector_to_c <- function(x, quote = TRUE, clipboard = TRUE) {
   if (isTRUE(clipboard)) {
     cli::cli_alert_info("Copied to clipboard.")
 
-    utils::writeClipboard(out)
+    out |> clipr::write_clip()
   }
 
   cat(out)
@@ -329,4 +330,77 @@ nullify_list <- function(list) {
   }
 
   list
+}
+
+# library(clipr)
+library(magrittr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(stringr)
+
+normalize_names <- function(
+    path = clipr::read_clip(),
+    exceptions = c(
+      "^README", "^OFL.txt$", "^DESCRIPTION", "^Google README.txt$"
+    ),
+    just_dirs = FALSE
+  ) {
+  prettycheck:::assert_string(path)
+  prettycheck:::assert_directory_exists(path)
+  prettycheck:::assert_character(exceptions)
+  prettycheck:::assert_flag(just_dirs)
+
+  dirs <- path |> list.dirs()
+  if (length(dirs) == 0) dirs <- path
+
+  if (!length(dirs) == 0 && isTRUE(just_dirs)) {
+    dirs <- dirs |> magrittr::extract(-1)
+
+    new_dir_name <-
+      dirs |>
+      basename() |>
+      tolower() |>
+      stringr::str_replace_all(" - ", "_") |>
+      stringr::str_replace_all(" ", "-") |>
+      stringr::str_squish() %>%
+      file.path(dirname(dirs), .)
+
+    for (i in rev(seq_along(dirs))) {
+      if (!dirs[i] == new_dir_name[i]) {
+        paste(
+          "mv",
+          glue::single_quote(dirs[i]),
+          glue::single_quote(new_dir_name[i])
+        ) |>
+          system()
+      }
+    }
+
+    dirs <-
+      path |>
+      list.dirs() |>
+      magrittr::extract(-1)
+  } else {
+    for (i in dirs) {
+      files <- list.files(i)
+
+      for (j in exceptions) {
+        files <- files |> stringr::str_subset(j, negate = TRUE)
+      }
+
+      if (length(files) == 0) {
+        next
+      } else {
+        new_name <-
+          files |>
+          tolower() |>
+          stringr::str_replace_all(" - ", "_") |>
+          stringr::str_replace_all(" ", "-") |>
+          stringr::str_squish()
+
+        file.rename(file.path(i, files), file.path(i, new_name))
+      }
+    }
+  }
+
+  invisible()
 }

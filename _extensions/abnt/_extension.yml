@@ -50,11 +50,10 @@ contributes:
       df-print: kable
     pdf:
       documentclass: abntex2
-      mainfont: Arial
-      sansfont: Arial
-      monofont: FragmentMono-Regular.otf
+      mainfont: Helvetica Neue LT Std
+      sansfont: Helvetica Neue LT Std
+      monofont: Fragment Mono
       monofontoptions:
-        - ItalicFont=FragmentMono-Italic.otf
         - Scale=0.75
       fontsize: 12pt
       linestretch: 1.5

@@ -58,7 +58,7 @@ write_in_results_yml(
 rm(
   raw_data,
   weighted_data,
-  analysis_data_per_nrow_2017_10_15
+  analysis_sample_per_nrow_2017_10_15
 )
 
 results_vars <- yaml::read_yaml(here::here("_results.yml"))

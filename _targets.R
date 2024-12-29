@@ -1,9 +1,10 @@
 # See <https://books.ropensci.org/targets/> to learn more.
 
-# library(here)
+library(here)
 library(tarchetypes)
 library(targets)
 
+# source(here::here("R", "set_locale.R"))
 source(here::here("R", "get_raw_data.R"))
 source(here::here("R", "tidy_data_.R"))
 source(here::here("R", "validate_data.R"))

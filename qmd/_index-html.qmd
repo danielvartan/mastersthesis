@@ -8,11 +8,9 @@
 source(here::here("R", "_setup.R"))
 ```
 
-You are viewing the web version of this thesis. To view the PDF version, click [here](index.pdf) or use the PDF icon in the menu.
+You are viewing the web version of this thesis. To access the print version, click [here](index.pdf) or select the PDF icon from the menu.
 
-All analyses presented in this document are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) and the [Quarto](https://quarto.org/) publishing system.
-
-To explore the code and repository for this thesis, click [here](https://github.com/danielvartan/mastersthesis) or use the GitHub icon in the menu. The research compendium is also accessible via [The Open Science Framework](https://osf.io/) by clicking [here](https://doi.org/10.17605/OSF.IO/YGKTS).
+All analyses presented in this document are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) and the [Quarto](https://quarto.org/) publishing system. To explore the code and repository for this thesis, click [here](https://github.com/danielvartan/mastersthesis) or use the GitHub icon in the menu. The research compendium is also accessible via [The Open Science Framework](https://osf.io/) by clicking [here](https://doi.org/10.17605/OSF.IO/YGKTS).
 
 ## License {.unnumbered}
 

@@ -119,7 +119,7 @@ lock_data <- function(
 store_data <- function(
     file,
     osf_pat = Sys.getenv("OSF_PAT"),
-    upload_to_osf = TRUE,
+    upload_to_osf = TRUE
   ) {
   prettycheck:::assert_flag(upload_to_osf)
 

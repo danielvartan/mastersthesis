@@ -55,3 +55,9 @@ results_vars_file_path <- here::here("_results.yml")
 if (!prettycheck:::test_file_exists(results_vars_file_path)) {
   rutils:::create_file(results_vars_file_path)
 }
+
+# Run the data pipeline if the `_targets` directory doesn't exist -----
+
+if (!prettycheck:::test_directory_exists(here::here("_targets"))) {
+  targets::tar_make()
+}

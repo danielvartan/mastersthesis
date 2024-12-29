@@ -31,17 +31,17 @@ book:
         - qmd/chapter-5.qmd
         - qmd/chapter-6.qmd
     - qmd/references.qmd
-  appendices:
-    - qmd/supplementary-material-1.qmd
-    - qmd/supplementary-material-2.qmd
-    - qmd/supplementary-material-3.qmd
-    - qmd/supplementary-material-4.qmd
-    - qmd/supplementary-material-5.qmd
-    - qmd/supplementary-material-6.qmd
-    - qmd/supplementary-material-7.qmd
-    - qmd/supplementary-material-8.qmd
-    - qmd/supplementary-material-9.qmd
-    - qmd/supplementary-material-10.qmd
+  # appendices:
+  #   - qmd/supplementary-material-1.qmd
+  #   - qmd/supplementary-material-2.qmd
+  #   - qmd/supplementary-material-3.qmd
+  #   - qmd/supplementary-material-4.qmd
+  #   - qmd/supplementary-material-5.qmd
+  #   - qmd/supplementary-material-6.qmd
+  #   - qmd/supplementary-material-7.qmd
+  #   - qmd/supplementary-material-8.qmd
+  #   - qmd/supplementary-material-9.qmd
+  #   - qmd/supplementary-material-10.qmd
   comments:
     hypothesis:
       theme: clean
@@ -53,7 +53,7 @@ knitr:
     comment: "#>"
     dev: png
     dev.args:
-      bg: transparent
+      bg: "transparent"
 
 format:
   html:

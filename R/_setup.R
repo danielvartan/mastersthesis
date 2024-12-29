@@ -3,7 +3,6 @@
 # Load libraries -----
 
 library(downlit)
-# library(extrafont)
 library(ggplot2)
 # library(here)
 # library(knitr)
@@ -50,27 +49,9 @@ if (env_vars$format == "html") {
 
 env_vars$base_size <- base_size
 
-# Load fonts -----
-
-if (is.null(env_vars$sansfont)) {
-  cli::cli_abort("Error while importing the environment variables.")
-} else {
-  extrafont::font_import(
-    paths = NULL,
-    recursive = TRUE,
-    prompt = FALSE,
-    pattern = paste0(
-      "^(?i)", stringr::str_extract(env_vars$sansfont, "(?i)^.[a-zÀ-ÿ]+"), "*"
-    )
-  ) |>
-    rutils::shush()
-
-  extrafont::loadfonts(quiet = TRUE)
-}
-
 # Set knitr -----
 
-knitr::clean_cache()
+knitr::clean_cache() |> rutils:::shush()
 
 knitr::opts_chunk$set(
   # comment = "#>",
@@ -87,25 +68,43 @@ ggplot2::theme_set(
     base_line_size = base_size / 22,
     base_rect_size = base_size / 22
   )
-)
+) +
+  ggplot2::theme(
+    panel.background = ggplot2::element_rect(fill = "transparent"),
+    plot.background = ggplot2::element_rect(
+      fill = "transparent", color = NA
+    ),
+    panel.grid.major = ggplot2::element_blank(),
+    panel.grid.minor = ggplot2::element_blank(),
+    legend.background = ggplot2::element_rect(fill = "transparent"),
+    legend.box.background = ggplot2::element_rect(fill = "transparent"),
+    legend.frame = ggplot2::element_blank()
+  )
 
-thematic::thematic_set_theme(
-  thematic::thematic_theme(
-    bg = get_brand_color("white") |> paste0("00"),
-    fg = get_brand_color("secondary"),
-    accent = get_brand_color("primary"),
-    font = thematic::font_spec(
-      families = get_brand_font("base"),
-      install = TRUE
-    )
-  ) +
-    ggplot2::theme(
-      panel.background = ggplot2::element_rect(fill = "transparent"),
-      plot.background = ggplot2::element_rect(fill = "transparent", color = NA),
-      panel.grid.major = ggplot2::element_blank(),
-      panel.grid.minor = ggplot2::element_blank(),
-      legend.background = ggplot2::element_rect(fill = "transparent"),
-      legend.box.background = ggplot2::element_rect(fill = "transparent"),
-      legend.frame = ggplot2::element_blank()
-    )
-)
+# thematic::thematic_set_theme(
+#   thematic::thematic_theme(
+#     bg = NA,
+#     # bg = get_brand_color("white") |> paste0("00"),
+#     fg = get_brand_color("secondary"),
+#     accent = get_brand_color("primary"),
+#     font = thematic::font_spec(
+#       families = ifelse(
+#         env_vars$format == "html",
+#         get_brand_font("base"),
+#         env_vars$sansfont
+#       ),
+#       install = TRUE
+#     )
+#   ) +
+#     ggplot2::theme(
+#       panel.background = ggplot2::element_rect(fill = "transparent"),
+#       plot.background = ggplot2::element_rect(
+#         fill = "transparent", color = NA
+#       ),
+#       panel.grid.major = ggplot2::element_blank(),
+#       panel.grid.minor = ggplot2::element_blank(),
+#       legend.background = ggplot2::element_rect(fill = "transparent"),
+#       legend.box.background = ggplot2::element_rect(fill = "transparent"),
+#       legend.frame = ggplot2::element_blank()
+#     )
+# )

@@ -93,7 +93,7 @@ plot_analysis_3 <-
 
 [Source: Created by the author.]{.legend}
 
-Geographical distribution of the sample used in the analysis: ($`{r} results_vars$ea_analysis_sample_n |> format_to_md_latex(before = "n = ") |> I()`$). Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017. The size and color scale are logarithmic ($\log_{10}$).
+Geographical distribution of the sample used in the analysis: (`{r} results_vars$ea_analysis_sample_n |> format_to_md_latex(before = "n = ") |> I()`). Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017. The size and color scale are logarithmic ($\log_{10}$).
 :::
 
 ## Results
