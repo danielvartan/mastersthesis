@@ -13,7 +13,9 @@ categorize_msf_sc <- function(x) {
     dplyr::tibble(msf_sc = x) |>
     get_chronotype_cutoffs("msf_sc", pretty = FALSE)
 
-  x <- x |> lubritime:::link_to_timeline()
+  x <-
+    x |>
+    lubritime:::link_to_timeline(threshold = hms::parse_hms("12:00:00"))
 
   dplyr::case_when(
     x < lubridate::int_start(fill$interval[1]) ~ fill$label[1],

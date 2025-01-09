@@ -277,8 +277,7 @@ data |>
   ggplot2::labs(
     x = "Latitude",
     y = "HO"
-  ) +
-  ggplot2::theme(text = ggplot2::element_text(size = env_vars$base_size))
+  )
 ```
 
 Source: Created by the author based on data from @leocadio-miguel2017.
@@ -326,8 +325,7 @@ data |>
   ggplot2::labs(
     x = "Latitude",
     y = "HO"
-  ) +
-  ggplot2::theme(text = ggplot2::element_text(size = env_vars$base_size))
+  )
 ```
 
 Source: Created by the author based on data from @leocadio-miguel2017.

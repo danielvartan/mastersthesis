@@ -16,7 +16,7 @@ The hypothesis, also called *environment hypothesis*, posits that regions closer
 In contrast, populations near the poles experience a weaker solar zeitgeber, leading to greater variability and amplitude of circadian phenotypes. This disparity translates into differences in chronotype: equatorial populations tend to exhibit a morningness orientation, while populations at higher and low latitudes tend toward eveningness [@bohlen1973; @roenneberg2003].
 
 ::: {#fig-chapter-4-hut-2013-figure-1}
-![](images/hut-2013-figure-1.png){width=95%}
+![](images/hut-2013-figure-1.png){width=100%}
 
 [Source: Reproduction from @hut2013.]{.legend}
 
@@ -28,7 +28,7 @@ Some authors claim to found this association, but a closer look at the data reve
 ::: {#fig-chapter-4-roenneberg-2003-figure-7-f-adapted}
 ![](images/roenneberg-2003-figure-7-f-adapted.png){width=75%}
 
-[Source: Adapted from @roenneberg2003.]{.legend}
+[Source: Created by the author, adapted from @roenneberg2003[Figure 7F].]{.legend}
 
 Different chronotype distributions, influenced by strong and weak zeitgebers -- orange for strong (leptokurtic) and black for weak (platykurtic). An illustration of the effect hypothesized by the latitude hypothesis.
 :::
@@ -36,7 +36,7 @@ Different chronotype distributions, influenced by strong and weak zeitgebers -- 
 The findings of @leocadio-miguel2017 are not consistent with the hypothesis that latitude is a strong predictor of chronotype, as the reported effect size is too small to be considered practically significant [@cohen1988]. This highlights a common limitation of studies relying on Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. A p-value does not measure the effect size; instead, it represents the conditional probability of observing the data/test statistic (or something more extreme) assuming the null hypothesis is true, thus quantifying the likelihood of a type I error [@cohen1994; @wasserstein2016].
 
 ::: {#fig-chapter-4-leocadio-miguel-2017-figure-2}
-![](images/leocadio-miguel-2017-figure-2.png){width=75%}
+![](images/leocadio-miguel-2017-figure-2.png){width=85%}
 
 [Source: Reproduction from @leocadio-miguel2017.]{.legend}
 
@@ -46,6 +46,8 @@ Mean scores (±SE) on the Horne & Östberg (HO) chronotype scale [@horne1976] ar
 Several factors may invalidate this hypothesis, such as local clock time and social constraints [@skeldon2021]. To gain a more accurate understanding of the mechanisms underlying chronotype expression, it remains crucial to test this hypothesis in larger samples. This study aims to address that gap.
 
 In the following sections, the hypothesis will be tested using one of the largest chronotype datasets, to the author's knowledge, with geocoding information integrated for a comprehensive analysis. The approach will adhere to sound statistical principles, incorporating a minimum effect size in the alternative hypothesis, as originally proposed by Neyman and Pearson data testing framework [@neyman1928; @neyman1928a].
+
+<!-- # Notes -->
 
 <!-- "[...] however social factors (including the effect of putting on the electric light when the alarm clock rings) might counteract this. [@bohlen1973, p. 91] -->
 
@@ -65,8 +67,6 @@ In the following sections, the hypothesis will be tested using one of the larges
 
 <!-- 1. Using the p-value instead of the effect size as a criterion for rejecting or accepting the alternative hypothesis; -->
 <!-- 2. Failing to integrate a minimum effect size in the alternative hypothesis. A test without the latter can create serious distortions in the interpretation of the results, since even a negligible effect could lead to the acceptance of the alternative hypothesis. -->
-
-<!-- article note -->
 
 ```{=latex}
 \newpage

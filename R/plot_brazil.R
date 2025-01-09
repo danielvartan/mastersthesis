@@ -16,72 +16,42 @@ plot_brazil_point <- function(
     col_latitude = "latitude",
     col_longitude = "longitude",
     col_group = NULL,
-    year = 2017,
     transform = "identity",
-    thematic = TRUE,
-    thematic_direction = 1,
-    viridis = "viridis",
-    viridis_direction = 1,
-    viridis_discrete = TRUE,
+    direction = 1,
     alpha = 0.75,
     size_point = 0.5,
-    color_point = "#964D01",
-    # color_point =
-    #   viridis::plasma(1, begin = 0.65, direction = 1) |>
-    #   stringr::str_trunc(7, ellipsis = ""),
-    color_border = "gray75",
-    color_bg = "white",
-    linewidth = 0.1,
     breaks = ggplot2::waiver(),
     labels = ggplot2::waiver(),
     reverse = FALSE,
     limits = NULL,
-    title = NULL,
-    subtitle = NULL,
-    x_label = NULL, # "Longitude"
-    y_label = NULL, # Latitude"
-    theme = "bw",
-    legend = TRUE,
-    legend_size = 5,
-    legend_position = "right",
-    text_size = NULL,
-    print = TRUE,
-    ...
+    print = TRUE
   ) {
   prettycheck:::assert_internet()
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(col_latitude)
+  prettycheck:::assert_subset(col_latitude, names(data))
+  prettycheck:::assert_numeric(data[[col_latitude]])
   prettycheck:::assert_string(col_longitude)
-  prettycheck:::assert_subset(c(col_latitude, col_longitude), names(data))
+  prettycheck:::assert_subset(col_longitude, names(data))
+  prettycheck:::assert_numeric(data[[col_longitude]])
   prettycheck:::assert_string(col_group, null.ok = TRUE)
   prettycheck:::assert_choice(col_group, names(data), null.ok = TRUE)
   prettycheck:::assert_multi_class(transform, c("character", "transform"))
-
-  prettycheck:::assert_number(
-    year,
-    lower = 1900,
-    upper = Sys.Date() |> lubridate::year()
-  )
-
-  assert_color_options(NULL, NULL, viridis)
+  prettycheck:::assert_choice(direction, c(-1, 1))
   prettycheck:::assert_number(alpha, lower = 0, upper = 1)
-  prettycheck:::assert_flag(thematic)
-  prettycheck:::assert_choice(thematic_direction, c(-1, 1))
-  prettycheck:::assert_flag(viridis_discrete)
-  prettycheck:::assert_choice(viridis_direction, c(-1, 1))
   prettycheck:::assert_number(size_point, lower = 0)
-  prettycheck:::assert_color(color_point, null_ok = TRUE)
-  prettycheck:::assert_color(color_border, na_ok = TRUE)
-  prettycheck:::assert_color(color_bg, na_ok = TRUE)
-  prettycheck:::assert_number(linewidth, lower = 0, na.ok = TRUE)
-  prettycheck:::assert_multi_class(breaks, c("waiver", "numeric"))
-  prettycheck:::assert_multi_class(labels, c("waiver", "numeric"))
-  prettycheck:::assert_number(legend_size, lower = 0)
+  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
+  prettycheck:::assert_flag(reverse)
   prettycheck:::assert_flag(print)
+
+  prettycheck:::assert_multi_class(
+    limits, c("numeric", "function"), null.ok = TRUE
+  )
 
   brazil_state_data <-
     geobr::read_state(
-      year = year,
+      year = 2017,
       showProgress = FALSE
     ) |>
     rutils::shush()
@@ -115,16 +85,16 @@ plot_brazil_point <- function(
     } +
     ggplot2::geom_sf(
       data = brazil_state_data,
-      color = color_border,
-      fill = color_bg,
-      linewidth = linewidth,
+      color = "gray75",
+      fill = "white",
+      linewidth = 0.1,
       inherit.aes = FALSE
     ) +
     {
       if (is.null(col_group)) {
         ggplot2::geom_point(
           size = size_point,
-          color = color_point,
+          color = "#964D01",
           alpha = alpha
         )
       } else {
@@ -137,7 +107,7 @@ plot_brazil_point <- function(
     ggspatial::annotation_scale(
       location = "br",
       style = "tick",
-      height = unit(0.15, "cm")
+      height = ggplot2::unit(0.15, "cm")
     ) +
     ggspatial::annotation_north_arrow(
       location = "br",
@@ -148,41 +118,19 @@ plot_brazil_point <- function(
       style = ggspatial::north_arrow_fancy_orienteering
     ) +
     ggspatial::coord_sf(crs = 4674) +
-    {
-      if (isTRUE(thematic)) {
-        scale_color_brand_d(
-          direction = thematic_direction,
-          breaks = breaks,
-          labels = labels,
-          reverse = reverse,
-          limits = limits
-        )
-      } else {
-        viridis::scale_color_viridis(
-          direction = viridis_direction,
-          discrete = viridis_discrete,
-          option = viridis,
-          breaks = breaks,
-          labels = labels,
-          limits = limits
-        )
-      }
-    } +
-    add_labels(
-      x = x_label,
-      y = y_label,
-      title = title,
-      subtitle = subtitle
+    scale_color_brand_d(
+      direction = direction,
+      breaks = breaks,
+      labels = labels,
+      reverse = reverse,
+      limits = limits
     ) +
-    add_theme(
-      theme = theme,
-      legend = legend,
-      legend_position = legend_position,
-      text_size = text_size,
-      ...
+    ggplot2::labs(
+      x = NULL,
+      y = NULL
     ) +
     ggplot2::guides(
-      color = ggplot2::guide_legend(override.aes = list(size = legend_size))
+      color = ggplot2::guide_legend(override.aes = list(size = 5))
     )
 
   if (isTRUE(print)) print(plot) |> rutils::shush()
@@ -214,58 +162,38 @@ plot_brazil_state <- function(
     data,
     col_fill = NULL,
     col_code = "state_code",
-    year = 2017,
     transform = "identity", # See ?ggplot2::scale_fill_gradient
-    thematic = TRUE,
-    thematic_direction = 1,
-    viridis = "viridis",
-    viridis_direction = 1,
-    viridis_alpha = 1,
-    color_brewer = "YlOrRd", # RColorBrewer::display.brewer.all()
-    color_low = NULL,
-    color_high = NULL,
-    color_na = NA,
-    color_border = "gray75",
-    color_bg = "white",
-    linewidth = 0.1,
-    binary = FALSE,
+    direction = 1,
     binned = TRUE,
     breaks = ggplot2::waiver(),
     n_breaks = NULL,
     labels = ggplot2::waiver(),
     reverse = TRUE,
     limits = NULL,
-    title = NULL,
-    subtitle = NULL,
-    x_label = NULL, # "Longitude"
-    y_label = NULL, # Latitude"
-    fill_label = NULL,
-    theme = "bw",
-    legend = TRUE,
-    text_size = NULL,
     print = TRUE,
-    quiet = FALSE,
-    ...
+    quiet = FALSE
   ) {
   prettycheck:::assert_internet()
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(col_fill, null.ok = TRUE)
   prettycheck:::assert_choice(col_fill, names(data), null.ok = TRUE)
+  if (!is.null(col_fill)) prettycheck:::assert_numeric(data[[col_fill]])
   prettycheck:::assert_string(col_code)
   prettycheck:::assert_choice(col_code, names(data))
   prettycheck:::assert_integerish(data[[col_code]])
-
-  prettycheck:::assert_number(
-    year,
-    lower = 1900,
-    upper = Sys.Date() |> lubridate::year()
-  )
-
-  prettycheck:::assert_color(color_border, na_ok = TRUE)
-  prettycheck:::assert_color(color_bg, na_ok = TRUE)
-  prettycheck:::assert_number(linewidth, lower = 0, na.ok = TRUE)
+  prettycheck:::assert_multi_class(transform, c("character", "transform"))
+  prettycheck:::assert_choice(direction, c(-1, 1))
+  prettycheck:::assert_flag(binned)
+  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  prettycheck:::assert_integer_number(n_breaks, lower = 1, null.ok = TRUE)
+  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
+  prettycheck:::assert_flag(reverse)
   prettycheck:::assert_flag(print)
   prettycheck:::assert_flag(quiet)
+
+  prettycheck:::assert_multi_class(
+    limits, c("numeric", "function"), null.ok = TRUE
+  )
 
   plot <-
     data |>
@@ -277,7 +205,7 @@ plot_brazil_state <- function(
     ) |>
     dplyr::right_join(
       geobr::read_state(
-        year = year,
+        year = 2017,
         showProgress = FALSE
       ) |>
         rutils::shush(),
@@ -286,9 +214,9 @@ plot_brazil_state <- function(
     ggplot2::ggplot() +
     ggplot2::geom_sf(
       ggplot2::aes(geometry = geom),
-      color = color_border,
-      linewidth = linewidth,
-      fill = color_bg
+      color = "gray75",
+      linewidth = 0.1,
+      fill = "white"
     ) +
     ggplot2::geom_sf(
       ggplot2::aes(geometry = geom, fill = n),
@@ -298,7 +226,7 @@ plot_brazil_state <- function(
       ggplot2::aes(),
       location = "br",
       style = "tick",
-      height = unit(0.15, "cm")
+      height = ggplot2::unit(0.15, "cm")
     ) +
     ggspatial::annotation_north_arrow(
       location = "br",
@@ -309,39 +237,29 @@ plot_brazil_state <- function(
       style = ggspatial::north_arrow_fancy_orienteering
     ) +
     ggspatial::coord_sf(crs = 4674) +
-    add_labels(
-      x = x_label,
-      y = y_label,
-      title = title,
-      subtitle = subtitle,
-      fill = fill_label
+    ggplot2::labs(
+      x = NULL,
+      y = NULL,
+      fill = NULL
     ) +
-    add_color_scale(
-      thematic = thematic,
-      thematic_direction = thematic_direction,
-      viridis = viridis,
-      viridis_direction = viridis_direction,
-      viridis_alpha = viridis_alpha,
-      color_brewer = color_brewer,
-      color_low = color_low,
-      color_high = color_high,
-      color_na = color_na,
-      binary = binary,
-      binned = binned,
+    scale_brand(
+      aesthetics = "fill",
+      scale_type = ifelse(isTRUE(binned), "binned", "continuous"),
+      direction = direction,
       breaks = breaks,
-      n_breaks = n_breaks,
-      labels= labels,
+      n.breaks = n_breaks,
+      labels = labels,
       reverse = reverse,
       limits = limits,
-      point = FALSE,
       transform = transform
-    ) +
-    add_theme(
-      theme = theme,
-      legend = legend,
-      text_size = text_size,
-      ...
     )
+
+  # if (isFALSE(binned)) {
+  #   plot <-
+  #     plot + ggplot2::theme(
+  #       legend.ticks = ggplot2::element_line(color = "white")
+  #     )
+  # }
 
   if (isTRUE(print)) print(plot) |> rutils::shush()
 
@@ -361,67 +279,46 @@ plot_brazil_municipality <- function(
     data,
     col_fill = NULL,
     col_code = "municipality_code",
-    year = 2017,
     transform = "identity", # See `?ggplot2::scale_fill_gradient`
-    thematic = TRUE,
-    thematic_direction = 1,
-    viridis ="viridis",
-    viridis_direction = 1,
-    color_brewer = "YlOrRd", # See `RColorBrewer::display.brewer.all()`
-    color_low = NULL,
-    color_high = NULL,
-    color_na = NA,
-    color_border = "gray75",
-    color_bg = "white",
+    direction = 1,
     alpha = 1,
-    linewidth = 0.1,
-    binary = FALSE,
     binned = TRUE,
-    n_breaks = NULL,
     range = c(0, 10),
     breaks = ggplot2::waiver(),
+    n_breaks = NULL,
     labels = ggplot2::waiver(),
     reverse = TRUE,
     limits = NULL,
     zero_na = FALSE,
     point = FALSE,
-    title = NULL,
-    subtitle = NULL,
-    x_label = NULL, # "Longitude"
-    y_label = NULL, # Latitude"
-    color_label = NULL,
-    fill_label = NULL,
-    size_label = NULL,
-    theme = "bw",
-    legend = TRUE,
-    text_size = NULL,
     print = TRUE,
-    quiet = FALSE,
-    ...
+    quiet = FALSE
   ) {
   prettycheck:::assert_internet()
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(col_fill, null.ok = TRUE)
   prettycheck:::assert_choice(col_fill, names(data), null.ok = TRUE)
+  if (!is.null(col_fill)) prettycheck:::assert_numeric(data[[col_fill]])
   prettycheck:::assert_string(col_code)
   prettycheck:::assert_choice(col_code, names(data))
   prettycheck:::assert_integerish(data[[col_code]])
-
-  prettycheck:::assert_number(
-    year,
-    lower = 1900,
-    upper = Sys.Date() |> lubridate::year()
-  )
-
-  prettycheck:::assert_color(color_border, na_ok = TRUE)
-  prettycheck:::assert_color(color_bg, na_ok = TRUE)
+  prettycheck:::assert_multi_class(transform, c("character", "transform"))
+  prettycheck:::assert_choice(direction, c(-1, 1))
+  prettycheck:::assert_number(alpha, lower = 0, upper = 1)
+  prettycheck:::assert_flag(binned)
   prettycheck:::assert_integerish(range, len = 2)
-  prettycheck:::assert_multi_class(breaks, c("waiver", "numeric"))
-  prettycheck:::assert_number(linewidth, lower = 0, na.ok = TRUE)
+  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  prettycheck:::assert_integer_number(n_breaks, lower = 1, null.ok = TRUE)
+  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
+  prettycheck:::assert_flag(reverse)
   prettycheck:::assert_flag(zero_na)
   prettycheck:::assert_flag(point)
   prettycheck:::assert_flag(print)
   prettycheck:::assert_flag(quiet)
+
+  prettycheck:::assert_multi_class(
+    limits, c("numeric", "function"), null.ok = TRUE
+  )
 
   out <-
     data |>
@@ -433,7 +330,7 @@ plot_brazil_municipality <- function(
     ) |>
     dplyr::right_join(
       geobr::read_municipality(
-        year = year,
+        year = 2017,
         showProgress = FALSE
       ) |>
         rutils::shush(),
@@ -448,9 +345,6 @@ plot_brazil_municipality <- function(
     plot <-
       out |>
       plot_brazil_municipality_point(
-        color_border = color_border,
-        color_bg = color_bg,
-        linewidth = linewidth,
         alpha = alpha,
         range = range,
         breaks = breaks
@@ -461,9 +355,9 @@ plot_brazil_municipality <- function(
       ggplot2::ggplot() +
       ggplot2::geom_sf(
         ggplot2::aes(geometry = geom),
-        color = color_border,
-        linewidth = linewidth,
-        fill = color_bg
+        color = "gray75",
+        linewidth = 0.1,
+        fill = "white"
       ) +
       ggplot2::geom_sf(
         ggplot2::aes(geometry = geom, fill = n),
@@ -488,40 +382,23 @@ plot_brazil_municipality <- function(
       style = ggspatial::north_arrow_fancy_orienteering
     ) +
     ggspatial::coord_sf(crs = 4674) +
-    add_labels(
-      x = x_label,
-      y = y_label,
-      title = title,
-      subtitle = subtitle,
-      color = color_label,
-      fill = fill_label,
-      size = size_label
+    ggplot2::labs(
+      x = NULL,
+      y = NULL,
+      fill = NULL,
+      color = NULL,
+      size = NULL
     ) +
-    add_color_scale(
-      thematic = thematic,
-      thematic_direction = thematic_direction,
-      viridis = viridis,
-      viridis_direction = viridis_direction,
-      viridis_alpha = alpha,
-      color_brewer = color_brewer,
-      color_low = color_low,
-      color_high = color_high,
-      color_na = color_na,
-      binary = binary,
-      binned = binned,
+    scale_brand(
+      aesthetics = ifelse(isTRUE(point), "color", "fill"),
+      scale_type = ifelse(isTRUE(binned), "binned", "continuous"),
+      direction = direction,
       breaks = breaks,
-      n_breaks = n_breaks,
-      labels= labels,
+      n.breaks = n_breaks,
+      labels = labels,
       reverse = ifelse(isTRUE(point), FALSE, reverse),
       limits = limits,
-      point = point,
       transform = transform
-    ) +
-    add_theme(
-      theme = theme,
-      legend = legend,
-      text_size = text_size,
-      ...
     )
 
   if (isTRUE(print)) print(plot) |> rutils::shush()
@@ -539,28 +416,14 @@ plot_brazil_municipality <- function(
 
 plot_brazil_municipality_point <- function(
     data,
-    year = 2017,
-    color_border = "gray75",
-    color_bg = "white",
-    linewidth = 0.1,
     alpha = 0.7,
     range = c(0, 10),
     breaks = ggplot2::waiver()
   ) {
   prettycheck:::assert_internet()
   prettycheck:::assert_tibble(data)
-
-  prettycheck:::assert_number(
-    year,
-    lower = 1900,
-    upper = Sys.Date() |> lubridate::year()
-  )
-
-  prettycheck:::assert_color(color_border, na_ok = TRUE)
-  prettycheck:::assert_color(color_bg, na_ok = TRUE)
-  prettycheck:::assert_number(linewidth, lower = 0, na.ok = TRUE)
   prettycheck:::assert_number(alpha, lower = 0, upper = 1)
-  prettycheck:::assert_multi_class(breaks, c("waiver", "numeric"))
+  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
   prettycheck:::assert_integerish(range, len = 2)
 
   data_points <-
@@ -581,14 +444,14 @@ plot_brazil_municipality_point <- function(
   ggplot2::ggplot() +
     ggplot2::geom_sf(
       data = geobr::read_state(
-        year = year,
+        year = 2017,
         showProgress = FALSE
       ) |>
         rutils::shush(),
       ggplot2::aes(geometry = geom),
-      color = color_border,
-      linewidth = linewidth,
-      fill = color_bg,
+      color = "gray75",
+      linewidth = 0.1,
+      fill = "white",
       inherit.aes = FALSE
     ) +
     ggplot2::geom_point(

@@ -1,0 +1,141 @@
+# Exploratory Analysis – 2025-01-08
+
+## Setting the Enviroment
+
+```{r}
+#| eval: false
+
+library(googlesheets4)
+
+```
+
+## Downloading the Data
+
+```{r}
+googlesheets4::gs4_auth()
+```
+
+```{r}
+control_form <- googlesheets4::read_sheet(
+  ss = "13wtDr4fRD1wJSM-qdLOdGSchF8oXU1bG0Jtccu24GhY",
+  sheet = "Dataset",
+  col_types = "c"
+)
+```
+
+```{r}
+field_form <- googlesheets4::read_sheet(
+  ss = "1tY_TT0nPXFsErYQS2VED0-hqTzgHudA9BfhRhYG19fw",
+  sheet = "Dataset",
+  col_types = "c"
+)
+```
+
+## Data Wrangling
+
+```{r}
+control_data <-
+  control_form |>
+  `names<-`(paste0("X", seq_along(data))) |>
+  dplyr::select(X5, X6, X7, X12, X13, X14) |>
+  dplyr::rename(
+    cpf = X5,
+    id = X6,
+    name = X7,
+    birth_center = X12,
+    birth = X13,
+    labor_start = X14
+  ) |>
+  dplyr::mutate(
+    birth_center = dplyr::case_when(
+      tolower(trimws(birth_center)) == "sim" ~ TRUE,
+      tolower(trimws(birth_center)) == "não" ~ FALSE,
+      TRUE ~ NA
+    ),
+    birth = lubridate::as_datetime(birth),
+    labor_start = lubridate::as_datetime(labor_start)
+  ) |>
+  dplyr::mutate(
+    labor_duration = lubritime::int_duration(
+      start = labor_start,
+      end = birth
+    )
+  ) |>
+  dplyr::filter(!is.na(labor_duration))
+```
+
+```{r}
+field_form_data <-
+  field_form |>
+  `names<-`(paste0("X", seq_along(field_form))) |>
+  dplyr::select(X1, X4, X5, X95, X96, X99) |>
+  dplyr::rename(
+    timestamp = X1,
+    birth_date = X4,
+    cpf = X5,
+    weight = X95,
+    height = X96,
+    family_income = X99
+  ) |>
+  dplyr::mutate(
+    timestamp = lubridate::mdy_hms(timestamp),
+    birth_date = lubridate::dmy(birth_date),
+    age = scaler:::age(birth_date, timestamp),
+    weight = as.numeric(weight),
+    height = as.numeric(height),
+    family_income = as.numeric(family_income)
+  )
+```
+
+```{r}
+data <-
+  control_data |>
+  dplyr::left_join(
+    field_form_data,
+    by = "cpf"
+  ) |>
+  dplyr::select(
+    id,
+    labor_duration,
+    age, weight, height, family_income
+  ) |>
+  dplyr::mutate(
+    labor_duration = lubridate::as.duration(labor_duration),
+    labor_duration = as.numeric(labor_duration)
+  ) |>
+  tidyr::drop_na()
+```
+
+## Modeling the Final Data
+
+```{r}
+model <- lm(
+ formula = labor_duration ~ age + weight + height + family_income,
+ data = data
+)
+```
+
+```{r}
+model <- lm(
+  formula = labor_duration ~ weight + height + family_income,
+  data = data
+)
+```
+
+```{r}
+summary(model)
+```
+
+```{r}
+dplyr::tibble(
+  labor_duration = data$labor_duration,
+  prediction = stats::predict(model, data = data),
+  error = labor_duration - prediction
+) |>
+  dplyr::mutate(
+    dplyr::across(
+      dplyr::everything(),
+      hms::as_hms
+    )
+  )
+```

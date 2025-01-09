@@ -25,7 +25,6 @@ test_normality <- function(
     log_transform = FALSE,
     density_line = TRUE,
     threshold = hms::parse_hms("12:00:00"),
-    text_size = NULL,
     print = TRUE
   ) {
   classes <- c(
@@ -40,14 +39,12 @@ test_normality <- function(
   prettycheck:::assert_number(iqr_mult, lower = 1)
   prettycheck:::assert_flag(log_transform)
   prettycheck:::assert_flag(density_line)
+  prettycheck:::assert_flag(print)
 
   prettycheck:::assert_hms(
     threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59"),
     null_ok = TRUE
   )
-
-  prettycheck:::assert_number(text_size, null.ok = TRUE)
-  prettycheck:::assert_flag(print)
 
   x <- data |> dplyr::pull(col)
   n <- x |> length()
@@ -122,7 +119,6 @@ test_normality <- function(
     dplyr::tibble(x = x) |>
     plot_qq(
       col = "x",
-      text_size = text_size,
       print = FALSE
     )
 
@@ -132,7 +128,6 @@ test_normality <- function(
       col = "x",
       density_line = density_line,
       x_label = name,
-      text_size = text_size,
       print = FALSE
       )
 

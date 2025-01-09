@@ -159,7 +159,7 @@ $$
 
 ## {.center-x}
 
-![](images/borbely-1982-figure-4.png){.r-stretch}
+![](images/borbely-1982-figure-4-adapted.png){.r-stretch}
 
 ::: footer
 [@borbely1982]
@@ -477,11 +477,7 @@ Residential geographic distribution among sample subjects.
 
 source(here::here("R", "plot_brazil_state_map.R"))
 
-prettycheck:::assert_internet()
-
-brazil_uf_map <- 
-  data |> 
-  plot_brazil_state(option = "viridis", text_size = base_size)
+data |> plot_brazil_state()
 ```
 
 ## {background-iframe="https://censo2022.ibge.gov.br/panorama/" background-interactive=true}
@@ -503,11 +499,7 @@ source(here::here("R", "plot_age.R"))
 
 age_pyramid <- 
   data |> 
-  plot_age_pyramid(
-    interval = 10, 
-    na_rm = TRUE, 
-    text_size = base_size
-  )
+  plot_age_pyramid()
 ```
 
 ## {background-iframe="https://censo2022.ibge.gov.br/panorama/" background-interactive=true}
@@ -530,13 +522,12 @@ source(here::here("R", "plot_series.R"))
 data |>
   dplyr::filter(age <= 50) |>
   plot_series(
-    line_width = 2, 
+    linewidth = 2, 
     boundary = 0.5, 
     point_size = 2,
     error_bar_width = 0.5, 
     error_bar_linewidth = 1, 
-    error_bar = TRUE,
-    text_size = base_size
+    error_bar = TRUE
     )
 ```
 
@@ -606,8 +597,7 @@ ggcorrplot <-
   plot_ggally(
     cols = cols,
     mapping = ggplot2::aes(colour = sex),
-    na_rm = TRUE, 
-    text_size = base_size
+    na_rm = TRUE,
   )
 ```
 
@@ -674,16 +664,7 @@ source(here::here("R/plot_latitude_series.R"))
 
 data |>
   dplyr::filter(age <= 50) |>
-  plot_latitude_series(
-    col = "msf_sc", 
-    y_lab = latex2exp::TeX("$MSF_{sc} \\pm SEM$"), 
-    line_width = 2, 
-    point_size = 3,
-    error_bar_width = 0.5, 
-    error_bar_linewidth = 1, 
-    error_bar = TRUE,
-    text_size = base_size
-  )
+  plot_latitude_series()
 ```
 
 ## Discussion {.smaller}

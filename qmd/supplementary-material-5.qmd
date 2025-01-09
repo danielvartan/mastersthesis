@@ -128,18 +128,10 @@ data <-
     )
   ) |>
   dplyr::mutate(
-    msf_sc = dplyr::case_when(
-      all(
-        hms::as_hms(min(msf_sc, na.rm = TRUE)) < hms::parse_hm("12:00") &
-          hms::as_hms(max(msf_sc, na.rm = TRUE)) < hms::parse_hm("12:00"),
-        na.rm = TRUE
-      ) ~ msf_sc |> as.numeric(), # TRUE
-      TRUE ~ msf_sc |> 
-        lubritime:::link_to_timeline(
-          threshold = hms::parse_hms("12:00:00")
-        ) |> 
-        as.numeric()
-    )
+    msf_sc = 
+      msf_sc |>
+      lubritime:::link_to_timeline(threshold = hms::parse_hms("12:00:00")) |>
+      as.numeric()
   ) |>
   tidyr::drop_na()
 ```
@@ -579,7 +571,7 @@ for $i = 1, \dots, n$ [@degroot2012, p. 737].
 
 (Linearity of the phenomenon measured [@hair2019, p. 287])
 
-It is important to clarify that the linear assumption pertains to **linearity in the parameters** or equivalently, linearity in the coefficients. This means that each predictor is multiplied by its corresponding regression coefficient. However, this does not imply that the relationship between the predictors and the response variable is linear. In fact, a linear model can still effectively capture non-linear relationships between predictors and the response variable by utilizing transformations of the predictors [@cohen2002, p. 195].
+As shown in @sec-on-the-latitude-hypothesis, the hypothesis implies linearity and the distribution of the residuals also support this.
 :::
 
 **Assumption 3** is satisfied, as the relationship between the variables is fairly linear.
@@ -1700,7 +1692,7 @@ for $i = 1, \dots, n$ [@degroot2012, p. 737].
 
 (Linearity of the phenomenon measured [@hair2019, p. 287])
 
-It is important to clarify that the linear assumption pertains to **linearity in the parameters** or equivalently, linearity in the coefficients. This means that each predictor is multiplied by its corresponding regression coefficient. However, this does not imply that the relationship between the predictors and the response variable is linear. In fact, a linear model can still effectively capture non-linear relationships between predictors and the response variable by utilizing transformations of the predictors [@cohen2002, p. 195].
+As shown in @sec-on-the-latitude-hypothesis, the hypothesis implies linearity and the distribution of the residuals also support this.
 :::
 
 **Assumption 3** is satisfied, as the relationship between the variables is fairly linear.

@@ -3,13 +3,14 @@
 library(ggplot2)
 # library(here)
 # library(hms)
+# library(latex2exp)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
-# library(viridis)
 
 source(here::here("R", "utils.R"))
+source(here::here("R", "utils-checks.R"))
 source(here::here("R", "utils-plots.R"))
 
 # # To do
@@ -23,25 +24,19 @@ plot_series <- function(
     col_x = "age",
     col_y = "msf_sc",
     col_group = "sex",
-    thematic = TRUE,
-    viridis = "viridis",
-    line_width = 2,
+    linewidth = 2,
     boundary = 0.5,
     point_size = 1,
+    error_bar = TRUE,
     error_bar_width = 0.5,
     error_bar_linewidth = 0.5,
-    error_bar = TRUE,
     date_breaks = "15 mins",
     date_minor_breaks = NULL,
     reverse = FALSE,
     change_sign = FALSE,
-    title = NULL,
-    subtitle = NULL,
     x_label = "Age",
     y_label = latex2exp::TeX("$MSF_{sc}$"), # "$MSF_{sc} \\pm SEM$"
     color_label = "Sex",
-    theme = "bw",
-    text_size = NULL,
     print = TRUE
 ) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
@@ -55,32 +50,28 @@ plot_series <- function(
   prettycheck:::assert_multi_class(data[[col_y]], col_classes)
   prettycheck:::assert_string(col_group)
   prettycheck:::assert_subset(col_group, names(data))
-  prettycheck:::assert_class(data[[col_group]], "factor")
-  prettycheck:::assert_flag(thematic)
-  assert_color_options(viridis = viridis)
-  prettycheck:::assert_multi_class(y_label, c("character", "latexexpression"))
-  prettycheck:::assert_length(y_label, len = 1)
-  prettycheck:::assert_number(line_width)
+  prettycheck:::assert_factor(data[[col_group]])
+  prettycheck:::assert_number(linewidth)
   prettycheck:::assert_number(boundary)
   prettycheck:::assert_number(point_size)
+  prettycheck:::assert_flag(error_bar)
   prettycheck:::assert_number(error_bar_width)
   prettycheck:::assert_number(error_bar_linewidth)
-  prettycheck:::assert_flag(error_bar)
   prettycheck:::assert_string(date_breaks)
+  prettycheck:::assert_flag(reverse)
+  prettycheck:::assert_flag(change_sign)
+  assert_gg_label(x_label)
+  assert_gg_label(y_label)
+  assert_gg_label(color_label)
+  prettycheck:::assert_flag(print)
 
   prettycheck:::assert_multi_class(
     date_minor_breaks, c("waiver", "numeric"), null.ok = TRUE
   )
 
-  prettycheck:::assert_flag(reverse)
-  prettycheck:::assert_flag(change_sign)
-  prettycheck:::assert_flag(print)
-
   if (y_label == col_y && hms::is_hms(data[[col_y]])) {
     y_label = paste0("Local time (", col_y, " +- SEM)")
-  }
-
-  if (y_label == col_y && prettycheck:::test_duration(data[[col_y]])) {
+  } else if (y_label == col_y && prettycheck:::test_duration(data[[col_y]])) {
     y_label = paste0("Duration (", col_y, " +- SEM)")
   }
 
@@ -93,7 +84,12 @@ plot_series <- function(
     )) |>
     dplyr::mutate(dplyr::across(
       .cols = dplyr::where(hms::is_hms),
-      .fns = midday_trigger
+      .fns = function(x) {
+        x |>
+          lubritime:::link_to_timeline(
+            threshold = hms::parse_hms("12:00:00")
+          )
+      }
     )) |>
     dplyr::mutate(
       !!as.symbol(col_x) := ggplot2::cut_width(
@@ -163,7 +159,7 @@ plot_series <- function(
     ggplot2::geom_line(
       ggplot2::aes(x = !!as.symbol(col_x), y = !!as.symbol(col_y), group = 1),
       data = data_by_col_x,
-      linewidth = line_width,
+      linewidth = linewidth,
       color = "gray"
     ) +
     ggplot2::geom_point(
@@ -176,28 +172,11 @@ plot_series <- function(
       size = point_size
     ) +
     ggplot2::scale_x_discrete(breaks = label_decimal_fix) +
-    {
-      if (isTRUE(thematic)) {
-        scale_color_brand_d()
-      } else {
-        viridis::scale_color_viridis(
-          begin = 0.5,
-          end = 0.75,
-          discrete = TRUE,
-          option = viridis
-        )
-      }
-    } +
-    add_labels(
+    scale_color_brand_d() +
+    ggplot2::labs(
       x = x_label,
       y = y_label,
-      title = title,
-      subtitle = subtitle,
       color = color_label
-    ) +
-    add_theme(
-      theme = theme,
-      text_size = text_size
     )
 
   if (inherits(data[[col_x]], c("POSIXt", "hms", "Duration"))) {

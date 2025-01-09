@@ -22,6 +22,7 @@ library(rlang)
 
 source(here::here("R", "get_chronotype_cutoffs.R"))
 source(here::here("R", "utils.R"))
+source(here::here("R", "utils-checks.R"))
 source(here::here("R", "utils-plots.R"))
 
 # # Helpers
@@ -49,27 +50,27 @@ plot_chronotype <- function(
     col_msf_sc = "msf_sc",
     col_width = 0.8,
     col_border = 0.1,
-    thematic = TRUE,
-    thematic_color_type = "div",
+    color_type = "div",
     direction = 1,
     reverse = FALSE,
-    x_label = "Frequency (%)",
     y_label = latex2exp::TeX("Local time ($MSF_{sc}$)"),
-    fill_label = NULL, # "Chronotype"
-    theme = "bw",
-    legend = TRUE,
-    legend_position = "right",
-    text_size = NULL,
-    print = TRUE,
-    ...
+    print = TRUE
   ) {
+  # See <https://ggplot2.tidyverse.org/reference/scale_brewer.html>.
+  color_type_choices <- c(
+    "seq", "sequential",
+    "div", "diverging",
+    "qual", "qualitative"
+  )
+
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_choice(col_msf_sc, names(data))
   prettycheck:::assert_number(col_width, lower = 0)
   prettycheck:::assert_number(col_border, lower = 0)
-  prettycheck:::assert_flag(thematic)
+  prettycheck:::assert_choice(color_type, color_type_choices)
   prettycheck:::assert_choice(direction, c(-1, 1))
   prettycheck:::assert_flag(reverse)
+  assert_gg_label(y_label)
   prettycheck:::assert_flag(print)
 
   if (is.null(y_label)) {
@@ -175,28 +176,15 @@ plot_chronotype <- function(
     ) +
     ggplot2::scale_x_continuous(minor_breaks = NULL) +
     ggplot2::scale_y_discrete(labels = labels_char_hms) +
-    {
-      if (isTRUE(thematic)) {
-        scale_fill_brand_d(
-          color_type = thematic_color_type,
-          direction = direction,
-          reverse = reverse
-        )
-      } else {
-        scale_fill_rainbow(direction = direction)
-      }
-    } +
-    add_labels(
-      x = x_label,
-      y = y_label,
-      fill = fill_label
+    scale_fill_brand_d(
+      color_type = color_type,
+      direction = direction,
+      reverse = reverse
     ) +
-    add_theme(
-      theme = theme,
-      legend = TRUE,
-      legend_position = legend_position,
-      text_size = text_size,
-      ...
+    ggplot2::labs(
+      x = "Frequency (%)",
+      y = y_label,
+      fill = NULL
     )
 
   if (isTRUE(print)) print(plot)

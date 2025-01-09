@@ -53,26 +53,6 @@ transform_time <- function(x, threshold = hms::parse_hms("12:00:00")) {
   }
 }
 
-# library(hms)
-# library(lubridate)
-# library(lubritime) # github.com/danielvartan/lubritime
-# library(rutils) # github.com/danielvartan/rutils
-
-# TODO: Try to integrate this with `lubritime:::link_to_timeline()`.
-midday_trigger <- function(x, trigger = hms::parse_hm("22:00")) {
-  prettycheck:::assert_hms(trigger)
-
-  if (hms::is_hms(x) && any(x > trigger, na.rm = TRUE)) {
-    lubritime:::link_to_timeline(
-      x, threshold = hms::parse_hms("12:00:00")
-    )
-  } else if (hms::is_hms(x) && !any(x > trigger, na.rm = TRUE)) {
-    lubridate::as_datetime(x, tz = "UTC")
-  } else {
-    x
-  }
-}
-
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 # TODO: Move to `rutils`.

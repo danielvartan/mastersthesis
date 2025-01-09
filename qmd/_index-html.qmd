@@ -22,7 +22,7 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 To cite this work, please use the following format:
 
-Vartanian, D. V. (`r env_vars[["year"]]`). *`r env_vars[["title"]]`* [`r env_vars[["academic-title"]]`'s `r env_vars[["type-of-work"]]`, `r env_vars[["university"]]`]. [https://doi.org/10.17605/OSF.IO/YGKTS](https://doi.org/10.17605/OSF.IO/YGKTS)
+Vartanian, D. (`r env_vars[["year"]]`). *`r env_vars[["title"]] |> stringr::str_to_sentence()`* [`r env_vars[["academic-title"]]`'s `r env_vars[["type-of-work"]]`, `r env_vars[["university"]]`]. [https://doi.org/10.17605/OSF.IO/YGKTS](https://doi.org/10.17605/OSF.IO/YGKTS)
 
 BibTeX citation:
 
@@ -38,7 +38,7 @@ bib_tag <- ifelse(
 
 ```
 `r bib_tag`{vartanian`r env_vars[["year"]]`,
-  title = {`r env_vars[["title"]]`},
+  title = {`r env_vars[["title"]] |> stringr::str_to_sentence()`},
   author = {Daniel Vartanian},
   year = {`r env_vars[["year"]]`},
   address = {`r env_vars[["location"]]`},

@@ -50,8 +50,8 @@ contributes:
       df-print: kable
     pdf:
       documentclass: abntex2
-      mainfont: Helvetica Neue LT Std
-      sansfont: Helvetica Neue LT Std
+      mainfont: HelveticaNeueLT Std # See `systemfonts::system_fonts()`.
+      sansfont: HelveticaNeueLT Std
       monofont: Fragment Mono
       monofontoptions:
         - Scale=0.75
@@ -142,6 +142,57 @@ contributes:
       format-resources:
         - otf/FragmentMono-Regular.otf
         - otf/FragmentMono-Italic.otf
+        - otf/HelveticaNeueLTStd-Bd.otf
+        - otf/HelveticaNeueLTStd-BdCn.otf
+        - otf/HelveticaNeueLTStd-BdCnO.otf
+        - otf/HelveticaNeueLTStd-BdEx.otf
+        - otf/HelveticaNeueLTStd-BdExO.otf
+        - otf/HelveticaNeueLTStd-BdIt.otf
+        - otf/HelveticaNeueLTStd-BdOu.otf
+        - otf/HelveticaNeueLTStd-Blk.otf
+        - otf/HelveticaNeueLTStd-BlkCn.otf
+        - otf/HelveticaNeueLTStd-BlkCnO.otf
+        - otf/HelveticaNeueLTStd-BlkEx.otf
+        - otf/HelveticaNeueLTStd-BlkExO.otf
+        - otf/HelveticaNeueLTStd-BlkIt.otf
+        - otf/HelveticaNeueLTStd-Cn.otf
+        - otf/HelveticaNeueLTStd-CnO.otf
+        - otf/HelveticaNeueLTStd-Ex.otf
+        - otf/HelveticaNeueLTStd-ExO.otf
+        - otf/HelveticaNeueLTStd-Hv.otf
+        - otf/HelveticaNeueLTStd-HvCn.otf
+        - otf/HelveticaNeueLTStd-HvCnO.otf
+        - otf/HelveticaNeueLTStd-HvEx.otf
+        - otf/HelveticaNeueLTStd-HvExO.otf
+        - otf/HelveticaNeueLTStd-HvIt.otf
+        - otf/HelveticaNeueLTStd-It.otf
+        - otf/HelveticaNeueLTStd-Lt.otf
+        - otf/HelveticaNeueLTStd-LtCn.otf
+        - otf/HelveticaNeueLTStd-LtCnO.otf
+        - otf/HelveticaNeueLTStd-LtEx.otf
+        - otf/HelveticaNeueLTStd-LtExO.otf
+        - otf/HelveticaNeueLTStd-LtIt.otf
+        - otf/HelveticaNeueLTStd-Md.otf
+        - otf/HelveticaNeueLTStd-MdCn.otf
+        - otf/HelveticaNeueLTStd-MdCnO.otf
+        - otf/HelveticaNeueLTStd-MdEx.otf
+        - otf/HelveticaNeueLTStd-MdExO.otf
+        - otf/HelveticaNeueLTStd-MdIt.otf
+        - otf/HelveticaNeueLTStd-Roman.otf
+        - otf/HelveticaNeueLTStd-Th.otf
+        - otf/HelveticaNeueLTStd-ThCn.otf
+        - otf/HelveticaNeueLTStd-ThCnO.otf
+        - otf/HelveticaNeueLTStd-ThEx.otf
+        - otf/HelveticaNeueLTStd-ThExO.otf
+        - otf/HelveticaNeueLTStd-ThIt.otf
+        - otf/HelveticaNeueLTStd-UltLt.otf
+        - otf/HelveticaNeueLTStd-UltLtCn.otf
+        - otf/HelveticaNeueLTStd-UltLtCnO.otf
+        - otf/HelveticaNeueLTStd-UltLtEx.otf
+        - otf/HelveticaNeueLTStd-UltLtExO.otf
+        - otf/HelveticaNeueLTStd-UltLtIt.otf
+        - otf/HelveticaNeueLTStd-XBlkCn.otf
+        - otf/HelveticaNeueLTStd-XBlkCnO.otf
         - bbx/abnt.bbx
         - bbx/abnt-ibid.bbx
         - bbx/abnt-numeric.bbx

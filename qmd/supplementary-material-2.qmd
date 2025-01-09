@@ -52,7 +52,7 @@ Variables of the Munich ChronoType Questionnaire scale (A sleep log). In its sta
 
 The dataset used for analysis is made up of `{r} results_vars$ea_analysis_sample_n |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017.
 
-The unfiltered valid sample comprises `{r} results_vars$ea_full_sample_n |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of `{r} results_vars$raw_data_nrow |> format_to_md_latex()` individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The unfiltered valid sample comprises `{r} results_vars$ea_full_sample_n |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of `{r} results_vars$pr_raw_data_nrow |> format_to_md_latex()` individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
 ::: {#fig-appendice-1-age-sex-chronotype-series}
 ![](images/globo-2017-figure-1.png)
@@ -265,10 +265,9 @@ plot_2 <-
   weighted_data |>
   dplyr::select(so_f) |>
   dplyr::mutate(
-    so_f = lubritime:::link_to_timeline(
-      so_f,
-      threshold = hms::parse_hms("12:00:00")
-    )
+    so_f = 
+      so_f |>
+      lubritime:::link_to_timeline(threshold = hms::parse_hms("12:00:00"))
   ) |>
   tidyr::drop_na() |>
   plot_hist(

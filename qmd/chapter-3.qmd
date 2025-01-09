@@ -11,12 +11,9 @@ source(here::here("R", "_setup.R"))
 
 **Complex systems** are systems with many interconnected parts that exhibit emergent behavior. Complexity science seeks to explain and understand these emergent phenomena [@krakauer2024].
 
-
 Like many other biological phenomena, these are complex systems present in all living beings, i.e., systems with a large number of connected parts that presents stable macroscopic patterns (emergences, in this case, the rhythms) arising from local interactions or the collective behavior of its parts, giving the system properties not attained by the aggregate summation [@epstein1999; @holland2014]
 
 Complex versus Complicated.
-
-
 
 **Stable macroscopic patterns** arising from **local interaction** of agents [@epstein1999].
 
@@ -31,11 +28,11 @@ Emergence: new properties that arise from the interactions of the parts of a sys
 You are dealing with an emergence phenomenon when there is no need to look under the hood [@krakauer2023].
 
 ::: {#fig-chapter-3-perez-villa-2023-figure-1}
-![](images/perez-villa-2023-figure-1.png){width=75%}
+![](images/flanagan-2021-figure-2-adapted.png){width=85%}
 
-[Source: Reproduction of @perez-villa2023.]{.legend}
+[Source: Reproduction of @flanagan2021.]{.legend}
 
-An illustration depicting how the human circadian clock system works. (A) The circadian timing system receives light signals through the eyes, which are processed by the brain's central clock, the suprachiasmatic nucleus (SCN). This clock helps to orchestrate peripheral clocks, regulating body functions like hormone release, metabolism, and temperature. Other factors like feeding schedules and exercise also influence this process, ensuring the synchronization of body systems like immunity and metabolism. (B) Specific brain cells and chemicals manage this timing by adjusting the activity of neurons, which helps reset the clock and keeps it in tune with day-night cycles. These neurons also influence clocks in other body parts via neuronal and hormonal signals. (C) At a molecular level, a network of genes and proteins operates in a feedback loop, maintaining near 24-hour cycles. This ensures that various body systems, such as metabolism and immune function, follow daily rhythms.
+An illustration depicting how the human circadian clock system regulate multiple aspects of metabolic physiology.
 :::
 
 The result of a *juggling act* of billions of years of evolution. There are no specific functions. There's no proposed goal.

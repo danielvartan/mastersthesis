@@ -10,40 +10,15 @@ source(here::here("R", "utils-stats.R"))
 plot_box_plot <- function(
     data,
     col,
-    thematic = TRUE,
-    thematic_direction = 1,
-    viridis = "viridis",
-    viridis_direction = 1,
-    color_brewer = "Set1", # RColorBrewer::display.brewer.all(),
-    color_brewer_direction = 1,
-    outline_color = get_brand_color("primary"), # "red"
-    jitter = FALSE,
+    direction = 1,
     label = col,
-    title = NULL,
-    subtitle = NULL,
-    x_label = "Variable",
-    y_label = "Value",
-    fill_label = NULL,
-    theme = "bw",
-    text_size = NULL,
-    print = TRUE,
-    ...
+    jitter = FALSE,
+    print = TRUE
   ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_character(col)
   prettycheck:::assert_subset(col, names(data))
-  prettycheck:::assert_flag(thematic)
-  prettycheck:::assert_choice(thematic_direction, c(-1, 1))
-  assert_color_options(viridis = viridis)
-  prettycheck:::assert_choice(viridis_direction, c(-1, 1))
-
-  prettycheck:::assert_choice(
-    color_brewer,
-    RColorBrewer::brewer.pal.info |> rownames()
-  )
-
-  prettycheck:::assert_choice(color_brewer_direction, c(-1, 1))
-  prettycheck:::assert_color(outline_color)
+  prettycheck:::assert_choice(direction, c(-1, 1))
   prettycheck:::assert_flag(jitter)
   prettycheck:::assert_character(label)
   prettycheck:::assert_flag(print)
@@ -93,26 +68,20 @@ plot_box_plot <- function(
       }
     } +
     ggplot2::geom_boxplot(
-      outlier.colour = outline_color,
+      outlier.colour = get_brand_color("primary"),
       outlier.shape = 1,
       width = 0.75
     ) +
     ggplot2::coord_flip() +
-    add_labels(
-      title = title,
-      subtitle = subtitle,
-      x_label = x_label,
-      y_label = y_label,
-      fill_label = fill_label
+    ggplot2::labs(
+      x = "Variable",
+      y = "Value",
+      fill = NULL
     ) +
-    add_theme(
-      theme = theme,
-      legend = TRUE,
-      text_size = text_size,
+    ggplot2::theme(
       axis.title.y = ggplot2::element_blank(),
       axis.text.y = ggplot2::element_blank(),
-      axis.ticks.y = ggplot2::element_blank(),
-      ...
+      axis.ticks.y = ggplot2::element_blank()
     )
 
   if (isTRUE(jitter)) {
@@ -127,29 +96,12 @@ plot_box_plot <- function(
   }
 
   if (!length(col) == 1) {
-    if (isTRUE(thematic)) {
+    plot <-
+      plot +
       scale_fill_brand_d(
-        thematic_direction = thematic_direction,
+        direction = direction,
         breaks = names(col)
       )
-    } else if (!is.null(viridis)) {
-      plot <-
-        plot +
-        ggplot2::scale_fill_viridis_d(
-          breaks = names(col),
-          direction = viridis_direction,
-          option = viridis
-        )
-
-    } else if (!is.null(color_brewer)) {
-      plot <-
-        plot +
-        ggplot2::scale_fill_brewer(
-          palette = color_brewer,
-          breaks = names(col),
-          direction = color_brewer_direction
-        )
-    }
   }
 
   if (isTRUE(print)) print(plot)

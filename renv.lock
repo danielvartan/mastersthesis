@@ -346,16 +346,6 @@
       ],
       "Hash": "79e8394e1fa06a4ae954b70ca9b16e8f"
     },
-    "Rttf2pt1": {
-      "Package": "Rttf2pt1",
-      "Version": "1.3.12",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "a60168d094ca7e4de5106d60001c3964"
-    },
     "SQUAREM": {
       "Package": "SQUAREM",
       "Version": "2021.1",
@@ -1100,30 +1090,6 @@
         "utils"
       ],
       "Hash": "25beadb9b1212325ab35885c65ccd244"
-    },
-    "extrafont": {
-      "Package": "extrafont",
-      "Version": "0.19",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "Rttf2pt1",
-        "extrafontdb",
-        "grDevices",
-        "utils"
-      ],
-      "Hash": "03d9939b37164f34e0522fef13e63158"
-    },
-    "extrafontdb": {
-      "Package": "extrafontdb",
-      "Version": "1.0",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "a861555ddec7451c653b40e713166c6f"
     },
     "fBasics": {
       "Package": "fBasics",
@@ -2225,9 +2191,10 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "lubritime",
       "RemoteUsername": "danielvartan",
-      "RemoteSha": "f3826bbb45f0ff6a457644a06ec7ae51e1319871",
+      "RemoteRepo": "lubritime",
+      "RemoteRef": "1193497ef62db7a20815c465640cb4b053a25ff2",
+      "RemoteSha": "1193497ef62db7a20815c465640cb4b053a25ff2",
       "Requirements": [
         "R",
         "cli",
@@ -2239,7 +2206,7 @@
         "rutils",
         "stringdist"
       ],
-      "Hash": "8070d1134d448b1c1ab1eb7228a69d51"
+      "Hash": "76befcec434be4897cf349b17df697e8"
     },
     "magrittr": {
       "Package": "magrittr",
@@ -2720,9 +2687,10 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "prettycheck",
       "RemoteUsername": "danielvartan",
-      "RemoteSha": "dbe83404007cc8c0874092c8e9fc73dba5368163",
+      "RemoteRepo": "prettycheck",
+      "RemoteRef": "main",
+      "RemoteSha": "aa592a27ed057ef13a8d40fe89e7de29d85e04c1",
       "Requirements": [
         "R",
         "checkmate",
@@ -2741,7 +2709,7 @@
         "tibble",
         "utils"
       ],
-      "Hash": "21f7f5e3eaae3be505a785dac388b284"
+      "Hash": "dd7913168c5db248b6b9745cdc0d3786"
     },
     "prettyunits": {
       "Package": "prettyunits",
@@ -2986,6 +2954,17 @@
       ],
       "Hash": "af456d7a181750812bd8b2bfedb3ea4e"
     },
+    "ragg": {
+      "Package": "ragg",
+      "Version": "1.3.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "systemfonts",
+        "textshaping"
+      ],
+      "Hash": "0595fe5e47357111f29ad19101c7d271"
+    },
     "rappdirs": {
       "Package": "rappdirs",
       "Version": "0.3.3",
@@ -3016,8 +2995,9 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "rbbt",
       "RemoteUsername": "wmoldham",
+      "RemoteRepo": "rbbt",
+      "RemoteRef": "master",
       "RemoteSha": "8d64efcf46468c9388580d037530b58434592196",
       "Requirements": [
         "R",
@@ -3030,7 +3010,7 @@
         "rstudioapi",
         "stringr"
       ],
-      "Hash": "9879bd6690d9c45096c0629010a8f64d"
+      "Hash": "0b02f8f864a270df2c30afce624cac9a"
     },
     "rbibutils": {
       "Package": "rbibutils",
@@ -3289,10 +3269,11 @@
       "Version": "0.0.0.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "rutils",
       "RemoteUsername": "danielvartan",
-      "RemoteSha": "8fab4f7b707bab35515de4dd35dddc244ba44f58",
+      "RemoteRepo": "rutils",
+      "RemoteRef": "main",
+      "RemoteSha": "ad28c2e43152170bf67472858c7448188be0535e",
+      "RemoteHost": "api.github.com",
       "Requirements": [
         "R",
         "checkmate",
@@ -3318,7 +3299,7 @@
         "utils",
         "yaml"
       ],
-      "Hash": "87aa475e204b79a73e0f2c40d9311b69"
+      "Hash": "67732c0b900faddd29bc0e57a7c93eaa"
     },
     "rvest": {
       "Package": "rvest",
@@ -3514,6 +3495,29 @@
         "xtable"
       ],
       "Hash": "4b4477baa9a939c5577e5ddb4bf01f28"
+    },
+    "showtext": {
+      "Package": "showtext",
+      "Version": "0.9-7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "grDevices",
+        "showtextdb",
+        "sysfonts"
+      ],
+      "Hash": "ebc23fc796c28737ffe0a64e5404f3d1"
+    },
+    "showtextdb": {
+      "Package": "showtextdb",
+      "Version": "3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "sysfonts",
+        "utils"
+      ],
+      "Hash": "c12e756cf947e58b0f2c2a520521a5a8"
     },
     "sidrar": {
       "Package": "sidrar",
@@ -3722,6 +3726,25 @@
       "Repository": "CRAN",
       "Hash": "de342ebfebdbf40477d0758d05426646"
     },
+    "sysfonts": {
+      "Package": "sysfonts",
+      "Version": "0.8.9",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "7dfca1e9c5c278300b5ca6a1772072f7"
+    },
+    "systemfonts": {
+      "Package": "systemfonts",
+      "Version": "1.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cpp11",
+        "lifecycle"
+      ],
+      "Hash": "213b6b8ed5afbf934843e6c3b090d418"
+    },
     "tarchetypes": {
       "Package": "tarchetypes",
       "Version": "0.11.0",
@@ -3783,11 +3806,24 @@
       ],
       "Hash": "6e3f2c53b58161327fe5787fe1a63d02"
     },
+    "textshaping": {
+      "Package": "textshaping",
+      "Version": "0.4.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cpp11",
+        "lifecycle",
+        "systemfonts"
+      ],
+      "Hash": "573e0d015b7fc3e555f83e254cad7533"
+    },
     "thematic": {
       "Package": "thematic",
       "Version": "0.1.6",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "farver",
@@ -4037,19 +4073,6 @@
         "rlang"
       ],
       "Hash": "c03fa420630029418f7e6da3667aac4a"
-    },
-    "viridis": {
-      "Package": "viridis",
-      "Version": "0.6.5",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "ggplot2",
-        "gridExtra",
-        "viridisLite"
-      ],
-      "Hash": "acd96d9fa70adeea4a5a1150609b9745"
     },
     "viridisLite": {
       "Package": "viridisLite",

@@ -47,7 +47,7 @@ As Popper explained:
 As outlined in Chapter 1, the central hypothesis is the following:
 
 ::: {#cnj-hypothesis}
-### Statment
+### Statement
 
 *Latitude is associated with chronotype distributions*, with populations closer to the equator exhibiting, on average, a shorter or more morning-oriented circadian phenotype compared to those residing near the poles.
 :::

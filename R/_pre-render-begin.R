@@ -1,9 +1,10 @@
-# library(extrafont)
 # library(here)
 # library(lubridate)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
+# library(showtext)
 # lybrary(stringr)
+library(sysfonts)
 # lybrary(yaml)
 
 # Load common render -----

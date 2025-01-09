@@ -50,12 +50,12 @@ div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, 
 #title-block-header.quarto-title-block.default .quarto-title h1.title {
   color: $tertiary;
   margin-bottom: 0.5rem;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 h1.unnumbered {
   font-size: 1.4rem;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .header-section-number {
@@ -64,7 +64,7 @@ h1.unnumbered {
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 .header-section-number {
   color: $tertiary;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 h1 {

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/index.html</loc>
-    <lastmod>2024-12-29T20:20:40.355Z</lastmod>
+    <lastmod>2025-01-09T21:56:23.924Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/acknowledgments.html</loc>
@@ -26,15 +26,15 @@
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-2.html</loc>
-    <lastmod>2024-12-12T23:10:01.809Z</lastmod>
+    <lastmod>2025-01-09T06:31:32.720Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-4.html</loc>
-    <lastmod>2024-12-12T23:10:01.809Z</lastmod>
+    <lastmod>2025-01-07T00:11:13.576Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-5.html</loc>
-    <lastmod>2024-12-12T23:10:01.810Z</lastmod>
+    <lastmod>2025-01-07T00:29:10.410Z</lastmod>
   </url>
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/chapter-6.html</loc>
@@ -43,5 +43,45 @@
   <url>
     <loc>https://danielvartan.github.io/mastersthesis/qmd/references.html</loc>
     <lastmod>2024-12-12T23:10:01.810Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-1.html</loc>
+    <lastmod>2024-12-12T23:10:01.810Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-2.html</loc>
+    <lastmod>2025-01-09T21:34:50.904Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-3.html</loc>
+    <lastmod>2025-01-09T21:55:29.295Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-4.html</loc>
+    <lastmod>2025-01-04T07:24:02.694Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-5.html</loc>
+    <lastmod>2025-01-09T21:14:34.844Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-6.html</loc>
+    <lastmod>2025-01-09T21:21:30.193Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-7.html</loc>
+    <lastmod>2024-12-12T23:10:01.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-8.html</loc>
+    <lastmod>2025-01-09T21:24:44.895Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-9.html</loc>
+    <lastmod>2025-01-04T03:54:42.861Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-10.html</loc>
+    <lastmod>2025-01-09T21:19:30.977Z</lastmod>
   </url>
 </urlset>

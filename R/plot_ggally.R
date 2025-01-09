@@ -5,7 +5,6 @@ library(ggplot2)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
-# library(viridis)
 
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-plots.R"))
@@ -14,12 +13,8 @@ plot_ggally <- function(
     data,
     cols = names(data),
     mapping = NULL, # ggplot2::aes(colour = sex)
-    thematic = TRUE,
-    viridis = NULL, # "viridis"
     axis_labels = "none",
     na_rm = TRUE,
-    theme = "bw",
-    text_size = NULL,
     print = TRUE,
     ...
   ) {
@@ -27,8 +22,6 @@ plot_ggally <- function(
   prettycheck:::assert_character(cols)
   prettycheck:::assert_subset(cols, names(data))
   prettycheck:::assert_class(mapping, "uneval", null.ok = TRUE)
-  prettycheck:::assert_flag(thematic)
-  assert_color_options(viridis = viridis)
   prettycheck:::assert_choice(axis_labels, c("show", "internal", "none"))
   prettycheck:::assert_flag(na_rm)
   prettycheck:::assert_flag(print)
@@ -38,8 +31,14 @@ plot_ggally <- function(
     dplyr::select(dplyr::all_of(cols))|>
     dplyr::mutate(
       dplyr::across(
-      .cols = dplyr::where(hms::is_hms),
-      .fns = ~ midday_trigger(.x)
+        .cols = dplyr::where(hms::is_hms),
+        .fns = function(x) {
+          x |>
+            lubritime:::link_to_timeline(
+              threshold = hms::parse_hms("12:00:00")
+            ) |>
+            as.numeric()
+        }
       ),
       dplyr::across(
         .cols = dplyr::where(
@@ -67,38 +66,16 @@ plot_ggally <- function(
         mapping = mapping,
         axisLabels = axis_labels,
         ...
-      )
-
-    if (isTRUE(thematic)) {
-      plot <-
-        plot +
-        scale_color_brand_d() +
-        scale_fill_brand_d()
-    } else if (!is.null(viridis)) {
-      plot <-
-        plot +
-        viridis::scale_color_viridis(
-          begin = 0.25,
-          end = 0.75,
-          discrete = TRUE,
-          option = viridis
-        ) +
-        viridis::scale_fill_viridis(
-          begin = 0.25,
-          end = 0.75,
-          discrete = TRUE,
-          option = viridis
-        )
-    }
+      ) +
+      scale_color_brand_d() +
+      scale_fill_brand_d()
   }
 
   plot <-
     plot +
-    add_theme(
-      theme = theme,
-      text_size = text_size,
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank()
+    ggplot2::theme(
+      panel.grid.major = ggplot2::element_blank(),
+      panel.grid.minor = ggplot2::element_blank()
     )
 
   if (isTRUE(print)) print(plot)

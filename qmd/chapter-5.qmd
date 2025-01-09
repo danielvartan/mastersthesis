@@ -77,17 +77,13 @@ This study presents a novel attempt to test the latitude hypothesis, using a bio
 #| message: false
 #| warning: false
 
-plot_analysis_3 <- 
-  weighted_data |> 
+weighted_data |> 
   plot_brazil_municipality(
     transform = "log10",
-    thematic = TRUE,
-    thematic_direction = -1,
+    direction = -1,
     alpha = 0.75,
     breaks = c(10, 500, 1000, 5000, 7500),
-    point = TRUE,
-    text_size = env_vars$base_size,
-    print = TRUE
+    point = TRUE
   )
 ```
 
@@ -107,11 +103,7 @@ This represents the midsleep point for Brazilian subjects with an intermediate o
 #| message: false
 #| warning: false
 
-weighted_data |> 
-  plot_chronotype(
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+weighted_data |> plot_chronotype()
 ```
 
 [Source: Created by the author. Based on data visualization found in @roenneberg2019b.]{.legend}
@@ -138,16 +130,12 @@ The results indicate that, despite a broad latitudinal spectrum and a large, wel
 #| message: false
 #| warning: false
 
-weighted_data |> 
-  plot_latitude_series(
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+weighted_data |> plot_latitude_series()
 ```
 
 [Source: Created by the author.]{.legend}
 
-Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The red line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
 :::
 
 The absence of a clear relationship between latitude and chronotype can be attributed to multiple factors. As Jürgen Aschoff might have put it, this may reflect a lack of "ecological significance" [@aschoff1972]. Even if latitude does influence circadian rhythms, the effect could be too minor to detect or might be overshadowed by other, more prominent factors like social behaviors, work hours, or the widespread use of artificial lighting [@bohlen1973]. Furthermore, the variations in sunlight exposure between latitudes may not be substantial enough to meaningfully impact the circadian system, which is highly responsive to light. Since even small fluctuations in light exposure can lead to measurable physiological changes, it suggests that latitude alone may not be a decisive factor in determining chronotype.
@@ -167,24 +155,28 @@ limits <- # Interquartile range (IQR): Q3 - Q1
   )
 
 weighted_data |> 
-  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
+  dplyr::mutate(
+    msf_sc = 
+      msf_sc |>
+      lubritime:::link_to_timeline(
+        threshold = hms::parse_hms("12:00:00")
+      ) |>
+      as.numeric()
+  ) |>
   plot_brazil_state(
     col_fill = "msf_sc",
     transform = "identity",
-    thematic = TRUE, # Best in viridis/viridis.
     binned = FALSE,
     breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
     labels = labels_hms,
     limits = limits, # !!!
-    text_size = env_vars$base_size,
-    print = TRUE,
     quiet = TRUE
   )
 ```
 
 [Source: Created by the author.]{.legend}
 
-Geographical distribution of mean MSF~sc~ values by Brazilian state. The figure shows the mean mid-sleep on free days sleep-corrected (MSF~sc) values aggregated by state, illustrating how chronotype varies with latitude in Brazil. MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values correspond to later chronotypes. The color scale was not transformed and it has as limits the first and third quartile (interquartile range). While the map suggests a potential latitudinal pattern, differences in mean MSF~sc~ values across states are small and fall within a narrow range relative to the scale of the Munich ChronoType Questionnaire (MCTQ), limiting the significance of these variations.
+Geographical distribution of mean MSF~sc~ values by Brazilian state. The figure shows the mean mid-sleep on free days sleep-corrected (MSF~sc) values aggregated by state, illustrating how chronotype varies with latitude in Brazil. MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values correspond to later chronotypes. The color scale was not transformed and it has as limits the first and third quartile (interquartile range). Differences in mean MSF~sc~ values across states are small and fall within a narrow range relative to the scale of the Munich ChronoType Questionnaire (MCTQ), limiting the significance of these variations.
 :::
 
 This study points to a more intricate relationship between latitude and the circadian system than originally expected. In human populations, the perceived link between these variables might have been influenced by statistical overconfidence, driven by routine reliance on Null Hypothesis Significance Testing (NHST) and the tendency to confirm preconceived ideas, rather than a rigorous and unbiased examination of the data.

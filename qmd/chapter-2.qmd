@@ -14,7 +14,7 @@ The dimension of time, manifest in the form of rhythms and cycles, like the alte
 For years, scientists debated whether this organization was solely in response to environmental stimuli or if it was also present endogenously, internally, within organisms [@rotenberg2003]. One of the early seminal studies describing a potential endogenous rhythmicity in living beings was conducted in 1729 by the French astronomer Jean Jacques d'Ortous de Mairan. De Mairan observed the movement of the sensitive plant (_mimosa pudica_) by isolating it from the light-dark cycle and found that the plant continued to move its leaves periodically (@fig-chapter-2-nobel-prize-2017-de-mairan-experiment) [@mairan1729; @rotenberg2003]. Charles Darwin also wrote about the movement observed in plants and made thematic explorations of these intriguing “periodical phenomena” [@andrade2024]. The search for this internal timekeeper in living beings only began to solidify in the 20th century through the efforts of scientists like Jürgen Aschoff, Colin Pittendrigh, Franz Halberg, and Erwin Bünning, culminating in the establishment of the science known as chronobiology, with a significant milestone being the Cold Spring Harbor Symposium on Quantitative Biology: Biological Clocks in 1960 (_chrónos_, from Greek, meaning time; and _biology_, pertaining to the study of life) [@rotenberg2003; @coldspringharborlaboratory]^[Some say the term _chronobiology_ was coined by Franz Halberg during the Cold Spring Harbor Symposium [@menna-barreto2023, p. 21].]. However, the recognition of endogenous rhythmicity by the global scientific community truly came in 2017 when Jeffrey Hall, Michael Rosbash, and Michael Young were awarded the [Nobel Prize in Physiology or Medicine](https://www.nobelprize.org/prizes/medicine/2017/press-release/) for their discoveries of molecular mechanisms that regulate the circadian rhythm in fruit flies (_circā_, from Latin, meaning around, and _dĭes_, meaning day [@latinitium] -- a rhythm that expresses itself in approximately one day) [@nobelprizeoutreachab].
 
 ::: {#fig-chapter-2-nobel-prize-2017-de-mairan-experiment}
-![](images/nobel-prize-outreach-ab-2017-de-mairan-experiment.png){width=50%}
+![](images/nobel-prize-outreach-ab-2017-figure-1.png){width=60%}
 
 [Source: Reproduction from @nobelprizeoutreachab.]{.legend}
 
@@ -26,7 +26,7 @@ Science has already showed and described various biological rhythms. These rhyth
 Despite the endogenous nature of these rhythms, they can still be regulated by the external environment. Signals (cues) from the environment that occur cyclically in nature and have the ability to regulate biological rhythmic expression are called zeitgebers (from the German _zeit_, meaning time, and _geber_, meaning donor [@cambridgeuniversitypress]). These zeitgebers act as synchronizers by entraining the phases of the rhythms [@khalsa2003; @kuhlman2018] (@fig-chapter-2-kuhlman-2018-figure-2b). Among the known zeitgebers are, for example, meal timing and changes in environmental temperature [@aschoff1981; @roenneberg2016]. However, the most influential of them is the light-dark cycle (or, simply, light exposure). It is understood that the day/night cycle, resulting from the rotation of the Earth, has provided the vast majority of organisms with an oscillatory system with a periodic duration of approximately 24 hours [@kuhlman2018; @roenneberg2007].
 
 ::: {#fig-chapter-2-kuhlman-2018-figure-2b}
-![](images/kuhlman-2018-figure-2b.png){width=75%}
+![](images/kuhlman-2018-figure-2b-adapted.png){width=100%}
 
 [Source: Adapted from @kuhlman2018.]{.legend}
 
@@ -40,9 +40,9 @@ The various temporal characteristics of an organism can be linked to different o
 Sleep is a phenomenon that exhibits circadian expression. By observing the sleep characteristics of individuals, it is possible to assess the distribution of circadian phenotypes within a population, thereby investigating their covariates and other relevant associations [@roenneberg2003]. This is because sleep regulation is understood as the result of the interaction between two processes: a homeostatic process (referred to as the $\text{S}$ process), which is sleep-dependent and accumulates with sleep deprivation; and a circadian process (referred to as the $\text{C}$ process), whose expression can be influenced by zeitgebers, such as the light-dark cycle (@fig-chapter-2-borbely-1982-figure-4 illustrates these two process) [@borbely1982; @borbely2016]. Considering that the circadian rhythm (the $\text{C}$ process) is present in sleep, its characteristics can be estimated if the $\text{S}$ process can be controlled.
 
 ::: {#fig-chapter-2-borbely-1982-figure-4}
-![](images/borbely-1982-figure-4.png){width=75%}
+![](images/borbely-1982-figure-4-adapted.png){width=100%}
 
-[Source: Adapted from @borbely1982.]{.legend}
+[Source: Created by the author, adapted from @borbely1982[Figure 4, lower part].]{.legend}
 
 Illustration of the interaction between Process $\text{S}$ (sleep-dependent process) and Process $\text{C}$ (circadian rhythm process) in sleep regulation. The figure depicts two scenarios: one with $17$ hours of wakefulness followed by $7$ hours of sleep; and another, with sleep deprivation, consisting of $41$ hours of wakefulness followed by $7$ hours of sleep. The y-axis represents the level of each process. The hatched areas indicate periods of sleep, along with the exponential decline of Process $\text{S}$.
 :::

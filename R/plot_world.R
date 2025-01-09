@@ -33,29 +33,13 @@ plot_world_countries <- function(
     col_fill = NULL,
     col_country = "country",
     transform = "log10", # See ?ggplot2::scale_fill_gradient
-    thematic = TRUE,
-    thematic_direction = 1,
-    viridis = "viridis",
-    viridis_direction = 1,
-    viridis_alpha = 1,
-    color_brewer = "YlOrRd", # RColorBrewer::display.brewer.all()
-    color_low = NULL,
-    color_high = NULL,
-    color_na = NA,
-    color_border = "gray75",
-    color_bg = "white",
-    linewidth = 0.1,
+    direction = 1,
     binned = TRUE,
     breaks = ggplot2::waiver(),
+    n_breaks = NULL,
+    labels = ggplot2::waiver(),
     reverse = TRUE,
-    title = NULL,
-    subtitle = NULL,
-    x_label = NULL, # "Longitude"
-    y_label = NULL, # Latitude"
-    fill_label = NULL,
-    theme = "bw",
-    legend = TRUE,
-    text_size = NULL,
+    limits = NULL,
     print = TRUE,
     quiet = FALSE
   ) {
@@ -66,13 +50,21 @@ plot_world_countries <- function(
   prettycheck:::assert_string(col_country)
   prettycheck:::assert_choice(col_country, names(data))
   prettycheck:::assert_character(data[[col_country]])
-  prettycheck:::assert_color(color_border, na_ok = TRUE)
-  prettycheck:::assert_color(color_bg, na_ok = TRUE)
-  prettycheck:::assert_number(linewidth, lower = 0, na.ok = TRUE)
+  prettycheck:::assert_multi_class(transform, c("character", "transform"))
+  prettycheck:::assert_choice(direction, c(-1, 1))
+  prettycheck:::assert_flag(binned)
+  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  prettycheck:::assert_integer_number(n_breaks, lower = 1, null.ok = TRUE)
+  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
+  prettycheck:::assert_flag(reverse)
   prettycheck:::assert_flag(print)
   prettycheck:::assert_flag(quiet)
 
-  plot <-
+  prettycheck:::assert_multi_class(
+    limits, c("numeric", "function"), null.ok = TRUE
+  )
+
+  data <-
     data |>
     dplyr::mutate(
       !!as.symbol(col_country) := dplyr::case_match(
@@ -95,13 +87,16 @@ plot_world_countries <- function(
       maps::map("world", plot = FALSE, fill = TRUE) |>
         sf::st_as_sf(),
       by = "ID"
-    ) |>
+    )
+
+  plot <-
+    data |>
     ggplot2::ggplot() +
     ggplot2::geom_sf(
       ggplot2::aes(geometry = geom, fill = n),
-      color = color_border,
-      linewidth = linewidth,
-      fill = color_bg
+      color = "gray75",
+      linewidth = 0.1,
+      fill = "white"
     ) +
     ggplot2::geom_sf(
       ggplot2::aes(geometry = geom,fill = n),
@@ -110,33 +105,27 @@ plot_world_countries <- function(
     ggplot2::scale_x_continuous(
       breaks = seq(-150, 150, 50)
       # limits = c(-180, 180)
-    ) +
-    add_color_scale(
-      thematic = thematic,
-      thematic_direction = thematic_direction,
-      viridis = viridis,
-      viridis_direction = viridis_direction,
-      viridis_alpha = viridis_alpha,
-      color_low = color_low,
-      color_high = color_high,
-      color_brewer = color_brewer,
-      color_na = color_na,
-      binned = binned,
+    )
+
+  if (data |> tidyr::drop_na() |> nrow() == 1) binned <- FALSE
+
+  plot <-
+    plot +
+    scale_brand(
+      aesthetics = "fill",
+      scale_type = ifelse(isTRUE(binned), "binned", "continuous"),
+      direction = direction,
       breaks = breaks,
+      n.breaks = n_breaks,
+      labels = labels,
       reverse = reverse,
+      limits = limits,
       transform = transform
     ) +
-    add_labels(
-      x = x_label,
-      y = y_label,
-      title = title,
-      subtitle = subtitle,
-      fill = fill_label
-    ) +
-    add_theme(
-      theme = theme,
-      legend = legend,
-      text_size = text_size
+    ggplot2::labs(
+      x = NULL,
+      y = NULL,
+      fill = NULL
     )
 
   if (isTRUE(print)) print(plot)

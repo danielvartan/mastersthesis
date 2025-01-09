@@ -31,17 +31,17 @@ book:
         - qmd/chapter-5.qmd
         - qmd/chapter-6.qmd
     - qmd/references.qmd
-  # appendices:
-  #   - qmd/supplementary-material-1.qmd
-  #   - qmd/supplementary-material-2.qmd
-  #   - qmd/supplementary-material-3.qmd
-  #   - qmd/supplementary-material-4.qmd
-  #   - qmd/supplementary-material-5.qmd
-  #   - qmd/supplementary-material-6.qmd
-  #   - qmd/supplementary-material-7.qmd
-  #   - qmd/supplementary-material-8.qmd
-  #   - qmd/supplementary-material-9.qmd
-  #   - qmd/supplementary-material-10.qmd
+  appendices:
+    - qmd/supplementary-material-1.qmd
+    - qmd/supplementary-material-2.qmd
+    - qmd/supplementary-material-3.qmd
+    - qmd/supplementary-material-4.qmd
+    - qmd/supplementary-material-5.qmd
+    - qmd/supplementary-material-6.qmd
+    - qmd/supplementary-material-7.qmd
+    - qmd/supplementary-material-8.qmd
+    - qmd/supplementary-material-9.qmd
+    - qmd/supplementary-material-10.qmd
   comments:
     hypothesis:
       theme: clean
@@ -51,7 +51,7 @@ knitr:
   opts_chunk:
     collapse: true
     comment: "#>"
-    dev: png
+    dev: "ragg_png" # Set `AGG` as the backend of your graphic device.
     dev.args:
       bg: "transparent"
 
@@ -60,11 +60,11 @@ format:
     date-format: "YYYY-MM-DD"
     open-graph: true
     locale: en
-    language: en-us
+    language: en
     number-depth: 5
     code-fold: true
     code-link: true
-    code-tools: true
+    code-tools: false
     df-print: paged
     cap-location: top
     fig-align: center

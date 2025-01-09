@@ -1,6 +1,7 @@
 # library(here)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
+library(sysfonts)
 # lybrary(yaml)
 
 # Pre-render begin ----------

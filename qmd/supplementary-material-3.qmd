@@ -1,3 +1,9 @@
+---
+format:
+  html:
+    code-tools: true
+---
+
 <!-- %:::% .common h1 begin %:::% -->
 # Exploratory Data Analysis {#sec-sm-exploratory-data-analysis}
 <!-- %:::% .common h1 end %:::% -->
@@ -70,7 +76,6 @@ source(here::here('R', 'plot_box_plot.R'))
 source(here::here("R", "plot_brazil.R"))
 source(here::here("R", "plot_chronotype.R"))
 source(here::here("R", "plot_ggally.R"))
-source(here::here("R", "plot_ggcorrplot.R"))
 source(here::here('R', 'plot_hist.R'))
 source(here::here("R", "plot_latitude_series.R"))
 source(here::here('R', 'plot_qq.R'))
@@ -401,13 +406,10 @@ ibge_6579_data_state <-
 plot_6579_ibge_1 <- 
   ibge_6579_data_state |> 
   plot_brazil_state(
-    "n",
+    col_fill = "n",
     transform = "log10",
-    thematic = TRUE, # Best in viridis/viridis.
-    thematic_direction = -1,
-    reverse = FALSE,
-    text_size = env_vars$base_size,
-    print = TRUE
+    direction = -1,
+    reverse = FALSE
   )
 ```
 
@@ -435,14 +437,11 @@ max_limit <-
 plot_6579_ibge_2 <- 
   ibge_6579_data_municipality |> 
   plot_brazil_municipality(
-    "n",
+    col_fill = "n",
     transform = "log10",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
-    thematic_direction = -1,
+    direction = -1,
     reverse = FALSE,
-    breaks = 10^(seq(1, log10(max_limit) - 1)),
-    text_size = env_vars$base_size,
-    print = TRUE
+    breaks = 10^(seq(1, log10(max_limit) - 1))
   )
 ```
 
@@ -452,13 +451,10 @@ plot_6579_ibge_3 <-
   plot_brazil_municipality(
     col_fill = "n",
     transform = "log10",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
-    thematic_direction = -1,
+    direction = -1,
     alpha = 0.75,
     breaks = c(100000, 500000, 1000000, 5000000, 10000000, 12000000),
-    point = TRUE,
-    text_size = env_vars$base_size,
-    print = TRUE
+    point = TRUE
   )
 ```
 
@@ -517,11 +513,8 @@ plot_full_1 <-
   anonymized_data |> 
   plot_world_countries(
     transform = "log10",
-    thematic = TRUE, # Best in viridis/viridis.
-    thematic_direction = -1,
-    reverse = FALSE,
-    text_size = env_vars$base_size,
-    print = TRUE
+    direction = -1,
+    reverse = FALSE
   )
 ```
 
@@ -547,11 +540,8 @@ plot_full_2 <-
   anonymized_data |> 
   plot_brazil_state(
     transform = "log10",
-    thematic = TRUE, # Best in viridis/viridis.
-    thematic_direction = -1,
-    reverse = FALSE,
-    text_size = env_vars$base_size,
-    print = TRUE
+    direction = -1,
+    reverse = FALSE
   )
 ```
 
@@ -567,12 +557,9 @@ plot_full_3 <-
   anonymized_data |> 
   plot_brazil_municipality(
     transform = "log10",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
-    thematic_direction = -1,
+    direction = -1,
     reverse = FALSE,
-    breaks = 10^(seq(1, log10(max_limit) - 1)),
-    text_size = env_vars$base_size,
-    print = TRUE
+    breaks = 10^(seq(1, log10(max_limit) - 1))
   )
 ```
 
@@ -588,23 +575,17 @@ plot_full_4 <-
   anonymized_data |> 
   plot_brazil_municipality(
     transform = "log10",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
-    thematic_direction = -1,
+    direction = -1,
     alpha = 0.75,
     breaks = c(10, 500, 1000, 5000, 10000, 12000),
-    point = TRUE,
-    text_size = env_vars$base_size,
-    print = TRUE
+    point = TRUE
   )
 ```
 
 ```{r}
 plot_full_5 <- 
   anonymized_data |> 
-  plot_brazil_point(
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+  plot_brazil_point()
 ```
 
 <!-- See <https://r-charts.com/ggplot2/combining-plots/>. -->
@@ -648,12 +629,9 @@ plot_analysis_1 <-
   weighted_data |> 
   plot_brazil_state(
     transform = "log10",
-    thematic = TRUE, # Best in viridis/viridis.
-    thematic_direction = -1,
+    direction = -1,
     binned = TRUE,
-    reverse = FALSE,
-    text_size = env_vars$base_size,
-    print = TRUE
+    reverse = FALSE
   )
 ```
 
@@ -669,12 +647,9 @@ plot_analysis_2 <-
   weighted_data |> 
   plot_brazil_municipality(
     transform = "log10",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
-    thematic_direction = -1,
+    direction = -1,
     reverse = FALSE,
-    breaks = 10^(seq(1, log10(max_limit))),
-    text_size = env_vars$base_size,
-    print = TRUE
+    breaks = 10^(seq(1, log10(max_limit)))
   )
 ```
 
@@ -683,23 +658,17 @@ plot_analysis_3 <-
   weighted_data |> 
   plot_brazil_municipality(
     transform = "log10",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
-    thematic_direction = -1,
+    direction = -1,
     alpha = 0.75,
     breaks = c(10, 500, 1000, 5000, 7500),
-    point = TRUE,
-    text_size = env_vars$base_size,
-    print = TRUE
+    point = TRUE
   )
 ```
 
 ```{r}
 plot_analysis_4 <- 
   weighted_data |> 
-  plot_brazil_point(
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+  plot_brazil_point()
 ```
 
 <!-- See. <https://patchwork.data-imaginist.com/articles/patchwork.html> -->
@@ -924,10 +893,7 @@ plot_ibge_6407_age_1 <-
   dplyr::select(sex, age, n) |>
   tidyr::uncount(n) |>
   plot_age_pyramid(
-    breaks = c(0, 10, 20, 30, 40, 50, 60, 65, 90), 
-    na_rm = TRUE, 
-    text_size = env_vars$base_size,
-    print = TRUE
+    breaks = c(0, 10, 20, 30, 40, 50, 60, 65, 90)
   )
 ```
 
@@ -939,13 +905,10 @@ plot_ibge_6407_age_2 <-
   dplyr::select(state_code, age, n) |>
   tidyr::uncount(n) |>
   plot_brazil_state(
-    "age",
+    col_fill = "age",
     transform = "identity",
-    thematic = TRUE, # Best in viridis/viridis.
-    thematic_direction = -1,
+    direction = -1,
     reverse = FALSE,
-    text_size = env_vars$base_size,
-    print = TRUE,
     quiet = TRUE
   )
 ```
@@ -1032,12 +995,7 @@ anonymized_data |>
 
 plot_full_age_1<- 
   anonymized_data |> 
-  plot_age_pyramid(
-    interval = 10, 
-    na_rm = TRUE, 
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+  plot_age_pyramid()
 ```
 
 ```{r}
@@ -1046,11 +1004,8 @@ plot_full_age_2 <-
   plot_brazil_state(
     col_fill = "age",
     transform = "identity",
-    thematic = TRUE, # Best in viridis/viridis.
-    thematic_direction = -1,
+    direction = -1,
     reverse = FALSE,
-    text_size = env_vars$base_size,
-    print = TRUE,
     quiet = TRUE
   )
 ```
@@ -1061,11 +1016,8 @@ plot_full_age_3 <-
   plot_brazil_municipality(
     col_fill = "age", # Means
     transform = "identity",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
-    thematic_direction = -1,
+    direction = -1,
     reverse = FALSE,
-    text_size = env_vars$base_size,
-    print = TRUE,
     quiet = TRUE
   )
 ```
@@ -1080,9 +1032,7 @@ plot_age_sex_weigth_series <-
   dplyr::filter(age <= 50) |>
   plot_series(
     col_y = "weight", 
-    y_label = "Weight (kg)", 
-    text_size = env_vars$base_size,
-    print = TRUE
+    y_label = "Weight (kg)"
   )
 ```
 
@@ -1141,12 +1091,7 @@ weighted_data |> summary_by("age", "state")
 
 plot_analysis_age_1 <- 
   weighted_data |> 
-  plot_age_pyramid(
-    interval = 10,
-    na_rm = TRUE, 
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+  plot_age_pyramid()
 ```
 
 ```{r}
@@ -1154,12 +1099,9 @@ plot_analysis_age_2 <-
   anonymized_data |> 
   plot_brazil_state(
     col_fill = "age", # Means
-    thematic = TRUE, # Best in viridis/viridis.
-    thematic_direction = -1,
+    direction = -1,
     reverse = FALSE,
-    text_size = env_vars$base_size,
     transform = "identity",
-    print = TRUE,
     quiet = TRUE
   )
 ```
@@ -1169,11 +1111,9 @@ plot_analysis_age_3 <-
   weighted_data |> 
   plot_brazil_municipality(
     col_fill = "age", # Means
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
-    thematic_direction = -1,
+    direction = -1,
     reverse = FALSE,
     transform = "identity",
-    print = TRUE,
     quiet = TRUE
   )
 ```
@@ -1213,15 +1153,13 @@ weighted_data |>
   dplyr::filter(!test_outlier(weight)) |>
   plot_latitude_series(
     col = "weight",
-    y_label = "Weight (kg)",
-    text_size = env_vars$base_size,
-    print = TRUE
+    y_label = "Weight (kg)"
   )
 ```
 
 Source: Created by the author.
 
-Boxplots of mean weight values (kg) aggregated by 1° latitude intervals, illustrating the relationship between latitude and weight. The × symbol points to the mean. The red line represents a linear regression.
+Boxplots of mean weight values (kg) aggregated by 1° latitude intervals, illustrating the relationship between latitude and weight. The × symbol points to the mean. The orange line represents a linear regression.
 :::
 
 ## Chronotype distributions
@@ -1259,10 +1197,7 @@ anonymized_data |> get_chronotype_cutoffs()
 plot_age_sex_series <- 
   anonymized_data |>
   dplyr::filter(age <= 50) |>
-  plot_series(
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+  plot_series()
 ```
 
 Source: Created by the author. Based on data visualization found in @roenneberg2007a.
@@ -1271,11 +1206,11 @@ Relation between age and chronotype, divided by sex and aggregated by the mean. 
 :::
 
 ::: {#fig-sm-2-roenneberg-2007-figure-4}
-![](images/roenneberg-2007-figure-4.png)
+![](images/roenneberg-2007-figure-4.png){width=80%}
 
 Source: Reproduction from @roenneberg2019b.
 
-Distribution of European chronotypes by age, as shown in @roenneberg2007a (for comparison).
+Distribution of European chronotypes by age, as shown in @roenneberg2007a, for comparison.
 :::
 
 ```{r}
@@ -1288,9 +1223,7 @@ plot_age_sex_series <-
   plot_series(
     col_x = "weight",
     x_label = "Weigth",
-    date_breaks = "30 min",
-    text_size = env_vars$base_size,
-    print = TRUE
+    date_breaks = "30 min"
   )
 ```
 
@@ -1363,10 +1296,7 @@ weighted_data |>
 #| warning: false
 
 weighted_data |> 
-  plot_chronotype(
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+  plot_chronotype()
 ```
 
 Source: Created by the author. Based on data visualization found in @roenneberg2019b.
@@ -1416,20 +1346,12 @@ weighted_data |>
 plot_age_sex_series <- 
   weighted_data |>
   dplyr::filter(age <= 50) |>
-  plot_series(
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+  plot_series()
 ```
 
 Source: Created by the author. Based on data visualization found in @roenneberg2007a.
 
 Relation between age and chronotype, divided by sex and aggregated by the mean (Analysis sample). Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
-:::
-
-Source: Reproduction from @roenneberg2019b.
-
-Distribution of European chronotypes by age, as shown in @roenneberg2007a (for comparison).
 :::
 
 ```{r}
@@ -1442,9 +1364,7 @@ plot_age_sex_series <-
   plot_series(
     col_x = "weight",
     x_label = "Weigth",
-    date_breaks = "30 min",
-    text_size = env_vars$base_size,
-    print = TRUE
+    date_breaks = "30 min"
   )
 ```
 
@@ -1474,13 +1394,10 @@ weighted_data |>
   plot_brazil_state(
     col_fill = "msf_sc",
     transform = "identity",
-    thematic = TRUE, # Best in viridis/viridis.
     binned = FALSE,
     breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
     labels = labels_hms,
     limits = limits, # !!!
-    text_size = env_vars$base_size,
-    print = TRUE,
     quiet = TRUE
   )
 ```
@@ -1503,13 +1420,10 @@ weighted_data |>
   plot_brazil_municipality(
     col_fill = "msf_sc",
     transform = "identity",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
     binned = TRUE,
     breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
     labels = labels_hms,
     limits = limits,
-    text_size = env_vars$base_size,
-    print = TRUE,
     quiet = TRUE
   )
 ```
@@ -1528,16 +1442,7 @@ weighted_data |>
       ordered = TRUE
     )
   ) |>
-  plot_brazil_point(
-    col_group = "msf_sc_category",
-    transform = "identity",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
-    size = 0.5,
-    alpha = 0.75,
-    legend = TRUE,
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+  plot_brazil_point(col_group = "msf_sc_category")
 ```
 
 ```{r}
@@ -1557,17 +1462,17 @@ plot <-
   ) |>
   plot_brazil_point(
     col_group = "msf_sc_category",
-    thematic = TRUE, # Best in viridis/plasma (or cividis) (direction = -1).
     size = 0.1,
     alpha = 1,
-    legend = FALSE,
-    text_size = env_vars$base_size,
-    print = FALSE,
+    print = FALSE
+  ) +
+  ggplot2::theme(
     axis.title = ggplot2::element_blank(),
     axis.text= ggplot2::element_blank(),
     axis.ticks = ggplot2::element_blank(),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank()
+    panel.grid.major = ggplot2::element_blank(),
+    panel.grid.minor = ggplot2::element_blank(),
+    legend.position = "none"
   )
 
 plot |>
@@ -1582,16 +1487,12 @@ plot |>
 
 source(here::here("R", "plot_latitude_series.R"))
 
-weighted_data |> 
-  plot_latitude_series(
-    text_size = env_vars$base_size,
-    print = TRUE
-  )
+weighted_data |> plot_latitude_series()
 ```
 
 Source: Created by the author.
 
-Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The red line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
 :::
 
 ```{r}
@@ -1604,9 +1505,7 @@ weighted_data |>
     x_label = "Latitude",
     date_breaks = "15 min",
     reverse = TRUE,
-    change_sign = TRUE,
-    text_size = env_vars$base_size,
-    print = TRUE
+    change_sign = TRUE
   )
 ```
 

@@ -69,6 +69,10 @@ for (i in seq_along(output_docs_new_files)) {
   )
 }
 
+# Stop `showtext` -----
+
+showtext::showtext_auto(enable = FALSE)
+
 # Update `LICENSE.md` year -----
 
 file <- here::here("LICENSE.md")

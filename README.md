@@ -1,7 +1,11 @@
+
+
 # mastersthesis
 
 <!-- quarto render --profile gfm -->
+
 <!-- badges: start -->
+
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -19,7 +23,7 @@ MIT](https://img.shields.io/badge/license-MIT-green.png)](https://choosealicense
 
 This repository contains the [Quarto
 book](https://quarto.org/docs/books/) of my master’s thesis: *Is
-latitude associated with chronotype?* The research compendium is
+Latitude Associated with Chronotype?* The research compendium is
 accessible via [The Open Science Framework](https://osf.io/) by clicking
 [here](https://doi.org/10.17605/OSF.IO/YGKTS).
 
@@ -45,14 +49,20 @@ of access keys from the author (see the keys section below).
 
 To reproduce the analyses do the following steps:
 
-1.  Clone this repository.
-2.  Open the R project (`mastersthesis.Rproj`).
-3.  Run
+1.  Make sure that you have the latest R version and the following R
+    packages installed in your machine:
+    `install.packages(c("cli", "here", "magrittr", "renv", "stats", "stringr"))`.
+2.  Clone this repository.
+3.  Open the R project (`mastersthesis.Rproj`).
+4.  Run
     [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html)
     to install all software dependencies.
-4.  Set all the keys provided by the author in the `.Renviron` file and
+5.  Set all the keys provided by the author in the `.Renviron` file and
     the `_ssh` folder.
-5.  Open and run the analysis in the computational notebook.
+6.  Run `targets::tar_make()` to create and get every point of the data
+    wrangling process (from the raw_data to the cleaned and weighted
+    data).
+7.  Open and run any analysis present in the computational notebooks.
 
 If you don’t feel comfortable with R, I strongly recommend checking
 Hadley Wickham and Garrett Grolemund’s free and online book [R for Data
@@ -67,16 +77,16 @@ following keys in the
 [`.Renviron`](https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file)
 file:
 
-- `OSF_PAT`: Your OSF Personal Access Token (PAT). If you don’t have
-  one, go to the settings section of your OSF account and create a new
-  token.
+- `OSF_PAT`: Your [OSF](https://osf.io/) Personal Access Token (PAT). If
+  you don’t have one, go to the settings section of your OSF account and
+  create a new token.
 - `MASTERSTHESIS_PASSWORD`: The password for the project’s RSA private
-  key.
+  key (32 bytes).
 
-Additionally, you will need the following files in the project’s `_ssh`
+Additionally, you will need the following keys in the project’s `_ssh`
 folder:
 
-- `id_rsa`: The project’s private RSA key.
+- `id_rsa`: The project’s private RSA key (RSA 4096 bits (OpenSSL)).
 - `id_rsa.pub`: The project’s public RSA key.
 
 These project’s keys will be provided by the author of the thesis upon
@@ -113,7 +123,7 @@ A BibTeX entry for LaTeX users is:
     @mastersthesis{vartanian2024,
       title = {Is latitude associated with chronotype?},
       author = {Daniel Vartanian},
-      year = {2024},
+      year = {2025},
       address = {São Paulo},
       school  = {University of São Paulo},
       langid = {en},
@@ -123,7 +133,7 @@ A BibTeX entry for LaTeX users is:
 
 ## Acknowledgments
 
-This thesis was developed in the Graduate Program in Modeling Complex
+The thesis was developed in the Graduate Program in Modeling Complex
 Systems ([PPG-SCX](https://sites.usp.br/scx/en/apresentacao/)) at the
 University of São Paulo ([USP](https://www5.usp.br/)), under the
 supervision of [Prof. Dr. Camilo Rodrigues

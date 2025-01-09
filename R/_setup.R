@@ -8,10 +8,12 @@ library(ggplot2)
 # library(knitr)
 library(lubridate)
 library(magrittr)
+library(ragg)
 library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
+library(showtext)
+library(sysfonts)
 library(targets)
-# library(thematic)
 library(xml2)
 # library(yaml)
 
@@ -36,7 +38,7 @@ options(
 
 # Set variables -----
 
-set.seed(2024)
+set.seed(2025)
 
 env_vars <- yaml::read_yaml(here::here("_variables.yml"))
 results_vars <- yaml::read_yaml(here::here("_results.yml"))
@@ -54,22 +56,77 @@ env_vars$base_size <- base_size
 knitr::clean_cache() |> rutils:::shush()
 
 knitr::opts_chunk$set(
-  # comment = "#>",
-  # collapse = TRUE,
-  root.dir = here::here()
+  comment = "#>",
+  collapse = TRUE,
+  root.dir = here::here(),
+  dev = "ragg_png",
+  dev.args = list(bg = "transparent"),
+  fig.showtext = TRUE
 )
 
-# Set `ggplot2` -----
+# Set and load graph fonts -----
+
+# # Helpers
+#
+# sysfonts::font_paths()
+#
+# # "poppins" "dm sans"
+# data <-
+#   sysfonts::font_files() |>
+#   dplyr::as_tibble() |>
+#   dplyr::filter(
+#     stringr::str_detect(tolower(family), "dm sans"),
+#     stringr::str_detect(path, "mastersthesis")
+#   )
+
+sysfonts::font_paths(
+  c(
+    here::here("otf"),
+    here::here("ttf"),
+    here::here("_extensions", "abnt", "ttf")
+  )
+)
+
+if (env_vars$format == "pdf") {
+  sysfonts::font_add(
+    family = "helvetica-neue",
+    regular = here::here("otf", "helveticaneueltstd-roman.otf"),
+    bold = here::here("otf", "helveticaneueltstd-bd.otf"),
+    italic = here::here("otf", "helveticaneueltstd-it.otf"),
+    bolditalic = here::here("otf", "helveticaneueltstd-bdit.otf"),
+    symbol = NULL
+  )
+} else {
+  sysfonts::font_add(
+    family = "dm-sans",
+    regular = here::here("ttf", "dmsans-regular.ttf"),
+    bold = here::here("ttf", "dmsans-bold.ttf"),
+    italic = here::here("ttf", "dmsans-italic.ttf"),
+    bolditalic = here::here("ttf", "dmsans-bolditalic.ttf"),
+    symbol = NULL
+  )
+}
+
+showtext::showtext_auto()
+
+# Set `ggplot2` theme -----
 
 ggplot2::theme_set(
   ggplot2::theme_bw(
     base_size = base_size,
-    base_family = env_vars$sansfont,
     base_line_size = base_size / 22,
     base_rect_size = base_size / 22
-  )
-) +
+  ) +
   ggplot2::theme(
+    text = ggplot2::element_text(
+      color = get_brand_color("secondary"),
+      family = ifelse(
+        env_vars$format == "pdf",
+        "helvetica-neue",
+        "dm-sans"
+      ),
+      face = "plain"
+    ),
     panel.background = ggplot2::element_rect(fill = "transparent"),
     plot.background = ggplot2::element_rect(
       fill = "transparent", color = NA
@@ -77,34 +134,10 @@ ggplot2::theme_set(
     panel.grid.major = ggplot2::element_blank(),
     panel.grid.minor = ggplot2::element_blank(),
     legend.background = ggplot2::element_rect(fill = "transparent"),
-    legend.box.background = ggplot2::element_rect(fill = "transparent"),
-    legend.frame = ggplot2::element_blank()
+    legend.box.background = ggplot2::element_rect(
+      fill = "transparent", color = NA
+    ),
+    legend.frame = ggplot2::element_blank(),
+    legend.ticks = ggplot2::element_line(color = "white")
   )
-
-# thematic::thematic_set_theme(
-#   thematic::thematic_theme(
-#     bg = NA,
-#     # bg = get_brand_color("white") |> paste0("00"),
-#     fg = get_brand_color("secondary"),
-#     accent = get_brand_color("primary"),
-#     font = thematic::font_spec(
-#       families = ifelse(
-#         env_vars$format == "html",
-#         get_brand_font("base"),
-#         env_vars$sansfont
-#       ),
-#       install = TRUE
-#     )
-#   ) +
-#     ggplot2::theme(
-#       panel.background = ggplot2::element_rect(fill = "transparent"),
-#       plot.background = ggplot2::element_rect(
-#         fill = "transparent", color = NA
-#       ),
-#       panel.grid.major = ggplot2::element_blank(),
-#       panel.grid.minor = ggplot2::element_blank(),
-#       legend.background = ggplot2::element_rect(fill = "transparent"),
-#       legend.box.background = ggplot2::element_rect(fill = "transparent"),
-#       legend.frame = ggplot2::element_blank()
-#     )
-# )
+)

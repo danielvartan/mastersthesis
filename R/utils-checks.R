@@ -169,3 +169,71 @@ assert_brazil_state <- function(
     x |> prettycheck:::assert_subset(state_options_sensitive)
   }
 }
+
+assert_gg_label <- function(x) {
+  class_options <- c("character", "latexexpression")
+
+  prettycheck:::assert_length(x, len = 1, null_ok = TRUE)
+  prettycheck:::assert_multi_class(x, class_options, null.ok = TRUE)
+}
+
+# library(cli)
+# library(grDevices)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+assert_color_options <- function(
+    color_low = NULL, color_high = NULL, viridis = NULL
+) {
+  viridis_choices <- c(
+    "magma", "A", "inferno", "B", "plasma", "C", "viridis", "D",
+    "cividis", "E", "rocket", "F", "mako", "G", "turbo", "H"
+  )
+
+  prettycheck:::assert_string(color_low, null.ok = TRUE)
+  prettycheck:::assert_string(color_high, null.ok = TRUE)
+  prettycheck:::assert_choice(viridis, viridis_choices, null.ok = TRUE)
+
+  color_pattern <- "(?i)^#[a-f0-9]{3}$|^#[a-f0-9]{6}$|^transparent$"
+  name_color_low <- deparse(substitute(color_low))
+  name_color_high <- deparse(substitute(color_high))
+
+  for (i in c(color_low, color_high)) {
+    name <- ifelse(i == color_low, name_color_low, name_color_high)
+
+    if (!is.null(i) &&
+        !i %in% grDevices::colors() &&
+        !prettycheck:::test_string(i, pattern = color_pattern)) {
+      cli::cli_abort(
+        paste0(
+          "{.strong {cli::col_red(name)}} is not a valid color code. ",
+          "It must contain a hexadecimal color code or one of the ",
+          "values in {.strong {cli::col_blue('grDevices::color()')}}."
+        )
+      )
+    }
+  }
+
+  if (is.null(color_low) && !is.null(color_high) ||
+      !is.null(color_low) && is.null(color_high)) {
+    cli::cli_abort(
+      paste0(
+        "You must provide both ",
+        "{.strong {cli::col_blue('color_low')}} and ",
+        "{.strong {cli::col_red('color_high')}} ",
+        "arguments at the same time."
+      )
+    )
+  } else if ((!is.null(color_low) | !is.null(color_high)) &&
+             !is.null(viridis)) {
+    cli::cli_abort(
+      paste0(
+        "You can't use both ",
+        "{.strong {cli::col_blue('color_low/color_high')}} and ",
+        "{.strong {cli::col_red('viridis')}} ",
+        "arguments at the same time."
+      )
+    )
+  } else {
+    invisible(NULL)
+  }
+}

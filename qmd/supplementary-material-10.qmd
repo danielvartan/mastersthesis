@@ -65,39 +65,27 @@ An abstract pertaining to the primary investigation was published and presented 
 
 \noindent Vartanian, D., & Pedrazzoli, M. (2022). _Ecology of sleep and circadian phenotypes of the Brazilian population_ \[Poster\]. São Paulo Research Foundation; São Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms. <https://doi.org/10.13140/RG.2.2.25343.07840>
 
-```{=latex}
-\smallskip
-```
-
 In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation (SIICUSP) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartanian2022b. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of _Earth and Exact Sciences_.
 
 ## Research compendia
 
 This thesis, along with all the accompanying research, is structured and organized within the research compendium provided below.
 
-```{=latex}
-\smallskip
-```
-
 <!-- @vartanian2024 -->
 
-\noindent Vartanian, D. (2023). _Is latitude associated with the regulation of circadian rhythms in humans?_ [Research compendium]. <https://danielvartan.github.io/mastersthesis/>
+\noindent Vartanian, D. (2023). _Is latitude associated with chronotype?_ [Research compendium]. <https://danielvartan.github.io/mastersthesis/>
 
 ## Data plans
 
 This research has also produced and published the following open data model and data plan.
 
-```{=latex}
-\smallskip
-```
-
 <!-- @vartanian2024 -->
 
-\noindent Vartanian, D. (2023). _Is latitude associated with the regulation of circadian rhythms in humans?_ [Data Management Plan]. DMPHub. <https://doi.org/10.48321/D1DW8P>
+\noindent Vartanian, D. (2024). _Is latitude associated with chronotype?_ [Data Management Plan]. DMPHub. <https://doi.org/10.48321/D1DW8P>
 
 ## Softwares
 
-The following R packages, [Quarto](https://quarto.org/) format (being used to write this thesis), and Python package were developed in relation with this thesis.
+The following R packages, [Quarto](https://quarto.org/) format (being used to write this thesis), and Python packages were developed in relation with this thesis.
 
 ```{=latex}
 \smallskip
@@ -147,4 +135,4 @@ The author is also currently working on the development of the project below.
 \smallskip
 ```
 
-\noindent Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). _Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor_ \[PhD project, University of Sao Paulo\]. <https://bit.ly/3S6O0MB>
+\noindent Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). _Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor_ \[Master's project, University of Sao Paulo\]. <https://bit.ly/3S6O0MB>

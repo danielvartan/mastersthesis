@@ -1,5 +1,6 @@
 # library(here)
 # library(rutils) # github.com/danielvartan/rutils
+library(sysfonts)
 # lybrary(yaml)
 
 # Pre-render begin ----------
@@ -129,26 +130,6 @@ rutils:::add_or_update_env_var(
   var = var_list,
   yml_file = here::here("_variables.yml")
 )
-
-# Load fonts -----
-
-# if (is.null(env_vars$sansfont)) {
-#   cli::cli_abort("Error while importing the environment variables.")
-# } else {
-#   extrafont::font_import(
-#     paths = c(
-#       here::here("ttf")
-#       # here::here("_extensions", "abnt", "ttf")
-#     ),
-#     recursive = TRUE,
-#     prompt = FALSE
-#   ) |>
-#     rutils::shush()
-#
-#   extrafont::loadfonts(quiet = TRUE)
-# }
-
-# extrafont::fonts()
 
 # Pre-render end ----------
 

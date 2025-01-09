@@ -1,3 +1,12 @@
+# # For testing
+#
+# Sys.setlocale(locale = "pt_BR.utf8")
+# set_locale()
+# get_locale()
+# Sys.getlocale()
+# Sys.getenv()
+# Sys.getenv("LC_TIME")
+
 # library(cli)
 # library(stats)
 # library(stringr)
@@ -58,12 +67,31 @@ set_locale <- function() {
     )
   }
 
+  if (Sys.getenv("SET_LOCALE_MESSAGES") == "") {
+    Sys.setenv(SET_LOCALE_MESSAGES = TRUE)
+
+    get_locale(periodic_message = TRUE)
+  }
+
   invisible()
 }
 
 # library(cli)
 
-get_locale <- function() {
+get_locale <- function(periodic_message = FALSE) {
+  prettycheck:::assert_flag(periodic_message)
+
+  if (isTRUE(periodic_message)) {
+    cli::cli_alert_info(
+      paste0(
+        "The messages below are shown only once per R session."
+      ),
+      wrap = TRUE
+    )
+  }
+
+  cat("\n")
+
   cli::cli_alert(
     paste0(
       "The current system locale is:\n\n",
@@ -107,15 +135,3 @@ get_locale <- function() {
 
   invisible()
 }
-
-# # For testing
-#
-# Sys.setlocale(locale = "pt_BR.utf8")
-# set_locale()
-# get_locale()
-# Sys.getlocale()
-# Sys.getenv()
-# Sys.getenv("LC_TIME")
-
-set_locale()
-get_locale()

@@ -4,6 +4,7 @@
 library(rlang)
 # library(tidyr)
 
+source(here::here("R", "utils-checks.R"))
 source(here::here("R", "utils-plots.R"))
 
 plot_hist <- function(
@@ -13,16 +14,10 @@ plot_hist <- function(
     bins = 30,
     stat = "density",
     density_line = TRUE,
-    line_color = get_brand_color("primary"), # "red"
     na_rm = TRUE,
-    title = NULL,
-    subtitle = NULL,
     x_label = name,
     y_label = ifelse(stat == "count", "Frequency", "Density"),
-    theme = "bw",
-    text_size = NULL,
-    print = TRUE,
-    ...
+    print = TRUE
   ) {
   prettycheck:::assert_tibble(data)
   prettycheck:::assert_string(col)
@@ -32,9 +27,10 @@ plot_hist <- function(
   prettycheck:::assert_number(bins, lower = 1)
   prettycheck:::assert_choice(stat, c("count", "density"))
   prettycheck:::assert_flag(density_line)
-  prettycheck:::assert_color(line_color)
   prettycheck:::assert_flag(na_rm)
   prettycheck:::assert_flag(print)
+  assert_gg_label(x_label)
+  assert_gg_label(y_label)
 
   data <- data |> dplyr::select(dplyr::all_of(col))
 
@@ -50,21 +46,17 @@ plot_hist <- function(
       bins = 30,
       color = "white"
     ) +
-    add_labels(
-      title = title,
-      subtitle = subtitle,
-      x_label = x_label,
-      y_label = y_label
+    ggplot2::labs(
+      x = x_label,
+      y = y_label
     ) +
-    add_theme(
-      theme = theme,
-      legend = FALSE,
-      text_size = text_size,
-      ...
-    )
+    ggplot2::theme(legend.position = "none")
 
   if (stat == "density" && isTRUE(density_line)) {
-    plot <- plot + ggplot2::geom_density(color = line_color, linewidth = 1)
+    plot <- plot + ggplot2::geom_density(
+      color = get_brand_color("primary"),
+      linewidth = 1
+    )
   }
 
   if (isTRUE(print)) print(plot)

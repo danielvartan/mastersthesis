@@ -6,14 +6,14 @@ library(ggplot2)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(stats)
 # library(tidyr)
+# library(thematic)
 
-source(here::here("R/utils.R"))
+source(here::here("R", "utils.R"))
 
 plot_ggcorrplot <- function(
     data,
     cols,
     na_rm = TRUE,
-    text_size = NULL,
     label = TRUE,
     hc_order = TRUE
   ) {
@@ -21,7 +21,6 @@ plot_ggcorrplot <- function(
   prettycheck:::assert_character(cols)
   prettycheck:::assert_subset(cols, names(data))
   prettycheck:::assert_flag(na_rm)
-  prettycheck:::assert_number(text_size, null.ok = TRUE)
   prettycheck:::assert_flag(label)
   prettycheck:::assert_flag(hc_order)
 
@@ -31,7 +30,13 @@ plot_ggcorrplot <- function(
     dplyr::mutate(
       dplyr::across(
         .cols = dplyr::where(hms::is_hms),
-        .fns = ~ midday_trigger(.x)
+        .fns = function(x) {
+          x |>
+            lubritime:::link_to_timeline(
+              threshold = hms::parse_hms("12:00:00")
+            ) |>
+            as.numeric()
+        }
       )
     ) |>
     dplyr::mutate(
@@ -40,9 +45,7 @@ plot_ggcorrplot <- function(
         .fns = ~ as.numeric(.x))
       )
 
-  if (isTRUE(na_rm)) {
-    out <- out |> tidyr::drop_na(dplyr::all_of(cols))
-  }
+  if (isTRUE(na_rm)) out <- out |> tidyr::drop_na(dplyr::all_of(cols))
 
   corr <- stats::cor(out, use = "complete.obs")
   p_matrix <- ggcorrplot::cor_pmat(out)
@@ -52,16 +55,11 @@ plot_ggcorrplot <- function(
     ggcorrplot::ggcorrplot(
       corr = corr,
       type = "lower",
-      ggtheme = ggplot2::theme_gray(),
+      ggtheme = thematic::thematic_get_theme(),
       outline.color = "gray",
       hc.order = hc_order,
       lab = label,
       p.mat = p_matrix
-    ) +
-    ggplot2::theme(
-      text = ggplot2::element_text(size = text_size),
-      axis.text.x = ggplot2::element_text(size = text_size),
-      axis.text.y = ggplot2::element_text(size = text_size)
     )
 
   print(plot)

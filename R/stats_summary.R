@@ -47,18 +47,10 @@ stats_summary <- function(
     if (lubridate::is.POSIXt(x)) {
       x <- x |> as.numeric()
     } else if (hms::is_hms(x)) {
-      if (all(
-        hms::as_hms(min(x, na.rm = TRUE)) < hms::parse_hm("12:00") &
-        hms::as_hms(max(x, na.rm = TRUE)) < hms::parse_hm("12:00"),
-        na.rm = TRUE
-      )) {
-        x <- x |> as.numeric()
-      } else {
-        x <-
-          x |>
-          lubritime:::link_to_timeline(threshold = threshold) |>
-          as.numeric()
-      }
+      x <-
+        x |>
+        lubritime:::link_to_timeline(threshold = threshold) |>
+        as.numeric()
     } else {
       x <- x |> transform_time(threshold = threshold)
     }

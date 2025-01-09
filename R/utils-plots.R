@@ -10,7 +10,7 @@ scale_brand <- function(
     scale_type = "c",
     color_type = "seq",
     direction = 1,
-    na.value = "grey50", # Must follow ggplot2 arg names.
+    na.value = NA, # Must follow ggplot2 arg names. # "grey50"
     reverse = FALSE,
     ...
   ) {
@@ -35,14 +35,6 @@ scale_brand <- function(
   prettycheck:::assert_color(na.value, na_ok = TRUE)
   prettycheck:::assert_flag(reverse)
 
-  if (scale_type %in% c("d", "discrete")) {
-    scale_fun <- ggplot2::discrete_scale
-  } else if (scale_type %in% c("c", "continuous")) {
-    scale_fun <- ggplot2::continuous_scale
-  } else if (scale_type %in% c("b", "binned")) {
-    scale_fun <- ggplot2::binned_scale
-  }
-
   if (color_type %in% c("seq", "sequential")) {
     palette <- \(x) color_brand_sequential(x, direction = direction)
   } else if (color_type %in% c("div", "diverging")) {
@@ -51,28 +43,23 @@ scale_brand <- function(
     palette <- \(x) color_brand_qualitative(x, direction = direction)
   }
 
+  if (scale_type %in% c("d", "discrete")) {
+    scale_fun <- ggplot2::discrete_scale
+    guide <- ggplot2::guide_legend(reverse = reverse)
+  } else if (scale_type %in% c("c", "continuous")) {
+    scale_fun <- ggplot2::continuous_scale
+    guide <- ggplot2::guide_colourbar(reverse = reverse)
+  } else if (scale_type %in% c("b", "binned")) {
+    scale_fun <- ggplot2::binned_scale
+    guide <- ggplot2::guide_colorsteps(reverse = reverse)
+  }
+
   arg_list <- list(
     aesthetics = aesthetics,
     palette = palette,
-    na.value = na.value
+    na.value = na.value,
+    guide = guide
   )
-
-  if (identical(scale_fun, ggplot2::continuous_scale)) {
-    arg_list <- c(
-      arg_list,
-      list(guide =ggplot2::guide_colourbar(reverse = reverse))
-    )
-  } else if (identical(scale_fun, ggplot2::binned_scale)) {
-    arg_list <- c(
-      arg_list,
-      list(guide = ggplot2::guide_colorsteps(reverse = reverse))
-    )
-  } else if (identical(scale_fun, ggplot2::discrete_scale)) {
-    arg_list <- c(
-      arg_list,
-      list(guide = ggplot2::guide_legend(reverse = reverse))
-    )
-  }
 
   do.call(
     what = scale_fun,
@@ -618,363 +605,4 @@ rm_scale <- function(plot) {
   plot |>
     gginnards::delete_layers("GeomScaleBar") |>
     gginnards::delete_layers("GeomNorthArrow")
-}
-
-library(ggplot2)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(viridis)
-
-add_color_scale <- function(
-    thematic = TRUE,
-    thematic_direction = 1,
-    viridis = "viridis",
-    viridis_direction = 1,
-    viridis_alpha = 1,
-    color_brewer = "YlOrRd",
-    color_low = NULL,
-    color_high = NULL,
-    color_na = NA,
-    binary = FALSE,
-    binned = FALSE,
-    breaks = ggplot2::waiver(), # Just for continuous or binned scales.
-    n_breaks = NULL,
-    labels = ggplot2::waiver(),
-    reverse = FALSE,
-    limits = NULL,
-    point = FALSE,
-    transform = "identity",
-    ...
-  ) {
-  prettycheck:::assert_flag(thematic)
-  prettycheck:::assert_choice(thematic_direction, c(-1, 1))
-  prettycheck:::assert_choice(viridis_direction, c(-1, 1))
-  prettycheck:::assert_number(viridis_alpha, lower = 0, upper = 1)
-
-  prettycheck:::assert_choice(
-    color_brewer, RColorBrewer::brewer.pal.info |> row.names(), null.ok = TRUE
-  )
-
-  assert_color_options(color_low, color_high, viridis)
-  prettycheck:::assert_color(color_na, na_ok = TRUE)
-  prettycheck:::assert_flag(binary)
-  prettycheck:::assert_flag(binned)
-  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  prettycheck:::assert_integer_number(n_breaks, lower = 1, null.ok = TRUE)
-  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
-  prettycheck:::assert_flag(reverse)
-
-  prettycheck:::assert_multi_class(
-    limits, c("numeric", "function"), null.ok = TRUE
-  )
-
-  prettycheck:::assert_flag(point)
-  prettycheck:::assert_multi_class(transform, c("character", "transform"))
-
-
-  if (isTRUE(binary)) binned <- FALSE
-
-  if (isTRUE(thematic)) {
-    if (isTRUE(point)) {
-      scale_color_brand_c(
-        direction = thematic_direction,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        reverse = reverse,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else if (isTRUE(binned)) {
-      scale_fill_brand_b(
-        direction = thematic_direction,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        reverse = reverse,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else if (isTRUE(binary)) {
-      scale_fill_brand_c(
-        direction = thematic_direction,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        reverse = reverse,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else {
-      scale_fill_brand_c(
-        direction = thematic_direction,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        reverse = reverse,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    }
-  } else if (is.null(viridis)) {
-    if (isTRUE(point)) {
-      viridis::scale_color_viridis(
-        alpha = viridis_alpha,
-        option = viridis,
-        direction = viridis_direction,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else if (isTRUE(binned)) {
-      ggplot2::scale_fill_stepsn(
-        colors = viridis::viridis(
-          30,
-          alpha = viridis_alpha,
-          direction = viridis_direction,
-          option = viridis
-        ),
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else {
-      viridis::scale_fill_viridis(
-        alpha = viridis_alpha,
-        option = viridis,
-        direction = viridis_direction,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    }
-  } else if (is.null(color_brewer)) {
-    if (is.null(color_low) || is.null(color_high)) {
-      colors <- RColorBrewer::brewer.pal(5, color_brewer)
-
-      if (direction == 1) {
-        color_low <- dplyr::first(colors)
-        color_high <- dplyr::last(colors)
-      } else {
-        color_low <- dplyr::last(colors)
-        color_high <- dplyr::first(colors)
-      }
-    }
-
-    if (isTRUE(point)) {
-      ggplot2::scale_color_continuous(
-        low = color_low,
-        high = color_high,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else if (isTRUE(binned)) {
-      ggplot2::scale_fill_binned(
-        type = "gradient",
-        low = color_low,
-        high = color_high,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else if (isTRUE(binary)) {
-      ggplot2::scale_fill_continuous(
-        low = color_high,
-        high = color_high,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    } else {
-      ggplot2::scale_fill_gradient(
-        low = color_low,
-        high = color_high,
-        na.value = color_na,
-        breaks = breaks,
-        n.breaks = n_breaks,
-        labels = labels,
-        limits = limits,
-        transform = transform,
-        ...
-      )
-    }
-  }
-}
-
-library(ggplot2)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-add_labels <- function(
-    title = NULL,
-    subtitle = NULL,
-    x_label = NULL,
-    y_label = NULL,
-    color_label = NULL,
-    fill_label = NULL,
-    size_label = NULL
-  ) {
-  class_options <- c("character", "latexexpression")
-
-  prettycheck:::assert_length(title, len = 1, null_ok = TRUE)
-  prettycheck:::assert_multi_class(title, class_options, null.ok = TRUE)
-  prettycheck:::assert_length(subtitle, len = 1, null_ok = TRUE)
-  prettycheck:::assert_multi_class(subtitle, class_options, null.ok = TRUE)
-  prettycheck:::assert_length(x_label, len = 1, null_ok = TRUE)
-  prettycheck:::assert_multi_class(x_label, class_options, null.ok = TRUE)
-  prettycheck:::assert_length(y_label, len = 1, null_ok = TRUE)
-  prettycheck:::assert_multi_class(y_label, class_options, null.ok = TRUE)
-  prettycheck:::assert_length(color_label, len = 1, null_ok = TRUE)
-  prettycheck:::assert_multi_class(color_label, class_options, null.ok = TRUE)
-  prettycheck:::assert_length(fill_label, len = 1, null_ok = TRUE)
-  prettycheck:::assert_multi_class(fill_label, class_options, null.ok = TRUE)
-  prettycheck:::assert_length(size_label, len = 1, null_ok = TRUE)
-  prettycheck:::assert_multi_class(size_label, class_options, null.ok = TRUE)
-
-  ggplot2::labs(
-    x = x_label,
-    y = y_label,
-    title = title,
-    subtitle = subtitle,
-    color = color_label,
-    fill = fill_label,
-    size = size_label
-  )
-}
-
-library(ggplot2)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-add_theme <- function(
-    theme = "bw",
-    legend = TRUE,
-    legend_position = "right",
-    text_size = NULL,
-    ...
-  ) {
-  theme_choices <- c(
-    "default", "gray", "bw", "linedraw", "light", "dark", "minimal",
-    "classic", "test", "void"
-  )
-
-  legend_position_choices <- c(
-    "none", "left", "right", "bottom", "top", "inside"
-  )
-
-  prettycheck:::assert_choice(theme, theme_choices)
-  prettycheck:::assert_flag(legend)
-  prettycheck:::assert_choice(legend_position, legend_position_choices)
-  prettycheck:::assert_number(text_size, null.ok = TRUE)
-
-  theme_fun <- switch(
-    theme,
-    gray = ggplot2::theme_gray,
-    bw = ggplot2::theme_bw,
-    linedraw = ggplot2::theme_linedraw,
-    light = ggplot2::theme_light,
-    dark = ggplot2::theme_dark,
-    minimal = ggplot2::theme_minimal,
-    classic = ggplot2::theme_classic,
-    void = ggplot2::theme_void,
-    test = ggplot2::theme_test
-  )
-
-  theme_fun() +
-    ggplot2::theme(
-      legend.position = ifelse(isTRUE(legend), legend_position, "none"),
-      text = ggplot2::element_text(size = text_size),
-      ...
-    )
-}
-
-# library(cli)
-# library(grDevices)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-assert_color_options <- function(
-    color_low = NULL, color_high = NULL, viridis = NULL
-  ) {
-  viridis_choices <- c(
-    "magma", "A", "inferno", "B", "plasma", "C", "viridis", "D",
-    "cividis", "E", "rocket", "F", "mako", "G", "turbo", "H"
-  )
-
-  prettycheck:::assert_string(color_low, null.ok = TRUE)
-  prettycheck:::assert_string(color_high, null.ok = TRUE)
-  prettycheck:::assert_choice(viridis, viridis_choices, null.ok = TRUE)
-
-  color_pattern <- "(?i)^#[a-f0-9]{3}$|^#[a-f0-9]{6}$|^transparent$"
-  name_color_low <- deparse(substitute(color_low))
-  name_color_high <- deparse(substitute(color_high))
-
-  for (i in c(color_low, color_high)) {
-    name <- ifelse(i == color_low, name_color_low, name_color_high)
-
-    if (!is.null(i) &&
-        !i %in% grDevices::colors() &&
-        !prettycheck:::test_string(i, pattern = color_pattern)) {
-      cli::cli_abort(
-        paste0(
-          "{.strong {cli::col_red(name)}} is not a valid color code. ",
-          "It must contain a hexadecimal color code or one of the ",
-          "values in {.strong {cli::col_blue('grDevices::color()')}}."
-        )
-      )
-    }
-  }
-
-  if (is.null(color_low) && !is.null(color_high) ||
-      !is.null(color_low) && is.null(color_high)) {
-    cli::cli_abort(
-      paste0(
-        "You must provide both ",
-        "{.strong {cli::col_blue('color_low')}} and ",
-        "{.strong {cli::col_red('color_high')}} ",
-        "arguments at the same time."
-      )
-    )
-  } else if ((!is.null(color_low) | !is.null(color_high)) &&
-             !is.null(viridis)) {
-    cli::cli_abort(
-      paste0(
-        "You can't use both ",
-        "{.strong {cli::col_blue('color_low/color_high')}} and ",
-        "{.strong {cli::col_red('viridis')}} ",
-        "arguments at the same time."
-      )
-    )
-  } else {
-    invisible(NULL)
-  }
 }
