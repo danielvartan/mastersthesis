@@ -2,6 +2,13 @@
 
 <!-- quarto render --profile gfm -->
 
+```{r}
+#| label: setup
+#| include: false
+
+source(here::here("R", "_setup.R"))
+```
+
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![OSF DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/YGKTS-1284C5.svg)](https://doi.org/10.17605/OSF.IO/YGKTS)
@@ -21,19 +28,19 @@ The assemble of this repository was inspired by Ben Marwick, Carl Boettiger & Li
 
 All analyses in this thesis are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) alongside the [Quarto](https://quarto.org/) publishing system. The [`renv`](https://rstudio.github.io/renv/) package was used to ensure that the R environment used can be restored (see `renv.lock`). All the computational notebooks can be found in the `qmd` directory.
 
-It's important to note that some restrictions apply to the availability of the  main research data, which contain personal and sensitive information. As a result, this data cannot be publicly shared. To run the analyses, users must have an internet connection and request a set of access keys from the author (see the keys section below).
+It's important to note that some restrictions apply to the availability of the  main research data, which contain personal and sensitive information. As a result, this data cannot be publicly shared. To run the analyses, users must have an internet connection and request a set of access keys from the author (see *Keys* section).
+
+If you don't feel comfortable with R, I strongly recommend checking Hadley Wickham and Garrett Grolemund's free and online book [R for Data Science](https://r4ds.hadley.nz/) and the Coursera course from John Hopkins University [Data Science: Foundations using R](https://www.coursera.org/specializations/data-science-foundations-r).
 
 To reproduce the analyses do the following steps:
 
-1. Make sure that you have the latest R version and the following R packages installed in your machine: `install.packages(c("cli", "here", "magrittr", "renv", "stats", "stringr"))`.
+1. Make sure that you have the latest R version and the following R packages installed in your machine: `install.packages(c("cli", "here" ,"magrittr", "ragg", "renv", "stats", "stringr"))`.
 1. Clone this repository.
 1. Open the R project (`mastersthesis.Rproj`).
 1. Run [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html) to install all software dependencies.
 1. Set all the keys provided by the author in the `.Renviron` file and the `_ssh` folder.
-1. Run `targets::tar_make()` to create and get every point of the data wrangling process (from the raw_data to the cleaned and weighted data). 
-1. Open and run any analysis present in the computational notebooks.
-
-If you don't feel comfortable with R, I strongly recommend checking Hadley Wickham and Garrett Grolemund's free and online book [R for Data Science](https://r4ds.hadley.nz/) and the Coursera course from John Hopkins University [Data Science: Foundations using R](https://www.coursera.org/specializations/data-science-foundations-r).
+1. Run `targets::tar_make()` to create every point of the data wrangling process (from the raw data to the cleaned and weighted data). 
+1. Run any analysis present in the computational notebooks (`qmd` directory).
 
 ## Keys
 
@@ -63,26 +70,26 @@ The research data is subject to a private license and is not publicly available 
 
 To cite this work, please use the following format:
 
-Vartanian, D. (2024). *Is latitude associated with chronotype?* [Master's thesis, University of São Paulo]. [https://doi.org/10.17605/OSF.IO/YGKTS](https://doi.org/10.17605/OSF.IO/YGKTS)
+Vartanian, D. (`r env_vars[["year"]]`). *`r env_vars[["title"]] |> stringr::str_to_sentence()`* [`r env_vars[["academic-title"]]`'s `r env_vars[["type-of-work"]]`, `r env_vars[["university"]]`]. [https://doi.org/10.17605/OSF.IO/YGKTS](https://doi.org/10.17605/OSF.IO/YGKTS)
 
 A BibTeX entry for LaTeX users is:
 
-```         
-@mastersthesis{vartanian2024,
-  title = {Is latitude associated with chronotype?},
+```
+@mastersthesis{vartanian`r env_vars[["year"]]`,
+  title = {`r env_vars[["title"]] |> stringr::str_to_sentence()`},
   author = {Daniel Vartanian},
-  year = {2025},
-  address = {São Paulo},
-  school  = {University of São Paulo},
-  langid = {en},
+  year = {`r env_vars[["year"]]`},
+  address = {`r env_vars[["location"]]`},
+  school  = {`r env_vars[["university"]]`},
+  langid = {`r env_vars[["language"]]`},
   url = {https://doi.org/10.17605/OSF.IO/YGKTS},
-  note = {Original version}
+  note = {`r env_vars[["version-note"]]`}
 }
 ```
 
 ## Acknowledgments
 
-The thesis was developed in the Graduate Program in Modeling Complex Systems ([PPG-SCX](https://sites.usp.br/scx/en/apresentacao/)) at the University of São Paulo ([USP](https://www5.usp.br/)), under the supervision of [Prof. Dr. Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695).
+The thesis was developed in the Graduate Program in Modeling Complex Systems ([PPG-SCX](https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos)) at the University of São Paulo ([USP](https://www5.usp.br/)), under the supervision of [Prof. Dr. Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695).
 
 <a href="https://www.gov.br/capes/"><img src= "images/capes_logo_horizontal_rgb.png" height="35"/></a>
 

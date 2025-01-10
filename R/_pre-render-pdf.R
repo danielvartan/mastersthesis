@@ -105,6 +105,30 @@ swap_list <- list(
     end_tag = "%:::% foreign-abstract keywords end %:::%",
     value = NULL,
     quarto_render = FALSE
+  ),
+  other_in_header = list(
+    from = here::here("qmd", "_config.qmd"),
+    to = here::here("tex", "include-in-header.tex"),
+    begin_tag = "%:::% other-in-header begin %:::%",
+    end_tag = "%:::% other-in-header end %:::%",
+    value = NULL,
+    quarto_render = FALSE
+  ),
+  other_before_body = list(
+    from = here::here("qmd", "_config.qmd"),
+    to = here::here("tex", "include-before-body.tex"),
+    begin_tag = "%:::% other-before-body begin %:::%",
+    end_tag = "%:::% other-before-body end %:::%",
+    value = NULL,
+    quarto_render = FALSE
+  ),
+  other_after_body = list(
+    from = here::here("qmd", "_config.qmd"),
+    to = here::here("tex", "include-after-body.tex"),
+    begin_tag = "%:::% other-after-body begin %:::%",
+    end_tag = "%:::% other-after-body end %:::%",
+    value = NULL,
+    quarto_render = FALSE
   )
 )
 

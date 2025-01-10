@@ -89,7 +89,7 @@ weighted_data |>
 
 [Source: Created by the author.]{.legend}
 
-Geographical distribution of the sample used in the analysis: (`{r} results_vars$ea_analysis_sample_n |> format_to_md_latex(before = "n = ") |> I()`). Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017. The size and color scale are logarithmic ($\log_{10}$).
+Geographical distribution of the sample used in the analysis: (`{r} results_vars$ea_analysis_sample_n |> format_to_md_latex(before = "n = ") |> I()`). `\microskip \\`{=latex} Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15 and 21, 2017. The size and color scale are logarithmic ($\log_{10}$).
 :::
 
 ## Results
@@ -106,9 +106,9 @@ This represents the midsleep point for Brazilian subjects with an intermediate o
 weighted_data |> plot_chronotype()
 ```
 
-[Source: Created by the author. Based on data visualization found in @roenneberg2019b.]{.legend}
+[Source: Created by the author. Based on data visualization found in `\\`{=latex} @roenneberg2019b[Figure 1].{.legend}
 
-Distribution of the local time for the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
+Distribution of the local time for the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. `\microskip \\`{=latex} Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
 :::
 
 The study hypothesis was tested using nested multiple linear regressions. The core idea of nested models is to evaluate the effect of including one or more predictors on the model’s variance explanation ($\text{R}^2$) [@maxwell2018]. This is achieved by comparing a restricted model with a full model. Cell weights, based on sex, age group, and state of residence, were used to account for sample imbalances.
@@ -135,7 +135,7 @@ weighted_data |> plot_latitude_series()
 
 [Source: Created by the author.]{.legend}
 
-Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. `\microskip \\`{=latex} MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
 :::
 
 The absence of a clear relationship between latitude and chronotype can be attributed to multiple factors. As Jürgen Aschoff might have put it, this may reflect a lack of "ecological significance" [@aschoff1972]. Even if latitude does influence circadian rhythms, the effect could be too minor to detect or might be overshadowed by other, more prominent factors like social behaviors, work hours, or the widespread use of artificial lighting [@bohlen1973]. Furthermore, the variations in sunlight exposure between latitudes may not be substantial enough to meaningfully impact the circadian system, which is highly responsive to light. Since even small fluctuations in light exposure can lead to measurable physiological changes, it suggests that latitude alone may not be a decisive factor in determining chronotype.
@@ -176,14 +176,14 @@ weighted_data |>
 
 [Source: Created by the author.]{.legend}
 
-Geographical distribution of mean MSF~sc~ values by Brazilian state. The figure shows the mean mid-sleep on free days sleep-corrected (MSF~sc) values aggregated by state, illustrating how chronotype varies with latitude in Brazil. MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values correspond to later chronotypes. The color scale was not transformed and it has as limits the first and third quartile (interquartile range). Differences in mean MSF~sc~ values across states are small and fall within a narrow range relative to the scale of the Munich ChronoType Questionnaire (MCTQ), limiting the significance of these variations.
+Geographical distribution of mean mid-sleep on free days sleep-corrected (MSF~sc) values by Brazilian state, illustrating how chronotype varies with latitude in Brazil. `\microskip \\`{=latex} MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values correspond to later chronotypes. The color scale was not transformed and it has as limits the first and third quartile (interquartile range). Differences in mean MSF~sc~ values across states are small and fall within a narrow range relative to the scale of the Munich ChronoType Questionnaire (MCTQ), limiting the significance of these variations.
 :::
 
 This study points to a more intricate relationship between latitude and the circadian system than originally expected. In human populations, the perceived link between these variables might have been influenced by statistical overconfidence, driven by routine reliance on Null Hypothesis Significance Testing (NHST) and the tendency to confirm preconceived ideas, rather than a rigorous and unbiased examination of the data.
 
 ## Methods
 
-### Measurement instrument
+### Measurement Instrument
 
 Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MS) (@fig-chapter-5-mctq-variables) on work-free days (MSF), accounting for any potential sleep compensation due to sleep deficits (sc = sleep correction) on workdays (MSF~sc~) [@roenneberg2012].
 
@@ -192,7 +192,7 @@ Chronotypes were assessed using a sleep log based on the core version of the sta
 
 [Source: Created by the author.]{.legend}
 
-Variables of the Munich ChronoType Questionnaire scale (a sleep log). In its standard version, these variables are collected in the context of workdays and work-free days. BT = Local time of going to bed. SPrep = Local time of preparing to sleep. SLat = Sleep latency *or* time to fall asleep after preparing to sleep. SO = Local time of sleep onset. SD = Sleep duration. MS = Local time of mid-sleep. SE = Local time of sleep. Alarm = A logical value indicating if the respondent uses an alarm clock to wake up. SE = Local time of sleep end. SI = "Sleep inertia" (despite the name, this variable represents the time the respondent takes to get up after sleep end). GU = Local time of getting out of bed. TBT = Total time in bed.
+Variables of the Munich ChronoType Questionnaire scale (a sleep log). In its standard version, these variables are collected in the context of workdays and work-free days.`\microskip \\`{=latex} BT = Local time of going to bed. SPrep = Local time of preparing to sleep. SLat = Sleep latency *or* time to fall asleep after preparing to sleep. SO = Local time of sleep onset. SD = Sleep duration. MS = Local time of mid-sleep. SE = Local time of sleep. Alarm = A logical value indicating if the respondent uses an alarm clock to wake up. SE = Local time of sleep end. SI = "Sleep inertia" (despite the name, this variable represents the time the respondent takes to get up after sleep end). GU = Local time of getting out of bed. TBT = Total time in bed.
 :::
 
 Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
@@ -233,11 +233,11 @@ The sample latitudinal range was $33.85026$ decimal degrees ($\text{Min.} = -33.
 
 More information about the sample can be found in the supplementary materials.
 
-### Data wrangling
+### Data Wrangling
 
-Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartaniana]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
+Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2023d]. All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartaniana]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
 
-### Hypothesis test
+### Hypothesis Test
 
 The study hypothesis was tested using nested models general linear models of multiple linear regressions. It was schematized as follows.
 
@@ -252,11 +252,19 @@ $$
 \end{cases}
 $$
 
+```{=latex}
+\medskip
+```
+
 Where:
 
 $$
 \Delta \ \text{Adjusted} \ \text{R}^{2} = \text{Adjusted} \ \text{R}^{2}_{f} - \text{Adjusted} \ \text{R}^{2}_{r}
 $$
+
+```{=latex}
+\medskip
+```
 
 A MES must always be used in any data testing. The effect-size was present in the original Neyman and Pearson framework [@neyman1928; @neyman1928a], but unfortunately this practice fade away with the use of p-values, one of the many issues that came with the Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. While p-values are estimates of type 1 error (in Neyman–Pearson’s approaches, or like-approaches), that's not the main thing we are interested while doing a hypothesis test, what is really being test is the effect size (i.e., a practical significance). Another major issue to only relying on p-values is that the estimated p-value tends to decrease when the sample size is increased, hence, focusing just on p-values with large sample sizes results in the rejection of the null hypothesis, making it not meaningful in this specific situation [@lin2013; @mariscal2021].
 
@@ -268,28 +276,32 @@ $$
 0.02 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}} \quad \text{or} \quad \text{R}^{2} = \cfrac{0.02}{1.02} \eqsim 0.01960784
 $$
 
+```{=latex}
+\medskip
+```
+
 In other words, the latitude must explain at least $1.960784\%$ of the variance in the dependent variable to be considered non-negligible. This is the Minimum Effect Size (MES) for this analysis.
 
 In summary, the decision rule for the hypothesis test is as follows:
 
 - **Reject** $\text{H}_{0}$ **if both**:
-  - The F-test is significant.
-  - $\Delta \ \text{Adjusted} \ \text{R}^{2} > 0.01960784$;
+  - The F-test is significant
+  - $\Delta \ \text{Adjusted} \ \text{R}^{2} > 0.01960784$
 - **Fail to reject** $\text{H}_{0}$ **if either**:
-  - The F-test is not significant, or
-  - $\Delta \ \text{Adjusted} \ \text{R}^{2} \leq 0.01960784$.
+  - The F-test is not significant
+  - $\Delta \ \text{Adjusted} \ \text{R}^{2} \leq 0.01960784$
 
 As usual, the significance level ($\alpha$) was set at $0.05$, allowing a 5% chance of a Type I error.
 
 A power analysis was performed to determine the necessary sample size for detecting the MES effect. The results indicate that at least $1,895$ observations per variable were required to achieve a power of $0.99$ ($1 - \beta$) and a significance level ($\alpha$) of $0.01$. The dataset contains $65,824$ observations, which exceeds this requirement.
 
-### Data availability
+### Data Availability
 
 Some restrictions apply to the availability of the  main research data, which contain personal and sensitive information. As a result, this data cannot be publicly shared. Data are, however, available from the author upon reasonable request.
 
 Unrestricted data can be access on the research compendium via [The Open Science Framework](https://osf.io/) at the following link:  <https://doi.org/10.17605/OSF.IO/YGKTS>.
 
-### Code availability
+### Code Availability
 
 All analyses are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) alongside the [Quarto](https://quarto.org/) publishing system. The [`renv`](https://rstudio.github.io/renv/) package was used to ensure that the R environment used can be restored (see `renv.lock`).
 
@@ -299,16 +311,16 @@ The code repository is available on GitHub at <https://github.com/danielvartan/m
 
 This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil ([CAPES](https://www.gov.br/capes/)) - Finance Code 001, Grant number 88887.703720/2022-00.
 
-## Ethics declarations
+## Ethics Declarations
 
 The author declares that the study was carried out without any commercial or financial connections that could be seen as a possible competing interest.
 
-## Additional information
+## Additional Information
 
 See the supplementary material for more information.
 
 Correspondence can be sent to Daniel Vartanian (<danvartan@gmail.com>).
 
-## Rights and permissions
+## Rights and Permissions
 
 This article is released under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/), which permits use, sharing, adaptation, distribution, and reproduction in any medium or format, as long as be given appropriate credit to the original author and the source, provide a link to the Creative Commons license, and indicate if changes were made.

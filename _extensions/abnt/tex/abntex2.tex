@@ -9,17 +9,17 @@
 
 % Set text variables -----
 
-\renewcommand{\ABNTEXpartfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXpartfont}{\sffamily\bfseries}
 \renewcommand{\ABNTEXpartfontsize}{\normalsize}
-\renewcommand{\ABNTEXchapterfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXchapterfont}{\sffamily\bfseries}
 \renewcommand{\ABNTEXchapterfontsize}{\normalsize}
-\renewcommand{\ABNTEXsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsectionfont}{\sffamily}
 \renewcommand{\ABNTEXsectionfontsize}{\normalsize}
-\renewcommand{\ABNTEXsubsectionfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXsubsectionfont}{\sffamily}
 \renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
-\renewcommand{\ABNTEXsubsubsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsubsubsectionfont}{\sffamily}
 \renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
-\renewcommand{\ABNTEXsubsubsubsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsubsubsubsectionfont}{\sffamily}
 \renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize\itshape}
 \renewcommand{\ABNTEXfontereduzida}{\footnotesize}
 \renewcommand{\ABNTEXcaptiondelim}{~\textendash~}
@@ -54,8 +54,8 @@
 
 % Set chapter style -----
 
-\renewcommand{\chapnamefont}{\normalfont\normalsize}
-\renewcommand{\chapnumfont}{\normalfont\normalsize}
+\renewcommand{\chapnamefont}{\ABNTEXchapterfont\ABNTEXchapterfontsize\mdseries}
+\renewcommand{\chapnumfont}{\ABNTEXchapterfont\ABNTEXchapterfontsize\mdseries}
 
 \setsecnumformat{\chapnumfont\csname the#1\endcsname\quad}
 
@@ -85,7 +85,7 @@
 
 \renewcommand{\afterchapternum}{
   \ifthenelse{\boolean{abntex@apendiceousecao}}{ % [Added]
-    \normalfont \hspace{-1em} \space\ABNTEXcaptiondelim\space \hspace{-1.5em}
+    \ABNTEXchapterfont\mdseries \hspace{-1em} \space\ABNTEXcaptiondelim\space \hspace{-1.5em}
   }{
     \hspace{-0.875em}
   }
@@ -103,7 +103,7 @@
     \centering \ABNTEXchapterupperifneeded{#1}
   }{
     \ifthenelse{\boolean{abntex@apendiceousecao}}{
-      \normalfont \ABNTEXchapterupperifneeded{#1}
+      \ABNTEXchapterfont\mdseries\ABNTEXchapterupperifneeded{#1}
     }{
       \ABNTEXchapterupperifneeded{#1}
     }
@@ -130,7 +130,7 @@
   \imprimirautor
 
   \vfill
-  \textbf{\imprimirtitulo}
+  {\ABNTEXchapterfont\imprimirtitulo}
 
   \vfill
   \vspace{6.5cm}
@@ -150,10 +150,10 @@
   \imprimirautor
 
   \vfill
-  \textbf{\imprimirtitulo}
+  {\ABNTEXchapterfont\imprimirtitulo}
 
   \vfill
-  \bfseries\imprimirnotadeversao\normalfont
+  \textbf{\imprimirnotadeversao}
 
   \vfill
   \abntex@ifnotempty{

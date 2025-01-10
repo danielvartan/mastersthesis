@@ -18,9 +18,9 @@ In contrast, populations near the poles experience a weaker solar zeitgeber, lea
 ::: {#fig-chapter-4-hut-2013-figure-1}
 ![](images/hut-2013-figure-1.png){width=100%}
 
-[Source: Reproduction from @hut2013.]{.legend}
+[Source: Reproduction from @hut2013[Figure 1.]{.legend}
 
-Annual changes in (a) twilight duration, (b) daylight hours, and (c) temperature across different latitudes. Each color shows a specific latitude, illustrating how these factors vary throughout the year.
+Annual changes in (a) twilight duration, (b) daylight hours, and (c) temperature across different latitudes. `\microskip \\`{=latex} Each color shows a specific latitude, illustrating how these factors vary throughout the year.
 :::
 
 Some authors claim to found this association, but a closer look at the data reveals that it is not as clear as it seems. For example, @leocadio-miguel2017 found a significant association between latitude and chronotype in a sample of $12,884$ Brazilian participants. However, the effect size was negligible, with latitude explaining only about $0.388\%$ of the variance in chronotype (@fig-chapter-4-leocadio-miguel-2017-figure-2). Considering the particular emphasis that the solar zeitgeber has on the entrainment of biological rhythms (as demonstrated in many experiments), it would not be reasonable to assume that the latitude hypothesis could be supported without at least a non-negligible effect size.
@@ -28,9 +28,9 @@ Some authors claim to found this association, but a closer look at the data reve
 ::: {#fig-chapter-4-roenneberg-2003-figure-7-f-adapted}
 ![](images/roenneberg-2003-figure-7-f-adapted.png){width=75%}
 
-[Source: Created by the author, adapted from @roenneberg2003[Figure 7F].]{.legend}
+[Source: Created by the author. Adapted from `\\`{=latex} @roenneberg2003[Figure 7F].]{.legend}
 
-Different chronotype distributions, influenced by strong and weak zeitgebers -- orange for strong (leptokurtic) and black for weak (platykurtic). An illustration of the effect hypothesized by the latitude hypothesis.
+Different chronotype distributions, influenced by strong and weak zeitgebers -- orange for strong (leptokurtic) and black for weak (platykurtic). `\microskip \\`{=latex} An illustration of the effect hypothesized by the latitude hypothesis.
 :::
 
 The findings of @leocadio-miguel2017 are not consistent with the hypothesis that latitude is a strong predictor of chronotype, as the reported effect size is too small to be considered practically significant [@cohen1988]. This highlights a common limitation of studies relying on Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. A p-value does not measure the effect size; instead, it represents the conditional probability of observing the data/test statistic (or something more extreme) assuming the null hypothesis is true, thus quantifying the likelihood of a type I error [@cohen1994; @wasserstein2016].
@@ -38,9 +38,9 @@ The findings of @leocadio-miguel2017 are not consistent with the hypothesis that
 ::: {#fig-chapter-4-leocadio-miguel-2017-figure-2}
 ![](images/leocadio-miguel-2017-figure-2.png){width=85%}
 
-[Source: Reproduction from @leocadio-miguel2017.]{.legend}
+[Source: Reproduction from @leocadio-miguel2017[Figure 2].]{.legend}
 
-Mean scores (±SE) on the Horne & Östberg (HO) chronotype scale [@horne1976] are presented across a latitudinal gradient, along with the corresponding annual average solar irradiation levels (W/m²). The HO scale comprises 19 items, with total scores ranging from 16 to 86; lower scores indicate a stronger evening orientation, while higher scores reflect a greater morning orientation. Notably, the y-axis exaggerates the visual impact of the differences, as it represents a range of only about 4.5 points, which may overstate the perceived significance of the effect.
+Mean scores (±SE) on the Horne & Östberg (HO) chronotype scale [@horne1976] across a latitudinal gradient, along with the corresponding annual average solar irradiation levels (W/m²). `\microskip \\`{=latex} The HO scale comprises 19 items, with total scores ranging from 16 to 86; lower scores indicate a stronger evening orientation, while higher scores reflect a greater morning orientation. Notably, the y-axis exaggerates the visual impact of the differences, as it represents a range of only about 4.5 points, which may overstate the perceived significance of the effect.
 :::
 
 Several factors may invalidate this hypothesis, such as local clock time and social constraints [@skeldon2021]. To gain a more accurate understanding of the mechanisms underlying chronotype expression, it remains crucial to test this hypothesis in larger samples. This study aims to address that gap.

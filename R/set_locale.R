@@ -11,7 +11,7 @@
 # library(stats)
 # library(stringr)
 
-set_locale <- function() {
+set_locale <- function(session_id = Sys.time() |> as.character()) {
   locale_values <- c(
     "en_US.utf8", "en_US.UTF-8", "en_US", "en-US", "en", "English_United States"
   )
@@ -68,9 +68,9 @@ set_locale <- function() {
   }
 
   if (Sys.getenv("SET_LOCALE_MESSAGES") == "") {
-    Sys.setenv(SET_LOCALE_MESSAGES = TRUE)
+    Sys.setenv(SET_LOCALE_MESSAGES = session_id)
 
-    get_locale(periodic_message = TRUE)
+    get_locale()
   }
 
   invisible()
@@ -78,20 +78,7 @@ set_locale <- function() {
 
 # library(cli)
 
-get_locale <- function(periodic_message = FALSE) {
-  prettycheck:::assert_flag(periodic_message)
-
-  if (isTRUE(periodic_message)) {
-    cli::cli_alert_info(
-      paste0(
-        "The messages below are shown only once per R session."
-      ),
-      wrap = TRUE
-    )
-  }
-
-  cat("\n")
-
+get_locale <- function() {
   cli::cli_alert(
     paste0(
       "The current system locale is:\n\n",

@@ -66,7 +66,7 @@ Azevedo, Daniel Kachvartanian de
 {\imprimirtipotrabalho} by {\imprimirautor}, under the title \textbf{\imprimirtitulo}, presented to the {\imprimirescola} at the {\imprimiruniversidade}, as a requirement for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}, in the concentration area of {\imprimirareadeconcentracao}.
 
 \vspace{\hugeskipamount}
-Approved on \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ , \_\_\_\_\_\_\_\_\_\_ .
+Approved on \ \underline{\hspace{5cm}} \ , \underline{\hspace{2.5cm}} .
 
 \vspace{\hugeskipamount}
 \begin{center}
@@ -86,33 +86,54 @@ Committee chair:
 
 \setlength{\arrayrulewidth}{0pt}
 \setlength{\tabcolsep}{0cm}
-\begin{tabular}{m{2cm} P{14cm}}
-  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\begin{tabular}{m{2.5cm} P{13.5cm}}
+  Prof. Dr. & \hrulefill \\
+  Institution & \hrulefill \\
 \end{tabular}
 
 \vspace{\bigskipamount}
 Examiners:
 
 \vspace{\tinyskipamount}
-\begin{tabular}{m{2cm} P{14cm}}
-  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\begin{tabular}{m{2.5cm} P{13.5cm}}
+  Prof. Dr. & \hrulefill \\
+  Institution & \hrulefill \\
+  Evaluation & \hrulefill \\
 \end{tabular}
 
 \vspace{\smallskipamount}
-\begin{tabular}{m{2cm} P{14cm}}
-  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\begin{tabular}{m{2.5cm} P{13.5cm}}
+  Prof. Dr. & \hrulefill \\
+  Institution & \hrulefill \\
+  Evaluation & \hrulefill \\
 \end{tabular}
 
 \vspace{\smallskipamount}
-\begin{tabular}{m{2cm} P{14cm}}
-  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\begin{tabular}{m{2.5cm} P{13.5cm}}
+  Prof. Dr. & \hrulefill \\
+  Institution & \hrulefill \\
+  Evaluation & \hrulefill \\
 \end{tabular}
 \endgroup
 <!-- %:::% approval-sheet body end %:::% -->
+
+## Other "In Header" Additions
+
+<!-- %:::% other-in-header begin %:::% -->
+\definecolor{brand-orange}{HTML}{EA7701}
+\definecolor{brand-light-orange}{HTML}{F5BD83}
+\definecolor{brand-dark-orange}{HTML}{964D01}
+\definecolor{brand-white}{HTML}{FFFFFF}
+\definecolor{brand-grey}{HTML}{4F5556}
+\definecolor{brand-black}{HTML}{142A32}
+<!-- %:::% other-in-header end %:::% -->
+
+## Other "Before Body" Additions
+
+<!-- %:::% other-before-body begin %:::% -->
+<!-- %:::% other-before-body end %:::% -->
+
+## Other "After Body" Additions
+
+<!-- %:::% other-after-body begin %:::% -->
+<!-- %:::% other-after-body end %:::% -->

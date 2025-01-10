@@ -1,3 +1,7 @@
+# Set session ID -----
+
+session_id <- Sys.time() |> as.character()
+
 # Load functions -----
 
 single_quote <- function(x) paste0("'", x, "'")
@@ -64,13 +68,34 @@ require_pkg <- function(...) {
   invisible()
 }
 
-rprofile_message <- function(x, id) {
-  if (Sys.getenv(paste0("RPROFILE_MESSAGE_", id)) == "") {
+rprofile_cat_line <- function(session_id, env_var = "RPROFILE_MESSAGES") {
+  if (Sys.getenv(env_var) == session_id) cat("\n")
+
+  invisible()
+}
+
+rprofile_message <- function(
+    x,
+    session_id,
+    env_var = "RPROFILE_MESSAGES",
+    cat_line = TRUE,
+    info = FALSE
+  ) {
+  if (Sys.getenv(env_var) %in% c("", session_id)) {
     do.call(
       what = Sys.setenv,
-      args = list(TRUE) |> magrittr::set_names(paste0("RPROFILE_MESSAGE_", id))
+      args =
+        list(session_id) |>
+        magrittr::set_names(env_var)
     )
-    cli::cli_alert(x, wrap = TRUE)
+
+    if (isTRUE(info)) {
+      cli::cli_alert_info(x, wrap = TRUE)
+    } else {
+      cli::cli_alert(x, wrap = TRUE)
+    }
+
+    if (isTRUE(cat_line)) cat("\n")
   }
 
   invisible()
@@ -85,13 +110,21 @@ require_pkg(c("cli", "here" ,"magrittr", "ragg", "renv", "stats", "stringr"))
 library(magrittr)
 library(ragg)
 
+# Show session message -----
+
+rprofile_message(
+  x = "The messages below are shown only once per R session.",
+  session_id = session_id,
+  info = TRUE
+)
+
 # Activate `renv` -----
 
-rprofile_message("`renv` activation settings:", 1)
+rprofile_message("`renv` activation settings:", session_id)
 
 source(here::here("renv", "activate.R"))
 
-cat("\n")
+rprofile_cat_line(session_id)
 
 # Set options -----
 
@@ -102,24 +135,22 @@ options(scipen = 999)
 rprofile_message(
   paste0(
     "If you haven't already set it, configure {.strong AGG} ",
-    "as the RStudio graphic device backend. Learn more in ",
+    "as the RStudio graphic device backend. Learn more at ",
     "<https://ragg.r-lib.org/#use-ragg-in-rstudio>."
   ),
-  2
+  session_id
 )
-
-cat("\n")
 
 # Set system locale -----
 
 source(here::here("R", "set_locale.R"))
 
-set_locale()
+set_locale(session_id)
+
+# End line -----
+
+rprofile_cat_line(session_id = session_id, env_var = "SET_LOCALE_MESSAGES")
 
 # Clean the global environment -----
 
 rm(list = ls())
-
-# .Rprofile end -----
-
-cat("\n")

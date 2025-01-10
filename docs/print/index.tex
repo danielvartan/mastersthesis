@@ -26,8 +26,10 @@
 % Preamble
 % -----
 
+% Don´t move the `\PassOptionsToPackage` macros.
+% See why: <https://tex.stackexchange.com/a/433605/234832>.
 \PassOptionsToPackage{
-unicode
+unicode,bookmarksnumbered
 }{hyperref}
 
 \PassOptionsToPackage{hyphens}{url}
@@ -52,7 +54,6 @@ english
 % The package order matters!
 
 \usepackage{array}
-\usepackage{booktabs}
 \usepackage{calc}
 \usepackage{caption}
 \usepackage{color}
@@ -77,6 +78,7 @@ english
 \usepackage{parskip}
 \usepackage{pdfpages}
 \usepackage[table]{xcolor}
+\usepackage{xparse}
 \usepackage{hyperref}
 
 \ifPDFTeX
@@ -118,7 +120,7 @@ english
 
 % Set text spacing -----
 
-\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\familydefault}{\rmdefault}
 
 \renewcommand{\baselinestretch}{1.5}
 
@@ -131,9 +133,9 @@ english
 
 \ifPDFTeX\else
     % xetex/luatex font selection
-  \setmainfont[]{Arial}
-  \setsansfont[]{Arial}
-  \setmonofont[ItalicFont=FragmentMono-Italic.otf,Scale=0.75]{FragmentMono-Regular.otf}
+  \setmainfont[]{DM Sans}
+  \setsansfont[]{Poppins}
+  \setmonofont[Scale=0.75]{DM Mono}
 
 
 
@@ -153,19 +155,19 @@ english
 
 \addto\captionsenglish{
   \renewcommand{\capaname}{Cover}
-  \renewcommand{\folhaderostoname}{Title page}
-  \renewcommand{\fichacatalograficaname}{Cataloging record}
+  \renewcommand{\folhaderostoname}{Title Page}
+  \renewcommand{\fichacatalograficaname}{Cataloging Record}
   \renewcommand{\errataname}{Errata}
-  \renewcommand{\folhadeaprovacaoname}{Approval sheet}
+  \renewcommand{\folhadeaprovacaoname}{Approval Sheet}
   \renewcommand{\dedicatorianame}{Inscription}
   \renewcommand{\agradecimentosname}{Acknowledgements}
   \renewcommand{\epigraphname}{Epigraph}
   \renewcommand{\resumoname}{Abstract}
   \renewcommand{\resumoestrangeironame}{Resumo}
-  \renewcommand{\listfigurename}{List of figures}
-  \renewcommand{\listtablename}{List of tables}
-  \renewcommand{\listadesiglasname}{List of abbreviations and acronyms}
-  \renewcommand{\listadesimbolosname}{List of symbols}
+  \renewcommand{\listfigurename}{List of Figures}
+  \renewcommand{\listtablename}{List of Tables}
+  \renewcommand{\listadesiglasname}{List of Abbreviations and Acronyms}
+  \renewcommand{\listadesimbolosname}{List of Symbols}
   \renewcommand{\contentsname}{Contents}
   \renewcommand{\bibname}{References}
   \renewcommand{\glossarioname}{Glossary}
@@ -187,19 +189,19 @@ english
 
 \addto\captionsbrazil{
   \renewcommand{\capaname}{Capa}
-  \renewcommand{\folhaderostoname}{Folha de rosto}
-  \renewcommand{\fichacatalograficaname}{Ficha catalográfica}
+  \renewcommand{\folhaderostoname}{Folha de Rosto}
+  \renewcommand{\fichacatalograficaname}{Ficha Catalográfica}
   \renewcommand{\errataname}{Errata}
-  \renewcommand{\folhadeaprovacaoname}{Folha de aprovação}
+  \renewcommand{\folhadeaprovacaoname}{Folha de Aprovação}
   \renewcommand{\dedicatorianame}{Dedicatória}
   \renewcommand{\agradecimentosname}{Agradecimentos}
   \renewcommand{\epigraphname}{Epígrafe}
   \renewcommand{\resumoname}{Resumo}
   \renewcommand{\resumoestrangeironame}{Abstract}
-  \renewcommand{\listfigurename}{Lista de figuras}
-  \renewcommand{\listtablename}{Lista de tabelas}
-  \renewcommand{\listadesiglasname}{Lista de abreviaturas e siglas}
-  \renewcommand{\listadesimbolosname}{Lista de símbolos}
+  \renewcommand{\listfigurename}{Lista de Figuras}
+  \renewcommand{\listtablename}{Lista de Tabelas}
+  \renewcommand{\listadesiglasname}{Lista de Abreviaturas e Siglas}
+  \renewcommand{\listadesimbolosname}{Lista de Símbolos}
   \renewcommand{\contentsname}{Sumário}
   \renewcommand{\bibname}{Referências}
   \renewcommand{\glossarioname}{Glossário}
@@ -208,21 +210,21 @@ english
   \renewcommand{\anexoname}{ANEXO}
   \renewcommand{\anexosname}{Anexos}
   \renewcommand{\indexname}{Índice}
-  \renewcommand{\orientadorname}{Asesor:}
-  \renewcommand{\coorientadorname}{Coasesor:}
-  \renewcommand{\sourcename}{Fuente}
+  \renewcommand{\orientadorname}{Orientador:}
+  \renewcommand{\coorientadorname}{Coorientador:}
+  \renewcommand{\sourcename}{Fonte}
   \renewcommand{\notaname}{Nota}
   \renewcommand{\pageautorefname}{página}
-  \renewcommand{\sectionautorefname}{sección}
-  \renewcommand{\subsectionautorefname}{subsección}
-  \renewcommand{\subsubsectionautorefname}{subsubsección}
-  \renewcommand{\paragraphautorefname}{subsubsubsección}
+  \renewcommand{\sectionautorefname}{seção}
+  \renewcommand{\subsectionautorefname}{subseção}
+  \renewcommand{\subsubsectionautorefname}{subsubseção}
+  \renewcommand{\paragraphautorefname}{subsubsubseção}
 }
 
 \addto\captionsspanish{
   \renewcommand{\capaname}{Portada}
   \renewcommand{\folhaderostoname}{Página de título}
-  \renewcommand{\fichacatalograficaname}{Ficha catalográfica}
+  \renewcommand{\fichacatalograficaname}{Ficha Catalográfica}
   \renewcommand{\errataname}{Errata}
   \renewcommand{\folhadeaprovacaoname}{Hoja de aprobación}
   \renewcommand{\dedicatorianame}{Dedicatoria}
@@ -230,10 +232,10 @@ english
   \renewcommand{\epigraphname}{Epígrafe}
   \renewcommand{\resumoname}{Resumen}
   \renewcommand{\resumoestrangeironame}{Resumo}
-  \renewcommand{\listfigurename}{Lista de figuras}
-  \renewcommand{\listtablename}{Lista de tablas}
-  \renewcommand{\listadesiglasname}{Lista de abreviaturas y siglas}
-  \renewcommand{\listadesimbolosname}{Lista de símbolos}
+  \renewcommand{\listfigurename}{Lista de Figuras}
+  \renewcommand{\listtablename}{Lista de Tablas}
+  \renewcommand{\listadesiglasname}{Lista de Abreviaturas y Siglas}
+  \renewcommand{\listadesimbolosname}{Lista de Símbolos}
   \renewcommand{\contentsname}{Sumario}
   \renewcommand{\bibname}{Referencias}
   \renewcommand{\glossarioname}{Glosario}
@@ -255,19 +257,19 @@ english
 
 \addto\captionsfrench{
   \renewcommand{\capaname}{Couverture}
-  \renewcommand{\folhaderostoname}{Page de titre}
-  \renewcommand{\fichacatalograficaname}{Fiche cataloguée}
+  \renewcommand{\folhaderostoname}{Page de Titre}
+  \renewcommand{\fichacatalograficaname}{Fiche Cataloguée}
   \renewcommand{\errataname}{Errata}
-  \renewcommand{\folhadeaprovacaoname}{Feuille d'approbation}
+  \renewcommand{\folhadeaprovacaoname}{Feuille d'Approbation}
   \renewcommand{\dedicatorianame}{Dédiace
   \renewcommand{\agradecimentosname}{Remerciements}}
   \renewcommand{\epigraphname}{Épigraphe}
   \renewcommand{\resumoname}{Résumé}
   \renewcommand{\resumoestrangeironame}{Resumo}
-  \renewcommand{\listfigurename}{Liste des figures}
-  \renewcommand{\listtablename}{Liste des tableaux}
-  \renewcommand{\listadesiglasname}{Liste des abréviations et sigles}
-  \renewcommand{\listadesimbolosname}{Liste des symboles}
+  \renewcommand{\listfigurename}{Liste des Figures}
+  \renewcommand{\listtablename}{Liste des Tableaux}
+  \renewcommand{\listadesiglasname}{Liste des Abréviations et Sigles}
+  \renewcommand{\listadesimbolosname}{Liste des Symboles}
   \renewcommand{\contentsname}{Sommaire}
   \renewcommand{\bibname}{Références}
   \renewcommand{\glossarioname}{Glossaire}
@@ -297,17 +299,17 @@ english
 
 % Set text variables -----
 
-\renewcommand{\ABNTEXpartfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXpartfont}{\sffamily\bfseries}
 \renewcommand{\ABNTEXpartfontsize}{\normalsize}
-\renewcommand{\ABNTEXchapterfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXchapterfont}{\sffamily\bfseries}
 \renewcommand{\ABNTEXchapterfontsize}{\normalsize}
-\renewcommand{\ABNTEXsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsectionfont}{\sffamily}
 \renewcommand{\ABNTEXsectionfontsize}{\normalsize}
-\renewcommand{\ABNTEXsubsectionfont}{\normalfont\bfseries}
+\renewcommand{\ABNTEXsubsectionfont}{\sffamily}
 \renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
-\renewcommand{\ABNTEXsubsubsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsubsubsectionfont}{\sffamily}
 \renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
-\renewcommand{\ABNTEXsubsubsubsectionfont}{\normalfont}
+\renewcommand{\ABNTEXsubsubsubsectionfont}{\sffamily}
 \renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize\itshape}
 \renewcommand{\ABNTEXfontereduzida}{\footnotesize}
 \renewcommand{\ABNTEXcaptiondelim}{~\textendash~}
@@ -342,8 +344,8 @@ english
 
 % Set chapter style -----
 
-\renewcommand{\chapnamefont}{\normalfont\normalsize}
-\renewcommand{\chapnumfont}{\normalfont\normalsize}
+\renewcommand{\chapnamefont}{\ABNTEXchapterfont\ABNTEXchapterfontsize\mdseries}
+\renewcommand{\chapnumfont}{\ABNTEXchapterfont\ABNTEXchapterfontsize\mdseries}
 
 \setsecnumformat{\chapnumfont\csname the#1\endcsname\quad}
 
@@ -373,7 +375,7 @@ english
 
 \renewcommand{\afterchapternum}{
   \ifthenelse{\boolean{abntex@apendiceousecao}}{ % [Added]
-    \normalfont \hspace{-1em} \space\ABNTEXcaptiondelim\space \hspace{-1.5em}
+    \ABNTEXchapterfont\mdseries \hspace{-1em} \space\ABNTEXcaptiondelim\space \hspace{-1.5em}
   }{
     \hspace{-0.875em}
   }
@@ -391,7 +393,7 @@ english
     \centering \ABNTEXchapterupperifneeded{#1}
   }{
     \ifthenelse{\boolean{abntex@apendiceousecao}}{
-      \normalfont \ABNTEXchapterupperifneeded{#1}
+      \ABNTEXchapterfont\mdseries\ABNTEXchapterupperifneeded{#1}
     }{
       \ABNTEXchapterupperifneeded{#1}
     }
@@ -418,7 +420,7 @@ english
   \imprimirautor
 
   \vfill
-  \textbf{\imprimirtitulo}
+  {\ABNTEXchapterfont\imprimirtitulo}
 
   \vfill
   \vspace{6.5cm}
@@ -438,10 +440,10 @@ english
   \imprimirautor
 
   \vfill
-  \textbf{\imprimirtitulo}
+  {\ABNTEXchapterfont\imprimirtitulo}
 
   \vfill
-  \bfseries\imprimirnotadeversao\normalfont
+  \textbf{\imprimirnotadeversao}
 
   \vfill
   \abntex@ifnotempty{
@@ -655,17 +657,18 @@ english
 
 \DeclareCaptionFont{ABNTEXfontereduzida}{\ABNTEXfontereduzida}
 
+% For customization, see `\DeclareCaptionFormat` in the `caption` package.
 \captionsetup{
   font=ABNTEXfontereduzida,
-  justification=centering
+  justification=justified
 }
 
-\renewcommand{\abovecaptionskip}{\tinyskipamount}
-\renewcommand{\belowcaptionskip}{\tinyskipamount}
+\renewcommand{\abovecaptionskip}{\smallskipamount}
+\renewcommand{\belowcaptionskip}{\smallskipamount}
 
 \renewcommand{\legend}[1]{
   \ABNTEXfontereduzida
-  \addvspace{\tinyskipamount}
+  \addvspace{\smallskipamount}
   #1
 }
 
@@ -729,8 +732,8 @@ english
 
 \local{São Paulo}
 
-\date{2024}
-\data{2024}
+\date{2025}
+\data{2025}
 
 \orientador{Camilo Rodrigues Neto}
 
@@ -765,7 +768,7 @@ english
 
 \programa{Graduate Program in Complex Systems Modeling}
 
-\notadeversao{\MakeTitlecase{Original version}}
+\notadeversao{\MakeTitlecase{Corrected version}}
 
 \hypersetup{
 pdftitle={Is Latitude Associated with Chronotype?},
@@ -774,10 +777,10 @@ pdflang={en},
 pdfsubject={Thesis},
 linktoc={section},
 colorlinks=true,
-linkcolor={blue},
-filecolor={blue},
-citecolor={blue},
-urlcolor={blue},
+linkcolor={brand-orange},
+filecolor={brand-orange},
+citecolor={brand-orange},
+urlcolor={brand-orange},
 pdfcreator={LaTeX via pandoc},
 bookmarksdepth=5
 }
@@ -940,6 +943,23 @@ Psychological Association (APA) Style, 7th edition.}
 \urlstyle{same} % disable monospaced font for URLs
 
 
+% -----
+% Custom functions
+% -----
+
+% Credits: <https://tex.stackexchange.com/a/300215/234832>.
+
+\usepackage{xparse}
+
+\ExplSyntaxOn
+\NewExpandableDocumentCommand{\repeatntimes}{O{}mm}
+ {
+  \int_compare:nT { #2 > 0 }
+   {
+    #3 \prg_replicate:nn { #2 - 1 } { #1#3 }
+   }
+ }
+\ExplSyntaxOff
 %:::% class attribute begin/end %:::%
 
 % -----
@@ -960,6 +980,19 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 %:::% title-page body end %:::%
 }
 %:::% title-page end %:::%
+
+% -----
+% Other additions
+% -----
+
+%:::% other-in-header begin %:::%
+\definecolor{brand-orange}{HTML}{EA7701}
+\definecolor{brand-light-orange}{HTML}{F5BD83}
+\definecolor{brand-dark-orange}{HTML}{964D01}
+\definecolor{brand-white}{HTML}{FFFFFF}
+\definecolor{brand-grey}{HTML}{4F5556}
+\definecolor{brand-black}{HTML}{142A32}
+%:::% other-in-header end %:::%
 \makeatletter
 \@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
 \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
@@ -983,9 +1016,9 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
 \ifdefined\contentsname
-  \renewcommand*\contentsname{Table of contents}
+  \renewcommand*\contentsname{Table of Contents}
 \else
-  \newcommand\contentsname{Table of contents}
+  \newcommand\contentsname{Table of Contents}
 \fi
 \ifdefined\listfigurename
   \renewcommand*\listfigurename{List of Figures}
@@ -1030,7 +1063,7 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{F1F3F5}}{}
 \makeatother
 \makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, enhanced, sharp corners, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, breakable, colback={codebgcolor}]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, colback={codebgcolor}, boxrule=0pt, frame hidden, enhanced, breakable, sharp corners]}{\end{tcolorbox}}\fi
 \makeatother
 
 % -----
@@ -1123,7 +1156,7 @@ Azevedo, Daniel Kachvartanian de
 {\imprimirtipotrabalho} by {\imprimirautor}, under the title \textbf{\imprimirtitulo}, presented to the {\imprimirescola} at the {\imprimiruniversidade}, as a requirement for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}, in the concentration area of {\imprimirareadeconcentracao}.
 
 \vspace{\hugeskipamount}
-Approved on \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ , \_\_\_\_\_\_\_\_\_\_ .
+Approved on \ \underline{\hspace{5cm}} \ , \underline{\hspace{2.5cm}} .
 
 \vspace{\hugeskipamount}
 \begin{center}
@@ -1143,33 +1176,33 @@ Committee chair:
 
 \setlength{\arrayrulewidth}{0pt}
 \setlength{\tabcolsep}{0cm}
-\begin{tabular}{m{2cm} P{14cm}}
-  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\begin{tabular}{m{2.5cm} P{13.5cm}}
+  Prof. Dr. & \hrulefill \\
+  Institution & \hrulefill \\
 \end{tabular}
 
 \vspace{\bigskipamount}
 Examiners:
 
 \vspace{\tinyskipamount}
-\begin{tabular}{m{2cm} P{14cm}}
-  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\begin{tabular}{m{2.5cm} P{13.5cm}}
+  Prof. Dr. & \hrulefill \\
+  Institution & \hrulefill \\
+  Evaluation & \hrulefill \\
 \end{tabular}
 
 \vspace{\smallskipamount}
-\begin{tabular}{m{2cm} P{14cm}}
-  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\begin{tabular}{m{2.5cm} P{13.5cm}}
+  Prof. Dr. & \hrulefill \\
+  Institution & \hrulefill \\
+  Evaluation & \hrulefill \\
 \end{tabular}
 
 \vspace{\smallskipamount}
-\begin{tabular}{m{2cm} P{14cm}}
-  Prof. Dr. & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Institution & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
-  Evaluation & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\begin{tabular}{m{2.5cm} P{13.5cm}}
+  Prof. Dr. & \hrulefill \\
+  Institution & \hrulefill \\
+  Evaluation & \hrulefill \\
 \end{tabular}
 \endgroup
 %:::% approval-sheet body end %:::%
@@ -1273,11 +1306,11 @@ suggests that equatorial areas have a stronger solar zeitgeber, which
 could lead to greater synchronization of circadian rhythms with the
 light-dark cycle, reducing the amplitude and diversity of circadian
 phenotypes, resulting in a higher propensity for morningness in those
-populations. To test this hypothesis, data from \(65,824\) individuals
+populations. To test this hypothesis, data from \(65.824\) individuals
 from all regions of Brazil were analyzed, collected in 2017 based on the
 Munich ChronoType Questionnaire (MCTQ). The analysis, using nested
 linear regression models, revealed a negligible effect of latitude on
-the variation in chronotype expression (Cohen's \(f^2 = 0.012137120\)),
+the variation in chronotype expression (Cohen's \(f^2 = 0.0121371\)),
 contrasting with recent studies. Although the hypothesis is reasonable
 and aligns with evolutionary theories of temporal biological systems,
 the results suggest that the phenomenon of entrainment is more complex
@@ -1318,11 +1351,11 @@ solar mais forte, o que poderia levar a uma maior sincronização dos
 ritmos circadianos com o ciclo claro-escuro, reduzindo a amplitude e a
 diversidade de fenótipos circadianos, resultando em uma propensão maior
 ao cronotipo matutino. Para testar essa hipótese, foram analisados dados
-de \(65.824\) indivíduos de todas as regiões do Brasil, coletados em
+de \(65,824\) indivíduos de todas as regiões do Brasil, coletados em
 2017 com base no Munich ChronoType Questionnaire (MCTQ). A análise,
 utilizando modelos de regressão linear aninhados, revelou um efeito
 negligenciável da latitude na variação da expressão dos cronotipos
-(\(f^2\) de Cohen \(= 0.012137120\)), em contraste com estudos recentes.
+(\(f^2\) de Cohen \(= 0,0121371\)), em contraste com estudos recentes.
 Embora a hipótese faça sentido e esteja alinhada com teorias evolutivas
 dos sistemas biológicos temporais, os resultados sugerem que o fenômeno
 de \emph{entraiment} é mais complexo do que se imagina.
@@ -1349,12 +1382,19 @@ de \emph{entraiment} é mais complexo do que se imagina.
 \cleardoublepage
 %:::% table-of-contents end %:::%
 
+% -----
+% Other additions
+% -----
+
+%:::% other-before-body begin %:::%
+%:::% other-before-body end %:::%
+
 % Main and back matter -----
 
 \textual
 \bookmarksetup{startatroot}
 
-\chapter{Introduction}\label{introduction}
+\chapter{Introduction}\label{sec-introduction}
 
 There has been a long-standing debate in the chronobiology community
 regarding the relationship between latitude and circadian phenotypes
@@ -1397,8 +1437,8 @@ enhanced approach to Null Hypothesis Significance Testing (NHST), rooted
 in the original Neyman-Pearson framework for data testing
 \autocite{neyman1928,neyman1928a,perezgonzalez2015}. This exploration
 involves a series of analyses conducted on a large dataset comprising
-\(65\,824\) individuals, collected from the Brazilian population in
-2017. The dataset is based on the Munich Chronotype Questionnaire (MCTQ)
+\(65,824\) individuals, collected from the Brazilian population in 2017.
+The dataset is based on the Munich Chronotype Questionnaire (MCTQ)
 \autocite{roenneberg2003,roenneberg2012a}, and includes data on sleep
 habits and demographic characteristics from all of Brazil's states.
 
@@ -1423,14 +1463,16 @@ In accordance with the
 program regulation}, this thesis follows an
 \href{https://en.wikipedia.org/wiki/Collection_of_articles}{article-based
 format}, inspired by the structure of \textcite{reis2020}'s PhD thesis.
-Chapters 2 through 3 consist of a series of essays and literature
-reviews related to the thesis topic, while Chapter 4 presents the core
-investigation, including an article detailing the hypothesis test and
-addressing the central research question. Finally, Chapter 5 offers
-conclusions, discusses limitations, and proposes directions for future
-research. Additionally, supplementary materials are provided to offer a
-richer, more comprehensive understanding of the research, and the reader
-is encouraged to explore them in detail.
+Chapters \ref{sec-on-chronobiology} and
+\ref{sec-on-the-latitude-hypothesis} consist of a series of essays and
+literature reviews related to the thesis topic, while Chapter
+\ref{sec-latitude-hypothesis-article} presents the core investigation,
+including an article detailing the hypothesis test and addressing the
+central research question. Finally, Chapter Chapter~\ref{sec-conclusion}
+offers conclusions, discusses limitations, and proposes directions for
+future research. Additionally, supplementary materials are provided to
+offer a richer, more comprehensive understanding of the research, and
+the reader is encouraged to explore them in detail.
 
 All analyses in this thesis are fully reproducible and were conducted
 using the \href{https://www.r-project.org/}{R programming language}
@@ -1447,7 +1489,7 @@ Framework} at the following link:
 
 \bookmarksetup{startatroot}
 
-\chapter{On Chronobiology}\label{on-chronobiology}
+\chapter{On Chronobiology}\label{sec-on-chronobiology}
 
 The dimension of time, manifest in the form of rhythms and cycles, like
 the alternating patterns of day and night as well as the annual
@@ -1505,7 +1547,7 @@ plant (\emph{mimosa pudica}) observed by Jacques d'Ortous de Mairan in
 
 \centering{
 
-\includegraphics[width=0.5\linewidth,height=\textheight,keepaspectratio]{qmd/images/nobel-prize-outreach-ab-2017-de-mairan-experiment.png}
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{qmd/images/nobel-prize-outreach-ab-2017-figure-1.png}
 
 \legend{Source: Reproduction from \textcite{nobelprizeoutreachab}.}
 
@@ -1548,13 +1590,14 @@ an oscillatory system with a periodic duration of approximately 24 hours
 
 \caption{\label{fig-chapter-2-kuhlman-2018-figure-2b}Illustration of a
 circadian rhythm (output) whose phase is entrained in the presence of a
-zeitgeber (input). The rectangles represent the light-dark cycle.}
+zeitgeber (input).}
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{qmd/images/kuhlman-2018-figure-2b.png}
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{qmd/images/kuhlman-2018-figure-2b-adapted.png}
 
-\legend{Source: Adapted from \textcite{kuhlman2018}.}
+\legend{Source: Created by the author. Adapted from \textcite[Figure
+2B]{kuhlman2018}.}
 
 }
 
@@ -1598,19 +1641,20 @@ controlled.
 
 \caption{\label{fig-chapter-2-borbely-1982-figure-4}Illustration of the
 interaction between Process \(\text{S}\) (sleep-dependent process) and
-Process \(\text{C}\) (circadian rhythm process) in sleep regulation. The
-figure depicts two scenarios: one with \(17\) hours of wakefulness
-followed by \(7\) hours of sleep; and another, with sleep deprivation,
-consisting of \(41\) hours of wakefulness followed by \(7\) hours of
-sleep. The y-axis represents the level of each process. The hatched
-areas indicate periods of sleep, along with the exponential decline of
-Process \(\text{S}\).}
+Process \(\text{C}\) (circadian rhythm process) in sleep regulation.
+\microskip \\ The figure depicts two scenarios: one with \(17\) hours of
+wakefulness followed by \(7\) hours of sleep; and another, with sleep
+deprivation, consisting of \(41\) hours of wakefulness followed by \(7\)
+hours of sleep. The y-axis represents the level of each process. The
+hatched areas indicate periods of sleep, along with the exponential
+decline of Process \(\text{S}\).}
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{qmd/images/borbely-1982-figure-4.png}
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{qmd/images/borbely-1982-figure-4-adapted.png}
 
-\legend{Source: Adapted from \textcite{borbely1982}.}
+\legend{Source: Created by the author. Adapted from \textcite[Figure 4,
+lower part]{borbely1982}.}
 
 }
 
@@ -1635,21 +1679,21 @@ proxy for measuring the circadian phenotype (or \(\text{C}\) process)
 \caption{\label{fig-chapter-2-mctq-variables}Variables of the Munich
 ChronoType Questionnaire scale (a sleep log). In its standard version,
 these variables are collected in the context of workdays and work-free
-days. BT = Local time of going to bed. SPrep = Local time of preparing
-to sleep. SLat = Sleep latency \emph{or} time to fall asleep after
-preparing to sleep. SO = Local time of sleep onset. SD = Sleep duration.
-\textbf{MS} = Local time of mid-sleep. SE = Local time of sleep. Alarm =
-A logical value indicating if the respondent uses an alarm clock to wake
-up. SE = Local time of sleep end. SI = ``Sleep inertia'' (despite the
-name, this variable represents the time the respondent takes to get up
-after sleep end). GU = Local time of getting out of bed. TBT = Total
-time in bed.}
+days. \microskip \\ BT = Local time of going to bed. SPrep = Local time
+of preparing to sleep. SLat = Sleep latency \emph{or} time to fall
+asleep after preparing to sleep. SO = Local time of sleep onset. SD =
+Sleep duration. \textbf{MS} = Local time of mid-sleep. SE = Local time
+of sleep. Alarm = A logical value indicating if the respondent uses an
+alarm clock to wake up. SE = Local time of sleep end. SI = ``Sleep
+inertia'' (despite the name, this variable represents the time the
+respondent takes to get up after sleep end). GU = Local time of getting
+out of bed. TBT = Total time in bed.}
 
 \centering{
 
 \pandocbounded{\includegraphics[keepaspectratio]{qmd/images/mctq-figure-1.png}}
 
-Source: Create by the author.
+\legend{Source: Created by the author.}
 
 }
 
@@ -1657,7 +1701,7 @@ Source: Create by the author.
 
 For this thesis, the MCTQ serves as the instrument for measuring
 subjects' chronotypes (circadian phenotypes). The study uses a dataset
-of \(65\,824\) Brazilian respondents from an online survey conducted by
+of \(65,824\) Brazilian respondents from an online survey conducted by
 the author in 2017, which includes geographical data such as postal
 codes. This data enables the examination of the potential association
 between chronotype and geographic factors, particularly latitude and
@@ -1667,7 +1711,8 @@ circadian rhythms in relation to geographic variables.
 
 \bookmarksetup{startatroot}
 
-\chapter{On the Latitude Hypothesis}\label{on-the-latitude-hypothesis}
+\chapter{On the Latitude
+Hypothesis}\label{sec-on-the-latitude-hypothesis}
 
 The first mention of this hypothesis in English scientific literature
 dates back to at least 1973, as noted by \textcite{bohlen1973}, with
@@ -1686,7 +1731,8 @@ According to chronobiological theories, this stronger zeitgeber would
 enhance the synchronization of circadian rhythms with the light-dark
 cycle, resulting in lower variability and amplitude of circadian
 phenotypes. This reduced influence of individual endogenous periods is
-illustrated in Figure~\ref{fig-chapter-4-roenneberg-2003-figure-7-f}.
+illustrated in
+Figure~\ref{fig-chapter-4-roenneberg-2003-figure-7-f-adapted}.
 
 In contrast, populations near the poles experience a weaker solar
 zeitgeber, leading to greater variability and amplitude of circadian
@@ -1699,12 +1745,12 @@ populations at higher and low latitudes tend toward eveningness
 
 \caption{\label{fig-chapter-4-hut-2013-figure-1}Annual changes in (a)
 twilight duration, (b) daylight hours, and (c) temperature across
-different latitudes. Each color shows a specific latitude, illustrating
-how these factors vary throughout the year.}
+different latitudes. \microskip \\ Each color shows a specific latitude,
+illustrating how these factors vary throughout the year.}
 
 \centering{
 
-\includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio]{qmd/images/hut-2013-figure-1.png}
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{qmd/images/hut-2013-figure-1.png}
 
 \legend{Source: Reproduction from \textcite{hut2013}.}
 
@@ -1726,16 +1772,18 @@ supported without at least a non-negligible effect size.
 
 \begin{figure}[H]
 
-\caption{\label{fig-chapter-4-roenneberg-2003-figure-7-f}Different
+\caption{\label{fig-chapter-4-roenneberg-2003-figure-7-f-adapted}Different
 chronotype distributions, influenced by strong and weak zeitgebers --
-black for strong and hatched for weak. An illustration of the effect
-hypothesized by the latitude hypothesis.}
+orange for strong (leptokurtic) and black for weak (platykurtic).
+\microskip \\ An illustration of the effect hypothesized by the latitude
+hypothesis.}
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{qmd/images/roenneberg-2003-figure-7-f.png}
+\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{qmd/images/roenneberg-2003-figure-7-f-adapted.png}
 
-\legend{Source: Adapted from \textcite{roenneberg2003}.}
+\legend{Source: Created by the author. Adapted from \\ \textcite[Figure
+7F]{roenneberg2003}.}
 
 }
 
@@ -1747,18 +1795,18 @@ reported effect size is too small to be considered practically
 significant \autocite{cohen1988}. This highlights a common limitation of
 studies relying on Null Hypothesis Significance Testing (NHST)
 \autocite{perezgonzalez2015}. A p-value does not measure the effect
-size; instead, it represents the probability of observing the data (or
-something more extreme) assuming the null hypothesis is true, thus
-quantifying the likelihood of a type I error
+size; instead, it represents the conditional probability of observing
+the data/test statistic (or something more extreme) assuming the null
+hypothesis is true, thus quantifying the likelihood of a type I error
 \autocite{cohen1994,wasserstein2016}.
 
 \begin{figure}[H]
 
 \caption{\label{fig-chapter-4-leocadio-miguel-2017-figure-2}Mean scores
 (±SE) on the Horne \& Östberg (HO) chronotype scale \autocite{horne1976}
-are presented across a latitudinal gradient, along with the
-corresponding annual average solar irradiation levels (W/m²). The HO
-scale comprises 19 items, with total scores ranging from 16 to 86; lower
+across a latitudinal gradient, along with the corresponding annual
+average solar irradiation levels (W/m²). \microskip \\ The HO scale
+comprises 19 items, with total scores ranging from 16 to 86; lower
 scores indicate a stronger evening orientation, while higher scores
 reflect a greater morning orientation. Notably, the y-axis exaggerates
 the visual impact of the differences, as it represents a range of only
@@ -1767,7 +1815,7 @@ effect.}
 
 \centering{
 
-\includegraphics[width=0.75\linewidth,height=\textheight,keepaspectratio]{qmd/images/leocadio-miguel-2017-figure-2.png}
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{qmd/images/leocadio-miguel-2017-figure-2.png}
 
 \legend{Source: Reproduction from \textcite{leocadio-miguel2017}.}
 
@@ -1803,7 +1851,7 @@ proposed by Neyman and Pearson data testing framework
 \bookmarksetup{startatroot}
 
 \chapter{Is Latitude Associated with
-Chronotype?}\label{is-latitude-associated-with-chronotype}
+Chronotype?}\label{sec-latitude-hypothesis-article}
 
 \section{Abstract}\label{abstract}
 
@@ -1819,7 +1867,7 @@ morning-leaning characteristics due to more consistent light-dark
 cycles, while populations near the poles might display more
 evening-leaning tendencies with a potentially freer expression of
 intrinsic rhythms. To test this hypothesis, we analyzed chronotype data
-from a large sample of \(65\,824\) subjects across diverse latitudes in
+from a large sample of \(65,824\) subjects across diverse latitudes in
 Brazil. Our results revealed that latitude show only negligible effect
 sizes on chronotype, indicating that the entrainment phenomenon is far
 more complex than previously conceived. These findings challenge
@@ -1829,7 +1877,7 @@ temporal phenotypes, opening new avenues for understanding the intricate
 relationship between environmental cues and individual circadian
 rhythms.}
 
-\section{Introduction}\label{introduction-1}
+\section{Introduction}\label{introduction}
 
 Humans exhibit a variety of observable traits, such as eye or hair
 color, which are referred to as phenotypes. These phenotypes also
@@ -1884,7 +1932,7 @@ This study presents a novel attempt to test the latitude hypothesis,
 using a biological approach through the Munich ChronoType Questionnaire
 (MCTQ) \autocite{roenneberg2003}. In addition, it utilizes the largest
 dataset on chronotype in a single country, as far as the existing
-literature suggests, comprising \(65\,824\) respondents, all living
+literature suggests, comprising \(65,824\) respondents, all living
 within the same timezone in Brazil and completing the survey within a
 one-week window
 (Figure~\ref{fig-chapter-5-sample-geographical-distribution}).
@@ -1892,16 +1940,17 @@ one-week window
 \begin{figure}[H]
 
 \caption{\label{fig-chapter-5-sample-geographical-distribution}Geographical
-distribution of the sample used in the analysis: (\(n = 65\,824\)). Each
-point represents a municipality, with its size proportional to the
-number of participants and its color indicating participant density. The
-sample includes Brazilian individuals aged 18 or older, residing in the
-UTC-3 timezone, who completed the survey between October 15 and 21,
-2017. The size and color scale are logarithmic (\(\log_{10}\)).}
+distribution of the sample used in the analysis: (\(n = 65,824\)).
+\microskip \\ Each point represents a municipality, with its size
+proportional to the number of participants and its color indicating
+participant density. The sample includes Brazilian individuals aged 18
+or older, residing in the UTC-3 timezone, who completed the survey
+between October 15 and 21, 2017. The size and color scale are
+logarithmic (\(\log_{10}\)).}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-7-1.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-6-1.png}}
 
 \legend{Source: Created by the author.}
 
@@ -1929,15 +1978,16 @@ at approximately \(\text{08:28:41}\).
 \caption{\label{fig-chapter-5-chronotype-distribution}Distribution of
 the local time for the sleep-corrected midpoint between sleep onset and
 sleep end on work-free days (MSF\textsubscript{sc}), a proxy for
-chronotype. Chronotypes are categorized into quantiles, ranging from
-extremely early (\(0 |- 0.11\)) to extremely late (\(0.88 - 1\)).}
+chronotype. \microskip \\ Chronotypes are categorized into quantiles,
+ranging from extremely early (\(0 |- 0.11\)) to extremely late
+(\(0.88 - 1\)).}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-8-1.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-7-1.png}}
 
 \legend{Source: Created by the author. Based on data visualization found
-in \textcite{roenneberg2019b}.}
+in \\ \textcite{roenneberg2019b}.}
 
 }
 
@@ -2010,17 +2060,17 @@ the distribution of chronotypes by the mean for each Brazilian state.
 \caption{\label{fig-chapter-5-chronotype-latitude-series}Boxplots of
 mean MSF\textsubscript{sc} values aggregated by 1° latitude intervals,
 illustrating the relationship between latitude and chronotype.
-MSF\textsubscript{sc} represents the local time of the sleep-corrected
-midpoint between sleep onset and sleep end on work-free days, a proxy
-for chronotype. Higher MSF\textsubscript{sc} values indicate later
-chronotypes. The × symbol points to the mean. The red line represents a
-linear regression. The differences in mean/median values across
-latitudes are minimal relative to the Munich ChronoType Questionnaire
-(MCTQ) scale.}
+\microskip \\ MSF\textsubscript{sc} represents the local time of the
+sleep-corrected midpoint between sleep onset and sleep end on work-free
+days, a proxy for chronotype. Higher MSF\textsubscript{sc} values
+indicate later chronotypes. The × symbol points to the mean. The orange
+line represents a linear regression. The differences in mean/median
+values across latitudes are minimal relative to the Munich ChronoType
+Questionnaire (MCTQ) scale.}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-9-1.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-8-1.png}}
 
 \legend{Source: Created by the author.}
 
@@ -2045,22 +2095,21 @@ decisive factor in determining chronotype.
 \begin{figure}[H]
 
 \caption{\label{fig-chapter-5-chronotype-geographical-distribution}Geographical
-distribution of mean MSF\textsubscript{sc} values by Brazilian state.
-The figure shows the mean mid-sleep on free days sleep-corrected
-(MSF\textasciitilde sc) values aggregated by state, illustrating how
-chronotype varies with latitude in Brazil. MSF\textsubscript{sc} is a
-proxy for chronotype, representing the midpoint of sleep on work-free
-days, adjusted for sleep debt. Higher MSF\textsubscript{sc} values
-correspond to later chronotypes. The color scale was not transformed and
-it has as limits the first and third quartile (interquartile range).
-While the map suggests a potential latitudinal pattern, differences in
-mean MSF\textsubscript{sc} values across states are small and fall
-within a narrow range relative to the scale of the Munich ChronoType
+distribution of mean mid-sleep on free days sleep-corrected
+(MSF\textasciitilde sc) values by Brazilian state, illustrating how
+chronotype varies with latitude in Brazil. \microskip \\
+MSF\textsubscript{sc} is a proxy for chronotype, representing the
+midpoint of sleep on work-free days, adjusted for sleep debt. Higher
+MSF\textsubscript{sc} values correspond to later chronotypes. The color
+scale was not transformed and it has as limits the first and third
+quartile (interquartile range). Differences in mean
+MSF\textsubscript{sc} values across states are small and fall within a
+narrow range relative to the scale of the Munich ChronoType
 Questionnaire (MCTQ), limiting the significance of these variations.}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-10-1.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/chapter-5_files/figure-pdf/unnamed-chunk-9-1.png}}
 
 \legend{Source: Created by the author.}
 
@@ -2078,7 +2127,7 @@ the data.
 
 \section{Methods}\label{methods}
 
-\subsection{Measurement instrument}\label{measurement-instrument}
+\subsection{Measurement Instrument}\label{measurement-instrument}
 
 Chronotypes were assessed using a sleep log based on the core version of
 the standard Munich ChronoType Questionnaire (MCTQ)
@@ -2086,9 +2135,35 @@ the standard Munich ChronoType Questionnaire (MCTQ)
 self-report tool for measuring sleep-wake cycles and chronotypes
 \autocite{roenneberg2019}. The MCTQ captures chronotype as a biological
 circadian phenotype, determined by the sleep-corrected midpoint of sleep
-(MSF\textsubscript{sc}) on work-free days, accounting for any potential
-sleep compensation due to sleep deficits on workdays
+(MS) (Figure~\ref{fig-chapter-5-mctq-variables}) on work-free days
+(MSF), accounting for any potential sleep compensation due to sleep
+deficits (sc = sleep correction) on workdays (MSF\textsubscript{sc})
 \autocite{roenneberg2012}.
+
+\begin{figure}[H]
+
+\caption{\label{fig-chapter-5-mctq-variables}Variables of the Munich
+ChronoType Questionnaire scale (a sleep log). In its standard version,
+these variables are collected in the context of workdays and work-free
+days.\microskip \\ BT = Local time of going to bed. SPrep = Local time
+of preparing to sleep. SLat = Sleep latency \emph{or} time to fall
+asleep after preparing to sleep. SO = Local time of sleep onset. SD =
+Sleep duration. MS = Local time of mid-sleep. SE = Local time of sleep.
+Alarm = A logical value indicating if the respondent uses an alarm clock
+to wake up. SE = Local time of sleep end. SI = ``Sleep inertia''
+(despite the name, this variable represents the time the respondent
+takes to get up after sleep end). GU = Local time of getting out of bed.
+TBT = Total time in bed.}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{qmd/images/mctq-figure-1.png}}
+
+\legend{Source: Created by the author.}
+
+}
+
+\end{figure}%
 
 Participants completed an online questionnaire, which included the sleep
 log as well as sociodemographic (e.g., age, sex), geographic (e.g., full
@@ -2100,11 +2175,11 @@ organization can be viewed at
 
 \subsection{Sample}\label{sample}
 
-The dataset used for analysis was made up of \(65\,824\) Brazilian
+The dataset used for analysis was made up of \(65,824\) Brazilian
 individuals aged 18 or older, residing in the UTC-3 timezone, who
 completed the survey between October 15 and 21, 2017.
 
-The unfiltered valid sample comprises \(115\,166\) participants from all
+The unfiltered valid sample comprises \(115,166\) participants from all
 Brazilian states, while the raw sample is composed of \(120,265\)
 individuals. The majority of the sample data was obtained in 2017 from
 October 15th to 21st by \href{https://globoplay.globo.com/v/6219513/}{a
@@ -2119,8 +2194,8 @@ Household Sample Survey
 (\href{https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html}{PNAD
 Contínua}) \autocite{ibgee}, Brazil had \(51.919\%\) of females and
 \(48.081\%\) of males with an age equal to or greater than 18 years old.
-The sample is skewed for female subjects, with \(66\.433\%\) of females
-and \(33\.567\%\) of male subjects. To balance the sample, a weighting
+The sample is skewed for female subjects, with \(66.433\%\) of females
+and \(33.567\%\) of male subjects. To balance the sample, a weighting
 procedure was applied to the data. The weights were calculated by cell
 weighting, using the sex, age group and Brazil's state as reference.
 
@@ -2141,7 +2216,7 @@ degrees (\(\text{Min.} = -73.990\); \(\text{Max.} = -28.836\)).
 More information about the sample can be found in the supplementary
 materials.
 
-\subsection{Data wrangling}\label{data-wrangling}
+\subsection{Data Wrangling}\label{data-wrangling}
 
 Data wrangling and analysis followed the data science program proposed
 by Hadley Wickham and Garrett Grolemund \autocite{wickham2016}. All
@@ -2150,13 +2225,13 @@ processes were made with the help of the R programming language
 packages. The \href{https://www.tidyverse.org/}{tidyverse} and
 \href{https://ropensci.org/}{rOpenSci} peer-reviewed package ecosystem
 and other R packages adherents of the tidy tools manifesto
-\autocite{wickham2023a} were prioritized. The MCTQ data was analyzed
+\autocite{wickham2023} were prioritized. The MCTQ data was analyzed
 using the \texttt{mctq} rOpenSci peer-reviewed package
 \autocite{vartaniana}. All processes were made in order to provide
 result reproducibility and to be in accordance with the FAIR principles
 \autocite{wilkinson2016}.
 
-\subsection{Hypothesis test}\label{hypothesis-test}
+\subsection{Hypothesis Test}\label{hypothesis-test}
 
 The study hypothesis was tested using nested models general linear
 models of multiple linear regressions. It was schematized as follows.
@@ -2183,11 +2258,15 @@ models of multiple linear regressions. It was schematized as follows.
 \end{cases}
 \]
 
+\medskip
+
 Where:
 
 \[
 \Delta \ \text{Adjusted} \ \text{R}^{2} = \text{Adjusted} \ \text{R}^{2}_{f} - \text{Adjusted} \ \text{R}^{2}_{r}
 \]
+
+\medskip
 
 A MES must always be used in any data testing. The effect-size was
 present in the original Neyman and Pearson framework
@@ -2221,6 +2300,8 @@ Knowing Cohen's \(f^2\), is possible to calculated the equivalent
 0.02 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}} \quad \text{or} \quad \text{R}^{2} = \cfrac{0.02}{1.02} \eqsim 0.01960784
 \]
 
+\medskip
+
 In other words, the latitude must explain at least \(1.960784\%\) of the
 variance in the dependent variable to be considered non-negligible. This
 is the Minimum Effect Size (MES) for this analysis.
@@ -2235,9 +2316,9 @@ In summary, the decision rule for the hypothesis test is as follows:
   \begin{itemize}
   \tightlist
   \item
-    The F-test is significant.
+    The F-test is significant
   \item
-    \(\Delta \ \text{Adjusted} \ \text{R}^{2} > 0.01960784\);
+    \(\Delta \ \text{Adjusted} \ \text{R}^{2} > 0.01960784\)
   \end{itemize}
 \item
   \textbf{Fail to reject} \(\text{H}_{0}\) \textbf{if either}:
@@ -2245,9 +2326,9 @@ In summary, the decision rule for the hypothesis test is as follows:
   \begin{itemize}
   \tightlist
   \item
-    The F-test is not significant, or
+    The F-test is not significant
   \item
-    \(\Delta \ \text{Adjusted} \ \text{R}^{2} \leq 0.01960784\).
+    \(\Delta \ \text{Adjusted} \ \text{R}^{2} \leq 0.01960784\)
   \end{itemize}
 \end{itemize}
 
@@ -2261,7 +2342,7 @@ for detecting the MES effect. The results indicate that at least
 \(0.01\). The dataset contains \(65,824\) observations, which exceeds
 this requirement.
 
-\subsection{Data availability}\label{data-availability}
+\subsection{Data Availability}\label{data-availability}
 
 Some restrictions apply to the availability of the main research data,
 which contain personal and sensitive information. As a result, this data
@@ -2272,7 +2353,7 @@ Unrestricted data can be access on the research compendium via
 \href{https://osf.io/}{The Open Science Framework} at the following
 link: \url{https://doi.org/10.17605/OSF.IO/YGKTS}.
 
-\subsection{Code availability}\label{code-availability}
+\subsection{Code Availability}\label{code-availability}
 
 All analyses are fully reproducible and were conducted using the
 \href{https://www.r-project.org/}{R programming language} alongside the
@@ -2294,20 +2375,20 @@ Pessoal de Nível Superior - Brasil
 (\href{https://www.gov.br/capes/}{CAPES}) - Finance Code 001, Grant
 number 88887.703720/2022-00.
 
-\section{Ethics declarations}\label{ethics-declarations}
+\section{Ethics Declarations}\label{ethics-declarations}
 
 The author declares that the study was carried out without any
 commercial or financial connections that could be seen as a possible
 competing interest.
 
-\section{Additional information}\label{additional-information}
+\section{Additional Information}\label{additional-information}
 
 See the supplementary material for more information.
 
 Correspondence can be sent to Daniel Vartanian
 (\href{mailto:danvartan@gmail.com}{\nolinkurl{danvartan@gmail.com}}).
 
-\section{Rights and permissions}\label{rights-and-permissions}
+\section{Rights and Permissions}\label{rights-and-permissions}
 
 This article is released under the
 \href{http://creativecommons.org/licenses/by/4.0/}{Creative Commons
@@ -2319,7 +2400,7 @@ changes were made.
 
 \bookmarksetup{startatroot}
 
-\chapter{Conclusion}\label{conclusion}
+\chapter{Conclusion}\label{sec-conclusion}
 
 According to Popper, the aim of science is to provide ``satisfactory
 explanations of whatever strikes us as being in need of explanation''
@@ -2327,10 +2408,10 @@ explanations of whatever strikes us as being in need of explanation''
 largest dataset on chronotype collected within a single time
 zone---balanced to reflect population proportions at the time of data
 collection---found no support for the latitude hypothesis (Cohen's
-\(f^2 = 0.012137120\)). This result contributes meaningful evidence to
-the understanding of circadian rhythm regulation, offering a clear and
+\(f^2 = 0.0121371\)). This result contributes meaningful evidence to the
+understanding of circadian rhythm regulation, offering a clear and
 satisfactory answer to the central research question of this thesis:
-``Is latitude associated with chronotype?'' The answer is \textbf{No}.
+``Is latitude associated with chronotype?''. The answer is \textbf{No}.
 
 These findings are consistent with those of
 \textcite{leocadio-miguel2017}, who reported a similar effect size
@@ -2381,14 +2462,14 @@ though its nature as a sleep log suggests this impact was minimal.
 
 Another factor to consider is the timing of data collection relative to
 the start of Daylight Saving Time (DST) in Brazil. On the day data
-collection commenced (October 15th, 2017 -- \(80.153\%\) of the data
-used in this analysis were collected on this day), a significant portion
-of respondents adjusted their clocks forward by one hour. While this
-could theoretically influence their responses, the questions were
-specifically designed to capture daily routines, which were not affected
-by the DST adjustment at that moment. Furthermore, any potential effect
-of DST would likely strengthen the latitude hypothesis; however, this
-was not supported by the data.
+collection commenced (October 15th, 2017 -- \(80.153%
+\) of the data used in this analysis were collected on this day), a
+significant portion of respondents adjusted their clocks forward by one
+hour. While this could theoretically influence their responses, the
+questions were specifically designed to capture daily routines, which
+were not affected by the DST adjustment at that moment. Furthermore, any
+potential effect of DST would likely strengthen the latitude hypothesis;
+however, this was not supported by the data.
 
 These limitations, while noteworthy, do not undermine the study's
 findings but rather highlight areas for refinement in future research.
@@ -2420,6 +2501,11 @@ calibrate and validate this model.
 \tocprintchapternonum
 \addcontentsline{toc}{chapter}{\newbibname}
 
+% -----
+% Other additions
+% -----
 
+%:::% other-after-body begin %:::%
+%:::% other-after-body end %:::%
 
 \end{document}

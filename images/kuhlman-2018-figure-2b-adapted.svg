@@ -7,7 +7,7 @@
    width="1000"
    height="558"
    viewBox="0 0 1000 557.99998"
-   sodipodi:docname="kuhlman-2018-figure-2b-.svg"
+   sodipodi:docname="kuhlman-2018-figure-2b-adapted.svg"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    inkscape:export-filename="kuhlman-2018-figure-2b-adapted.png"
    inkscape:export-xdpi="96"
@@ -443,15 +443,15 @@
      showgrid="true"
      guidecolor="#ff00ff"
      guideopacity="0.6"
-     inkscape:zoom="0.7071068"
-     inkscape:cx="485.07524"
-     inkscape:cy="190.21172"
+     inkscape:zoom="1"
+     inkscape:cx="539.49999"
+     inkscape:cy="251.49999"
      inkscape:window-width="1920"
      inkscape:window-height="1020"
      inkscape:window-x="0"
      inkscape:window-y="28"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer-MC3"
      inkscape:lockguides="true">
     <inkscape:page
        x="0"
@@ -735,17 +735,16 @@
      inkscape:groupmode="layer"
      inkscape:label="Curve"
      style="display:inline"
-     transform="translate(0,-402.00002)"
-     sodipodi:insensitive="true">
+     transform="translate(0,-402.00002)">
     <path
        id="path17"
-       d="m 48.000001,869.00004 c 67.071559,0 67.071259,-357.00002 135.142789,-357.00002 68.07153,0 68.07153,360.00002 136.1429,360.00002 68.07136,0 68.07156,-357.00002 136.14277,-357.00002 68.07121,0 68.07145,354.00002 136.14289,354.00002 68.07144,0 68.07167,-354.00002 136.14289,-354.00002 68.07122,0 68.07145,354.00002 136.14289,354.00002 68.07144,0 68.14287,-357.00002 136.14287,-357.00002 68.0713,0 68.0715,357.00002 136.1428,357.00002"
+       d="m 48.000001,869.00004 c 67.071559,0 67.071259,-357.00002 135.142789,-357.00002 68.07153,0 68.07153,357.00002 136.1429,357.00002 68.07136,0 68.07156,-357.00002 136.14277,-357.00002 68.07121,0 68.07145,357.00002 136.14289,357.00002 68.07144,0 68.07167,-357.00002 136.14289,-357.00002 68.07122,0 68.07145,357.00002 136.14289,357.00002 68.07144,0 68.14287,-357.00002 136.14287,-357.00002 68.0713,0 68.0715,357.00002 136.1428,357.00002"
        style="display:inline;fill:none;stroke:#ea7701;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
        clip-path="url(#clipPath28)"
        sodipodi:nodetypes="czzzzzzcc" />
     <path
        id="path4"
-       d="m 183.1429,869.00004 c 68.07136,0 68.07156,-357.00002 136.14277,-357.00002 68.07121,0 68.07145,354.00002 136.14289,354.00002 68.07144,0 68.07167,-354.00002 136.14289,-354.00002 68.07122,0 68.07135,357.00002 136.14279,357.00002 68.07144,0 68.14297,-357.00002 136.14297,-357.00002 68.0713,0 68.0715,357.00002 136.14279,357.00002"
+       d="m 183.14279,870.00004 c 68.07136,0 68.786,-358.00002 136.85721,-358.00002 68.07121,0 67.35702,358.00002 135.42846,358.00002 68.07144,0 68.07167,-359.00002 136.14289,-359.00002 68.07122,0 68.07145,359.00002 136.14289,359.00002 68.07144,0 68.14289,-359.00002 136.14289,-359.00002 68.0713,0 68.0716,359.00002 136.14287,359.00002"
        style="display:inline;fill:none;stroke:#142a32;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:8, 4;stroke-dashoffset:0;stroke-opacity:1"
        clip-path="url(#clipPath30)"
        sodipodi:nodetypes="czzzzcc" />

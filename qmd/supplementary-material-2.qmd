@@ -144,14 +144,14 @@ Access to the data requires authorization from the author on the Open Science Fr
 
 ## Data Wrangling
 
-Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2016] (@fig-sm-2-wickham-at-al-2024-figure-1). All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023a] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
+Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2023d] (@fig-sm-2-wickham-at-al-2024-figure-1). All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanian2023]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
 
 ::: {#fig-sm-2-wickham-at-al-2024-figure-1}
 ![](images/wickham-at-al-2024-figure-1.png){width=75%}
 
-Source: Reproduced from @wickham2023b.
+Source: Reproduced from @wickham2023d.
 
-Model of the data science process created by Wickham, Çetinkaya-Runde, and Grolemund [-@wickham2023b].
+Model of the data science process created by Wickham, Çetinkaya-Runde, and Grolemund [-@wickham2023d].
 :::
 
 ### Pipeline

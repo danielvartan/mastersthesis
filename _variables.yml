@@ -10,10 +10,10 @@ cosupervisor: '[Co-supervisor''s full name]'
 keyword: |
   Complexity science. Complex systems. Chronobiology. Biological rhythms. Chronotypes. Circadian phenotypes. Sleep. Entrainment. Latitude. MCTQ.
 location: São Paulo
-mainfont: HelveticaNeueLT Std
-monofont: Fragment Mono
+mainfont: DM Sans
+monofont: DM Mono
 program: Graduate Program in Complex Systems Modeling
-sansfont: HelveticaNeueLT Std
+sansfont: Poppins
 school: School of Arts, Sciences and Humanities
 supervisor: Camilo Rodrigues Neto
 type-of-work: Thesis
@@ -22,6 +22,6 @@ version-note: Corrected version
 url: https://danielvartan.github.io/mastersthesis/
 language: en
 title: Is Latitude Associated with Chronotype?
-date: '2025-01-09'
+date: '2025-01-10'
 year: '2025'
-format: html
+format: pdf

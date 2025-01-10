@@ -386,7 +386,7 @@ __MCTQ standard version__
 ## {background-iframe="https://r4ds.hadley.nz/intro#fig-ds-diagram" background-interactive=true}
 
 ::: footer
-[@wickham2016]
+[@wickham2023d]
 :::
 
 ## {background-iframe="https://docs.ropensci.org/mctq/" background-interactive=true}

@@ -35,6 +35,11 @@ format:
       (APA) Style, 7th edition.
     bibhang: 0.5cm
     bibparsep: 1ex
+    colorlinks: true
+    linkcolor: brand-orange
+    filecolor: brand-orange
+    citecolor: brand-orange
+    urlcolor: brand-orange
     location: "São Paulo"
     supervisor: "Camilo Rodrigues Neto"
     academic-title: "Master"

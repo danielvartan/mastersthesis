@@ -104,7 +104,7 @@ write_in_results_yml <- function(
 
   for (i in seq_along(x)) {
     if (is.numeric(x[[i]])) {
-      x[[i]] <- x[[i]] |> signif(10)
+      x[[i]] <- x[[i]] |> signif(digits)
     }
 
     if (names(x)[i] %in% names(out)) {

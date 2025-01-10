@@ -41,7 +41,7 @@ color:
     light-orange: "#F5BD83"
     dark-orange: "#964D01"
     white: "#FFFFFF"
-    gray: "#4F5556"
+    grey: "#4F5556"
     black: "#142A32"
     black-725: "#7D898E" # get_brand_color_tint(725, "black")
 
@@ -83,6 +83,8 @@ typography:
   monospace: DM Mono
   monospace-inline:
     color: black
+  monospace-block:
+    background-color: orange-975
   link:
     color: orange
     decoration: underline

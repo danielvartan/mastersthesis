@@ -30,7 +30,7 @@ options(
   pillar.max_footer_lines = 2,
   pillar.min_chars = 15,
   scipen = 10,
-  digits = 5,
+  digits = 10,
   stringr.view_n = 6,
   pillar.bold = TRUE,
   width = 77 # 80 - 3 for #> comment
@@ -83,29 +83,19 @@ sysfonts::font_paths(
   c(
     here::here("otf"),
     here::here("ttf"),
+    here::here("_extensions", "abnt", "otf"),
     here::here("_extensions", "abnt", "ttf")
   )
 )
 
-if (env_vars$format == "pdf") {
-  sysfonts::font_add(
-    family = "helvetica-neue",
-    regular = here::here("otf", "helveticaneueltstd-roman.otf"),
-    bold = here::here("otf", "helveticaneueltstd-bd.otf"),
-    italic = here::here("otf", "helveticaneueltstd-it.otf"),
-    bolditalic = here::here("otf", "helveticaneueltstd-bdit.otf"),
-    symbol = NULL
-  )
-} else {
-  sysfonts::font_add(
-    family = "dm-sans",
-    regular = here::here("ttf", "dmsans-regular.ttf"),
-    bold = here::here("ttf", "dmsans-bold.ttf"),
-    italic = here::here("ttf", "dmsans-italic.ttf"),
-    bolditalic = here::here("ttf", "dmsans-bolditalic.ttf"),
-    symbol = NULL
-  )
-}
+sysfonts::font_add(
+  family = "dm-sans",
+  regular = here::here("ttf", "dmsans-regular.ttf"),
+  bold = here::here("ttf", "dmsans-bold.ttf"),
+  italic = here::here("ttf", "dmsans-italic.ttf"),
+  bolditalic = here::here("ttf", "dmsans-bolditalic.ttf"),
+  symbol = NULL
+)
 
 showtext::showtext_auto()
 
@@ -120,11 +110,7 @@ ggplot2::theme_set(
   ggplot2::theme(
     text = ggplot2::element_text(
       color = get_brand_color("secondary"),
-      family = ifelse(
-        env_vars$format == "pdf",
-        "helvetica-neue",
-        "dm-sans"
-      ),
+      family = "dm-sans",
       face = "plain"
     ),
     panel.background = ggplot2::element_rect(fill = "transparent"),

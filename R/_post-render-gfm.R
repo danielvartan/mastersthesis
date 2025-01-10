@@ -10,7 +10,10 @@ groomr::remove_blank_line_dups(here::here("README.md"))
 
 # Update project year -----
 
-files <- here::here("LICENSE.md")
+files <- c(
+  here::here("CITATION.cff"),
+  here::here("LICENSE.md")
+)
 
 for (i in files) {
   data <-

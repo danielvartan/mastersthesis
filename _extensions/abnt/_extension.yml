@@ -50,9 +50,13 @@ contributes:
       df-print: kable
     pdf:
       documentclass: abntex2
-      mainfont: HelveticaNeueLT Std # See `systemfonts::system_fonts()`.
-      sansfont: HelveticaNeueLT Std
-      monofont: Fragment Mono
+      # Install the fonts before rendering
+      # (See the extention `ttf` and `otf` folder)
+      # To get font family names see `systemfonts::system_fonts()`
+      # For "DM Sans", discard the variable sizes (e.g., "18pt") from the files.
+      mainfont: DM Sans # Base font {\rmdefault\rmfmaily}
+      sansfont: Poppins # Heading font {\sfdefault\sffamily}
+      monofont: DM Mono # Code font {\ttdefault\ttfamily}
       monofontoptions:
         - Scale=0.75
       fontsize: 12pt
@@ -66,6 +70,8 @@ contributes:
       section-options:
         - chapter=TITLE
         - section=TITLE
+      hyperrefoptions:
+        - bookmarksnumbered
       date-format: YYYY
       lang: en # options: [en, pt-br, es, fr]
       language: ../_extensions/abnt/_language.yml
@@ -103,6 +109,12 @@ contributes:
       code-block-bg: "#F1F3F5"
       fig-format: png
       fig-dpi: 150
+      # See: <https://quarto.org/docs/computations/
+      #       execution-options.html#figure-options>.
+      fig-width: 5.5 # Default: 5.5
+      fig-height: 4 # Default: 3.5
+      # See: <https://quarto.org/docs/reference/cells/cells-knitr.html#figures>.
+      out-width: 80%
       fig-pos: H # `abntex2` default: htb (doesn't work)
       tbl-pos: H # `abntex2` default: htb (doesn't work)
       cap-location: top
@@ -140,59 +152,6 @@ contributes:
         - tex/title.tex
         - tex/toc.tex
       format-resources:
-        - otf/FragmentMono-Regular.otf
-        - otf/FragmentMono-Italic.otf
-        - otf/HelveticaNeueLTStd-Bd.otf
-        - otf/HelveticaNeueLTStd-BdCn.otf
-        - otf/HelveticaNeueLTStd-BdCnO.otf
-        - otf/HelveticaNeueLTStd-BdEx.otf
-        - otf/HelveticaNeueLTStd-BdExO.otf
-        - otf/HelveticaNeueLTStd-BdIt.otf
-        - otf/HelveticaNeueLTStd-BdOu.otf
-        - otf/HelveticaNeueLTStd-Blk.otf
-        - otf/HelveticaNeueLTStd-BlkCn.otf
-        - otf/HelveticaNeueLTStd-BlkCnO.otf
-        - otf/HelveticaNeueLTStd-BlkEx.otf
-        - otf/HelveticaNeueLTStd-BlkExO.otf
-        - otf/HelveticaNeueLTStd-BlkIt.otf
-        - otf/HelveticaNeueLTStd-Cn.otf
-        - otf/HelveticaNeueLTStd-CnO.otf
-        - otf/HelveticaNeueLTStd-Ex.otf
-        - otf/HelveticaNeueLTStd-ExO.otf
-        - otf/HelveticaNeueLTStd-Hv.otf
-        - otf/HelveticaNeueLTStd-HvCn.otf
-        - otf/HelveticaNeueLTStd-HvCnO.otf
-        - otf/HelveticaNeueLTStd-HvEx.otf
-        - otf/HelveticaNeueLTStd-HvExO.otf
-        - otf/HelveticaNeueLTStd-HvIt.otf
-        - otf/HelveticaNeueLTStd-It.otf
-        - otf/HelveticaNeueLTStd-Lt.otf
-        - otf/HelveticaNeueLTStd-LtCn.otf
-        - otf/HelveticaNeueLTStd-LtCnO.otf
-        - otf/HelveticaNeueLTStd-LtEx.otf
-        - otf/HelveticaNeueLTStd-LtExO.otf
-        - otf/HelveticaNeueLTStd-LtIt.otf
-        - otf/HelveticaNeueLTStd-Md.otf
-        - otf/HelveticaNeueLTStd-MdCn.otf
-        - otf/HelveticaNeueLTStd-MdCnO.otf
-        - otf/HelveticaNeueLTStd-MdEx.otf
-        - otf/HelveticaNeueLTStd-MdExO.otf
-        - otf/HelveticaNeueLTStd-MdIt.otf
-        - otf/HelveticaNeueLTStd-Roman.otf
-        - otf/HelveticaNeueLTStd-Th.otf
-        - otf/HelveticaNeueLTStd-ThCn.otf
-        - otf/HelveticaNeueLTStd-ThCnO.otf
-        - otf/HelveticaNeueLTStd-ThEx.otf
-        - otf/HelveticaNeueLTStd-ThExO.otf
-        - otf/HelveticaNeueLTStd-ThIt.otf
-        - otf/HelveticaNeueLTStd-UltLt.otf
-        - otf/HelveticaNeueLTStd-UltLtCn.otf
-        - otf/HelveticaNeueLTStd-UltLtCnO.otf
-        - otf/HelveticaNeueLTStd-UltLtEx.otf
-        - otf/HelveticaNeueLTStd-UltLtExO.otf
-        - otf/HelveticaNeueLTStd-UltLtIt.otf
-        - otf/HelveticaNeueLTStd-XBlkCn.otf
-        - otf/HelveticaNeueLTStd-XBlkCnO.otf
         - bbx/abnt.bbx
         - bbx/abnt-ibid.bbx
         - bbx/abnt-numeric.bbx
@@ -211,3 +170,9 @@ contributes:
         - lbx/french-apa.lbx
       latex-auto-install: true
       keep-tex: true
+
+# TO DO:
+#
+# - Fix the "Source" field, adding a tabulation after "Source: ".
+# - Find a way to center the caption and the source if they are less than
+#   \textwidth, and to justify them if they are greater than \textwidth.

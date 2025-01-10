@@ -1,11 +1,8 @@
-
-
 # mastersthesis
 
 <!-- quarto render --profile gfm -->
 
 <!-- badges: start -->
-
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -45,13 +42,19 @@ It’s important to note that some restrictions apply to the availability
 of the main research data, which contain personal and sensitive
 information. As a result, this data cannot be publicly shared. To run
 the analyses, users must have an internet connection and request a set
-of access keys from the author (see the keys section below).
+of access keys from the author (see *Keys* section).
+
+If you don’t feel comfortable with R, I strongly recommend checking
+Hadley Wickham and Garrett Grolemund’s free and online book [R for Data
+Science](https://r4ds.hadley.nz/) and the Coursera course from John
+Hopkins University [Data Science: Foundations using
+R](https://www.coursera.org/specializations/data-science-foundations-r).
 
 To reproduce the analyses do the following steps:
 
 1.  Make sure that you have the latest R version and the following R
     packages installed in your machine:
-    `install.packages(c("cli", "here", "magrittr", "renv", "stats", "stringr"))`.
+    `install.packages(c("cli", "here" ,"magrittr", "ragg", "renv", "stats", "stringr"))`.
 2.  Clone this repository.
 3.  Open the R project (`mastersthesis.Rproj`).
 4.  Run
@@ -59,16 +62,11 @@ To reproduce the analyses do the following steps:
     to install all software dependencies.
 5.  Set all the keys provided by the author in the `.Renviron` file and
     the `_ssh` folder.
-6.  Run `targets::tar_make()` to create and get every point of the data
-    wrangling process (from the raw_data to the cleaned and weighted
+6.  Run `targets::tar_make()` to create every point of the data
+    wrangling process (from the raw data to the cleaned and weighted
     data).
-7.  Open and run any analysis present in the computational notebooks.
-
-If you don’t feel comfortable with R, I strongly recommend checking
-Hadley Wickham and Garrett Grolemund’s free and online book [R for Data
-Science](https://r4ds.hadley.nz/) and the Coursera course from John
-Hopkins University [Data Science: Foundations using
-R](https://www.coursera.org/specializations/data-science-foundations-r).
+7.  Run any analysis present in the computational notebooks (`qmd`
+    directory).
 
 ## Keys
 
@@ -114,13 +112,13 @@ available due to privacy and ethical considerations.
 
 To cite this work, please use the following format:
 
-Vartanian, D. (2024). *Is latitude associated with chronotype?*
-\[Master’s thesis, University of São Paulo\].
+Vartanian, D. (2025). *Is latitude associated with chronotype?*
+\[Master’s Thesis, University of São Paulo\].
 <https://doi.org/10.17605/OSF.IO/YGKTS>
 
 A BibTeX entry for LaTeX users is:
 
-    @mastersthesis{vartanian2024,
+    @mastersthesis{vartanian2025,
       title = {Is latitude associated with chronotype?},
       author = {Daniel Vartanian},
       year = {2025},
@@ -128,14 +126,15 @@ A BibTeX entry for LaTeX users is:
       school  = {University of São Paulo},
       langid = {en},
       url = {https://doi.org/10.17605/OSF.IO/YGKTS},
-      note = {Original version}
+      note = {Corrected version}
     }
 
 ## Acknowledgments
 
 The thesis was developed in the Graduate Program in Modeling Complex
-Systems ([PPG-SCX](https://sites.usp.br/scx/en/apresentacao/)) at the
-University of São Paulo ([USP](https://www5.usp.br/)), under the
+Systems
+([PPG-SCX](https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos))
+at the University of São Paulo ([USP](https://www5.usp.br/)), under the
 supervision of [Prof. Dr. Camilo Rodrigues
 Neto](https://orcid.org/0000-0001-6783-6695).
 

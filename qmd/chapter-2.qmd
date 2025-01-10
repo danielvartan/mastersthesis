@@ -26,11 +26,11 @@ Science has already showed and described various biological rhythms. These rhyth
 Despite the endogenous nature of these rhythms, they can still be regulated by the external environment. Signals (cues) from the environment that occur cyclically in nature and have the ability to regulate biological rhythmic expression are called zeitgebers (from the German _zeit_, meaning time, and _geber_, meaning donor [@cambridgeuniversitypress]). These zeitgebers act as synchronizers by entraining the phases of the rhythms [@khalsa2003; @kuhlman2018] (@fig-chapter-2-kuhlman-2018-figure-2b). Among the known zeitgebers are, for example, meal timing and changes in environmental temperature [@aschoff1981; @roenneberg2016]. However, the most influential of them is the light-dark cycle (or, simply, light exposure). It is understood that the day/night cycle, resulting from the rotation of the Earth, has provided the vast majority of organisms with an oscillatory system with a periodic duration of approximately 24 hours [@kuhlman2018; @roenneberg2007].
 
 ::: {#fig-chapter-2-kuhlman-2018-figure-2b}
-![](images/kuhlman-2018-figure-2b-adapted.png){width=100%}
+![](images/kuhlman-2018-figure-2b-adapted.png){width=85%}
 
-[Source: Adapted from @kuhlman2018.]{.legend}
+[Source: Created by the author. Adapted from @kuhlman2018[Figure 2B].]{.legend}
 
-Illustration of a circadian rhythm (output) whose phase is entrained in the presence of a zeitgeber (input). The rectangles represent the light-dark cycle.
+Illustration of a circadian rhythm (output) whose phase is entrained in the presence of a zeitgeber (input).
 :::
 
 Naturally, the expression of this temporal organization varies from organism to organism, even among members of the same species, whether due to the different ways they are exposed to the environment or the differences in the expression of endogenous rhythmicity, which, in turn, results from gene expression [@roenneberg2007a]. The interaction between these two expressions, external and internal, of the environment and genotype, generates a signature, an observable characteristic, which is called a phenotype [@frommlet2016].
@@ -40,11 +40,11 @@ The various temporal characteristics of an organism can be linked to different o
 Sleep is a phenomenon that exhibits circadian expression. By observing the sleep characteristics of individuals, it is possible to assess the distribution of circadian phenotypes within a population, thereby investigating their covariates and other relevant associations [@roenneberg2003]. This is because sleep regulation is understood as the result of the interaction between two processes: a homeostatic process (referred to as the $\text{S}$ process), which is sleep-dependent and accumulates with sleep deprivation; and a circadian process (referred to as the $\text{C}$ process), whose expression can be influenced by zeitgebers, such as the light-dark cycle (@fig-chapter-2-borbely-1982-figure-4 illustrates these two process) [@borbely1982; @borbely2016]. Considering that the circadian rhythm (the $\text{C}$ process) is present in sleep, its characteristics can be estimated if the $\text{S}$ process can be controlled.
 
 ::: {#fig-chapter-2-borbely-1982-figure-4}
-![](images/borbely-1982-figure-4-adapted.png){width=100%}
+![](images/borbely-1982-figure-4-adapted.png){width=85%}
 
-[Source: Created by the author, adapted from @borbely1982[Figure 4, lower part].]{.legend}
+[Source: Created by the author. Adapted from @borbely1982[Figure 4, lower part].]{.legend}
 
-Illustration of the interaction between Process $\text{S}$ (sleep-dependent process) and Process $\text{C}$ (circadian rhythm process) in sleep regulation. The figure depicts two scenarios: one with $17$ hours of wakefulness followed by $7$ hours of sleep; and another, with sleep deprivation, consisting of $41$ hours of wakefulness followed by $7$ hours of sleep. The y-axis represents the level of each process. The hatched areas indicate periods of sleep, along with the exponential decline of Process $\text{S}$.
+Illustration of the interaction between Process $\text{S}$ (sleep-dependent process) and Process $\text{C}$ (circadian rhythm process) in sleep regulation. `\microskip \\`{=latex} The figure depicts two scenarios: one with $17$ hours of wakefulness followed by $7$ hours of sleep; and another, with sleep deprivation, consisting of $41$ hours of wakefulness followed by $7$ hours of sleep. The y-axis represents the level of each process. The hatched areas indicate periods of sleep, along with the exponential decline of Process $\text{S}$.
 :::
 
 Building on this idea, @roenneberg2003 developed the Munich Chronotype Questionnaire (MCTQ) to measure the circadian phenotype through sleep patterns. The MCTQ asks individuals about their sleep habits, such as the times they go to bed and wake up on workdays and work-free days. Based on this information, the MCTQ calculates the local time of the midpoint of sleep on work-free days (@fig-chapter-2-mctq-variables) and, if sleep deprivation is detected on workdays, adjusts the measurement accordingly. This midpoint, reflecting sleep without social obligations, is thought to represent the unabridged expression of the circadian rhythm. Given its basis in the two processes of sleep regulation, the MCTQ provides a good proxy for measuring the circadian phenotype (or $\text{C}$ process) [@leocadio-miguel2014].
@@ -54,7 +54,7 @@ Building on this idea, @roenneberg2003 developed the Munich Chronotype Questionn
 
 [Source: Created by the author.]{.legend}
 
-Variables of the Munich ChronoType Questionnaire scale (a sleep log). In its standard version, these variables are collected in the context of workdays and work-free days. BT = Local time of going to bed. SPrep = Local time of preparing to sleep. SLat = Sleep latency *or* time to fall asleep after preparing to sleep. SO = Local time of sleep onset. SD = Sleep duration. **MS** = Local time of mid-sleep. SE = Local time of sleep. Alarm = A logical value indicating if the respondent uses an alarm clock to wake up. SE = Local time of sleep end. SI = "Sleep inertia" (despite the name, this variable represents the time the respondent takes to get up after sleep end). GU = Local time of getting out of bed. TBT = Total time in bed.
+Variables of the Munich ChronoType Questionnaire scale (a sleep log). In its standard version, these variables are collected in the context of workdays and work-free days. `\microskip \\`{=latex} BT = Local time of going to bed. SPrep = Local time of preparing to sleep. SLat = Sleep latency *or* time to fall asleep after preparing to sleep. SO = Local time of sleep onset. SD = Sleep duration. **MS** = Local time of mid-sleep. SE = Local time of sleep. Alarm = A logical value indicating if the respondent uses an alarm clock to wake up. SE = Local time of sleep end. SI = "Sleep inertia" (despite the name, this variable represents the time the respondent takes to get up after sleep end). GU = Local time of getting out of bed. TBT = Total time in bed.
 :::
 
 For this thesis, the MCTQ serves as the instrument for measuring subjects' chronotypes (circadian phenotypes). The study uses a dataset of `{r} results_vars$ea_analysis_sample_n |> format_to_md_latex()` Brazilian respondents from an online survey conducted by the author in 2017, which includes geographical data such as postal codes. This data enables the examination of the potential association between chronotype and geographic factors, particularly latitude and longitude. The research ultimately seeks to determine whether latitude plays a role in shaping chronotype, contributing to our understanding of circadian rhythms in relation to geographic variables.
