@@ -50,7 +50,7 @@ library(targets)
 
 ## Loading and Processing the Sample Data
 
-Below, we load the data that was used for the hypothesis test before the balance procedure. You can visualize the data munging pipeline in the `_targets.R` file.
+You can visualize the data wrangling pipeline at the code repository in the  [`_targets.R`](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R) file.
 
 ::: {.callout-warning}
 Please note that these values refer to the group of **states in the Brazilian time zone UTC-3**, not the whole country.
@@ -242,7 +242,7 @@ write_in_results_yml(
 
 ## Adjusting Sample Data with the Population Data
 
-The tables above indicate an overrepresentation of states like São Paulo and Rio de Janeiro, while states such as Amapá and Tocantins are underrepresented. To achieve a balanced sample, we applied a cell weighting procedure [see @kalton2003] based on the characteristics of `state`, `sex` and `age group`, using data from the 2017 PNAD as a reference.
+The tables above indicate an overrepresentation of states like São Paulo and Rio de Janeiro, while states such as Amapá and Tocantins are underrepresented. To achieve a balanced sample, a cell weighting procedure was use [see @kalton2003] based on the characteristics of `state`, `sex` and `age group`, using data from the 2017 PNAD as a reference.
 
 $$
 \text{Cell weighting}: \cfrac{\% \ \text{2017 PNAD}}{\% \ \text{Survey sample}}

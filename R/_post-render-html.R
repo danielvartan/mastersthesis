@@ -3,11 +3,11 @@
 # library(rutils) # github.com/danielvartan/rutils
 # library(yaml)
 
-# Post-render begin ----------
+# Post-render begin -----
 
 source(here::here("R", "_post-render-begin.R"))
 
-# Copy PDF (if exists) to `output_dir_html` folder ----------
+# Copy PDF (if exists) to `output_dir_html` folder -----
 
 pdf_file <- list.files(output_dir_pdf, full.names = TRUE, pattern = ".pdf$")
 
@@ -18,7 +18,7 @@ if (length(pdf_file) == 1) {
   )
 }
 
-# Create robots.txt file ----------
+# Create robots.txt file -----
 
 robots_file <- file.path(output_dir_html, "robots.txt")
 
@@ -42,6 +42,17 @@ writeLines(
   ),
   con = robots_file
 )
+
+# Copy favicon.png file to the `docs` folder -----
+
+favicon_file <- here::here("images", "favicon.png")
+
+if (prettycheck:::test_file_exists(favicon_file)) {
+  rutils:::copy_file(
+    from = favicon_file,
+    to = file.path(output_docs, "favicon.png")
+  )
+}
 
 # Post-render end ----------
 

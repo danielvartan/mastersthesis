@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Appendix G — Comparative Assessment of QualoCEP and Google Geocoding API Performance – Is Latitude Associated with Chronotype?</title>
+<title>3&nbsp; On Complexity Science – Is Latitude Associated with Chronotype?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,41 +17,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -60,8 +46,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../qmd/supplementary-material-8.html" rel="next">
-<link href="../qmd/supplementary-material-6.html" rel="prev">
+<link href="../qmd/chapter-4.html" rel="next">
+<link href="../qmd/chapter-2.html" rel="prev">
 <link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -106,16 +92,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
-</script><link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
-<script src="../site_libs/leaflet-1.3.1/leaflet.js"></script><link href="../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-<script src="../site_libs/proj4-2.6.2/proj4.min.js"></script><script src="../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="../site_libs/leaflet-binding-2.2.2/leaflet.js"></script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<meta property="og:title" content="Appendix G — Comparative Assessment of QualoCEP and Google Geocoding API Performance – Is Latitude Associated with Chronotype?">
+<meta property="og:title" content="3&nbsp; On Complexity Science – Is Latitude Associated with Chronotype?">
 <meta property="og:description" content="">
+<meta property="og:image" content="https://danielvartan.github.io/mastersthesis/qmd/images/lewin-1993-figure-1.png">
 <meta property="og:site_name" content="Is Latitude Associated with Chronotype?">
-<meta name="citation_title" content="[Appendix G — Comparative Assessment of QualoCEP and Google Geocoding API Performance]{#sec-sm-qualocep .quarto-section-identifier}">
+<meta property="og:image:height" content="1458">
+<meta property="og:image:width" content="1634">
+<meta name="citation_title" content="[[3]{.chapter-number}&nbsp; [On Complexity Science]{.chapter-title}]{#sec-on-complexity-science .quarto-section-identifier}">
 <meta name="citation_fulltext_html_url" content="https://danielvartan.github.io/mastersthesis/">
 <meta name="citation_pdf_url" content="https://danielvartan.github.io/mastersthesis/print/index.pdf">
 <meta name="citation_doi" content="10.17605/OSF.IO/YGKTS">
@@ -314,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/supplementary-material-1.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/supplementary-material-7.html"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/chapter-1.html">Chapters</a></li><li class="breadcrumb-item"><a href="../qmd/chapter-3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">On Complexity Science</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -408,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/chapter-3.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/chapter-3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">On Complexity Science</span></span></a>
   </div>
 </li>
@@ -485,7 +470,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/supplementary-material-7.html" class="sidebar-item-text sidebar-link active">
+  <a href="../qmd/supplementary-material-7.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></span></a>
   </div>
 </li>
@@ -514,38 +499,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-<li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">G.1</span> Overview</a></li>
-  <li><a href="#setting-the-enviroment" id="toc-setting-the-enviroment" class="nav-link" data-scroll-target="#setting-the-enviroment"><span class="header-section-number">G.2</span> Setting the enviroment</a></li>
-  <li><a href="#importing-qualocep-data" id="toc-importing-qualocep-data" class="nav-link" data-scroll-target="#importing-qualocep-data"><span class="header-section-number">G.3</span> Importing QualOCep data</a></li>
-  <li>
-<a href="#random-test-1" id="toc-random-test-1" class="nav-link" data-scroll-target="#random-test-1"><span class="header-section-number">G.4</span> Random test 1</a>
-  <ul class="collapse">
-<li><a href="#qualocep-data" id="toc-qualocep-data" class="nav-link" data-scroll-target="#qualocep-data"><span class="header-section-number">G.4.1</span> QualOCep data</a></li>
-  <li><a href="#google-geocoding-api" id="toc-google-geocoding-api" class="nav-link" data-scroll-target="#google-geocoding-api"><span class="header-section-number">G.4.2</span> Google Geocoding API</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#random-test-2" id="toc-random-test-2" class="nav-link" data-scroll-target="#random-test-2"><span class="header-section-number">G.5</span> Random test 2</a>
-  <ul class="collapse">
-<li><a href="#qualocep-data-1" id="toc-qualocep-data-1" class="nav-link" data-scroll-target="#qualocep-data-1"><span class="header-section-number">G.5.1</span> QualOCep data</a></li>
-  <li><a href="#google-geocoding-api-1" id="toc-google-geocoding-api-1" class="nav-link" data-scroll-target="#google-geocoding-api-1"><span class="header-section-number">G.5.2</span> Google Geocoding API</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#random-test-3" id="toc-random-test-3" class="nav-link" data-scroll-target="#random-test-3"><span class="header-section-number">G.6</span> Random test 3</a>
-  <ul class="collapse">
-<li><a href="#qualocep-data-2" id="toc-qualocep-data-2" class="nav-link" data-scroll-target="#qualocep-data-2"><span class="header-section-number">G.6.1</span> QualOCep data</a></li>
-  <li><a href="#google-geocoding-api-2" id="toc-google-geocoding-api-2" class="nav-link" data-scroll-target="#google-geocoding-api-2"><span class="header-section-number">G.6.2</span> Google Geocoding API</a></li>
-  </ul>
-</li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/danielvartan/mastersthesis/edit/main/qmd/supplementary-material-7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/danielvartan/mastersthesis/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-    </div>
+        
+    <div class="toc-actions"><ul><li><a href="https://github.com/danielvartan/mastersthesis/edit/main/qmd/chapter-3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/danielvartan/mastersthesis/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/supplementary-material-1.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/supplementary-material-7.html"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-sm-qualocep" class="quarto-section-identifier">Appendix G — Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/chapter-1.html">Chapters</a></li><li class="breadcrumb-item"><a href="../qmd/chapter-3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">On Complexity Science</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-on-complexity-science" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">On Complexity Science</span></span></h1>
 </div>
 
 
@@ -559,281 +517,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><!-- %:::% .common h1 begin %:::% --><!-- %:::% .common h1 end %:::% --><section id="overview" class="level2" data-number="G.1"><h2 data-number="G.1" class="anchored" data-anchor-id="overview">
-<span class="header-section-number">G.1</span> Overview</h2>
-<p>This is a simple workflow to test the <a href="https://www.qualocep.com/">QualoCEP</a> geocoding against <a href="https://developers.google.com/maps/documentation/geocoding/overview">Google Geocoding API</a>.</p>
-<p>This thesis uses both services for geocoding the data. QualoCEP is a paid service that provides a large dataset of Brazillian postal codes and addresses. The aim is to compare the results of QualoCEP’s latitute e longitude values with Google’s results for consistency.</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+</header><!-- %:::% .common h1 begin %:::% --><!-- %:::% .common h1 end %:::% --><p>Complexity science is the science dedicated to understanding emergent phenomena <span class="citation" data-cites="krakauer2024">(<a href="references.html#ref-krakauer2024" role="doc-biblioref">Krakauer &amp; Wolpert, 2024</a>)</span>. Like computer science and chronobiology, it began to take shape in the second half of the 20th century, by the convergence of several fields, such as systems theory, game theory, and nonlinear dynamics <span class="citation" data-cites="sayama2015">(<a href="references.html#ref-sayama2015" role="doc-biblioref">Sayama, 2015</a>)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>At a fundamental level, emergence can be defined as stable macroscopic patterns arising from local interactions <span class="citation" data-cites="epstein1999">(<a href="references.html#ref-epstein1999" role="doc-biblioref">Epstein, 1999</a>)</span>. These patterns emerge from the collective actions of a system’s parts, which cannot be attained by simply summing them up <span class="citation" data-cites="holland2014">(<a href="references.html#ref-holland2014" role="doc-biblioref">Holland, 2014</a>)</span> (<a href="#fig-chapter-3-lewin-1993-figure-1" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>). They may give rise to new properties in a system, which can only be studied by observing the interactions within it.</p>
+<div id="fig-chapter-3-lewin-1993-figure-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-chapter-3-lewin-1993-figure-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: An illustration of the reciprocal action between an emergent phenomenon derived by local interactions.
+</figcaption><div aria-describedby="fig-chapter-3-lewin-1993-figure-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><img src="images/lewin-1993-figure-1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<p><span class="legend">Source: Reproduced from <span class="citation" data-cites="lewin1993">Lewin (<a href="references.html#ref-lewin1993" role="doc-biblioref">1993, fig. 1</a>)</span>.</span></p>
 </div>
-<div class="callout-body-container">
-<p>To run this notebook you will need to have a Google Geocoding API key in your <a href="https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file"><code>.Renviron</code></a> file. Learn more about it <a href="https://jessecambon.github.io/tidygeocoder/articles/geocoder_services.html">here</a>.</p>
+</figure>
 </div>
+<p>Systems that exhibit emergent properties are considered complex systems <span class="citation" data-cites="mitchell2009 holland2014">(<a href="references.html#ref-holland2014" role="doc-biblioref">Holland, 2014</a>; <a href="references.html#ref-mitchell2009" role="doc-biblioref">Mitchell, 2009</a>)</span>. In a general sense, a system can be defined as a set of interacting parts that, through their interactions, produce a global behavior <span class="citation" data-cites="vonbertalanffy1968">(<a href="references.html#ref-vonbertalanffy1968" role="doc-biblioref">von Bertalanffy, 1968</a>)</span>. While both complicated and complex systems consist of many interacting parts, the defining characteristic of complex systems is that they cannot be fully understood by analyzing their components in isolation <span class="citation" data-cites="holland1992b">(<a href="references.html#ref-holland1992b" role="doc-biblioref">Holland, 1992</a>)</span>. This distinction poses significant challenges, as traditional methods for studying systems are often inadequate for capturing the intricate dynamics of complex systems <span class="citation" data-cites="holland2006">(<a href="references.html#ref-holland2006" role="doc-biblioref">Holland, 2006</a>)</span>.</p>
+<p>Biological rhythms are an example of emergent properties produced by a complex system with multiple levels of interaction <span class="citation" data-cites="partch2014">(<a href="references.html#ref-partch2014" role="doc-biblioref">Partch et al., 2014</a>)</span>. Molecular oscillations are generated at the cellular level <span class="citation" data-cites="merrow2005 buhr2013">(<a href="references.html#ref-buhr2013" role="doc-biblioref">Buhr &amp; Takahashi, 2013</a>; <a href="references.html#ref-merrow2005" role="doc-biblioref">Merrow et al., 2005</a>)</span>. These oscillations interact and couple with one another, forming a complex circadian network that coordinates rhythmic physiology and behavior <span class="citation" data-cites="raj2008 foster2020">(<a href="references.html#ref-foster2020" role="doc-biblioref">R. G. Foster, 2020</a>; <a href="references.html#ref-raj2008" role="doc-biblioref">Raj &amp; van Oudenaarden, 2008</a>)</span>. Although science has not fully mapped all the pathways, it is understood that in this kaleidoscopic array of simultaneous interactions, a global rhythm emerges. Each rhythm, or clock, is itself an emergent phenomenon, interacting with others to produce a global behavior (<a href="#fig-chapter-3-flanagan-2021-figure-2" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>). As the parts generate these emergences, the emergent feedback to the parts, regulating and modulating functions at all levels <span class="citation" data-cites="roenneberg2007">(<a href="references.html#ref-roenneberg2007" role="doc-biblioref">Roenneberg et al., 2007</a>)</span>.</p>
+<div id="fig-chapter-3-flanagan-2021-figure-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-chapter-3-flanagan-2021-figure-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: An illustration depicting how the human circadian clock system regulate multiple aspects of metabolic physiology, such as: hormone secretion, core body temperature, resting metabolic rate, and plasma metabolite concentration.
+</figcaption><div aria-describedby="fig-chapter-3-flanagan-2021-figure-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><img src="images/flanagan-2021-figure-2-adapted.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<p><span class="legend">Source: Reproduced from <span class="citation" data-cites="flanagan2021">Flanagan et al. (<a href="references.html#ref-flanagan2021" role="doc-biblioref">2021, fig. 2</a>)</span>.</span></p>
 </div>
+</figure>
 </div>
-</section><section id="setting-the-enviroment" class="level2" data-number="G.2"><h2 data-number="G.2" class="anchored" data-anchor-id="setting-the-enviroment">
-<span class="header-section-number">G.2</span> Setting the enviroment</h2>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/targets/">targets</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jessecambon.github.io/tidygeocoder/">tidygeocoder</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R"</span>, <span class="st">"get_brazil_fu.R"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R"</span>, <span class="st">"get_qualocep_data.R"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R"</span>, <span class="st">"render_brazil_address.R"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R"</span>, <span class="st">"utils.R"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section><section id="importing-qualocep-data" class="level2" data-number="G.3"><h2 data-number="G.3" class="anchored" data-anchor-id="importing-qualocep-data">
-<span class="header-section-number">G.3</span> Importing QualOCep data</h2>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">qualocep_data</span> <span class="op">&lt;-</span> <span class="fu">get_qualocep_data</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section><section id="random-test-1" class="level2" data-number="G.4"><h2 data-number="G.4" class="anchored" data-anchor-id="random-test-1">
-<span class="header-section-number">G.4</span> Random test 1</h2>
-<section id="qualocep-data" class="level3" data-number="G.4.1"><h3 data-number="G.4.1" class="anchored" data-anchor-id="qualocep-data">
-<span class="header-section-number">G.4.1</span> QualOCep data</h3>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sample_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="va">qualocep_data</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">sample_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"41100154"},{"1":"street_type","2":"Travessa"},{"1":"street_name","2":"dos Canibais"},{"1":"street","2":"Travessa dos Canibais"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Pernambués"},{"1":"municipality_code","2":"2927408"},{"1":"municipality","2":"Salvador"},{"1":"state_code","2":"29"},{"1":"state","2":"Bahia"},{"1":"federal_unit","2":"BA"},{"1":"latitude","2":"-12.9741058"},{"1":"longitude","2":"-38.4543697"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
-<span>    lng <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
-<span>    lat <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
-<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="st">"Latitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
-<span>      <span class="st">"Longitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-2cbbfe906c9f6879e1fe" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-2cbbfe906c9f6879e1fe">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-12.9741058,-38.4543697,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -12.9741058<br>Longitude: -38.4543697",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-12.9741058,-12.9741058],"lng":[-38.4543697,-38.4543697]}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-</section><section id="google-geocoding-api" class="level3" data-number="G.4.2"><h3 data-number="G.4.2" class="anchored" data-anchor-id="google-geocoding-api">
-<span class="header-section-number">G.4.2</span> Google Geocoding API</h3>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">google_data</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="va">sample_data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    address <span class="op">=</span> <span class="fu">render_brazil_address</span><span class="op">(</span></span>
-<span>      street <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">street</span>,</span>
-<span>      complement <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">complement</span>,</span>
-<span>      neighborhood <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">neighborhood</span>,</span>
-<span>      municipality <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">municipality</span>,</span>
-<span>      state <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">state</span>,</span>
-<span>      postal_code <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">postal_code</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">tidygeocoder</span><span class="fu">::</span><span class="fu"><a href="https://jessecambon.github.io/tidygeocoder/reference/geocode.html">geocode</a></span><span class="op">(</span></span>
-<span>    address <span class="op">=</span> <span class="va">address</span>,</span>
-<span>    method <span class="op">=</span> <span class="st">"google"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Passing 1 address to the Google single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 0.6 seconds</span></span>
-<span></span>
-<span><span class="va">google_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"41100154"},{"1":"street_type","2":"Travessa"},{"1":"street_name","2":"dos Canibais"},{"1":"street","2":"Travessa dos Canibais"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Pernambués"},{"1":"municipality_code","2":"2927408"},{"1":"municipality","2":"Salvador"},{"1":"state_code","2":"29"},{"1":"state","2":"Bahia"},{"1":"federal_unit","2":"BA"},{"1":"latitude","2":"-12.9741058"},{"1":"longitude","2":"-38.4543697"},{"1":"address","2":"Travessa dos Canibais, Pernambués, Salvador-BA, 41100-154, Brasil"},{"1":"lat","2":"-12.9741058"},{"1":"long","2":"-38.4543697"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
-<span>    lng <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
-<span>    lat <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
-<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="st">"Latitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
-<span>      <span class="st">"Longitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-1c0a0f9c3dfb8da119ab" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-1c0a0f9c3dfb8da119ab">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-12.9741058,-38.4543697,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -12.9741058<br>Longitude: -38.4543697",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-12.9741058,-12.9741058],"lng":[-38.4543697,-38.4543697]}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-</section></section><section id="random-test-2" class="level2" data-number="G.5"><h2 data-number="G.5" class="anchored" data-anchor-id="random-test-2">
-<span class="header-section-number">G.5</span> Random test 2</h2>
-<section id="qualocep-data-1" class="level3" data-number="G.5.1"><h3 data-number="G.5.1" class="anchored" data-anchor-id="qualocep-data-1">
-<span class="header-section-number">G.5.1</span> QualOCep data</h3>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sample_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="va">qualocep_data</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">sample_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"76962020"},{"1":"street_type","2":"Avenida"},{"1":"street_name","2":"Juscimeira"},{"1":"street","2":"Avenida Juscimeira"},{"1":"complement","2":"- de 682 ao fim - lado par"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Novo Horizonte"},{"1":"municipality_code","2":"1100049"},{"1":"municipality","2":"Cacoal"},{"1":"state_code","2":"11"},{"1":"state","2":"Rondônia"},{"1":"federal_unit","2":"RO"},{"1":"latitude","2":"-11.4316027"},{"1":"longitude","2":"-61.4594248"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
-<span>    lng <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
-<span>    lat <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
-<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="st">"Latitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
-<span>      <span class="st">"Longitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-31991fd480ca2268ed50" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-31991fd480ca2268ed50">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-11.4316027,-61.4594248,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -11.4316027<br>Longitude: -61.4594248",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-11.4316027,-11.4316027],"lng":[-61.4594248,-61.4594248]}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-</section><section id="google-geocoding-api-1" class="level3" data-number="G.5.2"><h3 data-number="G.5.2" class="anchored" data-anchor-id="google-geocoding-api-1">
-<span class="header-section-number">G.5.2</span> Google Geocoding API</h3>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">google_data</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="va">sample_data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    address <span class="op">=</span> <span class="fu">render_brazil_address</span><span class="op">(</span></span>
-<span>      street <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">street</span>,</span>
-<span>      complement <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">complement</span>,</span>
-<span>      neighborhood <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">neighborhood</span>,</span>
-<span>      municipality <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">municipality</span>,</span>
-<span>      state <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">state</span>,</span>
-<span>      postal_code <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">postal_code</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">tidygeocoder</span><span class="fu">::</span><span class="fu"><a href="https://jessecambon.github.io/tidygeocoder/reference/geocode.html">geocode</a></span><span class="op">(</span></span>
-<span>    address <span class="op">=</span> <span class="va">address</span>,</span>
-<span>    method <span class="op">=</span> <span class="st">"google"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Passing 1 address to the Google single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 0.3 seconds</span></span>
-<span></span>
-<span><span class="va">google_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"76962020"},{"1":"street_type","2":"Avenida"},{"1":"street_name","2":"Juscimeira"},{"1":"street","2":"Avenida Juscimeira"},{"1":"complement","2":"- de 682 ao fim - lado par"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Novo Horizonte"},{"1":"municipality_code","2":"1100049"},{"1":"municipality","2":"Cacoal"},{"1":"state_code","2":"11"},{"1":"state","2":"Rondônia"},{"1":"federal_unit","2":"RO"},{"1":"latitude","2":"-11.4316027"},{"1":"longitude","2":"-61.4594248"},{"1":"address","2":"Avenida Juscimeira, - de 682 ao fim - lado par, Novo Horizonte, Cacoal-RO, 76962-020, Brasil"},{"1":"lat","2":"-11.4316624"},{"1":"long","2":"-61.4596209"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
-<span>    lng <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
-<span>    lat <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
-<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="st">"Latitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
-<span>      <span class="st">"Longitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-1b2fd753db53aab97313" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-1b2fd753db53aab97313">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-11.4316027,-61.4594248,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -11.4316027<br>Longitude: -61.4594248",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-11.4316027,-11.4316027],"lng":[-61.4594248,-61.4594248]}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-</section></section><section id="random-test-3" class="level2" data-number="G.6"><h2 data-number="G.6" class="anchored" data-anchor-id="random-test-3">
-<span class="header-section-number">G.6</span> Random test 3</h2>
-<section id="qualocep-data-2" class="level3" data-number="G.6.1"><h3 data-number="G.6.1" class="anchored" data-anchor-id="qualocep-data-2">
-<span class="header-section-number">G.6.1</span> QualOCep data</h3>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sample_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="va">qualocep_data</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">sample_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"23897680"},{"1":"street_type","2":"Rua"},{"1":"street_name","2":"Ana Vieira"},{"1":"street","2":"Rua Ana Vieira"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Parque Jacimar"},{"1":"municipality_code","2":"3305554"},{"1":"municipality","2":"Seropédica"},{"1":"state_code","2":"33"},{"1":"state","2":"Rio de Janeiro"},{"1":"federal_unit","2":"RJ"},{"1":"latitude","2":"-22.7999413"},{"1":"longitude","2":"-43.6529836"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
-<span>    lng <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
-<span>    lat <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
-<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="st">"Latitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
-<span>      <span class="st">"Longitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-b656f8bb697b8386b3b8" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-b656f8bb697b8386b3b8">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-22.7999413,-43.6529836,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -22.7999413<br>Longitude: -43.6529836",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-22.7999413,-22.7999413],"lng":[-43.6529836,-43.6529836]}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-</section><section id="google-geocoding-api-2" class="level3" data-number="G.6.2"><h3 data-number="G.6.2" class="anchored" data-anchor-id="google-geocoding-api-2">
-<span class="header-section-number">G.6.2</span> Google Geocoding API</h3>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">google_data</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="va">sample_data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    address <span class="op">=</span> <span class="fu">render_brazil_address</span><span class="op">(</span></span>
-<span>      street <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">street</span>,</span>
-<span>      complement <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">complement</span>,</span>
-<span>      neighborhood <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">neighborhood</span>,</span>
-<span>      municipality <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">municipality</span>,</span>
-<span>      state <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">state</span>,</span>
-<span>      postal_code <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">postal_code</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">tidygeocoder</span><span class="fu">::</span><span class="fu"><a href="https://jessecambon.github.io/tidygeocoder/reference/geocode.html">geocode</a></span><span class="op">(</span></span>
-<span>    address <span class="op">=</span> <span class="va">address</span>,</span>
-<span>    method <span class="op">=</span> <span class="st">"google"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Passing 1 address to the Google single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 0.3 seconds</span></span>
-<span></span>
-<span><span class="va">google_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"23897680"},{"1":"street_type","2":"Rua"},{"1":"street_name","2":"Ana Vieira"},{"1":"street","2":"Rua Ana Vieira"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Parque Jacimar"},{"1":"municipality_code","2":"3305554"},{"1":"municipality","2":"Seropédica"},{"1":"state_code","2":"33"},{"1":"state","2":"Rio de Janeiro"},{"1":"federal_unit","2":"RJ"},{"1":"latitude","2":"-22.7999413"},{"1":"longitude","2":"-43.6529836"},{"1":"address","2":"Rua Ana Vieira, Parque Jacimar, Seropédica-RJ, 23897-680, Brasil"},{"1":"lat","2":"-22.8003186"},{"1":"long","2":"-43.6526934"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
-<span>    lng <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
-<span>    lat <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
-<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
-<span>      <span class="st">"Latitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
-<span>      <span class="st">"Longitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-f44fd3421821d8383035" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-f44fd3421821d8383035">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-22.7999413,-43.6529836,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -22.7999413<br>Longitude: -43.6529836",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-22.7999413,-22.7999413],"lng":[-43.6529836,-43.6529836]}},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
+<p>The entrainment of these rhythms with environmental periodicities can involve different mechanisms. For the light/dark cycle, the main zeitgeber, this involves a network of photosensitive retinal ganglion cells (pRGCs) that send signals to the suprachiasmatic nucleus (SCN) in the hypothalamus <span class="citation" data-cites="brainard2001 thapan2001">(<a href="references.html#ref-brainard2001" role="doc-biblioref">Brainard et al., 2001</a>; <a href="references.html#ref-thapan2001" role="doc-biblioref">Thapan et al., 2001</a>)</span>. The SCN then sends signals to the pineal gland, which produces melatonin, a hormone that regulates sleep-wake cycles, among other functions <span class="citation" data-cites="foster2021a">(<a href="references.html#ref-foster2021a" role="doc-biblioref">R. Foster, 2021</a>)</span>.</p>
+<p>To model this phenomenon, one must understand how complex systems behave and can be studied. This thesis adopts a global approach to understanding the effect of light/dark cycle entrainment on circadian expressions of populations, considering potential interactions for proper system control. Given the thesis’s aim to test the latitude hypothesis, a global approach is appropriate. Alternatively, a local approach could explore entrainment in populations by modeling individuals, each with their own circadian clock, and their interactions with the environment.</p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-brainard2001" class="csl-entry" role="listitem">
+Brainard, G. C., Hanifin, J. P., Greeson, J. M., Byrne, B., Glickman, G., Gerner, E., &amp; Rollag, M. D. (2001). Action spectrum for melatonin regulation in humans: Evidence for a novel circadian photoreceptor. <em>Journal of Neuroscience</em>, <em>21</em>(16), 6405–6412. <a href="https://doi.org/10.1523/JNEUROSCI.21-16-06405.2001">https://doi.org/10.1523/JNEUROSCI.21-16-06405.2001</a>
+</div>
+<div id="ref-buhr2013" class="csl-entry" role="listitem">
+Buhr, E. D., &amp; Takahashi, J. S. (2013). Molecular components of the mammalian circadian clock. In A. Kramer &amp; M. Merrow (Eds.), <em>Circadian <span>Clocks</span></em> (Vol. 217, pp. 3–27). Springer. <a href="https://doi.org/10.1007/978-3-642-25950-0_1">https://doi.org/10.1007/978-3-642-25950-0_1</a>
+</div>
+<div id="ref-epstein1999" class="csl-entry" role="listitem">
+Epstein, J. M. (1999). Agent-based computational models and generative social science. <em>Complexity</em>, <em>4</em>(5), 41–60. <a href="https://doi.org/10.1002/(SICI)1099-0526(199905/06)4:5<41::AID-CPLX9>3.0.CO;2-F">https://doi.org/10.1002/(SICI)1099-0526(199905/06)4:5&lt;41::AID-CPLX9&gt;3.0.CO;2-F</a>
+</div>
+<div id="ref-flanagan2021" class="csl-entry" role="listitem">
+Flanagan, A., Bechtold, D. A., Pot, G. K., &amp; Johnston, J. D. (2021). Chrono-nutrition: From molecular and neuronal mechanisms to human epidemiology and timed feeding patterns. <em>Journal of Neurochemistry</em>, <em>157</em>(1), 53–72. <a href="https://doi.org/10.1111/jnc.15246">https://doi.org/10.1111/jnc.15246</a>
+</div>
+<div id="ref-foster2021a" class="csl-entry" role="listitem">
+Foster, R. (2021). Fundamentals of circadian entrainment by light. <em>Lighting Research &amp; Technology</em>, <em>53</em>(5), 377–393. <a href="https://doi.org/10.1177/14771535211014792">https://doi.org/10.1177/14771535211014792</a>
+</div>
+<div id="ref-foster2020" class="csl-entry" role="listitem">
+Foster, R. G. (2020). Sleep, circadian rhythms and health. <em>Interface Focus</em>, <em>10</em>(3), 20190098. <a href="https://doi.org/10.1098/rsfs.2019.0098">https://doi.org/10.1098/rsfs.2019.0098</a>
+</div>
+<div id="ref-holland1992b" class="csl-entry" role="listitem">
+Holland, J. H. (1992). Complex adaptive systems. <em>Daedalus</em>, <em>121</em>(1), 17–30. <a href="https://www.jstor.org/stable/20025416">https://www.jstor.org/stable/20025416</a>
+</div>
+<div id="ref-holland2006" class="csl-entry" role="listitem">
+Holland, J. H. (2006). Studying complex adaptive systems. <em>Journal of Systems Science and Complexity</em>, <em>19</em>(1), 1–8. <a href="https://doi.org/10.1007/s11424-006-0001-z">https://doi.org/10.1007/s11424-006-0001-z</a>
+</div>
+<div id="ref-holland2014" class="csl-entry" role="listitem">
+Holland, J. H. (2014). <em>Complexity: A very short introduction</em>. Oxford University Press.
+</div>
+<div id="ref-krakauer2024" class="csl-entry" role="listitem">
+Krakauer, D., &amp; Wolpert, D. (2024, September 4). The reality ouroboros. <em>Nautilus</em>. <a href="https://nautil.us/the-reality-ouroboros-809153/">https://nautil.us/the-reality-ouroboros-809153/</a>
+</div>
+<div id="ref-lewin1993" class="csl-entry" role="listitem">
+Lewin, R. (1993). <em>Complexity: Life at the edge of chaos</em>. Collier Books.
+</div>
+<div id="ref-merrow2005" class="csl-entry" role="listitem">
+Merrow, M., Spoelstra, K., &amp; Roenneberg, T. (2005). The circadian cycle: Daily rhythms from behaviour to genes. <em>EMBO Reports</em>, <em>6</em>(10), 930–935. <a href="https://doi.org/10.1038/sj.embor.7400541">https://doi.org/10.1038/sj.embor.7400541</a>
+</div>
+<div id="ref-mitchell2009" class="csl-entry" role="listitem">
+Mitchell, M. (2009). <em>Complexity: A guided tour</em>. Oxford University Press.
+</div>
+<div id="ref-partch2014" class="csl-entry" role="listitem">
+Partch, C. L., Green, C. B., &amp; Takahashi, J. S. (2014). Molecular architecture of the mammalian circadian clock. <em>Trends in Cell Biology</em>, <em>24</em>(2), 90–99. <a href="https://doi.org/10.1016/j.tcb.2013.07.002">https://doi.org/10.1016/j.tcb.2013.07.002</a>
+</div>
+<div id="ref-raj2008" class="csl-entry" role="listitem">
+Raj, A., &amp; van Oudenaarden, A. (2008). Nature, nurture, or chance: Stochastic gene expression and its consequences. <em>Cell</em>, <em>135</em>(2), 216–226. <a href="https://doi.org/10.1016/j.cell.2008.09.050">https://doi.org/10.1016/j.cell.2008.09.050</a>
+</div>
+<div id="ref-roenneberg2007" class="csl-entry" role="listitem">
+Roenneberg, T., Kuehnle, T., Juda, M., Kantermann, T., Allebrandt, K., Gordijn, M., &amp; Merrow, M. (2007). Epidemiology of the human circadian clock. <em>Sleep Medicine Reviews</em>, <em>11</em>(6), 429–438. <a href="https://doi.org/10.1016/j.smrv.2007.07.005">https://doi.org/10.1016/j.smrv.2007.07.005</a>
+</div>
+<div id="ref-sayama2015" class="csl-entry" role="listitem">
+Sayama, H. (2015). <em>Introduction to the modeling and analysis of complex systems</em>. Open SUNY Textbooks.
+</div>
+<div id="ref-thapan2001" class="csl-entry" role="listitem">
+Thapan, K., Arendt, J., &amp; Skene, D. J. (2001). An action spectrum for melatonin suppression: Evidence for a novel non-rod, non-cone photoreceptor system in humans. <em>The Journal of Physiology</em>, <em>535</em>(1), 261–267. <a href="https://doi.org/10.1111/j.1469-7793.2001.t01-1-00261.x">https://doi.org/10.1111/j.1469-7793.2001.t01-1-00261.x</a>
+</div>
+<div id="ref-vonbertalanffy1968" class="csl-entry" role="listitem">
+von Bertalanffy, L. (1968). <em>General system theory: Foundations, development, applications</em>. George Braziller.
+</div>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>Brian Castellani &amp; Lasse Gerrits created a visual map to illustrate the different fields and components of complexity science. You can find it at <a href="https://www.art-sciencefactory.com/complexity-map_feb09.html" class="uri">https://www.art-sciencefactory.com/complexity-map_feb09.html</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1250,13 +1022,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../qmd/supplementary-material-6.html" class="pagination-link" aria-label="Hypothesis Test B">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Hypothesis Test B</span></span>
+      <a href="../qmd/chapter-2.html" class="pagination-link" aria-label="On Chronobiology">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">On Chronobiology</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../qmd/supplementary-material-8.html" class="pagination-link" aria-label="Overview of General Linear Models">
-        <span class="nav-page-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../qmd/chapter-4.html" class="pagination-link" aria-label="On the Latitude Hypothesis">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">On the Latitude Hypothesis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1264,4 +1036,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/danielvartan/mastersthesis/edit/main/qmd/supplementary-material-7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/danielvartan/mastersthesis/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/danielvartan/mastersthesis/edit/main/qmd/chapter-3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/danielvartan/mastersthesis/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

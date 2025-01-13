@@ -16,7 +16,7 @@ $callout-color-important: #EA7701;
 /* Body ----- */
 
 body {
-  color: $brand-gray;
+  color: $brand-black;
 }
 
 /* Navigation ----- */
@@ -48,7 +48,7 @@ div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, 
 /* Headings ----- */
 
 #title-block-header.quarto-title-block.default .quarto-title h1.title {
-  color: $tertiary;
+  color: $secondary;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
@@ -59,11 +59,11 @@ h1.unnumbered {
 }
 
 .header-section-number {
-  color: $tertiary;
+  color: $secondary;
 }
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 .header-section-number {
-  color: $tertiary;
+  color: $secondary;
   font-weight: 500;
 }
 
@@ -119,6 +119,7 @@ code a:any-link {
 .panel-caption, .figure-caption, .subfigure-caption, .table-caption, figcaption, caption {
   color: $tertiary;
   font-size: 0.9rem;
+  text-align: left;
 }
 
 .legend {
@@ -135,4 +136,8 @@ code a:any-link {
 .center-x {
   display: inline-block;
   text-align: center;
+}
+
+.brandorange {
+  color: $primary;
 }

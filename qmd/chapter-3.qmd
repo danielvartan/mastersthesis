@@ -9,56 +9,36 @@
 source(here::here("R", "_setup.R"))
 ```
 
-**Complex systems** are systems with many interconnected parts that exhibit emergent behavior. Complexity science seeks to explain and understand these emergent phenomena [@krakauer2024].
+Complexity science is the science dedicated to understanding emergent phenomena [@krakauer2024]. Like computer science and chronobiology, it began to take shape in the second half of the 20th century, by the convergence of several fields, such as systems theory, game theory, and nonlinear dynamics [@sayama2015]^[Brian Castellani & Lasse Gerrits created a visual map to illustrate the different fields and components of complexity science. You can find it at <https://www.art-sciencefactory.com/complexity-map_feb09.html>.].
 
-Like many other biological phenomena, these are complex systems present in all living beings, i.e., systems with a large number of connected parts that presents stable macroscopic patterns (emergences, in this case, the rhythms) arising from local interactions or the collective behavior of its parts, giving the system properties not attained by the aggregate summation [@epstein1999; @holland2014]
+At a fundamental level, emergence can be defined as stable macroscopic patterns arising from local interactions [@epstein1999]. These patterns emerge from the collective actions of a system's parts, which cannot be attained by simply summing them up [@holland2014] (@fig-chapter-3-lewin-1993-figure-1). They may give rise to new properties in a system, which can only be studied by observing the interactions within it.
 
-Complex versus Complicated.
+::: {#fig-chapter-3-lewin-1993-figure-1}
+![](images/lewin-1993-figure-1.png){width=65%}
 
-**Stable macroscopic patterns** arising from **local interaction** of agents [@epstein1999].
+[Source: Reproduced from @lewin1993[Figure 1].]{.legend}
 
-In mathematical terms, the interactions of interest are non-linear [@holland2014].
-
-When the aggregate exhibits **properties not attained by summation** [@holland2014].
-
-The behavior of each part don't explain how they behave collectively.
-
-Emergence: new properties that arise from the interactions of the parts of a system, which are not present in the parts themselves. Collective behavior. Aggregate behavior.
-
-You are dealing with an emergence phenomenon when there is no need to look under the hood [@krakauer2023].
-
-::: {#fig-chapter-3-perez-villa-2023-figure-1}
-![](images/flanagan-2021-figure-2-adapted.png){width=85%}
-
-[Source: Reproduction of @flanagan2021.]{.legend}
-
-An illustration depicting how the human circadian clock system regulate multiple aspects of metabolic physiology.
+An illustration of the reciprocal action between an emergent phenomenon derived by local interactions.
 :::
 
-The result of a *juggling act* of billions of years of evolution. There are no specific functions. There's no proposed goal.
+Systems that exhibit emergent properties are considered complex systems [@mitchell2009; @holland2014]. In a general sense, a system can be defined as a set of interacting parts that, through their interactions, produce a global behavior [@vonbertalanffy1968]. While both complicated and complex systems consist of many interacting parts, the defining characteristic of complex systems is that they cannot be fully understood by analyzing their components in isolation [@holland1992b]. This distinction poses significant challenges, as traditional methods for studying systems are often inadequate for capturing the intricate dynamics of complex systems [@holland2006].
 
-Levels of description [@nicolis2012]. Starting in the cell nucleus with the molecular clock, then the cell, the tissue, the organ following to stable macroscopic patterns of circadian rhythms in behavior and physiology.
+Biological rhythms are an example of emergent properties produced by a complex system with multiple levels of interaction [@partch2014]. Molecular oscillations are generated at the cellular level [@merrow2005; @buhr2013]. These oscillations interact and couple with one another, forming a complex circadian network that coordinates rhythmic physiology and behavior [@raj2008; @foster2020]. Although science has not fully mapped all the pathways, it is understood that in this kaleidoscopic array of simultaneous interactions, a global rhythm emerges.  Each rhythm, or clock, is itself an emergent phenomenon, interacting with others to produce a global behavior (@fig-chapter-3-flanagan-2021-figure-2). As the parts generate these emergences, the emergent feedback to the parts, regulating and modulating functions at all levels [@roenneberg2007].
 
-If you think about it, the extensive clock control is like a finely-tuned choreography. Everything is organized to happen at the right time, just like a **Rube Goldberg machine** [@merrow2020].
+:::: {#fig-chapter-3-flanagan-2021-figure-2}
+::: {.content-visible when-format="html"}
+![](images/flanagan-2021-figure-2-adapted.png){width=85%}
+:::
+::: {.content-visible when-format="pdf"}
+![](images/flanagan-2021-figure-2.png){width=85%}
+:::
 
-Circadian clocks regulate and/or modulate functions at all levels, ranging from gene expression and physiology to behavior and cogitation [@roenneberg2007].
+[Source: Reproduced from @flanagan2021[Figure 2].]{.legend}
 
-It's an emergent phenomenon. It's not a property of the parts themselves. It's a property of the system as a whole.
+An illustration depicting how the human circadian clock system regulate multiple aspects of metabolic physiology, such as: hormone secretion, core body
+temperature, resting metabolic rate, and plasma metabolite concentration.
+::::
 
-"[...] involve great numbers of parts undergoing a kaleidoscopic array of simultaneous interactions." [@holland1992b]
+The entrainment of these rhythms with environmental periodicities can involve different mechanisms. For the light/dark cycle, the main zeitgeber, this involves a network of photosensitive retinal ganglion cells (pRGCs) that send signals to the suprachiasmatic nucleus (SCN) in the hypothalamus [@brainard2001; @thapan2001]. The SCN then sends signals to the pineal gland, which produces melatonin, a hormone that regulates sleep-wake cycles, among other functions [@foster2021a].
 
-In complex adaptive systems, **emergent properties** often occur when coevolving signals and boundaries generate **new levels of organization** [@holland2012].
-
-A system of many interacting parts where the system is **more than just the sum of its parts** (Mark Newman in @mitchell2013).
-
-A system that involves a large number of parts undergoing a kaleidoscopic array of simultaneous interactions, exhibiting **aggregate behavior** that cannot be simply derived from the actions of the individual parts [@holland1992b].
-
-Systems with many connected agents that interact and exhibit self-organization and **emergence behavior**, all without the need for a central controller (Camilo Rodrigues Neto).
-
-Dialectics at its finest (my working definition).
-
-Complexity science seeks to **explain emergent phenomena** or mechanisms that “screen-off” their constituent parts and thereby allow new levels of description and understanding [@krakauer2024].
-
-Other concepts: chaos, power laws & factor sparsity, feedback loops, robustness, equilibrium states, path dependence, leverage points
-
-Approaches to study and model circadian clocks.
+To model this phenomenon, one must understand how complex systems behave and can be studied. This thesis adopts a global approach to understanding the effect of light/dark cycle entrainment on circadian expressions of populations, considering potential interactions for proper system control. Given the thesis's aim to test the latitude hypothesis, a global approach is appropriate. Alternatively, a local approach could explore entrainment in populations by modeling individuals, each with their own circadian clock, and their interactions with the environment.

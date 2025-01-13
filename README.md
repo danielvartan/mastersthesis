@@ -19,7 +19,7 @@ MIT](https://img.shields.io/badge/license-MIT-green.png)](https://choosealicense
 ☀🌙⏰🛌💤🌍🗺️🧭📅🧬🧠🕰️📊📉📈📝
 
 This repository contains the [Quarto
-book](https://quarto.org/docs/books/) of my master’s thesis: *Is
+book](https://quarto.org/docs/books/) of my Master’s Thesis: *Is
 Latitude Associated with Chronotype?* The research compendium is
 accessible via [The Open Science Framework](https://osf.io/) by clicking
 [here](https://doi.org/10.17605/OSF.IO/YGKTS).

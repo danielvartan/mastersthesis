@@ -20,7 +20,7 @@ source(here::here("R", "_setup.R"))
 
 ☀🌙⏰🛌💤🌍🗺️🧭📅🧬🧠🕰️📊📉📈📝
 
-This repository contains the [Quarto book](https://quarto.org/docs/books/) of my master's thesis: *Is Latitude Associated with Chronotype?* The research compendium is accessible via [The Open Science Framework](https://osf.io/) by clicking [here](https://doi.org/10.17605/OSF.IO/YGKTS).
+This repository contains the [Quarto book](https://quarto.org/docs/books/) of my Master's Thesis: *Is Latitude Associated with Chronotype?* The research compendium is accessible via [The Open Science Framework](https://osf.io/) by clicking [here](https://doi.org/10.17605/OSF.IO/YGKTS).
 
 The assemble of this repository was inspired by Ben Marwick, Carl Boettiger & Lincoln Mullen's article [Packaging Data Analytical Work Reproducibly Using R (and Friends)](https://doi.org/10.1080/00031305.2017.1375986).
 

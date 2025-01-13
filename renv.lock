@@ -2159,8 +2159,9 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "lockr",
       "RemoteUsername": "danielvartan",
+      "RemoteRepo": "lockr",
+      "RemoteRef": "main",
       "RemoteSha": "4b8184a59f572e5cea01aa77706f03e940d72423",
       "Requirements": [
         "R",
@@ -2171,7 +2172,7 @@
         "openssl",
         "rutils"
       ],
-      "Hash": "c8f82e2e7e4d3baea751276a3acfcb51"
+      "Hash": "07fc1eb07d128b98c6c8d9c4aaa42fb7"
     },
     "lubridate": {
       "Package": "lubridate",
@@ -2194,7 +2195,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "danielvartan",
       "RemoteRepo": "lubritime",
-      "RemoteRef": "1193497ef62db7a20815c465640cb4b053a25ff2",
+      "RemoteRef": "main",
       "RemoteSha": "1193497ef62db7a20815c465640cb4b053a25ff2",
       "Requirements": [
         "R",
@@ -2207,7 +2208,7 @@
         "rutils",
         "stringdist"
       ],
-      "Hash": "76befcec434be4897cf349b17df697e8"
+      "Hash": "38211bf1c6a93dec93409de13b69be11"
     },
     "magrittr": {
       "Package": "magrittr",
@@ -2246,20 +2247,24 @@
     },
     "mctq": {
       "Package": "mctq",
-      "Version": "0.3.2",
-      "Source": "Bioconductor",
-      "Repository": "RSPM",
+      "Version": "0.3.2.9001",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "ropensci",
+      "RemoteRepo": "mctq",
+      "RemoteRef": "main",
+      "RemoteSha": "f871eb3a79e3a118d65959b213e119b1873f4d7d",
       "Requirements": [
         "R",
         "checkmate",
         "cli",
         "dplyr",
-        "ggplot2",
         "hms",
         "lifecycle",
         "lubridate"
       ],
-      "Hash": "8b5b58633f31bf9f5eb4a6ee3ff9d38d"
+      "Hash": "e7163925f8d085a87345555e5eb7b39e"
     },
     "memoise": {
       "Package": "memoise",
@@ -3365,12 +3370,12 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "scaler",
       "RemoteUsername": "danielvartan",
-      "RemoteSha": "817d7677c70f03cbbb4ad5d7b80edf2db2addea5",
+      "RemoteRepo": "scaler",
+      "RemoteRef": "main",
+      "RemoteSha": "4feb41daaacf14ef378afe19db5e21c0462a06ce",
       "Requirements": [
         "R",
-        "checkmate",
         "cli",
         "dplyr",
         "ggplot2",
@@ -3379,10 +3384,11 @@
         "lubridate",
         "lubritime",
         "mctq",
+        "prettycheck",
         "rutils",
         "tidyr"
       ],
-      "Hash": "403ddb6b67e7d0f9008f29f991952089"
+      "Hash": "2281112b962167161391542fd2b0806d"
     },
     "scales": {
       "Package": "scales",

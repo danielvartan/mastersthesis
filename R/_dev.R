@@ -53,9 +53,9 @@
 # --cache-refresh
 # quarto render
 # quarto render --profile gfm
-# quarto render --profile pdf
-# quarto render --profile html
-# quarto render --profile revealjs
+# quarto render --profile pdf # Source pre-render first.
+# quarto render --profile html # Source pre-render first.
+# quarto render --profile revealjs # Source pre-render first.
 
 # # LaTeX
 #

@@ -72,9 +72,11 @@ contributes:
         - section=TITLE
       hyperrefoptions:
         - bookmarksnumbered
+      captionsetup:
+        - justification=justified
       date-format: YYYY
       lang: en # options: [en, pt-br, es, fr]
-      language: ../_extensions/abnt/_language.yml
+      language: "../_extensions/abnt/_language.yml"
       babel-lang: english # options: [english, brazil, spanish, french]
       other-babel-lang: # Don not repeat 'babel-lang' here.
         - french
@@ -87,10 +89,10 @@ contributes:
         According to the Brazilian Association of Technical Standards
         (ABNT NBR 6023).
       biblatexoptions:
-        - backend=biber,
-        - language=english, # [options: english, brazil, spanish, french]
-        - url=true,
-        - useprefix=false,
+        - backend=biber
+        - language=english # [options: english, brazil, spanish, french]
+        - url=true
+        - useprefix=false
         - giveninits=true
       bibhang: 0cm # Use 0.5cm if `biblio-style: apa`.
       bibparsep: 1ex
@@ -118,6 +120,8 @@ contributes:
       fig-pos: H # `abntex2` default: htb (doesn't work)
       tbl-pos: H # `abntex2` default: htb (doesn't work)
       cap-location: top
+      cap-hyphenpenalty: true
+      legend-hyphenpenalty: true
       prefer-html: false
       location: "[Municipality]"
       supervisor: "[Supervisor's full name]"

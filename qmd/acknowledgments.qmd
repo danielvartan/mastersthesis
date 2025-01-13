@@ -18,13 +18,13 @@ This work would not have been possible without the support, love, and guidance o
 
 My beloved partner, Salete Perroni (Sal), whose unwavering support has been my constant source of strength. My mother, for her unconditional love, and my sister and brother, for their companionship throughout life's journey.
 
-My scientific collaborators and dear friends, Alicia Rafaelly Vilefort Sales and Maria Augusta Medeiros de Andrade. Professor Humberto Miguel Garay Malpartida, for his steadfast support, unwavering principles, and integrity, which shone through when it was most needed.
+My scientific collaborators and dear friends, Alicia Rafaelly Vilefort Sales and Maria Augusta Medeiros de Andrade. To Professor Humberto Miguel Garay Malpartida, for his steadfast support, unwavering principles, and integrity, which shone through when it was most needed.
 
-My supervisor, Professor Camilo Rodrigues Neto, who introduced me to complexity science in 2012, guided my dissertation with patience, and demonstrated exceptional virtue in mediating a challenging supervisory transition. Professor Carlos Molina Mendes, who handled this transition with remarkable speed, impartiality, and professionalism.
+My supervisor, Professor Camilo Rodrigues Neto, who introduced me to complexity science in 2012, guided my dissertation with patience, and demonstrated exceptional virtue in mediating a challenging supervisory transition. I am equally grateful to Professor Carlos Molina Mendes, who handled this transition with remarkable speed, impartiality, and professionalism.
 
 My cherished friends: Alex Azevedo Martins, Augusto Amado, Carina (Cacau) Prado, Ítalo Alves Bezerra do Nascimento, Júlia Mafra, Letícia Nery de Figueiredo, Marcelo Ricardo Fernandes Roschel, Reginaldo Noveli, Sílvia Capelanes, and Vanessa Simon Silva.
 
-Finally, this journey was made possible by the institutional support of USP's Support Program for Student Permanence and Education (PAPFE) and the Coordination for the Improvement of Higher Education Personnel (CAPES), whose contributions have been invaluable.
+Finally, this journey would not have been possible without the institutional support of USP's Support Program for Student Permanence and Education (PAPFE) and the Coordination for the Improvement of Higher Education Personnel (CAPES), whose contributions have been invaluable.
 
 ::: {.content-visible when-format="html"}
 <br>

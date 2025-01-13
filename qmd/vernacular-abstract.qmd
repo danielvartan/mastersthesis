@@ -9,7 +9,7 @@
 source(here::here("R/_setup.R"))
 ```
 
-Vartanian, D. V. ({{< var year >}}). _{{< var title >}}_ [{{< var academic-title >}}'s {{< var type-of-work >}}, {{< var university >}}].
+Vartanian, D. (`r env_vars[["year"]]`). *`r env_vars[["title"]] |> stringr::str_to_sentence()`* [`r env_vars[["academic-title"]]`'s `r env_vars[["type-of-work"]]`, `r env_vars[["university"]]`]. [https://doi.org/10.17605/OSF.IO/YGKTS](https://doi.org/10.17605/OSF.IO/YGKTS)
 
 ::: {.content-visible when-format="pdf"}
 <!-- %:::% vernacular-abstract reference begin %:::% -->
@@ -17,12 +17,8 @@ Vartanian, D. ({\imprimirdata}). \textit{\imprimirtitulo} [{\imprimirtipodetitul
 <!-- %:::% vernacular-abstract reference end %:::% -->
 :::
 
-<!-- `{r} results_vars$ea_analysis_sample_n |> format_to_md_latex(decimal_mark = ",", big_mark = ".")` -->
-<!-- `{r} max(c(results_vars$hta_effect_size$f_squared, results_vars$htb_effect_size$f_squared)) |> format_to_md_latex(before = "f^2 = ", round = 10)` -->
-
-
 <!-- %:::% vernacular-abstract body begin %:::% -->
-Theories on circadian rhythms are well-established in science, but there is still a need to test them in larger samples to gain a better understanding of the expression of temporal phenotypes. This thesis investigates the hypothesis that latitude influences chronotype expression, based on the idea that regions closer to the poles receive less sunlight over the year than equatorial regions. This difference suggests that equatorial areas have a stronger solar zeitgeber, which could lead to greater synchronization of circadian rhythms with the light-dark cycle, reducing the amplitude and diversity of circadian phenotypes, resulting in a higher propensity for morningness in those populations. To test this hypothesis, data from $65.824$ individuals from all regions of Brazil were analyzed, collected in 2017 based on the Munich ChronoType Questionnaire (MCTQ). The analysis, using nested linear regression models, revealed a negligible effect of latitude on the variation in chronotype expression (Cohen’s $f^2 = 0.0121371$), contrasting with recent studies. Although the hypothesis is reasonable and aligns with evolutionary theories of temporal biological systems, the results suggest that the phenomenon of entrainment is more complex than previously thought.
+Although much is known about circadian rhythms, further research with larger samples is needed to gain a better understanding of the expression of temporal phenotypes. This thesis investigates the hypothesis that latitude influences chronotype expression, based on the premise that polar regions receive less sunlight annually than equatorial regions. This difference in photoperiod suggests a stronger solar zeitgeber in equatorial areas, potentially leading to greater entrainment of circadian rhythms with the light/dark cycle. This, in turn, could reduce the amplitude and diversity of circadian phenotypes, resulting in a higher prevalence of morningness in equatorial populations. To test this hypothesis, data from $65.824$ individuals across Brazil, collected in 2017 based on the Munich ChronoType Questionnaire (MCTQ), were analyzed using nested linear regression models. The analysis revealed a negligible effect of latitude on chronotype (Cohen’s $f^2 = 0.0030818242$, $95\% \ \text{IC}[0, 0.0121371208]$), a finding that contrasts with recent studies. Although the hypothesis is plausible and consistent with evolutionary theories of temporal biological systems, these results suggest that the phenomenon of entrainment is more complex than previously assumed.
 <!-- %:::% vernacular-abstract body end %:::% -->
 
 __Keywords__: {{< var keyword >}}

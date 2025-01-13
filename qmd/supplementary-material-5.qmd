@@ -61,7 +61,6 @@ library(stringr)
 library(stringr)
 library(tidyr)
 library(tseries)
-library(viridis)
 library(workflows)
 ```
 
@@ -183,7 +182,7 @@ pwrss::power.f.test(
 )
 ```
 
-Source: Created by the author.
+[Source: Created by the author.]{.legend}
 
 Power analysis for the hypothesis test.
 :::
@@ -247,7 +246,7 @@ data |>
   rutils::shush()
 ```
 
-Source: Created by the author.
+[Source: Created by the author.]{.legend}
 
 Correlation matrix of the main predictors.
 :::
@@ -429,7 +428,11 @@ diag_sum_plots <-
   fit_engine_2 |> 
   performance::check_model(
     panel = FALSE,
-    colors = c("red", "black", "black")
+    colors = c(
+      get_brand_color("orange"),
+      get_brand_color("black"),
+      "black"
+    )
   ) |>
   plot() |>
   rutils::shush()
@@ -440,7 +443,7 @@ diag_sum_plots$PP_CHECK +
     subtitle = ggplot2::element_blank(),
     x = "MSFsc (Chronotype proxy) (s)",
   ) +
-  ggplot2::theme_bw()
+  ggplot2::theme_get()
 ```
 
 Posterior predictive checks for the model. The red line represents the observed data, while the black lines represent the model-predicted data.
@@ -570,11 +573,9 @@ $$
 for $i = 1, \dots, n$ [@degroot2012, p. 737].
 
 (Linearity of the phenomenon measured [@hair2019, p. 287])
-
-As shown in @sec-on-the-latitude-hypothesis, the hypothesis implies linearity and the distribution of the residuals also support this.
 :::
 
-**Assumption 3** is satisfied, as the relationship between the variables is fairly linear.
+**Assumption 3** is satisfied, as the relationship between the variables is fairly linear. As shown in @sec-on-the-latitude-hypothesis, the hypothesis implies linearity and the distribution of the residuals also support this.
 
 ::: {#fig-sm-5-restricted-model-residual-diag-fitted-values-1}
 ```{r}
@@ -791,7 +792,10 @@ Many authors don't consider autocorrelation tests for linear regression models, 
 
 fit_engine |> 
   residuals() |>
-  forecast::ggtsdisplay(lag.max=30)
+  forecast::ggtsdisplay(
+    lag.max = 30,
+    theme = ggplot2::theme_get()
+  )
 ```
 
 Time series plot of the residuals along with its AutoCorrelation Function (ACF) and Partial AutoCorrelation Function (PACF).
@@ -888,6 +892,7 @@ diag_sum_plots$VIF +
     title = ggplot2::element_blank(),
     subtitle = ggplot2::element_blank()
   ) +
+  ggplot2::theme_get() +
   ggplot2::theme(
     legend.position = "right",
     axis.title = ggplot2::element_text(size = 11, colour = "black"),
@@ -970,10 +975,10 @@ dplyr::tibble(
     ggplot2::aes(x = x, y = std, ymin = 0, ymax = std)
   ) +
   ggplot2::geom_linerange(color = "black") +
-  ggplot2::geom_hline(yintercept = 2, color = "blue") +
-  ggplot2::geom_hline(yintercept = -2, color = "blue") +
-  ggplot2::geom_hline(yintercept = 3, color = "red") +
-  ggplot2::geom_hline(yintercept = -3, color = "red") +
+  ggplot2::geom_hline(yintercept = 2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = -2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Observation",
@@ -1013,10 +1018,10 @@ dplyr::tibble(
     ggplot2::aes(x = x, y = std, ymin = 0, ymax = std)
   ) +
   ggplot2::geom_linerange(color = "black") +
-  ggplot2::geom_hline(yintercept = 2, color = "blue") +
-  ggplot2::geom_hline(yintercept = -2, color = "blue") +
-  ggplot2::geom_hline(yintercept = 3, color = "red") +
-  ggplot2::geom_hline(yintercept = -3, color = "red") +
+  ggplot2::geom_hline(yintercept = 2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = -2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Observation",
@@ -1038,10 +1043,10 @@ fit |>
   ) |>
   ggplot2::ggplot(ggplot2::aes(.pred, std)) +
   ggplot2::geom_point(color = "black") +
-  ggplot2::geom_hline(yintercept = 2, color = "blue") +
-  ggplot2::geom_hline(yintercept = -2, color = "blue") +
-  ggplot2::geom_hline(yintercept = 3, color = "red") +
-  ggplot2::geom_hline(yintercept = -3, color = "red") +
+  ggplot2::geom_hline(yintercept = 2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = -2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Predicted value",
@@ -1117,7 +1122,7 @@ dplyr::tibble(
   ggplot2::ggplot(
     ggplot2::aes(x = x, y = hat, ymin = 0, ymax = hat)
   ) +
-  ggplot2::geom_linerange(color = "black") +
+  ggplot2::geom_linerange(color = get_brand_color("black")) +
   ggplot2::labs(
     x = "Observation",
     y = "Hat value"
@@ -1193,13 +1198,13 @@ plot <-
     x = "Leverage",
     y = "Studentized residuals"
   ) +
+  ggplot2::theme_get() +
   ggplot2::theme(
     legend.position = "right",
-    axis.title = ggplot2::element_text(size = 11, colour = "black"),
-    axis.text = ggplot2::element_text(colour = "gray25"),
+    # axis.title = ggplot2::element_text(size = 11, colour = "black"),
+    # axis.text = ggplot2::element_text(colour = "gray25"),
     axis.text.y = ggplot2::element_text(size = 9)
-  ) +
-  ggplot2::theme_bw()
+  )
 
 plot <- plot |> ggplot2::ggplot_build()
 
@@ -1207,7 +1212,8 @@ plot <- plot |> ggplot2::ggplot_build()
 for (i in c(1:9)) {
   # "#1b6ca8" "#3aaf85"
   plot$data[[i]]$colour <- dplyr::case_when(
-    plot$data[[i]]$colour == "blue" ~ ifelse(i == 4, "red", "blue"),
+    plot$data[[i]]$colour == "blue" ~ 
+      ifelse(i == 4, get_brand_color("grey"), get_brand_color("orange")),
     plot$data[[i]]$colour == "#1b6ca8" ~ "black",
     plot$data[[i]]$colour == "darkgray" ~ "black",
     TRUE ~ plot$data[[i]]$colour
@@ -1217,7 +1223,7 @@ for (i in c(1:9)) {
 plot |> ggplot2::ggplot_gtable() |> ggplotify::as.ggplot()
 ```
 
-Relation between studentized residuals and their leverage points. The blue line represents the [Cook's distance](https://en.wikipedia.org/wiki/Cook%27s_distance). Any points outside the contour lines are influential observations.
+Relation between studentized residuals and their leverage points. The orange line represents the [Cook's distance](https://en.wikipedia.org/wiki/Cook%27s_distance). Any points outside the contour lines are influential observations.
 :::
 
 ```{r}
@@ -1550,7 +1556,11 @@ diag_sum_plots <-
   fit_engine_2 |> 
   performance::check_model(
     panel = FALSE,
-    colors = c("red", "black", "black")
+    colors = c(
+      get_brand_color("orange"),
+      get_brand_color("black"),
+      "black"
+    )
   ) |>
   plot() |>
   rutils::shush()
@@ -1561,7 +1571,7 @@ diag_sum_plots$PP_CHECK +
     subtitle = ggplot2::element_blank(),
     x = "MSFsc (Chronotype proxy) (s)",
   ) +
-  ggplot2::theme_bw()
+  ggplot2::theme_get()
 ```
 
 Posterior predictive checks for the model. The red line represents the observed data, while the black lines represent the model-predicted data.
@@ -1691,11 +1701,9 @@ $$
 for $i = 1, \dots, n$ [@degroot2012, p. 737].
 
 (Linearity of the phenomenon measured [@hair2019, p. 287])
-
-As shown in @sec-on-the-latitude-hypothesis, the hypothesis implies linearity and the distribution of the residuals also support this.
 :::
 
-**Assumption 3** is satisfied, as the relationship between the variables is fairly linear.
+**Assumption 3** is satisfied, as the relationship between the variables is fairly linear. As shown in @sec-on-the-latitude-hypothesis, the hypothesis implies linearity and the distribution of the residuals also support this.
 
 ::: {#fig-sm-5-full-model-residual-diag-fitted-values-1}
 ```{r}
@@ -1916,7 +1924,10 @@ Many authors don't consider autocorrelation tests for linear regression models, 
 
 fit_engine |> 
   residuals() |>
-  forecast::ggtsdisplay(lag.max=30)
+  forecast::ggtsdisplay(
+    lag.max = 30,
+    theme = ggplot2::theme_get()
+  )
 ```
 
 Time series plot of the residuals along with its AutoCorrelation Function (ACF) and Partial AutoCorrelation Function (PACF).
@@ -2014,6 +2025,7 @@ diag_sum_plots$VIF +
     title = ggplot2::element_blank(),
     subtitle = ggplot2::element_blank()
   ) +
+  ggplot2::theme_get() +
   ggplot2::theme(
     legend.position = "right",
     axis.title = ggplot2::element_text(size = 11, colour = "black"),
@@ -2096,10 +2108,10 @@ dplyr::tibble(
     ggplot2::aes(x = x, y = std, ymin = 0, ymax = std)
   ) +
   ggplot2::geom_linerange(color = "black") +
-  ggplot2::geom_hline(yintercept = 2, color = "blue") +
-  ggplot2::geom_hline(yintercept = -2, color = "blue") +
-  ggplot2::geom_hline(yintercept = 3, color = "red") +
-  ggplot2::geom_hline(yintercept = -3, color = "red") +
+  ggplot2::geom_hline(yintercept = 2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = -2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Observation",
@@ -2139,10 +2151,10 @@ dplyr::tibble(
     ggplot2::aes(x = x, y = std, ymin = 0, ymax = std)
   ) +
   ggplot2::geom_linerange(color = "black") +
-  ggplot2::geom_hline(yintercept = 2, color = "blue") +
-  ggplot2::geom_hline(yintercept = -2, color = "blue") +
-  ggplot2::geom_hline(yintercept = 3, color = "red") +
-  ggplot2::geom_hline(yintercept = -3, color = "red") +
+  ggplot2::geom_hline(yintercept = 2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = -2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Observation",
@@ -2164,10 +2176,10 @@ fit |>
   ) |>
   ggplot2::ggplot(ggplot2::aes(.pred, std)) +
   ggplot2::geom_point(color = "black") +
-  ggplot2::geom_hline(yintercept = 2, color = "blue") +
-  ggplot2::geom_hline(yintercept = -2, color = "blue") +
-  ggplot2::geom_hline(yintercept = 3, color = "red") +
-  ggplot2::geom_hline(yintercept = -3, color = "red") +
+  ggplot2::geom_hline(yintercept = 2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = -2, color = get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Predicted value",
@@ -2243,7 +2255,7 @@ dplyr::tibble(
   ggplot2::ggplot(
     ggplot2::aes(x = x, y = hat, ymin = 0, ymax = hat)
   ) +
-  ggplot2::geom_linerange(color = "black") +
+  ggplot2::geom_linerange(color = get_brand_color("black")) +
   ggplot2::labs(
     x = "Observation",
     y = "Hat value"
@@ -2319,13 +2331,13 @@ plot <-
     x = "Leverage",
     y = "Studentized residuals"
   ) +
+  ggplot2::theme_get() +
   ggplot2::theme(
     legend.position = "right",
     axis.title = ggplot2::element_text(size = 11, colour = "black"),
     axis.text = ggplot2::element_text(colour = "gray25"),
     axis.text.y = ggplot2::element_text(size = 9)
-  ) +
-  ggplot2::theme_bw()
+  )
 
 plot <- plot |> ggplot2::ggplot_build()
 
@@ -2582,11 +2594,11 @@ Comparison between the coefficients of determination ($\text{R}^2$) of the restr
 ::: {#tbl-sm-5-hypothesis-test-4}
 ```{r}
 effect_size <- cohens_f_squared_summary(
-  adj_r_squared_restricted$LCL, 
-  adj_r_squared_full$UCL
+  adj_r_squared_restricted, 
+  adj_r_squared_full
   )
 
-effect_size
+effect_size |> list_as_tibble()
 ```
 
 Effect size between the restricted and full models based on Cohen's $f^2$.
@@ -2599,10 +2611,7 @@ write_in_results_yml(
   list(
     hta_restricted_model_adj_r_squared = adj_r_squared_restricted,
     hta_full_model_adj_r_squared = adj_r_squared_full,
-    hta_effect_size = 
-      effect_size |> 
-      tidyr::pivot_wider() |> 
-      dplyr::mutate(f_squared = f_squared |> as.numeric())
+    hta_effect_size = effect_size
   )
 )
 ```

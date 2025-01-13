@@ -8,7 +8,10 @@ project:
 
 filters:
   - latex-environment
-commands: legend
+commands:
+  - legend
+  - brandorange
+  - brandblack
 
 execute:
   echo: false
@@ -20,6 +23,7 @@ book:
   chapters:
     - index.qmd
     - qmd/chapter-2.qmd
+    - qmd/chapter-3.qmd
     - qmd/chapter-4.qmd
     - qmd/chapter-5.qmd
     - qmd/chapter-6.qmd
@@ -35,6 +39,7 @@ format:
       (APA) Style, 7th edition.
     bibhang: 0.5cm
     bibparsep: 1ex
+    body-color: "142A32" # Brand Black
     colorlinks: true
     linkcolor: brand-orange
     filecolor: brand-orange

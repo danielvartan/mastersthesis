@@ -126,6 +126,14 @@ Examiners:
 \definecolor{brand-white}{HTML}{FFFFFF}
 \definecolor{brand-grey}{HTML}{4F5556}
 \definecolor{brand-black}{HTML}{142A32}
+
+\newcommand{\brandorange}[1]{
+  \textcolor{brand-orange}{#1}
+}
+
+\newcommand{\brandblack}[1]{
+  \textcolor{brand-black}{#1}
+}
 <!-- %:::% other-in-header end %:::% -->
 
 ## Other "Before Body" Additions

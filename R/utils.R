@@ -95,7 +95,7 @@ library(yaml)
 write_in_results_yml <- function(
     x,
     path = here::here("_results.yml"),
-    digits = 10
+    digits = 30
   ) {
   prettycheck:::assert_list(x)
   prettycheck:::assert_file_exists(path)
@@ -117,6 +117,85 @@ write_in_results_yml <- function(
   yaml::write_yaml(out, path)
 }
 
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+is_in_scientific_notation <- function(x) {
+  prettycheck:::assert_numeric(x)
+
+  x |>
+    format() |>
+    grepl("e", x = _)
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+left_digits <- function(x, count_zero = TRUE) {
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_flag(count_zero)
+
+  out <-
+    x |>
+    abs() |>
+    trunc()
+
+  if (out == 0) {
+    ifelse(isTRUE(count_zero), 1, 0)
+  } else {
+    out |> nchar()
+  }
+}
+
+library(magrittr)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+right_digits <- function(x, max_digits = 15) {
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_integer_number(max_digits, lower = 1, upper = 15)
+
+  digit_options <- getOption("digits")
+  options(digits = max_digits)
+
+  out <- vapply(
+    x,
+    function(x) {
+      if (is.na(x)){
+        NA_real_
+      } else {
+        if (abs(x - round(x)) > .Machine$double.eps^0.5) {
+          x |>
+            format() |>
+            strsplit("\\.") |>
+            magrittr::extract2(1) |>
+            magrittr::extract(2) |>
+            nchar()
+        } else {
+          0
+        }
+      }
+    },
+    FUN.VALUE = numeric(1)
+  )
+
+  options(digits = digit_options)
+  out
+}
+
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
+digits <- function(x, left = FALSE, right = FALSE) {
+  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_flag(left)
+  prettycheck:::assert_flag(right)
+
+  if (isTRUE(left)) {
+    left_digits(x)
+  } else if (isTRUE(right)) {
+    right_digits(x)
+  } else {
+    left_digits(x) + right_digits(x)
+  }
+}
+
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
@@ -124,30 +203,35 @@ format_to_md_latex <- function(
     x,
     after = NULL,
     before = NULL,
-    round = 3,
+    max_digits = 3,
     decimal_mark = ".",
     big_mark = ",",
     key = "$"
   ) {
-  prettycheck:::assert_numeric(x)
+  prettycheck:::assert_atomic(x)
   prettycheck:::assert_string(after, null.ok = TRUE)
   prettycheck:::assert_string(before, null.ok = TRUE)
   prettycheck:::assert_string(decimal_mark)
   prettycheck:::assert_string(big_mark)
-  prettycheck:::assert_number(round, lower = 0)
+  prettycheck:::assert_integer_number(max_digits, lower = 0)
   prettycheck:::assert_string(key)
 
-  if (is.null(after)) after <- ""
-
-  x |>
-    round(round) |>
-    format(
-      decimal.mark = decimal_mark,
-      big.mark = big_mark,
-      scientific = FALSE
-    ) %>% # Don't change the pipe!
-    paste0(key, before, ., after, key) |>
-    I()
+  if (is.numeric(x)) {
+    x |>
+      round(max_digits) |>
+      format(
+        decimal.mark = decimal_mark,
+        big.mark = big_mark,
+        scientific = FALSE
+      ) %>% # Don't change the pipe!
+      paste0(key, before, ., after, key) |>
+      I()
+  } else {
+    x |>
+      as.character() %>% # Don't change the pipe!
+      paste0(key, before, ., after, key) |>
+      I()
+  }
 }
 
 library(magrittr)

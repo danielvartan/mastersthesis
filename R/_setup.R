@@ -1,6 +1,6 @@
 ## Based on <https://github.com/hadley/r4ds/blob/main/_common.R>.
 
-# Load libraries -----
+# Load packages -----
 
 library(downlit)
 library(ggplot2)
@@ -41,7 +41,7 @@ options(
 set.seed(2025)
 
 env_vars <- yaml::read_yaml(here::here("_variables.yml"))
-results_vars <- yaml::read_yaml(here::here("_results.yml"))
+res_vars <- yaml::read_yaml(here::here("_results.yml"))
 
 if (env_vars$format == "html") {
   base_size <- 11

@@ -15,7 +15,7 @@ This represents the midsleep point for Brazilian subjects with an intermediate o
 ```{r}
 #| include: false
 
-results_vars$ea
+res_vars$ea
 
 data <- 
   anonymized_data |> 

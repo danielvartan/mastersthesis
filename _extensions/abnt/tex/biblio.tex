@@ -1,5 +1,6 @@
 \usepackage[
-$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$
+$if(biblio-style)$style=$biblio-style$$else$abnt$endif$
+$for(biblatexoptions)$,$biblatexoptions$$endfor$
 ]{biblatex}
 
 \usepackage{csquotes}

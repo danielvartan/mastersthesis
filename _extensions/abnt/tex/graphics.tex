@@ -30,18 +30,24 @@ $endif$
 
 % For customization, see `\DeclareCaptionFormat` in the `caption` package.
 \captionsetup{
-  font=ABNTEXfontereduzida,
-  justification=justified
+  font=ABNTEXfontereduzida
+  $for(captionsetup)$,$captionsetup$$endfor$
 }
 
 \renewcommand{\abovecaptionskip}{\smallskipamount}
 \renewcommand{\belowcaptionskip}{\smallskipamount}
 
 \renewcommand{\legend}[1]{
+  $if(legend-hyphenpenalty)$\hyphenpenalty=100000$endif$
   \ABNTEXfontereduzida
   \addvspace{\smallskipamount}
   #1
 }
+
+% Credits: <https://tex.stackexchange.com/a/611556/234832>.
+$if(cap-hyphenpenalty)$
+\AddToHook{cmd/caption/before}{\hyphenpenalty=100000}
+$endif$
 
 % Set figure environment -----
 
