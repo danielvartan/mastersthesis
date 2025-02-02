@@ -138,55 +138,43 @@ A BibTeX entry for LaTeX users is:
 ## Acknowledgments
 
 <table>
-
-<tr>
-
-<td width="30%">
-
-<br>
-<p align="center">
-
-<a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos"><img src="images/ppgscx-logo-rgb-96-dpi.png" width="150em"/></a>
-</p>
-
-<br>
-</td>
-
-<td width="50%">
-
-This thesis was developed in the Graduate Program in Modeling Complex
-Systems
-(<a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos">PPG-SCX</a>)
-at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>)
-under the supervision of
-<a href="https://orcid.org/0000-0001-6783-6695">Prof. Dr. Camilo
-Rodrigues Neto</a>.
-</td>
-
-</tr>
-
+  <tr>
+    <td width="30%">
+      <br/>
+      <br/>
+      <p align="center">
+        <a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos">
+          <img src="images/ppgscx-logo-rgb-96-dpi.png" width="150"/>
+        </a>
+      </p>
+      <br/>
+    </td>
+    <td width="70%">
+      <p>
+        This thesis was developed in the Graduate Program in Modeling 
+        Complex Systems (<a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos">PPGSCX</a>) at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>) under the supervision of
+        <a href="https://orcid.org/0000-0001-6783-6695">Prof. Dr. Camilo Rodrigues Neto</a>.
+      </p>
+    </td>
+  </tr>
 </table>
 
 <table>
-
-<tr>
-
-<td width="30%"">
-      <br>
+  <tr>
+    <td width="30%">
+      <br/>
       <p align="center">
-        <br> <a href="https://www.gov.br/capes/"><img src="images/capes-logo-original.svg" width="120em"/></a> 
+        <a href="https://www.gov.br/capes/">
+          <img src="images/capes-logo-original.svg" width="120"/>
+        </a>
       </p>
-      <br>
+      <br/>
     </td>
-
-<td width="50%">
-
-This study was financed by the Coordenação de Aperfeiçoamento de Pessoal
-de Nível Superior - Brazil
-(<a href="https://www.gov.br/capes/">CAPES</a>) - Finance Code 001,
-Grant Number 88887.703720/2022-00.
-</td>
-
-</tr>
-
+    <td width="70%">
+      <p>
+        This study was financed by the Coordenação de Aperfeiçoamento de 
+        Pessoal de Nível Superior - Brazil (<a href="https://orcid.org/0000-0001-6783-6695">CAPES</a>) - Finance Code 001, Grant Number 88887.703720/2022-00.
+      </p>
+    </td>
+  </tr>
 </table>

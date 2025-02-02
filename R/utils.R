@@ -1,3 +1,12 @@
+long_string <- function(x) {
+  prettycheck:::assert_string(x)
+
+  x |>
+    strwrap() |>
+    paste0(collapse = " ") |>
+    gsub(x = _, pattern = "\\s+", replacement = " ")
+}
+
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 change_sign <- function(x, flag = TRUE) {
