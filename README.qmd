@@ -34,13 +34,22 @@ If you don't feel comfortable with R, I strongly recommend checking Hadley Wickh
 
 To reproduce the analyses do the following steps:
 
-1. Make sure that you have the latest R version and the following R packages installed in your machine: `install.packages(c("cli", "here" ,"magrittr", "ragg", "renv", "stats", "stringr"))`.
-1. Clone this repository.
-1. Open the R project (`mastersthesis.Rproj`).
-1. Run [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html) to install all software dependencies.
-1. Set all the keys provided by the author in the `.Renviron` file and the `_ssh` folder.
-1. Run `targets::tar_make()` to create every point of the data wrangling process (from the raw data to the cleaned and weighted data). 
-1. Run any analysis present in the computational notebooks (`qmd` directory).
+(@) Make sure that you have the latest R version and the following R packages installed in your machine:
+
+```{r}
+#| eval: false
+
+install.packages(
+  c("cli", "here" ,"magrittr", "ragg", "renv", "stats", "stringr")
+)
+```
+
+(@) Clone this repository.
+(@) Open the R project (`mastersthesis.Rproj`).
+(@) Run [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html) to install all software dependencies.
+(@) Set all the keys provided by the author in the `.Renviron` file and the `_ssh` folder.
+(@) Run `targets::tar_make()` to create every point of the data wrangling process (from the raw data to the cleaned and weighted data). 
+(@) Run any analysis present in the computational notebooks (`qmd` directory).
 
 ## Keys
 
@@ -89,36 +98,32 @@ A BibTeX entry for LaTeX users is:
 
 ## Acknowledgments
 
-The thesis was developed in the Graduate Program in Modeling Complex Systems ([PPG-SCX](https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos)) at the University of São Paulo ([USP](https://www5.usp.br/)), under the supervision of [Prof. Dr. Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695).
-
-<a href="https://www.gov.br/capes/"><img src= "images/capes-logo-rgb-horizontal.png" height="35"/></a>
-
 <table>
   <tr>
     <td width="30%">
       <br>
       <p align="center">
-        <a href="https://www.gov.br/cnpq/"><img src="images/sustentarea-icon-rgb-150-dpi.png" width="120em"/></a>
+        <a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos"><img src="images/ppgscx-logo-rgb-96-dpi.png" width="150em"/></a>
       </p>
       <br>
     </td>
     <td width="50%">
-      This analysis is part of the <a href="https://www.fsp.usp.br/sustentarea">Sustentarea</a> Research and Extension Group's project: <em>Global syndemic: The impact of anthropogenic climate change on the health and nutrition of children under five years old attended by Brazil's public health system (SUS)</em>.
+      This thesis was developed in the Graduate Program in Modeling Complex Systems (<a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos">PPG-SCX</a>) at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>) under the supervision of <a href="https://orcid.org/0000-0001-6783-6695">Prof. Dr. Camilo Rodrigues Neto</a>.
     </td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td width="70%"">
+    <td width="30%"">
       <br>
       <p align="center">
-        <br> <a href="https://www.gov.br/cnpq/"><img src="images/capes-original.svg" width="150em"/></a> 
+        <br> <a href="https://www.gov.br/capes/"><img src="images/capes-logo-original.svg" width="120em"/></a> 
       </p>
       <br>
     </td>
-    <td width="70%">
-      This study was financed by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brazil (<a href="https://www.gov.br/capes/">CNPq</a>) - Finance Code 001, Grant Number 88887.703720/2022-00.
+    <td width="50%">
+      This study was financed by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brazil (<a href="https://www.gov.br/capes/">CAPES</a>) - Finance Code 001, Grant Number 88887.703720/2022-00.
     </td>
   </tr>
 </table>

@@ -16,7 +16,7 @@ MIT](https://img.shields.io/badge/license-MIT-green.png)](https://choosealicense
 
 ## Overview
 
-☀🌙⏰🛌💤🌍🗺️🧭📅🧬🧠🕰️📊📉📈📝
+☀️🌙⏰🛌💤🌍🗺️🧭📅🧬🧠🕰️📊📓
 
 This repository contains the [Quarto
 book](https://quarto.org/docs/books/) of my Master’s Thesis: *Is
@@ -29,7 +29,7 @@ Boettiger & Lincoln Mullen’s article [Packaging Data Analytical Work
 Reproducibly Using R (and
 Friends)](https://doi.org/10.1080/00031305.2017.1375986).
 
-## How to Use
+## How to use
 
 All analyses in this thesis are fully reproducible and were conducted
 using the [R programming language](https://www.r-project.org/) alongside
@@ -131,15 +131,56 @@ A BibTeX entry for LaTeX users is:
 
 ## Acknowledgments
 
+<table>
+
+<tr>
+
+<td width="30%">
+
+<br>
+<p align="center">
+
+<a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos"><img src="images/ppgscx-logo.svg" width="150em"/></a>
+</p>
+
+<br>
+</td>
+
+<td width="50%">
+
 The thesis was developed in the Graduate Program in Modeling Complex
 Systems
-([PPG-SCX](https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos))
-at the University of São Paulo ([USP](https://www5.usp.br/)), under the
-supervision of [Prof. Dr. Camilo Rodrigues
-Neto](https://orcid.org/0000-0001-6783-6695).
+(<a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos">PPG-SCX</a>)
+at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>),
+under the supervision of
+<a href="https://orcid.org/0000-0001-6783-6695">Prof. Dr. Camilo
+Rodrigues Neto</a>.
+</td>
 
-<a href="https://www.gov.br/capes/"><img src= "images/capes-logo-rgb-horizontal.png" height="35"/></a>
+</tr>
+
+</table>
+
+<table>
+
+<tr>
+
+<td width="70%"">
+      <br>
+      <p align="center">
+        <br> <a href="https://www.gov.br/capes/"><img src="images/capes-original.svg" width="120em"/></a> 
+      </p>
+      <br>
+    </td>
+
+<td width="70%">
 
 This study was financed by the Coordenação de Aperfeiçoamento de Pessoal
-de Nível Superior - Brazil ([CAPES](https://www.gov.br/capes/)) -
-Finance Code 001, Grant Number 88887.703720/2022-00.
+de Nível Superior - Brazil
+(<a href="https://www.gov.br/capes/">CNPq</a>) - Finance Code 001, Grant
+Number 88887.703720/2022-00.
+</td>
+
+</tr>
+
+</table>

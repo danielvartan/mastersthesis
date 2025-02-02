@@ -360,7 +360,7 @@ Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *
 :::
 ::::
 :::: {.column style="width: 50%; padding-top: 0px;"}
-![](images/gomez-de-mariscal-2021-figure-3.svg){fig-align="center" style="width: 85%; padding-top: 0px;"}
+![](images/gomez-de-mariscal-2021-figure-3.png){fig-align="center" style="width: 85%; padding-top: 0px;"}
 ::::
 :::::
 
