@@ -43,7 +43,7 @@ set.seed(2025)
 env_vars <- yaml::read_yaml(here::here("_variables.yml"))
 res_vars <- yaml::read_yaml(here::here("_results.yml"))
 
-if (env_vars$format == "html") {
+if (env_vars$format %in% c("html", "revealjs")) {
   base_size <- 11
 } else {
   base_size <- 10
@@ -66,22 +66,8 @@ knitr::opts_chunk$set(
 
 # Set and load graph fonts -----
 
-# # Helpers
-#
-# sysfonts::font_paths()
-#
-# # "poppins" "dm sans"
-# data <-
-#   sysfonts::font_files() |>
-#   dplyr::as_tibble() |>
-#   dplyr::filter(
-#     stringr::str_detect(tolower(family), "dm sans"),
-#     stringr::str_detect(path, "mastersthesis")
-#   )
-
 sysfonts::font_paths(
   c(
-    here::here("otf"),
     here::here("ttf"),
     here::here("_extensions", "abnt", "otf"),
     here::here("_extensions", "abnt", "ttf")

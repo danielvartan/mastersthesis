@@ -1,0 +1,23 @@
+<section id="$idprefix$title-slide"$for(title-slide-attributes/pairs)$ $it.key$="$it.value$"$endfor$>
+  <h1 class="title" style="text-align: left;">$title$</h1>
+$if(subtitle)$
+  <p class="subtitle" style="text-align: left; color: white;">$subtitle$</p>
+$endif$
+  <div style="text-align: left; float: left;">
+$for(author)$
+    <p class="author">$author$</p>
+$endfor$
+    <p class="author">Prof. Dr. $supervisor$</p>
+$for(institute)$
+    <p class="institute">$institute$</p>
+$endfor$
+$if(date)$
+    <p class="date">$date$</p>
+$endif$
+  </div>
+  <div style="text-align: left; float: right;">
+    <a href="https://resiclima.com.br/" target="_blank"><img src="images/ppgscx-logo.svg" style="width: 100px;"></a>
+    <a href="https://www.fsp.usp.br/sustentarea/" target="_blank"><img src="images/usp-logo.svg" style="width: 100px; padding-left: 20px"></a>
+    <a href="https://www.gov.br/cnpq/" target="_blank"><img src="images/capes-original.svg" style="width: 200px; padding-left: 20px;"></a>
+  </div>
+</section>

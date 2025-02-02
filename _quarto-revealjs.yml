@@ -5,10 +5,13 @@ project:
   pre-render: "R/_pre-render-revealjs.R"
   post-render: "R/_post-render-revealjs.R"
 
-title: "Is latitude associated with chronotype?"
+title: "Is Latitude Associated with Chronotype?"
 author: "Daniel Vartanian"
+supervisor: "Camilo Rodrigues Neto"
 institute: "University of São Paulo"
-date: today
+date: 2025-02-03
+# title-slide-attributes:
+#  data-background-color: "white"
 
 format:
   revealjs:
@@ -28,6 +31,8 @@ format:
     fig-align: center
     theme: [default, brand, scss/slides.scss]
     pdf-max-pages-per-slide: 1
+    template-partials:
+      - html/title-slide.html
     menu:
       titleSelector: [h1 h2]
       useTextContentForMissingTitles: false

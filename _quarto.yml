@@ -2,7 +2,7 @@ editor: source
 
 execute:
   cache: false # "Danger Will Robinson!"
-  freeze: false # If you're going to use it, don't forget to disable it afterward!
+  freeze: false # If you plan to use it, remember to disable it afterward!
                 # Goddammit! What did I tell you?
 
 profile:
@@ -29,7 +29,7 @@ citation:
   type: thesis
   publisher: "University of São Paulo"
   publisher-place: "São Paulo, SP, Brazil"
-  doi: "10.17605/OSF.IO/YGKTS"
+  doi: "10.17605/OSF.IO/S4TBZ"
   url: https://danielvartan.github.io/mastersthesis/
   pdf-url: https://danielvartan.github.io/mastersthesis/print/index.pdf
 

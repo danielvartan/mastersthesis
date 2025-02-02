@@ -211,7 +211,7 @@ weighted_data |>
 
 [Source: Created by the author.]{.legend}
 
-Correlation matrix of main variables (**Analysis sample**).
+Correlation matrix of the main variables (**Analysis sample**).
 :::
 
 ## Latitudinal and Longitudinal Range

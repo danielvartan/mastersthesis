@@ -153,19 +153,7 @@ Model of the data science process created by Wickham, Çetinkaya-Runde, and Grol
 
 ### Pipeline
 
-The pipeline for data processing is based on the framework outlined in the [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html). You can view and reproduce this pipeline in the `_target.R` file located at the root of the thesis code repository.
-
-````{r}
-#| echo: false
-#| output: asis
-
-paste0(
-  "``` {.r filename='_targets.R'}", "\n",
-  "#| code-fold: false", "\n\n",
-  paste0(readLines(here::here("_targets.R")), collapse = "\n"), "\n",
-  "```"
-)
-````
+The pipeline for data processing is based on the framework outlined in the [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html). You can view and reproduce this pipeline in the [`_targets.R`](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R) file located at the root of the thesis code repository.
 
 ### Lookup Tables
 
@@ -394,11 +382,11 @@ Considering the particular emphasis that the solar zeitgeber has on the entrainm
 
 In Cohen's words: 
 
-> What is really intended by the invalid affirmation of a null hypothesis is not that the population ES [Effect Size] is literally zero, but **rather that it is negligible, or trivial** [@cohen1988, p. 16].
+> What is really intended by the invalid affirmation of a null hypothesis is not that the population ES [Effect Size] is literally zero, but **rather that it is negligible, or trivial** [@cohen1988a, p. 16].
 
-> SMALL EFFECT SIZE: $f^2 = .02$. Translated into \text{R}^{2} or partial \text{R}^{2} for Case 1, this gives $.02 / (1 + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested [@cohen1988, p. 413].
+> SMALL EFFECT SIZE: $f^2 = .02$. Translated into \text{R}^{2} or partial \text{R}^{2} for Case 1, this gives $.02 / (1 + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested [@cohen1988a, p. 413].
 
-> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES is not necessarily zero but **small enough to be negligible**, i.e., no larger than $i$. How large $i$ is will vary with the substantive context. Assume, for example, that ES is expressed as $f^2$, and that the context is such as to consider $f^2$ no larger than $.02$ to be negligible; thus $i$ = .02  [@cohen1988, p. 461].
+> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES is not necessarily zero but **small enough to be negligible**, i.e., no larger than $i$. How large $i$ is will vary with the substantive context. Assume, for example, that ES is expressed as $f^2$, and that the context is such as to consider $f^2$ no larger than $.02$ to be negligible; thus $i$ = .02  [@cohen1988a, p. 461].
 
 $$
 \text{MES} = \text{Cohen's } f^2 \text{small threshold} = 0.02 \\

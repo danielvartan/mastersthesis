@@ -294,6 +294,24 @@ get_brand_color_tint <- function(
 # library(grDevices)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
+get_color_tint <- function(
+    color = "#FF00FF",
+    position = 500,
+    n = 1000
+  ) {
+  prettycheck:::assert_color(color)
+  prettycheck:::assert_integerish(position, lower = 0, upper = 1000)
+  prettycheck:::assert_integer_number(n, lower = 1)
+
+  color_fun <- grDevices::colorRampPalette(c("black", color, "white"))
+  color_values <- color_fun(n)
+
+  color_values[position]
+}
+
+# library(grDevices)
+# library(prettycheck) # github.com/danielvartan/prettycheck
+
 # # Helpers
 #
 # make_color_vector(10) |> vector_to_c()

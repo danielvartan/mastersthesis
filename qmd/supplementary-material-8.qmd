@@ -70,15 +70,15 @@ The statistical model in which the observations $Y_{1}, \dots, Y_{n}$ satisfy th
 Here we shall assume that each observation $Y_{1}, \dots, Y_{n}$ has a normal distribution, that the observations $Y_{1}, \dots, Y_{n}$ are independent, and that the observations $Y_{1}, \dots, Y_{n}$ have the same variance $\sigma^{2}$. Instead of a single predictor being associated with each $Y_{i}$, we assume that a $p$-dimensional vector $z_{i} = (z_{i0}, \dots, z_{ip - 1})$ is associated with each $Y_{i}$ [@degroot2012, p. 736].
 
 Assumption 1
-: __Predictor is known__. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012, p. 736].
+: **Predictor is known**. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012, p. 736].
 
 Assumption 2
-: __Normality__. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012, p. 737].
+: **Normality**. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012, p. 737].
 
 (Normality of the error term distribution [@hair2019, p. 287])
 
 Assumption 3
-: __Linear mean__. There is a vector of parameters  $\beta = (\beta_{0}, \dots, \beta_{p - 1})$ such that the conditional mean of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ has the form
+: **Linear mean**. There is a vector of parameters  $\beta = (\beta_{0}, \dots, \beta_{p - 1})$ such that the conditional mean of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ has the form
 
 $$
 z_{i0} \beta_{0} + z_{i1} \beta_{1} + \cdots + z_{ip - 1} \beta_{p - 1}
@@ -93,11 +93,11 @@ It is important to clarify that the linear assumption pertains to **linearity of
 :::
 
 Assumption 4
-: __Common variance__ (homoscedasticity). There is as parameter $\sigma^{2}$ such the conditional variance of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ is $\sigma^{2}$ for $i = 1, \dots, n$.
+: **Common variance** (homoscedasticity). There is as parameter $\sigma^{2}$ such the conditional variance of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ is $\sigma^{2}$ for $i = 1, \dots, n$.
 
 (Constant variance of the error terms [@hair2019, p. 287])
 
 Assumption 5
-: __Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012, p. 737].
+: **Independence**. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012, p. 737].
 
 (Independence of the error terms [@hair2019, p. 287])

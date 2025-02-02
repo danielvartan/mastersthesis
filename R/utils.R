@@ -423,7 +423,8 @@ normalize_names <- function(
       dirs |>
       basename() |>
       tolower() |>
-      stringr::str_replace_all(" - ", "_") |>
+      stringr::str_replace_all(" - ", "-") |>
+      stringr::str_replace_all("_", "-") |>
       stringr::str_replace_all(" ", "-") |>
       stringr::str_squish() %>%
       file.path(dirname(dirs), .)
@@ -458,6 +459,7 @@ normalize_names <- function(
           files |>
           tolower() |>
           stringr::str_replace_all(" - ", "_") |>
+          stringr::str_replace_all("_", "-") |>
           stringr::str_replace_all(" ", "-") |>
           stringr::str_squish()
 

@@ -14,7 +14,7 @@ Some general instructions:
 {\imprimirtipotrabalho} presented to the {\imprimirescola} at the {\imprimiruniversidade}, as a requirement for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}.
 
 \smallskip
-Area of concentration: {\imprimirareadeconcentracao}.
+Area of concentration: {\imprimirareadeconcentracao}
 
 \smallskip
 Supervisor: Prof. Dr. {\imprimirorientador}

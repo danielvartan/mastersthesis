@@ -29,7 +29,7 @@ Boettiger & Lincoln Mullen’s article [Packaging Data Analytical Work
 Reproducibly Using R (and
 Friends)](https://doi.org/10.1080/00031305.2017.1375986).
 
-## How to use
+## How to Use
 
 All analyses in this thesis are fully reproducible and were conducted
 using the [R programming language](https://www.r-project.org/) alongside
@@ -138,7 +138,7 @@ at the University of São Paulo ([USP](https://www5.usp.br/)), under the
 supervision of [Prof. Dr. Camilo Rodrigues
 Neto](https://orcid.org/0000-0001-6783-6695).
 
-<a href="https://www.gov.br/capes/"><img src= "images/capes_logo_horizontal_rgb.png" height="35"/></a>
+<a href="https://www.gov.br/capes/"><img src= "images/capes-logo-rgb-horizontal.png" height="35"/></a>
 
 This study was financed by the Coordenação de Aperfeiçoamento de Pessoal
 de Nível Superior - Brazil ([CAPES](https://www.gov.br/capes/)) -

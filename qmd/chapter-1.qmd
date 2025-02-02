@@ -29,8 +29,8 @@ All analyses in this thesis are fully reproducible and were conducted using the 
 
 ::: {.content-visible when-format="pdf"}
 All analyses in this thesis are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) [@rcoreteam] alongside the [Quarto](https://quarto.org/) publishing system [@allaire]. Given the thesis's data-centric nature, it is best experienced online. To view the digital version
-visit <https://danielvartan.github.io/mastersthesis>.
+visit: <https://danielvartan.github.io/mastersthesis>
 
-The thesis code repository is available on GitHub at <https://github.com/danielvartan/mastersthesis>, and the research compendium can be accessed via [The Open Science Framework](https://osf.io/) at the following link:  <https://doi.org/10.17605/OSF.IO/YGKTS>.
+The thesis code repository is available on GitHub at <https://github.com/danielvartan/mastersthesis>, and the research compendium can be accessed via [The Open Science Framework](https://osf.io/) at the following link:  <https://doi.org/10.17605/OSF.IO/YGKTS>
 :::
 <!-- %:::% index end %:::% -->
