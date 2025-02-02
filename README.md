@@ -52,20 +52,26 @@ R](https://www.coursera.org/specializations/data-science-foundations-r).
 
 To reproduce the analyses do the following steps:
 
-1.  Make sure that you have the latest R version and the following R
+1)  Make sure that you have the latest R version and the following R
     packages installed in your machine:
-    `install.packages(c("cli", "here" ,"magrittr", "ragg", "renv", "stats", "stringr"))`.
-2.  Clone this repository.
-3.  Open the R project (`mastersthesis.Rproj`).
-4.  Run
+
+``` r
+install.packages(
+  c("cli", "here" ,"magrittr", "ragg", "renv", "stats", "stringr")
+)
+```
+
+2)  Clone this repository.
+3)  Open the R project (`mastersthesis.Rproj`).
+4)  Run
     [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html)
     to install all software dependencies.
-5.  Set all the keys provided by the author in the `.Renviron` file and
+5)  Set all the keys provided by the author in the `.Renviron` file and
     the `_ssh` folder.
-6.  Run `targets::tar_make()` to create every point of the data
+6)  Run `targets::tar_make()` to create every point of the data
     wrangling process (from the raw data to the cleaned and weighted
     data).
-7.  Run any analysis present in the computational notebooks (`qmd`
+7)  Run any analysis present in the computational notebooks (`qmd`
     directory).
 
 ## Keys
@@ -140,7 +146,7 @@ A BibTeX entry for LaTeX users is:
 <br>
 <p align="center">
 
-<a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos"><img src="images/ppgscx-logo.svg" width="150em"/></a>
+<a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos"><img src="images/ppgscx-logo-rgb-96-dpi.png" width="150em"/></a>
 </p>
 
 <br>
@@ -148,10 +154,10 @@ A BibTeX entry for LaTeX users is:
 
 <td width="50%">
 
-The thesis was developed in the Graduate Program in Modeling Complex
+This thesis was developed in the Graduate Program in Modeling Complex
 Systems
 (<a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos">PPG-SCX</a>)
-at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>),
+at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>)
 under the supervision of
 <a href="https://orcid.org/0000-0001-6783-6695">Prof. Dr. Camilo
 Rodrigues Neto</a>.
@@ -165,20 +171,20 @@ Rodrigues Neto</a>.
 
 <tr>
 
-<td width="70%"">
+<td width="30%"">
       <br>
       <p align="center">
-        <br> <a href="https://www.gov.br/capes/"><img src="images/capes-original.svg" width="120em"/></a> 
+        <br> <a href="https://www.gov.br/capes/"><img src="images/capes-logo-original.svg" width="120em"/></a> 
       </p>
       <br>
     </td>
 
-<td width="70%">
+<td width="50%">
 
 This study was financed by the Coordenação de Aperfeiçoamento de Pessoal
 de Nível Superior - Brazil
-(<a href="https://www.gov.br/capes/">CNPq</a>) - Finance Code 001, Grant
-Number 88887.703720/2022-00.
+(<a href="https://www.gov.br/capes/">CAPES</a>) - Finance Code 001,
+Grant Number 88887.703720/2022-00.
 </td>
 
 </tr>
