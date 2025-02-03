@@ -66,7 +66,7 @@ A survey conducted in 2019 by the Brazilian Institute of Geography and Statistic
 
 Daylight Saving Time (DST) began in Brazil at midnight on October 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set the clock forward by 1 hour. I believe that this event did not contaminate the data since it started on the same day of the data collection. It’s important to notice that we asked subjects to relate their routine behavior, not how they behaved in the last few days. A possible effect of the DST on the sample would be the production of an even later chronotype for populations near the planet's poles, amplifying a possible latitude effect. However, this was not shown on the data.
 
-To balance the sample, a weighting procedure was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil's state as reference This procedure can be found on Supplementary Material [-@sec-sm-sample-balance].
+To balance the sample, a weighting procedure was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil's state as reference. This procedure can be found on Supplementary Material [-@sec-sm-sample-balance].
 
 More information about the sample can be found on Supplementary Material [-@sec-sm-exploratory-data-analysis].
 
@@ -141,14 +141,14 @@ Access to the data requires authorization from the author on the Open Science Fr
 
 ## Data Wrangling
 
-Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2023d] (@fig-sm-2-wickham-at-al-2024-figure-1). All processes were made with the help of the R programming language [@rcoreteam], RStudio IDE [@positteam], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanianf]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
+Data wrangling and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2023e] (@fig-sm-2-wickham-at-al-2024-figure-1). All processes were made with the help of the R programming language [@rcoreteama], RStudio IDE [@positteama], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023c] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanianf]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
 
 ::: {#fig-sm-2-wickham-at-al-2024-figure-1}
 ![](images/wickham-at-al-2024-figure-1.png){width=85%}
 
-[Source: Reproduced from @wickham2023d.]{.legend}
+[Source: Reproduced from @wickham2023e.]{.legend}
 
-Model of the data science process created by Wickham, Çetinkaya-Runde, and Grolemund [-@wickham2023d].
+Model of the data science process created by Wickham, Çetinkaya-Runde, and Grolemund [-@wickham2023e].
 :::
 
 ### Pipeline
@@ -362,7 +362,7 @@ A MES must always be present in any data testing. The effect-size was present in
 
 Publications related to issues regarding the misuse of p-value are plenty. For more on the matter, I recommend @perezgonzalez2015 review of Fisher's and Neyman-Pearson's data test proposals, @lin2013 and @mariscal2021 studies about large Samples and the p-value problem, and Cohen's essays on the subject (like @cohen1990 and @cohen1994).
 
-It's important to note that, in addition to the F-test, it's assumed that for $\text{R}^{2}_{\text{r}}$ to differ significantly from $\text{R}^{2}_{\text{f}}$, there must be a non-negligible effect size between them. This effect size can be calculated using Cohen's $f^{2}$ [@cohen1988; @cohen1992]:
+It's important to note that, in addition to the F-test, it's assumed that for $\text{R}^{2}_{\text{r}}$ to differ significantly from $\text{R}^{2}_{\text{f}}$, there must be a non-negligible effect size between them. This effect size can be calculated using Cohen's $f^{2}$ [@cohen1988a; @cohen1992]:
 
 $$
 \text{Cohen's } f^2 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}}
@@ -378,7 +378,7 @@ $$
 f^{2} = \cfrac{\text{Additional Var. Explained}}{\text{Var. unexplained}}
 $$
 
-Considering the particular emphasis that the solar zeitgeber has on the entrainment of biological rhythms (as demonstrated in many experiments), it would not be reasonable to assume that the latitude hypothesis could be supported without at least a non-negligible effect size. With this in mind, this analysis will use Cohen's threshold for small/negligible effects, the Minimum Effect Size (MES) ($\delta$) is defined as 0.02 [@cohen1988, p. 413; @cohen1992, p. 157].
+Considering the particular emphasis that the solar zeitgeber has on the entrainment of biological rhythms (as demonstrated in many experiments), it would not be reasonable to assume that the latitude hypothesis could be supported without at least a non-negligible effect size. With this in mind, this analysis will use Cohen's threshold for small/negligible effects, the Minimum Effect Size (MES) ($\delta$) is defined as 0.02 [@cohen1988a, p. 413; @cohen1992, p. 157].
 
 In Cohen's words: 
 
@@ -392,7 +392,7 @@ $$
 \text{MES} = \text{Cohen's } f^2 \text{small threshold} = 0.02 \\
 $$
 
-For comparison, Cohen's threshold for medium effects is $0.15$, and for large effects is $0.35$ [@cohen1988, p. 413-414; @cohen1992, p. 157].
+For comparison, Cohen's threshold for medium effects is $0.15$, and for large effects is $0.35$ [@cohen1988a, p. 413-414; @cohen1992, p. 157].
 
 Knowing Cohen's $f^2$, is possible to calculated the equivalent $\text{R}^{2}$:
 

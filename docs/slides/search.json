@@ -1,310 +1,359 @@
 [
   {
-    "objectID": "index.html#hello-there",
-    "href": "index.html#hello-there",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Hello, there 👋",
-    "text": "Hello, there 👋\nThis presentation will provide an overview of the thesis objectives, main concepts, methods, and results. Here is our itinerary.\n\n\n\n\nObject and objectives\nIntroduction to the main concepts\n\n\nBiological rhythms and complexity\nTemporal phenotypes (AKA chronotypes)\nZeitgebers and the entrainment phenomenon\nThe two process of sleep regulation and the MCTQ\nThe latitude hypothesis\n\n\n\nThesis outline\nMaterials and methods\nMain results\nDiscussion\nFinal remarks"
+    "objectID": "index.html#hi-there",
+    "href": "index.html#hi-there",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Hi there! 👋",
+    "text": "Hi there! 👋\n\n\nThis presentation will provide an overview of the thesis objectives, main concepts, methods, and results. Together, we’ll uncover how environment factors can influence the cronotype.\n\nWe will cover the following topics:\n\nIntroduction\nMethods\nResults\nDiscussion\nConclusion\n\n\n\n\n\n\n\n\n\n\nIntroduction [5m]\n\nMethods [5m]\n\nResults [5m]\n\nDiscussion [5m]\n\nConclusion [5m]"
   },
   {
-    "objectID": "index.html#object-and-objectives",
-    "href": "index.html#object-and-objectives",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Object and objectives",
-    "text": "Object and objectives\nThis thesis focuses on the ecology of sleep and circadian phenotypes (chronotypes) with the aim of providing answers to the following questions:\n\n\nQ1. How are the sleep-wake cycles and circadian phenotypes of the adult Brazilian population characterized?\n\nQ2. Is latitude associated with the regulation of circadian rhythms in humans?\n\n\nThe primary objectives (PO) are as follows:\n\n\nPO1. Quantitatively describe the expression of sleep-wake cycles and circadian phenotypes of the Brazilian adult population at the end of the year 2017 (pre-pandemic).\n\nPO2. Investigate and model the presence/absence of a significant association and effect between decimal degrees of latitude (independent variable (IV)) and circadian phenotypes (dependent variable (DV)) of the Brazilian population."
+    "objectID": "index.html#question",
+    "href": "index.html#question",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Question",
+    "text": "Question\nThis thesis focuses on the expression of sleep and circadian phenotypes (chronotypes), seeking to provide an answer to the following question related to human populations:\n\nIs latitude associated with chronotype?"
   },
   {
-    "objectID": "index.html#methods-and-hypothesis",
-    "href": "index.html#methods-and-hypothesis",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Methods and hypothesis",
-    "text": "Methods and hypothesis\n\nProblem approach method: Hypothetico-deductive method (Popper, 1979)\nProcedure method: Statistical methods\n\nThe basic hypothesis to be tested is that populations residing near the equator (latitude 0°) have, on average, a shorter/more morning-oriented circadian phenotype compared to populations living near the Earth’s poles (Hut et al., 2013; Leocadio-Miguel et al., 2014, 2017; Pittendrigh et al., 1991; Randler, 2008; Randler & Rahafar, 2017; Roenneberg et al., 2003).\n\n\n\\[\n\\begin{cases}\n\\text{H}_{0}: \\text{R}^{2}_{r} &gt;= \\text{R}^{2}_{f} \\\\\n\\text{H}_{a}: \\text{R}^{2}_{r} &lt; \\text{R}^{2}_{f}\n\\end{cases}\n\\]\n\n\\[\nf^{2} = \\cfrac{\\text{R}^{2}_{f} - \\text{R}^{2}_{r}}{1 - \\text{R}^{2}_{f}} = \\cfrac{\\text{Additional Var. Explained}}{\\text{Var. unexplained}}\n\\]"
+    "objectID": "index.html#chronotype",
+    "href": "index.html#chronotype",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Chronotype",
+    "text": "Chronotype\n\n\n\n\n\n\n\n(Artwork by: Merrow & Roenneberg (2020) (Left) and Duffy et al. (2011, fig. 1, middle) (Right))\n\nTemporal dimension of evolution."
   },
   {
-    "objectID": "index.html#section-2",
-    "href": "index.html#section-2",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
+    "objectID": "index.html#entrainment",
+    "href": "index.html#entrainment",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Entrainment",
+    "text": "Entrainment\n\n\n(Artwork by Flanagan et al. (2021, fig. 2))\n\nPhysiological global emergence.\nAn illustration depicting how the human circadian clock system regulate multiple aspects of metabolic physiology, such as: hormone secretion, core body temperature, resting metabolic rate, and plasma metabolite concentration."
+  },
+  {
+    "objectID": "index.html#the-latitude-hypothesis",
+    "href": "index.html#the-latitude-hypothesis",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "The Latitude Hypothesis",
+    "text": "The Latitude Hypothesis\n\n\n(Adapted by the author from Roenneberg et al. (2003, fig. 7F))"
+  },
+  {
+    "objectID": "index.html#section-1",
+    "href": "index.html#section-1",
+    "title": "Is Latitude Associated with Chronotype?",
     "section": "",
-    "text": "(Cohen, 1992)"
+    "text": "URL: https://www.nature.com/articles/s41598-017-05797-w"
   },
   {
-    "objectID": "index.html#section-4",
-    "href": "index.html#section-4",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Merrow & Roenneberg, 2020)"
+    "objectID": "index.html#leocadio-miguel-et-al.",
+    "href": "index.html#leocadio-miguel-et-al.",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Leocadio-Miguel et al. ",
+    "text": "Leocadio-Miguel et al. \nSample: \\(12,884\\) Brazilian participants\nMethod: HO Questionnaire (Horne & Östberg, 1976)\n\\(\\Delta \\ \\text{Adjusted} \\ \\text{R}^{2} = 0.388\\%\\) (Cohen’s \\(f^2 = 0.004143174\\))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(Left: Leocadio-Miguel et al. (2017, fig. 2) | Right: Rescaled version of the chart on the left (Created by the author))"
   },
   {
-    "objectID": "index.html#section-5",
-    "href": "index.html#section-5",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Roenneberg et al., 2022)"
+    "objectID": "index.html#mctq",
+    "href": "index.html#mctq",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "MCTQ",
+    "text": "MCTQ"
   },
   {
-    "objectID": "index.html#section-6",
-    "href": "index.html#section-6",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Buhr & Takahashi, 2013)"
+    "objectID": "index.html#the-two-process-of-sleep-reg.",
+    "href": "index.html#the-two-process-of-sleep-reg.",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "The Two Process of Sleep Reg.",
+    "text": "The Two Process of Sleep Reg.\n\n\n(Adapted by the author from Borbély (1982, fig. 4, lower part))\n\nIllustration of the interaction between Process \\(\\text{S}\\) (Homeostatic/Sleep-dependent process) and Process \\(\\text{C}\\) (Circadian rhythm process) in sleep regulation.  The figure depicts two scenarios: One with \\(17\\) hours of wakefulness followed by \\(7\\) hours of sleep, and another, under sleep deprivation, with \\(41\\) hours of wakefulness followed by \\(7\\) hours of sleep. The hatched areas indicate periods of sleep, illustrating the exponential decline of Process \\(\\text{S}\\)."
   },
   {
-    "objectID": "index.html#section-7",
-    "href": "index.html#section-7",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Duffy et al., 2011)"
+    "objectID": "index.html#sample",
+    "href": "index.html#sample",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Sample",
+    "text": "Sample\n\n\n(Rede Globo, 2017)"
   },
   {
-    "objectID": "index.html#complex-systems",
-    "href": "index.html#complex-systems",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Complex systems",
-    "text": "Complex systems\n\n\n\n“Systems that don’t yield to compact forms of representation or description” (David Krakauer apud Mitchell (2013))\n“A system of many interacting parts where the system is more than just the sum of its parts” (Mark Newman apud Mitchell (2013))\nSystems with many connected agents that interact and exhibit self-organization and emergence behavior, all without the need for a central controller (adapted from Camilo Rodrigues Neto’s definition, supervisor of this thesis)\nDialectics at its finest (my working definition)"
-  },
-  {
-    "objectID": "index.html#section-9",
-    "href": "index.html#section-9",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Kuhlman et al., 2018)"
-  },
-  {
-    "objectID": "index.html#section-10",
-    "href": "index.html#section-10",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Kuhlman et al., 2018)"
-  },
-  {
-    "objectID": "index.html#section-11",
-    "href": "index.html#section-11",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Borbély, 1982)"
-  },
-  {
-    "objectID": "index.html#section-12",
-    "href": "index.html#section-12",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(The Worldwide Experimental Platform, n.d.)"
-  },
-  {
-    "objectID": "index.html#section-15",
-    "href": "index.html#section-15",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Roenneberg et al., 2003)"
-  },
-  {
-    "objectID": "index.html#methods",
-    "href": "index.html#methods",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Methods",
-    "text": "Methods\n\nProblem approach method: Hypothetico-deductive method (Popper, 1979)\nProcedure method: Statistical methods\n\n\n\n\n\nflowchart LR\n  A[P1] --&gt; B(TT)\n  B --&gt; C[EE]\n  C --&gt; D[P2]"
+    "objectID": "index.html#sample-1",
+    "href": "index.html#sample-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Sample",
+    "text": "Sample\n\n\nThe dataset used for analysis is made up of \\(65,824\\) Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.\n\n\n\n\n\n\n\n\n\n\n\n(Created by the author)\n\nGeographical distribution of the sample used in the analysis (\\(n = 65,824\\)).  Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017. The size and color scale are logarithmic (\\(\\log_{10}\\))."
   },
   {
     "objectID": "index.html#hypothesis-test",
     "href": "index.html#hypothesis-test",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Hypothesis test",
-    "text": "Hypothesis test\nThe main idea of nested models is to verify the effect of the inclusion of one or more predictors in the model variance explanation (i.e., the \\(\\text{R}^{2}\\)) (Allen, 1997). This can be made by creating a restricted model and then comparing it with a full model. Hence, the hypothesis can be schematized as follows.\n\n\n\\[\n\\begin{cases}\n\\text{H}_{0}: \\text{R}^{2}_{r} &gt;= \\text{R}^{2}_{f} \\\\\n\\text{H}_{a}: \\text{R}^{2}_{r} &lt; \\text{R}^{2}_{f}\n\\end{cases}\n\\]\n\n\\[\nf^{2} = \\cfrac{\\text{R}^{2}_{f} - \\text{R}^{2}_{r}}{1 - \\text{R}^{2}_{f}} = \\cfrac{\\text{Additional Var. Explained}}{\\text{Var. unexplained}}\n\\]\n\n\nRestricted model (\\(r\\))\n\\[\n\\text{MSF}_{\\text{sc}} = \\beta_{0} + \\beta_{1} \\text{Sex} + \\beta_{2} \\text{Age} + \\varepsilon\n\\]\nFull model (\\(f\\))\n\\[\n\\text{MSF}_{\\text{sc}} = \\beta_{0} + \\beta_{1} \\text{Sex} + \\beta_{2} \\text{Age} + \\beta_{3} \\text{Latitude} + \\varepsilon\n\\]"
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Hypothesis Test",
+    "text": "Hypothesis Test\nThe study tested whether latitude significantly improves model fit when predicting chronotype with nested models.\nA restricted model (excluding latitude) with a full model (including latitude) was compared.\nTo ensure practical significance, a Minimum Effect Size (MES) criterion was applied, following the original Neyman-Pearson framework for hypothesis testing (Neyman & Pearson, 1928a, 1928b; Perezgonzalez, 2015).\nThe MES was set at Cohen’s threshold for small effects (\\(f^2 = 0.02\\), equivalent to \\(\\text{R}^2 = 0.01960784\\)) (Cohen, 1988, p. 413). Thus, latitude was considered significant only if its inclusion accounted for at least \\(1.960784\\%\\) of the variance in chronotype.\nTo balance the sample, a weighting procedure was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil’s state as reference."
   },
   {
-    "objectID": "index.html#section-22",
-    "href": "index.html#section-22",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Globo, 2017)"
+    "objectID": "index.html#hypothesis-test-1",
+    "href": "index.html#hypothesis-test-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Hypothesis Test",
+    "text": "Hypothesis Test\nThe hypothesis can be outlined as follows:\n\n\nNull hypothesis (\\(\\text{H}_{0}\\))\n\nAdding latitude does not meaningfully improve the model’s fit. This implies that the change in adjusted \\(\\text{R}^{2}\\) is negligible, or the F-test is not significant, given a type I error probability (\\(\\alpha\\)) of \\(0.05\\).\n\nAlternative Hypothesis (\\(\\text{H}_{a}\\))\n\nAdding latitude meaningfully improves the model’s fit. This implies that the change in adjusted \\(\\text{R}^{2}\\) exceeds the expected Minimum Effect Size (MES), and the F-test is significant, given a type I error probability (\\(\\alpha\\)) of \\(0.05\\).\n\n\n\n\n\\[\n\\begin{cases}\n\\text{H}_{0}: \\Delta \\ \\text{Adjusted} \\ \\text{R}^{2} \\leq \\text{MES} \\quad \\text{or} \\quad \\text{F-test is not significant} \\ (\\alpha \\geq 0.05) \\\\\n\\text{H}_{a}: \\Delta \\ \\text{Adjusted} \\ \\text{R}^{2} &gt; \\text{MES} \\quad \\text{and} \\quad \\text{F-test is significant} \\ (\\alpha &lt; 0.05)\n\\end{cases}\n\\]"
   },
   {
-    "objectID": "index.html#elegibility-criteria",
-    "href": "index.html#elegibility-criteria",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Elegibility criteria",
-    "text": "Elegibility criteria\n\n\nInclusion criteria\nIC1. Residents in Brazil\nIC2. Adults (i.e., age \\(\\geq\\) 18 years)\nIC3. Literate\nIC4. With internet access\n\nExclusion criteria\nNone (besides validation)"
+    "objectID": "index.html#chronotype-distribution",
+    "href": "index.html#chronotype-distribution",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Chronotype Distribution",
+    "text": "Chronotype Distribution\n\n\n\n\n\n\n\n\n\n\n\n(Created by the author, based on a data visualization from Roenneberg et al. (2019, fig. 1, right part))\n\nDistribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSFsc), a proxy for chronotype.  Chronotypes are categorized into quantiles, ranging from extremely early (\\(0 |- 0.11\\)) to extremely late (\\(0.88 - 1\\))."
   },
   {
-    "objectID": "index.html#population",
-    "href": "index.html#population",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Population",
-    "text": "Population\nAccording to the Continuous National Household Sample Survey (PNAD), in 2017, Brazil had an illiteracy rate of \\(6.9\\%\\) among individuals aged 18 years or older (Instituto Brasileiro de Geografia e Estatística, n.d.-c).\nIn that same year, the Brazilian population in this age group comprised approximately \\(151,321,000\\) individuals (Instituto Brasileiro de Geografia e Estatística, n.d.-b). Considering these two pieces of data, it can be inferred that there were around \\(140,879,851\\) literate individuals aged 18 years or older in Brazil in 2017.\nAccording to the PNAD, the proportion of men and women above 18 years old in 2017 was \\(48.163\\%\\) and \\(51.837\\%\\), respectively (Instituto Brasileiro de Geografia e Estatística, n.d.-a). Another edition of the same study showed that internet usage covered \\(82.17\\%\\) of Brazilian households in 2019 (Instituto Brasileiro de Geografia e Estatística, 2021). Based on this data, it is estimated that the size of the population to be represented in this study is around \\(115,760,973\\) individuals, which corresponds to approximately \\(76.500\\%\\) of the adult Brazilian population in 2017."
+    "objectID": "index.html#hypothesis-test-2",
+    "href": "index.html#hypothesis-test-2",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Hypothesis Test",
+    "text": "Hypothesis Test\n\n\nRestricted Model(Based on Leocadio-Miguel et al. (2017))\n\nPredictors (\\(4\\)):Age, Sex, Longitude, and the Average Monthly Global Horizontal Irradiance (GHI) at the time of questionnaire completion.\n\\(\\text{R}^2_{\\text{adj}} = 0.0851096\\)\n\\(\\text{F}(4, 65818) = 1531.808\\)\n\\(p\\text{-value} &lt; 1e-05\\)\n\n\n\n\n\n\n\n\n(Adapted from Pereira et al. (2017))\n\nComponents of solar irradiance. \\(G_{0}\\) = Extraterrestrial irradiance. \\(G_{n}\\) = Direct normal irradiance. \\(G_{dif}\\) = Diffuse horizontal irradiance. \\(G_{dir}\\) = Direct horizontal irradiance. \\(G\\) = Global horizontal irradiance. \\(G_{i}\\) = Inclined plane irradiance.\nIn particular, it was used the Global Horizontal Irradiance (GHI) data, which is the total amount of irradiance received from above by a surface horizontal to the ground."
   },
   {
-    "objectID": "index.html#sample-raw-characteristics",
-    "href": "index.html#sample-raw-characteristics",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Sample (raw) characteristics",
-    "text": "Sample (raw) characteristics\n\nConvenience sample (non-probabilistic)\nUnit of observation and analysis: Individuals\nTotal of \\(120,265\\) entries in the raw state\n\\(118,068\\) responses within a seven-day window (from 15th to 21st October 2017)\nEncompasses all states of Brazil\n\\(92,107\\) Brazilian resident subjects aged 18 years or older (\\(78.012\\%\\) of the total) (ages between \\(18-79\\) years; mean of \\(32.726 \\pm 10.176\\) years)\n\\(66.320\\%\\) are female (ages between \\(18-79\\) years; mean of \\(32.543 \\pm 10.259\\) years) and \\(33.600\\%\\) are male (ages between \\(18-79\\) years; mean of \\(33.076 \\pm 9.987\\) years)\nIt is assumed that individuals in the sample are literate and have internet access, as it would not be possible to respond to the questionnaire without these characteristics."
+    "objectID": "index.html#hypothesis-test-3",
+    "href": "index.html#hypothesis-test-3",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Hypothesis Test",
+    "text": "Hypothesis Test\n\n\nFull Model A(Based on Leocadio-Miguel et al. (2017))\n\nPredictors (\\(8\\)):[restricted predictors] + Average Annual Global Horizontal Irradiance (GHI), Daylight Duration for the Nearest March Equinox, June and December solstices\n\\(\\text{R}^2_{\\text{adj}} = 0.0879205\\)\n\\(\\text{F}(8, 65814) = 794.12\\)\n\\(p\\text{-value} &lt; 1e-05\\)\n\n\n\n\nFull Model B\n\nPredictors (\\(5\\)):[restricted predictors] + Latitude\n\\(\\text{R}^2_{\\text{adj}} = 0.0856143\\)\n\\(\\text{F}(5, 65817) = 1233.588\\)\n\\(p\\text{-value} &lt; 1e-05\\)"
   },
   {
-    "objectID": "index.html#dataset-characteristics",
-    "href": "index.html#dataset-characteristics",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Dataset characteristics",
-    "text": "Dataset characteristics\n\n\\(120,265 entries\\), divided into \\(94\\) variables, representing a total of \\(11,304,910\\) data points.\nAll fields in the form were mandatory.\nThe value of minutes in the collected times was obtained through intervals of \\(5\\) or \\(10\\) minutes.\nAs it was a prototype, the collection form did not contain response validation rules for most fields, which resulted in a variety of formats in some of the collected variables."
+    "objectID": "index.html#hypothesis-test-4",
+    "href": "index.html#hypothesis-test-4",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Hypothesis Test",
+    "text": "Hypothesis Test\nAll coefficients were statistically different from zero (\\(p\\text{-value} &lt; 0.05\\)). Assumption checking and residual diagnostics primarily relied on visual inspection, as formal assumption tests (e.g., Anderson-Darling) are often not recommended for large samples (Shatz, 2024). All validity assumptions were met, and no serious multicollinearity was found among the predictor variables.\nAn ANOVA for nested models revealed a significant reduction in the residual sum of squares in both tests (A \\(\\text{F}(4, 65814) = 51.71\\), \\(p\\text{-value} &lt; 1e-05\\)) (B \\(\\text{F}(1, 65817) = 37.325\\), \\(p\\text{-value} &lt; 1e-05\\)).\n\nHowever, similarly to Leocadio-Miguel et al. (2017), when estimating Cohen’s \\(f^2\\) effect size (\\(f^2 = 0.004143174\\)), the results were below the MES (i.e., negligible) (A \\(f^2 = 0.0030818, 95\\% \\ \\text{CI}[0, 0.0121371]\\)) (B \\(f^2 = 0.0005519, 95\\% \\ \\text{CI}[0, 0.0095239]\\)).\nSunrise times for the nearest March and September equinoxes, as well as the June and December solstices, were excluded due to high multicollinearity. Daylight duration for the September equinox was excluded for its collinearity with daylight duration during the March equinox."
   },
   {
-    "objectID": "index.html#data-categories",
-    "href": "index.html#data-categories",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Data categories",
-    "text": "Data categories\n\n\nRecord/Control\n\nid\ntimestamp\ntrack\n\n\nPersonal\n\nName\nEmail\nSex\nDate of birth\nCountry of residence\nState of residence\nCity of residence\nResidential ZIP code\n[…]\n\n\nHealth\n\nUse of sleeping medication\nUse of other types of medication\nPresence of sleep disorders"
+    "objectID": "index.html#chronotype-versus-latitude",
+    "href": "index.html#chronotype-versus-latitude",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Chronotype versus Latitude",
+    "text": "Chronotype versus Latitude\n\n\n\n\n\n\n\n\n\n\n\n(Created by the author)\n\nBoxplots of mean MSFsc values aggregated by \\(1°\\) latitude intervals, illustrating the relationship between latitude and chronotype. MSFsc represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSFsc values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale."
   },
   {
-    "objectID": "index.html#data-categories-1",
-    "href": "index.html#data-categories-1",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Data categories",
-    "text": "Data categories\n\n\nHabits\n\nEmployment status\nStudent status\nWork periods\nStudy periods\n\n\nMCTQ standard version\n(workdays days and work-free days)\n\n\n\nNumber of workdays per week\nLocal time of going to bed\nLocal time of preparing to sleep\nSleep latency or time to fall asleep after preparing to sleep\n\n\n\nLocal time of sleep end\nUse of alarm clock to wake up\nTime that it takes to get up after sleep end\nLight exposure"
+    "objectID": "index.html#chronotype-geo.-distribution",
+    "href": "index.html#chronotype-geo.-distribution",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Chronotype Geo. Distribution",
+    "text": "Chronotype Geo. Distribution\n\n\n\n\n\n\n\n\n\n\n\n(Created by the author. The color scale was not transformed and it has as limits the first and third quartile (interquartile range).)\n\nGeographical distribution of MSFsc values by Brazilian state, illustrating how chronotype varies with latitude in Brazil. MSFsc is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSFsc values correspond to later chronotypes. The color scale was not transformed and it has as limits the first and third quartile (interquartile range). Differences in mean MSFsc values across states are small and fall within a narrow range relative to the scale of the Munich ChronoType Questionnaire (MCTQ), limiting the significance of these variations."
   },
   {
-    "objectID": "index.html#section-24",
-    "href": "index.html#section-24",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Faul et al., 2007)"
+    "objectID": "index.html#chronotype-geo.-distribution-1",
+    "href": "index.html#chronotype-geo.-distribution-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Chronotype Geo. Distribution",
+    "text": "Chronotype Geo. Distribution\n\n\n\n\n\n\n\n\n\n\n\n(Created by the author)\n\nRespondent level by categorical chronotype."
   },
   {
-    "objectID": "index.html#section-25",
-    "href": "index.html#section-25",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Wickham & Grolemund, 2016)"
+    "objectID": "index.html#the-p-value-problem",
+    "href": "index.html#the-p-value-problem",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "The p-value Problem",
+    "text": "The p-value Problem\n\n\nLarge samples and sensitivity\nIs a difference of \\(0.00001\\) valid?\nStatistical ritual versus Statistical thinking\nConfirmation bias\n\n\nComparison of a 95% of confidence level (\\(\\alpha = 0.05\\)) and an n-dependent p-value curve. The parameter \\(n_{\\alpha}\\) represents the minimum sample size to detect statistically significant differences among compared groups. The parameter \\(n_{\\gamma}\\) represents the convergence point of the p-value curve. When the p-value curve expresses practical differences, the area under the red curve (\\(A_{p(n)}\\)) is smaller than the area under the constant function \\(\\alpha = 0.05\\) (\\(A_{\\alpha = 0.05}\\)) when it is evaluated between \\(0\\) and \\(n_{\\gamma}\\).\n\n\n\n\n\n\n\n\n(Artwork by Gómez-de-Mariscal et al. (2021))"
   },
   {
-    "objectID": "index.html#section-26",
-    "href": "index.html#section-26",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Vartanian, 2023b)"
+    "objectID": "index.html#the-p-value-problem-1",
+    "href": "index.html#the-p-value-problem-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "The p-value Problem",
+    "text": "The p-value Problem\n\n\n\nSMALL EFFECT SIZE: \\(f^2 = .02\\). Translated into \\(\\text{R}^{2}\\) or partial \\(\\text{R}^{2}\\) for Case 1, this gives \\(.02 / (1 + .02) = .0196\\). We thus define a small effect as one that accounts for 2% of the \\(\\text{Y}\\) variance (in contrast with 1% for \\(r\\)), and translate to an \\(\\text{R} = \\sqrt{0196} = .14\\) (compared to .10 for \\(r\\)). This is a modest enough amount, just barely escaping triviality and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested (p. 413).\n\n\n[…] in many circumstances, all that is intended by “proving” the null hypothesis is that the ES [Effect Size] is not necessarily zero but small enough to be negligible […]. (p. 461).\n\n\n\n\n\n\n\n\n(Cohen, 1988)"
   },
   {
-    "objectID": "index.html#data-plan",
-    "href": "index.html#data-plan",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Data plan",
-    "text": "Data plan\nSee: https://dmphub.cdlib.org/dmps/doi:10.48321/D1DW8P\n\n(Vartanian, 2023a)"
+    "objectID": "index.html#nonrealistic-models",
+    "href": "index.html#nonrealistic-models",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Nonrealistic Models",
+    "text": "Nonrealistic Models\n\n\n(Artwork by Virpi Oinonen)"
   },
   {
-    "objectID": "index.html#research-compendium",
-    "href": "index.html#research-compendium",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Research compendium",
-    "text": "Research compendium\nSee:\n\nhttps://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375986.\nhttps://github.com/danielvartan/mastersthesis"
+    "objectID": "index.html#answer",
+    "href": "index.html#answer",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Answer",
+    "text": "Answer\n\n\n\nI suggest that it is the aim of science to find satisfactory explanations, of whatever strikes us as being in need of explanation.\n\nThis study, using what is arguably the largest dataset on chronotype collected within a single time zone, balanced to reflect population proportions at the time of data collection, found no support for the latitude hypothesis.\n\n\n\n\n\n\n\n(K. R. Popper, 1979, p. 193)"
   },
   {
-    "objectID": "index.html#section-33",
-    "href": "index.html#section-33",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "Local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSFsc), MCTQ proxy for measuring the chronotype, statistics of sample subjects.\n\n\n\n\n\n\nname\nvalue\n\n\n\n\nn\n79198\n\n\nn_rm_na\n79198\n\n\nn_na\n0\n\n\nmean\n04:28:17.770957\n\n\nvar\n08:05:53.49992\n\n\nsd\n01:26:51.406096\n\n\nmin\n00:22:30\n\n\nq_1\n03:26:25.714286\n\n\nmedian\n04:20:42.857143\n\n\nq_3\n05:25:42.857143\n\n\nmax\n08:31:04.285714\n\n\niqr\n01:59:17.142857\n\n\nskewness\n0.284586184927996\n\n\nkurtosis\n2.77321491178072"
-  },
-  {
-    "objectID": "index.html#section-34",
-    "href": "index.html#section-34",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "Residential geographic distribution among sample subjects."
-  },
-  {
-    "objectID": "index.html#section-36",
-    "href": "index.html#section-36",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "Age pyramid of the sample subjects."
-  },
-  {
-    "objectID": "index.html#section-38",
-    "href": "index.html#section-38",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "Relation between age and chronotype, divided by sex. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSFsc), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM)."
-  },
-  {
-    "objectID": "index.html#section-39",
-    "href": "index.html#section-39",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Roenneberg et al., 2007)"
-  },
-  {
-    "objectID": "index.html#section-40",
-    "href": "index.html#section-40",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "Distribution of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSFsc), MCTQ proxy for measuring the chronotype. The categorical cut-offs follow a quantile approach going from extremely early (\\(0 |- 0.11\\)) to the extremely late (\\(0.88 - 1\\))."
-  },
-  {
-    "objectID": "index.html#section-41",
-    "href": "index.html#section-41",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Roenneberg et al., 2019)"
-  },
-  {
-    "objectID": "index.html#section-42",
-    "href": "index.html#section-42",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "Correlation matrix of main variables."
-  },
-  {
-    "objectID": "index.html#section-44",
-    "href": "index.html#section-44",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "Local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSFsc), MCTQ proxy for measuring the chronotype, statistics of sample subjects.\n\n\n\n\n\n\nname\nvalue\n\n\n\n\nn\n76744\n\n\nn_rm_na\n76744\n\n\nn_na\n0\n\n\nmean\n04:28:35.437224\n\n\nvar\n12:15:36.924895\n\n\nsd\n01:26:44.549637\n\n\nmin\n00:22:30\n\n\nq_1\n03:26:47.142857\n\n\nmedian\n04:21:25.714286\n\n\nq_3\n05:26:04.285714\n\n\nmax\n08:31:04.285714\n\n\niqr\n01:59:17.142857\n\n\nskewness\n0.284161285620669\n\n\nkurtosis\n2.77330246940943"
-  },
-  {
-    "objectID": "index.html#section-46",
-    "href": "index.html#section-46",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "Distribution of mean aggregates of the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSFsc), MCTQ proxy for measuring the chronotype, in relation to latitude decimal degree intervals. Higher values of MSFsc indicate a tendency toward a late chronotype. The red line represents a linear regression, and the shaded area indicates a pointwise 95% confidence interval."
-  },
-  {
-    "objectID": "index.html#discussion",
-    "href": "index.html#discussion",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Discussion",
-    "text": "Discussion\nA significant p-value (\\(\\text{p-value} = 2e-16\\)) was found, but with a negligible effect size (Cohen’s \\(f^2 = 0.00740\\)). Based on these results, we must reject \\(\\text{H}_{a}\\) in favor of \\(\\text{H}_{0}\\).\n\\[\n\\begin{cases}\n\\text{H}_{0}: \\text{R}^{2}_{r} &gt;= \\text{R}^{2}_{f} \\\\\n\\text{H}_{a}: \\text{R}^{2}_{r} &lt; \\text{R}^{2}_{f}\n\\end{cases}\n\\]\nIt is then possible to answer one of the study main question: Is latitude associated with the regulation of circadian rhythms in humans? Based on these results the answer is no."
-  },
-  {
-    "objectID": "index.html#section-47",
-    "href": "index.html#section-47",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "",
-    "text": "(Cohen, 1992)"
-  },
-  {
-    "objectID": "index.html#discussion-1",
-    "href": "index.html#discussion-1",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Discussion",
-    "text": "Discussion\nDespite the lack of evidence, is not uncommon to hear talks insisting that the latitude effect is real and already confirmed, but, at this time, at least in humans, no empirical evidence can support this claim.\nThe results show that even with a wide latitudinal spectrum and with a big and aligned sample of biological states the latitude effect does not reveal itself in a non-negligible size.\nAs Karl Popper said, science begins and ends with questions (Popper, 1979). The absence of a strong entrainment with the solar zeitgeber shows that the entrainment phenomenon is more complex than we previously imagined. Other hypotheses for the human circadian entrainment, like the entrainment to self-selected light, proposed by Anna Skeldon and Derk-Jan Dijk (2021), need to be tested and may produce significant results."
-  },
-  {
-    "objectID": "index.html#visibilityhidden-idk",
-    "href": "index.html#visibilityhidden-idk",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "{visibility=“hidden”} # IDK",
-    "text": "{visibility=“hidden”} # IDK"
-  },
-  {
-    "objectID": "index.html#final-remarks",
-    "href": "index.html#final-remarks",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
-    "section": "Final remarks",
-    "text": "Final remarks\n\n\nThis thesis was presented to the School of Arts, Sciences and Humanities (EACH) at the University of São Paulo (USP), as a requirement for the degree of Master of Science by the Graduate Program in Complex Systems Modeling (PPG-SCX).\nFinancial support was provided by the Coordination for the Improvement of Higher Education Personnel (CAPES (Grant number: 88887.703720/2022-00).\n\nThesis Supervisor: Prof. Dr. Camilo Rodrigues Neto.\nArea of concentration: Fundamentals of complex systems.\nYou can learn more about this work at: https://github.com/danielvartan/mastersthesis"
+    "objectID": "index.html#closing-remarks",
+    "href": "index.html#closing-remarks",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Closing remarks",
+    "text": "Closing remarks\n \nThis thesis was presented to the School of Arts, Sciences and Humanities (EACH) at the University of São Paulo (USP) as a requirement for the degree of Master of Science by the Graduate Program in Complex Systems Modeling (PPGSCX).\nThe presentation was created using the Quarto publishing system. All analyses presented are fully reproducible and were conducted using the R programming language.\nTo explore the code and repository for this thesis, click here. The research compendium is also accessible via The Open Science Framework by clicking here.\nFinancial support was provided by the Coordination for the Improvement of Higher Education Personnel (CAPES) (Grant number: 88887.703720/2022-00)."
   },
   {
     "objectID": "index.html#references",
     "href": "index.html#references",
-    "title": "Ecology of sleep and circadian phenotypes of the Brazilian population",
+    "title": "Is Latitude Associated with Chronotype?",
     "section": "References",
-    "text": "References\n\nIn accordance with the American Psychological Association (APA) Style, 7th edition.\n\n\n\nAllen, M. P. (1997). Understanding regression analysis. Plenum Press.\n\n\nBorbély, A. A. (1982). A two process model of sleep regulation. Human Neurobiology, 1(3), 195–204. https://pubmed.ncbi.nlm.nih.gov/7185792/\n\n\nBuhr, E. D., & Takahashi, J. S. (2013). Molecular components of the mammalian circadian clock. In A. Kramer & M. Merrow (Eds.), Circadian Clocks (Vol. 217, pp. 3–27). Springer. https://doi.org/10.1007/978-3-642-25950-0_1\n\n\nCohen, J. (1992). A power primer. Psychological Bulletin, 112(1), 155–159. https://doi.org/10.1037/0033-2909.112.1.155\n\n\nDuffy, J. F., Cain, S. W., Chang, A.-M., Phillips, A. J. K., Münch, M. Y., Gronfier, C., Wyatt, J. K., Dijk, D.-J., Wright, K. P., & Czeisler, C. A. (2011). Sex difference in the near-24-hour intrinsic period of the human circadian timing system. Proceedings of the National Academy of Sciences, 108, 15602–15608. https://doi.org/10.1073/pnas.1010666108\n\n\nFaul, F., Erdfelder, E., Lang, A.-G., & Buchner, A. (2007). G*Power 3: A flexible statistical power analysis program for the social, behavioral, and biomedical sciences. Behavior Research Methods, 39(2), 175–191. https://doi.org/10.3758/BF03193146\n\n\nGlobo. (2017, October 15). Metade da população se sente mal no horário de verão, revela pesquisa. Fantástico. https://globoplay.globo.com/v/6219513/\n\n\nHut, R. A., Paolucci, S., Dor, R., Kyriacou, C. P., & Daan, S. (2013). Latitudinal clines: An evolutionary view on biological rhythms. Proceedings of the Royal Society B: Biological Sciences, 280(1765), 20130433. https://doi.org/10.1098/rspb.2013.0433\n\n\nInstituto Brasileiro de Geografia e Estatística. (n.d.-a). Tabela 6407: População residente, por sexo e grupos de idade [Table]. SIDRA. Retrieved November 16, 2023, from https://sidra.ibge.gov.br/tabela/6407\n\n\nInstituto Brasileiro de Geografia e Estatística. (n.d.-b). Tabela 7109: População residente, por sexo e grupo de idade [Table]. SIDRA. Retrieved November 16, 2023, from https://sidra.ibge.gov.br/tabela/7109\n\n\nInstituto Brasileiro de Geografia e Estatística. (n.d.-c). Tabela 7113: Taxa de analfabetismo das pessoas de 15 anos ou mais de idade, por sexo e grupo de idade [Table]. SIDRA. Retrieved November 16, 2023, from https://sidra.ibge.gov.br/tabela/7113\n\n\nInstituto Brasileiro de Geografia e Estatística. (2021). Pesquisa nacional por amostra de domicílios contínua: Acesso à internet e à televisão e posse de telefone móvel celular para uso pessoal 2019. Instituto Brasileiro de Geografia e Estatística. https://biblioteca.ibge.gov.br/visualizacao/livros/liv101794_informativo.pdf\n\n\nKuhlman, S. J., Craig, L. M., & Duffy, J. F. (2018). Introduction to chronobiology. Cold Spring Harbor Perspectives in Biology, 10(9), a033613. https://doi.org/10.1101/cshperspect.a033613\n\n\nLeocadio-Miguel, M. A., Louzada, F. M., Duarte, L. L., Areas, R. P., Alam, M., Freire, M. V., Fontenele-Araujo, J., Menna-Barreto, L., & Pedrazzoli, M. (2017). Latitudinal cline of chronotype. Scientific Reports, 7(1), 5437. https://doi.org/10.1038/s41598-017-05797-w\n\n\nLeocadio-Miguel, M. A., Oliveira, V. C. D., Pereira, D., & Pedrazzoli, M. (2014). Detecting chronotype differences associated to latitude: A comparison between Horne–Östberg and Munich Chronotype questionnaires. Annals of Human Biology, 41(2), 107–110. https://doi.org/10.3109/03014460.2013.832795\n\n\nMerrow, M., & Roenneberg, T. (2020). Circadian clocks: How rhythms structure life [Online course]. https://www.coursera.org/learn/circadian-clocks\n\n\nMitchell, M. (2013). Introduction to complexity [Online course]. https://www.complexityexplorer.org/courses/\n\n\nPittendrigh, C. S., Kyner, W. T., & Takamura, T. (1991). The amplitude of circadian oscillations: Temperature dependence, latitudinal clines, and the photoperiodic time measurement. Journal of Biological Rhythms, 6(4), 299–313. https://doi.org/10.1177/074873049100600402\n\n\nPopper, K. R. (1979). Objective knowledge: An evolutionary approach. Oxford University Press.\n\n\nRandler, C. (2008). Morningness‐eveningness comparison in adolescents from different countries around the world. Chronobiology International, 25(6), 1017–1028. https://doi.org/10.1080/07420520802551519\n\n\nRandler, C., & Rahafar, A. (2017). Latitude affects morningness-eveningness: Evidence for the environment hypothesis based on a systematic review. Scientific Reports, 7(1), 39976. https://doi.org/10.1038/srep39976\n\n\nRoenneberg, T., Foster, R. G., & Klerman, E. B. (2022). The circadian system, sleep, and the health/disease balance: A conceptual review. Journal of Sleep Research, 31(4), e13621. https://doi.org/10.1111/jsr.13621\n\n\nRoenneberg, T., Kuehnle, T., Juda, M., Kantermann, T., Allebrandt, K., Gordijn, M., & Merrow, M. (2007). Epidemiology of the human circadian clock. Sleep Medicine Reviews, 11(6), 429–438. https://doi.org/10.1016/j.smrv.2007.07.005\n\n\nRoenneberg, T., Pilz, L. K., Zerbini, G., & Winnebeck, E. C. (2019). Chronotype and social jetlag: A (self-) critical review. Biology, 8(3), 54. https://doi.org/10.3390/biology8030054\n\n\nRoenneberg, T., Wirz-Justice, A., & Merrow, M. (2003). Life between clocks: Daily temporal patterns of human chronotypes. Journal of Biological Rhythms, 18(1), 80–90. https://doi.org/10.1177/0748730402239679\n\n\nSkeldon, A. C., & Dijk, D. (2021). Weekly and seasonal variation in the circadian melatonin rhythm in humans: Entrained to local clock time, social time, light exposure or sun time? Journal of Pineal Research, 71(1), e12746. https://doi.org/10.1111/jpi.12746\n\n\nThe Worldwide Experimental Platform. (n.d.). MCTQ. The Worldwide Experimental Platform. Retrieved July 17, 2023, from https://www.thewep.org/documentations/mctq\n\n\nVartanian, D. (2023a). Ecologia do sono e de fenótipos circadianos da população brasileira [Data Management Plan]. DMPHub. https://doi.org/10.48321/D1DW8P\n\n\nVartanian, D. (2023b). {Mctq}: Tools to process the Munich ChronoType Questionnaire (MCTQ) (Version 0.3.2) [Computer software]. https://docs.ropensci.org/mctq/\n\n\nWickham, H., & Grolemund, G. (2016). R for data science. O’Reilly. https://r4ds.had.co.nz"
+    "text": "References\n\nIn accordance with the American Psychological Association (APA) Style, 7th edition.\n\n\n\nBorbély, A. A. (1982). A two process model of sleep regulation. Human Neurobiology, 1(3), 195–204. https://pubmed.ncbi.nlm.nih.gov/7185792/\n\n\nCohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). Lawrence Erlbaum Associates.\n\n\nCohen, J. (1992). A power primer. Psychological Bulletin, 112(1), 155–159. https://doi.org/10.1037/0033-2909.112.1.155\n\n\nComte, A. (1892). Cours de philosophie positive (5th ed., Vol. 1). Au Siège de la Société Positiviste. http://archive.org/details/coursdephilosoph01comt\n\n\nDuffy, J. F., Cain, S. W., Chang, A.-M., Phillips, A. J. K., Münch, M. Y., Gronfier, C., Wyatt, J. K., Dijk, D.-J., Wright, K. P., & Czeisler, C. A. (2011). Sex difference in the near-24-hour intrinsic period of the human circadian timing system. Proceedings of the National Academy of Sciences, 108, 15602–15608. https://doi.org/10.1073/pnas.1010666108\n\n\nEpstein, J. M. (1999). Agent-based computational models and generative social science. Complexity, 4(5), 41–60. https://doi.org/10.1002/(SICI)1099-0526(199905/06)4:5&lt;41::AID-CPLX9&gt;3.0.CO;2-F\n\n\nFlanagan, A., Bechtold, D. A., Pot, G. K., & Johnston, J. D. (2021). Chrono-nutrition: From molecular and neuronal mechanisms to human epidemiology and timed feeding patterns. Journal of Neurochemistry, 157(1), 53–72. https://doi.org/10.1111/jnc.15246\n\n\nGómez-de-Mariscal, E., Guerrero, V., Sneider, A., Jayatilaka, H., Phillip, J. M., Wirtz, D., & Muñoz-Barrutia, A. (2021). Use of the p-values as a size-dependent function to address practical differences when analyzing large datasets. Scientific Reports, 11(1, 1), 20942. https://doi.org/10.1038/s41598-021-00199-5\n\n\nHolland, J. H. (2012). Signals and boundaries: Building blocks for complex adaptive systems. MIT Press. https://doi.org/10.7551/mitpress/9412.001.0001\n\n\nHolland, J. H. (2014). Complexity: A very short introduction. Oxford University Press.\n\n\nHorne, J. A., & Östberg, O. (1976). A self-assessment questionnaire to determine morningness-eveningness in human circadian rhythms. International Journal of Chronobiology, 4(2), 97–110.\n\n\nKuhlman, S. J., Craig, L. M., & Duffy, J. F. (2018). Introduction to chronobiology. Cold Spring Harbor Perspectives in Biology, 10(9), a033613. https://doi.org/10.1101/cshperspect.a033613\n\n\nLeocadio-Miguel, M. A., Louzada, F. M., Duarte, L. L., Areas, R. P., Alam, M., Freire, M. V., Fontenele-Araujo, J., Menna-Barreto, L., & Pedrazzoli, M. (2017). Latitudinal cline of chronotype. Scientific Reports, 7(1), 5437. https://doi.org/10.1038/s41598-017-05797-w\n\n\nLewin, R. (1993). Complexity: Life at the edge of chaos. Collier Books.\n\n\nMerrow, M., & Roenneberg, T. (2020). Circadian clocks: How rhythms structure life [Online course]. https://www.coursera.org/learn/circadian-clocks\n\n\nNeyman, J., & Pearson, E. S. (1928a). On the use and interpretation of certain test criteria for purposes of statistical inference: Part I. Biometrika, 20A(1/2), 175–240. https://doi.org/10.2307/2331945\n\n\nNeyman, J., & Pearson, E. S. (1928b). On the use and interpretation of certain test criteria for purposes of statistical inference: Part II. Biometrika, 20A(3/4), 263–294. https://doi.org/10.2307/2332112\n\n\nNicolis, G., & Nicolis, C. (2012). Foundations of complex systems: Emergence, information and prediction (2nd ed.). World Scientific.\n\n\nNobel Prize Outreach AB. (n.d.). Press release. The Nobel Prize. Retrieved September 28, 2023, from https://www.nobelprize.org/prizes/medicine/2017/press-release/\n\n\nPereira, E. B., Martins, F. R., Gonçalves, A. R., Costa, R., Lima, F. J. L., Rüther, R., Abreu, S. L., Tiepolo, G. M., Pereira, S. V., & Souza, J. G. (2017). Atlas brasileiro de energia solar (2nd ed.). Instituto Nacional de Pesquisas Espaciais. https://doi.org/10.34024/978851700089\n\n\nPerezgonzalez, J. D. (2015). Fisher, Neyman-Pearson or NHST? A tutorial for teaching data testing. Frontiers in Psychology, 6. https://doi.org/10.3389/fpsyg.2015.00223\n\n\nPopper, K. (2005). Unended quest: An intellectual autobiography (2nd ed.). Taylor and Francis.\n\n\nPopper, K. R. (1979). Objective knowledge: An evolutionary approach. Oxford University Press.\n\n\nPopper, K. R. (2002). Conjectures and refutations: The growth of scientific knowledge. Routledge.\n\n\nPopper, K. R. (2005). The logic of scientific discovery. Routledge.\n\n\nRede Globo (Director). (2017, October 15). Metade da população se sente mal no horário de verão, revela pesquisa. Rede Globo. https://g1.globo.com/fantastico/noticia/2017/10/metade-da-populacao-se-sente-mal-no-horario-de-verao-revela-pesquisa.html\n\n\nRoenneberg, T., Kuehnle, T., Juda, M., Kantermann, T., Allebrandt, K., Gordijn, M., & Merrow, M. (2007). Epidemiology of the human circadian clock. Sleep Medicine Reviews, 11(6), 429–438. https://doi.org/10.1016/j.smrv.2007.07.005\n\n\nRoenneberg, T., Wirz-Justice, A., & Merrow, M. (2003). Life between clocks: Daily temporal patterns of human chronotypes. Journal of Biological Rhythms, 18(1), 80–90. https://doi.org/10.1177/0748730402239679\n\n\nRoenneberg, T., Wirz-Justice, A., Skene, D. J., Ancoli-Israel, S., Wright, K. P., Dijk, D.-J., Zee, P., Gorman, M. R., Winnebeck, E. C., & Klerman, E. B. (2019). Why should we abolish daylight saving time? Journal of Biological Rhythms, 34(3), 227–230. https://doi.org/10.1177/0748730419854197\n\n\nShatz, I. (2024). Assumption-checking rather than (just) testing: The importance of visualization and effect size in statistical diagnostics. Behavior Research Methods, 56(2), 826–845. https://doi.org/10.3758/s13428-023-02072-x\n\n\nThe Worldwide Experimental Platform. (n.d.). MCTQ. The Worldwide Experimental Platform. Retrieved July 17, 2023, from https://www.thewep.org/documentations/mctq\n\n\nWhat is complexity? (2023, February 17). Santa Fe Institute. https://www.youtube.com/watch?v=JR93X7xK05o\n\n\nWilson, R. (2004, October 2). Emergence isn’t magic. New Scientist, 2467. https://www.newscientist.com/letter/mg18424674-700-emergence-isnt-magic/"
+  },
+  {
+    "objectID": "index.html#ap-mimosa-pudica",
+    "href": "index.html#ap-mimosa-pudica",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Mimosa Pudica\n",
+    "text": "(AP) Mimosa Pudica\n\n\n\n(Artwork by Nobel Prize Outreach AB (n.d.))\n\nIllustration of the circadian rhythm in leaf movement of the sensitive plant (Mimosa pudica) observed by Jacques d’Ortous de Mairan in 1729."
+  },
+  {
+    "objectID": "index.html#ap-entrainment",
+    "href": "index.html#ap-entrainment",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Entrainment",
+    "text": "(AP) Entrainment\n\n\n(Adapted by the author from Kuhlman et al. (2018, fig. 2B))\n\nIllustration of a circadian rhythm entrained (Phase-advanced, indicated by a leftward shift) by a zeitgeber (Input)."
+  },
+  {
+    "objectID": "index.html#ap-emergence",
+    "href": "index.html#ap-emergence",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Emergence",
+    "text": "(AP) Emergence\n\nStable macroscopic patterns arising from local interaction of agents (Epstein, 1999).\nWhen the aggregate exhibits properties not attained by summation (Holland, 2014).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(Videos by Kurzgesagt – In a Nutshell, Quanta Magazine, and Journey to the Microcosmos)\n\nThe behavior of each part don’t explain how they behave collectively.\nLevels of description (Nicolis & Nicolis, 2012).\nIn mathematical terms, the interactions of interest are non-linear (Holland, 2014).\nEmergence isn’t magic (Wilson, 2004).\nYou are dealing with an emergence phenomenon when there is no need to look under the hood (Complexity Explorer Lecture, 2023)."
+  },
+  {
+    "objectID": "index.html#ap-emergence-1",
+    "href": "index.html#ap-emergence-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Emergence",
+    "text": "(AP) Emergence\n\n\n(Lewin, 1993)"
+  },
+  {
+    "objectID": "index.html#ap-emergence-2",
+    "href": "index.html#ap-emergence-2",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Emergence",
+    "text": "(AP) Emergence\nAn aggregate behavior emerges from the interactions of the parts (CAS) (Holland, 2012).\n\n\n(Artwork by Holland, 2012)\n\nIllustrative example: Societies; immune cells.\nA society is formed by individuals and their interactions. In this case, we are the agents and the society is the aggregate agent. And, as we know, we shape the society, but the society also shapes us."
+  },
+  {
+    "objectID": "index.html#ap-earths-rotation-axis",
+    "href": "index.html#ap-earths-rotation-axis",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Earth’s Rotation Axis",
+    "text": "(AP) Earth’s Rotation Axis"
+  },
+  {
+    "objectID": "index.html#section-7",
+    "href": "index.html#section-7",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "",
+    "text": "(The Worldwide Experimental Platform, n.d.)"
+  },
+  {
+    "objectID": "index.html#ap-corr.-matrix",
+    "href": "index.html#ap-corr.-matrix",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Corr. Matrix",
+    "text": "(AP) Corr. Matrix\n\n\n\n\n\n\n\n\n\n\n\n(Created by the author)\n\nCorrelation matrix of main variables."
+  },
+  {
+    "objectID": "index.html#ap-chronotype-comparison",
+    "href": "index.html#ap-chronotype-comparison",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Chronotype Comparison",
+    "text": "(AP) Chronotype Comparison\n\n\nBrazil\n\n\n\n\n\n\n\n\n\nEurope\n\n\n\n(Created by the author, based on a data visualization from Roenneberg et al. (2019, Right Figure))\n\n\nLeft: Distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSFsc), a proxy for chronotype. Chronotypes are categorized into quantiles, ranging from extremely early (\\(0 |- 0.11\\)) to extremely late (\\(0.88 - 1\\)).\nRight: Distribution of European chronotypes, as shown in Roenneberg et al. (2019) (for comparison)."
+  },
+  {
+    "objectID": "index.html#ap-age-versus-chronotype",
+    "href": "index.html#ap-age-versus-chronotype",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Age versus Chronotype",
+    "text": "(AP) Age versus Chronotype\n\n\nBrazil\n\n\n\n\n\n\n\n\n\nEurope\n\n\n\n(Created by the author, based on a data visualization from Roenneberg et al. (2007, Right Figure))\n\n\nLeft: Relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSFsc), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).\nRight: Distribution of European chronotypes by age, as shown in Roenneberg et al. (2007), for comparison."
+  },
+  {
+    "objectID": "index.html#ap-chronotype-geo.-dist.",
+    "href": "index.html#ap-chronotype-geo.-dist.",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Chronotype Geo. Dist.",
+    "text": "(AP) Chronotype Geo. Dist.\n\n\n\n\n\n\n\n\n\n\n\n(Created by the author. The color scale was not transformed and it has as limits the first and third quartile (interquartile range).)\n\nMunicipality level."
+  },
+  {
+    "objectID": "index.html#ap-chronotype-geo.-dist.-1",
+    "href": "index.html#ap-chronotype-geo.-dist.-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Chronotype Geo. Dist.",
+    "text": "(AP) Chronotype Geo. Dist.\n\n\n\n\n\n\n\n\n\n\n\n(Created by the author)\n\nRespondent level by categorical chronotype."
+  },
+  {
+    "objectID": "index.html#ap-cohens-benchmarks",
+    "href": "index.html#ap-cohens-benchmarks",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Cohen’s Benchmarks",
+    "text": "(AP) Cohen’s Benchmarks\n\n\n(Cohen, 1992)"
+  },
+  {
+    "objectID": "index.html#ap-directions-for-fut.-research",
+    "href": "index.html#ap-directions-for-fut.-research",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Directions for Fut. Research",
+    "text": "(AP) Directions for Fut. Research\nWorldClim 2.1 in NetLogo (NetLogo/Scala-Java).\n\n\n(Vartanian et al., 2025, Unpublished)"
+  },
+  {
+    "objectID": "index.html#ap-poppers-hypothetico-deductive-method",
+    "href": "index.html#ap-poppers-hypothetico-deductive-method",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Popper’s hypothetico-deductive method",
+    "text": "(AP) Popper’s hypothetico-deductive method\nThe activity can be represented by a general schema of problem- solving by the method of imaginative conjectures and criticism, or, as I have often called it, by the method of conjecture and refutation. The schema (in its simplest form) is this:\n\n\n\n\n\n\n\nflowchart LR\n  A(P1) --&gt; B(TT)\n  B --&gt; C(EE)\n  C --&gt; D(P2)\n\n\n\n\n\n\n\n\n\n\n\n\nflowchart LR\n  A(P) --&gt; B(TT)\n  B --&gt; C(EE)\n  C --&gt; A\n\n\n\n\n\n\n\n\n(K. R. Popper, 1979, p. 164)"
+  },
+  {
+    "objectID": "index.html#ap-poppers-hypothetico-deductive-method-1",
+    "href": "index.html#ap-poppers-hypothetico-deductive-method-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Popper’s hypothetico-deductive method",
+    "text": "(AP) Popper’s hypothetico-deductive method\nHere \\(\\text{P}_1\\), is the problem from which we start, \\(\\text{TT}\\) (the ‘tentative theory’) is the imaginative conjectural solution which we first reach, for example our first tentative interpretation. \\(\\text{EE}\\) (‘error- elimination’) consists of a severe critical examination of our conjecture, our tentative interpretation: it consists, for example, of the critical use of documentary evidence and, if we have at this early stage more than one conjecture at our disposal, it will also consist of a critical discussion and comparative evaluation of the competing conjectures. \\(\\text{P}_2\\) is the problem situation as it emerges from our first critical attempt to solve our problems. It leads up to our second attempt (and so on).\n\n\n\n\n\nflowchart LR\n  A(P1) --&gt; B(TT)\n  B --&gt; C(EE)\n  C --&gt; D(P2)\n\n\n\n\n\n\n\n(K. R. Popper, 1979, p. 164)"
+  },
+  {
+    "objectID": "index.html#ap-poppers-hypothetico-deductive-method-2",
+    "href": "index.html#ap-poppers-hypothetico-deductive-method-2",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Popper’s hypothetico-deductive method",
+    "text": "(AP) Popper’s hypothetico-deductive method\nThe history of ideas teaches us very clearly that ideas emerge in logical or, if the term is preferred, in dialectical contexts. My various schemata such as\n\n\n\n\n\nflowchart LR\n  A(P1) --&gt; B(TT)\n  B --&gt; C(EE)\n  C --&gt; D(P2)\n\n\n\n\n\n\nmay indeed be looked upon as improvements and rationalizations of the Hegelian dialectical schema: they are rationalizations because they operate entirely within the classical logical organon of rational criticism, which is based upon the so-called law of contradiction; that is to say, upon the demand that contradictions, whenever we discover them, must be eliminated. Critical error-elimination on the scientific level proceeds by way of a conscious search for contradictions.\n\n(K. R. Popper, 1979, p. 297)"
+  },
+  {
+    "objectID": "index.html#ap-popper-against-positivism-or-the-problem-of-induction",
+    "href": "index.html#ap-popper-against-positivism-or-the-problem-of-induction",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Popper against positivism (or the problem of induction)",
+    "text": "(AP) Popper against positivism (or the problem of induction)\nNotre activité intellectuelle est suffisamment excitée par le pur espoir de découvrir les lois des phénomènes, par le simple désir de confirmer ou d’infirmer une théorie. […] la philosophie positive est le véritable état définitif de l’intelligence humaine […] (Comte, 1892, pp. 9–10).\n\nWhy post-positivist?\n\nAnti-inductivist (deduction, satisfactory answers)\nAnti-verificationist (falsifiability as demarcation criterion)\nAnti-historicist (rebuttable presumptions)"
+  },
+  {
+    "objectID": "index.html#ap-popper-against-positivism-or-the-problem-of-induction-1",
+    "href": "index.html#ap-popper-against-positivism-or-the-problem-of-induction-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Popper against positivism (or the problem of induction)",
+    "text": "(AP) Popper against positivism (or the problem of induction)\nBut I shall certainly admit a system as empirical or scientific only if it is capable of being tested by experience. These considerations suggest that not the verifiability but the falsifiability of a system is to be taken as a criterion of demarcation. In other words: I shall not require of a scientific system that it shall be capable of being singled out, once and for all, in a positive sense; but I shall require that its logical form shall be such that it can be singled out, by means of empirical tests, in a negative sense: it must be possible for an empirical scientific system to be refuted by experience.\n\n(K. R. Popper, 2005)"
+  },
+  {
+    "objectID": "index.html#ap-popper-against-positivism-or-the-problem-of-induction-2",
+    "href": "index.html#ap-popper-against-positivism-or-the-problem-of-induction-2",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) Popper against positivism (or the problem of induction)",
+    "text": "(AP) Popper against positivism (or the problem of induction)\n\n\nEverybody knows nowadays that logical positivism is dead. But nobody seems to suspect that there may be a question to be asked here — the question “Who is responsible?” or, rather, the question “Who has done it?”. (Passmore’s excellent historical article does not raise this question.) I fear that I must admit responsibility.\n\n\n\n\n\n\n\n(K. Popper, 2005)"
+  },
+  {
+    "objectID": "index.html#ap-the-7-conclusions-of-popper-on-science",
+    "href": "index.html#ap-the-7-conclusions-of-popper-on-science",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) The 7 conclusions of Popper on science",
+    "text": "(AP) The 7 conclusions of Popper on science\n\n\n\nIt is easy to obtain confirmations, or verifications, for nearly every theory —if we look for confirmations.\nConfirmations should count only if they are the result of risky predictions; that is to say, if, unenlightened by the theory in question, we should have expected an event which was incompatible with the theory—an event which would have refuted the theory.\n\n\n\n\n\n\n\n\n(K. R. Popper, 2002)"
+  },
+  {
+    "objectID": "index.html#ap-the-7-conclusions-of-popper-on-science-1",
+    "href": "index.html#ap-the-7-conclusions-of-popper-on-science-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) The 7 conclusions of Popper on science",
+    "text": "(AP) The 7 conclusions of Popper on science\n\n\n\nEvery ‘good’ scientific theory is a prohibition: it forbids certain things to happen. The more a theory forbids, the better it is.\nA theory which is not refutable by any conceivable event is nonscientific. Irrefutability is not a virtue of a theory (as people often think) but a vice.\n\n\n\n\n\n\n\n\n(K. R. Popper, 2002)"
+  },
+  {
+    "objectID": "index.html#ap-the-7-conclusions-of-popper-on-science-2",
+    "href": "index.html#ap-the-7-conclusions-of-popper-on-science-2",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) The 7 conclusions of Popper on science",
+    "text": "(AP) The 7 conclusions of Popper on science\n\n\n\nEvery genuine test of a theory is an attempt to falsify it, or to refute it. Testability is falsifiability; but there are degrees of testability: some theories are more testable, more exposed to refutation, than others; they take, as it were, greater risks.\nConfirming evidence should not count except when it is the result of a genuine test of the theory; and this means that it can be presented as a serious but unsuccessful attempt to falsify the theory. (I now speak in such cases of ‘corroborating evidence’).\n\n\n\n\n\n\n\n\n(K. R. Popper, 2002)"
+  },
+  {
+    "objectID": "index.html#ap-the-7-conclusions-of-popper-on-science-3",
+    "href": "index.html#ap-the-7-conclusions-of-popper-on-science-3",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) The 7 conclusions of Popper on science",
+    "text": "(AP) The 7 conclusions of Popper on science\n\n\n\nSome genuinely testable theories, when found to be false, are still upheld by their admirers — for example by introducing ad hoc some auxiliary assumption, or by re-interpreting the theory ad hoc in such a way that it escapes refutation. Such a procedure is always possible, but it rescues the theory from refutation only at the price of destroying, or at least lowering, its scientific status. (I later described such a rescuing operation as a ‘conventionalist twist’ or a ‘conventionalist stratagem’).\n\n\n\n\n\n\n\n\n(K. R. Popper, 2002)"
+  },
+  {
+    "objectID": "index.html#ap-the-7-conclusions-of-popper-on-science-4",
+    "href": "index.html#ap-the-7-conclusions-of-popper-on-science-4",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "(AP) The 7 conclusions of Popper on science",
+    "text": "(AP) The 7 conclusions of Popper on science\n\n\nOne can sum up all this by saying that the criterion of the scientific status of a theory is its falsifiability, or refutability, or testability.\n\n\n\n\n\n\n\n(K. R. Popper, 2002)"
   }
 ]

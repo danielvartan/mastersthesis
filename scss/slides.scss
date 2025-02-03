@@ -1,17 +1,40 @@
 /*-- scss:defaults --*/
 
-// Colors ----------
-//
-// - #EA7701 (PANTONE Lugano Sunset Orange)
-// - #2780E3 (Bootswatch's Cosmo primary color)
-
 $primary: #EA7701 !default;
 $presentation-title-slide-text-align: left;
 $link-color: $primary;
 
 /*-- scss:rules --*/
 
-// #title
+/* Body ----- */
+
+:root {
+  --r-selection-background-color: #EA7701;
+  --r-link-color: #EA7701;
+  --r-link-color-dark: #EA7701;
+  --r-link-color-hover: #EA7701;
+}
+
+.footer a {
+  color: #EA7701;
+}
+
+/*
+p {
+  line-height: 1.3;
+  font-size: 1.6rem;
+}
+*/
+
+.medium {
+  font-size: 0.85em;
+}
+
+.small {
+  font-size: 0.75em;
+}
+
+/* Title Slide ----- */
 
 .theme-title-h1 {
   background-color: $primary;
@@ -20,6 +43,18 @@ $link-color: $primary;
     color: white;
   }
 }
+
+/* Headings ----- */
+
+h1 {
+  color: #EA7701;
+}
+
+h2 {
+  margin-bottom: 2rem;
+}
+
+/* Others ----- */
 
 .border {
   border: 1px solid #dee2e6;
@@ -41,25 +76,6 @@ $link-color: $primary;
   height: 90%;
 }
 
-h1 {
-  color: #EA7701;
-}
-
-.medium {
-  font-size: 0.85em;
-}
-
-.small {
-  font-size: 0.75em;
-}
-
-:root {
-  --r-selection-background-color: #EA7701;
-  --r-link-color: #EA7701;
-  --r-link-color-dark: #EA7701;
-  --r-link-color-hover: #EA7701;
-}
-
-.reveal .footer a {
-  color: #EA7701;
+.brandorange {
+  color: $primary;
 }

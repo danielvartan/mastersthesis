@@ -15,13 +15,13 @@ During the development of this thesis, several activities have been accomplished
 
 The following graduate courses from the University of São Paulo ([USP](https://www5.usp.br/)) were completed during the first year of the master's program.
 
-* 2022/2: [_SCX5000 - Mathematical and Computational Methods I_](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5000) (10 credits) (Concept: __C__);
-* 2022/2: [_SCX5002 - Complex Systems I_](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5002) (10 credits) (Concept: __A__);
-* 2023/1: [_SCX5001 - Mathematical and Computational Methods II_](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5001) (10 credits) (Concept: __A__);
-* 2023/1: [_SCX5017 - Introduction to Data Science_](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5017) (10 credits) (Concept: __A__);
-* 2023/1: [_EAH5001 - Pedagogic Preparation_](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=EAH5001) (4 credits) (Concept: __A__).
+* 2022/2: [*SCX5000 - Mathematical and Computational Methods I*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5000) (10 credits) (Concept: **C**);
+* 2022/2: [*SCX5002 - Complex Systems I*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5002) (10 credits) (Concept: **A**);
+* 2023/1: [*SCX5001 - Mathematical and Computational Methods II*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5001) (10 credits) (Concept: **A**);
+* 2023/1: [*SCX5017 - Introduction to Data Science*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5017) (10 credits) (Concept: **A**);
+* 2023/1: [*EAH5001 - Pedagogic Preparation*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=EAH5001) (4 credits) (Concept: **A**).
 
-Please note that the unfortunate __C__ concept above happened in the same semester when the author broke relations with his former supervisor.
+Please note that the unfortunate **C** concept above happened in the same semester when the author broke relations with his former supervisor.
 
 44 discipline credits were completed by this thesis publication date. An additional 12 special credits, related to an article publication (see @viana-mendes2023), were requested and approved by the Graduate Program Coordination Commission (CCP) in accordance with [program regulations](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019). In total, 56 credits were earned. A minimum of 50 credits is required for the thesis defense.
 
@@ -29,11 +29,11 @@ Please note that the unfortunate __C__ concept above happened in the same semest
 
 Scholarship students under the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) are required to participate in the [Teaching Improvement Program (PAE)](www5.each.usp.br/pae/). This internship occur in the 2º semester of 2023.
 
-The internship responsibilities entailed serving as an Assistant Professor for the undergraduate course [_ACH0042 - Problem-Based Learning II_](https://uspdigital.usp.br/jupiterweb/obterDisciplina?nomdis=&sgldis=ACH0042) at USP. A comprehensive teaching plan was formulated during enrollment in the aforementioned graduate course _EAH5001_, and it is accessible through the following link.
+The internship responsibilities entailed serving as an Assistant Professor for the undergraduate course [*ACH0042 - Problem-Based Learning II*](https://uspdigital.usp.br/jupiterweb/obterDisciplina?nomdis=&sgldis=ACH0042) at USP. A comprehensive teaching plan was formulated during enrollment in the aforementioned graduate course *EAH5001*, and it is accessible through the following link.
 
 <!-- @vartanian2023b -->
 
-Vartanian, D., Rodrigues Neto, C, & Bernardes, M. E. M. (2023). _Plano de ensino: ACH0042 - Resolução de Problemas II_. <https://doi.org/10.13140/RG.2.2.33335.50086>
+Vartanian, D., Rodrigues Neto, C, & Bernardes, M. E. M. (2023). *Plano de ensino: ACH0042 - Resolução de Problemas II*. <https://doi.org/10.13140/RG.2.2.33335.50086>
 
 ## Publications
 
@@ -41,7 +41,7 @@ The following article was published during the development of this thesis.
 
 <!-- @viana-mendes2023 -->
 
-Viana-Mendes, J., Benedito-Silva, A. A., Andrade, M. A. M., __Vartanian, D.__, Gonçalves, B. da S. B., Cipolla-Neto, J., & Pedrazzoli, M. (2023). Actigraphic characterization of sleep and circadian phenotypes of PER3 gene VNTR genotypes. _Chronobiology International_. <https://doi.org/10.1080/07420528.2023.2256858>
+Viana-Mendes, J., Benedito-Silva, A. A., Andrade, M. A. M., **Vartanian, D.**, Gonçalves, B. da S. B., Cipolla-Neto, J., & Pedrazzoli, M. (2023). Actigraphic characterization of sleep and circadian phenotypes of PER3 gene VNTR genotypes. *Chronobiology International*. <https://doi.org/10.1080/07420528.2023.2256858>
 
 ## Translations
 
@@ -55,9 +55,9 @@ An abstract pertaining to the primary investigation was published and presented 
 
 <!-- @vartanian2022a -->
 
-Vartanian, D., & Pedrazzoli, M. (2022). _Ecology of sleep and circadian phenotypes of the Brazilian population_ \[Poster\]. São Paulo Research Foundation; São Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms. <https://doi.org/10.13140/RG.2.2.25343.07840>
+Vartanian, D., & Pedrazzoli, M. (2022). *Ecology of sleep and circadian phenotypes of the Brazilian population* \[Poster\]. São Paulo Research Foundation; São Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms. <https://doi.org/10.13140/RG.2.2.25343.07840>
 
-In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation ([SIICUSP](https://prpi.usp.br/siicusp/)) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartaniang. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of _Earth and Exact Sciences_.
+In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation ([SIICUSP](https://prpi.usp.br/siicusp/)) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartaniang. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of *Earth and Exact Sciences*.
 
 ## Research compendia
 
@@ -65,7 +65,7 @@ This thesis, along with all the accompanying research, is structured and organiz
 
 <!-- @vartanian2025 -->
 
-Vartanian, D. (2025). _Is latitude associated with chronotype?_ [Research compendium]. <https://doi.org/10.17605/OSF.IO/YGKTS>
+Vartanian, D. (2025). *Is latitude associated with chronotype?* [Research compendium]. <https://doi.org/10.17605/OSF.IO/YGKTS>
 
 ## Data plans
 
@@ -73,7 +73,7 @@ This research has also produced and published the following data plan.
 
 <!-- @vartanian2024 -->
 
-Vartanian, D. (2024). _Is latitude associated with chronotype?_ [Data Management Plan]. DMPHub. <https://doi.org/10.48321/D1DW8P>
+Vartanian, D. (2024). *Is latitude associated with chronotype?* [Data Management Plan]. DMPHub. <https://doi.org/10.48321/D1DW8P>
 
 ## Softwares
 
@@ -81,63 +81,63 @@ The following R packages, Python package, [Quarto](https://quarto.org/) format (
 
 <!-- @vartaniane -->
 
-Vartanian, D. (n.d.). _{entrainment}: a rule-based model of the 24h light/dark cycle entrainment phenomenon_ [Software, Python Package]. <https://github.com/danielvartan/entrainment>
-
-<!-- @vartanianf -->
-
-Vartanian, D. (n.d.). _{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)_ [Software, R Package]. <https://docs.ropensci.org/mctq>
-
-<!-- @vartanian -->
-
-Vartanian, D. (n.d.). _{lubritime}: an extension for the lubridate package_ [Software, R package]. <https://github.com/danielvartan/lubritime>
-
-<!-- @vartanianc -->
-
-Vartanian, D. (n.d.). _{abnt}: Quarto format for ABNT theses and dissertations_ [Software, LaTeX/R]. <https://github.com/danielvartan/abnt>
-
-<!-- @vartanianc -->
-
-Vartanian, D. (n.d.). _{lockr}: easily encrypt/decrypt files_ [Software, R package]. <https://github.com/danielvartan/lockr>
-
-<!-- @vartaniano -->
-
-Vartanian, D. (n.d.). _{prettycheck}: pretty assertive programming_ [Software, R package]. <https://github.com/danielvartan/prettycheck>
+Vartanian, D. (n.d.). *{entrainment}: a rule-based model of the 24h light/dark cycle entrainment phenomenon* [Software, Python Package]. <https://github.com/danielvartan/entrainment>
 
 <!-- @vartanianh -->
 
-Vartanian, D. (n.d.). _{groomr}: tools to tidy strings and text files_ [Software, R package]. <https://github.com/danielvartan/groomr>
+Vartanian, D. (n.d.). *{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)* [Software, R Package]. <https://docs.ropensci.org/mctq>
+
+<!-- @vartanianc -->
+
+Vartanian, D. (n.d.). *{lubritime}: an extension for the lubridate package* [Software, R package]. <https://github.com/danielvartan/lubritime>
+
+<!-- @vartanianf -->
+
+Vartanian, D. (n.d.). *{abnt}: Quarto format for ABNT theses and dissertations* [Software, LaTeX/R]. <https://github.com/danielvartan/abnt>
+
+<!-- @vartaniand -->
+
+Vartanian, D. (n.d.). *{lockr}: easily encrypt/decrypt files* [Software, R package]. <https://github.com/danielvartan/lockr>
+
+<!-- @vartanianb -->
+
+Vartanian, D. (n.d.). *{prettycheck}: pretty assertive programming* [Software, R package]. <https://github.com/danielvartan/prettycheck>
+
+<!-- @vartaniang -->
+
+Vartanian, D. (n.d.). *{groomr}: tools to tidy strings and text files* [Software, R package]. <https://github.com/danielvartan/groomr>
 
 <!-- @vartaniann -->
 
-Vartanian, D. (n.d.). _HTML color codes in hex and RGB formats for Espanso_ [Software, Espanso package]. <https://github.com/danielvartan/groomr>
+Vartanian, D. (n.d.). *HTML color codes in hex and RGB formats for Espanso* [Software, Espanso package]. <https://github.com/danielvartan/groomr>
 
 ## Exercises
 
 Some important exercises made public during the development of this thesis are listed below.
 
+<!-- @vartanianm -->
+
+Vartanian, D. (2024). *Illustration of the Lotka–Volterra's predator–prey model*. <https://danielvartan.github.io/lotka-volterra>
+
+<!-- @vartanianj -->
+
+Vartanian, D. (2024). *Illustration of the Lorenz system*. <https://danielvartan.github.io/lorenz-system>
+
 <!-- @vartaniani -->
 
-Vartanian, D. (2024). _Illustration of the Lotka–Volterra's predator–prey model_. <https://danielvartan.github.io/lotka-volterra>
+Vartanian, D. (2024). *Illustration of the SIR model*. <https://danielvartan.github.io/sir>
 
 <!-- @vartaniank -->
 
-Vartanian, D. (2024). _Illustration of the Lorenz system_. <https://danielvartan.github.io/lorenz-system>
-
-<!-- @vartanianj -->
-
-Vartanian, D. (2024). _Illustration of the SIR model_. <https://danielvartan.github.io/sir>
+Vartanian, D. (2024). *A demonstration of general linear models using penguins*. <https://danielvartan.github.io/linear-models>
 
 <!-- @vartanianl -->
 
-Vartanian, D. (2024). _A demonstration of general linear models using penguins_. <https://danielvartan.github.io/linear-models>
-
-<!-- @vartanianj -->
-
-Vartanian, D. (2024). _Demonstrations of the central limit theorem_. <https://danielvartan.github.io/central-limit-theorem>
+Vartanian, D. (2024). *Demonstrations of the central limit theorem*. <https://danielvartan.github.io/central-limit-theorem>
 
 
 ## Other projects
 
 The author is also currently working on the development of the project below.
 
-Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). _Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor_ \[Master's project, University of Sao Paulo\]. <https://bit.ly/4fYOWgy>
+Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). *Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor* \[Master's project, University of Sao Paulo\]. <https://bit.ly/4fYOWgy>

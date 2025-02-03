@@ -23,6 +23,11 @@ book:
   site-url: https://danielvartan.github.io/mastersthesis/
   repo-url: https://github.com/danielvartan/mastersthesis/
   issue-url: https://github.com/danielvartan/mastersthesis/issues/
+  open-graph:
+    image: images/og-image.png
+    image-width: 2400
+    image-height: 1600
+    image-alt: "Is Latitude Associated with Chronotype? [Master's Thesis]"
   repo-branch: main
 
 citation:

@@ -15,7 +15,7 @@ This document focuses on testing the thesis hypothesis (**Test A**) using the me
 
 The assumptions addressed here are those relevant to general linear models, with further information available in the supplemental material titled *Overview of General Linear Models*.
 
-As with all analyses in this thesis, the process is fully reproducible and was conducted using the [R programming language](https://www.r-project.org/) [@rcoreteam] along with the [Quarto](https://quarto.org/) publishing system [@allaire].
+As with all analyses in this thesis, the process is fully reproducible and was conducted using the [R programming language](https://www.r-project.org/) [@rcoreteama] along with the [Quarto](https://quarto.org/) publishing system [@allaire].
 
 ## Setting the Enviroment
 

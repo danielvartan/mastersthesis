@@ -13,7 +13,7 @@ source(here::here("R", "_setup.R"))
 
 This document outlines the procedure for balancing the sample used in the hypothesis test.
 
-As with all analyses in this thesis, the process is fully reproducible and was conducted using the [R programming language](https://www.r-project.org/) [@rcoreteam] along with the [Quarto](https://quarto.org/) publishing system [@allaire].
+As with all analyses in this thesis, the process is fully reproducible and was conducted using the [R programming language](https://www.r-project.org/) [@rcoreteama] along with the [Quarto](https://quarto.org/) publishing system [@allaire].
 
 ## Setting the Enviroment
 

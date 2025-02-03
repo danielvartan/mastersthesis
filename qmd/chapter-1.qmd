@@ -24,11 +24,11 @@ The analyses utilized nested multiple regression models to assess the variance e
 In accordance with the [graduate program regulation](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019#:~:text=XI%20%E2%80%93%20PROCEDIMENTOS%20PARA%20DEP%C3%93SITO%20DA%20DISSERTA%C3%87%C3%83O), this thesis follows an [article-based format](https://en.wikipedia.org/wiki/Collection_of_articles), inspired by the structure of @reis2020's PhD thesis. Chapters [-@sec-on-chronobiology], [-@sec-on-complexity-science], and [-@sec-on-the-latitude-hypothesis] consist of essays and literature reviews related to the thesis topic that provide essential background for understanding the research. Chapter [-@sec-latitude-hypothesis-article] presents the core investigation, including an article detailing the hypothesis test and addressing the research question. Finally, Chapter [-@sec-conclusion] offers conclusions, discusses limitations, and proposes directions for future research. Additionally, supplementary materials are provided to offer a richer, more comprehensive understanding of the research. The reader is encouraged to explore them in detail.
 
 ::: {.content-visible when-format="html"}
-All analyses in this thesis are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) [@rcoreteam] alongside the [Quarto](https://quarto.org/) publishing system [@allaire].
+All analyses in this thesis are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) [@rcoreteama] alongside the [Quarto](https://quarto.org/) publishing system [@allaire].
 :::
 
 ::: {.content-visible when-format="pdf"}
-All analyses in this thesis are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) [@rcoreteam] alongside the [Quarto](https://quarto.org/) publishing system [@allaire]. Given the thesis's data-centric nature, it is best experienced online. To view the digital version
+All analyses in this thesis are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) [@rcoreteama] alongside the [Quarto](https://quarto.org/) publishing system [@allaire]. Given the thesis's data-centric nature, it is best experienced online. To view the digital version
 visit: <https://danielvartan.github.io/mastersthesis>
 
 The thesis code repository is available on GitHub at <https://github.com/danielvartan/mastersthesis>, and the research compendium can be accessed via [The Open Science Framework](https://osf.io/) at the following link:  <https://doi.org/10.17605/OSF.IO/YGKTS>

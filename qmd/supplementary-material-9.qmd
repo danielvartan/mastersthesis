@@ -276,8 +276,8 @@ data |>
     limits = c(0, 32)
   ) +
   ggplot2::labs(
-    x = "Latitude",
-    y = "HO"
+    x = "Latitude (Degrees South)",
+    y = "HO Score"
   )
 ```
 
@@ -324,8 +324,8 @@ data |>
     limits = c(16, 86)
   ) +
   ggplot2::labs(
-    x = "Latitude",
-    y = "HO"
+    x = "Latitude (Degrees South)",
+    y = "HO Score"
   )
 ```
 
