@@ -172,7 +172,14 @@
     "href": "index.html#closing-remarks",
     "title": "Is Latitude Associated with Chronotype?",
     "section": "Closing remarks",
-    "text": "Closing remarks\n \nThis thesis was presented to the School of Arts, Sciences and Humanities (EACH) at the University of São Paulo (USP) as a requirement for the degree of Master of Science by the Graduate Program in Complex Systems Modeling (PPGSCX).\nThe presentation was created using the Quarto publishing system. All analyses presented are fully reproducible and were conducted using the R programming language.\nTo explore the code and repository for this thesis, click here. The research compendium is also accessible via The Open Science Framework by clicking here.\nFinancial support was provided by the Coordination for the Improvement of Higher Education Personnel (CAPES) (Grant number: 88887.703720/2022-00)."
+    "text": "Closing remarks\n \nThis thesis was presented to the School of Arts, Sciences and Humanities (EACH) at the University of São Paulo (USP) as a requirement for the degree of Master of Science by the Graduate Program in Complex Systems Modeling (PPGSCX).\nI am deeply grateful to my advisor, Prof. Dr. Camilo Rodrigues Neto, for introducing me to complexity science in 2012, guiding my dissertation with patience, and demonstrating remarkable integrity in navigating a challenging supervisory transition."
+  },
+  {
+    "objectID": "index.html#closing-remarks-1",
+    "href": "index.html#closing-remarks-1",
+    "title": "Is Latitude Associated with Chronotype?",
+    "section": "Closing remarks",
+    "text": "Closing remarks\n \nThe presentation was created using the Quarto publishing system. All analyses presented are fully reproducible and were conducted using the R programming language.\nTo explore the code and repository for this thesis, click here. The research compendium is also accessible via The Open Science Framework by clicking here.\nFinancial support was provided by the Coordination for the Improvement of Higher Education Personnel (CAPES) (Grant number: 88887.703720/2022-00)."
   },
   {
     "objectID": "index.html#references",
