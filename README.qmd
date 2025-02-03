@@ -114,7 +114,7 @@ htmltools::tags$table(
       htmltools::tags$p(
         htmltools::tags$a(
           htmltools::tags$img(
-            src = "images/ppgscx-logo-rgb-96-dpi.png",
+            src = "images/usp-logo.svg",
             width = 150
           ),
           href = paste0(

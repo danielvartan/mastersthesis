@@ -144,7 +144,7 @@ A BibTeX entry for LaTeX users is:
       <br/>
       <p align="center">
         <a href="https://www.prpg.usp.br/pt-br/faca-pos-na-usp/programas-de-pos-graduacao/621-modelagem-de-sistemas-complexos">
-          <img src="images/ppgscx-logo-rgb-96-dpi.png" width="150"/>
+          <img src="images/usp-logo.svg" width="150"/>
         </a>
       </p>
       <br/>
