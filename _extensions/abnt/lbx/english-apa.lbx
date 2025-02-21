@@ -4,8 +4,8 @@
 \NewBibliographyString{publication}
 \NewBibliographyString{jourarticle}
 \NewBibliographyString{revisededition}
-\NewBibliographyString{typechair}
-\NewBibliographyString{typechairs}
+\NewBibliographyString{chair}
+\NewBibliographyString{chairs}
 \NewBibliographyString{typevolume}
 \NewBibliographyString{typevolumes}
 \NewBibliographyString{typeseries}
@@ -130,8 +130,8 @@
   mathesis         = {{Master's\addabbrvspace thesis}{Master's\addabbrvspace thesis}},
   phdthesis        = {{Doctoral\addabbrvspace dissertation}{Doctoral\addabbrvspace dissertation}},
   origyear         = {{original\space work\space published}{original\space work\space published}},
-  typechair        = {{Chair}{Chair}},
-  typechairs       = {{Chairs}{Chairs}},
+  chair            = {{Chair}{Chair}},
+  chairs           = {{Chairs}{Chairs}},
   typevolume       = {{Volume\space Editor}{Vol\adddotspace Ed\adddot}},
   typevolumes      = {{Volume\space Editors}{Vol\adddotspace Eds\adddot}},
   typeseries       = {{Series\space Editor}{Series\space Ed\adddot}},
@@ -156,7 +156,8 @@
   \def\urldatecomma{\addcomma\addspace}%
   \protected\def\mkbibdateapalong#1#2#3#4{%
     % As per 10.1, Articles only have year
-    \ifboolexpr{ test {\ifentrytype{article}}
+    \ifboolexpr{ (test {\ifentrytype{article}}
+                  or (test {\ifentrytype{inbook}} and not test {\ifnameundef{editor}}))
                  and not test {\iffieldequalstr{entrysubtype}{nonacademic}} }
       {\clearfield{labelmonth}%
        \clearfield{labelday}}
@@ -184,7 +185,8 @@
        \stripzeros{\thefield{#4}}}}%
   \protected\def\mkbibdateapalongextra#1#2#3#4{%
     % As per 10.1, Articles only have year
-    \ifboolexpr{ test {\ifentrytype{article}}
+    \ifboolexpr{ (test {\ifentrytype{article}}
+                  or (test {\ifentrytype{inbook}} and not test {\ifnameundef{editor}}))
                  and not test {\iffieldequalstr{entrysubtype}{nonacademic}} }
       {\clearfield{labelmonth}%
        \clearfield{labelday}}
@@ -212,7 +214,8 @@
        \stripzeros{\thefield{#4}}}}%
   \protected\def\mkbibdateapalongmdy#1#2#3#4{%
     % As per 10.1, Articles only have year
-    \ifboolexpr{ test {\ifentrytype{article}}
+    \ifboolexpr{ (test {\ifentrytype{article}}
+                  or (test {\ifentrytype{inbook}} and not test {\ifnameundef{editor}}))
                  and not test {\iffieldequalstr{entrysubtype}{nonacademic}} }
       {\clearfield{labelmonth}%
        \clearfield{labelday}}

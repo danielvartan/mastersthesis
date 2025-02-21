@@ -4,8 +4,8 @@
 \NewBibliographyString{publication}
 \NewBibliographyString{jourarticle}
 \NewBibliographyString{revisededition}
-\NewBibliographyString{typechair}
-\NewBibliographyString{typechairs}
+\NewBibliographyString{chair}
+\NewBibliographyString{chairs}
 \NewBibliographyString{typevolume}
 \NewBibliographyString{typevolumes}
 \NewBibliographyString{typeseries}
@@ -118,16 +118,16 @@
   page             = {{Page}{{}p\adddot}},
   pages            = {{Pages}{{}p\adddot}},
   on               = {{le}{le}},
-  retrieved        = {{R\'ecup\'er\'ee}{R\'ecup\'er\'ee}},
+  retrieved        = {{Consult\'e}{Consult\'e}},
   available        = {{disponible}{disponible}},
-  from             = {{\`a\space partir\space de}{\`a\space partir\space de}},
+  from             = {{\`a}{\`a}},
   archivedat       = {{archiv\'es\space \`a}{archiv\'es\space \`a}},
   reviewof         = {{critique\space de}{critique\space de}},
 %  paragraph        = {{paragraph}{para\adddot}},%FIXME
 %  paragraphs       = {{paragraphs}{paras\adddot}},%FIXME
   origyear         = {{Date\space de\space premi\`ere publication}{Date\space de\space premi\`ere publication}},
-  typechair        = {{Ma\^itre\space de\space Conf\'erence}{Ma\^itre\space de\space Conf\'erence}},
-  typechairs       = {{Ma\^itres\space de\space Conf\'erence}{Ma\^itres\space de\space Conf\'erence}},
+  chair            = {{Ma\^itre\space de\space Conf\'erence}{Ma\^itre\space de\space Conf\'erence}},
+  chairs           = {{Ma\^itres\space de\space Conf\'erence}{Ma\^itres\space de\space Conf\'erence}},
   typevolume       = {{R\'edacteur\space du\space volume}{R\'ed\adddotspace vol\adddot}},
   typevolumes      = {{R\'edacteur\space du\space volume}{R\'eds\adddotspace vol\adddot}},
   typeseries       = {{R\'edacteur\space de\space la\space s\'erie}{R\'ed\adddotspace ser\adddot}},
@@ -146,10 +146,14 @@
 % You must use \printdate to get here otherwise it will be ignored
 
 \DeclareBibliographyExtras{%
-  \def\urldatecomma{\addcomma\addspace}%
+  \DeclareFieldFormat{urldate}{%
+    \bibstring{retrieved}\space\bibstring{on}\space#1%
+    \urldatecomma\bibstring{from}}%
+  \def\urldatecomma{\addspace}%
   \protected\def\mkbibdateapalong#1#2#3#4{%
     % As per 10.1, Articles only have year
-    \ifboolexpr{ test {\ifentrytype{article}}
+    \ifboolexpr{ (test {\ifentrytype{article}}
+                  or (test {\ifentrytype{inbook}} and not test {\ifnameundef{editor}}))
                  and not test {\iffieldequalstr{entrysubtype}{nonacademic}} }
       {\clearfield{labelmonth}%
        \clearfield{labelday}}
@@ -177,7 +181,8 @@
        \stripzeros{\thefield{#4}}}}%
   \protected\def\mkbibdateapalongextra#1#2#3#4{%
     % As per 10.1, Articles only have year
-    \ifboolexpr{ test {\ifentrytype{article}}
+    \ifboolexpr{ (test {\ifentrytype{article}}
+                  or (test {\ifentrytype{inbook}} and not test {\ifnameundef{editor}}))
                  and not test {\iffieldequalstr{entrysubtype}{nonacademic}} }
       {\clearfield{labelmonth}%
        \clearfield{labelday}}
@@ -203,9 +208,11 @@
         {}%
         {\addspace}%
        \stripzeros{\thefield{#4}}}}%
+  % map mdy to dmy for french
   \protected\def\mkbibdateapalongmdy#1#2#3#4{%
     % As per 10.1, Articles only have year
-    \ifboolexpr{ test {\ifentrytype{article}}
+    \ifboolexpr{ (test {\ifentrytype{article}}
+                  or (test {\ifentrytype{inbook}} and not test {\ifnameundef{editor}}))
                  and not test {\iffieldequalstr{entrysubtype}{nonacademic}} }
       {\clearfield{labelmonth}%
        \clearfield{labelday}}
@@ -216,20 +223,20 @@
         {}%
         {\addcomma\addspace}%
        \iffieldbibstring{#2}{\bibcplstring{\thefield{#2}}}{\thefield{#2}}}%
-    \iffieldundef{#3}% MONTH
-      {}%
-      {\mkbibmonth{\thefield{#3}}}%
     \iffieldundef{#4}% DAY
       {}%
-      {\addspace}%
-       \stripzeros{\thefield{#4}}%
+      {\stripzeros{\thefield{#4}}}%
+    \iffieldundef{#3}% MONTH
+      {}%
+      {\addspace
+       \mkbibmonth{\thefield{#3}}}%
     \iffieldundef{#1}% YEAR
       {}%
       {\iffieldundef{#4}%
         {\iffieldundef{#3}%
           {}%
           {\addspace}}%
-        {\addcomma\addspace}%
+        {\addspace}%
        \iffieldbibstring{#1}{\bibncpstring{\thefield{#1}}}{\thefield{#1}}}}}
 
 %

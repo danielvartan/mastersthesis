@@ -41,7 +41,7 @@ cohens_f_squared_effect_size <- function(f_squared) {
 cohens_f_squared_summary <- function(
     base_r_squared,
     new_r_squared = NULL
-  ) {
+) {
   if (is.atomic(base_r_squared)) {
     prettycheck:::assert_number(base_r_squared, lower = 0, upper = 1)
     prettycheck:::assert_number(
@@ -55,25 +55,29 @@ cohens_f_squared_summary <- function(
       effect_size = cohens_f_squared_effect_size(f_squared)
     )
   } else {
-    col_check <- c("Rsq", "SErsq", "LCL", "UCL") # psychometric::CI.Rsq()
+    # psychometric::CI.Rsq()
+    col_check <- c("R2", "SE", "Lower CI", "Upper CI")
 
     prettycheck:::assert_data_frame(base_r_squared)
-    prettycheck:::assert_set_equal(names(base_r_squared), col_check)
+    prettycheck:::assert_set_equal(base_r_squared[[1]], col_check)
     prettycheck:::assert_data_frame(new_r_squared)
-    prettycheck:::assert_set_equal(names(new_r_squared), col_check)
+    prettycheck:::assert_set_equal(new_r_squared[[1]], col_check)
 
     f_values <- c(
-      cohens_f_squared(base_r_squared$UCL, new_r_squared$UCL),
-      cohens_f_squared(base_r_squared$UCL, new_r_squared$LCL),
-      cohens_f_squared(base_r_squared$LCL, new_r_squared$UCL),
-      cohens_f_squared(base_r_squared$LCL, new_r_squared$LCL)
+      cohens_f_squared(base_r_squared$value[4], new_r_squared$value[4]),
+      cohens_f_squared(base_r_squared$value[4], new_r_squared$value[3]),
+      cohens_f_squared(base_r_squared$value[3], new_r_squared$value[[4]]),
+      cohens_f_squared(base_r_squared$value[3], new_r_squared$value[3])
     )
 
     min_f <- ifelse(min(f_values) < 0, 0, min(f_values))
     max_f <- ifelse(max(f_values) < 0, 0, max(f_values))
 
     list(
-      f_squared = cohens_f_squared(base_r_squared$Rsq, new_r_squared$Rsq),
+      f_squared = cohens_f_squared
+      (base_r_squared$value[1],
+        new_r_squared$value[1]
+      ),
       lower_ci_limit = min_f,
       upper_ci_limit = max_f,
       effect_size = cohens_f_squared_effect_size(min_f)

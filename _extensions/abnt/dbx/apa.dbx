@@ -9,7 +9,7 @@
 %% version 2005/12/01 or later.
 %%
 %% This work has the LPPL maintenance status `maintained'.
-%% 
+%%
 %% The Current Maintainer of this work is Philip Kime.
 
 \ProvidesFile{apa.dbx}[2023/03/20\space v9.17\space APA biblatex style data model]

@@ -120,7 +120,7 @@ Is latitude associated with chronotype?
 ::::
 
 ::: footer
-(Artwork by: @merrow2020 (Left) and @duffy2011a[Figure 1, middle] (Right))
+(Reproduced from @merrow2020 (Left) and @duffy2011a[Figure 1] (Right))
 :::
 
 ::: {.notes}
@@ -132,7 +132,7 @@ Temporal dimension of evolution.
 ![](images/flanagan-2021-figure-2-adapted.png){fig-align="center" style="width: 75%; padding-top: 10px; padding-bottom: 30px"}
 
 ::: footer
-(Artwork by @flanagan2021[Figure 2])
+(Reproduced from @flanagan2021[Figure 2])
 :::
 
 ::: {.notes}
@@ -147,7 +147,7 @@ temperature, resting metabolic rate, and plasma metabolite concentration.
 ![](images/roenneberg-2003-figure-7-f-adapted.svg){fig-align="center" style="width: 50%; padding-top: 30px; padding-bottom: 50px"}
 
 ::: footer
-(Adapted by the author from @roenneberg2003[Figure 7F])
+(Adapted by the author from @roenneberg2003b[Figure 7F])
 :::
 
 ::: {.notes}
@@ -233,7 +233,7 @@ data |>
     color = get_brand_color("orange")
   ) +
   ggplot2::scale_x_continuous(
-    breaks = c(0, 13, 18, 22, 16, 29, 32),
+    breaks = c(0, 13, 18, 22, 26, 29, 32),
     labels = c("0º", "13º", "18º", "22º", "26º", "29º", "32º"),
     limits = c(0, 32)
   ) +
@@ -250,7 +250,7 @@ data |>
 :::::
 
 ::: footer
-(Left: @leocadio-miguel2017[Figure 2] | Right: Rescaled version of the chart on the left (Created by the author))
+(Reproduced from @leocadio-miguel2017[Figure 2] (Left), with a rescaled version created by the author (Right))
 :::
 
 ::: {.notes}
@@ -262,6 +262,10 @@ data |>
 
 ![](images/mctq-figure-1.png){fig-align="center" style="width: 100%; padding-top: 125px; padding-bottom: 30px"}
 
+::: footer
+(Created by the author)
+:::
+
 ::: {.notes}
 ::::
 
@@ -270,7 +274,7 @@ data |>
 ![](images/borbely-1982-figure-4-adapted.png){fig-align="center" style="width: 70%; padding-top: 30px; padding-bottom: 50px"}
 
 ::: footer
-(Adapted by the author from @borbely1982[Figure 4, lower part])
+(Adapted by the author from @borbely1982a[Figure 4])
 :::
 
 ::: {.notes}
@@ -282,7 +286,7 @@ Illustration of the interaction between Process $\text{S}$ (Homeostatic/Sleep-de
 ![](images/globo-2017-figure-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 25px;"}
 
 ::: footer
-[@redeglobo2017]
+(Reproduced from @redeglobo2017)
 :::
 
 ::: {.notes}
@@ -331,7 +335,7 @@ A restricted model (excluding latitude) with a full model (including latitude) w
 
 To ensure practical significance, a **Minimum Effect Size** (MES) criterion was applied, following the original Neyman-Pearson framework for hypothesis testing [@neyman1928; @neyman1928a; @perezgonzalez2015].
 
-The MES was set at Cohen's threshold for small effects ($f^2 = 0.02$, equivalent to $\text{R}^2 = 0.01960784$) [@cohen1988a, p. 413]. Thus, latitude was considered significant only if its inclusion accounted for at least $1.960784\%$ of the variance in chronotype.
+The MES was set at Cohen's threshold for small effects ($f^2 = 0.02$, equivalent to $\text{R}^2 = 0.01960784$) [@cohen1988a, p. 413]. Thus, latitude was considered meaningful only if its inclusion accounted for at least $1.960784\%$ of the variance in chronotype.
 
 To balance the sample, a **weighting procedure** was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil's state as reference.
 
@@ -379,7 +383,7 @@ weighted_data |> plot_chronotype()
 :::
 
 ::: footer
-(Created by the author, based on a data visualization from @roenneberg2019b[Figure 1, right part])
+(Created by the author based on a data visualization from @roenneberg2019b[Figure 1])
 :::
 
 ::: {.notes}
@@ -403,7 +407,7 @@ Distribution of the local time of the sleep-corrected midpoint between sleep ons
 ::::
 
 ::: footer
-(Adapted from @pereira2017)
+(Adapted by the author from @pereira2017)
 :::
 
 ::: {.notes}
@@ -511,7 +515,7 @@ weighted_data |>
 :::
 
 ::: footer
-(Created by the author. The color scale was not transformed and it has as limits the first and third quartile (interquartile range).)
+(Created by the author. The color scale is bounded by the first and third quartiles.)
 :::
 
 ::: {.notes}
@@ -593,7 +597,7 @@ Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *
 :::::
 
 ::: footer
-(Artwork by @mariscal2021)
+(Chart reproduced from @mariscal2021[Figure 3])
 :::
 
 ::: {.notes}
@@ -603,9 +607,9 @@ Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *
 
 :::: {.columns}
 ::: {.column style="width: 50%; font-size: 0.7em; padding-top: 0px;"}
-> SMALL EFFECT SIZE: $f^2 = .02$. Translated into $\text{R}^{2}$ or partial $\text{R}^{2}$ for Case 1, this gives $.02 / (1 + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested (p. 413).
+> SMALL EFFECT SIZE: $f^2 = .02$. Translated into $\text{R}^{2}$ or partial $\text{R}^{2}$ for Case 1, this gives $.02 / (1 + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested. (p. 413)
 
-> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES [Effect Size] is not necessarily zero but **small enough to be negligible** [...]. (p. 461).
+> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES [Effect Size] is not necessarily zero but **small enough to be negligible** [...]. (p. 461)
 :::
 ::: {.column style="width: 50%; padding-top: 0px;"}
 ![](images/jacob-cohen-figure-1.jpg){fig-align="center" style="width: 80%; padding-top: 25px;"}
@@ -613,7 +617,7 @@ Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *
 ::::
 
 ::: footer
-[@cohen1988a]
+(Quotes reproduced from @cohen1988a. Photo by an unknown author.)
 :::
 
 ::: {.notes}
@@ -639,7 +643,8 @@ Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *
 
 > I suggest that **it is the aim of science to find satisfactory explanations**, of whatever strikes us as being in need of explanation.
 
-This study, using what is arguably the largest dataset on chronotype collected within a single time zone, balanced to reflect population proportions at the time of data collection, found [**no**]{.brandorange} support for the latitude hypothesis.
+This study, using what is arguably one of the largest datasets on chronotype,
+found no evidence supporting the latitude hypothesis in humans.
 :::
 
 ::: {.column style="width: 50%; padding-top: 0px;"}
@@ -648,7 +653,7 @@ This study, using what is arguably the largest dataset on chronotype collected w
 ::::
 
 ::: footer
-[@popper1979, p. 193]
+(Quote reproduced from @popper1979a[p. 193]. Photo by an unknown author.)
 :::
 
 ::: {.notes}
@@ -699,7 +704,7 @@ In accordance with the [American Psychological Association (APA) Style](https://
 ![](images/nobel-prize-outreach-ab-2017-figure-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 25px;"}
 
 ::: footer
-(Artwork by @nobelprizeoutreachab)
+(Reproduced from @nobelprizeoutreachab)
 :::
 
 ::: {.notes}
@@ -737,7 +742,7 @@ When the aggregate exhibits **properties not attained by summation** [@holland20
 :::
 
 ::: footer
-(Videos by [Kurzgesagt – In a Nutshell](https://www.youtube.com/watch?v=16W7c0mb-rE), [Quanta Magazine](https://www.youtube.com/watch?v=TlysTnxF_6c), and [Journey to the Microcosmos](https://www.youtube.com/watch?v=KLi5bl-gdeQ))
+(Artworks by [Kurzgesagt – In a Nutshell](https://www.youtube.com/watch?v=16W7c0mb-rE), [Quanta Magazine](https://www.youtube.com/watch?v=TlysTnxF_6c), and [Journey to the Microcosmos](https://www.youtube.com/watch?v=KLi5bl-gdeQ))
 :::
 
 ::: {.notes}
@@ -757,7 +762,7 @@ You are dealing with an emergence phenomenon when there is no need to look under
 ![](images/lewin-1993-figure-1.png){fig-align="center" style="width: 85%; padding-top: 25px; padding-bottom: 25px;"}
 
 ::: footer
-[@lewin1993]
+(Reproduced from @lewin1993[Figure 1])
 :::
 
 ::: {.notes}
@@ -770,7 +775,7 @@ You are dealing with an emergence phenomenon when there is no need to look under
 ![](images/holland-2012-figure-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 50px"}
 
 ::: footer
-[Artwork by @holland2012]
+(Reproduced from @holland2012[Figure 1.1])
 :::
 
 ::: {.notes}
@@ -792,6 +797,10 @@ A society is formed by individuals and their interactions. In this case, we are 
 
 ![](images/latitude-hypothesis-figure-1.png){fig-align="center" style="padding-top: 10px; padding-bottom: 30px"}
 
+::: footer
+(Artwork by an unknown author)
+:::
+
 ::: {.notes}
 :::
 
@@ -801,6 +810,9 @@ A society is formed by individuals and their interactions. In this case, we are 
 :::
 
 ## {visibility="uncounted" data-menu-title="(AP) Annual Variations in Global Irradiation" background-iframe="https://ciechanow.ski/earth-and-sun/#es_cosine" background-interactive=true}
+
+::: {.notes}
+:::
 
 ## {visibility="uncounted" data-menu-title="(AP) Annual Variations in Photoperiod" background-iframe="https://ciechanow.ski/earth-and-sun/#es_earth_outline" background-interactive=true}
 
@@ -819,7 +831,7 @@ A society is formed by individuals and their interactions. In this case, we are 
 ![](images/roenneberg-2015-mctq-core-adapted.png){width="100%"}
 
 ::: footer
-[@thewep]
+(Reproduced from @thewep)
 :::
 
 ::: {.notes}
@@ -910,7 +922,7 @@ plot |> print()
 ::::
 
 ::: footer
-(Created by the author, based on a data visualization from @roenneberg2019b[Right Figure])
+(Created by the author (Left) and reproduced from @roenneberg2019b[Figure 1] (Right))
 :::
 
 ::: {.notes}
@@ -949,6 +961,10 @@ plot |> print()
 ![](images/roenneberg-2007-figure-4.png){style="padding-top: 30px;"}
 :::
 ::::
+
+::: footer
+(Created by the author (Left) and reproduced from @roenneberg2007[Figure 4] (Right))
+:::
 
 ::: footer
 (Created by the author, based on a data visualization from @roenneberg2007[Right Figure])
@@ -994,7 +1010,7 @@ weighted_data |>
 :::
 
 ::: footer
-(Created by the author. The color scale was not transformed and it has as limits the first and third quartile (interquartile range).)
+(Created by the author. The color scale is bounded by the first and third quartiles.)
 :::
 
 ::: {.notes}
@@ -1009,7 +1025,8 @@ Municipality level.
 #| fig-width: 11
 #| fig-height: 6
 
-weighted_data |> 
+plot <- 
+  weighted_data |> 
   dplyr::mutate(
     msf_sc_category = categorize_msf_sc(msf_sc),
     msf_sc_category = factor(
@@ -1022,7 +1039,13 @@ weighted_data |>
       ordered = TRUE
     )
   ) |>
-  plot_brazil_point(col_group = "msf_sc_category")
+  plot_brazil_point(
+    col_group = "msf_sc_category",
+    print = FALSE
+  ) +
+  ggplot2::labs(color = NULL)
+
+plot |> print() |> rutils::shush()
 ```
 :::
 
@@ -1039,7 +1062,7 @@ Respondent level by categorical chronotype.
 ![](images/cohen-1992-table-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 25px;"}
 
 ::: footer
-[@cohen1992]
+(Reproduced from @cohen1992)
 :::
 
 ## (AP) Directions for Fut. Research {.smaller visibility="uncounted"}
@@ -1049,7 +1072,7 @@ WorldClim 2.1 in NetLogo (*NetLogo/Scala-Java*).
 ![](images/logoclim-figure-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 25px;"}
 
 ::: footer
-(Vartanian et al., 2025, Unpublished)
+(Reproduced from Vartanian et al. (2025, Unpublished))
 :::
 
 ::: {.notes}
@@ -1084,7 +1107,7 @@ flowchart LR
 ::::
 
 ::: footer
-[@popper1979, p. 164]
+(Reproduced from @popper1979a[p. 164])
 :::
 
 ::: {.notes}
@@ -1105,7 +1128,7 @@ flowchart LR
 ```
 
 ::: footer
-[@popper1979, p. 164]
+(Reproduced from @popper1979a[p. 164])
 :::
 
 ::: {.notes}
@@ -1127,7 +1150,7 @@ flowchart LR
 may indeed be looked upon as improvements and rationalizations of the Hegelian dialectical schema: they are rationalizations because they operate entirely within the classical logical organon of rational criticism, which is based upon the so-called law of contradiction; that is to say, upon the demand that contradictions, whenever we discover them, must be eliminated. Critical error-elimination on the scientific level proceeds by way of a **conscious search for contradictions**.
 
 ::: footer
-[@popper1979, p. 297]
+(Reproduced from @popper1979a[p. 297])
 :::
 
 ::: {.notes}
@@ -1150,7 +1173,7 @@ may indeed be looked upon as improvements and rationalizations of the Hegelian d
 But I shall certainly admit a system as empirical or scientific only if it is capable of being tested by experience. These considerations suggest that **not the _verifiability_ but the _falsifiability_ of a system is to be taken as a criterion of demarcation**. In other words: I shall not require of a scientific system that it shall be capable of being singled out, once and for all, in a positive sense; but I shall require that its logical form shall be such that it can be singled out, by means of empirical tests, in a negative sense: **it must be possible for an empirical scientific system to be refuted by experience**.
 
 ::: footer
-[@popper2005a]
+(Reproduced from @popper2005a)
 :::
 
 ::: {.notes}
@@ -1160,7 +1183,7 @@ But I shall certainly admit a system as empirical or scientific only if it is ca
 
 :::: {.columns}
 ::: {.column style="width: 50%; padding-top: 0px;"}
-Everybody knows nowadays that **logical positivism is dead**. But nobody seems to suspect that there may be a question to be asked here — the question “Who is responsible?” or, rather, the question “Who has done it?”. (Passmore’s excellent historical article does not raise this question.) **I fear that I must admit responsibility**.
+Everybody knows nowadays that **logical positivism is dead**. But nobody seems to suspect that there may be a question to be asked here---the question “Who is responsible?” or, rather, the question “Who has done it?”. (Passmore’s excellent historical article does not raise this question.) **I fear that I must admit responsibility**.
 :::
 
 ::: {.column style="width: 50%; padding-top: 0px;"}
@@ -1169,7 +1192,7 @@ Everybody knows nowadays that **logical positivism is dead**. But nobody seems t
 ::::
 
 ::: footer
-[@popper2005]
+(Reproduced from @popper2005)
 :::
 
 ::: {.notes}
@@ -1179,8 +1202,8 @@ Everybody knows nowadays that **logical positivism is dead**. But nobody seems t
 
 :::: {.columns}
 ::: {.column style="width: 50%; padding-top: 0px;"}
-(@) It is easy to obtain confirmations, or verifications, for nearly every theory —if we look for confirmations.
-(@) Confirmations should count only if they are the result of *risky predictions*; that is to say, if, unenlightened by the theory in question, we should have expected an event which was incompatible with the theory—an event which would have refuted the theory.
+(@) It is easy to obtain confirmations, or verifications, for nearly every theory---if we look for confirmations.
+(@) Confirmations should count only if they are the result of *risky predictions*; that is to say, if, unenlightened by the theory in question, we should have expected an event which was incompatible with the theory---an event which would have refuted the theory.
 :::
 
 ::: {.column style="width: 50%; padding-top: 0px;"}
@@ -1189,7 +1212,7 @@ Everybody knows nowadays that **logical positivism is dead**. But nobody seems t
 ::::
 
 ::: footer
-[@popper2002]
+(Reproduced from @popper2002)
 :::
 
 ::: {.notes}
@@ -1210,7 +1233,7 @@ Irrefutability is not a virtue of a theory (as people often think) but a vice.
 ::::
 
 ::: footer
-[@popper2002]
+(Reproduced from @popper2002)
 :::
 
 ::: {.notes}
@@ -1231,7 +1254,7 @@ Testability is falsifiability; but there are degrees of testability: some theori
 ::::
 
 ::: footer
-[@popper2002]
+(Reproduced from @popper2002)
 :::
 
 ::: {.notes}
@@ -1241,7 +1264,7 @@ Testability is falsifiability; but there are degrees of testability: some theori
 
 :::: {.columns}
 ::: {.column style="width: 50%; padding-top: 0px;"}
-(@) Some genuinely testable theories, when found to be false, are still upheld by their admirers — for example by introducing *ad hoc* some auxiliary assumption, or by re-interpreting the theory *ad hoc* in such a way that it escapes refutation. Such a procedure is always possible, but it rescues the theory from refutation only at the price of destroying, or at least lowering, its scientific status. (I later described such a rescuing operation as a ‘*conventionalist twist*’ or
+(@) Some genuinely testable theories, when found to be false, are still upheld by their admirers---for example by introducing *ad hoc* some auxiliary assumption, or by re-interpreting the theory *ad hoc* in such a way that it escapes refutation. Such a procedure is always possible, but it rescues the theory from refutation only at the price of destroying, or at least lowering, its scientific status. (I later described such a rescuing operation as a ‘*conventionalist twist*’ or
 a ‘*conventionalist stratagem*’).
 :::
 
@@ -1251,7 +1274,7 @@ a ‘*conventionalist stratagem*’).
 ::::
 
 ::: footer
-[@popper2002]
+(Reproduced from @popper2002)
 :::
 
 ::: {.notes}
@@ -1270,7 +1293,7 @@ One can sum up all this by saying that **_the criterion of the scientific status
 ::::
 
 ::: footer
-[@popper2002]
+(Reproduced from @popper2002)
 :::
 
 ::: {.notes}

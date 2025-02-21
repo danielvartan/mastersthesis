@@ -15,7 +15,7 @@ This document provides a detailed outline of the thesis's research question, obj
 
 ## Question
 
-Every scientific inquiry should be guided by a central question. For this study, the guiding question is:
+Every scientific inquiry is driven by a problem, often framed as a question. For this study, the guiding question is:
 
 ::: {style="text-align: center; font-size: 1.1em; font-weight: bold; color: #EA7701; padding-top: 1em; padding-bottom: 1em;"}
 Is latitude associated with chronotype?
@@ -42,7 +42,7 @@ flowchart LR
 
 As Popper explained:
 
-> Here $\text{P}_1$, is the **problem** from which we start, $\text{TT}$ (the ‘tentative theory’) is the imaginative conjectural solution which we first reach, for example our first **tentative interpretation**. $\text{EE}$ (‘**error- elimination**’) consists of a severe critical examination of our conjecture, our tentative interpretation: it consists, for example, of the critical use of documentary evidence and, if we have at this early stage more than one conjecture at our disposal, it will also consist of a critical discussion and comparative evaluation of the competing conjectures. $\text{P}_2$ is the problem situation as it emerges from our first critical attempt to solve our problems. It leads up to our second attempt (**and so on**) [@popper1979, p. 164].
+> Here $\text{P}_1$, is the **problem** from which we start, $\text{TT}$ (the ‘tentative theory’) is the imaginative conjectural solution which we first reach, for example our first **tentative interpretation**. $\text{EE}$ (‘**error- elimination**’) consists of a severe critical examination of our conjecture, our tentative interpretation: it consists, for example, of the critical use of documentary evidence and, if we have at this early stage more than one conjecture at our disposal, it will also consist of a critical discussion and comparative evaluation of the competing conjectures. $\text{P}_2$ is the problem situation as it emerges from our first critical attempt to solve our problems. It leads up to our second attempt (**and so on**) [@popper1979a, p. 164].
 
 As outlined in Chapter 1, the central hypothesis is the following:
 

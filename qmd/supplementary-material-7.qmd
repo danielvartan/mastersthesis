@@ -11,9 +11,7 @@ source(here::here("R", "_setup.R"))
 
 ## Overview
 
-This is a simple workflow to test the [QualoCEP](https://www.qualocep.com/) geocoding against [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview).
-
-This thesis uses both services for geocoding the data. QualoCEP is a paid service that provides a large dataset of Brazillian postal codes and addresses. The aim is to compare the results of QualoCEP's latitute e longitude values with Google's results for consistency.
+This document provides a workflow for testing [QualoCEP](https://www.qualocep.com/) geocoding against [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview), comparing latitude and longitude values to assess consistency, as both services are used for geocoding data in this thesis.
 
 ::: {.callout-note}
 To run this notebook you will need to have a Google Geocoding API key in your [`.Renviron`](https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file) file. Learn more about it [here](https://jessecambon.github.io/tidygeocoder/articles/geocoder_services.html).

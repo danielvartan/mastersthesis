@@ -28,7 +28,7 @@ This repository contains the [Quarto book](https://quarto.org/docs/books/) of my
 
 The assemble of this repository was inspired by Ben Marwick, Carl Boettiger & Lincoln Mullen's article [Packaging Data Analytical Work Reproducibly Using R (and Friends)](https://doi.org/10.1080/00031305.2017.1375986).
 
-## How to use
+## How to Use
 
 All analyses in this thesis are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) alongside the [Quarto](https://quarto.org/) publishing system. The [`renv`](https://rstudio.github.io/renv/) package was used to ensure that the R environment used can be restored (see `renv.lock`). All the computational notebooks can be found in the `qmd` directory.
 
@@ -83,12 +83,12 @@ The research data is subject to a private license and is not publicly available 
 
 To cite this work, please use the following format:
 
-Vartanian, D. (`r env_vars[["year"]]`). *`r env_vars[["title"]] |> stringr::str_to_sentence()`* [`r env_vars[["academic-title"]]`'s `r env_vars[["type-of-work"]]`, `r env_vars[["university"]]`]. [https://doi.org/10.17605/OSF.IO/YGKTS](https://doi.org/10.17605/OSF.IO/YGKTS)
+Vartanian, D. (`r env_vars[["submitted"]]`). *`r env_vars[["title"]] |> stringr::str_to_sentence()`* [`r env_vars[["academic-title"]]`'s `r env_vars[["type-of-work"]]`, `r env_vars[["university"]]`]. [https://doi.org/10.17605/OSF.IO/YGKTS](https://doi.org/10.17605/OSF.IO/YGKTS)
 
 A BibTeX entry for LaTeX users is:
 
 ```
-@mastersthesis{vartanian`r env_vars[["year"]]`,
+@mastersthesis{vartanian`r env_vars[["submitted"]]`,
   title = {`r env_vars[["title"]] |> stringr::str_to_sentence()`},
   author = {Daniel Vartanian},
   year = {`r env_vars[["year"]]`},

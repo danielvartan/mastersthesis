@@ -9,7 +9,7 @@
 source(here::here("R", "_setup.R"))
 ```
 
-During the development of this thesis, several activities have been accomplished. These activities are important to note, as they demonstrate the path taken to arrive at this final document. The following sections detail the some of them.
+During the development of this thesis, several activities have been accomplished. These activities are important to note, as they demonstrate the path taken to arrive at this final document. The following sections detail some of them.
 
 ## Courses
 
@@ -25,7 +25,7 @@ Please note that the unfortunate **C** concept above happened in the same semest
 
 44 discipline credits were completed by this thesis publication date. An additional 12 special credits, related to an article publication (see @viana-mendes2023), were requested and approved by the Graduate Program Coordination Commission (CCP) in accordance with [program regulations](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019). In total, 56 credits were earned. A minimum of 50 credits is required for the thesis defense.
 
-## Teaching internship
+## Teaching Internship
 
 Scholarship students under the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) are required to participate in the [Teaching Improvement Program (PAE)](www5.each.usp.br/pae/). This internship occur in the 2º semester of 2023.
 
@@ -59,7 +59,7 @@ Vartanian, D., & Pedrazzoli, M. (2022). *Ecology of sleep and circadian phenotyp
 
 In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation ([SIICUSP](https://prpi.usp.br/siicusp/)) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartaniang. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of *Earth and Exact Sciences*.
 
-## Research compendia
+## Research Compendium
 
 This thesis, along with all the accompanying research, is structured and organized within the research compendium provided below.
 
@@ -67,7 +67,7 @@ This thesis, along with all the accompanying research, is structured and organiz
 
 Vartanian, D. (2025). *Is latitude associated with chronotype?* [Research compendium]. <https://doi.org/10.17605/OSF.IO/YGKTS>
 
-## Data plans
+## Data Plans
 
 This research has also produced and published the following data plan.
 
@@ -85,7 +85,7 @@ Vartanian, D. (n.d.). *{entrainment}: a rule-based model of the 24h light/dark c
 
 <!-- @vartanianh -->
 
-Vartanian, D. (n.d.). *{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)* [Software, R Package]. <https://docs.ropensci.org/mctq>
+Vartanian, D[^sm-10-1]. (n.d.). *{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)* [Software, R Package]. <https://docs.ropensci.org/mctq> (The package has already surpassed [9,000 downloads](https://danielvartan.shinyapps.io/cran-logs/?package=mctq))
 
 <!-- @vartanianc -->
 
@@ -136,8 +136,10 @@ Vartanian, D. (2024). *A demonstration of general linear models using penguins*.
 Vartanian, D. (2024). *Demonstrations of the central limit theorem*. <https://danielvartan.github.io/central-limit-theorem>
 
 
-## Other projects
+## Other Projects
 
 The author is also currently working on the development of the project below.
 
 Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). *Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor* \[Master's project, University of Sao Paulo\]. <https://bit.ly/4fYOWgy>
+
+[^sm-10-1]: The package has already surpassed [9,000 downloads](https://danielvartan.shinyapps.io/cran-logs/?package=mctq).

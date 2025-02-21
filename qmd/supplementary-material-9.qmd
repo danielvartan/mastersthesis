@@ -29,6 +29,8 @@ library(magrittr)
 #| include: false
 #| output: false
 
+source(here::here("R", "cohens_f_squared.R"))
+source(here::here("R", "summarise_r2.R"))
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-plots.R"))
 ```
@@ -55,7 +57,96 @@ The degrees of freedom difference ($df = 2$) suggests that the two previously de
 
 > We also obtained an effect size estimate of Cohen’s $f^{2} = (0.06352 - 0.05964) / (1 - 0.06352) = 0.004143174$ [@leocadio-miguel2017].
 
-The higher $\text{R}^{2}$ value ($0.06352$) differs from the previously reported $\text{R}^{2}$ ($0.06667$). This inconsistency is not justified, and the effect size is negligible. Latitude-related predictors explained only $0.388\%$ of the variability ($(0.06352 - 0.05964) \times 100$). Nonetheless, the authors interpreted this result as evidence of an association.
+A first thing to notice is that the higher $\text{R}^{2}$ value ($0.06352$) differs from the previously reported $\text{R}^{2}$ ($0.06667$). This inconsistency is not justified.
+
+The fomula that appears in the text is based on Cohen's $f^{2}$, which is calculated by the following:
+
+$$
+\text{Cohen's } f^2 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}}
+$$
+
+For nested models, this can be adapted as:
+
+$$
+\text{Cohen's } f^2 = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r}}{1 - \text{R}^{2}_{f}} = \cfrac{\Delta \text{R}^{2}}{1 - \text{R}^{2}_{f}}
+$$
+
+Before diving into the $f^2$ calculation, let's first calculate the confidence interval of the $\text{R}^{2}$ for the restricted and full model using an estimate of the standard error. Note that all the parameters used in the calculations are provided in the text.
+
+```{r}
+#| code-fold: false
+
+adj_r_squared_restricted <- summarise_r2(
+  r2 = 0.05964,
+  n = 12845 + 8 + 1,
+  k = 8,
+  ci_level = 0.95,
+  rules = "cohen1988"
+)
+
+adj_r_squared_restricted
+```
+
+```{r}
+#| code-fold: false
+
+adj_r_squared_full <- summarise_r2(
+  r2 = 0.06352,
+  n = 12853 + 27 + 1,
+  k = 27,
+  ci_level = 0.95,
+  rules = "cohen1988"
+)
+
+adj_r_squared_full
+```
+
+```{r}
+dplyr::tibble(
+  name = c(
+    "adj_r_squared_res", 
+    "adj_r_squared_full", 
+    "diff"
+  ),
+  value = c(
+    adj_r_squared_restricted$value[1],
+    adj_r_squared_full$value[1],
+    adj_r_squared_full$value[1] - adj_r_squared_restricted$value[1]
+  )
+)
+```
+
+Based on this data, it's also possible to estimate the confidence interval for the $\Delta \text{R}^{2}$.
+
+```{r}
+cohens_f_squared_summary(
+  base_r_squared = adj_r_squared_restricted,
+  new_r_squared = adj_r_squared_full
+) |>
+  list_as_tibble()
+```
+
+As we can see, the authors found an negligible effect size and, considering its confidence interval, it goes to 0. Latitude-related predictors explained only $0.388\%$ of the variability ($(0.06352 - 0.05964) \times 100$). Nonetheless, the authors interpreted this result as evidence of an association.
+
+At this point the reader could ask: "So why the F-test was significant?"
+
+> Testing for nested models, we obtained a significant reduction of residual sum of squares ($\text{F}(2,12884) = 31.983$, $p = 1.395e-14$), [...] [@leocadio-miguel2017].
+
+The significant *p*-value found in their F-test for nested models indicate a difference only because the *p*-value is very sensitive to sample size ($12,884$, in their case) (@fig-sm-9-gomez-de-mariscal-2021-figure-3). This is a common issue in large samples (commoly called the "*p*-value problem"), where even small differences (e.g., a difference of $0.00001$) can be detected as significant [@lin2013].
+
+::: {#fig-sm-9-gomez-de-mariscal-2021-figure-3}
+![](../images/gomez-de-mariscal-2021-figure-3)
+
+[Source: Reproduced from @mariscal2021[Figure 3].]{.legend}
+
+Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *p-value* curve. The parameter $n_{\alpha}$ represents the minimum sample size to detect statistically significant differences among compared groups. The parameter $n_{\gamma}$ represents the convergence point of the *p-value* curve. When the *p-value* curve expresses practical differences, the area under the red curve ($A_{p(n)}$) is smaller than the area under the constant function $\alpha = 0.05$ ($A_{\alpha = 0.05}$) when it is evaluated between $0$ and $n_{\gamma}$.
+:::
+
+A *p*-value don not have any pratical significance, that is why the effect size is important. As Cohen put:
+
+> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES [Effect Size] is not necessarily zero but **small enough to be negligible** [...]. (p. 461).
+
+Authors that rely only in the *p*-value indicate a statistical ritual other than a statistical thinking [@gigerenzer2004].
 
 ## Model Issues
 
@@ -79,9 +170,9 @@ The inclusion of sunrise time, sunset time, and daylight duration (sunset - sunr
 
 The [Figure 2](https://www.nature.com/articles/s41598-017-05797-w/figures/2) shown in @leocadio-miguel2017 provides a good example of how data can be misleading. This Figure was shown many times in presentations in chronobiology symposiums, without a proper care of understanding what it was showing.
 
-To interpret this figure, it is essential to first comprehend the scale it represents. In @leocadio-miguel2017, the authors used the Horne & Östberg (HO) chronotype scale [@horne1976]. This scale, one of the first developed to assess chronotype, is a self-report questionnaire designed to determine an individual's preferred time of day for activities such as waking up, going to bed, and moment of peak performance. The HO scale consists of $19$ items, with a total score ranging from $16$ to $86$. Lower scores indicate greater evening orientation, while higher scores reflect stronger morning orientation.
+To interpret this figure, it is essential to first comprehend the scale it represents. In @leocadio-miguel2017, the authors used the Horne & Östberg (HO) chronotype scale [@horne1976] (@fig-appendice-3-leocadio-miguel-2017-figure-1). This scale, one of the first developed to assess chronotype, is a self-report questionnaire designed to determine an individual's preferred time of day for activities such as waking up, going to bed, and moment of peak performance. The HO scale consists of $19$ items, with a total score ranging from $16$ to $86$. Lower scores indicate greater evening orientation, while higher scores reflect stronger morning orientation(@tbl-sm-9-horne-1976-table-1).
 
-::: {#tbl-sm-x-horne-1976-table-1}
+::: {#tbl-sm-9-horne-1976-table-1}
 ```{r}
 dplyr::tibble(
   Category = c(
@@ -116,9 +207,9 @@ Distribution of HO scores for the entire sample of @leocadio-miguel2017 data. Ea
 
 ### The Figure
 
-One of the key issues with the data presented in @leocadio-miguel2017 is that it relies on negligible associations, yet the authors present them in a way that suggests a strong effect. The article's Figure 2 (@fig-sm-x-leocadio-miguel-2017-figure-2) illustrates this. At first glance, it appears to show a good fit and a strong relationship between latitude and the chronotype proxy (in this case, the HO score). However, a closer analysis reveals that it is a clear example of the Y-axis illusion.
+One of the key issues with the data presented in @leocadio-miguel2017 is that it relies on negligible associations, yet the authors present them in a way that suggests a strong effect. The article's Figure 2 (@fig-sm-9-leocadio-miguel-2017-figure-2) illustrates this. At first glance, it appears to show a good fit and a strong relationship between latitude and the chronotype proxy (in this case, the HO score). However, a closer analysis reveals that it is a clear example of the *y*-axis illusion.
 
-::: {#fig-sm-x-leocadio-miguel-2017-figure-2}
+::: {#fig-sm-9-leocadio-miguel-2017-figure-2}
 ![](../images/leocadio-miguel-2017-figure-2.png){width=85%}
 
 [Source: Reproduced from @leocadio-miguel2017[Figure 2].]{.legend}
@@ -130,9 +221,9 @@ In the following sections, I reproduce the data from the figure to provide a cle
 
 ### Latitude Estimation (Upper x-Axis)
 
-As shown in @fig-sm-x-leocadio-miguel-2017-figure-2-with-guides, the latitude does not follow a fixed scale. Instead, it is referenced relative to the second x-axis (solar irradiation). However, it is possible to estimate the latitude values reasonably well by measuring the pixel distances between points on the figure.
+As shown in @fig-sm-9-leocadio-miguel-2017-figure-2-with-guides, the latitude does not follow a fixed scale. Instead, it is referenced relative to the second x-axis (solar irradiation). However, it is possible to estimate the latitude values reasonably well by measuring the pixel distances between points on the figure.
 
-::: {#fig-sm-x-leocadio-miguel-2017-figure-2-with-guides}
+::: {#fig-sm-9-leocadio-miguel-2017-figure-2-with-guides}
 ![](../images/leocadio-miguel-2017-figure-2-with-guides.png){width=85%}
 
 [Source: Adapted by the author from @leocadio-miguel2017[Figure 2].]{.legend}
@@ -196,7 +287,7 @@ The standard error (SE) is displayed on the Y-axis, which has a fixed scale. The
 
 By following the processes described above, we can obtained a reliable approximation of the data, as shown below.
 
-::: {#tbl-sm-x-leocadio-miguel-2017-figure-2-data}
+::: {#tbl-sm-9-leocadio-miguel-2017-figure-2-data}
 ```{r}
 data <- 
   dplyr::tibble(
@@ -241,9 +332,9 @@ Data extracted from Figure 2 present in @leocadio-miguel2017.
 
 First, let's examine the data in a format similar to what is shown in the @leocadio-miguel2017 figure.
 
-Note that here, the x-axis follows a fixed scale, which is crucial to avoid any distortions.
+Note that here, the *x*-axis follows a fixed scale, which is crucial to avoid any distortions.
 
-::: {#fig-sm-x-new-leocadio-miguel-2017-figure-2-same-scale}
+::: {#fig-sm-9-new-leocadio-miguel-2017-figure-2-same-scale}
 ```{r}
 data |>
   ggplot2::ggplot(
@@ -271,7 +362,7 @@ data |>
     linewidth = 2
   ) +
   ggplot2::scale_x_continuous(
-    breaks = c(0, 13, 18, 22, 16, 29, 32),
+    breaks = c(0, 13, 18, 22, 26, 29, 32),
     labels = c("0º", "13º", "18º", "22º", "26º", "29º", "32º"),
     limits = c(0, 32)
   ) +
@@ -288,7 +379,7 @@ Reproduction of Figure 2 from @leocadio-miguel2017 with a fixed x-axis scale.
 
 Now, it is possible to adjust the y-axis to reflect the minimum and maximum values of the HO scale.
 
-::: {#fig-sm-x-new-leocadio-miguel-2017-figure-2-new-scale}
+::: {#fig-sm-9-new-leocadio-miguel-2017-figure-2-new-scale}
 ```{r}
 data |>
   ggplot2::ggplot(
@@ -334,4 +425,4 @@ data |>
 Reproduction of Figure 2 from @leocadio-miguel2017 with a fixed x-axis scale and adjusted y-axis scale.
 :::
 
-With @fig-sm-x-new-leocadio-miguel-2017-figure-2-new-scale, it becomes clear that the data provided by the authors does not demonstrate a relevant effect size.
+With @fig-sm-9-new-leocadio-miguel-2017-figure-2-new-scale, it becomes clear that the data provided by the authors does not demonstrate a relevant effect size.

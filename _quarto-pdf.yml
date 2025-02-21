@@ -18,7 +18,7 @@ execute:
 
 book:
   author: "Daniel Kachvartanian de Azevedo"
-  date: today
+  date: "2024-11-27"
   date-format: "YYYY"
   chapters:
     - index.qmd

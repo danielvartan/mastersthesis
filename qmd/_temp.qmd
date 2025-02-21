@@ -8,7 +8,7 @@ The local time of the sleep-corrected midpoint between sleep onset and sleep end
 
 <!-- $\text{`{r} weighted_data |> dplyr::pull(msf_sc) |> mean() %>% `+`(hms::parse_hm("04:00")) |> hms::as_hms() |> lubritime::round_time()`}$ -->
 
-This represents the midsleep point for Brazilian subjects with an intermediate or average chronotype. Considering the 7–9 hours of sleep recommended for healthy adults by the American Academy of Sleep Medicine (AASM) [@watson2015], one could imagine that this average individual, in the absence of social restrains, would typically wake up at approximately $\text{08:28:41}$.
+This represents the midsleep point for Brazilian subjects with an intermediate or average chronotype. Considering the 7–9 hours of sleep recommended for healthy adults by the American Academy of Sleep Medicine (AASM) [@watson2015b], one could imagine that this average individual, in the absence of social restrains, would typically wake up at approximately $\text{08:28:41}$.
 
 ## Methods - Sample
 

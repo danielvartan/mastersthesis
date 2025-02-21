@@ -15,25 +15,63 @@ source(here::here("R", "_setup.R"))
 source(here::here("R", "utils-md.R"))
 ```
 
-According to Popper, the aim of science is to provide "satisfactory explanations of whatever strikes us as being in need of explanation" [@popper1979, p. 193]. This study, using what is arguably the largest dataset on chronotype collected within a single time zone, balanced to reflect population proportions at the time of data collection, found no support for the latitude hypothesis. This result contributes meaningful evidence to the understanding of circadian rhythm regulation, offering a clear and satisfactory answer to the central research question of this thesis regarding human populations: _Is latitude associated with chronotype?_ The answer, at present, is **[No]{.brandorange}**.
+::: {.content-visible when-format="html"}
+> Every genuine test of a theory is an attempt to falsify it, or to refute it [@popper2002].
 
-The development of this work was driven by a commitment to objectivity and scientific rigor, a path that often diverges from the expectations commonly placed on young researchers. The temptation to align with mainstream ideas for easier acceptance within the scientific community — or to increase the likelihood of publication — is ever-present. However, it is crucial to emphasize that this research does not stem from unreasonable skepticism. Instead, it reflects the perspective of a young scientist dedicated to the scientific endeavor and its foundational principles.
+> I suggest that it is the aim of science to find satisfactory explanations, of whatever strikes us as being in need of explanation [@popper1979a, p. 193].
+:::
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\epigraph{Every genuine test of a theory is an attempt to falsify it, or to refute it.}{--- \textcite{popper2002}}
+\vspace*{-1\baselineskip}
+\epigraph{I suggest that it is the aim of science to find satisfactory explanations, of whatever strikes us as being in need of explanation.}{--- \textcite[193]{popper1979a}}
+% \vspace*{1\baselineskip}
+```
+:::
+
+The preceding chapters have presented a comprehensive examination of evidence and analyses pertaining to the latitude hypothesis in chronobiology. At this juncture, it is essential to return to the fundamental research question that motivated this thesis: *Is latitude associated with chronotype?*
+
+This study, using what is arguably one of the largest datasets on chronotype, found no evidence supporting the latitude hypothesis in humans.
+
+This study is not an outlier. Current evidence does not support the latitude hypothesis, and some claims made in its favor warrant further examination (see Supplemental Materials). Nevertheless, the hypothesis is often cited in chronobiology research as if it were well-established. While this study does not definitively refute it, the relationship between latitude and chronotype should remain an open scientific question until strong evidence substantiates it.
+
+## Strengths
+
+Testing any theory or hypothesis is inherently challenging and often sparks debate. In this context, it is important to acknowledge the significant strengths of this study:
+
+- Large, focused sample: One of the largest chronotype datasets ever collected within a single time zone (`{r} res_vars$ea_analysis_sample_n |> format_to_md_latex(before = "n = ")`).
+- Minimal photoperiod variability: Data were collected over a single spring week as summer approached (October 15–21, 2017), effectively controlling for seasonal variations in daylight exposure across regions
+- Broad latitudinal range: The sample spans a considerable range (`{r} res_vars$ea_analysis_sample_lat_lon$latitude[3] |> format_to_md_latex(after = "°", max_digits = 5)`).
+- Population balancing: The dataset was adjusted to reflect population proportions at the time of collection.
+- Rigorous statistical analysis: The study accounted for confounders and incorporated a practical significance threshold.
+- Full reproducibility: All analyses, from raw data processing through effect size estimation, follow transparent and reproducible protocols available for verification.
+
+It is also worth noting that, despite methodological improvements, this study is grounded in the same core principles and variables that underpin the latitude hypothesis. Consequently, any critique of its methods should be considered in light of the methods used by studies that support the hypothesis.
 
 ## Limitations
 
-While this study provides valuable insights, it is essential to acknowledge certain limitations that may influence the interpretation of the findings.
+While this study provides valuable evidence, certain limitations should be acknowledged, as they may influence the interpretation of the findings.
 
-First, the data collection occurred predominantly during a single week in spring, as summer approached, which limited the photoperiod variability between regions. A better approach would involve data collection across different seasons, particularly during winter, when photoperiod differences are more pronounced between equatorial and polar regions.
+The use of the Munich Chronotype Questionnaire (MCTQ), although a validated instrument, introduces potential recall and social desirability biases that are inherent in self-reported measures. The large sample size likely mitigates these biases, in line with the law of large numbers [@degroot2012, p. 352]. Moreover, at the time of data collection, the MCTQ had not yet been officially validated in Portuguese (a process completed in 2020 by @reis2020a), which may have introduced minor inconsistencies; however, the impact is expected to be minimal given its format as a sleep log.
 
-Additionally, the use of the Munich Chronotype Questionnaire (MCTQ), while a validated instrument, introduces the potential for recall and social desirability biases inherent to self-reported measures. However, the large sample size likely mitigates these biases, as predicted by the law of large numbers [@degroot2012, p. 352]. Furthermore, at the time of data collection, the MCTQ had not yet been officially validated in Portuguese (this was only introduced in 2020 by @reis2020a), which may have introduced minor inconsistencies, though its nature as a sleep log suggests this impact was minimal.
+The timing of data collection coincided with the onset of Daylight Saving Time (DST) in Brazil. On October 15th, 2017, the day data collection commenced (`{r} res_vars$pr_analysis_sample_per_nrow_2017_10_15 |> format_to_md_latex(after = "\\%")` of the data used in this analysis were collected on this day), a significant portion of respondents adjusted their clocks forward by one hour. Although this adjustment could theoretically influence responses, the questions were designed to capture daily routines that were not directly affected by the DST shift. Furthermore, if DST had any effect, it would have been expected to bolster the latitude hypothesis; yet, this was not supported by the data.
 
-Another factor to consider is the timing of data collection relative to the start of Daylight Saving Time (DST) in Brazil. On the day data collection commenced (October 15th, 2017 – `{r} res_vars$pr_analysis_sample_per_nrow_2017_10_15 |> format_to_md_latex(after = "\\%")` of the data used in this analysis were collected on this day), a significant portion of respondents adjusted their clocks forward by one hour. While this could theoretically influence their responses, the questions were specifically designed to capture daily routines, which were not affected by the DST adjustment at that moment. Furthermore, any potential effect of DST would likely strengthen the latitude hypothesis; however, this was not supported by the data.
+The latitudinal range of `{r} res_vars$ea_analysis_sample_lat_lon$latitude[3] |> format_to_md_latex(after = "°", max_digits = 5)`, while substantial, could be questioned as potentially insufficient to detect latitude effects on chronotype. However, the absence of a meaningful association within this range suggests that any such effect, if present, would be minimal.
 
-These limitations, while noteworthy, do not undermine the study's findings but rather highlight areas for refinement in future research.
+While the analysis revealed a predominantly linear relationship between latitude and chronotype, non-linear modeling approaches might capture additional nuances, though at the cost of reduced interpretability. Similarly, while Cohen's effect size benchmarks have faced criticism, their foundation in psychological research---where complex phenomena often yield subtle effects---makes them particularly relevant for this study.
+
+Although key confounders were controlled for, some variables remained unexamined (e.g., socioeconomic status, urbanization, social timing). While including these variables might enhance model precision, it could also introduce multicollinearity and overfitting concerns. In the context of the tested hypothesis, the exclusion of these additional predictors is unlikely to alter the overall conclusions.
+
+The study used sleep as a proxy for measuring chronotype, leveraging its underlying circadian processes. However, sleep is not the only marker of circadian phenotypes. More precise methods, such as Dim Light Melatonin Onset (DLMO) [@ruiz2020], can provide a direct measure of circadian phase. Yet, these approaches are often more invasive and costly, limiting both sample size and the generalizability of findings.
+
+Finally, the study's generalizability is limited to the Brazilian population. However, since the latitude hypothesis's underlying principles are not geographically constrained, these findings provide valuable insights for future research in other regions.
+
+These limitations, while important to consider, do not undermine the study’s findings; rather, they highlight areas where future research might further refine our understanding.
 
 ## Directions for Future Research
 
-This thesis proposed using a global modeling approach to investigate the latitude-chronotype relationship. However, as demonstrated by the results of this study and others, no significant effect of latitude on chronotype was identified. That said, it remains possible that if such a phenomenon exists, it could be captured through a localized approach, such as agent-based modeling. This approach would simulate an environment where agents are exposed to varying light levels, while accounting for their endogenous rhythms and the circadian clock's phase-response curve to light. The data from this thesis could serve to calibrate and validate this model.
+This thesis proposed using a global modeling approach to investigate the latitude-chronotype relationship. As demonstrated by the results of this study and others, no meaningful effect of latitude on chronotype was identified. That said, it remains possible that if such a phenomenon exists, it could be captured through a localized approach, such as agent-based modeling. This approach would simulate an environment where agents are exposed to varying light levels, while accounting for their endogenous rhythms and the circadian clock's phase-response curve to light. The data from this thesis could serve to calibrate and validate this model.
 
 <!-- textual end -->
 

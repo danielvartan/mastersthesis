@@ -29,7 +29,7 @@ Boettiger & Lincoln Mullen’s article [Packaging Data Analytical Work
 Reproducibly Using R (and
 Friends)](https://doi.org/10.1080/00031305.2017.1375986).
 
-## How to use
+## How to Use
 
 All analyses in this thesis are fully reproducible and were conducted
 using the [R programming language](https://www.r-project.org/) alongside
@@ -118,16 +118,16 @@ available due to privacy and ethical considerations.
 
 To cite this work, please use the following format:
 
-Vartanian, D. (2025). *Is latitude associated with chronotype?*
+Vartanian, D. (2024). *Is latitude associated with chronotype?*
 \[Master’s Thesis, University of São Paulo\].
 <https://doi.org/10.17605/OSF.IO/YGKTS>
 
 A BibTeX entry for LaTeX users is:
 
-    @mastersthesis{vartanian2025,
+    @mastersthesis{vartanian2024,
       title = {Is latitude associated with chronotype?},
       author = {Daniel Vartanian},
-      year = {2025},
+      year = {2024},
       address = {São Paulo},
       school  = {University of São Paulo},
       langid = {en},

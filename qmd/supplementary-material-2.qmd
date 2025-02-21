@@ -32,11 +32,11 @@ For a comprehensive review of the thesis question and hypothesis, please refer t
 
 ## Approach and Procedure Method
 
-This study adopted the hypothetical-deductive method, also known as the method of conjecture and refutation [@popper1979, p. 164], to approach problem-solving. As a procedural method, it utilized an enhanced version of Null Hypothesis Significance Testing (NHST), grounded in the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015].
+This study adopted the hypothetical-deductive method, also known as the method of conjecture and refutation [@popper1979a, p. 164], to approach problem-solving. As a procedural method, it utilized an enhanced version of Null Hypothesis Significance Testing (NHST), grounded in the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015].
 
 ## Measurement Instrument
 
-Chronotypes were assessed using a sleep log based on the core version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MS) (@fig-sm-2-mctq-variables) on work-free days (MSF), accounting for any potential sleep compensation due to sleep deficits (sc = sleep correction) on workdays (Final abbreviation: MSF~sc~) [@roenneberg2012].
+Chronotypes were assessed using a sleep log based on the standard version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003b], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019c]. The MCTQ captures chronotype as a biological circadian phenotype, determined by the sleep-corrected midpoint of sleep (MS) (@fig-sm-2-mctq-variables) on work-free days (MSF), accounting for any potential sleep compensation due to sleep deficits (sc = sleep correction) on workdays (Final abbreviation: MSF~sc~) [@roenneberg2012].
 
 Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization, can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
 
@@ -75,16 +75,16 @@ More information about the sample can be found on Supplementary Material [-@sec-
 
 Geographic data were collected by the variables `country`, `state`, `municipality`, and `postal code`. The unique values of those data were manually inspected and adjusted using lookup tables. The `municiplaity` values were first matched using string distance algorithms present in the [stringdist](https://github.com/markvanderloo/stringdist) R package [@vanderloo] and data from the Brazilian Institute of Geography and Statistics (IBGE) via the [geobr](https://ipeagit.github.io/geobr/index.html>) R package [@pereira], other processes were then performed manually.
 
-This was a hard task involving crossing information from different sources, such as the [QualoCEP](https://www.qualocep.com/) [@qualocep2024], [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/overview) [google], [ViaCEP](https://viacep.com.br/) [@viacep], and [OpenStreetMap](https://www.openstreetmap.org/) [@openstreetmap] databases, along with the Brazilian postal service ([Correios](https://www.correios.com.br/enviar/precisa-de-ajuda/tudo-sobre-cep)) postal code documentation. Hence, the data matching shown in the lookup table was gathered considering not only one variable, but the whole set of geographical information provided by the respondent. Special cases were coded in the lookup table named *special_cases*
+This was a hard task involving crossing information from different sources, such as the [QualoCEP](https://www.qualocep.com/) [@qualocep2024], [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/overview) [@google], [ViaCEP](https://viacep.com.br/) [@viacep], and [OpenStreetMap](https://www.openstreetmap.org/) [@openstreetmap] databases, along with the Brazilian postal service ([Correios](https://www.correios.com.br/enviar/precisa-de-ajuda/tudo-sobre-cep)) postal code documentation. Hence, the data matching shown in the lookup table was gathered considering not only one variable, but the whole set of geographical information provided by the respondent. Special cases were coded in the lookup table named *special_cases*
 
-All values were also checked for ambiguities, including the municipalities names (e.g., the name *Aracoiba* could refer to the municipality of *Aracoiaba* in the state of *Ceará*, but could also refer to the municipality of *Araçoiaba da Serra* in the state of *São Paulo*). All values that had a similarity or pattern matching with one or more municipalities were manually inspected to avoid errors (see `get_more_than_one_geographical_match` function in the code repository). 
+All values were also checked for ambiguities, including the municipalities names (e.g., the name *Aracoiba* could refer to the municipality of *Aracoiaba* in the state of *Ceará*, but could also refer to the municipality of *Araçoiaba da Serra* in the state of *São Paulo*). All values that had a similarity or pattern matching with one or more municipalities were manually inspected to avoid errors.
 
 ### Postal codes
 
 After removing all non-numeric characters from the Brazilian postal codes (Código de Endereçamento Postal ([CEP](https://pt.wikipedia.org/wiki/C%C3%B3digo_de_Endere%C3%A7amento_Postal))), they were processed by the following rules:
 
 - If they had 9 or more digits, they were truncated to 8 digits (the first 8 digits are the postal code).
-- If they between 5 and 7 digits, they were complemented with `0`s at the ending.
+- If they between 5 and 7 digits, they were complemented with `0`s at the end.
 - If they had less than 5 digits, they were discarded.
 
 In addition, a visual inspection was performed to check for inconsistencies.
@@ -105,9 +105,9 @@ Non-Brazilian postal codes were not validated, but they were cleaned by removing
 
 ### Latitudes and Longitudes
 
-Latitudes and longitudes values consider only the `municipality` and `postal_code` variables. They were extracted from the QualoCEP database, which is the result of a reverse geocoding using the Google Geocoding API. See Appendice 6 to side by side comparison of the latitudes and longitudes from QualoCEP and Google Geocoding API.
+Latitudes and longitudes values consider only the `municipality` and `postal_code` variables. They were extracted from the QualoCEP database, which is the result of a geocoding using the Google Geocoding API. See Supplementar Material [-@sec-sm-qualocep] to a side by side comparison of the latitudes and longitudes from QualoCEP and Google Geocoding API.
 
-For respondents  who did not provide a valid postal code, the latitude and longitude were extracted via the mean of the latitudes and longitudes associated with the municipality in the QualoCEP database.
+For respondents who did not provide a valid postal code, the latitude and longitude were extracted via the mean of the latitudes and longitudes associated with the municipality in the QualoCEP database.
 
 Finally, Google Geocoding API, via the `tidygeocoder` R package, was used on cases that didn't had a match in the QualoCEP database.
 
@@ -120,7 +120,7 @@ The data comprise annual and monthly averages of the daily total irradiation in 
 ::: {#fig-sm-2-pereira-2017-figure-13}
 ![](images/pereira-2017-figure-13.png)
 
-[Source: Adapted from @pereira2017.]{.legend}
+[Source: Adapted by the author from @pereira2017.]{.legend}
 
 Components of solar irradiance. $G_{0}$ = Extraterrestrial irradiance. $G_{n}$ = Direct normal irradiance. $G_{dif}$ = Diffuse horizontal irradiance. $G_{dir}$ = Direct horizontal irradiance. $G$ = Global horizontal irradiance. $G_{i}$ = Inclined plane irradiance.
 :::
@@ -137,7 +137,7 @@ A data management plan for this study was created and published using the Califo
 
 All data are stored in the study's research compendium on the Open Source Framework ([OSF](https://osf.io)), hosted on Google Cloud servers in the USA. Access to the compendium is restricted, and data are encrypted using a 4096-bit RSA key pair ([Rivest-Shamir-Adleman](https://en.wikipedia.org/wiki/RSA_(cryptosystem))), along with a unique 32-byte project password.
 
-Access to the data requires authorization from the author on the Open Science Framework ([OSF](https://osf.io)) and the installation of the necessary encryption keys.
+Access to the data requires authorization from the author on the Open Science Framework ([OSF](https://osf.io)) and the installation of the encryption keys.
 
 ## Data Wrangling
 
@@ -218,7 +218,7 @@ Consider the local time of sleep onset. We can observe that some subjects start 
 Possible intervals for circular time.
 :::
 
-Using the 12:00 hour a threshold, it's possible to calculate the correct distance between times during the calculations. This method link the values in a two-day timeline, with values equal or greater than 12:00 allocated on day 1, and values with less than 12:00 allocated on day 2. This way, the distance between 23:00 and 01:00 is 02:00, the distance between 01:00 and 23:00 is 22:00 (i.e., there is no gap between data points) (@fig-sm-2-sleep-onset-treatment).
+Using the 12:00 hour a threshold, it's possible to calculate the correct distance between times. This method link the values in a two-day timeline, with values equal or greater than 12:00 allocated on day 1, and values with less than 12:00 allocated on day 2. This way, the distance between 23:00 and 01:00 is 02:00, the distance between 01:00 and 23:00 is 22:00 (i.e., there is no gap between data points) (@fig-sm-2-sleep-onset-treatment).
 
 ::: {#fig-sm-2-sleep-onset-treatment}
 ```{r}
@@ -305,7 +305,7 @@ $$
 \Delta \ \text{Adjusted} \ \text{R}^{2} = \text{Adjusted} \ \text{R}^{2}_{f} - \text{Adjusted} \ \text{R}^{2}_{r}
 $$ {#eq-adjusted-r-squared-delta}
 
-and $\text{MES}$ is a Minimum Effect Size, a threshold for detecting significant changes.
+and $\text{MES}$ is a Minimum Effect Size, a threshold for detecting meaningful changes.
 
 $\text{R}^{2}$ is a statistic that represents the proportion of variance explained in the relationship between two or more variables (goodness of fit) [@frey2022, p. 1339]. It ranges from $1$ (perfect prediction) to $0$ (no prediction) and can be defined as [@degroot2012, p. 748]:
 
@@ -354,7 +354,7 @@ $$
 \text{F} = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
 $$
 
-A MES must always be present in any data testing. The effect-size was present in the original Neyman and Pearson framework [@neyman1928; @neyman1928a], but unfortunately this practice fade away with the indiscriminate use of p-values, one of the many issues that came with the Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. While p-values are estimates of type 1 error (in Neyman–Pearson’s approaches, or like-approaches), that's not the main thing we are interested while doing a hypothesis test, what is really being test is the effect size (i.e., a practical significance). Another major issue to only relying on p-values is that the estimated p-value tends to decrease when the sample size is increased, hence, focusing just on p-values with large sample sizes results in the rejection of the null hypothesis, making it not meaningful in this specific situation [@lin2013; @mariscal2021; @hair2019].
+A MES must always be present in any data testing. The effect-size was present in the original Neyman and Pearson framework [@neyman1928; @neyman1928a], but unfortunately this practice fade away with the indiscriminate use of *p*-values, one of the many issues that came with the Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. While *p*-values are estimates of type 1 error (in Neyman–Pearson’s approaches, or like-approaches), that's not the main thing we are interested while doing a hypothesis test. What is really being test is the effect size (i.e., a practical significance). Another major issue to only relying on *p*-values is that the estimated p-value tends to decrease when the sample size is increased, hence, focusing just on p-values with large sample sizes results in the rejection of the null hypothesis, making it not meaningful in this specific situation [@lin2013; @mariscal2021; @hair2019].
 
 > Neyman-Pearson’s approach considers, at least, two competing hypotheses, although it only tests data under one of them. The hypothesis which is the most important for the research (i.e., the one you do not want to reject too often) is the one tested (Neyman and Pearson, 1928; Neyman, 1942; Spielman, 1973). This hypothesis **is better off written so as for incorporating the minimum expected effect size within its postulate** (e.g., $\text{HM} : \text{M1} – \text{M2} = 0 \pm \text{MES}$), so that it is clear that values within such minimum threshold are considered reasonably probable under the main hypothesis, while values outside such minimum threshold are considered as more probable under the alternative hypothesis. [@perezgonzalez2015].
 
@@ -441,7 +441,7 @@ The restricted model in @leocadio-miguel2017 included age, longitude, and solar 
 
 As in @leocadio-miguel2017, the measure of daylight duration in September equinox was not included due to the high correlation with the March equinox ($r > 0.993$), making it statistically indistinguishable from the latter ($p > 0.05$). This was expected, since the day at the equinoxes must be approximately the same length (from the Latin, *aequĭnoctĭum*, meaning the time of equal days and nights [@latinitium]).
 
-Daylight duration for the March equinox, June solstice, and December solstice exhibited high multicollinearity, with a variance inflation factor (VIF) exceeding $1000$. However, since these variables are part of the same group (latitude proxies), this does not pose a significant issue for the analysis. The focus is on the collective effect of the group rather than the contributions of individual variables.
+Daylight duration for the March equinox, June solstice, and December solstice exhibited high multicollinearity, with a variance inflation factor (VIF) exceeding $1000$. However, since these variables are part of the same group, this does not pose a significant issue for the analysis. The focus is on the collective effect of the group rather than the contributions of individual variables.
 
 ### Tests and Predictors
 

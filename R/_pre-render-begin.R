@@ -13,7 +13,7 @@ source(here::here("R", "_render-common.R"))
 
 # Copy images folder to `./qmd` -----
 
-## *Solve issues related to relative paths.
+## Solve issues related to relative paths
 
 dir_path <- here::here("qmd", "images")
 
@@ -40,8 +40,8 @@ var_files <- c(
 var_patterns <- c(
   "academic-title", "academic-degree", "area-of-concentration", "author",
   "^book.url$", "cosupervisor", "date", "keyword", "language", "pdf.location$",
-  "mainfont", "monofont", "program", "sansfont", "school", "supervisor",
-  "^book.title$","type-of-work", "university", "version-note"
+  "mainfont", "monofont", "program", "sansfont", "school", "^book.submitted$",
+  "supervisor", "^book.title$","type-of-work", "university", "version-note"
 )
 
 for (i in var_files){
@@ -108,6 +108,9 @@ env_vars |> yaml::write_yaml(env_vars_file_path)
 source(here::here("R", "_pre-render-vars.R"))
 
 # Scan Quarto files for citations and add them to references.bib -----
+
+## Uncheck the option "Apply title-casing to titles" in Zotero Better BibTeX
+## preferences (Edit > Settings > Better BibTeX > Miscellaneous).
 
 quarto_yml_pdf_path <- here::here("_quarto-pdf.yml")
 quarto_yml_pdf_vars <- yaml::read_yaml(quarto_yml_pdf_path)

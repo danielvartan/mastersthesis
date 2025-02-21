@@ -171,7 +171,7 @@ weighted_data |>
 
 ### Full Sample
 
-::: {#fig-sm-correlation-matrix-full-sample}
+::: {#fig-sm-3-correlation-matrix-full-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -191,7 +191,7 @@ Correlation matrix of main variables (**Full sample**).
 
 ###  Analysis Sample
 
-::: {#fig-sm-correlation-matrix-analysis-sample}
+::: {#fig-sm-3-correlation-matrix-analysis-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -221,7 +221,7 @@ Correlation matrix of the main variables (**Analysis sample**).
 
 Click [here](https://anuario.ibge.gov.br/2023/territorio/posicao-e-extensao.html) to learn more about Brazil's extreme points.
 
-::: {#tbl-sm-1-logitudinal-range-brazil}
+::: {#tbl-sm-3-logitudinal-range-brazil}
 ```{r}
 #| message: false
 #| warning: false
@@ -267,7 +267,7 @@ write_in_results_yml(
 
 #### Full Sample
 
-::: {#tbl-sm-1-logitudinal-range-full-sample}
+::: {#tbl-sm-3-logitudinal-range-full-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -319,7 +319,7 @@ write_in_results_yml(
 
 #### Analysis Sample
 
-::: {#tbl-sm-1-logitudinal-range-analysis-sample}
+::: {#tbl-sm-3-logitudinal-range-analysis-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -1016,7 +1016,7 @@ plot_full_age_3 <-
   )
 ```
 
-::: {#fig-sm-1-age-sex-weigth-series}
+::: {#fig-sm-3-age-sex-weigth-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1138,7 +1138,7 @@ write_in_results_yml(
 
 ### Full Sample
 
-::: {#fig-sm-1-weight-latitude-series}
+::: {#fig-sm-3-weight-latitude-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1183,7 +1183,7 @@ anonymized_data |> get_chronotype_cutoffs()
 ```
 
 
-::: {#fig-sm-1-age-sex-chronotype-series}
+::: {#fig-sm-3-age-sex-chronotype-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1194,12 +1194,12 @@ plot_age_sex_series <-
   plot_series()
 ```
 
-[Source: Created by the author, based on a data visualization from @roenneberg2007[Figure 4].]{.legend}
+[Source: Created by the author based on a data visualization from @roenneberg2007[Figure 4].]{.legend}
 
-Relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+Observed relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
 :::
 
-::: {#fig-sm-2-roenneberg-2007-figure-4}
+::: {#fig-sm-3-roenneberg-2007-figure-4}
 ![](images/roenneberg-2007-figure-4.png){width=80%}
 
 [Source: Reproduced from @roenneberg2007[Figure 4].]{.legend}
@@ -1284,7 +1284,7 @@ weighted_data |>
   summary_by("msf_sc", "msf_sc_category")
 ```
 
-::: {#fig-sm-1-chronotype-distribution-analysis-sample}
+::: {#fig-sm-3-chronotype-distribution-analysis-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -1293,12 +1293,12 @@ weighted_data |>
   plot_chronotype()
 ```
 
-[Source: Created by the author, based on a data visualization from @roenneberg2019b[Figure 1, right part].{.legend}
+[Source: Created by the author based on a data visualization from @roenneberg2019b[Figure 1].{.legend}
 
-Distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. `<br>`{=html} `\microskip \\`{=latex} Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
+Observed distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. `<br>`{=html} `\microskip \\`{=latex} Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
 :::
 
-::: {#fig-sm-2-roenneberg-2019-figure-1}
+::: {#fig-sm-3-roenneberg-2019-figure-1}
 ![](images/roenneberg-2019-figure-1.png){width: 80%}
 
 [Source: Reproduced from @roenneberg2019b[Figure 1, right part].] {.legend}
@@ -1332,7 +1332,7 @@ weighted_data |>
   summary_by("msf_sc", "age_group")
 ```
 
-::: {#fig-sm-1-age-sex-chronotype-series}
+::: {#fig-sm-3-age-sex-chronotype-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1343,9 +1343,9 @@ plot_age_sex_series <-
   plot_series()
 ```
 
-[Source: Created by the author, based on a data visualization from @roenneberg2007[Figure 4].]{.legend}
+[Source: Created by the author based on a data visualization from @roenneberg2007[Figure 4].]{.legend}
 
-Relation between age and chronotype, divided by sex and aggregated by the mean (Analysis sample). Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+Observed relation between age and chronotype, divided by sex and aggregated by the mean (Analysis sample). Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
 :::
 
 ```{r}
@@ -1439,6 +1439,7 @@ weighted_data |>
   plot_brazil_point(col_group = "msf_sc_category")
 ```
 
+::: {#fig-sm-3-chronotype-geographical-distribution-by-respondent}
 ```{r}
 plot <- 
   weighted_data |> 
@@ -1474,7 +1475,12 @@ plot |>
   ggplot2::facet_wrap(~msf_sc_category, ncol = 4, nrow = 2)
 ```
 
-::: {#fig-sm-1-chronotype-latitude-series}
+[Source: Created by the author.]{.legend}
+
+Observed geographical distribution of MSF~sc~ values by a spectrum of extremely early and extremely late, illustrating how chronotype varies with latitude in Brazil. `<br>`{=html} `\microskip \\`{=latex} MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$). No discernible pattern emerges from the distribution of chronotypes across latitudes.
+:::
+
+::: {#fig-sm-3-chronotype-latitude-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1486,7 +1492,7 @@ weighted_data |> plot_latitude_series()
 
 [Source: Created by the author.]{.legend}
 
-Boxplots of mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+Boxplots of observed mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
 :::
 
 ```{r}

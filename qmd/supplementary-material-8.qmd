@@ -11,7 +11,7 @@ source(here::here("R", "_setup.R"))
 
 ## Overview
 
-This document present basic concepts and assumptions regarding general linear models. The main goal is to provide a reference for the model diagnostics that will be performed in the other sections of the thesis supplementary material.
+This document presents fundamental concepts and assumptions of general linear models, serving as a reference for model diagnostics in the supplementary materials.
 
 ## Definitions
 

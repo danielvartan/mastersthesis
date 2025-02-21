@@ -66,7 +66,7 @@ Azevedo, Daniel Kachvartanian de
 {\imprimirtipotrabalho} by {\imprimirautor}, under the title \textbf{\imprimirtitulo}, presented to the {\imprimirescola} at the {\imprimiruniversidade}, as a requirement for the degree of {\imprimirtituloacademico} by the {\imprimirprograma}, in the concentration area of {\imprimirareadeconcentracao}.
 
 \vspace{\hugeskipamount}
-Approved on \ \underline{\hspace{5cm}} \ , \underline{\hspace{2.5cm}} .
+Approved on February 3, 2025.
 
 \vspace{\hugeskipamount}
 \begin{center}
@@ -80,39 +80,39 @@ Committee chair:
 \begingroup
 
 \AtBeginEnvironment{tabular}{
-  \normalsize
+  \normalsize\raggedright
   \renewcommand{\arraystretch}{2}
 }
 
 \setlength{\arrayrulewidth}{0pt}
 \setlength{\tabcolsep}{0cm}
-\begin{tabular}{m{2.5cm} P{13.5cm}}
-  Prof. Dr. & \hrulefill \\
-  Institution & \hrulefill \\
+\begin{tabular}{m{2.5cm} m{13.5cm}}
+  Prof. Dr. & Camilo Rodrigues Neto \\
+  Institution & School of Arts, Sciences, and Humanities, University of São Paulo \\
 \end{tabular}
 
 \vspace{\bigskipamount}
 Examiners:
 
 \vspace{\tinyskipamount}
-\begin{tabular}{m{2.5cm} P{13.5cm}}
-  Prof. Dr. & \hrulefill \\
-  Institution & \hrulefill \\
-  Evaluation & \hrulefill \\
+\begin{tabular}{m{2.5cm} m{13.5cm}}
+  Prof. Dr. & Tiago Gomes de Andrade \\
+  Institution & Faculty of Medicine, Federal University of Alagoas \\
+  Evaluation &  Approved \\
 \end{tabular}
 
 \vspace{\smallskipamount}
-\begin{tabular}{m{2.5cm} P{13.5cm}}
-  Prof. Dr. & \hrulefill \\
-  Institution & \hrulefill \\
-  Evaluation & \hrulefill \\
+\begin{tabular}{m{2.5cm} m{13.5cm}}
+  Prof. Dr. & Domingos Alves \\
+  Institution & Ribeirão Preto Medical School, University of São Paulo \\
+  Evaluation & Approved \\
 \end{tabular}
 
 \vspace{\smallskipamount}
-\begin{tabular}{m{2.5cm} P{13.5cm}}
-  Prof. Dr. & \hrulefill \\
-  Institution & \hrulefill \\
-  Evaluation & \hrulefill \\
+\begin{tabular}{m{2.5cm} m{13.5cm}}
+  Prof. Dr. & Marcelo de Souza Lauretto \\
+  Institution & School of Arts, Sciences, and Humanities, University of São Paulo \\
+  Evaluation & Approved \\
 \end{tabular}
 \endgroup
 <!-- %:::% approval-sheet body end %:::% -->

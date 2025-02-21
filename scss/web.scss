@@ -139,5 +139,9 @@ code a:any-link {
 }
 
 .brandorange {
-  color: $primary; !important
+  color: $primary !important;
+}
+
+.footnote-ref ~ .footnote-ref :before {
+  content: ', '
 }
