@@ -41,37 +41,37 @@ plot_series <- function(
 ) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
 
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col_x)
-  prettycheck:::assert_subset(col_x, names(data))
-  prettycheck:::assert_multi_class(data[[col_x]], col_classes)
-  prettycheck:::assert_string(col_y)
-  prettycheck:::assert_subset(col_y, names(data))
-  prettycheck:::assert_multi_class(data[[col_y]], col_classes)
-  prettycheck:::assert_string(col_group)
-  prettycheck:::assert_subset(col_group, names(data))
-  prettycheck:::assert_factor(data[[col_group]])
-  prettycheck:::assert_number(linewidth)
-  prettycheck:::assert_number(boundary)
-  prettycheck:::assert_number(point_size)
-  prettycheck:::assert_flag(error_bar)
-  prettycheck:::assert_number(error_bar_width)
-  prettycheck:::assert_number(error_bar_linewidth)
-  prettycheck:::assert_string(date_breaks)
-  prettycheck:::assert_flag(reverse)
-  prettycheck:::assert_flag(change_sign)
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col_x)
+  checkmate::assert_subset(col_x, names(data))
+  checkmate::assert_multi_class(data[[col_x]], col_classes)
+  checkmate::assert_string(col_y)
+  checkmate::assert_subset(col_y, names(data))
+  checkmate::assert_multi_class(data[[col_y]], col_classes)
+  checkmate::assert_string(col_group)
+  checkmate::assert_subset(col_group, names(data))
+  checkmate::assert_factor(data[[col_group]])
+  checkmate::assert_number(linewidth)
+  checkmate::assert_number(boundary)
+  checkmate::assert_number(point_size)
+  checkmate::assert_flag(error_bar)
+  checkmate::assert_number(error_bar_width)
+  checkmate::assert_number(error_bar_linewidth)
+  checkmate::assert_string(date_breaks)
+  checkmate::assert_flag(reverse)
+  checkmate::assert_flag(change_sign)
   assert_gg_label(x_label)
   assert_gg_label(y_label)
   assert_gg_label(color_label)
-  prettycheck:::assert_flag(print)
+  checkmate::assert_flag(print)
 
-  prettycheck:::assert_multi_class(
+  checkmate::assert_multi_class(
     date_minor_breaks, c("waiver", "numeric"), null.ok = TRUE
   )
 
   if (y_label == col_y && hms::is_hms(data[[col_y]])) {
     y_label = paste0("Local time (", col_y, " +- SEM)")
-  } else if (y_label == col_y && prettycheck:::test_duration(data[[col_y]])) {
+  } else if (y_label == col_y && prettycheck::test_duration(data[[col_y]])) {
     y_label = paste0("Duration (", col_y, " +- SEM)")
   }
 
@@ -79,7 +79,7 @@ plot_series <- function(
     data |>
     dplyr::select(dplyr::all_of(c(col_x, col_y, col_group))) |>
     dplyr::mutate(dplyr::across(
-      .cols = dplyr::where(prettycheck:::test_duration),
+      .cols = dplyr::where(prettycheck::test_duration),
       .fns = ~ hms::hms(as.numeric(.x))
     )) |>
     dplyr::mutate(dplyr::across(

@@ -13,14 +13,14 @@ fix_postal_code <- function(
     pad = TRUE, # To `max_char` width.
     zero_na = TRUE # To `max_char` width.
   ) {
-  prettycheck:::assert_atomic(postal_code)
-  prettycheck:::assert_number(min_char, lower = 1)
-  prettycheck:::assert_number(max_char, lower = min_char)
-  prettycheck:::assert_flag(squish)
-  prettycheck:::assert_flag(remove_non_numeric)
-  prettycheck:::assert_flag(remove_number_sequences)
-  prettycheck:::assert_flag(trunc)
-  prettycheck:::assert_flag(pad)
+  checkmate::assert_atomic(postal_code)
+  checkmate::assert_number(min_char, lower = 1)
+  checkmate::assert_number(max_char, lower = min_char)
+  checkmate::assert_flag(squish)
+  checkmate::assert_flag(remove_non_numeric)
+  checkmate::assert_flag(remove_number_sequences)
+  checkmate::assert_flag(trunc)
+  checkmate::assert_flag(pad)
 
   postal_code <- postal_code |> as.character()
 

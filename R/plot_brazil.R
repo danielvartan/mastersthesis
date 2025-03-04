@@ -26,26 +26,26 @@ plot_brazil_point <- function(
     limits = NULL,
     print = TRUE
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col_latitude)
-  prettycheck:::assert_subset(col_latitude, names(data))
-  prettycheck:::assert_numeric(data[[col_latitude]])
-  prettycheck:::assert_string(col_longitude)
-  prettycheck:::assert_subset(col_longitude, names(data))
-  prettycheck:::assert_numeric(data[[col_longitude]])
-  prettycheck:::assert_string(col_group, null.ok = TRUE)
-  prettycheck:::assert_choice(col_group, names(data), null.ok = TRUE)
-  prettycheck:::assert_multi_class(transform, c("character", "transform"))
-  prettycheck:::assert_choice(direction, c(-1, 1))
-  prettycheck:::assert_number(alpha, lower = 0, upper = 1)
-  prettycheck:::assert_number(size_point, lower = 0)
-  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
-  prettycheck:::assert_flag(reverse)
-  prettycheck:::assert_flag(print)
+  prettycheck::assert_internet()
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col_latitude)
+  checkmate::assert_subset(col_latitude, names(data))
+  prettycheck::assert_numeric(data[[col_latitude]])
+  checkmate::assert_string(col_longitude)
+  checkmate::assert_subset(col_longitude, names(data))
+  prettycheck::assert_numeric(data[[col_longitude]])
+  checkmate::assert_string(col_group, null.ok = TRUE)
+  checkmate::assert_choice(col_group, names(data), null.ok = TRUE)
+  checkmate::assert_multi_class(transform, c("character", "transform"))
+  checkmate::assert_choice(direction, c(-1, 1))
+  checkmate::assert_number(alpha, lower = 0, upper = 1)
+  checkmate::assert_number(size_point, lower = 0)
+  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  checkmate::assert_multi_class(labels, c("function", "numeric", "waiver"))
+  checkmate::assert_flag(reverse)
+  checkmate::assert_flag(print)
 
-  prettycheck:::assert_multi_class(
+  checkmate::assert_multi_class(
     limits, c("numeric", "function"), null.ok = TRUE
   )
 
@@ -173,25 +173,25 @@ plot_brazil_state <- function(
     print = TRUE,
     quiet = FALSE
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col_fill, null.ok = TRUE)
-  prettycheck:::assert_choice(col_fill, names(data), null.ok = TRUE)
-  if (!is.null(col_fill)) prettycheck:::assert_numeric(data[[col_fill]])
-  prettycheck:::assert_string(col_code)
-  prettycheck:::assert_choice(col_code, names(data))
-  prettycheck:::assert_integerish(data[[col_code]])
-  prettycheck:::assert_multi_class(transform, c("character", "transform"))
-  prettycheck:::assert_choice(direction, c(-1, 1))
-  prettycheck:::assert_flag(binned)
-  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  prettycheck:::assert_integer_number(n_breaks, lower = 1, null.ok = TRUE)
-  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
-  prettycheck:::assert_flag(reverse)
-  prettycheck:::assert_flag(print)
-  prettycheck:::assert_flag(quiet)
+  prettycheck::assert_internet()
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col_fill, null.ok = TRUE)
+  checkmate::assert_choice(col_fill, names(data), null.ok = TRUE)
+  if (!is.null(col_fill)) checkmate::assert_numeric(data[[col_fill]])
+  checkmate::assert_string(col_code)
+  checkmate::assert_choice(col_code, names(data))
+  checkmate::assert_integerish(data[[col_code]])
+  checkmate::assert_multi_class(transform, c("character", "transform"))
+  checkmate::assert_choice(direction, c(-1, 1))
+  checkmate::assert_flag(binned)
+  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  checkmate::assert_int(n_breaks, lower = 1, null.ok = TRUE)
+  checkmate::assert_multi_class(labels, c("function", "numeric", "waiver"))
+  checkmate::assert_flag(reverse)
+  checkmate::assert_flag(print)
+  checkmate::assert_flag(quiet)
 
-  prettycheck:::assert_multi_class(
+  checkmate::assert_multi_class(
     limits, c("numeric", "function"), null.ok = TRUE
   )
 
@@ -294,29 +294,29 @@ plot_brazil_municipality <- function(
     print = TRUE,
     quiet = FALSE
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col_fill, null.ok = TRUE)
-  prettycheck:::assert_choice(col_fill, names(data), null.ok = TRUE)
-  if (!is.null(col_fill)) prettycheck:::assert_numeric(data[[col_fill]])
-  prettycheck:::assert_string(col_code)
-  prettycheck:::assert_choice(col_code, names(data))
-  prettycheck:::assert_integerish(data[[col_code]])
-  prettycheck:::assert_multi_class(transform, c("character", "transform"))
-  prettycheck:::assert_choice(direction, c(-1, 1))
-  prettycheck:::assert_number(alpha, lower = 0, upper = 1)
-  prettycheck:::assert_flag(binned)
-  prettycheck:::assert_integerish(range, len = 2)
-  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  prettycheck:::assert_integer_number(n_breaks, lower = 1, null.ok = TRUE)
-  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
-  prettycheck:::assert_flag(reverse)
-  prettycheck:::assert_flag(zero_na)
-  prettycheck:::assert_flag(point)
-  prettycheck:::assert_flag(print)
-  prettycheck:::assert_flag(quiet)
+  prettycheck::assert_internet()
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col_fill, null.ok = TRUE)
+  checkmate::assert_choice(col_fill, names(data), null.ok = TRUE)
+  if (!is.null(col_fill)) prettycheck::assert_numeric(data[[col_fill]])
+  checkmate::assert_string(col_code)
+  checkmate::assert_choice(col_code, names(data))
+  checkmate::assert_integerish(data[[col_code]])
+  checkmate::assert_multi_class(transform, c("character", "transform"))
+  checkmate::assert_choice(direction, c(-1, 1))
+  checkmate::assert_number(alpha, lower = 0, upper = 1)
+  checkmate::assert_flag(binned)
+  checkmate::assert_integerish(range, len = 2)
+  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  checkmate::assert_int(n_breaks, lower = 1, null.ok = TRUE)
+  checkmate::assert_multi_class(labels, c("function", "numeric", "waiver"))
+  checkmate::assert_flag(reverse)
+  checkmate::assert_flag(zero_na)
+  checkmate::assert_flag(point)
+  checkmate::assert_flag(print)
+  checkmate::assert_flag(quiet)
 
-  prettycheck:::assert_multi_class(
+  checkmate::assert_multi_class(
     limits, c("numeric", "function"), null.ok = TRUE
   )
 
@@ -420,11 +420,11 @@ plot_brazil_municipality_point <- function(
     range = c(0, 10),
     breaks = ggplot2::waiver()
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_number(alpha, lower = 0, upper = 1)
-  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  prettycheck:::assert_integerish(range, len = 2)
+  prettycheck::assert_internet()
+  checkmate::assert_tibble(data)
+  checkmate::assert_number(alpha, lower = 0, upper = 1)
+  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  checkmate::assert_integerish(range, len = 2)
 
   data_points <-
     data |>

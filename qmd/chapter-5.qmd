@@ -77,7 +77,7 @@ Building on @leocadio-miguel2017, this study offers a novel attempt to test the 
 #| message: false
 #| warning: false
 
-weighted_data |> 
+weighted_data |>
   plot_brazil_municipality(
     transform = "log10",
     direction = -1,
@@ -162,9 +162,9 @@ limits <- # Interquartile range (IQR): Q3 - Q1
       stats::quantile(0.75, na.rm = TRUE)
   )
 
-weighted_data |> 
+weighted_data |>
   dplyr::mutate(
-    msf_sc = 
+    msf_sc =
       msf_sc |>
       lubritime:::link_to_timeline(
         threshold = hms::parse_hms("12:00:00")
@@ -197,15 +197,15 @@ The results highlight the complex nature of the human chronotype and emphasize t
 #| fig-width: 11
 #| fig-height: 6
 
-plot <- 
-  weighted_data |> 
+plot <-
+  weighted_data |>
   dplyr::mutate(
     msf_sc_category = categorize_msf_sc(msf_sc),
     msf_sc_category = factor(
-      msf_sc_category, 
+      msf_sc_category,
       levels = c(
         "Extremely early", "Moderately early", "Slightly early",
-        "Intermediate", "Slightly late", "Moderately late", 
+        "Intermediate", "Slightly late", "Moderately late",
         "Extremely late"
       ),
       ordered = TRUE

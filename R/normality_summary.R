@@ -11,11 +11,11 @@ normality_summary <- function(
     digits = 5,
     ...
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_choice(col, names(data))
-  prettycheck:::assert_numeric(data[[col]])
-  prettycheck:::assert_flag(round)
-  prettycheck:::assert_number(digits)
+  checkmate::assert_tibble(data)
+  checkmate::assert_choice(col, names(data))
+  prettycheck::assert_numeric(data[[col]])
+  checkmate::assert_flag(round)
+  checkmate::assert_number(digits)
 
   x <- data |> dplyr::pull(col)
 

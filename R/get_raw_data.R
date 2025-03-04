@@ -67,13 +67,13 @@ get_raw_data <- function(
     password = Sys.getenv("MASTERSTHESIS_PASSWORD"),
     iconv = TRUE
   ) {
-  prettycheck:::assert_string(file, null.ok = TRUE)
-  prettycheck:::assert_flag(col_names)
-  prettycheck:::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
+  checkmate::assert_string(file, null.ok = TRUE)
+  checkmate::assert_flag(col_names)
+  checkmate::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
   lockr:::assert_public_key(public_key)
-  prettycheck:::assert_string(password, n.chars = 32, null.ok = TRUE)
+  checkmate::assert_string(password, n.chars = 32, null.ok = TRUE)
   lockr:::assert_private_key(private_key, password = password)
-  prettycheck:::assert_flag(iconv)
+  checkmate::assert_flag(iconv)
 
   osfr::osf_auth(osf_pat) |> rutils::shush()
 
@@ -81,9 +81,9 @@ get_raw_data <- function(
   test <- try(osfr::osf_retrieve_node(osf_id), silent = TRUE)
 
   if (!is.null(file)) {
-    prettycheck:::assert_file_exists(file, extension = c("csv", "zip", "lockr"))
-  } else if (!prettycheck:::test_internet()) {
-    prettycheck:::assert_internet()
+    checkmate::assert_file_exists(file, extension = c("csv", "zip", "lockr"))
+  } else if (!prettycheck::test_internet()) {
+    prettycheck::assert_internet()
   } else if (inherits(test, "try-error")) {
     cli::cli_abort(paste0(
       "The {.strong OSF PAT} provided is invalid. ",

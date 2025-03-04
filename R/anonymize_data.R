@@ -2,7 +2,7 @@
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 anonymize_data <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     remove_data_identification() |>
@@ -15,8 +15,8 @@ anonymize_data <- function(data) {
 remove_data_identification <- function(data) {
   id_vars <- c("track", "name", "email")
 
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_subset(id_vars, names(data))
+  checkmate::assert_tibble(data)
+  checkmate::assert_subset(id_vars, names(data))
 
   data |>
     dplyr::select(-dplyr::all_of(id_vars))
@@ -28,8 +28,8 @@ remove_data_identification <- function(data) {
 remove_sensitive_data <- function(data) {
   sensible_vars <- c("gender_identity", "sexual_orientation")
 
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_subset(sensible_vars, names(data))
+  checkmate::assert_tibble(data)
+  checkmate::assert_subset(sensible_vars, names(data))
 
   data |>
     dplyr::select(-dplyr::all_of(sensible_vars))

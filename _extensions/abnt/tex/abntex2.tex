@@ -61,6 +61,7 @@
 
 \renewcommand{\printchaptername}{
   \ifthenelse{\boolean{abntex@apendiceousecao}}{
+    \vspace*{\medskipamount}
     \chapnamefont \ABNTEXchapterupperifneeded{\appendixname} % [Changed]
   }{}
 }
@@ -258,7 +259,7 @@
 \renewcommand{\PRIVATEapendiceconfig}[2]{
   \setboolean{abntex@apendiceousecao}{true}
   \renewcommand{\appendixname}{#1}
-  \renewcommand{\apendicesname}{#1}
+  %\renewcommand{\apendicesname}{#1}
 
   \ifthenelse{\boolean{ABNTEXsumario-abnt-6027-2012}}{
     \renewcommand{\appendixtocname}{\uppercase{#2}}
@@ -282,14 +283,28 @@
   % is automatically add by the Quarto render.
 }
 
+\newcommand{\PRIVATEapendiceconfigafter}[1]{
+    \chapterstyle{apendice}
+    %\begingroup\centering\bfseries
+    %\ABNTEXchapterupperifneeded{#1}
+    %\par\endgroup
+    %\vspace{\medskipamount}
+    \pretextualchapter{#1}
+    \let\clearpage\relax
+}
+
 \renewcommand{\apendices}{
+  \clearpage
   \PRIVATEapendiceconfig{\apendicename}{\apendicesname}
   \appendix
+  \PRIVATEapendiceconfigafter{\apendicesname}
 }
 
 \renewenvironment{apendicesenv}{
+  \clearpage
   \PRIVATEapendiceconfig{\apendicename}{\apendicesname}
   \begin{appendix}
+  \PRIVATEapendiceconfigafter{\apendicesname}
 }{
   \end{appendix}
   \setboolean{abntex@apendiceousecao}{false}
@@ -297,6 +312,7 @@
 }
 
 \renewcommand{\anexos}{
+  \clearpage
   % \cftinserthook{toc}{AAA} [Removed]
   \PRIVATEapendiceconfig{\anexoname}{\anexosname}
 
@@ -306,9 +322,11 @@
 
   \appendix
   \renewcommand\theHchapter{anexochapback.\arabic{chapter}}
+  \PRIVATEapendiceconfigafter{\anexosname}
 }
 
 \renewenvironment{anexosenv}{
+  \clearpage
   \PRIVATEapendiceconfig{\anexoname}{\anexosname}
 
   \newpage % [Added]
@@ -317,6 +335,7 @@
 
   \begin{appendix}
   \renewcommand\theHchapter{anexochapback.\arabic{chapter}}
+  \PRIVATEapendiceconfigafter{\anexosname}
 }{
   \end{appendix}
   \setboolean{abntex@apendiceousecao}{false}

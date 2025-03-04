@@ -11,10 +11,10 @@
 # - Add to {scaler} package.
 
 cohens_d <- function(x, y, t = NULL, abs = TRUE) {
-  prettycheck:::assert_numeric(x)
-  prettycheck:::assert_numeric(y)
-  prettycheck:::assert_number(t, null.ok = TRUE)
-  prettycheck:::assert_flag(abs)
+  prettycheck::assert_numeric(x)
+  prettycheck::assert_numeric(y)
+  checkmate::assert_number(t, null.ok = TRUE)
+  checkmate::assert_flag(abs)
 
   x_n <- length(x)
   y_n <- length(y)

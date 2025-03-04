@@ -15,19 +15,19 @@ plot_box_plot <- function(
     jitter = FALSE,
     print = TRUE
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_character(col)
-  prettycheck:::assert_subset(col, names(data))
-  prettycheck:::assert_choice(direction, c(-1, 1))
-  prettycheck:::assert_flag(jitter)
-  prettycheck:::assert_character(label)
-  prettycheck:::assert_flag(print)
+  checkmate::assert_tibble(data)
+  checkmate::assert_character(col)
+  checkmate::assert_subset(col, names(data))
+  checkmate::assert_choice(direction, c(-1, 1))
+  checkmate::assert_flag(jitter)
+  checkmate::assert_character(label)
+  checkmate::assert_flag(print)
 
   for (i in col) {
-    if (prettycheck:::test_temporal(data[[i]])) {
+    if (prettycheck::test_temporal(data[[i]])) {
       data[[i]] <- data[[i]] |> transform_time()
     } else {
-      prettycheck:::assert_numeric(data[[i]])
+      prettycheck::assert_numeric(data[[i]])
     }
   }
 

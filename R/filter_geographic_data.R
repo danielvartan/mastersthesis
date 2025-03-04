@@ -25,15 +25,15 @@ filter_geographic_data <- function(
     value,
     fix_col = TRUE
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col)
-  prettycheck:::assert_string(value)
-  prettycheck:::assert_flag(fix_col)
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col)
+  checkmate::assert_string(value)
+  checkmate::assert_flag(fix_col)
 
   if (isTRUE(fix_col)) data <- data |> fix_col_names()
   col <- stringr::str_squish(col)
 
-  prettycheck:::assert_choice(stringr::str_squish(col), names(data))
+  checkmate::assert_choice(stringr::str_squish(col), names(data))
 
   data |>
     dplyr::filter(!!as.symbol(col) == value) |>
@@ -47,11 +47,11 @@ filter_geographic_data_and_get_address <- function(
     method = "qualocep",
     fix_col = TRUE
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col)
-  prettycheck:::assert_string(value)
-  prettycheck:::assert_string(method)
-  prettycheck:::assert_flag(fix_col)
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col)
+  checkmate::assert_string(value)
+  checkmate::assert_string(method)
+  checkmate::assert_flag(fix_col)
 
   filtered_data <-
     data |>

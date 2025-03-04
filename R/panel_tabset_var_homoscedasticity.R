@@ -25,17 +25,17 @@ panel_tabset_var_homoscedasticity <- function(
     suffix = "",
     root = ".."
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_class(fit, "workflow")
-  prettycheck:::assert_character(cols, min.len = 1, any.missing = FALSE)
-  prettycheck:::assert_subset(cols, names(data))
-  prettycheck:::assert_character(col_labels, len = length(cols))
-  prettycheck:::assert_character(source, len = length(cols))
-  prettycheck:::assert_string(heading, pattern = "^#*")
-  prettycheck:::assert_string(data_name)
-  prettycheck:::assert_string(fit_name)
-  prettycheck:::assert_string(suffix)
-  prettycheck:::assert_string(root)
+  checkmate::assert_tibble(data)
+  checkmate::assert_class(fit, "workflow")
+  checkmate::assert_character(cols, min.len = 1, any.missing = FALSE)
+  checkmate::assert_subset(cols, names(data))
+  checkmate::assert_character(col_labels, len = length(cols))
+  checkmate::assert_character(source, len = length(cols))
+  checkmate::assert_string(heading, pattern = "^#*")
+  checkmate::assert_string(data_name)
+  checkmate::assert_string(fit_name)
+  checkmate::assert_string(suffix)
+  checkmate::assert_string(root)
 
   if (!file.exists(here::here("qmd"))) dir.create(here::here("qmd"))
 

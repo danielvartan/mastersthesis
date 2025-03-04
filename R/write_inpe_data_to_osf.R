@@ -23,8 +23,8 @@ write_inpe_data_to_osf <- function(
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub")
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_string(osf_pat, n.chars = 70)
+  prettycheck::assert_internet()
+  checkmate::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
 
   osfr::osf_auth(osf_pat) |> rutils::shush()
@@ -113,7 +113,7 @@ write_inpe_data_to_osf <- function(
 
   file.copy(from = raw_file, to = temp_file, overwrite = TRUE)
 
-  if (prettycheck:::test_file_exists(paste0(temp_file, ".lockr"))) {
+  if (checkmate::test_file_exists(paste0(temp_file, ".lockr"))) {
     file.remove(paste0(temp_file, ".lockr"))
   }
 

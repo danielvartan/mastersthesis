@@ -17,12 +17,12 @@ plot_ggcorrplot <- function(
     label = TRUE,
     hc_order = TRUE
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_character(cols)
-  prettycheck:::assert_subset(cols, names(data))
-  prettycheck:::assert_flag(na_rm)
-  prettycheck:::assert_flag(label)
-  prettycheck:::assert_flag(hc_order)
+  checkmate::assert_tibble(data)
+  checkmate::assert_character(cols)
+  checkmate::assert_subset(cols, names(data))
+  checkmate::assert_flag(na_rm)
+  checkmate::assert_flag(label)
+  checkmate::assert_flag(hc_order)
 
   out <-
     data |>

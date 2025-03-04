@@ -9,9 +9,9 @@ source(here::here("R", "test_normality.R"))
 # See <https://gt.rstudio.com/> & <https://gt.albert-rapp.de/> to learn more.
 
 create_summary_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
-  prettycheck:::assert_atomic(x)
-  prettycheck:::assert_choice(big_mark, c(".", ","))
-  prettycheck:::assert_choice(decimal_mark, c(".", ","))
+  checkmate::assert_atomic(x)
+  checkmate::assert_choice(big_mark, c(".", ","))
+  checkmate::assert_choice(decimal_mark, c(".", ","))
 
   if (big_mark == decimal_mark) {
     cli::cli_abort(paste0(
@@ -316,7 +316,7 @@ create_summary_table <- function(x, big_mark = ",", decimal_mark = ".",  ...) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 sig_level_asterisks <- function(x) {
-  prettycheck:::assert_number(x)
+  checkmate::assert_number(x)
 
   dplyr::case_when(
     x < 0.0001 ~ "****",
@@ -334,8 +334,8 @@ sig_level_asterisks <- function(x) {
 
 # Code from <https://gt.albert-rapp.de/case_studies.html#latex-formulas>.
 latex_to_svg <- function(x, color = "black") {
-  prettycheck:::assert_string(x)
-  prettycheck:::assert_choice(color, c("black", "white"))
+  checkmate::assert_string(x)
+  checkmate::assert_choice(color, c("black", "white"))
 
   temp_dir <- tempdir()
   temp_name <- basename(tempfile())

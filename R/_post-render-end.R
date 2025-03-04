@@ -49,15 +49,15 @@ output_docs_new_dirs <- list.dirs(
   here::here(get(paste0("output_docs_", env_vars$format)), .)
 
 for (i in output_docs_old_files) {
-  if (prettycheck:::test_file_exists(i)) rutils:::delete_file(i)
+  if (checkmate::test_file_exists(i)) rutils:::delete_file(i)
 }
 
 for (i in output_docs_old_dirs) {
-  if (prettycheck:::test_directory_exists(i)) rutils:::delete_dir(i)
+  if (checkmate::test_directory_exists(i)) rutils:::delete_dir(i)
 }
 
 for (i in output_docs_new_dirs) {
-  if (!prettycheck:::test_directory_exists(i)) dir.create(i)
+  if (!checkmate::test_directory_exists(i)) dir.create(i)
 }
 
 for (i in seq_along(output_docs_new_files)) {

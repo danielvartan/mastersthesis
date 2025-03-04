@@ -7,7 +7,7 @@ source(here::here("R", "get_chronotype_cutoffs.R"))
 source(here::here("R", "utils.R"))
 
 categorize_msf_sc <- function(x) {
-  prettycheck:::assert_hms(x)
+  prettycheck::assert_hms(x)
 
   fill <-
     dplyr::tibble(msf_sc = x) |>

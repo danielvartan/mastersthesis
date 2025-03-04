@@ -15,15 +15,15 @@ get_lookup_data <- function(
     private_key = here::here("_ssh", "id_rsa"),
     password = Sys.getenv("MASTERSTHESIS_PASSWORD")
   ) {
-  prettycheck:::assert_string(file, null.ok = TRUE)
-  prettycheck:::assert_string(pattern)
-  prettycheck:::assert_string(osf_pat, n.chars = 70)
+  checkmate::assert_string(file, null.ok = TRUE)
+  checkmate::assert_string(pattern)
+  checkmate::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
   lockr:::assert_private_key(private_key, password = password)
-  prettycheck:::assert_string(password, n.chars = 32)
+  checkmate::assert_string(password, n.chars = 32)
 
   if (!is.null(file)) {
-    prettycheck:::assert_file_exists(file, extension = c("rds", "lockr"))
+    checkmate::assert_file_exists(file, extension = c("rds", "lockr"))
 
     if (stringr::str_detect(file, "\\.lockr$")) {
       lockr::unlock_file(file, private_key = private_key, password = password)
@@ -33,7 +33,7 @@ get_lookup_data <- function(
 
     out <- readr::read_rds(file)
   } else {
-    prettycheck:::assert_internet()
+    prettycheck::assert_internet()
 
     osfr::osf_auth(osf_pat) |> rutils::shush()
     osf_id <- "https://osf.io/cbqsa"

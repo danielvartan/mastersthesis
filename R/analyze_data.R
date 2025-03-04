@@ -55,9 +55,9 @@
 #' }
 #' }
 analyze_data <- function(data, round = FALSE, hms = FALSE) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_flag(round)
-  prettycheck:::assert_flag(hms)
+  checkmate::assert_tibble(data)
+  checkmate::assert_flag(round)
+  checkmate::assert_flag(hms)
 
   cli::cli_progress_step("Analyzing data")
 

@@ -14,7 +14,7 @@
 # weighted_data |> check_valid_dataset()
 
 check_valid_dataset <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   # !
 
@@ -188,7 +188,7 @@ check_valid_dataset <- function(data) {
 }
 
 format_number <- function(x, per = FALSE) {
-  prettycheck:::assert_number(x)
+  prettycheck::assert_number(x)
 
   if (isTRUE(per)) {
     x <- x * 100

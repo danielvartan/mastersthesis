@@ -21,8 +21,8 @@ write_nasa_data_to_osf <- function(
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub")
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_string(osf_pat, n.chars = 70)
+  prettycheck::assert_internet()
+  checkmate::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
 
   osfr::osf_auth(osf_pat) |> rutils::shush()

@@ -22,7 +22,7 @@ if (length(pdf_file) == 1) {
 
 robots_file <- file.path(output_dir_html, "robots.txt")
 
-if (!prettycheck:::test_file_exists(robots_file)) {
+if (!checkmate::test_file_exists(robots_file)) {
   rutils:::create_file(robots_file)
 }
 
@@ -47,7 +47,7 @@ writeLines(
 
 favicon_file <- here::here("images", "favicon.png")
 
-if (prettycheck:::test_file_exists(favicon_file)) {
+if (checkmate::test_file_exists(favicon_file)) {
   rutils:::copy_file(
     from = favicon_file,
     to = file.path(output_docs, "favicon.png")

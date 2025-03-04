@@ -12,12 +12,12 @@ render_brazil_address <- function(
     state = NA_character_,
     postal_code = NA_character_
   ) {
-  prettycheck:::assert_character(street)
-  prettycheck:::assert_character(complement)
-  prettycheck:::assert_character(neighborhood)
-  prettycheck:::assert_character(municipality)
-  prettycheck:::assert_character(state)
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
+  checkmate::assert_character(street)
+  checkmate::assert_character(complement)
+  checkmate::assert_character(neighborhood)
+  checkmate::assert_character(municipality)
+  checkmate::assert_character(state)
+  checkmate::assert_character(postal_code, pattern = "^\\d{8}$")
 
   prettycheck::assert_identical(
     street, complement, neighborhood, municipality, state, postal_code,

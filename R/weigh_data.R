@@ -24,8 +24,8 @@ source(here::here("R", "get_brazil_state.R"))
 weigh_data <- function(data) {
   parameters <- c("country", "region", "state", "sex", "age")
 
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_subset(parameters, names(data))
+  checkmate::assert_tibble(data)
+  checkmate::assert_subset(parameters, names(data))
 
   pnad_data <-
     sidrar::get_sidra(

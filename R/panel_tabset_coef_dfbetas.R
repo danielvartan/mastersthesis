@@ -23,21 +23,21 @@ panel_tabset_coef_dfbetas <- function(
     suffix = "",
     root = ".."
   ) {
-  prettycheck:::assert_class(fit_engine, "lm")
+  checkmate::assert_class(fit_engine, "lm")
 
-  prettycheck:::assert_character(
+  checkmate::assert_character(
     coef,
     len = length(stats::coef(fit_engine)),
     any.missing = FALSE
   )
 
-  prettycheck:::assert_subset(coef, names(stats::coef(fit_engine)))
-  prettycheck:::assert_character(coef_labels, len = length(coef))
-  prettycheck:::assert_character(source, len = length(coef))
-  prettycheck:::assert_string(heading, pattern = "^#*")
-  prettycheck:::assert_string(fit_engine_name)
-  prettycheck:::assert_string(suffix)
-  prettycheck:::assert_string(root)
+  checkmate::assert_subset(coef, names(stats::coef(fit_engine)))
+  checkmate::assert_character(coef_labels, len = length(coef))
+  checkmate::assert_character(source, len = length(coef))
+  checkmate::assert_string(heading, pattern = "^#*")
+  checkmate::assert_string(fit_engine_name)
+  checkmate::assert_string(suffix)
+  checkmate::assert_string(root)
 
   if (!file.exists(here::here("qmd"))) dir.create(here::here("qmd"))
 

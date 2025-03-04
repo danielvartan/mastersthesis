@@ -1,5 +1,5 @@
 long_string <- function(x) {
-  prettycheck:::assert_string(x)
+  checkmate::assert_string(x)
 
   x |>
     strwrap() |>
@@ -10,8 +10,8 @@ long_string <- function(x) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 change_sign <- function(x, flag = TRUE) {
-  prettycheck:::assert_numeric(x)
-  prettycheck:::assert_flag(flag)
+  prettycheck::assert_numeric(x)
+  checkmate::assert_flag(flag)
 
   if (isTRUE(flag)) {
     x * (-1)
@@ -26,8 +26,8 @@ change_sign <- function(x, flag = TRUE) {
 # library(stringr)
 
 to_relative_path <- function(path, root = ".") {
-  prettycheck:::assert_string(path)
-  prettycheck:::assert_string(root)
+  checkmate::assert_string(path)
+  checkmate::assert_string(root)
 
   path <- stringr::str_remove(path, here::here())
 
@@ -41,8 +41,8 @@ to_relative_path <- function(path, root = ".") {
 
 # TODO: Refactor and move to `lubritime`.
 transform_time <- function(x, threshold = hms::parse_hms("12:00:00")) {
-  prettycheck:::assert_atomic(x)
-  prettycheck:::assert_hms(
+  checkmate::assert_atomic(x)
+  prettycheck::assert_hms(
     threshold,
     lower = hms::hms(0),
     upper = hms::parse_hms("23:59:59"),
@@ -55,7 +55,7 @@ transform_time <- function(x, threshold = hms::parse_hms("12:00:00")) {
     x |>
       lubritime:::link_to_timeline(threshold = threshold) |>
       as.numeric()
-  } else if (prettycheck:::test_multi_class(x, classes)) {
+  } else if (checkmate::test_multi_class(x, classes)) {
     x |> lubritime:::extract_seconds()
   } else {
     x
@@ -66,7 +66,7 @@ transform_time <- function(x, threshold = hms::parse_hms("12:00:00")) {
 
 # TODO: Move to `rutils`.
 count_not_na <- function(x) {
-  prettycheck:::assert_atomic(x)
+  checkmate::assert_atomic(x)
 
   length(which(!is.na(x)))
 }
@@ -75,7 +75,7 @@ count_not_na <- function(x) {
 
 # TODO: Move to `rutils`.
 drop_inf <- function(x) {
-  prettycheck:::assert_atomic(x)
+  checkmate::assert_atomic(x)
 
   x[!(x == -Inf | x == Inf)]
 }
@@ -85,7 +85,7 @@ drop_inf <- function(x) {
 # library(tidyr)
 
 list_as_tibble <- function(list) {
-  prettycheck:::assert_list(list)
+  checkmate::assert_list(list)
 
   list |>
     dplyr::as_tibble() |>
@@ -106,8 +106,8 @@ write_in_results_yml <- function(
     path = here::here("_results.yml"),
     digits = 30
   ) {
-  prettycheck:::assert_list(x)
-  prettycheck:::assert_file_exists(path)
+  checkmate::assert_list(x)
+  checkmate::assert_file_exists(path)
 
   out <- yaml::read_yaml(path)
 
@@ -129,7 +129,7 @@ write_in_results_yml <- function(
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 is_in_scientific_notation <- function(x) {
-  prettycheck:::assert_numeric(x)
+  prettycheck::assert_numeric(x)
 
   x |>
     format() |>
@@ -139,8 +139,8 @@ is_in_scientific_notation <- function(x) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 left_digits <- function(x, count_zero = TRUE) {
-  prettycheck:::assert_numeric(x)
-  prettycheck:::assert_flag(count_zero)
+  prettycheck::assert_numeric(x)
+  checkmate::assert_flag(count_zero)
 
   out <-
     x |>
@@ -158,8 +158,8 @@ library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 right_digits <- function(x, max_digits = 15) {
-  prettycheck:::assert_numeric(x)
-  prettycheck:::assert_integer_number(max_digits, lower = 1, upper = 15)
+  prettycheck::assert_numeric(x)
+  checkmate::assert_int(max_digits, lower = 1, upper = 15)
 
   digit_options <- getOption("digits")
   options(digits = max_digits)
@@ -192,9 +192,9 @@ right_digits <- function(x, max_digits = 15) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 digits <- function(x, left = FALSE, right = FALSE) {
-  prettycheck:::assert_numeric(x)
-  prettycheck:::assert_flag(left)
-  prettycheck:::assert_flag(right)
+  prettycheck::assert_numeric(x)
+  checkmate::assert_flag(left)
+  checkmate::assert_flag(right)
 
   if (isTRUE(left)) {
     left_digits(x)
@@ -217,13 +217,13 @@ format_to_md_latex <- function(
     big_mark = ",",
     key = "$"
   ) {
-  prettycheck:::assert_atomic(x)
-  prettycheck:::assert_string(after, null.ok = TRUE)
-  prettycheck:::assert_string(before, null.ok = TRUE)
-  prettycheck:::assert_string(decimal_mark)
-  prettycheck:::assert_string(big_mark)
-  prettycheck:::assert_integer_number(max_digits, lower = 0)
-  prettycheck:::assert_string(key)
+  checkmate::assert_atomic(x)
+  checkmate::assert_string(after, null.ok = TRUE)
+  checkmate::assert_string(before, null.ok = TRUE)
+  checkmate::assert_string(decimal_mark)
+  checkmate::assert_string(big_mark)
+  checkmate::assert_int(max_digits, lower = 0)
+  checkmate::assert_string(key)
 
   if (is.numeric(x)) {
     x |>
@@ -247,8 +247,8 @@ library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 inverse_log_max <- function(x, base = exp(1)) {
-  prettycheck:::assert_numeric(x)
-  prettycheck:::assert_number(base)
+  prettycheck::assert_numeric(x)
+  checkmate::assert_number(base)
 
   x |>
     log(base) |>
@@ -260,8 +260,8 @@ inverse_log_max <- function(x, base = exp(1)) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 to_ascii <- function(x, from = "UTF-8") {
-  prettycheck:::assert_character(x)
-  prettycheck:::assert_string(from)
+  checkmate::assert_character(x)
+  checkmate::assert_string(from)
 
   x |> iconv(to = "ASCII//TRANSLIT")
 }
@@ -269,37 +269,20 @@ to_ascii <- function(x, from = "UTF-8") {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 to_ascii_and_lower <- function(x, from = "UTF-8") {
-  prettycheck:::assert_character(x)
-  prettycheck:::assert_string(from)
+  checkmate::assert_character(x)
+  checkmate::assert_string(from)
 
   x |> to_ascii(from) |> tolower()
 }
 
-# library(clipr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(rutils) # github.com/danielvartan/rutils
 
-vector_to_c <- function(x, quote = TRUE, clipboard = TRUE) {
-  prettycheck:::assert_atomic(x)
-
-  if (isTRUE(quote)) x <- paste0('"', x, '"')
-
-  out <- paste0("c(", paste(x, collapse = ", "), ")")
-
-  if (isTRUE(clipboard)) {
-    cli::cli_alert_info("Copied to clipboard.")
-
-    out |> clipr::write_clip()
-  }
-
-  cat(out)
-
-  invisible(out)
-}
+vector_to_c <- rutils::vector_to_c
 
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 cli_test_fun <- function(test) {
-  prettycheck:::assert_flag(test)
+  checkmate::assert_flag(test)
 
   if (isTRUE(test)) {
     cli::col_blue
@@ -316,9 +299,9 @@ cli_test_fun <- function(test) {
 # paired_vector <- c("EST" = "EST", "BRT" = "America/Sao_Paulo")
 # look_and_replace_chr(x, paired_vector)
 look_and_replace_chr <- function(x, paired_vector) {
-  prettycheck:::assert_atomic(x)
-  prettycheck:::assert_atomic(paired_vector)
-  prettycheck:::assert_character(names(paired_vector), null.ok = FALSE)
+  checkmate::assert_atomic(x)
+  checkmate::assert_atomic(paired_vector)
+  checkmate::assert_character(names(paired_vector), null.ok = FALSE)
 
   x <- stringr::str_squish(x)
 
@@ -330,38 +313,15 @@ look_and_replace_chr <- function(x, paired_vector) {
     unname()
 }
 
-# Credits: B. Christian Kamgang
-# Source: Adapted from
-# <https://stackoverflow.com/questions/66329835/
-# how-to-get-all-parameters-passed-into-a-function-with-their-values>
+# library(rutils) # github.com/danielvartan/rutils
 
-grab_fun_par <- function() {
-  args_names <- ls(envir = parent.frame(), all.names = TRUE, sorted = FALSE)
-
-  if ("..." %in% args_names) {
-    dots <- eval(quote(list(...)), envir = parent.frame())
-  } else {
-    dots = list()
-  }
-
-  args_names <- sapply(setdiff(args_names, "..."), as.name)
-
-  if(length(args_names)) {
-    not_dots <- lapply(args_names, eval, envir = parent.frame())
-  } else {
-    not_dots <- list()
-  }
-
-  out <- c(not_dots, dots)
-
-  out[names(out) != ""]
-}
+grab_fun_par <- rutils::grab_fun_par
 
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 rm_caps <- function(x, start = TRUE, end = TRUE) {
-  prettycheck:::assert_flag(start)
-  prettycheck:::assert_flag(end)
+  checkmate::assert_flag(start)
+  checkmate::assert_flag(end)
 
   if (isTRUE(start)) x <- x[-1]
   if (isTRUE(end)) x <- x[-length(x)]
@@ -372,8 +332,8 @@ rm_caps <- function(x, start = TRUE, end = TRUE) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 clean_arg_list <- function(list) {
-  prettycheck:::assert_multi_class(list, c("list", "pairlist"))
-  prettycheck:::assert_list(as.list(list), names = "named")
+  checkmate::assert_multi_class(list, c("list", "pairlist"))
+  checkmate::assert_list(as.list(list), names = "named")
 
   list <- list |> nullify_list()
 
@@ -391,8 +351,8 @@ clean_arg_list <- function(list) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 nullify_list <- function(list) {
-  prettycheck:::assert_multi_class(list, c("list", "pairlist"))
-  prettycheck:::assert_list(as.list(list), names = "named")
+  checkmate::assert_multi_class(list, c("list", "pairlist"))
+  checkmate::assert_list(as.list(list), names = "named")
 
   for (i in names(list)) {
     if (!is.null(list[[i]]) && is.atomic(list[[i]])) {
@@ -405,77 +365,6 @@ nullify_list <- function(list) {
   list
 }
 
-# library(clipr)
-library(magrittr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(stringr)
+# library(rutils) # github.com/danielvartan/rutils
 
-normalize_names <- function(
-    path = clipr::read_clip(),
-    exceptions = c(
-      "^README", "^OFL.txt$", "^DESCRIPTION", "^Google README.txt$"
-    ),
-    just_dirs = FALSE
-  ) {
-  prettycheck:::assert_string(path)
-  prettycheck:::assert_directory_exists(path)
-  prettycheck:::assert_character(exceptions)
-  prettycheck:::assert_flag(just_dirs)
-
-  dirs <- path |> list.dirs()
-  if (length(dirs) == 0) dirs <- path
-
-  if (!length(dirs) == 0 && isTRUE(just_dirs)) {
-    dirs <- dirs |> magrittr::extract(-1)
-
-    new_dir_name <-
-      dirs |>
-      basename() |>
-      tolower() |>
-      stringr::str_replace_all(" - ", "-") |>
-      stringr::str_replace_all("_", "-") |>
-      stringr::str_replace_all(" ", "-") |>
-      stringr::str_squish() %>%
-      file.path(dirname(dirs), .)
-
-    for (i in rev(seq_along(dirs))) {
-      if (!dirs[i] == new_dir_name[i]) {
-        paste(
-          "mv",
-          glue::single_quote(dirs[i]),
-          glue::single_quote(new_dir_name[i])
-        ) |>
-          system()
-      }
-    }
-
-    dirs <-
-      path |>
-      list.dirs() |>
-      magrittr::extract(-1)
-  } else {
-    for (i in dirs) {
-      files <- list.files(i)
-
-      for (j in exceptions) {
-        files <- files |> stringr::str_subset(j, negate = TRUE)
-      }
-
-      if (length(files) == 0) {
-        next
-      } else {
-        new_name <-
-          files |>
-          tolower() |>
-          stringr::str_replace_all(" - ", "_") |>
-          stringr::str_replace_all("_", "-") |>
-          stringr::str_replace_all(" ", "-") |>
-          stringr::str_squish()
-
-        file.rename(file.path(i, files), file.path(i, new_name))
-      }
-    }
-  }
-
-  invisible()
-}
+normalize_names <- rutils::normalize_names

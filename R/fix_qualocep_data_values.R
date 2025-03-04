@@ -2,7 +2,7 @@
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 fix_qualocep_data_values <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::mutate(

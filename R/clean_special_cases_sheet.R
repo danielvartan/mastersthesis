@@ -8,9 +8,9 @@ source(here::here("R", "write_values_to_lookup_sheet.R"))
 clean_special_cases_sheet <- function(
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA"
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_interactive()
-  prettycheck:::assert_string(ss)
+  prettycheck::assert_internet()
+  prettycheck::assert_interactive()
+  checkmate::assert_string(ss)
 
   ss <- googlesheets4::gs4_get(ss)
 

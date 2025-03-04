@@ -63,15 +63,15 @@ plot_chronotype <- function(
     "qual", "qualitative"
   )
 
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_choice(col_msf_sc, names(data))
-  prettycheck:::assert_number(col_width, lower = 0)
-  prettycheck:::assert_number(col_border, lower = 0)
-  prettycheck:::assert_choice(color_type, color_type_choices)
-  prettycheck:::assert_choice(direction, c(-1, 1))
-  prettycheck:::assert_flag(reverse)
+  checkmate::assert_tibble(data)
+  checkmate::assert_choice(col_msf_sc, names(data))
+  checkmate::assert_number(col_width, lower = 0)
+  checkmate::assert_number(col_border, lower = 0)
+  checkmate::assert_choice(color_type, color_type_choices)
+  checkmate::assert_choice(direction, c(-1, 1))
+  checkmate::assert_flag(reverse)
   assert_gg_label(y_label)
-  prettycheck:::assert_flag(print)
+  checkmate::assert_flag(print)
 
   if (is.null(y_label)) {
     if (hms::is_hms(data[[col_msf_sc]])) {

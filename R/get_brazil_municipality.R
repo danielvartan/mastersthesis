@@ -38,12 +38,12 @@ get_brazil_municipality <- function(
     year = 2017,
     force = FALSE
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(municipality, null.ok = TRUE)
-  prettycheck:::assert_character(state, null.ok = TRUE)
-  prettycheck:::assert_flag(force)
+  prettycheck::assert_internet()
+  checkmate::assert_character(municipality, null.ok = TRUE)
+  checkmate::assert_character(state, null.ok = TRUE)
+  checkmate::assert_flag(force)
 
-  prettycheck:::assert_number(
+  checkmate::assert_number(
     year,
     lower = 1900,
     upper = Sys.Date() |> lubridate::year()
@@ -53,7 +53,7 @@ get_brazil_municipality <- function(
     tempdir(), paste0("brazil-municipalities-", year, ".rds")
   )
 
-  if (prettycheck:::test_file_exists(brazil_municipalities_file) &&
+  if (checkmate::test_file_exists(brazil_municipalities_file) &&
       isFALSE(force)) {
     brazil_municipalities_data <- readr::read_rds(brazil_municipalities_file)
   } else {
@@ -192,11 +192,11 @@ get_brazil_municipality_code <- function(
     state = NULL,
     year = 2017
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(municipality)
-  prettycheck:::assert_character(state, null.ok = TRUE)
+  prettycheck::assert_internet()
+  checkmate::assert_character(municipality)
+  checkmate::assert_character(state, null.ok = TRUE)
 
-  prettycheck:::assert_number(
+  checkmate::assert_number(
     year,
     lower = 1900,
     upper = Sys.Date() |> lubridate::year()

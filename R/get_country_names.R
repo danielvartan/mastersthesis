@@ -25,7 +25,7 @@ get_country_names <- function(format = "common name") {
     "alpha 2", "alpha 3", "numeric", "name", "oficcial name", "common name"
   )
 
-  prettycheck:::assert_choice(format, format_options)
+  checkmate::assert_choice(format, format_options)
 
   out <-
     ISOcodes::ISO_3166_1 |>

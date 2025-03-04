@@ -57,7 +57,7 @@ source(here::here("R", "get_lookup_data.R"))
 #' }
 #' }
 validate_data <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   cli::cli_progress_step("Validating data")
 
@@ -78,7 +78,7 @@ validate_data <- function(data) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 rm_test_cases <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   pattern <- "^teste$|^teste | teste$"
 
@@ -104,7 +104,7 @@ source(here::here("R", "get_lookup_data.R"))
 # test by including the word "test" in the "name" field.
 
 rm_invalid_cases_detected_manually <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   cols <-
     get_lookup_data() |>
@@ -132,7 +132,7 @@ rm_invalid_cases_detected_manually <- function(data) {
 # library(rutils) # github.com/danielvartan/rutils
 
 na_mctq_blank_cases <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::mutate(
@@ -162,7 +162,7 @@ na_mctq_blank_cases <- function(data) {
 # library(stringr)
 
 validate_emails <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::mutate(
@@ -181,7 +181,7 @@ validate_emails <- function(data) {
 # library(scaler) # github.com/danielvartan/scaler
 
 validate_ranges <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::mutate(
@@ -236,7 +236,7 @@ library(rlang)
 # library(tidyr)
 
 validate_work_study <- function(data){
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   out <-
     data |>
@@ -323,7 +323,7 @@ validate_work_study <- function(data){
 library(rlang)
 
 fix_bt_sprep_inversion <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   for (i in c("_w", "_f")) {
     bt_i <- paste0("bt", i)
@@ -363,7 +363,7 @@ library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
 
 validate_sdu <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   for (i in c("_w", "_f")) {
     sprep_i <- paste0("sprep", i)
@@ -404,7 +404,7 @@ validate_sdu <- function(data) {
 # library(rutils) # github.com/danielvartan/rutils
 
 validate_so <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::mutate(
@@ -430,7 +430,7 @@ validate_so <- function(data) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 remove_duplicates_and_blanks <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   count <-
     data |>

@@ -16,15 +16,15 @@ look_and_replace <- function(
     na_unmatched = FALSE,
     lookup_data = NULL
 ) {
-  prettycheck:::assert_character(x)
-  prettycheck:::assert_string(table)
-  prettycheck:::assert_string(osf_pat, n.chars = 70)
+  checkmate::assert_character(x)
+  checkmate::assert_string(table)
+  checkmate::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
-  prettycheck:::assert_string(password, n.chars = 32)
+  checkmate::assert_string(password, n.chars = 32)
   lockr:::assert_private_key(private_key, password = password)
-  prettycheck:::assert_flag(na_unmatched)
-  prettycheck:::assert_list(lookup_data, min.len = 1, null.ok = TRUE)
-  prettycheck:::assert_internet()
+  checkmate::assert_flag(na_unmatched)
+  checkmate::assert_list(lookup_data, min.len = 1, null.ok = TRUE)
+  prettycheck::assert_internet()
 
   if (is.null(lookup_data)) {
     cli::cli_progress_step("Downloading lookup tables")
@@ -36,7 +36,7 @@ look_and_replace <- function(
     )
   }
 
-  prettycheck:::assert_choice(table, names(lookup_data))
+  checkmate::assert_choice(table, names(lookup_data))
 
   lookup_table <-
     lookup_data[[table]] |>

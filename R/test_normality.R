@@ -31,17 +31,17 @@ test_normality <- function(
     "numeric", "integer", "Duration", "difftime", "hms", "POSIXt", "Interval"
   )
 
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_choice(col, names(data))
-  prettycheck:::assert_multi_class(data[[col]], classes)
-  prettycheck:::assert_string(name)
-  prettycheck:::assert_flag(remove_outliers)
-  prettycheck:::assert_number(iqr_mult, lower = 1)
-  prettycheck:::assert_flag(log_transform)
-  prettycheck:::assert_flag(density_line)
-  prettycheck:::assert_flag(print)
+  checkmate::assert_tibble(data)
+  checkmate::assert_choice(col, names(data))
+  checkmate::assert_multi_class(data[[col]], classes)
+  checkmate::assert_string(name)
+  checkmate::assert_flag(remove_outliers)
+  checkmate::assert_number(iqr_mult, lower = 1)
+  checkmate::assert_flag(log_transform)
+  checkmate::assert_flag(density_line)
+  checkmate::assert_flag(print)
 
-  prettycheck:::assert_hms(
+  prettycheck::assert_hms(
     threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59"),
     null_ok = TRUE
   )
@@ -52,7 +52,7 @@ test_normality <- function(
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
   n_rm_na <- x |> rutils:::drop_na() |> length()
 
-  if (prettycheck:::test_temporal(x)) {
+  if (prettycheck::test_temporal(x)) {
     x <- x |> transform_time(threshold = threshold)
   }
 
@@ -111,7 +111,7 @@ test_normality <- function(
     shapiro <- NULL
   }
 
-  if (isTRUE(prettycheck:::test_temporal(x)) && isFALSE(log_transform)) {
+  if (isTRUE(prettycheck::test_temporal(x)) && isFALSE(log_transform)) {
     x <- x |> lubridate::as_datetime(tz = tz)
   }
 

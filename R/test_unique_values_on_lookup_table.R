@@ -8,13 +8,13 @@ test_unique_values_on_lookup_table <- function(
     sheet,
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA"
   ) {
-  prettycheck:::assert_string(sheet)
-  prettycheck:::assert_string(ss)
-  prettycheck:::assert_interactive()
-  prettycheck:::assert_internet()
+  checkmate::assert_string(sheet)
+  checkmate::assert_string(ss)
+  prettycheck::assert_interactive()
+  prettycheck::assert_internet()
 
   ss <- googlesheets4::gs4_get(ss)
-  prettycheck:::assert_subset(sheet, ss$sheets$name)
+  checkmate::assert_subset(sheet, ss$sheets$name)
   lookup_data <- googlesheets4::read_sheet(ss = ss, sheet = sheet)
 
   raw_data <- targets::tar_read("raw_data")
@@ -29,7 +29,7 @@ test_unique_values_on_lookup_table <- function(
       medication_which = hhMEDICATIONwhich,
     )
 
-  prettycheck:::assert_subset(sheet, names(data))
+  checkmate::assert_subset(sheet, names(data))
 
   unique_lookup <- lookup_data$key |> unique() |> sort()
   unique_data <- data[[sheet]] |> unique() |> sort()

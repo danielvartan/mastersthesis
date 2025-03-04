@@ -12,11 +12,11 @@ get_and_write_geocode_data <- function(
     method = "google",
     limit = 100
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_interactive()
-  prettycheck:::assert_string(ss)
-  prettycheck:::assert_string(method)
-  prettycheck:::assert_numeric(limit, lower = 1)
+  prettycheck::assert_internet()
+  prettycheck::assert_interactive()
+  checkmate::assert_string(ss)
+  checkmate::assert_string(method)
+  prettycheck::assert_numeric(limit, lower = 1)
 
   ss <- googlesheets4::gs4_get(ss)
   sheet <- "geocodes"

@@ -51,12 +51,12 @@ find_closest_match_dbl_2 <- function(x, y, x_ref, y_ref, tol = 0.05) {
 }
 
 find_closest_match_dbl_2_scalar <- function(x, y, x_ref, y_ref, tol = 0.05) {
-  prettycheck:::assert_number(x, na.ok = TRUE)
-  prettycheck:::assert_number(y, na.ok = TRUE)
-  prettycheck:::assert_numeric(x_ref, min_len = 2)
-  prettycheck:::assert_numeric(y_ref, min_len = 2)
+  checkmate::assert_number(x, na.ok = TRUE)
+  checkmate::assert_number(y, na.ok = TRUE)
+  prettycheck::assert_numeric(x_ref, min_len = 2)
+  prettycheck::assert_numeric(y_ref, min_len = 2)
   prettycheck::assert_identical(x_ref, y_ref, type = "length")
-  prettycheck:::assert_number(tol, lower = 0)
+  checkmate::assert_number(tol, lower = 0)
 
   out <-
     dplyr::tibble(

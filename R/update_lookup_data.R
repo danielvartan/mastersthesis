@@ -14,11 +14,11 @@ update_lookup_data <- function(
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub")
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_interactive()
-  prettycheck:::assert_string(ss)
-  prettycheck:::assert_character(sheet_ignore)
-  prettycheck:::assert_string(osf_pat, n.chars = 70)
+  prettycheck::assert_internet()
+  prettycheck::assert_interactive()
+  checkmate::assert_string(ss)
+  checkmate::assert_character(sheet_ignore)
+  checkmate::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
 
   osfr::osf_auth(osf_pat) |> rutils::shush()

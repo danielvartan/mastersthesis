@@ -23,7 +23,7 @@ source(here::here("R", "utils-stats.R"))
 # filtered_data <- geocoded_data |> filter_data()
 
 filter_data <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   cli::cli_progress_step("Filtering data")
 

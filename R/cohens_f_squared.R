@@ -9,8 +9,8 @@
 # <https://doi.org/10.3389/fpsyg.2012.00111> to learn more.
 
 cohens_f_squared <- function(base_r_squared, new_r_squared = NULL) {
-  prettycheck:::assert_number(base_r_squared, lower = 0, upper = 1)
-  prettycheck:::assert_number(
+  checkmate::assert_number(base_r_squared, lower = 0, upper = 1)
+  checkmate::assert_number(
     new_r_squared, lower = 0, upper = 1, null.ok = TRUE
   )
 
@@ -25,7 +25,7 @@ cohens_f_squared <- function(base_r_squared, new_r_squared = NULL) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 cohens_f_squared_effect_size <- function(f_squared) {
-  prettycheck:::assert_number(f_squared, lower = 0)
+  checkmate::assert_number(f_squared, lower = 0)
 
   dplyr::case_when(
     f_squared >= 0.35 ~ "Large",
@@ -43,8 +43,8 @@ cohens_f_squared_summary <- function(
     new_r_squared = NULL
 ) {
   if (is.atomic(base_r_squared)) {
-    prettycheck:::assert_number(base_r_squared, lower = 0, upper = 1)
-    prettycheck:::assert_number(
+    checkmate::assert_number(base_r_squared, lower = 0, upper = 1)
+    checkmate::assert_number(
       new_r_squared, lower = 0, upper = 1, null.ok = TRUE
     )
 
@@ -58,10 +58,10 @@ cohens_f_squared_summary <- function(
     # psychometric::CI.Rsq()
     col_check <- c("R2", "SE", "Lower CI", "Upper CI")
 
-    prettycheck:::assert_data_frame(base_r_squared)
-    prettycheck:::assert_set_equal(base_r_squared[[1]], col_check)
-    prettycheck:::assert_data_frame(new_r_squared)
-    prettycheck:::assert_set_equal(new_r_squared[[1]], col_check)
+    checkmate::assert_data_frame(base_r_squared)
+    checkmate::assert_set_equal(base_r_squared[[1]], col_check)
+    checkmate::assert_data_frame(new_r_squared)
+    checkmate::assert_set_equal(new_r_squared[[1]], col_check)
 
     f_values <- c(
       cohens_f_squared(base_r_squared$value[4], new_r_squared$value[4]),

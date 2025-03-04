@@ -40,10 +40,10 @@ add_solar_data <- function(
   ) {
   assertion_vars <- c("timestamp", "latitude", "longitude")
 
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_subset(assertion_vars, names(data))
-  prettycheck:::assert_tibble(inpe_data)
-  prettycheck:::assert_tibble(time_and_date_data)
+  checkmate::assert_tibble(data)
+  checkmate::assert_subset(assertion_vars, names(data))
+  checkmate::assert_tibble(inpe_data)
+  checkmate::assert_tibble(time_and_date_data)
 
   cli::cli_progress_step("Adding solar data")
 
@@ -59,8 +59,8 @@ add_solar_data <- function(
 source(here::here("R", "get_inpe_data.R"))
 
 add_ghi <- function(data, inpe_data = get_inpe_data()) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_tibble(inpe_data)
+  checkmate::assert_tibble(data)
+  checkmate::assert_tibble(inpe_data)
 
   out <- data |>
     dplyr::left_join(
@@ -143,8 +143,8 @@ add_equinox_and_solstice <- function(
     data,
     time_and_date_data = get_time_and_date_data()
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_tibble(time_and_date_data)
+  checkmate::assert_tibble(data)
+  checkmate::assert_tibble(time_and_date_data)
 
   data |>
     dplyr::left_join(
@@ -187,7 +187,7 @@ add_equinox_and_solstice <- function(
 # library(suntools)
 
 add_sun_time <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::mutate(

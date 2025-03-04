@@ -51,12 +51,12 @@ get_more_than_one_geographical_match <- function(
     beep = TRUE,
     ...
   ) {
-  prettycheck:::assert_character(x)
-  prettycheck:::assert_string(col)
-  prettycheck:::assert_flag(beep)
+  checkmate::assert_character(x)
+  checkmate::assert_string(col)
+  checkmate::assert_flag(beep)
 
   brazil_municipalities <- get_brazil_municipality()
-  prettycheck:::assert_choice(col, names(brazil_municipalities))
+  checkmate::assert_choice(col, names(brazil_municipalities))
   brazil_municipalities <- brazil_municipalities |> dplyr::pull(col)
 
   out <- dplyr::tibble()

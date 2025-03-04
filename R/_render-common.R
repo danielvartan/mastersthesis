@@ -37,14 +37,14 @@ folders <- c(
 )
 
 for (i in folders) {
-  if (!prettycheck:::test_directory_exists(i)) dir.create(i)
+  if (!checkmate::test_directory_exists(i)) dir.create(i)
 }
 
 # Create `_variables.yml` if it doesn't exist -----
 
 env_vars_file_path <- here::here("_variables.yml")
 
-if (!prettycheck:::test_file_exists(env_vars_file_path)) {
+if (!checkmate::test_file_exists(env_vars_file_path)) {
   rutils:::create_file(env_vars_file_path)
 }
 
@@ -52,12 +52,12 @@ if (!prettycheck:::test_file_exists(env_vars_file_path)) {
 
 res_vars_file_path <- here::here("_results.yml")
 
-if (!prettycheck:::test_file_exists(res_vars_file_path)) {
+if (!checkmate::test_file_exists(res_vars_file_path)) {
   rutils:::create_file(res_vars_file_path)
 }
 
 # Run the data pipeline if the `_targets` directory doesn't exist -----
 
-if (!prettycheck:::test_directory_exists(here::here("_targets"))) {
+if (!checkmate::test_directory_exists(here::here("_targets"))) {
   targets::tar_make()
 }

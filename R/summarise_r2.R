@@ -15,10 +15,10 @@ summarise_r2 <- function(
   ) {
   rules_choices <- c("cohen1988", "falk1992", "chin1998", "hair2011")
 
-  prettycheck:::assert_integer_number(k, lower = 1)
-  prettycheck:::assert_number(ci_level, lower = 0, upper = 1)
-  prettycheck:::assert_choice(rules, rules_choices)
-  prettycheck:::assert_number(n, lower = 0, null.ok = TRUE)
+  checkmate::assert_int(k, lower = 1)
+  checkmate::assert_number(ci_level, lower = 0, upper = 1)
+  checkmate::assert_choice(rules, rules_choices)
+  checkmate::assert_number(n, lower = 0, null.ok = TRUE)
   prettycheck::assert_pick(model, r2, pick = 1)
 
   if (!is.null(model)) {
@@ -29,7 +29,7 @@ summarise_r2 <- function(
       r2 <-summary(model) |> magrittr::extract2("r.sq")
       if (r2 <= 0) r2 <- 0
     } else {
-      prettycheck:::assert_multiclass(model, c("gam", "lm"))
+      checkmate::assert_multiclass(model, c("gam", "lm"))
     }
   }
 

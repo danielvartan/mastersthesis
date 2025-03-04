@@ -9,15 +9,15 @@ save_and_lock <- function(
     public_key = here::here("_ssh", "id_rsa.pub"),
     ...
   ) {
-  prettycheck:::assert_path_for_output(file, overwrite = TRUE)
-  prettycheck:::assert_choice(type, c("csv", "rds"))
+  checkmate::assert_path_for_output(file, overwrite = TRUE)
+  checkmate::assert_choice(type, c("csv", "rds"))
 
   if (type == "csv") {
-    prettycheck:::assert_data_frame(x)
+    checkmate::assert_data_frame(x)
 
     readr::write_csv(x, file, ...)
 
-    if (prettycheck:::test_file_exists(paste0(file, ".lockr"))) {
+    if (checkmate::test_file_exists(paste0(file, ".lockr"))) {
       file.remove(paste0(file, ".lockr"))
     }
 
@@ -25,7 +25,7 @@ save_and_lock <- function(
   } else {
     readr::write_rds(x, file, ...)
 
-    if (prettycheck:::test_file_exists(paste0(file, ".lockr"))) {
+    if (checkmate::test_file_exists(paste0(file, ".lockr"))) {
       file.remove(paste0(file, ".lockr"))
     }
 

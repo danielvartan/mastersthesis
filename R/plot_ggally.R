@@ -18,13 +18,13 @@ plot_ggally <- function(
     print = TRUE,
     ...
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_character(cols)
-  prettycheck:::assert_subset(cols, names(data))
-  prettycheck:::assert_class(mapping, "uneval", null.ok = TRUE)
-  prettycheck:::assert_choice(axis_labels, c("show", "internal", "none"))
-  prettycheck:::assert_flag(na_rm)
-  prettycheck:::assert_flag(print)
+  checkmate::assert_tibble(data)
+  checkmate::assert_character(cols)
+  checkmate::assert_subset(cols, names(data))
+  checkmate::assert_class(mapping, "uneval", null.ok = TRUE)
+  checkmate::assert_choice(axis_labels, c("show", "internal", "none"))
+  checkmate::assert_flag(na_rm)
+  checkmate::assert_flag(print)
 
   out <-
     data|>

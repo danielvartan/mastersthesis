@@ -43,24 +43,24 @@ plot_world_countries <- function(
     print = TRUE,
     quiet = FALSE
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_subset("country", names(data))
-  prettycheck:::assert_string(col_fill, null.ok = TRUE)
-  prettycheck:::assert_choice(col_fill, names(data), null.ok = TRUE)
-  prettycheck:::assert_string(col_country)
-  prettycheck:::assert_choice(col_country, names(data))
-  prettycheck:::assert_character(data[[col_country]])
-  prettycheck:::assert_multi_class(transform, c("character", "transform"))
-  prettycheck:::assert_choice(direction, c(-1, 1))
-  prettycheck:::assert_flag(binned)
-  prettycheck:::assert_multi_class(breaks, c("function", "numeric", "waiver"))
-  prettycheck:::assert_integer_number(n_breaks, lower = 1, null.ok = TRUE)
-  prettycheck:::assert_multi_class(labels, c("function", "numeric", "waiver"))
-  prettycheck:::assert_flag(reverse)
-  prettycheck:::assert_flag(print)
-  prettycheck:::assert_flag(quiet)
+  checkmate::assert_tibble(data)
+  checkmate::assert_subset("country", names(data))
+  checkmate::assert_string(col_fill, null.ok = TRUE)
+  checkmate::assert_choice(col_fill, names(data), null.ok = TRUE)
+  checkmate::assert_string(col_country)
+  checkmate::assert_choice(col_country, names(data))
+  checkmate::assert_character(data[[col_country]])
+  checkmate::assert_multi_class(transform, c("character", "transform"))
+  checkmate::assert_choice(direction, c(-1, 1))
+  checkmate::assert_flag(binned)
+  checkmate::assert_multi_class(breaks, c("function", "numeric", "waiver"))
+  checkmate::assert_int(n_breaks, lower = 1, null.ok = TRUE)
+  checkmate::assert_multi_class(labels, c("function", "numeric", "waiver"))
+  checkmate::assert_flag(reverse)
+  checkmate::assert_flag(print)
+  checkmate::assert_flag(quiet)
 
-  prettycheck:::assert_multi_class(
+  checkmate::assert_multi_class(
     limits, c("numeric", "function"), null.ok = TRUE
   )
 

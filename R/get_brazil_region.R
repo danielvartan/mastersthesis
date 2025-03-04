@@ -9,8 +9,8 @@ source(here::here("R", "utils.R"))
 # Last update: 2024-11-07.
 
 get_brazil_region <- function(x = NULL, type = "fu") {
-  prettycheck:::assert_character(x, null.ok = TRUE)
-  prettycheck:::assert_choice(type, c("fu", "state"))
+  checkmate::assert_character(x, null.ok = TRUE)
+  checkmate::assert_choice(type, c("fu", "state"))
 
   if (!is.null(x)) x <- x |> to_ascii_and_lower()
 

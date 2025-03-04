@@ -35,10 +35,10 @@ get_chronotype_cutoffs <- function(
     col_msf_sc = "msf_sc",
     pretty = TRUE
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col_msf_sc)
-  prettycheck:::assert_choice(col_msf_sc, names(data))
-  prettycheck:::assert_flag(pretty)
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col_msf_sc)
+  checkmate::assert_choice(col_msf_sc, names(data))
+  checkmate::assert_flag(pretty)
 
   out <-
     data |>

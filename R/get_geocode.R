@@ -32,10 +32,10 @@ get_geocode_by_address <- function(
     limit = 10, # Inf for all.
     ...
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(address, null.ok = TRUE)
-  prettycheck:::assert_choice(method, c("osm", "google", "qualocep"))
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_character(address, null.ok = TRUE)
+  checkmate::assert_choice(method, c("osm", "google", "qualocep"))
+  checkmate::assert_number(limit)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))
@@ -54,9 +54,9 @@ get_geocode_by_address_tidygeocoder <- function(
     method = "osm",
     limit = 10
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(address)
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_character(address)
+  checkmate::assert_number(limit)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))
@@ -94,8 +94,8 @@ get_geocode_by_address_qualocep <- function(
     mean_values = TRUE,
     ...
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_number(limit)
 
   if (length(list(...)) == 0) {
     cli::cli_abort(paste0(
@@ -108,7 +108,7 @@ get_geocode_by_address_qualocep <- function(
   out <- get_qualocep_data()
   args <- list(...)
 
-  prettycheck:::assert_subset(names(args), names(out))
+  checkmate::assert_subset(names(args), names(out))
 
   for (i in seq_along(args)) {
     out <- out |> dplyr::filter(.data[[names(args)[i]]] %in% args[[i]])
@@ -178,12 +178,12 @@ get_geocode_by_postal_code <- function(
     limit = 10, # Inf for all.
     suffix = ", Brazil"
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_atomic(postal_code)
-  prettycheck:::assert_choice(method, c("osm", "google", "qualocep"))
-  prettycheck:::assert_flag(fix_code)
-  prettycheck:::assert_number(limit)
-  prettycheck:::assert_string(suffix)
+  prettycheck::assert_internet()
+  checkmate::assert_atomic(postal_code)
+  checkmate::assert_choice(method, c("osm", "google", "qualocep"))
+  checkmate::assert_flag(fix_code)
+  checkmate::assert_number(limit)
+  checkmate::assert_string(suffix)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))
@@ -192,7 +192,7 @@ get_geocode_by_postal_code <- function(
 
   if (isTRUE(fix_code)) postal_code <- postal_code |> fix_postal_code()
 
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
+  checkmate::assert_character(postal_code, pattern = "^\\d{8}$")
 
   if (method %in% c("osm", "google")) {
     get_geocode_by_postal_code_tidygeocoder(
@@ -211,9 +211,9 @@ get_geocode_by_postal_code_tidygeocoder <- function(
 ) {
   postal_code <- fix_postal_code(postal_code, zero_na = FALSE)
 
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_character(postal_code, pattern = "^\\d{8}$")
+  checkmate::assert_number(limit)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))
@@ -253,9 +253,9 @@ get_geocode_by_postal_code_tidygeocoder <- function(
 get_geocode_by_postal_code_qualocep <- function(postal_code, limit = 10) {
   postal_code <- fix_postal_code(postal_code)
 
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_character(postal_code, pattern = "^\\d{8}$")
+  checkmate::assert_number(limit)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))

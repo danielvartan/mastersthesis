@@ -16,13 +16,13 @@ plot_age_pyramid <- function(
     na_rm = TRUE,
     print = TRUE
   ){
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_subset(c("sex", "age"), names(data))
-  prettycheck:::assert_number(interval)
-  prettycheck:::assert_numeric(breaks, null_ok = TRUE)
+  checkmate::assert_tibble(data)
+  checkmate::assert_subset(c("sex", "age"), names(data))
+  checkmate::assert_number(interval)
+  prettycheck::assert_numeric(breaks, null_ok = TRUE)
   prettycheck::assert_pick(interval, breaks, min_pick = 1)
-  prettycheck:::assert_flag(na_rm)
-  prettycheck:::assert_flag(print)
+  checkmate::assert_flag(na_rm)
+  checkmate::assert_flag(print)
 
   if (is.null(breaks)) breaks <- pretty(data$age, n = interval)
 

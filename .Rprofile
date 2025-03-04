@@ -103,7 +103,12 @@ rprofile_message <- function(
 
 # Assert required packages -----
 
-require_pkg(c("cli", "here" ,"magrittr", "ragg", "renv", "stats", "stringr"))
+require_pkg(
+  c(
+    "cli", "here", "httpgd", "magrittr", "ragg", "renv", "stats", "stringr",
+    "vscDebugger"
+  )
+)
 
 # Load packages -----
 

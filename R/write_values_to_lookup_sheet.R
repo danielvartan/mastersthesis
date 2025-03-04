@@ -7,14 +7,14 @@ write_values_to_lookup_sheet <- function(
     sheet,
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA"
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_interactive()
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(sheet)
-  prettycheck:::assert_string(ss)
+  prettycheck::assert_internet()
+  prettycheck::assert_interactive()
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(sheet)
+  checkmate::assert_string(ss)
 
   ss <- googlesheets4::gs4_get(ss)
-  prettycheck:::assert_subset(sheet, ss$sheets$name)
+  checkmate::assert_subset(sheet, ss$sheets$name)
 
   ss |>
     googlesheets4::sheet_resize(
@@ -51,16 +51,16 @@ write_unique_values_to_lookup_sheet <- function(
     sheet = col,
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA"
 ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col)
-  prettycheck:::assert_choice(col, names(data))
-  prettycheck:::assert_string(sheet)
-  prettycheck:::assert_string(ss)
-  prettycheck:::assert_interactive()
-  prettycheck:::assert_internet()
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col)
+  checkmate::assert_choice(col, names(data))
+  checkmate::assert_string(sheet)
+  checkmate::assert_string(ss)
+  prettycheck::assert_interactive()
+  prettycheck::assert_internet()
 
   ss <- googlesheets4::gs4_get(ss)
-  prettycheck:::assert_subset(sheet, ss$sheets$name)
+  checkmate::assert_subset(sheet, ss$sheets$name)
 
   out <-
     dplyr::tibble(

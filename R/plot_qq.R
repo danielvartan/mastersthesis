@@ -7,12 +7,12 @@ library(rlang)
 source(here::here("R", "utils-plots.R"))
 
 plot_qq <- function(data, col, na_rm = TRUE, print = TRUE) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col)
-  prettycheck:::assert_subset(col, names(data))
-  prettycheck:::assert_numeric(data[[col]])
-  prettycheck:::assert_flag(na_rm)
-  prettycheck:::assert_flag(print)
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col)
+  checkmate::assert_subset(col, names(data))
+  prettycheck::assert_numeric(data[[col]])
+  checkmate::assert_flag(na_rm)
+  checkmate::assert_flag(print)
 
   data <- data |> dplyr::select(dplyr::all_of(col))
   if (isTRUE(na_rm)) data <- data |> tidyr::drop_na()

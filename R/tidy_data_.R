@@ -96,13 +96,13 @@ tidy_data_ <- function(
     password = Sys.getenv("MASTERSTHESIS_PASSWORD"),
     lookup_data = get_lookup_data()
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
+  prettycheck::assert_internet()
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
   lockr:::assert_public_key(public_key)
-  prettycheck:::assert_string(password, n.chars = 32)
+  checkmate::assert_string(password, n.chars = 32)
   lockr:::assert_private_key(private_key, password = password)
-  prettycheck:::assert_list(lookup_data)
+  checkmate::assert_list(lookup_data)
 
   cli::cli_progress_step("Tidying data")
 
@@ -123,7 +123,7 @@ tidy_data_ <- function(
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 fix_col_names <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::rename(
@@ -159,7 +159,7 @@ fix_col_names <- function(data) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 fix_var_classes <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::mutate(
@@ -252,12 +252,12 @@ look_and_replace_values <- function(
     private_key = here::here("_ssh/id_rsa"),
     password = Sys.getenv("MASTERSTHESIS_PASSWORD")
 ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(osf_pat, n.chars = 70, null.ok = TRUE)
   lockr:::assert_public_key(public_key)
-  prettycheck:::assert_string(password, n.chars = 32)
+  checkmate::assert_string(password, n.chars = 32)
   lockr:::assert_private_key(private_key, password = password)
-  prettycheck:::assert_internet()
+  prettycheck::assert_internet()
 
   # char_vars <- c(
   #   "track", "name", "email", "country", "state", "municipality",
@@ -346,7 +346,7 @@ look_and_replace_values <- function(
 # library(stringr)
 
 fix_character_vars <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::mutate(
@@ -370,7 +370,7 @@ fix_character_vars <- function(data) {
 # library(tidyr)
 
 nest_work_vars <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     tidyr::nest(
@@ -384,7 +384,7 @@ nest_work_vars <- function(data) {
 }
 
 select_vars <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   data |>
     dplyr::select(

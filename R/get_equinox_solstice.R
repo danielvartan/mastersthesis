@@ -18,9 +18,9 @@
 get_equinox_solstice <- function(year, month = "march", tz = "UTC") {
   month_choices <- c("march", "june", "september", "december")
 
-  prettycheck:::assert_integer_number(year)
-  prettycheck:::assert_choice(month, month_choices)
-  prettycheck:::assert_choice(tz, OlsonNames())
+  checkmate::assert_int(year)
+  checkmate::assert_choice(month, month_choices)
+  checkmate::assert_choice(tz, OlsonNames())
 
   # Only for the years +1000 to +3000 (Table 26.B).
   # Check Meeus (1991, p. 165) for more implementations.
@@ -92,8 +92,8 @@ get_equinox_solstice <- function(year, month = "march", tz = "UTC") {
 
 # See Meeus (1991, p. 63 & p. 171-175) for more information.
 jde_to_posixct <- function(jde, as_list = FALSE) {
-  prettycheck:::assert_number(jde, lower = 0)
-  prettycheck:::assert_flag(as_list)
+  checkmate::assert_number(jde, lower = 0)
+  checkmate::assert_flag(as_list)
 
   jde_ <- jde + 0.5
   z <- trunc(jde_)

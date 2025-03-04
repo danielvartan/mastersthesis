@@ -56,9 +56,9 @@ source(here::here("R", "utils.R"))
 #' reference <- c("São Paulo", "Rio de Janeiro")
 #' match_strings(raw, reference, maxDist = 1)
 match_strings <- function(raw, reference, one_by_one = FALSE, ...) {
-  prettycheck:::assert_character(raw)
-  prettycheck:::assert_character(reference)
-  prettycheck:::assert_flag(one_by_one)
+  checkmate::assert_character(raw)
+  checkmate::assert_character(reference)
+  checkmate::assert_flag(one_by_one)
 
   if (isTRUE(one_by_one)) {
     prettycheck::assert_identical(raw, reference, type = "length")

@@ -1,3 +1,5 @@
+% Set lengths -----
+
 \newlength{\microskipamount}
 \newlength{\tinyskipamount}
 \newlength{\hugeskipamount}
@@ -13,17 +15,16 @@
 \newcommand{\tinyskip}{\vspace{\tinyskipamount}}
 \newcommand{\hugeskip}{\vspace{\hugeskipamount}}
 
+% Set skips -----
+
 \setlength{\beforechapskip}{\bigskipamount}
 \setlength{\afterchapskip}{\smallskipamount}
-\setbeforesecskip{\medskipamount}
-\setaftersecskip{\smallskipamount}
-\setbeforesubsecskip{\medskipamount}
-\setaftersubsecskip{\smallskipamount}
-\setbeforesubsubsecskip{\medskipamount}
-\setaftersubsubsecskip{\smallskipamount}
-\setbeforeparaskip{\medskipamount}
-\setafterparaskip{0\smallskipamount}
-% \setparahook{\addvspace{\smallskipamount}}
+
+\titlespacing*{\chapter}{0pt}{\beforechapskip}{\afterchapskip}
+\titlespacing*{\section}{0pt}{\medskipamount}{\smallskipamount}
+\titlespacing*{\subsection}{0pt}{\medskipamount}{\smallskipamount}
+\titlespacing*{\subsubsection}{0pt}{\medskipamount}{\smallskipamount}
+\titlespacing*{\paragraph}{0pt}{\medskipamount}{\smallskipamount}
 
 % Set epigraph -----
 

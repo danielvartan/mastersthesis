@@ -3,9 +3,9 @@
 library(rlang)
 
 summarise_data <- function(data, by) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(by)
-  prettycheck:::assert_choice(by, names(data))
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(by)
+  checkmate::assert_choice(by, names(data))
 
   data |>
     dplyr::summarise(n = sum(n), .by = !!as.symbol(by)) |>
@@ -41,14 +41,14 @@ summarise_data <- function(data, by) {
 library(rlang)
 
 summary_by <- function(data, col, col_group, col_n = NULL) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col)
-  prettycheck:::assert_choice(col, names(data))
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col)
+  checkmate::assert_choice(col, names(data))
   prettycheck::assert_length(col_group, len = 1)
-  prettycheck:::assert_multi_class(col_group, c("character", "factor"))
-  prettycheck:::assert_choice(col_group, names(data))
-  prettycheck:::assert_string(col_n, null.ok = TRUE)
-  prettycheck:::assert_choice(col_n, names(data), null.ok = TRUE)
+  checkmate::assert_multi_class(col_group, c("character", "factor"))
+  checkmate::assert_choice(col_group, names(data))
+  checkmate::assert_string(col_n, null.ok = TRUE)
+  checkmate::assert_choice(col_n, names(data), null.ok = TRUE)
 
   col_group <- col_group |> as.character()
 
@@ -95,11 +95,11 @@ summary_by <- function(data, col, col_group, col_n = NULL) {
 library(rlang)
 
 compare_sample <- function(sample_data, pop_data, by) {
-  prettycheck:::assert_tibble(sample_data)
-  prettycheck:::assert_tibble(pop_data)
-  prettycheck:::assert_string(by)
-  prettycheck:::assert_choice(by, names(sample_data))
-  prettycheck:::assert_choice(by, names(pop_data))
+  checkmate::assert_tibble(sample_data)
+  checkmate::assert_tibble(pop_data)
+  checkmate::assert_string(by)
+  checkmate::assert_choice(by, names(sample_data))
+  checkmate::assert_choice(by, names(pop_data))
 
   sample_data |>
     dplyr::summarise(n = dplyr::n(), .by = !!as.symbol(by)) |>
@@ -144,8 +144,8 @@ compare_sample <- function(sample_data, pop_data, by) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 extract_from_summary <- function(x, element = "r.squared") {
-  prettycheck:::assert_list(x)
-  prettycheck:::assert_string(element)
+  checkmate::assert_list(x)
+  checkmate::assert_string(element)
 
   summary <- summary(x)
 
@@ -173,7 +173,7 @@ f_statistic <- function(x) extract_from_summary(x, "fstatistic")
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 std_error <- function(x){
-  prettycheck:::assert_numeric(x)
+  prettycheck::assert_numeric(x)
 
   stats::sd(x, na.rm = TRUE) / sqrt(length(x))
 }
@@ -185,7 +185,7 @@ std_error <- function(x){
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 mode <- function(x) {
-  prettycheck:::assert_atomic(x)
+  checkmate::assert_atomic(x)
 
   out <-
     dplyr::tibble(x = x) |>
@@ -201,7 +201,7 @@ mode <- function(x) {
 }
 
 get_midpoint <- function(cuts) {
-  prettycheck:::assert_factor(cuts)
+  checkmate::assert_factor(cuts)
 
   out <- cuts |> levels() |> magrittr::extract(as.numeric(cuts))
 
@@ -227,10 +227,10 @@ test_outlier <- function(
     iqr_mult = 1.5,
     sd_mult = 3
   ) {
-  prettycheck:::assert_numeric(x)
-  prettycheck:::assert_choice(method, c("iqr", "sd"))
-  prettycheck:::assert_number(iqr_mult)
-  prettycheck:::assert_number(sd_mult)
+  prettycheck::assert_numeric(x)
+  checkmate::assert_choice(method, c("iqr", "sd"))
+  checkmate::assert_number(iqr_mult)
+  checkmate::assert_number(sd_mult)
 
   if (method == "iqr") {
     iqr <- stats::IQR(x, na.rm = TRUE)
@@ -253,10 +253,10 @@ remove_outliers <- function(
     iqr_mult = 1.5,
     sd_mult = 3
   ) {
-  prettycheck:::assert_numeric(x)
-  prettycheck:::assert_choice(method, c("iqr", "sd"))
-  prettycheck:::assert_number(iqr_mult, lower = 1)
-  prettycheck:::assert_number(sd_mult, lower = 0)
+  prettycheck::assert_numeric(x)
+  checkmate::assert_choice(method, c("iqr", "sd"))
+  checkmate::assert_number(iqr_mult, lower = 1)
+  checkmate::assert_number(sd_mult, lower = 0)
 
   x |>
     test_outlier(
@@ -273,9 +273,9 @@ remove_outliers <- function(
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 lm_fun <- function(model, fix_all_but = NULL, data = NULL) {
-  prettycheck:::assert_class(model, "lm")
+  checkmate::assert_class(model, "lm")
 
-  prettycheck:::assert_number(
+  checkmate::assert_number(
     fix_all_but,
     lower = 1,
     upper = length(stats::coef(model)) - 1,
@@ -288,8 +288,8 @@ lm_fun <- function(model, fix_all_but = NULL, data = NULL) {
   fixed_vars <- vars
 
   if (!is.null(fix_all_but)) {
-    prettycheck:::assert_data_frame(data)
-    # prettycheck:::assert_subset(coef$term[-1], names(data))
+    checkmate::assert_data_frame(data)
+    # checkmate::assert_subset(coef$term[-1], names(data))
 
     for (i in seq_along(fixed_vars)[-fix_all_but]) {
       fixed_vars[i] <- mean(data[[coef$term[i + 1]]], na.rm = TRUE)
@@ -301,7 +301,7 @@ lm_fun <- function(model, fix_all_but = NULL, data = NULL) {
   fun_exp <- str2expression(
     glue::glue(
       "function({paste0(vars, collapse = ', ')}) {{", "\n",
-      "  {paste0('prettycheck:::assert_numeric(', vars, ')', collapse = '\n')}",
+      "  {paste0('checkmate::assert_numeric(', vars, ')', collapse = '\n')}",
       "\n\n",
       "  {coef$estimate[1]} +",
       "{paste0(coef$estimate[-1], ' * ', fixed_vars, collapse = ' + ')}",
@@ -326,20 +326,20 @@ lm_str_fun <- function(
     fix_fun = "Mean",
     coef_names = NULL # Ignore the intercept coefficient.
   ) {
-  prettycheck:::assert_class(model, "lm")
-  prettycheck:::assert_number(digits)
-  prettycheck:::assert_flag(latex2exp)
+  checkmate::assert_class(model, "lm")
+  checkmate::assert_number(digits)
+  checkmate::assert_flag(latex2exp)
 
-  prettycheck:::assert_number(
+  checkmate::assert_number(
     fix_all_but,
     lower = 1,
     upper = length(stats::coef(model)) - 1,
     null.ok = TRUE
   )
 
-  prettycheck:::assert_string(fix_fun)
+  checkmate::assert_string(fix_fun)
 
-  prettycheck:::assert_character(
+  checkmate::assert_character(
     coef_names,
     any.missing = FALSE,
     len = length(names(stats::coef(model))) - 1,

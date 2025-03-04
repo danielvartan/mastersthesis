@@ -23,19 +23,19 @@ get_nasa_data <- function(
     save_to_globalenv = TRUE,
     force = FALSE
   ) {
-  prettycheck:::assert_string(file, null.ok = TRUE)
-  prettycheck:::assert_string(pattern)
-  prettycheck:::assert_string(osf_pat, n.chars = 70)
+  checkmate::assert_string(file, null.ok = TRUE)
+  checkmate::assert_string(pattern)
+  checkmate::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
   lockr:::assert_private_key(private_key, password = password)
-  prettycheck:::assert_string(password, n.chars = 32)
-  prettycheck:::assert_flag(save_to_globalenv)
-  prettycheck:::assert_flag(force)
+  checkmate::assert_string(password, n.chars = 32)
+  checkmate::assert_flag(save_to_globalenv)
+  checkmate::assert_flag(force)
 
   nasa_temp_file <- file.path(tempdir(), pattern)
 
   if (!is.null(file)) {
-    prettycheck:::assert_file_exists(file, extension = c("rds", "lockr"))
+    checkmate::assert_file_exists(file, extension = c("rds", "lockr"))
 
     if (stringr::str_detect(file, "\\.lockr$")) {
       lockr::unlock_file(file, private_key = private_key, password = password)
@@ -52,7 +52,7 @@ get_nasa_data <- function(
     )
 
     return(get("nasa_data", envir = globalenv()))
-  } else if (prettycheck:::test_file_exists(nasa_temp_file) &&
+  } else if (checkmate::test_file_exists(nasa_temp_file) &&
              isFALSE(force)) {
     cli::cli_alert_info(
       "Using NASA data file from the temporary directory.",
@@ -61,7 +61,7 @@ get_nasa_data <- function(
 
     out <- readr::read_rds(nasa_temp_file)
   } else {
-    prettycheck:::assert_internet()
+    prettycheck::assert_internet()
 
     cli::cli_progress_step("Downloading NASA data from OSF.")
 
@@ -86,7 +86,7 @@ get_nasa_data <- function(
 
     old_file_pattern <- stringr::str_remove(file, "\\.lockr$")
 
-    if (prettycheck:::test_file_exists(old_file_pattern)) {
+    if (checkmate::test_file_exists(old_file_pattern)) {
       file.remove(old_file_pattern)
     }
 

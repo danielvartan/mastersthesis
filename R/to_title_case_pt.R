@@ -64,12 +64,12 @@ to_title_case_pt <- function(
     prepositions = TRUE,
     custom_rules = c("(.)\\bD(el)\\b" = "\\1d\\2") # Del
   ) {
-  prettycheck:::assert_character(string)
-  prettycheck:::assert_flag(articles)
-  prettycheck:::assert_flag(conjuctions)
-  prettycheck:::assert_flag(oblique_pronouns)
-  prettycheck:::assert_flag(prepositions)
-  prettycheck:::assert_character(custom_rules, null.ok = TRUE)
+  checkmate::assert_character(string)
+  checkmate::assert_flag(articles)
+  checkmate::assert_flag(conjuctions)
+  checkmate::assert_flag(oblique_pronouns)
+  checkmate::assert_flag(prepositions)
+  checkmate::assert_character(custom_rules, null.ok = TRUE)
 
   prettycheck::assert_pick(
     articles,

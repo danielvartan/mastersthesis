@@ -17,7 +17,7 @@ source(here::here("R", "_render-common.R"))
 
 dir_path <- here::here("qmd", "images")
 
-if (!prettycheck:::test_directory_exists(dir_path)) {
+if (!checkmate::test_directory_exists(dir_path)) {
   dir.create(dir_path) |> invisible()
 }
 

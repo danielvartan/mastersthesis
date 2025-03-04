@@ -45,31 +45,31 @@ cross_geographic_data_by_postal_code <- function(
   col_match = col_merge[1],
   ...
   ) {
-  prettycheck:::assert_tibble(raw_data)
-  prettycheck:::assert_string(col)
-  prettycheck:::assert_string(value)
-  prettycheck:::assert_string(method)
-  prettycheck:::assert_number(limit)
-  prettycheck:::assert_character(col_merge)
-  prettycheck:::assert_string(col_match)
+  checkmate::assert_tibble(raw_data)
+  checkmate::assert_string(col)
+  checkmate::assert_string(value)
+  checkmate::assert_string(method)
+  checkmate::assert_number(limit)
+  checkmate::assert_character(col_merge)
+  checkmate::assert_string(col_match)
 
   geo_data <- raw_data |> filter_geographic_data(col, value)
 
   if (!is.infinite(limit)) {
-    prettycheck:::assert_integer_number(limit, lower = 1)
+    checkmate::assert_int(limit, lower = 1)
 
     geo_data <- geo_data |> dplyr::slice(seq_len(min(nrow(geo_data), limit)))
   }
 
-  prettycheck:::assert_subset(col_match, names(geo_data))
+  checkmate::assert_subset(col_match, names(geo_data))
 
   postal_code_data <-
     geo_data |>
     dplyr::pull("postal_code") |>
     get_brazil_address_by_postal_code(method = method, limit = limit)
 
-  prettycheck:::assert_subset(col_merge, names(postal_code_data))
-  prettycheck:::assert_subset(col_match, names(postal_code_data))
+  checkmate::assert_subset(col_merge, names(postal_code_data))
+  checkmate::assert_subset(col_match, names(postal_code_data))
 
   geo_data |>
     # dplyr::select(postal_code, id, municipality) |>

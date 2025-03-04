@@ -8,10 +8,10 @@ md_effect_size <- function(
     max_digits = 10,
     results_yml = here::here("_results.yml")
   ) {
-  prettycheck:::assert_choice(test, c("hta", "htb", "final"))
-  prettycheck:::assert_string(prefix)
-  prettycheck:::assert_integer_number(max_digits, lower = 1)
-  prettycheck:::assert_file_exists(results_yml)
+  checkmate::assert_choice(test, c("hta", "htb", "final"))
+  checkmate::assert_string(prefix)
+  checkmate::assert_int(max_digits, lower = 1)
+  checkmate::assert_file_exists(results_yml)
 
   data <-
     results_yml |> yaml::read_yaml() |>
@@ -43,10 +43,10 @@ md_adj_r_squared <- function(
     max_digits = 10,
     results_yml = here::here("_results.yml")
 ) {
-  prettycheck:::assert_choice(test, c("hta", "htb"))
-  prettycheck:::assert_choice(model, c("restricted", "full"))
-  prettycheck:::assert_integer_number(max_digits, lower = 1)
-  prettycheck:::assert_file_exists(results_yml)
+  checkmate::assert_choice(test, c("hta", "htb"))
+  checkmate::assert_choice(model, c("restricted", "full"))
+  checkmate::assert_int(max_digits, lower = 1)
+  checkmate::assert_file_exists(results_yml)
 
   data <-
     results_yml |> yaml::read_yaml() |>
@@ -73,10 +73,10 @@ md_f_test <- function(
     max_digits = 3,
     results_yml = here::here("_results.yml")
   ) {
-  prettycheck:::assert_choice(test, c("hta", "htb"))
-  prettycheck:::assert_choice(model, c("restricted", "full"), null.ok = TRUE)
-  prettycheck:::assert_integer_number(max_digits, lower = 1)
-  prettycheck:::assert_file_exists(results_yml)
+  checkmate::assert_choice(test, c("hta", "htb"))
+  checkmate::assert_choice(model, c("restricted", "full"), null.ok = TRUE)
+  checkmate::assert_int(max_digits, lower = 1)
+  checkmate::assert_file_exists(results_yml)
 
   if (is.null(model)) {
     data <-
@@ -125,10 +125,10 @@ md_p_value <- function(
     max_digits = 5,
     results_yml = here::here("_results.yml")
   ) {
-  prettycheck:::assert_choice(test, c("hta", "htb"))
-  prettycheck:::assert_choice(model, c("restricted", "full"), null.ok = TRUE)
-  prettycheck:::assert_integer_number(max_digits, lower = 1)
-  prettycheck:::assert_file_exists(results_yml)
+  checkmate::assert_choice(test, c("hta", "htb"))
+  checkmate::assert_choice(model, c("restricted", "full"), null.ok = TRUE)
+  checkmate::assert_int(max_digits, lower = 1)
+  checkmate::assert_file_exists(results_yml)
 
   if (is.null(model)) {
     data <-
@@ -166,7 +166,7 @@ md_p_value <- function(
 }
 
 md_text <- function(x) {
-  prettycheck:::assert_atomic(x)
+  checkmate::assert_atomic(x)
 
   x |>
     as.character() %>%

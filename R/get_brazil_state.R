@@ -10,8 +10,8 @@ source(here::here("R", "utils.R"))
 source(here::here("R", "utils-checks.R"))
 
 get_brazil_state <- function(x = NULL, by = "fu") {
-  prettycheck:::assert_character(x, null.ok = TRUE)
-  prettycheck:::assert_choice(by, c("fu", "region"))
+  checkmate::assert_character(x, null.ok = TRUE)
+  checkmate::assert_choice(by, c("fu", "region"))
 
   if (!is.null(x)) x <- x |> to_ascii_and_lower()
 
@@ -101,8 +101,8 @@ source(here::here("R", "utils.R"))
 source(here::here("R", "utils-checks.R"))
 
 get_brazil_state_capitals <- function(x = NULL, by = "fu") {
-  prettycheck:::assert_character(x, null.ok = TRUE)
-  prettycheck:::assert_choice(by, c("fu", "state"))
+  checkmate::assert_character(x, null.ok = TRUE)
+  checkmate::assert_choice(by, c("fu", "state"))
 
   if (!is.null(x)) x <- x |> to_ascii_and_lower()
 
@@ -215,8 +215,8 @@ source(here::here("R", "utils-checks.R"))
 # See `./R/get_brazil_municipality_geocode.R` to learn more.
 
 get_brazil_state_latitude <- function(x, type = "fu") {
-  prettycheck:::assert_character(x)
-  prettycheck:::assert_choice(type, c("fu", "state"))
+  checkmate::assert_character(x)
+  checkmate::assert_choice(type, c("fu", "state"))
 
   # if (type == "fu") assert_brazil_fu(x)
   if (type == "state") x <- get_brazil_fu(x)
@@ -266,8 +266,8 @@ source(here::here("R", "utils-checks.R"))
 # See `./R/get_brazil_municipality_geocode.R` to learn more.
 
 get_brazil_state_longitude <- function(x, type = "fu") {
-  prettycheck:::assert_character(x)
-  prettycheck:::assert_choice(type, c("fu", "state"))
+  checkmate::assert_character(x)
+  checkmate::assert_choice(type, c("fu", "state"))
 
   # if (type == "fu") assert_brazil_fu(x)
   if (type == "state") x <- get_brazil_fu(x)
@@ -313,8 +313,8 @@ get_brazil_state_longitude <- function(x, type = "fu") {
 # See <https://www.iana.org/time-zones> to learn more.
 
 get_brazil_state_by_utc <- function(utc = -3, type = "fu") {
-  prettycheck:::assert_choice(utc, -5:-2)
-  prettycheck:::assert_choice(type, c("fu", "state"))
+  checkmate::assert_choice(utc, -5:-2)
+  checkmate::assert_choice(type, c("fu", "state"))
 
   if (utc == -2) {
     # PE -> Except Atlantic islands -> Fernando de Noronha
@@ -352,8 +352,8 @@ get_brazil_state_by_utc <- function(utc = -3, type = "fu") {
 get_brazil_state_from_unique_municipality <- function(data) {
   var_set <- c("id", "country", "state", "municipality", "postal_code")
 
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_subset(var_set, names(data))
+  checkmate::assert_tibble(data)
+  checkmate::assert_subset(var_set, names(data))
 
   data |>
     dplyr::select(dplyr::all_of(var_set)) |>
@@ -379,8 +379,8 @@ source(here::here("R", "utils-checks.R"))
 # See `./R/get_brazil_municipality_geocode.R` to learn more.
 
 get_brazil_state_code <- function(x = NULL, type = "fu") {
-  prettycheck:::assert_character(x, null.ok = TRUE)
-  prettycheck:::assert_choice(type, c("fu", "state"))
+  checkmate::assert_character(x, null.ok = TRUE)
+  checkmate::assert_choice(type, c("fu", "state"))
 
   if (is.null(x)) {
     c(

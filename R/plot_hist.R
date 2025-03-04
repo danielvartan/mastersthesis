@@ -19,16 +19,16 @@ plot_hist <- function(
     y_label = ifelse(stat == "count", "Frequency", "Density"),
     print = TRUE
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col)
-  prettycheck:::assert_choice(col, names(data))
-  prettycheck:::assert_numeric(data[[col]])
-  prettycheck:::assert_string(name)
-  prettycheck:::assert_number(bins, lower = 1)
-  prettycheck:::assert_choice(stat, c("count", "density"))
-  prettycheck:::assert_flag(density_line)
-  prettycheck:::assert_flag(na_rm)
-  prettycheck:::assert_flag(print)
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col)
+  checkmate::assert_choice(col, names(data))
+  prettycheck::assert_numeric(data[[col]])
+  checkmate::assert_string(name)
+  checkmate::assert_number(bins, lower = 1)
+  checkmate::assert_choice(stat, c("count", "density"))
+  checkmate::assert_flag(density_line)
+  checkmate::assert_flag(na_rm)
+  checkmate::assert_flag(print)
   assert_gg_label(x_label)
   assert_gg_label(y_label)
 

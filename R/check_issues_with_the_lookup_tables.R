@@ -201,9 +201,9 @@ check_issues_with_the_lookup_tables <- function() {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 lookup_table_issue_warning <- function(test, col_name, type = "length") {
-  prettycheck:::assert_atomic(test)
-  prettycheck:::assert_string(col_name)
-  prettycheck:::assert_string(type)
+  checkmate::assert_atomic(test)
+  checkmate::assert_string(col_name)
+  checkmate::assert_string(type)
 
   if (type == "length" && !length(test) == 0) {
     cli::cli_alert_warning(

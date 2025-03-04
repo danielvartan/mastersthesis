@@ -27,31 +27,31 @@ plot_latitude_series <- function(
   ) {
   col_classes <- c("numeric", "integer", "POSIXt", "hms", "Duration")
 
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(col)
-  prettycheck:::assert_subset(col, names(data))
-  prettycheck:::assert_multi_class(data[[col]], col_classes)
-  prettycheck:::assert_string(col_latitude)
-  prettycheck:::assert_subset(col_latitude, names(data))
-  prettycheck:::assert_numeric(data[[col_latitude]])
-  prettycheck:::assert_number(linewidth, lower = 0)
-  prettycheck:::assert_string(date_breaks)
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(col)
+  checkmate::assert_subset(col, names(data))
+  checkmate::assert_multi_class(data[[col]], col_classes)
+  checkmate::assert_string(col_latitude)
+  checkmate::assert_subset(col_latitude, names(data))
+  prettycheck::assert_numeric(data[[col_latitude]])
+  checkmate::assert_number(linewidth, lower = 0)
+  checkmate::assert_string(date_breaks)
 
-  prettycheck:::assert_multi_class(
+  checkmate::assert_multi_class(
     minor_breaks, c("waiver", "numeric"), null.ok = TRUE
   )
 
-  prettycheck:::assert_multi_class(
+  checkmate::assert_multi_class(
     limits, c("numeric", "function"), null.ok = TRUE
   )
 
-  prettycheck:::assert_flag(print)
+  checkmate::assert_flag(print)
 
   if (is.null(y_label) && hms::is_hms(data[[col]])) {
     y_label = paste0("Local time (", col, " +- SEM)")
   }
 
-  if (is.null(y_label) && prettycheck:::test_duration(data[[col]])) {
+  if (is.null(y_label) && prettycheck::test_duration(data[[col]])) {
     y_label = paste0("Duration (", col, " +- SEM)")
   }
 
@@ -65,7 +65,7 @@ plot_latitude_series <- function(
     ) |>
     dplyr::mutate(
       dplyr::across(
-        .cols = dplyr::where(prettycheck:::test_duration),
+        .cols = dplyr::where(prettycheck::test_duration),
         .fns = ~ hms::hms(as.numeric(.x))
       ),
       dplyr::across(

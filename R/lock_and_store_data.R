@@ -19,11 +19,11 @@ lock_and_store_data <- function(
     upload_to_osf = FALSE,
     name_pattern = deparse(substitute(data))
   ) {
-  prettycheck:::assert_tibble(data)
-  prettycheck:::assert_string(osf_pat, n.chars = 70)
+  checkmate::assert_tibble(data)
+  checkmate::assert_string(osf_pat, n.chars = 70)
   lockr:::assert_public_key(public_key)
-  prettycheck:::assert_flag(upload_to_osf)
-  prettycheck:::assert_string(name_pattern)
+  checkmate::assert_flag(upload_to_osf)
+  checkmate::assert_string(name_pattern)
 
   data |>
     lock_data(
@@ -53,9 +53,9 @@ lock_data <- function(
     public_key = here::here("_ssh", "id_rsa.pub"),
     name_pattern = deparse(substitute(data))
   ) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
   lockr:::assert_public_key(public_key)
-  prettycheck:::assert_string(name_pattern)
+  checkmate::assert_string(name_pattern)
 
   cli::cli_progress_step("Locking and saving data.")
 
@@ -78,7 +78,7 @@ lock_data <- function(
         .fns = ~ .x |> as.numeric() |> round() |> hms::hms()
       ),
       dplyr::across(
-        .cols = dplyr::where(~ prettycheck:::test_temporal(.x, rm = "Date")),
+        .cols = dplyr::where(~ prettycheck::test_temporal(.x, rm = "Date")),
         .fns = ~ .x |> lubritime::round_time()
       ),
       dplyr::across(
@@ -121,13 +121,13 @@ store_data <- function(
     osf_pat = Sys.getenv("OSF_PAT"),
     upload_to_osf = TRUE
   ) {
-  prettycheck:::assert_flag(upload_to_osf)
+  checkmate::assert_flag(upload_to_osf)
 
   if (isTRUE(upload_to_osf)) {
-    prettycheck:::assert_internet()
-    prettycheck:::assert_character(file)
-    for (i in file) prettycheck:::assert_file_exists(i)
-    prettycheck:::assert_string(osf_pat, n.chars = 70)
+    prettycheck::assert_internet()
+    checkmate::assert_character(file)
+    for (i in file) checkmate::assert_file_exists(i)
+    checkmate::assert_string(osf_pat, n.chars = 70)
 
     osfr::osf_auth(osf_pat) |> rutils::shush()
     osf_id <- "https://osf.io/cbqsa"
@@ -158,7 +158,7 @@ store_data <- function(
 # library(tidyr)
 
 nest_solar_vars <- function(data) {
-  prettycheck:::assert_tibble(data)
+  checkmate::assert_tibble(data)
 
   cli::cli_progress_step("Nesting solar variables.")
 

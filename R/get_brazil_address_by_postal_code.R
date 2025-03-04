@@ -78,11 +78,11 @@ get_brazil_address_by_postal_code <- function(
     fix_code = TRUE,
     limit = 10
   ) {
-  prettycheck:::assert_internet()
-  prettycheck:::assert_atomic(postal_code)
-  prettycheck:::assert_choice(method, c("osm", "google", "qualocep", "viacep"))
-  prettycheck:::assert_flag(fix_code)
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_atomic(postal_code)
+  checkmate::assert_choice(method, c("osm", "google", "qualocep", "viacep"))
+  checkmate::assert_flag(fix_code)
+  checkmate::assert_number(limit)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))
@@ -91,7 +91,7 @@ get_brazil_address_by_postal_code <- function(
 
   if (isTRUE(fix_code)) postal_code <- postal_code |> fix_postal_code()
 
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
+  checkmate::assert_character(postal_code, pattern = "^\\d{8}$")
 
 
   if (method == "osm") {
@@ -111,9 +111,9 @@ get_brazil_address_by_postal_code_osm <- function(
   ) {
   postal_code <- fix_postal_code(postal_code)
 
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_character(postal_code, pattern = "^\\d{8}$")
+  checkmate::assert_number(limit)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))
@@ -214,9 +214,9 @@ get_brazil_address_by_postal_code_google <- function(
   ) {
   postal_code <- fix_postal_code(postal_code)
 
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_character(postal_code, pattern = "^\\d{8}$")
+  checkmate::assert_number(limit)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))
@@ -351,9 +351,9 @@ get_brazil_address_by_postal_code_qualocep <- function(
   ) {
   postal_code <- fix_postal_code(postal_code)
 
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_character(postal_code, pattern = "^\\d{8}$")
+  checkmate::assert_number(limit)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))
@@ -402,9 +402,9 @@ get_brazil_address_by_postal_code_qualocep <- function(
 get_brazil_address_by_postal_code_viacep <- function(postal_code, limit = 10) {
   postal_code <- fix_postal_code(postal_code)
 
-  prettycheck:::assert_internet()
-  prettycheck:::assert_character(postal_code, pattern = "^\\d{8}$")
-  prettycheck:::assert_number(limit)
+  prettycheck::assert_internet()
+  checkmate::assert_character(postal_code, pattern = "^\\d{8}$")
+  checkmate::assert_number(limit)
 
   if (!is.infinite(limit)) {
     limit <- as.integer(ceiling(limit))
