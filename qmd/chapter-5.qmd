@@ -31,10 +31,6 @@ library(targets)
 ```{r}
 #| include: false
 
-source(here::here("R", "categorize_msf_sc.R"))
-source(here::here("R", "plot_brazil.R"))
-source(here::here("R", "plot_chronotype.R"))
-source(here::here("R", "plot_latitude_series.R"))
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-md.R"))
 ```
@@ -56,7 +52,7 @@ The following study was designed for publication in the journal [*Scientific Rep
 
 ## Abstract
 
-\noindent __Chronotypes are temporal phenotypes that reflect our internal temporal organization, a product of evolutionary pressures enabling organisms to anticipate events. These intrinsic rhythms are entrain by zeitgebers---periodical environmental stimuli with the ability to regulate biological rhythmic expression, with light exposure being the primary mechanism. Given light's role in these systems, previous research hypothesized that latitude might significantly influence chronotypes, suggesting that populations near the equator would exhibit more morning-leaning characteristics due to more consistent light/dark cycles, while populations near the poles might display more evening-leaning tendencies with a potentially freer expression of intrinsic rhythms. To test this hypothesis, we analyzed chronotype data from a large sample of `{r} res_vars$ea_analysis_sample_n |> format_to_md_latex()` subjects across diverse latitudes in Brazil. Our results revealed a negligeble effect size of latitude on chronotype (`{r} md_effect_size("hta", prefix = "")`), indicating that the entrainment phenomenon is far more complex than previously conceived. These findings challenge simplified environmental models of biological timing and underscore the need for more nuanced investigations into the mechanisms underlying temporal phenotypes, opening new avenues for understanding the intricate relationship between environmental cues and individual circadian rhythms.__
+`\noindent`{=latex} __Chronotypes are temporal phenotypes that reflect our internal temporal organization, a product of evolutionary pressures enabling organisms to anticipate events. These intrinsic rhythms are entrain by zeitgebers---periodical environmental stimuli with the ability to regulate biological rhythmic expression, with light exposure being the primary mechanism. Given light's role in these systems, previous research hypothesized that latitude might significantly influence chronotypes, suggesting that populations near the equator would exhibit more morning-leaning characteristics due to more consistent light/dark cycles, while populations near the poles might display more evening-leaning tendencies with a potentially freer expression of intrinsic rhythms. To test this hypothesis, we analyzed chronotype data from a large sample of `{r} res_vars$ea_analysis_sample_n |> format_to_md_latex()` subjects across diverse latitudes in Brazil. Our results revealed a negligeble effect size of latitude on chronotype (`{r} md_effect_size("hta", prefix = "")`), indicating that the entrainment phenomenon is far more complex than previously conceived. These findings challenge simplified environmental models of biological timing and underscore the need for more nuanced investigations into the mechanisms underlying temporal phenotypes, opening new avenues for understanding the intricate relationship between environmental cues and individual circadian rhythms.__
 
 ## Introduction
 
@@ -78,7 +74,7 @@ Building on @leocadio-miguel2017, this study offers a novel attempt to test the 
 #| warning: false
 
 weighted_data |>
-  plot_brazil_municipality(
+  plotr:::plot_brazil_municipality(
     transform = "log10",
     direction = -1,
     alpha = 0.75,
@@ -103,7 +99,7 @@ Our analysis revealed an overall mean MSF~sc~ of `{r} res_vars$pr_analysis_sampl
 #| message: false
 #| warning: false
 
-weighted_data |> plot_chronotype()
+weighted_data |> plotr:::plot_chronotype()
 ```
 
 [Source: Created by the author based on a data visualization from `<br>`{=html} `\\`{=latex} @roenneberg2019b[Figure 1].]{.legend}
@@ -138,7 +134,7 @@ The small and inconsistent nature of the latitude effect is illustrated in @fig-
 #| message: false
 #| warning: false
 
-weighted_data |> plot_latitude_series()
+weighted_data |> plotr:::plot_latitude_series()
 ```
 
 [Source: Created by the author.]{.legend}
@@ -154,11 +150,13 @@ limits <- # Interquartile range (IQR): Q3 - Q1
   c(
     weighted_data |>
       dplyr::pull(msf_sc) |>
-      transform_time() |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       stats::quantile(0.25, na.rm = TRUE),
     weighted_data |>
       dplyr::pull(msf_sc) |>
-      transform_time() |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       stats::quantile(0.75, na.rm = TRUE)
   )
 
@@ -171,12 +169,12 @@ weighted_data |>
       ) |>
       as.numeric()
   ) |>
-  plot_brazil_state(
+  plotr:::plot_brazil_state(
     col_fill = "msf_sc",
     transform = "identity",
     binned = FALSE,
     breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
-    labels = labels_hms,
+    labels = plotr:::format_as_hm,
     limits = limits, # !!!
     quiet = TRUE
   )
@@ -200,7 +198,7 @@ The results highlight the complex nature of the human chronotype and emphasize t
 plot <-
   weighted_data |>
   dplyr::mutate(
-    msf_sc_category = categorize_msf_sc(msf_sc),
+    msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
     msf_sc_category = factor(
       msf_sc_category,
       levels = c(
@@ -211,7 +209,7 @@ plot <-
       ordered = TRUE
     )
   ) |>
-  plot_brazil_point(
+  plotr:::plot_brazil_point(
     col_group = "msf_sc_category",
     size = 0.1,
     alpha = 1,
@@ -227,7 +225,7 @@ plot <-
   )
 
 plot |>
-  rm_scale() +
+  plotr:::rm_ggspatial_scale() +
   ggplot2::facet_wrap(~msf_sc_category, ncol = 4, nrow = 2)
 ```
 

@@ -1,3 +1,4 @@
+# library(checkmate)
 # library(fBasics)
 # library(here)
 # library(hms)
@@ -10,8 +11,6 @@
 # library(stats)
 # library(tseries)
 
-source(here::here("R", "plot_hist.R"))
-source(here::here("R", "plot_qq.R"))
 source(here::here("R", "stats_summary.R"))
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-stats.R"))
@@ -50,10 +49,17 @@ test_normality <- function(
   n <- x |> length()
   class = x |> class()
   tz <- ifelse(lubridate::is.POSIXt(x), lubridate::tz(x), "UTC")
-  n_rm_na <- x |> rutils:::drop_na() |> length()
+  n_rm_na <- x |> rutils::drop_na() |> length()
 
   if (prettycheck::test_temporal(x)) {
-    x <- x |> transform_time(threshold = threshold)
+    if (hms::is_hms(x)) {
+      x <-
+        x |>
+        lubritime::link_to_timeline(threshold = threshold) |>
+        as.numeric()
+    } else {
+      x <- x |> lubritime::extract_seconds()
+    }
   }
 
   if (isTRUE(remove_outliers)) {
@@ -88,7 +94,7 @@ test_normality <- function(
     rutils::shush()
 
   jarque_bera <-
-    rutils:::drop_na(x) |>
+    rutils::drop_na(x) |>
     tseries::jarque.bera.test()
 
   if (n_rm_na >= 4) {
@@ -117,14 +123,14 @@ test_normality <- function(
 
   qq_plot <-
     dplyr::tibble(x = x) |>
-    plot_qq(
+    plotr:::plot_qq(
       col = "x",
       print = FALSE
     )
 
   hist_plot <-
     dplyr::tibble(x = x) |>
-    plot_hist(
+    plotr:::plot_hist(
       col = "x",
       density_line = density_line,
       x_label = name,

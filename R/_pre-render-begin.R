@@ -122,7 +122,7 @@ quarto_yml_pdf_vars <- yaml::read_yaml(quarto_yml_pdf_path)
 # from @wmoldham fork `renv::install("wmoldham/rbbt")`.
 
 if (isTRUE(quarto_yml_pdf_vars$format$`abnt-pdf`$zotero)) {
-  rutils:::bbt_write_quarto_bib(
+  quartor:::bbt_write_quarto_bib(
     bib_file = "references.bib",
     dir = c("", "qmd", "tex"),
     pattern = c("\\.qmd$|\\.tex$"),

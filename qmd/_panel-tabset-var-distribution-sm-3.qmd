@@ -37,7 +37,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'msf_sc'
   )
 ```
@@ -83,7 +83,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'age'
   )
 ```
@@ -129,7 +129,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'latitude'
   )
 ```
@@ -175,7 +175,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'longitude'
   )
 ```
@@ -221,7 +221,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'ghi_month'
   )
 ```
@@ -267,7 +267,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'ghi_annual'
   )
 ```
@@ -313,7 +313,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'march_equinox_sunrise'
   )
 ```
@@ -359,7 +359,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'march_equinox_sunset'
   )
 ```
@@ -405,7 +405,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'march_equinox_daylight'
   )
 ```
@@ -451,7 +451,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'june_solstice_sunrise'
   )
 ```
@@ -497,7 +497,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'june_solstice_sunset'
   )
 ```
@@ -543,7 +543,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'june_solstice_daylight'
   )
 ```
@@ -589,7 +589,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'september_equinox_sunrise'
   )
 ```
@@ -635,7 +635,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'september_equinox_sunset'
   )
 ```
@@ -681,7 +681,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'september_equinox_daylight'
   )
 ```
@@ -727,7 +727,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'december_solstice_sunrise'
   )
 ```
@@ -773,7 +773,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'december_solstice_sunset'
   )
 ```
@@ -819,7 +819,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 weighted_data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'december_solstice_daylight'
   )
 ```

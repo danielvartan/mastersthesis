@@ -133,7 +133,7 @@ swap_list <- list(
 )
 
 for (i in swap_list) {
-  rutils:::swap_value_between_files(
+  quartor:::swap_value_between_files(
     from = i$from,
     to = i$to,
     begin_tag = i$begin_tag,
@@ -150,7 +150,7 @@ var_list <- list(
   format = "pdf"
 )
 
-rutils:::add_or_update_env_var(
+quartor:::add_env_var(
   var = var_list,
   yml_file = here::here("_variables.yml")
 )

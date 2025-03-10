@@ -4,7 +4,6 @@
 # library(lubridate)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R", "get_brazil_state.R"))
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-stats.R"))
 
@@ -37,7 +36,13 @@ filter_data <- function(data) {
     ) |>
     dplyr::filter(
       !test_outlier(age, method = "iqr", iqr_mult = 1.5),
-      !test_outlier(transform_time(msf_sc), method = "iqr", iqr_mult = 1.5)
+      !test_outlier(
+        msf_sc |>
+          lubritime::link_to_timeline() |>
+          as.numeric(),
+        method = "iqr",
+        iqr_mult = 1.5
+      )
     ) |>
     tidyr::drop_na(msf_sc, sex, age, state, latitude, longitude)
 }

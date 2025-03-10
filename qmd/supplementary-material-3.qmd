@@ -61,25 +61,11 @@ library(targets)
 ```{r}
 #| output: false
 
-source(here::here("R", "categorize_msf_sc.R"))
-source(here::here("R", "get_brazil_region.R"))
-source(here::here("R", "get_chronotype_cutoffs.R"))
 source(here::here("R", "panel_tabset_var_distribution.R"))
-source(here::here("R", "plot_age.R"))
-source(here::here('R', 'plot_box_plot.R'))
-source(here::here("R", "plot_brazil.R"))
-source(here::here("R", "plot_chronotype.R"))
-source(here::here("R", "plot_ggally.R"))
-source(here::here('R', 'plot_hist.R'))
-source(here::here("R", "plot_latitude_series.R"))
-source(here::here('R', 'plot_qq.R'))
-source(here::here("R", "plot_series.R"))
-source(here::here("R", "plot_world.R"))
 source(here::here("R", "stats_summary.R"))
 source(here::here('R', 'test_normality.R'))
 source(here::here("R", "utils.R"))
 source(here::here('R', 'utils-checks.R'))
-source(here::here('R', 'utils-plots.R'))
 source(here::here('R', 'utils-stats.R'))
 ```
 
@@ -98,7 +84,7 @@ targets::tar_make(script = here::here("_targets.R"))
 ```{r}
 #| code-fold: false
 
-anonymized_data <- 
+anonymized_data <-
   targets::tar_read("anonymized_data", store = here::here("_targets"))
 ```
 
@@ -107,7 +93,7 @@ anonymized_data <-
 ```{r}
 #| code-fold: false
 
-weighted_data <- 
+weighted_data <-
   targets::tar_read("weighted_data", store = here::here("_targets"))
 ```
 
@@ -121,23 +107,23 @@ weighted_data |>
   panel_tabset_var_distribution(
     data_name = "weighted_data",
     cols = c(
-      "msf_sc", 
-      "age", 
+      "msf_sc",
+      "age",
       "latitude",
-      "longitude", 
-      "ghi_month", 
-      "ghi_annual", 
-      "march_equinox_sunrise", 
-      "march_equinox_sunset", 
-      "march_equinox_daylight", 
-      "june_solstice_sunrise", 
-      "june_solstice_sunset", 
-      "june_solstice_daylight", 
-      "september_equinox_sunrise", 
-      "september_equinox_sunset", 
-      "september_equinox_daylight", 
-      "december_solstice_sunrise", 
-      "december_solstice_sunset", 
+      "longitude",
+      "ghi_month",
+      "ghi_annual",
+      "march_equinox_sunrise",
+      "march_equinox_sunset",
+      "march_equinox_daylight",
+      "june_solstice_sunrise",
+      "june_solstice_sunset",
+      "june_solstice_daylight",
+      "september_equinox_sunrise",
+      "september_equinox_sunset",
+      "september_equinox_daylight",
+      "december_solstice_sunrise",
+      "december_solstice_sunset",
       "december_solstice_daylight"
     ),
     col_labels = c(
@@ -176,11 +162,11 @@ weighted_data |>
 #| message: false
 #| warning: false
 
-anonymized_data |> 
-  plot_ggally(
+anonymized_data |>
+  plotr:::plot_ggally(
     cols = c("sex", "age", "latitude", "longitude", "msf_sc"),
     mapping = ggplot2::aes(colour = sex)
-  ) |> 
+  ) |>
   rutils::shush()
 ```
 
@@ -196,17 +182,17 @@ Correlation matrix of main variables (**Full sample**).
 #| message: false
 #| warning: false
 
-weighted_data |> 
-  plot_ggally(
+weighted_data |>
+  plotr:::plot_ggally(
     cols = c(
-      "sex", 
-      "age", 
-      "latitude", 
-      "longitude", 
+      "sex",
+      "age",
+      "latitude",
+      "longitude",
       "msf_sc"
     ),
     mapping = ggplot2::aes(colour = sex)
-  ) |> 
+  ) |>
   rutils::shush()
 ```
 
@@ -226,9 +212,9 @@ Click [here](https://anuario.ibge.gov.br/2023/territorio/posicao-e-extensao.html
 #| message: false
 #| warning: false
 
-box <- 
-  geobr::read_country(2017, showProgress = FALSE) |> 
-  rutils::shush() |> 
+box <-
+  geobr::read_country(2017, showProgress = FALSE) |>
+  rutils::shush() |>
   dplyr::pull(geom) |>
   sf::st_bbox() |>
   as.list()
@@ -236,13 +222,13 @@ box <-
 brazil_lat_lon <- dplyr::tibble(
     name = c("min", "max", "range"),
     latitude = c(
-      box$ymin, 
-      box$ymax, 
+      box$ymin,
+      box$ymax,
       box$ymax - box$ymin
     ),
     longitude = c(
-      box$xmin, 
-      box$xmax, 
+      box$xmin,
+      box$xmax,
       box$xmax - box$xmin
     )
 )
@@ -288,13 +274,13 @@ box <-
 full_sample_lat_lon <- dplyr::tibble(
     name = c("min", "max", "range"),
     latitude = c(
-      box$ymin, 
-      box$ymax, 
+      box$ymin,
+      box$ymax,
       box$ymax - box$ymin
     ),
     longitude = c(
-      box$xmin, 
-      box$xmax, 
+      box$xmin,
+      box$xmax,
       box$xmax - box$xmin
     )
 )
@@ -340,13 +326,13 @@ box <-
 analysis_sample_lat_lon <- dplyr::tibble(
     name = c("min", "max", "range"),
     latitude = c(
-      box$ymin, 
-      box$ymax, 
+      box$ymin,
+      box$ymax,
       box$ymax - box$ymin
     ),
     longitude = c(
-      box$xmin, 
-      box$xmax, 
+      box$xmin,
+      box$xmax,
       box$xmax - box$xmin
     )
 )
@@ -397,9 +383,9 @@ ibge_6579_data_state <-
 ```
 
 ```{r}
-plot_6579_ibge_1 <- 
-  ibge_6579_data_state |> 
-  plot_brazil_state(
+plot_6579_ibge_1 <-
+  ibge_6579_data_state |>
+  plotr:::plot_brazil_state(
     col_fill = "n",
     transform = "log10",
     direction = -1,
@@ -423,14 +409,14 @@ ibge_6579_data_municipality <-
 ```
 
 ```{r}
-max_limit <- 
+max_limit <-
   ibge_6579_data_municipality |>
   dplyr::pull(n) |>
   inverse_log_max(10)
 
-plot_6579_ibge_2 <- 
-  ibge_6579_data_municipality |> 
-  plot_brazil_municipality(
+plot_6579_ibge_2 <-
+  ibge_6579_data_municipality |>
+  plotr:::plot_brazil_municipality(
     col_fill = "n",
     transform = "log10",
     direction = -1,
@@ -440,9 +426,9 @@ plot_6579_ibge_2 <-
 ```
 
 ```{r}
-plot_6579_ibge_3 <- 
-  ibge_6579_data_municipality |> 
-  plot_brazil_municipality(
+plot_6579_ibge_3 <-
+  ibge_6579_data_municipality |>
+  plotr:::plot_brazil_municipality(
     col_fill = "n",
     transform = "log10",
     direction = -1,
@@ -453,14 +439,14 @@ plot_6579_ibge_3 <-
 ```
 
 ```{r}
-plot_ibge_panel <- 
+plot_ibge_panel <-
   patchwork::wrap_plots(
-    plot_6579_ibge_1 |> rm_scale(),
-    plot_6579_ibge_2 |> rm_scale(), 
-    plot_6579_ibge_3 |> rm_scale(),
-    ncol = 2, 
+    plot_6579_ibge_1 |> plotr:::rm_ggspatial_scale(),
+    plot_6579_ibge_2 |> plotr:::rm_ggspatial_scale(),
+    plot_6579_ibge_3 |> plotr:::rm_ggspatial_scale(),
+    ncol = 2,
     nrow = 2,
-    widths = c(1, 1), 
+    widths = c(1, 1),
     heights = c(1, 1)
   ) +
   patchwork::plot_annotation(tag_levels = "A") &
@@ -481,7 +467,7 @@ plot_ibge_panel
 
 write_in_results_yml(
   list(
-    ea_brazil_pop_2017_n = 
+    ea_brazil_pop_2017_n =
       sidrar::get_sidra(api ="/t/6579/n1/all/v/all/p/2017") |>
       rutils::shush() |>
       dplyr::as_tibble() |>
@@ -495,17 +481,17 @@ write_in_results_yml(
 ```{r}
 #| include: false
 
-anonymized_data |> 
-  dplyr::pull(country) |> 
+anonymized_data |>
+  dplyr::pull(country) |>
   rutils:::drop_na() |>
   unique() |>
   length()
 ```
 
 ```{r}
-plot_full_1 <- 
-  anonymized_data |> 
-  plot_world_countries(
+plot_full_1 <-
+  anonymized_data |>
+  plotr:::plot_world_countries(
     transform = "log10",
     direction = -1,
     reverse = FALSE
@@ -517,22 +503,22 @@ plot_full_1 <-
 
 write_in_results_yml(
   list(
-    ea_full_sample_non_brazilians_n = 
-      anonymized_data |> 
-      dplyr::filter(country != "Brazil") |> 
+    ea_full_sample_non_brazilians_n =
+      anonymized_data |>
+      dplyr::filter(country != "Brazil") |>
       nrow(),
     ea_full_sample_brazilians_n =
-      anonymized_data |> 
-      dplyr::filter(country == "Brazil") |> 
+      anonymized_data |>
+      dplyr::filter(country == "Brazil") |>
       nrow()
   )
 )
 ```
 
 ```{r}
-plot_full_2 <- 
-  anonymized_data |> 
-  plot_brazil_state(
+plot_full_2 <-
+  anonymized_data |>
+  plotr:::plot_brazil_state(
     transform = "log10",
     direction = -1,
     reverse = FALSE
@@ -540,16 +526,16 @@ plot_full_2 <-
 ```
 
 ```{r}
-max_limit <- 
+max_limit <-
   anonymized_data |>
   dplyr::filter(country == "Brazil") |>
   dplyr::count(municipality_code) |>
   dplyr::pull(n) |>
   inverse_log_max(10)
 
-plot_full_3 <- 
-  anonymized_data |> 
-  plot_brazil_municipality(
+plot_full_3 <-
+  anonymized_data |>
+  plotr:::plot_brazil_municipality(
     transform = "log10",
     direction = -1,
     reverse = FALSE,
@@ -558,16 +544,16 @@ plot_full_3 <-
 ```
 
 ```{r}
-max_limit <- 
+max_limit <-
   anonymized_data |>
   dplyr::filter(country == "Brazil") |>
   dplyr::count(municipality_code) |>
   dplyr::pull(n) |>
   max()
 
-plot_full_4 <- 
-  anonymized_data |> 
-  plot_brazil_municipality(
+plot_full_4 <-
+  anonymized_data |>
+  plotr:::plot_brazil_municipality(
     transform = "log10",
     direction = -1,
     alpha = 0.75,
@@ -577,22 +563,22 @@ plot_full_4 <-
 ```
 
 ```{r}
-plot_full_5 <- 
-  anonymized_data |> 
-  plot_brazil_point()
+plot_full_5 <-
+  anonymized_data |>
+  plotr:::plot_brazil_point()
 ```
 
 <!-- See <https://r-charts.com/ggplot2/combining-plots/>. -->
 
 ```{r}
 patchwork::wrap_plots(
-   plot_full_2 |> rm_scale(), 
-   plot_full_3 |> rm_scale(), 
-   plot_full_4 |> rm_scale(), 
-   plot_full_5 |> rm_scale(),
-   ncol = 2, 
+   plot_full_2 |> plotr:::rm_ggspatial_scale(),
+   plot_full_3 |> plotr:::rm_ggspatial_scale(),
+   plot_full_4 |> plotr:::rm_ggspatial_scale(),
+   plot_full_5 |> plotr:::rm_ggspatial_scale(),
+   ncol = 2,
    nrow = 2,
-   widths = c(1, 1), 
+   widths = c(1, 1),
    heights = c(1, 1)
 ) +
   patchwork::plot_annotation(tag_levels = "A") &
@@ -619,9 +605,9 @@ write_in_results_yml(
 ### Analysis Sample
 
 ```{r}
-plot_analysis_1 <- 
-  weighted_data |> 
-  plot_brazil_state(
+plot_analysis_1 <-
+  weighted_data |>
+  plotr:::plot_brazil_state(
     transform = "log10",
     direction = -1,
     binned = TRUE,
@@ -630,16 +616,16 @@ plot_analysis_1 <-
 ```
 
 ```{r}
-max_limit <- 
+max_limit <-
   weighted_data |>
   dplyr::filter(country == "Brazil") |>
   dplyr::count(municipality_code) |>
   dplyr::pull(n) |>
   inverse_log_max(10)
 
-plot_analysis_2 <- 
-  weighted_data |> 
-  plot_brazil_municipality(
+plot_analysis_2 <-
+  weighted_data |>
+  plotr:::plot_brazil_municipality(
     transform = "log10",
     direction = -1,
     reverse = FALSE,
@@ -648,9 +634,9 @@ plot_analysis_2 <-
 ```
 
 ```{r}
-plot_analysis_3 <- 
-  weighted_data |> 
-  plot_brazil_municipality(
+plot_analysis_3 <-
+  weighted_data |>
+  plotr:::plot_brazil_municipality(
     transform = "log10",
     direction = -1,
     alpha = 0.75,
@@ -660,20 +646,20 @@ plot_analysis_3 <-
 ```
 
 ```{r}
-plot_analysis_4 <- 
-  weighted_data |> 
-  plot_brazil_point()
+plot_analysis_4 <-
+  weighted_data |>
+  plotr:::plot_brazil_point()
 ```
 
 <!-- See. <https://patchwork.data-imaginist.com/articles/patchwork.html> -->
 
 ```{r}
 patchwork::wrap_plots(
-   plot_analysis_1 |> rm_scale(), 
-   plot_analysis_2 |> rm_scale(), 
-   plot_analysis_3 |> rm_scale(), 
-   plot_analysis_4 |> rm_scale(),
-   ncol = 2, 
+   plot_analysis_1 |> plotr:::rm_ggspatial_scale(),
+   plot_analysis_2 |> plotr:::rm_ggspatial_scale(),
+   plot_analysis_3 |> plotr:::rm_ggspatial_scale(),
+   plot_analysis_4 |> plotr:::rm_ggspatial_scale(),
+   ncol = 2,
    nrow = 2
 ) +
   patchwork::plot_annotation(tag_levels = "A") &
@@ -701,9 +687,9 @@ write_in_results_yml(
 
 ```{r}
 patchwork::wrap_plots(
-   plot_6579_ibge_1 |> rm_scale(), 
-   plot_full_2 |> rm_scale(),
-   ncol = 2, 
+   plot_6579_ibge_1 |> plotr:::rm_ggspatial_scale(),
+   plot_full_2 |> plotr:::rm_ggspatial_scale(),
+   ncol = 2,
    nrow = 1
 ) +
   patchwork::plot_annotation(tag_levels = "A") &
@@ -719,9 +705,9 @@ patchwork::wrap_plots(
 
 ```{r}
 patchwork::wrap_plots(
-   plot_6579_ibge_2 |> rm_scale(), 
-   plot_full_3 |> rm_scale(),
-   ncol = 2, 
+   plot_6579_ibge_2 |> plotr:::rm_ggspatial_scale(),
+   plot_full_3 |> plotr:::rm_ggspatial_scale(),
+   ncol = 2,
    nrow = 1
 ) +
   patchwork::plot_annotation(tag_levels = "A") &
@@ -739,9 +725,9 @@ patchwork::wrap_plots(
 
 ```{r}
 patchwork::wrap_plots(
-   plot_6579_ibge_3 |> rm_scale(), 
-   plot_full_4 |> rm_scale(),
-   ncol = 2, 
+   plot_6579_ibge_3 |> plotr:::rm_ggspatial_scale(),
+   plot_full_4 |> plotr:::rm_ggspatial_scale(),
+   ncol = 2,
    nrow = 1
 ) +
   patchwork::plot_annotation(tag_levels = "A") &
@@ -767,10 +753,10 @@ See <https://sidra.ibge.gov.br/tabela/6407> to learn more about the data.
 
 prettycheck:::assert_internet()
 
-ibge_6407_data <- 
+ibge_6407_data <-
   sidrar::get_sidra(
     api = paste0(
-      "/t/6407/n3/all/v/606/p/2017/c2/allxt/c58/1140,1141,1144,1145,1152,", 
+      "/t/6407/n3/all/v/606/p/2017/c2/allxt/c58/1140,1141,1144,1145,1152,",
       "2793,3299,3300,3301,3350,6798,40291,118282"
     )
   ) |>
@@ -835,7 +821,7 @@ ibge_6407_data <-
     n = as.integer(n * 1000)
   ) |>
   dplyr::relocate(
-    year, country, region, state_code, state, sex, age_group, 
+    year, country, region, state_code, state, sex, age_group,
     age_group_midpoint, n
   )
 
@@ -847,7 +833,7 @@ The statistics shown is this section are estimations based on the age group midp
 :::
 
 ```{r}
-ibge_6407_data |> 
+ibge_6407_data |>
   dplyr::rename(age = age_group_midpoint) |>
   dplyr::mutate(n = n / 1000) |>
   dplyr::select(age, n) |>
@@ -856,21 +842,21 @@ ibge_6407_data |>
 ```
 
 ```{r}
-ibge_6407_data |> 
+ibge_6407_data |>
   dplyr::rename(age = age_group_midpoint) |>
   dplyr::mutate(n = n / 1000) |>
   summary_by("age", "sex", "n")
 ```
 
 ```{r}
-ibge_6407_data |> 
+ibge_6407_data |>
   dplyr::rename(age = age_group_midpoint) |>
   dplyr::mutate(n = n / 1000) |>
   summary_by("age", "region", "n")
 ```
 
 ```{r}
-ibge_6407_data |> 
+ibge_6407_data |>
   dplyr::rename(age = age_group_midpoint) |>
   dplyr::mutate(n = n / 1000) |>
   summary_by("age", "state", "n")
@@ -880,25 +866,25 @@ ibge_6407_data |>
 #| message: false
 #| warning: false
 
-plot_ibge_6407_age_1 <- 
-  ibge_6407_data |> 
+plot_ibge_6407_age_1 <-
+  ibge_6407_data |>
   dplyr::rename(age = age_group_midpoint) |>
   dplyr::mutate(n = n / 1000) |>
   dplyr::select(sex, age, n) |>
   tidyr::uncount(n) |>
-  plot_age_pyramid(
+  plotr:::plot_age_pyramid(
     breaks = c(0, 10, 20, 30, 40, 50, 60, 65, 90)
   )
 ```
 
 ```{r}
-plot_ibge_6407_age_2 <- 
-  ibge_6407_data |> 
+plot_ibge_6407_age_2 <-
+  ibge_6407_data |>
   dplyr::rename(age = age_group_midpoint) |>
   dplyr::mutate(n = n / 1000) |>
   dplyr::select(state_code, age, n) |>
   tidyr::uncount(n) |>
-  plot_brazil_state(
+  plotr:::plot_brazil_state(
     col_fill = "age",
     transform = "identity",
     direction = -1,
@@ -913,7 +899,7 @@ plot_ibge_6407_age_2 <-
 write_in_results_yml(
   list(
     ea_brazil_age_stats =
-      ibge_6407_data |> 
+      ibge_6407_data |>
       dplyr::rename(age = age_group_midpoint) |>
       dplyr::mutate(n = n / 1000) |>
       dplyr::select(age, n) |>
@@ -921,7 +907,7 @@ write_in_results_yml(
       stats_summary("age", as_list = TRUE) |>
       dplyr::as_tibble(),
     ea_brazil_age_stats_by_sex =
-      ibge_6407_data |> 
+      ibge_6407_data |>
       dplyr::rename(age = age_group_midpoint) |>
       dplyr::mutate(n = n / 1000) |>
       summary_by("age", "sex", "n") |>
@@ -932,7 +918,7 @@ write_in_results_yml(
         )
       ),
     data_ibge_6407_age_stats_by_region =
-      ibge_6407_data |> 
+      ibge_6407_data |>
       dplyr::rename(age = age_group_midpoint) |>
       dplyr::mutate(n = n / 1000) |>
       summary_by("age", "region", "n") |>
@@ -943,7 +929,7 @@ write_in_results_yml(
         )
       ),
     ea_brazil_age_stats_by_state =
-      ibge_6407_data |> 
+      ibge_6407_data |>
       dplyr::rename(age = age_group_midpoint) |>
       dplyr::mutate(n = n / 1000) |>
       summary_by("age", "state", "n") |>
@@ -987,15 +973,15 @@ anonymized_data |>
 #| message: false
 #| warning: false
 
-plot_full_age_1<- 
-  anonymized_data |> 
-  plot_age_pyramid()
+plot_full_age_1<-
+  anonymized_data |>
+  plotr:::plot_age_pyramid()
 ```
 
 ```{r}
-plot_full_age_2 <- 
-  anonymized_data |> 
-  plot_brazil_state(
+plot_full_age_2 <-
+  anonymized_data |>
+  plotr:::plot_brazil_state(
     col_fill = "age",
     transform = "identity",
     direction = -1,
@@ -1005,9 +991,9 @@ plot_full_age_2 <-
 ```
 
 ```{r}
-plot_full_age_3 <- 
-  anonymized_data |> 
-  plot_brazil_municipality(
+plot_full_age_3 <-
+  anonymized_data |>
+  plotr:::plot_brazil_municipality(
     col_fill = "age", # Means
     transform = "identity",
     direction = -1,
@@ -1024,8 +1010,8 @@ plot_full_age_3 <-
 plot_age_sex_weigth_series <-
   anonymized_data |>
   dplyr::filter(age <= 50) |>
-  plot_series(
-    col_y = "weight", 
+  plotr:::plot_series(
+    col_y = "weight",
     y_label = "Weight (kg)"
   )
 ```
@@ -1040,7 +1026,7 @@ Relation between age and weight (kg), divided by sex and aggregated by the mean.
 
 write_in_results_yml(
   list(
-    ea_full_sample_age_stats = 
+    ea_full_sample_age_stats =
       anonymized_data |>
       dplyr::filter(country == "Brazil") |>
       stats_summary("age", as_list = TRUE) |>
@@ -1049,7 +1035,7 @@ write_in_results_yml(
       anonymized_data |>
       dplyr::filter(country == "Brazil") |>
       summary_by("age", "sex"),
-    ea_full_sample_age_stats_by_region = 
+    ea_full_sample_age_stats_by_region =
       anonymized_data |>
       dplyr::filter(country == "Brazil") |>
       summary_by("age", "region"),
@@ -1083,15 +1069,15 @@ weighted_data |> summary_by("age", "state")
 #| message: false
 #| warning: false
 
-plot_analysis_age_1 <- 
-  weighted_data |> 
-  plot_age_pyramid()
+plot_analysis_age_1 <-
+  weighted_data |>
+  plotr:::plot_age_pyramid()
 ```
 
 ```{r}
-plot_analysis_age_2 <- 
-  anonymized_data |> 
-  plot_brazil_state(
+plot_analysis_age_2 <-
+  anonymized_data |>
+  plotr:::plot_brazil_state(
     col_fill = "age", # Means
     direction = -1,
     reverse = FALSE,
@@ -1101,9 +1087,9 @@ plot_analysis_age_2 <-
 ```
 
 ```{r}
-plot_analysis_age_3 <- 
-  weighted_data |> 
-  plot_brazil_municipality(
+plot_analysis_age_3 <-
+  weighted_data |>
+  plotr:::plot_brazil_municipality(
     col_fill = "age", # Means
     direction = -1,
     reverse = FALSE,
@@ -1117,14 +1103,14 @@ plot_analysis_age_3 <-
 
 write_in_results_yml(
   list(
-    ea_analysis_sample_age_stats = 
+    ea_analysis_sample_age_stats =
       weighted_data |>
       stats_summary("age", as_list = TRUE) |>
       dplyr::as_tibble(),
     ea_analysis_sample_age_stats_by_sex =
       weighted_data |>
       summary_by("age", "sex"),
-    ea_analysis_sample_age_stats_by_region = 
+    ea_analysis_sample_age_stats_by_region =
       weighted_data |>
       summary_by("age", "region"),
     ea_analysis_sample_age_stats_by_state =
@@ -1145,7 +1131,7 @@ write_in_results_yml(
 
 weighted_data |>
   dplyr::filter(!test_outlier(weight)) |>
-  plot_latitude_series(
+  plotr:::plot_latitude_series(
     col = "weight",
     y_label = "Weight (kg)"
   )
@@ -1179,7 +1165,7 @@ anonymized_data |>
 ```
 
 ```{r}
-anonymized_data |> get_chronotype_cutoffs()
+anonymized_data |> plotr:::get_msf_sc_cutoffs()
 ```
 
 
@@ -1188,10 +1174,10 @@ anonymized_data |> get_chronotype_cutoffs()
 #| message: false
 #| warning: false
 
-plot_age_sex_series <- 
+plot_age_sex_series <-
   anonymized_data |>
   dplyr::filter(age <= 50) |>
-  plot_series()
+  plotr:::plot_series()
 ```
 
 [Source: Created by the author based on a data visualization from @roenneberg2007[Figure 4].]{.legend}
@@ -1211,10 +1197,10 @@ Distribution of European chronotypes by age, as shown in @roenneberg2007, for co
 #| message: false
 #| warning: false
 
-plot_age_sex_series <- 
+plot_age_sex_series <-
   anonymized_data |>
   dplyr::filter(!test_outlier(weight)) |>
-  plot_series(
+  plotr:::plot_series(
     col_x = "weight",
     x_label = "Weigth",
     date_breaks = "30 min"
@@ -1226,7 +1212,7 @@ plot_age_sex_series <-
 
 write_in_results_yml(
   list(
-    ea_full_sample_msf_sc_stats = 
+    ea_full_sample_msf_sc_stats =
       anonymized_data |>
       dplyr::filter(country == "Brazil") |>
       stats_summary("msf_sc", as_list = TRUE) |>
@@ -1237,9 +1223,9 @@ write_in_results_yml(
           .fns = lubritime::round_time
         )
       ),
-    ea_full_sample_chronotype_cutoffs = 
-      anonymized_data |> 
-      get_chronotype_cutoffs()
+    ea_full_sample_chronotype_cutoffs =
+      anonymized_data |>
+      plotr:::get_msf_sc_cutoffs()
   )
 )
 ```
@@ -1264,18 +1250,18 @@ weighted_data |>
 ```
 
 ```{r}
-weighted_data |> get_chronotype_cutoffs()
+weighted_data |> plotr:::get_msf_sc_cutoffs()
 ```
 
 ```{r}
 weighted_data |>
   dplyr::mutate(
-    msf_sc_category = categorize_msf_sc(msf_sc),
+    msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
     msf_sc_category = factor(
-      msf_sc_category, 
+      msf_sc_category,
       levels = c(
         "Extremely early", "Moderately early", "Slightly early",
-        "Intermediate", "Slightly late", "Moderately late", 
+        "Intermediate", "Slightly late", "Moderately late",
         "Extremely late"
       ),
       ordered = TRUE
@@ -1289,8 +1275,7 @@ weighted_data |>
 #| message: false
 #| warning: false
 
-weighted_data |> 
-  plot_chronotype()
+weighted_data |> plotr:::plot_chronotype()
 ```
 
 [Source: Created by the author based on a data visualization from @roenneberg2019b[Figure 1].{.legend}
@@ -1337,10 +1322,10 @@ weighted_data |>
 #| message: false
 #| warning: false
 
-plot_age_sex_series <- 
+plot_age_sex_series <-
   weighted_data |>
   dplyr::filter(age <= 50) |>
-  plot_series()
+  plotr:::plot_series()
 ```
 
 [Source: Created by the author based on a data visualization from @roenneberg2007[Figure 4].]{.legend}
@@ -1352,10 +1337,10 @@ Observed relation between age and chronotype, divided by sex and aggregated by t
 #| message: false
 #| warning: false
 
-plot_age_sex_series <- 
+plot_age_sex_series <-
   weighted_data |>
   dplyr::filter(!test_outlier(weight), weight > 45) |>
-  plot_series(
+  plotr:::plot_series(
     col_x = "weight",
     x_label = "Weigth",
     date_breaks = "30 min"
@@ -1375,22 +1360,29 @@ limits <- # Interquartile range (IQR): Q3 - Q1
   c(
     weighted_data |>
       dplyr::pull(msf_sc) |>
-      transform_time() |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       stats::quantile(0.25, na.rm = TRUE),
     weighted_data |>
       dplyr::pull(msf_sc) |>
-      transform_time() |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       stats::quantile(0.75, na.rm = TRUE)
   )
 
-weighted_data |> 
-  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
-  plot_brazil_state(
+weighted_data |>
+  dplyr::mutate(
+    msf_sc =
+      msf_sc |>
+      lubritime::link_to_timeline() |>
+      as.numeric()
+  ) |>
+  plotr:::plot_brazil_state(
     col_fill = "msf_sc",
     transform = "identity",
     binned = FALSE,
     breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
-    labels = labels_hms,
+    labels = plotr:::format_as_hm,
     limits = limits, # !!!
     quiet = TRUE
   )
@@ -1399,63 +1391,70 @@ weighted_data |>
 ```{r}
 limits <- # Interquartile range (IQR): Q3 - Q1
   c(
-    weighted_data |> 
-      dplyr::pull(msf_sc) |> 
-      transform_time() |> 
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       quantile(0.25, na.rm = TRUE),
-    weighted_data |> 
-      dplyr::pull(msf_sc) |> 
-      transform_time() |> 
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       quantile(0.75, na.rm = TRUE)
   )
 
-weighted_data |> 
-  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
-  plot_brazil_municipality(
+weighted_data |>
+  dplyr::mutate(
+    msf_sc =
+      msf_sc |>
+      lubritime::link_to_timeline() |>
+      as.numeric()
+  ) |>
+  plotr:::plot_brazil_municipality(
     col_fill = "msf_sc",
     transform = "identity",
     binned = TRUE,
     breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
-    labels = labels_hms,
+    labels = plotr:::format_as_hm,
     limits = limits,
     quiet = TRUE
   )
 ```
 
 ```{r}
-weighted_data |> 
+weighted_data |>
   dplyr::mutate(
-    msf_sc_category = categorize_msf_sc(msf_sc),
+    msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
     msf_sc_category = factor(
-      msf_sc_category, 
+      msf_sc_category,
       levels = c(
         "Extremely early", "Moderately early", "Slightly early",
-        "Intermediate", "Slightly late", "Moderately late", 
+        "Intermediate", "Slightly late", "Moderately late",
         "Extremely late"
       ),
       ordered = TRUE
     )
   ) |>
-  plot_brazil_point(col_group = "msf_sc_category")
+  plotr:::plot_brazil_point(col_group = "msf_sc_category")
 ```
 
 ::: {#fig-sm-3-chronotype-geographical-distribution-by-respondent}
 ```{r}
-plot <- 
-  weighted_data |> 
+plot <-
+  weighted_data |>
   dplyr::mutate(
-    msf_sc_category = categorize_msf_sc(msf_sc),
+    msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
     msf_sc_category = factor(
-      msf_sc_category, 
+      msf_sc_category,
       levels = c(
         "Extremely early", "Moderately early", "Slightly early",
-        "Intermediate", "Slightly late", "Moderately late", 
+        "Intermediate", "Slightly late", "Moderately late",
         "Extremely late"
       ),
       ordered = TRUE
     )
   ) |>
-  plot_brazil_point(
+  plotr:::plot_brazil_point(
     col_group = "msf_sc_category",
     size = 0.1,
     alpha = 1,
@@ -1471,7 +1470,7 @@ plot <-
   )
 
 plot |>
-  rm_scale() +
+  plotr:::rm_ggspatial_scale() +
   ggplot2::facet_wrap(~msf_sc_category, ncol = 4, nrow = 2)
 ```
 
@@ -1485,9 +1484,7 @@ Observed geographical distribution of MSF~sc~ values by a spectrum of extremely 
 #| message: false
 #| warning: false
 
-source(here::here("R", "plot_latitude_series.R"))
-
-weighted_data |> plot_latitude_series()
+weighted_data |> plotr:::plot_latitude_series()
 ```
 
 [Source: Created by the author.]{.legend}
@@ -1500,7 +1497,7 @@ Boxplots of observed mean MSF~sc~ values aggregated by 1° latitude intervals, i
 #| warning: false
 
 weighted_data |>
-  plot_series(
+  plotr:::plot_series(
     col_x = "latitude",
     x_label = "Latitude",
     date_breaks = "15 min",
@@ -1514,7 +1511,7 @@ weighted_data |>
 
 write_in_results_yml(
   list(
-    ea_analysis_sample_msf_sc_stats = 
+    ea_analysis_sample_msf_sc_stats =
       weighted_data |>
       stats_summary("msf_sc", as_list = TRUE) |>
       dplyr::as_tibble() |>
@@ -1524,17 +1521,17 @@ write_in_results_yml(
           .fns = lubritime::round_time
         )
       ),
-    ea_analysis_sample_chronotype_cutoffs = 
-      weighted_data |> get_chronotype_cutoffs(),
+    ea_analysis_sample_chronotype_cutoffs =
+      weighted_data |> plotr:::get_msf_sc_cutoffs(),
     ea_analysis_sample_msf_sc_stats_by_category =
       weighted_data |>
       dplyr::mutate(
-        msf_sc_category = categorize_msf_sc(msf_sc),
+        msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
         msf_sc_category = factor(
-          msf_sc_category, 
+          msf_sc_category,
           levels = c(
             "Extremely early", "Moderately early", "Slightly early",
-            "Intermediate", "Slightly late", "Moderately late", 
+            "Intermediate", "Slightly late", "Moderately late",
             "Extremely late"
           ),
           ordered = TRUE
@@ -1542,7 +1539,7 @@ write_in_results_yml(
       ) |>
       summary_by("msf_sc", "msf_sc_category"),
     ea_analysis_sample_msf_sc_stats_by_sex =
-      weighted_data |> 
+      weighted_data |>
       summary_by("msf_sc", "sex"),
     ea_analysis_sample_msf_sc_stats_by_age_group =
       weighted_data |>

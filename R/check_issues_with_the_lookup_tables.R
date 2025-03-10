@@ -48,7 +48,7 @@ check_issues_with_the_lookup_tables <- function() {
     lookup_data$track |>
     dplyr::pull("value") |>
     unique() |>
-    rutils:::drop_na()
+    rutils::drop_na()
 
   data_test |>
     stringr::str_detect("^[a-z0-9 ]*$", negate = TRUE) |>
@@ -64,7 +64,7 @@ check_issues_with_the_lookup_tables <- function() {
     lookup_data$name |>
     dplyr::pull("value") |>
     unique() |>
-    rutils:::drop_na()
+    rutils::drop_na()
 
   data_test |>
     to_ascii_and_lower() |>
@@ -82,7 +82,7 @@ check_issues_with_the_lookup_tables <- function() {
     lookup_data$email |>
     dplyr::pull("value") |>
     unique() |>
-    rutils:::drop_na()
+    rutils::drop_na()
 
   data_test |>
     stringr::str_detect(
@@ -101,7 +101,7 @@ check_issues_with_the_lookup_tables <- function() {
     lookup_data$country |>
     dplyr::pull("value") |>
     unique() |>
-    rutils:::drop_na()
+    rutils::drop_na()
 
   data_test |>
     setdiff(get_country_names()) |>
@@ -117,7 +117,7 @@ check_issues_with_the_lookup_tables <- function() {
     data |>
     dplyr::pull("state") |>
     unique() |>
-    rutils:::drop_na()
+    rutils::drop_na()
 
   data_test |>
     setdiff(get_brazil_state()) |>
@@ -133,7 +133,7 @@ check_issues_with_the_lookup_tables <- function() {
     data |>
     dplyr::pull("municipality") |>
     unique() |>
-    rutils:::drop_na()
+    rutils::drop_na()
 
   data_test |>
     setdiff(get_brazil_municipality(force = TRUE)$municipality) |>
@@ -149,7 +149,7 @@ check_issues_with_the_lookup_tables <- function() {
     lookup_data$postal_code |>
     dplyr::pull("value") |>
     unique() |>
-    rutils:::drop_na()
+    rutils::drop_na()
 
   data_test |>
     stringr::str_detect("^\\d{8}$", negate = TRUE) |>

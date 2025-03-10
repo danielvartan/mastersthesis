@@ -8,7 +8,6 @@
 source(here::here("R", "get_brazil_municipality.R"))
 source(here::here("R", "get_brazil_region.R"))
 source(here::here("R", "get_geocode_lookup_data.R"))
-source(here::here("R", "utils-plots.R"))
 
 # # Helpers
 #
@@ -303,13 +302,11 @@ remove_invalid_postal_codes <- function(data) {
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 
-source(here::here("R", "utils-plots.R"))
-
 validate_brazil_geocodes <- function(data, year = 2017) {
   checkmate::assert_tibble(data)
 
   data |>
-    filter_points_on_land(
+    plotr:::filter_points_on_land(
       geobr::read_country(year = year, showProgress = FALSE) |>
         dplyr::pull(geom) |>
         rutils::shush()

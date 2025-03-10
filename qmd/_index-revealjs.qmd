@@ -12,6 +12,7 @@ source(here::here("R/_setup.R"))
 #| eval: false
 #| include: false
 
+library(brandr) # github.com/danielvartan/brandr
 library(dplyr)
 library(hms)
 library(lubritime)
@@ -33,16 +34,8 @@ library(targets)
 ```{r}
 #| include: false
 
-source(here::here("R", "categorize_msf_sc.R"))
-source(here::here("R", "get_chronotype_cutoffs.R"))
-source(here::here("R", "plot_brazil.R"))
-source(here::here("R", "plot_chronotype.R"))
-source(here::here("R", "plot_ggally.R"))
-source(here::here("R", "plot_latitude_series.R"))
-source(here::here("R", "plot_series.R"))
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-md.R"))
-source(here::here('R', 'utils-plots.R'))
 source(here::here('R', 'utils-stats.R'))
 ```
 
@@ -50,7 +43,7 @@ source(here::here('R', 'utils-stats.R'))
 #| include: false
 
 anonymized_data <- targets::tar_read(
-  "anonymized_data", 
+  "anonymized_data",
   store = here::here("_targets")
 )
 ```
@@ -230,7 +223,7 @@ data |>
     method = "lm",
     formula = y ~ x,
     se = FALSE,
-    color = get_brand_color("orange")
+    color = brandr::get_brand_color("orange")
   ) +
   ggplot2::scale_x_continuous(
     breaks = c(0, 13, 18, 22, 26, 29, 32),
@@ -307,8 +300,8 @@ The dataset used for analysis is made up of `{r} res_vars$ea_analysis_sample_n |
 #| fig-height: 5
 
 
-weighted_data |> 
-  plot_brazil_municipality(
+weighted_data |>
+  plotr:::plot_brazil_municipality(
     transform = "log10",
     direction = -1,
     alpha = 0.75,
@@ -378,7 +371,7 @@ $$
 #| fig-width: 9
 #| fig-height: 5.75
 
-weighted_data |> plot_chronotype()
+weighted_data |> plotr:::plot_chronotype()
 ```
 :::
 
@@ -468,7 +461,7 @@ Sunrise times for the nearest March and September equinoxes, as well as the June
 #| fig-width: 11
 #| fig-height: 6
 
-weighted_data |> plot_latitude_series()
+weighted_data |> plotr:::plot_latitude_series()
 ```
 :::
 
@@ -492,22 +485,29 @@ limits <- # Interquartile range (IQR): Q3 - Q1
   c(
     weighted_data |>
       dplyr::pull(msf_sc) |>
-      transform_time() |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       stats::quantile(0.25, na.rm = TRUE),
     weighted_data |>
       dplyr::pull(msf_sc) |>
-      transform_time() |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       stats::quantile(0.75, na.rm = TRUE)
   )
 
-weighted_data |> 
-  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
-  plot_brazil_state(
+weighted_data |>
+  dplyr::mutate(
+    msf_sc =
+      msf_sc |>
+      lubritime::link_to_timeline() |>
+      as.numeric()
+  ) |>
+  plotr:::plot_brazil_state(
     col_fill = "msf_sc",
     transform = "identity",
     binned = FALSE,
     breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
-    labels = labels_hms,
+    labels = plotr:::format_as_hm,
     limits = limits, # !!!
     quiet = TRUE
   )
@@ -530,21 +530,21 @@ Geographical distribution of MSF~sc~ values by Brazilian state, illustrating how
 #| fig-width: 11
 #| fig-height: 6
 
-plot <- 
-  weighted_data |> 
+plot <-
+  weighted_data |>
   dplyr::mutate(
-    msf_sc_category = categorize_msf_sc(msf_sc),
+    msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
     msf_sc_category = factor(
-      msf_sc_category, 
+      msf_sc_category,
       levels = c(
         "Extremely early", "Moderately early", "Slightly early",
-        "Intermediate", "Slightly late", "Moderately late", 
+        "Intermediate", "Slightly late", "Moderately late",
         "Extremely late"
       ),
       ordered = TRUE
     )
   ) |>
-  plot_brazil_point(
+  plotr:::plot_brazil_point(
     col_group = "msf_sc_category",
     size = 0.1,
     alpha = 1,
@@ -560,7 +560,7 @@ plot <-
   )
 
 plot |>
-  rm_scale() +
+  plotr:::rm_ggspatial_scale() +
   ggplot2::facet_wrap(~msf_sc_category, ncol = 4, nrow = 2)
 ```
 :::
@@ -867,17 +867,17 @@ A society is formed by individuals and their interactions. In this case, we are 
 #| fig-width: 9
 #| fig-height: 6
 
-weighted_data |> 
-  plot_ggally(
+weighted_data |>
+  plotr:::plot_ggally(
     cols = c(
-      "sex", 
-      "age", 
-      "latitude", 
-      "longitude", 
+      "sex",
+      "age",
+      "latitude",
+      "longitude",
       "msf_sc"
     ),
     mapping = ggplot2::aes(colour = sex)
-  ) |> 
+  ) |>
   rutils::shush()
 ```
 :::
@@ -902,9 +902,9 @@ Correlation matrix of main variables.
 #| fig-width: 7
 #| fig-height: 7
 
-plot <- 
-  weighted_data |> 
-  plot_chronotype(print = FALSE) + 
+plot <-
+  weighted_data |>
+  plotr:::plot_chronotype(print = FALSE) +
   ggplot2::theme(
     legend.position = "inside",
     legend.position.inside = c(0.875, 0.2)
@@ -942,10 +942,10 @@ plot |> print()
 #| fig-width: 7
 #| fig-height: 7
 
-plot <- 
+plot <-
   anonymized_data |>
   dplyr::filter(age <= 50) |>
-  plot_series(print = FALSE) + 
+  plotr:::plot_series(print = FALSE) +
   ggplot2::theme(
     legend.position = "inside",
     legend.position.inside = c(0.85, 0.85)
@@ -985,24 +985,31 @@ plot |> print()
 
 limits <- # Interquartile range (IQR): Q3 - Q1
   c(
-    weighted_data |> 
-      dplyr::pull(msf_sc) |> 
-      transform_time() |> 
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       quantile(0.25, na.rm = TRUE),
-    weighted_data |> 
-      dplyr::pull(msf_sc) |> 
-      transform_time() |> 
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
       quantile(0.75, na.rm = TRUE)
   )
 
-weighted_data |> 
-  dplyr::mutate(msf_sc = transform_time(msf_sc)) |>
-  plot_brazil_municipality(
+weighted_data |>
+  dplyr::mutate(
+    msf_sc =
+      msf_sc |>
+      lubritime::link_to_timeline() |>
+      as.numeric()
+    ) |>
+  plotr:::plot_brazil_municipality(
     col_fill = "msf_sc",
     transform = "identity",
     binned = TRUE,
     breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
-    labels = labels_hms,
+    labels = plotr:::format_as_hm,
     limits = limits,
     quiet = TRUE
   )
@@ -1025,21 +1032,21 @@ Municipality level.
 #| fig-width: 11
 #| fig-height: 6
 
-plot <- 
-  weighted_data |> 
+plot <-
+  weighted_data |>
   dplyr::mutate(
-    msf_sc_category = categorize_msf_sc(msf_sc),
+    msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
     msf_sc_category = factor(
-      msf_sc_category, 
+      msf_sc_category,
       levels = c(
         "Extremely early", "Moderately early", "Slightly early",
-        "Intermediate", "Slightly late", "Moderately late", 
+        "Intermediate", "Slightly late", "Moderately late",
         "Extremely late"
       ),
       ordered = TRUE
     )
   ) |>
-  plot_brazil_point(
+  plotr:::plot_brazil_point(
     col_group = "msf_sc_category",
     print = FALSE
   ) +

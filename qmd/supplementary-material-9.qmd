@@ -13,6 +13,7 @@ source(here::here("R", "_setup.R"))
 #| eval: false
 #| include: false
 
+library(brandr) # github.com/danielvartan/brandr
 library(dplyr)
 library(ggplot2)
 library(stringr)
@@ -32,7 +33,6 @@ library(magrittr)
 source(here::here("R", "cohens_f_squared.R"))
 source(here::here("R", "summarise_r2.R"))
 source(here::here("R", "utils.R"))
-source(here::here("R", "utils-plots.R"))
 ```
 
 ## Overview
@@ -104,8 +104,8 @@ adj_r_squared_full
 ```{r}
 dplyr::tibble(
   name = c(
-    "adj_r_squared_res", 
-    "adj_r_squared_full", 
+    "adj_r_squared_res",
+    "adj_r_squared_full",
     "diff"
   ),
   value = c(
@@ -289,7 +289,7 @@ By following the processes described above, we can obtained a reliable approxima
 
 ::: {#tbl-sm-9-leocadio-miguel-2017-figure-2-data}
 ```{r}
-data <- 
+data <-
   dplyr::tibble(
     ho = c(
       44.5 + (338 / (402 / (48.5 - 44.5))),
@@ -358,7 +358,7 @@ data |>
     method = "lm",
     formula = y ~ x,
     se = FALSE,
-    color = get_brand_color("orange"),
+    color = brandr::get_brand_color("orange"),
     linewidth = 2
   ) +
   ggplot2::scale_x_continuous(
@@ -403,7 +403,7 @@ data |>
     method = "lm",
     formula = y ~ x,
     se = FALSE,
-    color = get_brand_color("orange")
+    color = brandr::get_brand_color("orange")
   ) +
   ggplot2::scale_x_continuous(
     breaks = c(0, 13, 18, 22, 16, 29, 32),

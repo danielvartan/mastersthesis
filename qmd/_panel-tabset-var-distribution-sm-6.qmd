@@ -37,7 +37,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'msf_sc'
   )
 ```
@@ -83,7 +83,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'age'
   )
 ```
@@ -129,7 +129,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'latitude'
   )
 ```
@@ -175,7 +175,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'longitude'
   )
 ```
@@ -221,7 +221,7 @@ variable and the theoretical quantiles of the normal distribution.
 #| code-fold: true
 
 data |>
-  plot_box_plot(
+  plotr:::plot_box_plot(
     col = 'ghi_month'
   )
 ```

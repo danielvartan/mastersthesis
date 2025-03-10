@@ -4,7 +4,6 @@
 # library(readr)
 # library(utils)
 
-source(here::here("R", "plot_box_plot.R"))
 source(here::here("R", "stats_summary.R"))
 source(here::here("R", "test_normality.R"))
 source(here::here("R", "utils.R"))
@@ -47,8 +46,7 @@ panel_tabset_var_distribution <- function(
 
   scripts <-
     c(
-      "plot_box_plot.R", "plot_hist.R", "plot_qq.R", "stats_summary.R",
-      "test_normality.R", "utils.R", "utils-checks.R", "utils-plots.R",
+      "stats_summary.R", "test_normality.R", "utils.R", "utils-checks.R",
       "utils-stats.R"
     ) |>
     sort() %>%
@@ -112,7 +110,7 @@ panel_tabset_var_distribution <- function(
       #| code-fold: true
 
       {data_name} |>
-        plot_box_plot(
+        plotr:::plot_box_plot(
           col = '{cols[i]}'
         )
       ```

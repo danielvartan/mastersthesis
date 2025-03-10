@@ -2,6 +2,7 @@
 
 # Load packages -----
 
+# library(brandr) # github.com/danielvartan/brandr
 library(downlit)
 library(ggplot2)
 # library(here)
@@ -22,7 +23,6 @@ library(xml2)
 # Load functions -----
 
 source(here::here("R", "utils.R"))
-source(here::here("R", "utils-plots.R"))
 
 # Set general options -----
 
@@ -55,7 +55,7 @@ env_vars$base_size <- base_size
 
 # Set knitr -----
 
-knitr::clean_cache() |> rutils:::shush()
+knitr::clean_cache() |> rutils::shush()
 
 knitr::opts_chunk$set(
   comment = "#>",
@@ -65,6 +65,31 @@ knitr::opts_chunk$set(
   dev.args = list(bg = "transparent"),
   fig.showtext = TRUE
 )
+
+# Set `brandr` options -----
+
+brandr_options <- list(
+  "BRANDR_COLOR_SEQUENTIAL" =
+    brandr::get_brand_color(c("primary", "secondary")),
+  "BRANDR_COLOR_DIVERGING" =
+    brandr::get_brand_color(c("primary", "white", "secondary")),
+  "BRANDR_COLOR_QUALITATIVE" = c(
+    "#EA7701", # orange (primary)
+    "#142A32", # black (secondary)
+    "#964D01", # brown
+    "#D67C20",
+    "#4F5556", # grey (tertiary)
+    "#2B4A5E",
+    "#F5BD83", # light-orange
+    "#F08C3E",
+    "#CC5A15",
+    "#B23300"
+    )
+  )
+
+for (i in seq_along(brandr_options)) {
+  options(brandr_options[i])
+}
 
 # Set and load graph fonts -----
 
@@ -95,23 +120,23 @@ ggplot2::theme_set(
     base_line_size = base_size / 22,
     base_rect_size = base_size / 22
   ) +
-  ggplot2::theme(
-    text = ggplot2::element_text(
-      color = get_brand_color("secondary"),
-      family = "dm-sans",
-      face = "plain"
-    ),
-    panel.background = ggplot2::element_rect(fill = "transparent"),
-    plot.background = ggplot2::element_rect(
-      fill = "transparent", color = NA
-    ),
-    panel.grid.major = ggplot2::element_blank(),
-    panel.grid.minor = ggplot2::element_blank(),
-    legend.background = ggplot2::element_rect(fill = "transparent"),
-    legend.box.background = ggplot2::element_rect(
-      fill = "transparent", color = NA
-    ),
-    legend.frame = ggplot2::element_blank(),
-    legend.ticks = ggplot2::element_line(color = "white")
-  )
+    ggplot2::theme(
+      text = ggplot2::element_text(
+        color = brandr::get_brand_color("secondary"),
+        family = "dm-sans",
+        face = "plain"
+      ),
+      panel.background = ggplot2::element_rect(fill = "transparent"),
+      plot.background = ggplot2::element_rect(
+        fill = "transparent", color = NA
+      ),
+      panel.grid.major = ggplot2::element_blank(),
+      panel.grid.minor = ggplot2::element_blank(),
+      legend.background = ggplot2::element_rect(fill = "transparent"),
+      legend.box.background = ggplot2::element_rect(
+        fill = "transparent", color = NA
+      ),
+      legend.frame = ggplot2::element_blank(),
+      legend.ticks = ggplot2::element_line(color = "white")
+    )
 )

@@ -229,33 +229,31 @@ Using the 12:00 hour a threshold, it's possible to calculate the correct distanc
 # library(patchwork)
 # library(tidyr)
 
-source(here::here("R", "plot_hist.R"))
-
 weighted_data <- targets::tar_read(
-  "weighted_data", 
+  "weighted_data",
   store = here::here("_targets")
 )
 
-plot_1 <- 
+plot_1 <-
   weighted_data |>
   dplyr::select(so_f) |>
   tidyr::drop_na() |>
-  plot_hist(
+  plotr:::plot_hist(
     col = "so_f",
     x_label = "Local time of sleep onset",
     print = FALSE
   )
 
-plot_2 <- 
+plot_2 <-
   weighted_data |>
   dplyr::select(so_f) |>
   dplyr::mutate(
-    so_f = 
+    so_f =
       so_f |>
       lubritime:::link_to_timeline(threshold = hms::parse_hms("12:00:00"))
   ) |>
   tidyr::drop_na() |>
-  plot_hist(
+  plotr:::plot_hist(
     col = "so_f",
     x_label = "Local time of sleep onset",
     print = FALSE
@@ -380,7 +378,7 @@ $$
 
 Considering the particular emphasis that the solar zeitgeber has on the entrainment of biological rhythms (as demonstrated in many experiments), it would not be reasonable to assume that the latitude hypothesis could be supported without at least a non-negligible effect size. With this in mind, this analysis will use Cohen's threshold for small/negligible effects, the Minimum Effect Size (MES) ($\delta$) is defined as 0.02 [@cohen1988a, p. 413; @cohen1992, p. 157].
 
-In Cohen's words: 
+In Cohen's words:
 
 > What is really intended by the invalid affirmation of a null hypothesis is not that the population ES [Effect Size] is literally zero, but **rather that it is negligible, or trivial** [@cohen1988a, p. 16].
 

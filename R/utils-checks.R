@@ -49,7 +49,7 @@ assert_brazil_region <- function(
     )
   }
 
-  x <- x |> rutils:::drop_na()
+  x <- x |> rutils::drop_na()
 
   if (length(x) == 0) {
     as.character(NA)
@@ -92,7 +92,7 @@ assert_brazil_fu <- function(
     )
   }
 
-  x <- x |> rutils:::drop_na()
+  x <- x |> rutils::drop_na()
 
   if (length(x) == 0) {
     as.character(NA)
@@ -139,7 +139,7 @@ assert_brazil_state <- function(
     )
   }
 
-  x <- x |> rutils:::drop_na()
+  x <- x |> rutils::drop_na()
 
   if (length(x) == 0) {
     as.character(NA)
@@ -170,14 +170,3 @@ assert_brazil_state <- function(
     x |> checkmate::assert_subset(state_options_sensitive)
   }
 }
-
-assert_gg_label <- function(x) {
-  class_options <- c("character", "latexexpression")
-
-  prettycheck::assert_length(x, len = 1, null_ok = TRUE)
-  checkmate::assert_multi_class(x, class_options, null.ok = TRUE)
-}
-
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-assert_color_options <- prettycheck::assert_color_options

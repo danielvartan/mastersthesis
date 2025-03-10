@@ -22,6 +22,7 @@ As with all analyses in this thesis, the process is fully reproducible and was c
 ```{r}
 #| eval: false
 
+library(brandr) # github.com/danielvartan/brandr
 library(broom)
 library(cli)
 library(dplyr)
@@ -80,16 +81,11 @@ source(here::here("R", "normality_summary.R"))
 source(here::here("R", "panel_tabset_coef_dfbetas.R"))
 source(here::here("R", "panel_tabset_var_distribution.R"))
 source(here::here("R", "panel_tabset_var_homoscedasticity.R"))
-source(here::here("R", "plot_box_plot.R"))
-source(here::here("R", "plot_ggally.R"))
-source(here::here("R", "plot_hist.R"))
-source(here::here("R", "plot_qq.R"))
 source(here::here("R", "stats_summary.R"))
 source(here::here("R", "summarise_r2.R"))
 source(here::here("R", "test_normality.R"))
 source(here::here("R", "utils.R"))
 source(here::here("R", "utils-checks.R"))
-source(here::here("R", "utils-plots.R"))
 source(here::here("R", "utils-stats.R"))
 ```
 
@@ -114,13 +110,13 @@ This data processing is performed solely for the purpose of the analysis. The va
 ```{r}
 #| output: false
 
-data <- 
+data <-
   targets::tar_read("weighted_data", store = here::here("_targets")) |>
   dplyr::select(
     msf_sc, age, sex, latitude, longitude, ghi_month, cell_weight
   ) |>
   dplyr::mutate(
-    msf_sc = 
+    msf_sc =
       msf_sc |>
       lubritime:::link_to_timeline(threshold = hms::parse_hms("12:00:00")) |>
       as.numeric()
@@ -199,7 +195,7 @@ write_in_results_yml(
 data |>
   panel_tabset_var_distribution(
     data_name = "data",
-    cols = 
+    cols =
       data |>
       names() |>
       stringr::str_subset("^sex$|^cell_weight$", negate = TRUE),
@@ -221,8 +217,8 @@ data |>
 
 ::: {#fig-sm-6-correlation-matrix}
 ```{r}
-data |> 
-  plot_ggally(
+data |>
+  plotr:::plot_ggally(
     cols = c(
       "msf_sc",
       "age",
@@ -232,7 +228,7 @@ data |>
       "ghi_month"
     ),
     mapping = ggplot2::aes(colour = sex)
-  ) |> 
+  ) |>
   rutils::shush()
 ```
 
@@ -254,8 +250,8 @@ form <- formula(msf_sc ~ age + sex + longitude + ghi_month)
 ```{r}
 #| code-fold: false
 
-model <- 
-  parsnip::linear_reg() |> 
+model <-
+  parsnip::linear_reg() |>
   parsnip::set_engine("lm") |>
   parsnip::set_mode("regression")
 ```
@@ -263,7 +259,7 @@ model <-
 ```{r}
 #| code-fold: false
 
-workflow <- 
+workflow <-
   workflows::workflow() |>
   workflows::add_case_weights(cell_weight) |>
   workflows::add_formula(form) |>
@@ -296,7 +292,7 @@ Output from the model fitting process showing the estimated coefficients, standa
 #| include: false
 #| code-fold: true
 
-fit |> 
+fit |>
   broom::augment(data) |>
   janitor::adorn_rounding(5)
 ```
@@ -307,7 +303,7 @@ fit |>
 
 fit_stats <- fit |> broom::glance()
 
-fit_stats |> 
+fit_stats |>
   tidyr::pivot_longer(cols = dplyr::everything()) |>
   janitor::adorn_rounding(10)
 ```
@@ -357,7 +353,7 @@ write_in_results_yml(
 ```{r}
 #| code-fold: true
 
-limits <- 
+limits <-
   stats::predict(fit_engine, interval = "prediction") |>
   dplyr::as_tibble() |>
   rutils::shush()
@@ -397,12 +393,12 @@ fit |>
   ) +
   ggplot2::geom_point() +
   ggplot2::geom_abline(
-    intercept = 0, 
-    slope = 1, 
-    color = get_brand_color("orange")
+    intercept = 0,
+    slope = 1,
+    color = brandr::get_brand_color("orange")
   ) +
   ggplot2::labs(
-    x = "Observed", 
+    x = "Observed",
     y = "Predicted"
   )
 ```
@@ -418,13 +414,13 @@ Posterior predictive checks are a Bayesian technique used to assess model fit by
 ```{r}
 #| code-fold: true
 
-diag_sum_plots <- 
-  fit_engine_2 |> 
+diag_sum_plots <-
+  fit_engine_2 |>
   performance::check_model(
     panel = FALSE,
     colors = c(
-      get_brand_color("orange"),
-      get_brand_color("black"),
+      brandr::get_brand_color("orange"),
+      brandr::get_brand_color("black"),
       "black"
     )
   ) |>
@@ -483,13 +479,13 @@ Histogram of the model residuals with a kernel density estimate, along with a qu
 ```{r}
 #| code-fold: true
 
-fit |> 
+fit |>
   broom::augment(data) |>
   dplyr::select(.resid) |>
   tidyr::pivot_longer(.resid) |>
   ggplot2::ggplot(ggplot2::aes(x = name, y = value)) +
   ggplot2::geom_boxplot(
-    outlier.colour = get_brand_color("orange"), 
+    outlier.colour = brandr::get_brand_color("orange"),
     outlier.shape = 1,
     width = 0.5
   ) +
@@ -575,18 +571,18 @@ for $i = 1, \dots, n$ [@degroot2012, p. 737].
 ```{r}
 #| code-fold: true
 
-plot <- 
+plot <-
   fit |>
   broom::augment(data) |>
   ggplot2::ggplot(ggplot2::aes(.pred, .resid)) +
   ggplot2::geom_point() +
   ggplot2::geom_hline(
-    yintercept = 0, 
-    color = "black", 
+    yintercept = 0,
+    color = "black",
     linewidth = 0.5,
-    linetype = "dashed" 
+    linetype = "dashed"
   ) +
-  ggplot2::geom_smooth(color = get_brand_color("orange")) +
+  ggplot2::geom_smooth(color = brandr::get_brand_color("orange")) +
   ggplot2::labs(x = "Fitted values", y = "Residuals")
 
 plot |> print() |> rutils::shush()
@@ -603,14 +599,14 @@ plots <- fit_engine |> olsrr::ols_plot_resid_fit_spread(print_plot = FALSE)
 
 for (i in seq_along(plots)) {
   q <- plots[[i]] + ggplot2::labs(title = ggplot2::element_blank())
-  
+
   q <- q |> ggplot2::ggplot_build()
-  q$data[[1]]$colour <- get_brand_color("orange")
-  q$plot$layers[[1]]$constructor$color <- get_brand_color("orange")
-  
+  q$data[[1]]$colour <- brandr::get_brand_color("orange")
+  q$plot$layers[[1]]$constructor$color <- brandr::get_brand_color("orange")
+
   plots[[i]] <- q |> ggplot2::ggplot_gtable() |> ggplotify::as.ggplot()
 }
-  
+
 patchwork::wrap_plots(plots$fm_plot, plots$rsd_plot, ncol = 2)
 ```
 
@@ -669,17 +665,17 @@ plot <-
   fit |>
   stats::predict(data) |>
   dplyr::mutate(
-    .sd_resid = 
+    .sd_resid =
       fit_engine |>
-      stats::rstandard() |> 
+      stats::rstandard() |>
       abs() |>
       sqrt()
   ) |>
   ggplot2::ggplot(ggplot2::aes(.pred, .sd_resid)) +
   ggplot2::geom_point() +
-  ggplot2::geom_smooth(color = get_brand_color("orange")) +
+  ggplot2::geom_smooth(color = brandr::get_brand_color("orange")) +
   ggplot2::labs(
-    x = "Fitted values", 
+    x = "Fitted values",
     y = latex2exp::TeX("$\\sqrt{|Standardized \\ Residuals|}$")
   )
 
@@ -699,9 +695,9 @@ data |>
     fit = fit,
     cols = c(
       "msf_sc",
-      fit_engine |> 
-      stats::coef() |> 
-      names() |> 
+      fit_engine |>
+      stats::coef() |>
+      names() |>
       magrittr::extract(-1) |>
       stringr::str_subset("^sex", negate = TRUE)
     ),
@@ -784,7 +780,7 @@ Many authors don't consider autocorrelation tests for linear regression models, 
 ```{r}
 #| code-fold: true
 
-fit_engine |> 
+fit_engine |>
   residuals() |>
   forecast::ggtsdisplay(lag.max=30)
 ```
@@ -872,13 +868,13 @@ The [Variance Inflation Factor (VIF)](https://en.wikipedia.org/wiki/Variance_inf
 ```{r}
 #| code-fold: true
 
-diag_sum_plots <- 
-  fit_engine_2 |> 
+diag_sum_plots <-
+  fit_engine_2 |>
   performance::check_model(panel = FALSE) |>
   plot() |>
   rutils::shush()
 
-diag_sum_plots$VIF + 
+diag_sum_plots$VIF +
   ggplot2::labs(
     title = ggplot2::element_blank(),
     subtitle = ggplot2::element_blank()
@@ -968,8 +964,8 @@ dplyr::tibble(
   ggplot2::geom_linerange(color = "black") +
   ggplot2::geom_hline(yintercept = 2, color = "blue") +
   ggplot2::geom_hline(yintercept = -2, color = "blue") +
-  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
-  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = 3, color = brandr::get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = brandr::get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Observation",
@@ -1011,8 +1007,8 @@ dplyr::tibble(
   ggplot2::geom_linerange(color = "black") +
   ggplot2::geom_hline(yintercept = 2, color = "blue") +
   ggplot2::geom_hline(yintercept = -2, color = "blue") +
-  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
-  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = 3, color = brandr::get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = brandr::get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Observation",
@@ -1027,7 +1023,7 @@ Studentized residuals for each observation.
 ```{r}
 #| code-fold: true
 
-fit |> 
+fit |>
   broom::augment(data) |>
   dplyr::mutate(
     std = stats::rstudent(fit_engine)
@@ -1036,8 +1032,8 @@ fit |>
   ggplot2::geom_point(color = "black") +
   ggplot2::geom_hline(yintercept = 2, color = "blue") +
   ggplot2::geom_hline(yintercept = -2, color = "blue") +
-  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
-  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = 3, color = brandr::get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = brandr::get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Predicted value",
@@ -1052,8 +1048,8 @@ Relation between studentized residuals and fitted values.
 ```{r}
 #| code-fold: true
 
-plot <- 
-  fit_engine |> 
+plot <-
+  fit_engine |>
   olsrr::ols_plot_resid_lev(threshold = 2, print_plot = FALSE)
 
 plot$plot +
@@ -1077,7 +1073,7 @@ fit_engine |> olsrr::ols_plot_resid_stud()
 #| eval: false
 #| include: false
 
-fit_engine |> 
+fit_engine |>
   car::influenceIndexPlot(
     vars = "Studentized",
     id = FALSE,
@@ -1127,7 +1123,7 @@ Hat values for each observation.
 #| eval: false
 #| include: false
 
-fit_engine |> 
+fit_engine |>
   car::influenceIndexPlot(
     vars = "hat",
     id = FALSE,
@@ -1153,8 +1149,8 @@ fit_engine |> stats::cooks.distance() |> head()
 ```{r}
 #| code-fold: true
 
-plot <- 
-  fit_engine |> 
+plot <-
+  fit_engine |>
   olsrr::ols_plot_cooksd_bar(type = 2, print_plot = FALSE)
 
 # The following procedure changes the plot aesthetics.
@@ -1172,8 +1168,8 @@ Cook's distance for each observation along with a threshold line at $4 / (n - k 
 ```{r}
 #| code-fold: true
 
-diag_sum_plots <- 
-  fit_engine_2 |> 
+diag_sum_plots <-
+  fit_engine_2 |>
   performance::check_model(
     panel = FALSE,
     colors = c("blue", "black", "black")
@@ -1181,7 +1177,7 @@ diag_sum_plots <-
   plot() |>
   rutils::shush()
 
-plot <- 
+plot <-
   diag_sum_plots$OUTLIERS +
   ggplot2::labs(
     title = ggplot2::element_blank(),
@@ -1203,8 +1199,8 @@ plot <- plot |> ggplot2::ggplot_build()
 for (i in c(1:9)) {
   # "#1b6ca8" "#3aaf85"
   plot$data[[i]]$colour <- dplyr::case_when(
-    plot$data[[i]]$colour == "blue" ~ 
-      ifelse(i == 4, get_brand_color("grey"), get_brand_color("orange")),
+    plot$data[[i]]$colour == "blue" ~
+      ifelse(i == 4, brandr::get_brand_color("grey"), brandr::get_brand_color("orange")),
     plot$data[[i]]$colour == "#1b6ca8" ~ "black",
     plot$data[[i]]$colour == "darkgray" ~ "black",
     TRUE ~ plot$data[[i]]$colour
@@ -1228,7 +1224,7 @@ fit_engine |> olsrr::ols_plot_cooksd_chart()
 #| eval: false
 #| include: false
 
-fit_engine |> 
+fit_engine |>
   car::influenceIndexPlot(
     vars = "Cook",
     id = FALSE,
@@ -1254,7 +1250,7 @@ fit_engine |> stats::dffits() |> head()
 ```{r}
 #| code-fold: true
 
-plot <- fit_engine |> 
+plot <- fit_engine |>
   olsrr::ols_plot_dffits(print_plot = FALSE)
 
 plot$plot + ggplot2::labs(title = ggplot2::element_blank())
@@ -1299,8 +1295,8 @@ Learn more about Hadi's measure in: @chatterjee2012.
 ```{r}
 #| code-fold: true
 
-plot <- 
-  fit_engine |> 
+plot <-
+  fit_engine |>
   olsrr::ols_plot_hadi(print_plot = FALSE)
 
 plot +
@@ -1317,8 +1313,8 @@ Hadi's influence measure for each observation.
 ```{r}
 #| code-fold: true
 
-plot <- 
-  fit_engine |> 
+plot <-
+  fit_engine |>
   olsrr::ols_plot_resid_pot(print_plot = FALSE)
 
 plot + ggplot2::labs(title = ggplot2::element_blank())
@@ -1338,7 +1334,7 @@ form <- as.formula(
     paste0(
       "msf_sc ~ ",
       paste0(
-        c("age", "sex", "longitude", "ghi_month",  "latitude"), 
+        c("age", "sex", "longitude", "ghi_month",  "latitude"),
         collapse = " + "
       )
     )
@@ -1354,8 +1350,8 @@ lm(form, data = data, weights = cell_weight)
 ```{r}
 #| code-fold: false
 
-model <- 
-  parsnip::linear_reg() |> 
+model <-
+  parsnip::linear_reg() |>
   parsnip::set_engine("lm") |>
   parsnip::set_mode("regression")
 ```
@@ -1363,7 +1359,7 @@ model <-
 ```{r}
 #| code-fold: false
 
-workflow <- 
+workflow <-
   workflows::workflow() |>
   workflows::add_case_weights(cell_weight) |>
   workflows::add_formula(form) |>
@@ -1396,7 +1392,7 @@ Output from the model fitting process showing the estimated coefficients, standa
 #| include: false
 #| code-fold: true
 
-fit |> 
+fit |>
   broom::augment(data) |>
   janitor::adorn_rounding(5)
 ```
@@ -1407,7 +1403,7 @@ fit |>
 
 fit_stats <- fit |> broom::glance()
 
-fit_stats |> 
+fit_stats |>
   tidyr::pivot_longer(cols = dplyr::everything()) |>
   janitor::adorn_rounding(10)
 ```
@@ -1457,7 +1453,7 @@ write_in_results_yml(
 ```{r}
 #| code-fold: true
 
-limits <- 
+limits <-
   stats::predict(fit_engine, interval = "prediction") |>
   dplyr::as_tibble() |>
   rutils::shush()
@@ -1497,12 +1493,12 @@ fit |>
   ) +
   ggplot2::geom_point() +
   ggplot2::geom_abline(
-    intercept = 0, 
-    slope = 1, 
-    color = get_brand_color("orange")
+    intercept = 0,
+    slope = 1,
+    color = brandr::get_brand_color("orange")
   ) +
   ggplot2::labs(
-    x = "Observed", 
+    x = "Observed",
     y = "Predicted"
   )
 ```
@@ -1518,13 +1514,13 @@ Posterior predictive checks are a Bayesian technique used to assess model fit by
 ```{r}
 #| code-fold: true
 
-diag_sum_plots <- 
-  fit_engine_2 |> 
+diag_sum_plots <-
+  fit_engine_2 |>
   performance::check_model(
     panel = FALSE,
     colors = c(
-      get_brand_color("orange"),
-      get_brand_color("black"),
+      brandr::get_brand_color("orange"),
+      brandr::get_brand_color("black"),
       "black"
     )
   ) |>
@@ -1583,13 +1579,13 @@ Histogram of the model residuals with a kernel density estimate, along with a qu
 ```{r}
 #| code-fold: true
 
-fit |> 
+fit |>
   broom::augment(data) |>
   dplyr::select(.resid) |>
   tidyr::pivot_longer(.resid) |>
   ggplot2::ggplot(ggplot2::aes(x = name, y = value)) +
   ggplot2::geom_boxplot(
-    outlier.colour = get_brand_color("orange"), 
+    outlier.colour = brandr::get_brand_color("orange"),
     outlier.shape = 1,
     width = 0.5
   ) +
@@ -1675,18 +1671,18 @@ for $i = 1, \dots, n$ [@degroot2012, p. 737].
 ```{r}
 #| code-fold: true
 
-plot <- 
+plot <-
   fit |>
   broom::augment(data) |>
   ggplot2::ggplot(ggplot2::aes(.pred, .resid)) +
   ggplot2::geom_point() +
   ggplot2::geom_hline(
-    yintercept = 0, 
-    color = "black", 
+    yintercept = 0,
+    color = "black",
     linewidth = 0.5,
-    linetype = "dashed" 
+    linetype = "dashed"
   ) +
-  ggplot2::geom_smooth(color = get_brand_color("orange")) +
+  ggplot2::geom_smooth(color = brandr::get_brand_color("orange")) +
   ggplot2::labs(x = "Fitted values", y = "Residuals")
 
 plot |> print() |> rutils::shush()
@@ -1703,14 +1699,14 @@ plots <- fit_engine |> olsrr::ols_plot_resid_fit_spread(print_plot = FALSE)
 
 for (i in seq_along(plots)) {
   q <- plots[[i]] + ggplot2::labs(title = ggplot2::element_blank())
-  
+
   q <- q |> ggplot2::ggplot_build()
-  q$data[[1]]$colour <- get_brand_color("orange")
-  q$plot$layers[[1]]$constructor$color <- get_brand_color("orange")
-  
+  q$data[[1]]$colour <- brandr::get_brand_color("orange")
+  q$plot$layers[[1]]$constructor$color <- brandr::get_brand_color("orange")
+
   plots[[i]] <- q |> ggplot2::ggplot_gtable() |> ggplotify::as.ggplot()
 }
-  
+
 patchwork::wrap_plots(plots$fm_plot, plots$rsd_plot, ncol = 2)
 ```
 
@@ -1769,17 +1765,17 @@ plot <-
   fit |>
   stats::predict(data) |>
   dplyr::mutate(
-    .sd_resid = 
+    .sd_resid =
       fit_engine |>
-      stats::rstandard() |> 
+      stats::rstandard() |>
       abs() |>
       sqrt()
   ) |>
   ggplot2::ggplot(ggplot2::aes(.pred, .sd_resid)) +
   ggplot2::geom_point() +
-  ggplot2::geom_smooth(color = get_brand_color("orange")) +
+  ggplot2::geom_smooth(color = brandr::get_brand_color("orange")) +
   ggplot2::labs(
-    x = "Fitted values", 
+    x = "Fitted values",
     y = latex2exp::TeX("$\\sqrt{|Standardized \\ Residuals|}$")
   )
 
@@ -1799,9 +1795,9 @@ data |>
     fit = fit,
     cols = c(
       "msf_sc",
-      fit_engine |> 
-      stats::coef() |> 
-      names() |> 
+      fit_engine |>
+      stats::coef() |>
+      names() |>
       magrittr::extract(-1) |>
       stringr::str_subset("^sex", negate = TRUE)
     ),
@@ -1885,7 +1881,7 @@ Many authors don't consider autocorrelation tests for linear regression models, 
 ```{r}
 #| code-fold: true
 
-fit_engine |> 
+fit_engine |>
   residuals() |>
   forecast::ggtsdisplay(
     lag.max = 30,
@@ -1976,13 +1972,13 @@ The [Variance Inflation Factor (VIF)](https://en.wikipedia.org/wiki/Variance_inf
 ```{r}
 #| code-fold: true
 
-diag_sum_plots <- 
-  fit_engine_2 |> 
+diag_sum_plots <-
+  fit_engine_2 |>
   performance::check_model(panel = FALSE) |>
   plot() |>
   rutils::shush()
 
-diag_sum_plots$VIF + 
+diag_sum_plots$VIF +
   ggplot2::labs(
     title = ggplot2::element_blank(),
     subtitle = ggplot2::element_blank()
@@ -2070,10 +2066,10 @@ dplyr::tibble(
     ggplot2::aes(x = x, y = std, ymin = 0, ymax = std)
   ) +
   ggplot2::geom_linerange(color = "black") +
-  ggplot2::geom_hline(yintercept = 2, color = get_brand_color("grey")) +
-  ggplot2::geom_hline(yintercept = -2, color = get_brand_color("grey")) +
-  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
-  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = 2, color = brandr::get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = -2, color = brandr::get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = 3, color = brandr::get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = brandr::get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Observation",
@@ -2113,10 +2109,10 @@ dplyr::tibble(
     ggplot2::aes(x = x, y = std, ymin = 0, ymax = std)
   ) +
   ggplot2::geom_linerange(color = "black") +
-  ggplot2::geom_hline(yintercept = 2, color = get_brand_color("grey")) +
-  ggplot2::geom_hline(yintercept = -2, color = get_brand_color("grey")) +
-  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
-  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = 2, color = brandr::get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = -2, color = brandr::get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = 3, color = brandr::get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = brandr::get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Observation",
@@ -2131,17 +2127,17 @@ Studentized residuals for each observation.
 ```{r}
 #| code-fold: true
 
-fit |> 
+fit |>
   broom::augment(data) |>
   dplyr::mutate(
     std = stats::rstudent(fit_engine)
   ) |>
   ggplot2::ggplot(ggplot2::aes(.pred, std)) +
   ggplot2::geom_point(color = "black") +
-  ggplot2::geom_hline(yintercept = 2, color = get_brand_color("grey")) +
-  ggplot2::geom_hline(yintercept = -2, color = get_brand_color("grey")) +
-  ggplot2::geom_hline(yintercept = 3, color = get_brand_color("orange")) +
-  ggplot2::geom_hline(yintercept = -3, color = get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = 2, color = brandr::get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = -2, color = brandr::get_brand_color("grey")) +
+  ggplot2::geom_hline(yintercept = 3, color = brandr::get_brand_color("orange")) +
+  ggplot2::geom_hline(yintercept = -3, color = brandr::get_brand_color("orange")) +
   ggplot2::scale_y_continuous(breaks = seq(-3, 3)) +
   ggplot2::labs(
     x = "Predicted value",
@@ -2156,8 +2152,8 @@ Relation between studentized residuals and fitted values.
 ```{r}
 #| code-fold: true
 
-plot <- 
-  fit_engine |> 
+plot <-
+  fit_engine |>
   olsrr::ols_plot_resid_lev(threshold = 2, print_plot = FALSE)
 
 plot$plot +
@@ -2181,7 +2177,7 @@ fit_engine |> olsrr::ols_plot_resid_stud()
 #| eval: false
 #| include: false
 
-fit_engine |> 
+fit_engine |>
   car::influenceIndexPlot(
     vars = "Studentized",
     id = FALSE,
@@ -2231,7 +2227,7 @@ Hat values for each observation.
 #| eval: false
 #| include: false
 
-fit_engine |> 
+fit_engine |>
   car::influenceIndexPlot(
     vars = "hat",
     id = FALSE,
@@ -2257,8 +2253,8 @@ fit_engine |> stats::cooks.distance() |> head()
 ```{r}
 #| code-fold: true
 
-plot <- 
-  fit_engine |> 
+plot <-
+  fit_engine |>
   olsrr::ols_plot_cooksd_bar(type = 2, print_plot = FALSE)
 
 # The following procedure changes the plot aesthetics.
@@ -2276,8 +2272,8 @@ Cook's distance for each observation along with a threshold line at $4 / (n - k 
 ```{r}
 #| code-fold: true
 
-diag_sum_plots <- 
-  fit_engine_2 |> 
+diag_sum_plots <-
+  fit_engine_2 |>
   performance::check_model(
     panel = FALSE,
     colors = c("blue", "black", "black")
@@ -2285,7 +2281,7 @@ diag_sum_plots <-
   plot() |>
   rutils::shush()
 
-plot <- 
+plot <-
   diag_sum_plots$OUTLIERS +
   ggplot2::labs(
     title = ggplot2::element_blank(),
@@ -2307,8 +2303,8 @@ plot <- plot |> ggplot2::ggplot_build()
 for (i in c(1:9)) {
   # "#1b6ca8" "#3aaf85"
   plot$data[[i]]$colour <- dplyr::case_when(
-    plot$data[[i]]$colour == "blue" ~ 
-      ifelse(i == 4, get_brand_color("grey"), get_brand_color("orange")),
+    plot$data[[i]]$colour == "blue" ~
+      ifelse(i == 4, brandr::get_brand_color("grey"), brandr::get_brand_color("orange")),
     plot$data[[i]]$colour == "#1b6ca8" ~ "black",
     plot$data[[i]]$colour == "darkgray" ~ "black",
     TRUE ~ plot$data[[i]]$colour
@@ -2332,7 +2328,7 @@ fit_engine |> olsrr::ols_plot_cooksd_chart()
 #| eval: false
 #| include: false
 
-fit_engine |> 
+fit_engine |>
   car::influenceIndexPlot(
     vars = "Cook",
     id = FALSE,
@@ -2358,7 +2354,7 @@ fit_engine |> stats::dffits() |> head()
 ```{r}
 #| code-fold: true
 
-plot <- fit_engine |> 
+plot <- fit_engine |>
   olsrr::ols_plot_dffits(print_plot = FALSE)
 
 plot$plot + ggplot2::labs(title = ggplot2::element_blank())
@@ -2402,8 +2398,8 @@ Learn more about Hadi's measure in: @chatterjee2012.
 ```{r}
 #| code-fold: true
 
-plot <- 
-  fit_engine |> 
+plot <-
+  fit_engine |>
   olsrr::ols_plot_hadi(print_plot = FALSE)
 
 plot +
@@ -2420,8 +2416,8 @@ Hadi's influence measure for each observation.
 ```{r}
 #| code-fold: true
 
-plot <- 
-  fit_engine |> 
+plot <-
+  fit_engine |>
   olsrr::ols_plot_resid_pot(print_plot = FALSE)
 
 plot + ggplot2::labs(title = ggplot2::element_blank())
@@ -2469,7 +2465,7 @@ n <- nrow(data)
 k_res <- length(stats::coefficients(fit_engine_restricted)) - 1
 k_full <- length(stats::coefficients(fit_engine_full)) - 1
 
-((r_squared(fit_engine_full) - r_squared(fit_engine_restricted)) / 
+((r_squared(fit_engine_full) - r_squared(fit_engine_restricted)) /
     (k_full - k_res)) / ((1 - r_squared(fit_engine_full)) / (n  - k_full - 1))
 ```
 
@@ -2503,7 +2499,7 @@ $$
 ```{r}
 #| code-fold: true
 
-adj_r_squared_restricted <- 
+adj_r_squared_restricted <-
   fit_engine_restricted |>
   summarise_r2(
     n = nrow(data),
@@ -2521,7 +2517,7 @@ Confidence interval for the adjusted R-squared of the **restricted model**. LCL 
 ```{r}
 #| code-fold: true
 
-adj_r_squared_full <- 
+adj_r_squared_full <-
   fit_engine_full |>
   summarise_r2(
     n = nrow(data),
@@ -2539,8 +2535,8 @@ Confidence interval for the adjusted R-squared of the **full model**. LCL corres
 ```{r}
 dplyr::tibble(
   name = c(
-    "adj_r_squared_res", 
-    "adj_r_squared_full", 
+    "adj_r_squared_res",
+    "adj_r_squared_full",
     "diff"
   ),
   value = c(
@@ -2557,7 +2553,7 @@ Comparison between the coefficients of determination ($\text{R}^2$) of the restr
 ::: {#tbl-sm-6-hypothesis-test-4}
 ```{r}
 effect_size <- cohens_f_squared_summary(
-  base_r_squared = adj_r_squared_restricted, 
+  base_r_squared = adj_r_squared_restricted,
   new_r_squared = adj_r_squared_full
 )
 

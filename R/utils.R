@@ -1,12 +1,4 @@
-long_string <- function(x) {
-  checkmate::assert_string(x)
-
-  x |>
-    strwrap() |>
-    paste0(collapse = " ") |>
-    gsub(x = _, pattern = "\\s+", replacement = " ")
-}
-
+# library(checkmate)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 change_sign <- function(x, flag = TRUE) {
@@ -21,8 +13,8 @@ change_sign <- function(x, flag = TRUE) {
 }
 
 
+# library(checkmate)
 # library(here)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(stringr)
 
 to_relative_path <- function(path, root = ".") {
@@ -34,35 +26,7 @@ to_relative_path <- function(path, root = ".") {
   paste0(root, path)
 }
 
-# library(hms)
-# library(lubritime) # github.com/danielvartan/lubritime
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-
-# TODO: Refactor and move to `lubritime`.
-transform_time <- function(x, threshold = hms::parse_hms("12:00:00")) {
-  checkmate::assert_atomic(x)
-  prettycheck::assert_hms(
-    threshold,
-    lower = hms::hms(0),
-    upper = hms::parse_hms("23:59:59"),
-    null_ok = TRUE
-  )
-
-  classes <- c("Duration", "difftime", "hms", "POSIXt", "Interval")
-
-  if (hms::is_hms(x) && !is.null(threshold)) {
-    x |>
-      lubritime:::link_to_timeline(threshold = threshold) |>
-      as.numeric()
-  } else if (checkmate::test_multi_class(x, classes)) {
-    x |> lubritime:::extract_seconds()
-  } else {
-    x
-  }
-}
-
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(checkmate)
 
 # TODO: Move to `rutils`.
 count_not_na <- function(x) {
@@ -71,7 +35,7 @@ count_not_na <- function(x) {
   length(which(!is.na(x)))
 }
 
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(checkmate)
 
 # TODO: Move to `rutils`.
 drop_inf <- function(x) {
@@ -80,8 +44,8 @@ drop_inf <- function(x) {
   x[!(x == -Inf | x == Inf)]
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(tidyr)
 
 list_as_tibble <- function(list) {
@@ -98,11 +62,11 @@ list_as_tibble <- function(list) {
     tidyr::pivot_longer(cols = dplyr::everything())
 }
 
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(checkmate)
 library(yaml)
 
 write_in_results_yml <- function(
-    x,
+    x, #nolint
     path = here::here("_results.yml"),
     digits = 30
   ) {
@@ -136,80 +100,12 @@ is_in_scientific_notation <- function(x) {
     grepl("e", x = _)
 }
 
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-left_digits <- function(x, count_zero = TRUE) {
-  prettycheck::assert_numeric(x)
-  checkmate::assert_flag(count_zero)
-
-  out <-
-    x |>
-    abs() |>
-    trunc()
-
-  if (out == 0) {
-    ifelse(isTRUE(count_zero), 1, 0)
-  } else {
-    out |> nchar()
-  }
-}
-
-library(magrittr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-right_digits <- function(x, max_digits = 15) {
-  prettycheck::assert_numeric(x)
-  checkmate::assert_int(max_digits, lower = 1, upper = 15)
-
-  digit_options <- getOption("digits")
-  options(digits = max_digits)
-
-  out <- vapply(
-    x,
-    function(x) {
-      if (is.na(x)){
-        NA_real_
-      } else {
-        if (abs(x - round(x)) > .Machine$double.eps^0.5) {
-          x |>
-            format() |>
-            strsplit("\\.") |>
-            magrittr::extract2(1) |>
-            magrittr::extract(2) |>
-            nchar()
-        } else {
-          0
-        }
-      }
-    },
-    FUN.VALUE = numeric(1)
-  )
-
-  options(digits = digit_options)
-  out
-}
-
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-digits <- function(x, left = FALSE, right = FALSE) {
-  prettycheck::assert_numeric(x)
-  checkmate::assert_flag(left)
-  checkmate::assert_flag(right)
-
-  if (isTRUE(left)) {
-    left_digits(x)
-  } else if (isTRUE(right)) {
-    right_digits(x)
-  } else {
-    left_digits(x) + right_digits(x)
-  }
-}
-
+# library(checkmate)
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
 format_to_md_latex <- function(
-    x,
+    x, #nolint
     after = NULL,
     before = NULL,
     max_digits = 3,
@@ -243,6 +139,7 @@ format_to_md_latex <- function(
   }
 }
 
+# library(checkmate)
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
@@ -257,7 +154,7 @@ inverse_log_max <- function(x, base = exp(1)) {
     `^`(base, .)
 }
 
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(checkmate)
 
 to_ascii <- function(x, from = "UTF-8") {
   checkmate::assert_character(x)
@@ -266,7 +163,7 @@ to_ascii <- function(x, from = "UTF-8") {
   x |> iconv(to = "ASCII//TRANSLIT")
 }
 
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(checkmate)
 
 to_ascii_and_lower <- function(x, from = "UTF-8") {
   checkmate::assert_character(x)
@@ -275,11 +172,7 @@ to_ascii_and_lower <- function(x, from = "UTF-8") {
   x |> to_ascii(from) |> tolower()
 }
 
-# library(rutils) # github.com/danielvartan/rutils
-
-vector_to_c <- rutils::vector_to_c
-
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(checkmate)
 
 cli_test_fun <- function(test) {
   checkmate::assert_flag(test)
@@ -291,33 +184,7 @@ cli_test_fun <- function(test) {
   }
 }
 
-# library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(stringr)
-
-# x <- c("BRT", "EST", "BRT")
-# paired_vector <- c("EST" = "EST", "BRT" = "America/Sao_Paulo")
-# look_and_replace_chr(x, paired_vector)
-look_and_replace_chr <- function(x, paired_vector) {
-  checkmate::assert_atomic(x)
-  checkmate::assert_atomic(paired_vector)
-  checkmate::assert_character(names(paired_vector), null.ok = FALSE)
-
-  x <- stringr::str_squish(x)
-
-  dplyr::case_when(
-    x %in% names(paired_vector) ~
-      paired_vector[match(x, names(paired_vector))],
-    TRUE ~ NA
-  ) |>
-    unname()
-}
-
-# library(rutils) # github.com/danielvartan/rutils
-
-grab_fun_par <- rutils::grab_fun_par
-
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(checkmate)
 
 rm_caps <- function(x, start = TRUE, end = TRUE) {
   checkmate::assert_flag(start)
@@ -328,43 +195,3 @@ rm_caps <- function(x, start = TRUE, end = TRUE) {
 
   x
 }
-
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-clean_arg_list <- function(list) {
-  checkmate::assert_multi_class(list, c("list", "pairlist"))
-  checkmate::assert_list(as.list(list), names = "named")
-
-  list <- list |> nullify_list()
-
-  out <- list()
-
-  for (i in seq_along(list)) {
-    if (!names(list[i]) %in% names(out)) {
-      out <- c(out, list[i])
-    }
-  }
-
-  out
-}
-
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-nullify_list <- function(list) {
-  checkmate::assert_multi_class(list, c("list", "pairlist"))
-  checkmate::assert_list(as.list(list), names = "named")
-
-  for (i in names(list)) {
-    if (!is.null(list[[i]]) && is.atomic(list[[i]])) {
-      if (any(list[[i]] == "", na.rm = TRUE)) {
-        list[i] <- list(NULL)
-      }
-    }
-  }
-
-  list
-}
-
-# library(rutils) # github.com/danielvartan/rutils
-
-normalize_names <- rutils::normalize_names

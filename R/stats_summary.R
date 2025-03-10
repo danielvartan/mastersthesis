@@ -1,3 +1,4 @@
+# library(checkmate)
 # library(dplyr)
 # library(here)
 # library(hms)
@@ -12,7 +13,7 @@ source(here::here("R", "utils-checks.R"))
 source(here::here("R", "utils-stats.R"))
 
 stats_summary <- function(
-    data,
+    data, #nolint
     col,
     name = NULL,
     na_rm = TRUE,
@@ -32,7 +33,7 @@ stats_summary <- function(
   checkmate::assert_number(iqr_mult, lower = 1)
   checkmate::assert_flag(hms_format)
 
-  checkmate::assert_hms(
+  prettycheck::assert_hms(
     threshold, lower = hms::hms(0), upper = hms::parse_hms("23:59:59"),
     null_ok = TRUE
   )
@@ -52,7 +53,7 @@ stats_summary <- function(
         lubritime:::link_to_timeline(threshold = threshold) |>
         as.numeric()
     } else {
-      x <- x |> transform_time(threshold = threshold)
+      x <- x |> lubritime::extract_seconds()
     }
   }
 

@@ -64,7 +64,7 @@ write_unique_values_to_lookup_sheet <- function(
 
   out <-
     dplyr::tibble(
-      key = rutils:::drop_na(unique(data[[col]])),
+      key = rutils::drop_na(unique(data[[col]])),
       value = NA
     ) |>
     dplyr::arrange(key)

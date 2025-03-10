@@ -93,7 +93,7 @@ dir_list <-
   c(".temp", "index_cache", "index_files", "site_libs") |>
   append(x = _, list.dirs("qmd")[-1])
 
-rutils:::clean_quarto_mess(
+quartor::::clean_quarto_mess(
   file = NULL,
   dir = dir_list,
   ext = c(
