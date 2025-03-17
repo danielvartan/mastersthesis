@@ -3,7 +3,7 @@
 # library(yaml)
 
 md_effect_size <- function(
-    test = "final",
+    test = "final", #nolint
     prefix = "Cohen's ",
     max_digits = 10,
     results_yml = here::here("_results.yml")
@@ -38,7 +38,7 @@ md_effect_size <- function(
 # library(yaml)
 
 md_adj_r_squared <- function(
-    test = "hta",
+    test = "hta", #nolint
     model = "restricted",
     max_digits = 10,
     results_yml = here::here("_results.yml")
@@ -68,7 +68,7 @@ md_adj_r_squared <- function(
 # library(yaml)
 
 md_f_test <- function(
-    test = "hta",
+    test = "hta", #nolint
     model = NULL,
     max_digits = 3,
     results_yml = here::here("_results.yml")
@@ -117,10 +117,8 @@ md_f_test <- function(
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(yaml)
 
-source(here::here("R", "utils.R"))
-
 md_p_value <- function(
-    test = "hta",
+    test = "hta", #nolint
     model = NULL,
     max_digits = 5,
     results_yml = here::here("_results.yml")
@@ -150,7 +148,7 @@ md_p_value <- function(
 
   if (p_value  == 0 || nchar(p_value) > 10) {
     p_value <- "1e-05"
-  } else if (is_in_scientific_notation(p_value)) {
+  } else if (prettycheck::test_scientific_notation(p_value)) {
     p_value
   } else {
     p_value <- p_value |> round(max_digits)

@@ -16,7 +16,7 @@ source(here::here("R", "_setup.R"))
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![OSF DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/YGKTS-1284C5.svg)](https://doi.org/10.17605/OSF.IO/YGKTS)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://choosealicense.com/licenses/mit/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/mit)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 <!-- badges: end -->
 
@@ -40,9 +40,7 @@ To reproduce the analyses do the following steps:
 
 (@) Make sure that you have the latest R version and the following R packages installed in your machine:
 
-```{r}
-#| eval: false
-
+```r
 install.packages(
   c("cli", "here" ,"magrittr", "ragg", "renv", "stats", "stringr")
 )
@@ -52,7 +50,7 @@ install.packages(
 (@) Open the R project (`mastersthesis.Rproj`).
 (@) Run [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html) to install all software dependencies.
 (@) Set all the keys provided by the author in the `.Renviron` file and the `_ssh` folder.
-(@) Run `targets::tar_make()` to create every point of the data wrangling process (from the raw data to the cleaned and weighted data). 
+(@) Run `targets::tar_make()` to create every point of the data wrangling process (from the raw data to the cleaned and weighted data).
 (@) Run any analysis present in the computational notebooks (`qmd` directory).
 
 ## Keys
@@ -72,10 +70,10 @@ These project's keys will be provided by the author of the thesis upon reasonabl
 ## License
 
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/mit/)
+MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/mit)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-The code accompanying this thesis is distributed under the [MIT License](https://opensource.org/license/mit/). All documents are released under the [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/).
+The code accompanying this thesis is distributed under the [MIT License](https://opensource.org/license/mit). All documents are released under the [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/).
 
 The research data is subject to a private license and is not publicly available due to privacy and ethical considerations.
 
@@ -129,8 +127,8 @@ htmltools::tags$table(
     ),
     htmltools::tags$td(
       htmltools::tags$p(
-        "This thesis was developed in the Graduate Program in Modeling ", 
-        "Complex Systems (", 
+        "This thesis was developed in the Graduate Program in Modeling ",
+        "Complex Systems (",
         htmltools::tags$a(
           "PPGSCX",
           href = paste0(
@@ -145,7 +143,7 @@ htmltools::tags$table(
           href = "https://www5.usp.br/",
           .noWS = "outside"
         ),
-        ") under the supervision of", 
+        ") under the supervision of",
         htmltools::tags$a(
           "Prof. Dr. Camilo Rodrigues Neto",
           href = "https://orcid.org/0000-0001-6783-6695",
@@ -178,7 +176,7 @@ htmltools::tags$table(
     ),
     htmltools::tags$td(
       htmltools::tags$p(
-        "This study was financed by the Coordenação de Aperfeiçoamento de ", 
+        "This study was financed by the Coordenação de Aperfeiçoamento de ",
         "Pessoal de Nível Superior - Brazil (",
         htmltools::tags$a(
           "CAPES",

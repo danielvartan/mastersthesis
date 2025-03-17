@@ -3,7 +3,7 @@
 # library(readr)
 
 save_and_lock <- function(
-    x,
+    x, #nolint
     file,
     type = "csv",
     public_key = here::here("_ssh", "id_rsa.pub"),
@@ -18,7 +18,7 @@ save_and_lock <- function(
     readr::write_csv(x, file, ...)
 
     if (checkmate::test_file_exists(paste0(file, ".lockr"))) {
-      file.remove(paste0(file, ".lockr"))
+      fs::file_delete(paste0(file, ".lockr"))
     }
 
     lockr::lock_file(file, public_key, remove_file = TRUE)
@@ -26,7 +26,7 @@ save_and_lock <- function(
     readr::write_rds(x, file, ...)
 
     if (checkmate::test_file_exists(paste0(file, ".lockr"))) {
-      file.remove(paste0(file, ".lockr"))
+      fs::file_delete(paste0(file, ".lockr"))
     }
 
     lockr::lock_file(file, public_key, remove_file = TRUE)

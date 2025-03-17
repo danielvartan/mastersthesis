@@ -35,8 +35,8 @@ filter_data <- function(data) {
       age >= 18
     ) |>
     dplyr::filter(
-      !test_outlier(age, method = "iqr", iqr_mult = 1.5),
-      !test_outlier(
+      !rutils::test_outlier(age, method = "iqr", iqr_mult = 1.5),
+      !rutils::test_outlier(
         msf_sc |>
           lubritime::link_to_timeline() |>
           as.numeric(),

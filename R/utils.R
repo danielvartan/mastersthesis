@@ -12,7 +12,6 @@ change_sign <- function(x, flag = TRUE) {
   }
 }
 
-
 # library(checkmate)
 # library(here)
 # library(stringr)
@@ -90,16 +89,6 @@ write_in_results_yml <- function(
   yaml::write_yaml(out, path)
 }
 
-# library(prettycheck) # github.com/danielvartan/prettycheck
-
-is_in_scientific_notation <- function(x) {
-  prettycheck::assert_numeric(x)
-
-  x |>
-    format() |>
-    grepl("e", x = _)
-}
-
 # library(checkmate)
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
@@ -156,24 +145,6 @@ inverse_log_max <- function(x, base = exp(1)) {
 
 # library(checkmate)
 
-to_ascii <- function(x, from = "UTF-8") {
-  checkmate::assert_character(x)
-  checkmate::assert_string(from)
-
-  x |> iconv(to = "ASCII//TRANSLIT")
-}
-
-# library(checkmate)
-
-to_ascii_and_lower <- function(x, from = "UTF-8") {
-  checkmate::assert_character(x)
-  checkmate::assert_string(from)
-
-  x |> to_ascii(from) |> tolower()
-}
-
-# library(checkmate)
-
 cli_test_fun <- function(test) {
   checkmate::assert_flag(test)
 
@@ -182,16 +153,4 @@ cli_test_fun <- function(test) {
   } else {
     cli::col_red
   }
-}
-
-# library(checkmate)
-
-rm_caps <- function(x, start = TRUE, end = TRUE) {
-  checkmate::assert_flag(start)
-  checkmate::assert_flag(end)
-
-  if (isTRUE(start)) x <- x[-1]
-  if (isTRUE(end)) x <- x[-length(x)]
-
-  x
 }

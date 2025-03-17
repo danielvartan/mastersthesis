@@ -3,7 +3,7 @@
 # library(stringr)
 
 fix_postal_code <- function(
-    postal_code,
+    postal_code, #nolint
     min_char = 3,
     max_char = 8,
     squish = TRUE,

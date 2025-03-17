@@ -9,7 +9,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![OSF
 DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/YGKTS-1284C5.svg)](https://doi.org/10.17605/OSF.IO/YGKTS)
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green.png)](https://choosealicense.com/licenses/mit/)
+MIT](https://img.shields.io/badge/license-MIT-green.png)](https://opensource.org/license/mit)
 [![License: CC BY
 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 <!-- badges: end -->
@@ -102,14 +102,14 @@ all necessary approvals for their research proposal.
 ## License
 
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green.png)](https://opensource.org/license/mit/)
+MIT](https://img.shields.io/badge/license-MIT-green.png)](https://opensource.org/license/mit)
 [![License: CC BY
 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 The code accompanying this thesis is distributed under the [MIT
-License](https://opensource.org/license/mit/). All documents are
-released under the [Creative Commons Attribution 4.0 International
-Public License](https://creativecommons.org/licenses/by/4.0/).
+License](https://opensource.org/license/mit). All documents are released
+under the [Creative Commons Attribution 4.0 International Public
+License](https://creativecommons.org/licenses/by/4.0/).
 
 The research data is subject to a private license and is not publicly
 available due to privacy and ethical considerations.

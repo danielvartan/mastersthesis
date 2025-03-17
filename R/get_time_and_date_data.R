@@ -14,7 +14,7 @@
 # Meeus, J. (1991). Astronomical algorithms. Willmann-Bell.
 
 get_time_and_date_data <- function(
-    file = NULL,
+    file = NULL, #nolint
     pattern = "time-and-date-2024.rds",
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub"),

@@ -125,11 +125,11 @@ analyze_data <- function(data, round = FALSE, hms = FALSE) {
     dplyr::rowwise() |>
     dplyr::mutate(
       dummy_0_a = as.integer(wd) == 0,
-      dummy_0_b = rutils:::count_na(
+      dummy_0_b = rutils::count_na(
         dplyr::c_across(cols = dplyr::ends_with("_w"))) >= count_w,
       dummy_0_c = alarm_f == FALSE,
       dummy_7_a = as.integer(wd) == 7,
-      dummy_7_b = rutils:::count_na(
+      dummy_7_b = rutils::count_na(
         dplyr::c_across(cols = dplyr::ends_with("_f"))) >= count_f,
       dummy_0 = dummy_0_a & dummy_0_b & dummy_0_c & dummy_7_b == FALSE,
       dummy_7 = dummy_7_a & dummy_7_b & dummy_0_b == FALSE) |>

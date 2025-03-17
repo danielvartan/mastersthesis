@@ -35,15 +35,15 @@ source(here::here("R", "tidy_data_.R"))
 # source(here::here("R", "get_brazil_municipality.R"))
 # get_brazil_municipality("PORTO FERREIRA")
 
-cross_geographic_data_by_postal_code <- function(
-  raw_data,
-  col,
-  value,
-  method = "qualocep",
-  limit = 10,
-  col_merge = c("municipality", "state"),
-  col_match = col_merge[1],
-  ...
+cross_geographic_data_by_postal_code <- function( #nolint
+    raw_data, #nolint
+    col,
+    value,
+    method = "qualocep",
+    limit = 10,
+    col_merge = c("municipality", "state"),
+    col_match = col_merge[1],
+    ...
   ) {
   checkmate::assert_tibble(raw_data)
   checkmate::assert_string(col)

@@ -12,7 +12,6 @@
 /index_cache/
 /site_libs/
 
-launch.json
 .luarc.json
 .radian_history
 .Rapp.history
@@ -21,6 +20,4 @@ launch.json
 .Rhistory
 .Rproj.user
 .Ruserdata
-.vscode
-
-/.luarc.json
+launch.json

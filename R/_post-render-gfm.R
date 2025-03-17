@@ -1,8 +1,7 @@
 # library(beepr)
 # library(groomr) # github.com/danielvartan/groomr
 # library(here)
-# library(readr)
-# library(stringr)
+# library(rutils) # https://github.com/danielvartan/rutils
 
 # Remove empty lines from `README.md` -----
 
@@ -10,22 +9,11 @@ groomr::remove_blank_line_dups(here::here("README.md"))
 
 # Update project year -----
 
-files <- c(
+c(
   here::here("CITATION.cff"),
   here::here("LICENSE.md")
-)
-
-for (i in files) {
-  data <-
-    i |>
-    readr::read_lines() |>
-    stringr::str_replace_all(
-      pattern = "20\\d{2}",
-      replacement = as.character(Sys.Date() |> lubridate::year())
-    )
-
-  data |> readr::write_lines(i)
-}
+) |>
+rutils::update_pkg_year()
 
 # Check if the script ran successfully -----
 

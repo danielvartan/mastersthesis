@@ -63,7 +63,7 @@ test_normality <- function(
   }
 
   if (isTRUE(remove_outliers)) {
-    x <- x |> remove_outliers(method = "iqr", iqr_mult = iqr_mult)
+    x <- x |> rutils::remove_outliers(method = "iqr", iqr_mult = iqr_mult)
   }
 
   if (isTRUE(log_transform)) {

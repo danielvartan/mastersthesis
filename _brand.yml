@@ -61,12 +61,10 @@ typography:
     - family: Poppins
       source: google
       weight: [300, 400, 500, 600]
-    - family: DM Sans
-      source: google
     - family: DM Mono
       source: google
   base:
-    family: DM Sans
+    family: Poppins
   headings:
     family: Poppins
     color: black

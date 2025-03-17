@@ -31,7 +31,7 @@ source(here::here("R", "utils.R"))
 #   dplyr::select(state, municipality) |>
 #   print(n = Inf)
 
-check_issues_with_the_lookup_tables <- function() {
+check_issues_with_the_lookup_tables <- function() { #nolint
   data <-
     targets::tar_read("tidy_data") |>
     dplyr::filter(country == "Brazil")
@@ -67,7 +67,8 @@ check_issues_with_the_lookup_tables <- function() {
     rutils::drop_na()
 
   data_test |>
-    to_ascii_and_lower() |>
+    groomr::to_ascii() |>
+    stringr::str_to_lower() |>
     stringr::str_detect("^[a-z'.\\- ]*$|^R E M O V E$", negate = TRUE) |>
     magrittr::extract(TRUE) |>
     lookup_table_issue_warning("name", type = "name")

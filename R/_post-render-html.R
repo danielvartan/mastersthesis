@@ -12,9 +12,10 @@ source(here::here("R", "_post-render-begin.R"))
 pdf_file <- list.files(output_dir_pdf, full.names = TRUE, pattern = ".pdf$")
 
 if (length(pdf_file) == 1) {
-  rutils:::copy_file(
-    from = pdf_file,
-    to = file.path(output_dir_html, "index.pdf")
+  fs::file_copy(
+    path = pdf_file,
+    new_path = file.path(output_dir_html, "index.pdf"),
+    overwrite = TRUE
   )
 }
 
@@ -23,7 +24,7 @@ if (length(pdf_file) == 1) {
 robots_file <- file.path(output_dir_html, "robots.txt")
 
 if (!checkmate::test_file_exists(robots_file)) {
-  rutils:::create_file(robots_file)
+  fs::file_create(robots_file)
 }
 
 # Change this part if you will not use GitHub Pages.
@@ -48,9 +49,10 @@ writeLines(
 favicon_file <- here::here("images", "favicon.png")
 
 if (checkmate::test_file_exists(favicon_file)) {
-  rutils:::copy_file(
-    from = favicon_file,
-    to = file.path(output_docs, "favicon.png")
+  fs::file_copy(
+    path = favicon_file,
+    new_path = file.path(output_docs, "favicon.png"),
+    overwrite = TRUE
   )
 }
 

@@ -1,4 +1,5 @@
 # library(beepr)
+# library(fs)
 # library(here)
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
@@ -49,11 +50,11 @@ output_docs_new_dirs <- list.dirs(
   here::here(get(paste0("output_docs_", env_vars$format)), .)
 
 for (i in output_docs_old_files) {
-  if (checkmate::test_file_exists(i)) rutils:::delete_file(i)
+  if (checkmate::test_file_exists(i)) fs::file_delete(i)
 }
 
 for (i in output_docs_old_dirs) {
-  if (checkmate::test_directory_exists(i)) rutils:::delete_dir(i)
+  if (checkmate::test_directory_exists(i)) fs::file_delete(i)
 }
 
 for (i in output_docs_new_dirs) {
@@ -61,11 +62,10 @@ for (i in output_docs_new_dirs) {
 }
 
 for (i in seq_along(output_docs_new_files)) {
-  rutils:::copy_file(
-    from = output_dir_files[i],
-    to = output_docs_new_files[i],
-    overwrite = TRUE,
-    recursive = TRUE
+  fs::file_copy(
+    path = output_dir_files[i],
+    new_path = output_docs_new_files[i],
+    overwrite = TRUE
   )
 }
 
@@ -93,7 +93,7 @@ dir_list <-
   c(".temp", "index_cache", "index_files", "site_libs") |>
   append(x = _, list.dirs("qmd")[-1])
 
-quartor::::clean_quarto_mess(
+quartor::clean_quarto_mess(
   file = NULL,
   dir = dir_list,
   ext = c(

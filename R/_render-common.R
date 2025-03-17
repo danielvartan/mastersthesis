@@ -45,7 +45,7 @@ for (i in folders) {
 env_vars_file_path <- here::here("_variables.yml")
 
 if (!checkmate::test_file_exists(env_vars_file_path)) {
-  rutils:::create_file(env_vars_file_path)
+  fs::file_create(env_vars_file_path)
 }
 
 # Create `_results.yml` if it doesn't exist -----
@@ -53,7 +53,7 @@ if (!checkmate::test_file_exists(env_vars_file_path)) {
 res_vars_file_path <- here::here("_results.yml")
 
 if (!checkmate::test_file_exists(res_vars_file_path)) {
-  rutils:::create_file(res_vars_file_path)
+  fs::file_create(res_vars_file_path)
 }
 
 # Run the data pipeline if the `_targets` directory doesn't exist -----

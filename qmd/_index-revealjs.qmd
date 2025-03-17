@@ -506,7 +506,7 @@ weighted_data |>
     col_fill = "msf_sc",
     transform = "identity",
     binned = FALSE,
-    breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
+    breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
     labels = plotr:::format_as_hm,
     limits = limits, # !!!
     quiet = TRUE
@@ -1008,7 +1008,7 @@ weighted_data |>
     col_fill = "msf_sc",
     transform = "identity",
     binned = TRUE,
-    breaks = seq(limits[1], limits[2], length.out = 6) |> rm_caps(),
+    breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
     labels = plotr:::format_as_hm,
     limits = limits,
     quiet = TRUE

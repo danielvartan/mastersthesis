@@ -58,7 +58,7 @@ stats_summary <- function(
   }
 
   if (isTRUE(remove_outliers)) {
-    x <- x |> remove_outliers(method = "iqr", iqr_mult = iqr_mult)
+    x <- x |> rutils::remove_outliers(method = "iqr", iqr_mult = iqr_mult)
   }
 
   out <- list(

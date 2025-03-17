@@ -5,7 +5,7 @@
 source(here::here("R/test_normality.R"))
 
 normality_summary <- function(
-    data,
+    data, #nolint
     col,
     round = FALSE,
     digits = 5,

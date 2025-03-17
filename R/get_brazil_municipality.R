@@ -9,7 +9,6 @@ library(rlang)
 # library(stringr)
 
 source(here::here("R", "get_brazil_state.R"))
-source(here::here("R", "to_title_case_pt.R"))
 source(here::here("R", "utils.R"))
 
 # Based on data from the Brazilian Institute of Geography and Statistics (IBGE)
@@ -75,7 +74,7 @@ get_brazil_municipality <- function(
         state_code = as.integer(state_code),
         state = get_brazil_state(federal_unit),
         municipality_code = as.integer(municipality_code),
-        municipality = to_title_case_pt(
+        municipality = rutils::to_title_case_pt(
           municipality,
           articles = TRUE,
           conjuctions = FALSE,
@@ -115,7 +114,8 @@ get_brazil_municipality <- function(
   } else {
     municipality <-
       municipality |>
-      to_ascii_and_lower() |>
+      groomr::to_ascii() |>
+      stringr::str_to_lower() |>
       stringr::str_remove_all("[^a-z'\\- ]") |>
       stringr::str_squish()
 
@@ -128,7 +128,8 @@ get_brazil_municipality <- function(
 
       state <-
         state |>
-        to_ascii_and_lower() |>
+        groomr::to_ascii() |>
+        stringr::str_to_lower() |>
         stringr::str_remove_all("[^a-z'\\- ]") |>
         stringr::str_squish()
     }
@@ -140,14 +141,14 @@ get_brazil_municipality <- function(
         data <-
           brazil_municipalities_data |>
           dplyr::filter(
-            to_ascii_and_lower(municipality) %in% .env$municipality[i]
+            groomr::to_ascii(tolower(municipality)) %in% .env$municipality[i]
           )
       } else {
         data <-
           brazil_municipalities_data |>
           dplyr::filter(
-            to_ascii_and_lower(municipality) %in% .env$municipality[i] &
-            to_ascii_and_lower(state) %in% .env$state[i]
+            groomr::to_ascii(tolower(municipality)) %in% .env$municipality[i] &
+            groomr::to_ascii(tolower(state)) %in% .env$state[i]
           )
       }
 

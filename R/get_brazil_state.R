@@ -13,7 +13,7 @@ get_brazil_state <- function(x = NULL, by = "fu") {
   checkmate::assert_character(x, null.ok = TRUE)
   checkmate::assert_choice(by, c("fu", "region"))
 
-  if (!is.null(x)) x <- x |> to_ascii_and_lower()
+  if (!is.null(x)) x <- x |> groomr::to_ascii() |> tolower()
 
   if (is.null(x)) {
     c(
@@ -104,7 +104,7 @@ get_brazil_state_capitals <- function(x = NULL, by = "fu") {
   checkmate::assert_character(x, null.ok = TRUE)
   checkmate::assert_choice(by, c("fu", "state"))
 
-  if (!is.null(x)) x <- x |> to_ascii_and_lower()
+  if (!is.null(x)) x <- x |> groomr::to_ascii() |> tolower()
 
   if (is.null(x)) {
     c(
@@ -221,7 +221,7 @@ get_brazil_state_latitude <- function(x, type = "fu") {
   # if (type == "fu") assert_brazil_fu(x)
   if (type == "state") x <- get_brazil_fu(x)
 
-  x <- x |> to_ascii_and_lower()
+  x <- x |> groomr::to_ascii() |> tolower()
 
   dplyr::case_when(
     x == "ac" ~ -9.9765362, # Rio Branco
@@ -272,7 +272,7 @@ get_brazil_state_longitude <- function(x, type = "fu") {
   # if (type == "fu") assert_brazil_fu(x)
   if (type == "state") x <- get_brazil_fu(x)
 
-  x <- x |> to_ascii_and_lower()
+  x <- x |> groomr::to_ascii() |> tolower()
 
   dplyr::case_when(
     x == "ac" ~ -67.8220778, # Rio Branco
@@ -416,7 +416,7 @@ get_brazil_state_code <- function(x = NULL, type = "fu") {
   } else {
     if (type == "state") x <- get_brazil_fu(x)
 
-    x <- x |> to_ascii_and_lower()
+    x <- x |> groomr::to_ascii() |> tolower()
 
     dplyr::case_when(
       x == "ac" ~ 12,

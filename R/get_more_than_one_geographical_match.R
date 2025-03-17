@@ -68,9 +68,12 @@ get_more_than_one_geographical_match <- function(
       dplyr::filter(!is.na(value))
 
     match_pattern_i <- stringr::str_subset(
-      brazil_municipalities |> to_ascii_and_lower(),
+      brazil_municipalities |>
+        groomr::to_ascii() |>
+        stringr::str_to_lower(),
       i |>
-        to_ascii_and_lower() |>
+        groomr::to_ascii() |>
+        stringr::str_to_lower() |>
         stringr::str_squish() |>
         stringr::str_escape()
     )

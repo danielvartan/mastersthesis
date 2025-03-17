@@ -7,7 +7,7 @@
 source(here::here("R", "get_brazil_address_by_postal_code.R"))
 
 get_and_write_geocode_data <- function(
-    data,
+    data, #nolint
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA",
     method = "google",
     limit = 100

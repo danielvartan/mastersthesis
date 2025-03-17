@@ -6,7 +6,7 @@
 source(here::here("R", "write_values_to_lookup_sheet.R"))
 
 clean_special_cases_sheet <- function(
-    ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA"
+    ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA" #nolint
   ) {
   prettycheck::assert_internet()
   prettycheck::assert_interactive()

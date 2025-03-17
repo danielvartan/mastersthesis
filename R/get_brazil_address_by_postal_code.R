@@ -21,9 +21,9 @@ source(here::here("R", "utils.R"))
 #'
 #' @description
 #'
-#' `get_brazil_address_by_postal_code()` is a function that retrieves a Brazilian
-#' address based on a postal code. It uses reverse geocoding to approximate the
-#' address based on the postal code.
+#' `get_brazil_address_by_postal_code()` is a function that retrieves a
+#' Brazilian address based on a postal code. It uses reverse geocoding to
+#' approximate the address based on the postal code.
 #'
 #' Please note that the accuracy of the results may vary depending on the method
 #' used.
@@ -73,7 +73,7 @@ source(here::here("R", "utils.R"))
 #' c("01223000", NA, "05411002") |> get_brazil_address_by_postal_code()
 #' }
 get_brazil_address_by_postal_code <- function(
-    postal_code,
+    postal_code, #nolint
     method = "qualocep",
     fix_code = TRUE,
     limit = 10
@@ -106,7 +106,7 @@ get_brazil_address_by_postal_code <- function(
 }
 
 get_brazil_address_by_postal_code_osm <- function(
-    postal_code,
+    postal_code, #nolint
     limit = 10
   ) {
   postal_code <- fix_postal_code(postal_code)
@@ -209,7 +209,7 @@ get_brazil_address_by_postal_code_osm <- function(
 }
 
 get_brazil_address_by_postal_code_google <- function(
-    postal_code,
+    postal_code, #nolint
     limit = 10
   ) {
   postal_code <- fix_postal_code(postal_code)
@@ -346,7 +346,7 @@ get_brazil_address_by_postal_code_google <- function(
 }
 
 get_brazil_address_by_postal_code_qualocep <- function(
-    postal_code,
+    postal_code, #nolint
     limit = 10
   ) {
   postal_code <- fix_postal_code(postal_code)

@@ -58,10 +58,9 @@ contributes:
       pdf-engine: lualatex
       documentclass: abntex2
       # Install the fonts before rendering
-      # (See the extention `ttf` and `otf` folder)
+      # (See the extension `ttf` and `otf` folder)
       # To get font family names see `systemfonts::system_fonts()`
-      # For "DM Sans", discard the variable sizes (e.g., "18pt") from the files.
-      mainfont: DM Sans # Base font {\rmdefault\rmfmaily}
+      mainfont: Poppins # Base font {\rmdefault\rmfmaily}
       sansfont: Poppins # Heading font {\sfdefault\sffamily}
       monofont: DM Mono # Code font {\ttdefault\ttfamily}
       monofontoptions:
@@ -118,14 +117,11 @@ contributes:
       code-block-bg: "#F1F3F5"
       fig-format: png
       fig-dpi: 150
-      # See: <https://quarto.org/docs/computations/
-      #       execution-options.html#figure-options>.
-      fig-width: 5.5 # Default: 5.5
-      fig-height: 4 # Default: 3.5
-      # See: <https://quarto.org/docs/reference/cells/cells-knitr.html#figures>.
+      fig-width: 5.5 # Quarto default: 5.5
+      fig-height: 4 # Quarto default: 3.5
       out-width: 80%
-      fig-pos: H # `abntex2` default: htb (doesn't work)
-      tbl-pos: H # `abntex2` default: htb (doesn't work)
+      fig-pos: H
+      tbl-pos: H
       cap-location: top
       cap-hyphenpenalty: true
       legend-hyphenpenalty: true
@@ -173,7 +169,7 @@ contributes:
         - lbx/english-abnt.lbx
         - lbx/brazil-abnt.lbx
         - lbx/spanish-abnt.lbx
-        - bbx/apa.bbx # Changes were made—look for the "{abnt}" marker
+        - bbx/apa.bbx
         - cbx/apa.cbx
         - dbx/apa.dbx
         - lbx/english-apa.lbx

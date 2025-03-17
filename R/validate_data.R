@@ -87,7 +87,7 @@ rm_test_cases <- function(data) {
     dplyr::filter(!track == "teste" | is.na(track)) |>
     dplyr::filter(
       !stringr::str_detect(
-        string = to_ascii_and_lower(name),
+        string = name |> groomr::to_ascii() |> tolower(),
         pattern = pattern
       )
     )

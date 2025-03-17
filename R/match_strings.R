@@ -29,9 +29,10 @@ source(here::here("R", "utils.R"))
 #'
 #' @description
 #'
-#' `match_strings()` is a function that performs approximate string matching
-#' between two [`character`][base::character()] vectors using the
+#' `match_strings()` performs approximate string matching between two
+#' [`character`][base::character()] vectors using the
 #' [`amatch()`][stringdist::amatch()] function from the `stringdist` package.
+#'
 #' The difference between this function and [`amatch()`][stringdist::amatch()]
 #' is that `match_strings()` returns a [`tibble`][tibble::tibble()] with the
 #' original strings and their matched counterparts, while
@@ -70,10 +71,10 @@ match_strings <- function(raw, reference, one_by_one = FALSE, ...) {
         .f = function(x, y) {
           match_test <-
             stringdist::amatch(
-            x = x |> to_ascii_and_lower(),
-            table = y |> to_ascii_and_lower(),
-            ...
-          )
+              x = x |> groomr::to_ascii() |> tolower(),
+              table = y |> groomr::to_ascii() |> tolower(),
+              ...
+            )
 
           if (is.na(match_test)) NA_character_ else y
         }
@@ -85,8 +86,8 @@ match_strings <- function(raw, reference, one_by_one = FALSE, ...) {
     )
   } else {
     match <- stringdist::amatch(
-      x = raw |> to_ascii_and_lower(),
-      table = reference |> to_ascii_and_lower(),
+      x = raw |> groomr::to_ascii() |> tolower(),
+      table = reference |> groomr::to_ascii() |> tolower(),
       ...
     )
 

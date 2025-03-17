@@ -13,7 +13,7 @@
 source(here::here("R", "save_and_lock.R"))
 
 lock_and_store_data <- function(
-    data,
+    data, #Nolint
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub"),
     upload_to_osf = FALSE,
@@ -49,7 +49,7 @@ lock_and_store_data <- function(
 source(here::here("R", "save_and_lock.R"))
 
 lock_data <- function(
-    data,
+    data, #nolint
     public_key = here::here("_ssh", "id_rsa.pub"),
     name_pattern = deparse(substitute(data))
   ) {
@@ -117,7 +117,7 @@ lock_data <- function(
 # library(rutils) # github.com/danielvartan/rutils
 
 store_data <- function(
-    file,
+    file, #nolint
     osf_pat = Sys.getenv("OSF_PAT"),
     upload_to_osf = TRUE
   ) {

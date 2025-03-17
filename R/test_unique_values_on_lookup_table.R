@@ -5,7 +5,7 @@
 source(here::here("R", "utils.R"))
 
 test_unique_values_on_lookup_table <- function(
-    sheet,
+    sheet, #nolint
     ss = "1GJg7qVSb5srRe4wsFBBH5jIAMF7ZvCMyaB3hbFuhCDA"
   ) {
   checkmate::assert_string(sheet)

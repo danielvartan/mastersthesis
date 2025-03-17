@@ -21,10 +21,11 @@ if (!checkmate::test_directory_exists(dir_path)) {
   dir.create(dir_path) |> invisible()
 }
 
-for (i in rutils:::list_files(here::here("images"))) {
-  rutils:::copy_file(
-    from = i,
-    to = file.path(dir_path, basename(i))
+for (i in fs::dir_ls(here::here("images"), type = "file")) {
+  fs::file_copy(
+    path = i,
+    new_path = file.path(dir_path, basename(i)),
+    overwrite = TRUE
   )
 }
 
@@ -93,7 +94,7 @@ for (i in var_files){
         }
 
         env_vars[["author-initials"]] <-
-          rutils:::extract_initials(values[test][1])
+          rutils::extract_initials(values[test][1])
       }
 
       env_vars[[j]] <- values[test][1] |> unname()
