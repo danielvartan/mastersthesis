@@ -5,7 +5,7 @@
 md_effect_size <- function(
     test = "final", #nolint
     prefix = "Cohen's ",
-    max_digits = 10,
+    max_digits = 5,
     results_yml = here::here("_results.yml")
   ) {
   checkmate::assert_choice(test, c("hta", "htb", "final"))
@@ -40,7 +40,7 @@ md_effect_size <- function(
 md_adj_r_squared <- function(
     test = "hta", #nolint
     model = "restricted",
-    max_digits = 10,
+    max_digits = 5,
     results_yml = here::here("_results.yml")
 ) {
   checkmate::assert_choice(test, c("hta", "htb"))
@@ -52,12 +52,10 @@ md_adj_r_squared <- function(
     results_yml |> yaml::read_yaml() |>
     magrittr::extract2(paste(test, model, "model_adj_r_squared", sep = "_"))
 
-  # $\text{F}(4, 65814) = 51.71$
-
   paste0(
     "$",
     "\\text{R}^2_{\\text{adj}} = ",
-    data$value[1],
+    data$value[1] |> round(max_digits),
     "$"
   ) |>
     I()

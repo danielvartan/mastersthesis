@@ -62,24 +62,23 @@ install.packages(
 ```
 
 2)  Clone this repository.
-3)  Open the R project (`mastersthesis.Rproj`).
+3)  Open the R project in your IDE of choice.
 4)  Run
     [`renv::restore()`](https://rstudio.github.io/renv//reference/restore.html)
     to install all software dependencies.
 5)  Set all the keys provided by the author in the `.Renviron` file and
     the `_ssh` folder.
-6)  Run `targets::tar_make()` to create every point of the data
-    wrangling process (from the raw data to the cleaned and weighted
-    data).
+6)  Execute `targets::tar_make()` to run the entire pipeline, processing
+    the raw data through to the validated and weighted data.
 7)  Run any analysis present in the computational notebooks (`qmd`
     directory).
 
 ## Keys
 
 To access the data and run the notebooks, you will need to set the
-following keys in the
+following keys in a file named
 [`.Renviron`](https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file)
-file:
+located in the root directory of the project:
 
 - `OSF_PAT`: Your [OSF](https://osf.io/) Personal Access Token (PAT). If
   you don’t have one, go to the settings section of your OSF account and

@@ -253,7 +253,7 @@ ibge_6407_data |>
   dplyr::as_tibble()
 ```
 
-See <https://www.tidyverse.org/blog/2022/05/case-weights/> to learn more.
+Click [here](https://www.tidyverse.org/blog/2022/05/case-weights/) to learn more.
 
 ```{r}
 weights_data <-

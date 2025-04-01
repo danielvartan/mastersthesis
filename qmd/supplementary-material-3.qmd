@@ -1185,7 +1185,7 @@ Observed relation between age and chronotype, divided by sex and aggregated by t
 :::
 
 ::: {#fig-sm-3-roenneberg-2007-figure-4}
-![](images/roenneberg-2007-figure-4.png){width=80%}
+![](images/roenneberg-2007-figure-4.png){style="width: 80%;"}
 
 [Source: Reproduced from @roenneberg2007[Figure 4].]{.legend}
 
@@ -1283,7 +1283,7 @@ Observed distribution of the local time of the sleep-corrected midpoint between 
 :::
 
 ::: {#fig-sm-3-roenneberg-2019-figure-1}
-![](images/roenneberg-2019-figure-1.png){width: 80%}
+![](images/roenneberg-2019-figure-1.png){style="width: 80%;"}
 
 [Source: Reproduced from @roenneberg2019b[Figure 1, right part].] {.legend}
 

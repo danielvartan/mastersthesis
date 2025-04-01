@@ -40,7 +40,7 @@ For example, @leocadio-miguel2017 claimed to find a meaningful association betwe
 The results from the latitude hypothesis highlight common limitations of studies relying on Null Hypothesis Significance Testing (NHST). A *p*-value does not measure effect size; rather, it represents the conditional probability of observing the test statistic (or a more extreme value) given that the null hypothesis is true [@cohen1994; @wasserstein2016]. As @cohen1988a[p. 16] noted, the goal in NHST is not to test whether the population effect size is literally zero, but rather whether it is negligible or trivial.
 
 ::: {#fig-chapter-4-leocadio-miguel-2017-figure-2}
-![](images/leocadio-miguel-2017-figure-2.png){width=85%}
+![](images/leocadio-miguel-2017-figure-2.png){width=80%}
 
 [Source: Reproduced from @leocadio-miguel2017[Figure 2].]{.legend}
 

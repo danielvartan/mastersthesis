@@ -20,6 +20,9 @@ logo:
     favicon:
       path: images/favicon.png
       alt: "Favicon"
+    og-image:
+      path: images/og-image.png
+      alt: "Open Graph Image"
 
 # For a better visualization of the color palette, see:
 #

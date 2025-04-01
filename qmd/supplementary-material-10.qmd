@@ -57,7 +57,7 @@ An abstract pertaining to the primary investigation was published and presented 
 
 Vartanian, D., & Pedrazzoli, M. (2022). *Ecology of sleep and circadian phenotypes of the Brazilian population* \[Poster\]. São Paulo Research Foundation; São Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms. <https://doi.org/10.13140/RG.2.2.25343.07840>
 
-In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation ([SIICUSP](https://prpi.usp.br/siicusp/)) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartaniang. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of *Earth and Exact Sciences*.
+In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation ([SIICUSP](https://prpi.usp.br/siicusp/)) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartaniano. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of *Earth and Exact Sciences*.
 
 ## Research Compendium
 
@@ -65,7 +65,7 @@ This thesis, along with all the accompanying research, is structured and organiz
 
 <!-- @vartanian2025 -->
 
-Vartanian, D. (2025). *Is latitude associated with chronotype?* [Research compendium]. <https://doi.org/10.17605/OSF.IO/YGKTS>
+Vartanian, D. (2025). *Is latitude associated with chronotype?* \[Research compendium\]. <https://doi.org/10.17605/OSF.IO/YGKTS>
 
 ## Data Plans
 
@@ -81,11 +81,11 @@ The following R packages, Python package, [Quarto](https://quarto.org/) format (
 
 <!-- @vartaniane -->
 
-Vartanian, D. (n.d.). *{entrainment}: a rule-based model of the 24h light/dark cycle entrainment phenomenon* [Software, Python Package]. <https://github.com/danielvartan/entrainment>
+Vartanian, D. (n.d.). *{entrainment}: A rule-based model of the 24h light/dark cycle entrainment phenomenon* [Software, Python Package]. <https://github.com/danielvartan/entrainment>
 
 <!-- @vartanianh -->
 
-Vartanian, D[^sm-10-1]. (n.d.). *{mctq}: tools to process the Munich ChronoType Questionnaire (MCTQ)* [Software, R Package]. <https://docs.ropensci.org/mctq> (The package has already surpassed [9,000 downloads](https://danielvartan.shinyapps.io/cran-logs/?package=mctq))
+Vartanian, D[^sm-10-1]. (n.d.). *{mctq}: Munich ChronoType Questionnaire (MCTQ) tools* [Software, R Package]. <https://docs.ropensci.org/mctq> (The package has already surpassed [9,000 downloads](https://danielvartan.shinyapps.io/cran-logs/?package=mctq))
 
 <!-- @vartanianr -->
 
@@ -93,7 +93,7 @@ Vartanian, D. (n.d.). *{brandr}: Brand identity management using brand.yml stand
 
 <!-- @vartanianc -->
 
-Vartanian, D. (n.d.). *{lubritime}: an extension for the lubridate package* [Software, R package]. <https://github.com/danielvartan/lubritime>
+Vartanian, D. (n.d.). *{lubritime}: An extension for the lubridate package* [Software, R package]. <https://github.com/danielvartan/lubritime>
 
 <!-- @vartanianq -->
 
@@ -105,15 +105,15 @@ Vartanian, D. (n.d.). *{quartor}: Tools for the Quarto publishing system* [Softw
 
 <!-- @vartaniand -->
 
-Vartanian, D. (n.d.). *{lockr}: easily encrypt/decrypt files* [Software, R package]. <https://github.com/danielvartan/lockr>
+Vartanian, D. (n.d.). *{lockr}: Easily encrypt/decrypt files* [Software, R package]. <https://github.com/danielvartan/lockr>
 
 <!-- @vartanianb -->
 
-Vartanian, D. (n.d.). *{prettycheck}: pretty assertive programming* [Software, R package]. <https://github.com/danielvartan/prettycheck>
+Vartanian, D. (n.d.). *{prettycheck}: Pretty assertive programming* [Software, R package]. <https://github.com/danielvartan/prettycheck>
 
 <!-- @vartaniang -->
 
-Vartanian, D. (n.d.). *{groomr}: tools to tidy strings and text files* [Software, R package]. <https://github.com/danielvartan/groomr>
+Vartanian, D. (n.d.). *{groomr}: Tidy functions* [Software, R package]. <https://github.com/danielvartan/groomr>
 
 <!-- @vartanians -->
 
@@ -125,7 +125,7 @@ Vartanian, D. (n.d.). *{abnt}: Quarto format for ABNT theses and dissertations* 
 
 <!-- @vartaniann -->
 
-Vartanian, D. (n.d.). *HTML color codes in hex and RGB formats for Espanso* [Software, Espanso package]. <https://github.com/danielvartan/groomr>
+Vartanian, D. (n.d.). *HTML color codes in hex and RGB formats for Espanso* [Software, Espanso package]. <https://hub.espanso.org/html-colors>
 
 ## Exercises
 
@@ -154,8 +154,10 @@ Vartanian, D. (2024). *Demonstrations of the central limit theorem*. <https://da
 
 ## Other Projects
 
-The author is also currently working on the development of the project below.
+The author is also currently working on the development of the two projects below.
 
-Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). *Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor* \[Master's project, University of Sao Paulo\]. <https://bit.ly/4fYOWgy>
+Carvalho, A. M. de, Klapka, C. S., Magalhães, A. R., Barbosa, B. B., Vartanian, D., Schettino, J. P. J., & Pereira, E. B. (2023). *Global syndemic: The impact of anthropogenic climate change on the health and nutrition of children under five years old attended by Brazil’s public health system (SUS)* [CNPq project, University of São Paulo]. <https://doi.org/10.17605/OSF.IO/8W36C>
+
+Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). *Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor* \[Master's project, University of São Paulo\]. <https://doi.org/10.17605/OSF.IO/S4TBZ>
 
 [^sm-10-1]: The package has already surpassed [9,000 downloads](https://danielvartan.shinyapps.io/cran-logs/?package=mctq).

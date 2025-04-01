@@ -57,13 +57,13 @@ The following study was designed for publication in the journal [*Scientific Rep
 
 Humans exhibit a variety of observable traits, such as eye or hair color, which are referred to as phenotypes. These phenotypes also manifest in the way our bodies function.
 
-A chronotype is a temporal phenotype [@ehret1974a; @pittendrigh1993], typically used to refer to endogenous circadian rhythms---biological rhythms with periods close to 24 hours. Chronobiology, the science that studies biological rhythms, suggests that the evolution of these internal oscillators is closely linked to our environment, particularly the day/night cycle. This cycle, alongside human evolution, created environmental pressures that led to the development of temporal organization within organisms [@pittendrigh1981; @aschoff1989; @paranjpe2005]. Such organization allowed organisms to predict events and better manage their needs, such as storing food for winter [@aschoff1989a].
+A chronotype is a temporal phenotype [@ehret1974a; @pittendrigh1993], typically used to refer to endogenous circadian rhythms---biological rhythms with periods close to 24 hours. Chronobiology, the science that studies biological rhythms, suggests that the evolution of these internal oscillators is closely linked to our environment, particularly to the day/night cycle. Is believed that this cycle, alongside human evolution, created environmental pressures that led to the development of temporal organization within organisms [@pittendrigh1981; @aschoff1989; @paranjpe2005]. Such organization allowed organisms to predict events and better manage their needs, such as storing food for winter [@aschoff1989a].
 
-For a temporal system to be useful, it must be capable of adapting to environmental changes. Environmental signals capable of regulating biological rhythms are known as zeitgebers (from the German _zeit_, meaning time, and _geber_, meaning donor [@cambridgeuniversitypress]). These zeitgebers provide inputs that can shift and synchronize biological rhythms in a process called entrainment [@khalsa2003; @minors1991].
+For a temporal system to be effective, it must adapt to environmental changes. Environmental cues that regulate biological rhythms are termed zeitgebers (from the German _zeit_, meaning time, and _geber_, meaning giver [@cambridgeuniversitypress]). These zeitgebers act as inputs that shift and synchronize biological rhythms through a process known as entrainment [@khalsa2003; @minors1991].
 
 The primary zeitgeber influencing biological rhythms is the light/dark cycle, or, simply, light exposure [@aschoff1960; @pittendrigh1960; @roenneberg2016]. Given its significant role in entraining the biological clock, several studies have hypothesized that the latitudinal shift of the sun, due to the Earth's axial tilt, might lead to different temporal traits in populations near the equator compared to those closer to the poles [@bohlen1973; @randler2008; @leocadio-miguel2014; @horzum2015; @leocadio-miguel2017]. This is based on the idea that populations at low or higher latitudes experience greater fluctuations in sunlight and a weaker overall solar zeitgeber. This concept is known as the latitude hypothesis, or the environmental hypothesis of circadian rhythm regulation.
 
-Several studies have claimed to find this association in humans, but the evidence they provide is of very low quality or is misleading [@randler2008; @leocadio-miguel2014; @horzum2015; @leocadio-miguel2017; @wang2023]. A notable attempt was made by @leocadio-miguel2017, who measured the chronotype of $12,884$ Brazilian subjects across a wide latitudinal range using the Horne-Östberg (HO) Morningness–Eveningness questionnaire [@horne1976]. Although the authors concluded that there was a meaningful association between latitude and chronotype, their results were too small to be considered practically significant (even by lenient standards), with latitude explaining only approximately $0.388\%$ of the variance in chronotype (Cohen's $f^2 = 0.004143174$). One possible explanation for this result is that the HO measures psychological traits rather than the biological states of circadian rhythms themselves [@roenneberg2019c], suggesting it may not be the most suitable tool for testing the hypothesis [@leocadio-miguel2014].
+Several studies have claimed to find this association in humans, but the evidence they provide is of very low quality or simply misleading [e.g., @randler2008; @leocadio-miguel2014; @horzum2015; @leocadio-miguel2017; @wang2023]. A notable attempt was made by @leocadio-miguel2017, who measured the chronotype of $12,884$ Brazilian subjects across a wide latitudinal range using the Horne-Östberg (HO) Morningness–Eveningness questionnaire [@horne1976]. Although the authors concluded that there was a meaningful association between latitude and chronotype, their results were too small to be considered practically significant (even by lenient standards), with latitude explaining only approximately $0.388\%$ of the variance in chronotype (Cohen's $f^2 = 0.00414$). One possible explanation for this result is that the HO measures psychological traits rather than the biological states of circadian rhythms themselves [@roenneberg2019c], suggesting it may not be the most suitable tool for testing the hypothesis [@leocadio-miguel2014].
 
 Building on @leocadio-miguel2017, this study offers a novel attempt to test the latitude hypothesis by employing a biological approach through the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003b] and an enhanced statistical methodology. Additionally, it utilizes the largest dataset on chronotype from a single country, as far as the existing literature suggests, comprising `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` respondents, all residing within the same timezone in Brazil and completing the survey within a one-week window (@fig-chapter-5-sample-geographical-distribution).
 
@@ -292,9 +292,9 @@ Additional details about the sample are available in the supplementary materials
 
 To assess the adequacy of the sample size for detecting effects reaching the Minimum Effect Size (MES) threshold ($f^2 = 0.02$), we conducted an *a posteriori* power analysis using the [pwrss](https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html) R package [@bulus]. This analysis revealed a minimum sample size of `{r} res_vars$hta_pwr_analysis$n |> groomr:::format_to_md_latex()` observations per variable to achieve a power ($1 - \beta$) of $0.99$ with a significance level ($\alpha$) of $0.01$. Our sample size (`{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex(before = "n = ")`) comfortably surpasses this threshold, ensuring adequate power.
 
-### Data Wrangling
+### Data Munging
 
-Data wrangling and analysis followed the data science framework proposed by Hadley Wickham and Garrett Grolemund [@wickham2023e]. All processes were conducted using the R programming language [@rcoreteama], the RStudio IDE [@positteama], and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023c] were prioritized.
+Data munging and analysis followed the data science framework proposed by Hadley Wickham and Garrett Grolemund [@wickham2023e]. All processes were conducted using the R programming language [@rcoreteama] and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023c] were prioritized.
 
 The MCTQ data was analyzed using the [mctq](https://docs.ropensci.org/mctq/) R package [@vartanianh], which is part of the rOpenSci peer-reviewed ecosystem. The data pipeline was built using the rOpenSci peer-reviewed [targets](https://books.ropensci.org/targets/) R package [@landau2021a], which provides a reproducible and efficient workflow for data analysis.
 
@@ -310,9 +310,9 @@ To ensure practical significance, a Minimum Effect Size (MES) criterion was appl
 
 The hypothesis can be outlined as follows:
 
-- **Null hypothesis** ($\text{H}_{0}$): Adding *latitude* does not meaningfully improve the model’s fit, indicated by a negligible change in adjusted $\text{R}^{2}$ or a non-significant F-test (with a Type I error probability ($\alpha$) of $0.05$).
+- **Null hypothesis** ($\text{H}_{0}$): Adding *latitude* does not meaningfully improve the model’s fit, indicated by a negligible change in adjusted $\text{R}^{2}$.
 
-- **Alternative Hypothesis** ($\text{H}_{a}$): Adding *latitude* meaningfully improves the model’s fit, indicated by an increase in adjusted $\text{R}^{2}$ exceeding the MES and a significant F-test (with $\alpha < 0.05$).
+- **Alternative Hypothesis** ($\text{H}_{a}$): Adding *latitude* meaningfully improves the model’s fit, indicated by an increase in adjusted $\text{R}^{2}$ exceeding the MES.
 
 Formally:
 
@@ -347,7 +347,7 @@ The code repository is available on GitHub at <https://github.com/danielvartan/m
 
 This study was financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil ([CAPES](https://www.gov.br/capes/)) - Finance Code 001, Grant number 88887.703720/2022-00.
 
-## Ethics Declarations
+## Ethics Declaration
 
 The author declares that the study was carried out without any commercial or financial connections that could be seen as a possible competing interest.
 
