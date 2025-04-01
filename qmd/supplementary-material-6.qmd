@@ -2415,7 +2415,7 @@ $$
 \end{cases}
 $$
 
-### F-test
+### F-Test
 
 The results indicate that the F-test is significant ($\alpha < 0.05$), meaning that the model including the latitude variable differs from the model without it.
 

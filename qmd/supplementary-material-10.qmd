@@ -13,12 +13,12 @@ During the development of this thesis, several activities have been accomplished
 
 ## Courses
 
-The following graduate courses from the University of São Paulo ([USP](https://www5.usp.br/)) were completed during the first year of the master's program.
+The following graduate courses from the University of São Paulo ([USP](https://www5.usp.br/)) were completed during the first year of the Master's Program.
 
-* 2022/2: [*SCX5000 - Mathematical and Computational Methods I*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5000) (10 credits) (Concept: **C**);
-* 2022/2: [*SCX5002 - Complex Systems I*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5002) (10 credits) (Concept: **A**);
-* 2023/1: [*SCX5001 - Mathematical and Computational Methods II*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5001) (10 credits) (Concept: **A**);
-* 2023/1: [*SCX5017 - Introduction to Data Science*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5017) (10 credits) (Concept: **A**);
+* 2022/2: [*SCX5000 - Mathematical and Computational Methods I*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5000) (10 credits) (Concept: **C**).
+* 2022/2: [*SCX5002 - Complex Systems I*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5002) (10 credits) (Concept: **A**).
+* 2023/1: [*SCX5001 - Mathematical and Computational Methods II*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5001) (10 credits) (Concept: **A**).
+* 2023/1: [*SCX5017 - Introduction to Data Science*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5017) (10 credits) (Concept: **A**).
 * 2023/1: [*EAH5001 - Pedagogic Preparation*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=EAH5001) (4 credits) (Concept: **A**).
 
 Please note that the unfortunate **C** concept above happened in the same semester when the author broke relations with his former supervisor.
@@ -27,7 +27,7 @@ Please note that the unfortunate **C** concept above happened in the same semest
 
 ## Teaching Internship
 
-Scholarship students under the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) are required to participate in the [Teaching Improvement Program (PAE)](www5.each.usp.br/pae/). This internship occur in the 2º semester of 2023.
+Scholarship students under the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) are required to participate in the [Teaching Improvement Program (PAE)](www5.each.usp.br/pae/). This internship occurred in the 2º semester of 2023.
 
 The internship responsibilities entailed serving as an Assistant Professor for the undergraduate course [*ACH0042 - Problem-Based Learning II*](https://uspdigital.usp.br/jupiterweb/obterDisciplina?nomdis=&sgldis=ACH0042) at USP. A comprehensive teaching plan was formulated during enrollment in the aforementioned graduate course *EAH5001*, and it is accessible through the following link.
 
@@ -51,7 +51,7 @@ This endeavor is linked to the thesis, as the author's membership in rOpenSci be
 
 ## Conferences
 
-An abstract pertaining to the primary investigation was published and presented on a poster at the [Sao Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms](https://espca.fapesp.br/school/sao_paulo_school_of_advanced_science_on_ecology_of_human_sleep_and_biological_rhythms/101/) organized by the [São Paulo Research Foundation (FAPESP)](https://fapesp.br/en). This international school hosted 100 participants, including students and young researchers, with a diverse representation of 50 individuals from various states within Brazil and an additional 50 from international backgrounds. The event took place from November 16, 2022, to November 26, 2022.
+An abstract pertaining to the primary investigation was published and presented on a poster at the [Sao Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms](https://espca.fapesp.br/school/sao_paulo_school_of_advanced_science_on_ecology_of_human_sleep_and_biological_rhythms/101/) organized by the [São Paulo Research Foundation (FAPESP)](https://fapesp.br/en). This international school hosted 100 participants, including students and young researchers, with a diverse representation of 50 individuals from various states within Brazil and an additional 50 from international backgrounds. The event was held from November 16 to 26, 2022.
 
 <!-- @vartanian2022a -->
 

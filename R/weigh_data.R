@@ -58,7 +58,7 @@ weigh_data <- function(data) {
     dplyr::mutate(
       year = as.integer(year),
       country = "Brazil",
-      region = orbis::get_brazil_region(state, "state"),
+      region = orbis::get_brazil_region(state),
       sex = dplyr::case_when(
         sex == "Homens" ~ "Male",
         sex == "Mulheres" ~ "Female"

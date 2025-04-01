@@ -73,7 +73,7 @@ This was a hard task involving crossing information from different sources, such
 
 All values were also checked for ambiguities, including the municipalities names (e.g., the name *Aracoiba* could refer to the municipality of *Aracoiaba* in the state of *Ceará*, but could also refer to the municipality of *Araçoiaba da Serra* in the state of *São Paulo*). All values that had a similarity or pattern matching with one or more municipalities were manually inspected to avoid errors.
 
-### Postal codes
+### Postal Codes
 
 After removing all non-numeric characters from the Brazilian postal codes (Código de Endereçamento Postal ([CEP](https://pt.wikipedia.org/wiki/C%C3%B3digo_de_Endere%C3%A7amento_Postal))), they were processed by the following rules:
 

@@ -58,7 +58,7 @@ library(rlang)
 library(targets)
 ```
 
-## Loading data
+## Loading the Data
 
 ```{r}
 #| eval: false
@@ -340,7 +340,7 @@ quartor:::write_in_results_yml(
 )
 ```
 
-## Population distributions
+## Population Distributions
 
 ::: {.callout-note}
 For numerical comparisons, refer to Supplementary Material [-@sec-sm-sample-balance].
