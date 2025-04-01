@@ -1,5 +1,5 @@
 :::: {.panel-tabset}
-### `MSF~sc~ (Chronotype proxy) (seconds)`
+### MSF~sc~ (Chronotype proxy) (Seconds)
 
 ::: {#tbl-sm-5-var-dist-stats-msf-sc}
 ```{r}
@@ -18,7 +18,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `msf_sc` variable.
 :::
@@ -30,11 +30,11 @@ Statistics for the `msf_sc` variable.
 data |>
   plotr:::plot_dist(
     col = "msf_sc",
-    x_label = "MSF~sc~ (Chronotype proxy) (seconds)"
+    x_label = "MSF~sc~ (Chronotype proxy) (Seconds)"
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `msf_sc` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -48,12 +48,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "msf_sc")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `msf_sc` variable with jittered data points in black.
 :::
 
-### `Age (years)`
+### Age (years)
 
 ::: {#tbl-sm-5-var-dist-stats-age}
 ```{r}
@@ -72,7 +72,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `age` variable.
 :::
@@ -88,7 +88,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `age` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -102,12 +102,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "age")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `age` variable with jittered data points in black.
 :::
 
-### `Longitude (decimal degrees)`
+### Longitude (Decimal degrees)
 
 ::: {#tbl-sm-5-var-dist-stats-longitude}
 ```{r}
@@ -126,7 +126,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `longitude` variable.
 :::
@@ -138,11 +138,11 @@ Statistics for the `longitude` variable.
 data |>
   plotr:::plot_dist(
     col = "longitude",
-    x_label = "Longitude (decimal degrees)"
+    x_label = "Longitude (Decimal degrees)"
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `longitude` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -156,12 +156,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "longitude")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `longitude` variable with jittered data points in black.
 :::
 
-### `Monthly average global horizontal irradiance (Wh/m²)`
+### Monthly average global horizontal irradiance (Wh/m²)
 
 ::: {#tbl-sm-5-var-dist-stats-ghi-month}
 ```{r}
@@ -180,7 +180,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `ghi_month` variable.
 :::
@@ -196,7 +196,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `ghi_month` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -210,12 +210,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "ghi_month")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `ghi_month` variable with jittered data points in black.
 :::
 
-### `Annual average global horizontal irradiance (Wh/m²)`
+### Annual average global horizontal irradiance (Wh/m²)
 
 ::: {#tbl-sm-5-var-dist-stats-ghi-annual}
 ```{r}
@@ -234,7 +234,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `ghi_annual` variable.
 :::
@@ -250,7 +250,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `ghi_annual` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -264,12 +264,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "ghi_annual")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `ghi_annual` variable with jittered data points in black.
 :::
 
-### `Daylight on the March equinox (seconds)`
+### Daylight on the March equinox (Seconds)
 
 ::: {#tbl-sm-5-var-dist-stats-march-equinox-daylight}
 ```{r}
@@ -288,7 +288,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `march_equinox_daylight` variable.
 :::
@@ -300,11 +300,11 @@ Statistics for the `march_equinox_daylight` variable.
 data |>
   plotr:::plot_dist(
     col = "march_equinox_daylight",
-    x_label = "Daylight on the March equinox (seconds)"
+    x_label = "Daylight on the March equinox (Seconds)"
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `march_equinox_daylight` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -318,12 +318,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "march_equinox_daylight")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `march_equinox_daylight` variable with jittered data points in black.
 :::
 
-### `Daylight on the June solstice (seconds)`
+### Daylight on the June solstice (Seconds)
 
 ::: {#tbl-sm-5-var-dist-stats-june-solstice-daylight}
 ```{r}
@@ -342,7 +342,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `june_solstice_daylight` variable.
 :::
@@ -354,11 +354,11 @@ Statistics for the `june_solstice_daylight` variable.
 data |>
   plotr:::plot_dist(
     col = "june_solstice_daylight",
-    x_label = "Daylight on the June solstice (seconds)"
+    x_label = "Daylight on the June solstice (Seconds)"
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `june_solstice_daylight` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -372,12 +372,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "june_solstice_daylight")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `june_solstice_daylight` variable with jittered data points in black.
 :::
 
-### `Daylight on the December solstice (seconds)`
+### Daylight on the December solstice (Seconds)
 
 ::: {#tbl-sm-5-var-dist-stats-december-solstice-daylight}
 ```{r}
@@ -396,7 +396,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `december_solstice_daylight` variable.
 :::
@@ -408,11 +408,11 @@ Statistics for the `december_solstice_daylight` variable.
 data |>
   plotr:::plot_dist(
     col = "december_solstice_daylight",
-    x_label = "Daylight on the December solstice (seconds)"
+    x_label = "Daylight on the December solstice (Seconds)"
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `december_solstice_daylight` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -426,7 +426,7 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "december_solstice_daylight")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `december_solstice_daylight` variable with jittered data points in black.
 :::

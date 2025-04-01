@@ -17,7 +17,7 @@ This document provides a workflow for testing [QualoCEP](https://www.qualocep.co
 To run this notebook you will need to have a Google Geocoding API key in your [`.Renviron`](https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file) file. Learn more about it [here](https://jessecambon.github.io/tidygeocoder/articles/geocoder_services.html).
 :::
 
-## Setting the enviroment
+## Setting the Environment
 
 ```{r}
 #| eval: false
@@ -33,7 +33,7 @@ library(tidygeocoder)
 source(here::here("R", "get_qualocep_data.R"))
 ```
 
-## Importing QualOCep data
+## Importing QualOCep Data
 
 ```{r}
 #| output: false
@@ -41,68 +41,9 @@ source(here::here("R", "get_qualocep_data.R"))
 qualocep_data <- get_qualocep_data()
 ```
 
-## Random test 1
+## Random Test 1
 
-### QualOCep data
-
-```{r}
-sample_data <- dplyr::sample_n(qualocep_data, 1)
-
-sample_data |> as.list() |> rutils:::list_as_tibble()
-```
-
-```{r}
-leaflet::leaflet() |>
-  leaflet::addTiles() |>
-  leaflet::addMarkers(
-    lng = sample_data$longitude,
-    lat = sample_data$latitude,
-    popup = paste0(
-      "Latitude: ", sample_data$latitude, "<br>",
-      "Longitude: ", sample_data$longitude
-    )
-  )
-```
-
-### Google Geocoding API
-
-```{r}
-google_data <-
-  sample_data |>
-  dplyr::mutate(
-    address = orbis::render_brazil_address(
-      street = sample_data$street,
-      complement = sample_data$complement,
-      neighborhood = sample_data$neighborhood,
-      municipality = sample_data$municipality,
-      state = sample_data$state,
-      postal_code = sample_data$postal_code
-    )
-  ) |>
-  tidygeocoder::geocode(
-    address = address,
-    method = "google"
-  )
-
-google_data |> as.list() |> rutils:::list_as_tibble()
-```
-
-```{r}
-leaflet::leaflet() |>
-  leaflet::addTiles() |>
-  leaflet::addMarkers(
-    lng = google_data$longitude,
-    lat = google_data$latitude,
-    popup = paste0(
-      "Latitude: ", google_data$latitude, "<br>",
-      "Longitude: ", google_data$longitude
-    )
-  )
-```
-
-## Random test 2
-
-### QualOCep data
+### QualOCep Data
 
 ```{r}
 sample_data <- dplyr::sample_n(qualocep_data, 1)
@@ -159,9 +100,68 @@ leaflet::leaflet() |>
   )
 ```
 
-## Random test 3
+## Random Test 2
 
-### QualOCep data
+### QualOCep Data
+
+```{r}
+sample_data <- dplyr::sample_n(qualocep_data, 1)
+
+sample_data |> as.list() |> rutils:::list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |>
+  leaflet::addTiles() |>
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
+  )
+```
+
+### Google Geocoding API
+
+```{r}
+google_data <-
+  sample_data |>
+  dplyr::mutate(
+    address = orbis::render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
+    )
+  ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
+  )
+
+google_data |> as.list() |> rutils:::list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |>
+  leaflet::addTiles() |>
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
+  )
+```
+
+## Random Test 3
+
+### QualOCep Data
 
 ```{r}
 sample_data <- dplyr::sample_n(qualocep_data, 1)

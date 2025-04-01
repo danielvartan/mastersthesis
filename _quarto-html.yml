@@ -61,7 +61,6 @@ format:
     open-graph: true
     locale: en
     language: en
-    # number-depth: 7
     code-fold: true
     code-link: true
     code-tools: false

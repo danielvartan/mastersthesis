@@ -1,5 +1,5 @@
 :::: {.panel-tabset}
-### `MSF~sc~ (Chronotype proxy) (seconds)`
+### MSF~sc~ (Chronotype proxy) (Seconds)
 
 ::: {#tbl-sm-6-var-dist-stats-msf-sc}
 ```{r}
@@ -18,7 +18,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `msf_sc` variable.
 :::
@@ -30,11 +30,11 @@ Statistics for the `msf_sc` variable.
 data |>
   plotr:::plot_dist(
     col = "msf_sc",
-    x_label = "MSF~sc~ (Chronotype proxy) (seconds)"
+    x_label = "MSF~sc~ (Chronotype proxy) (Seconds)"
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `msf_sc` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -48,12 +48,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "msf_sc")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `msf_sc` variable with jittered data points in black.
 :::
 
-### `Age (years)`
+### Age (Years)
 
 ::: {#tbl-sm-6-var-dist-stats-age}
 ```{r}
@@ -72,7 +72,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `age` variable.
 :::
@@ -84,11 +84,11 @@ Statistics for the `age` variable.
 data |>
   plotr:::plot_dist(
     col = "age",
-    x_label = "Age (years)"
+    x_label = "Age (Years)"
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `age` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -102,12 +102,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "age")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `age` variable with jittered data points in black.
 :::
 
-### `Latitude (decimal degrees)`
+### Latitude (Decimal degrees)
 
 ::: {#tbl-sm-6-var-dist-stats-latitude}
 ```{r}
@@ -126,7 +126,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `latitude` variable.
 :::
@@ -138,11 +138,11 @@ Statistics for the `latitude` variable.
 data |>
   plotr:::plot_dist(
     col = "latitude",
-    x_label = "Latitude (decimal degrees)"
+    x_label = "Latitude (Decimal degrees)"
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `latitude` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -156,12 +156,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "latitude")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `latitude` variable with jittered data points in black.
 :::
 
-### `Longitude (decimal degrees)`
+### Longitude (Decimal degrees)
 
 ::: {#tbl-sm-6-var-dist-stats-longitude}
 ```{r}
@@ -180,7 +180,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `longitude` variable.
 :::
@@ -192,11 +192,11 @@ Statistics for the `longitude` variable.
 data |>
   plotr:::plot_dist(
     col = "longitude",
-    x_label = "Longitude (decimal degrees)"
+    x_label = "Longitude (Decimal degrees)"
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `longitude` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -210,12 +210,12 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "longitude")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `longitude` variable with jittered data points in black.
 :::
 
-### `Monthly average global horizontal irradiance (Wh/m²)`
+### Monthly average global horizontal irradiance (Wh/m²)
 
 ::: {#tbl-sm-6-var-dist-stats-ghi-month}
 ```{r}
@@ -234,7 +234,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Statistics for the `ghi_month` variable.
 :::
@@ -250,7 +250,7 @@ data |>
   )
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Histogram of the `ghi_month` variable with a kernel density
 estimate, along with a quantile-quantile (Q-Q) plot between the
@@ -264,7 +264,7 @@ variable and the theoretical quantiles of the normal distribution.
 data |> plotr:::plot_box_plot(col = "ghi_month")
 ```
 
-[Source: Created by the authors.]{.legend}
+[Source: Created by the author.]{.legend}
 
 Box plot of the `ghi_month` variable with jittered data points in black.
 :::

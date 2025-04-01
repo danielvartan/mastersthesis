@@ -1,5 +1,5 @@
 :::: {.panel-tabset}
-###### MSF~sc~ (Chronotype proxy) (seconds)
+###### MSF~sc~ (Chronotype proxy) (Seconds)
 
 ::: {#tbl-sm-6-fm-var-homoscedasticity-msf-sc}
 ```{r}
@@ -9,14 +9,14 @@ fit |>
   plotr:::plot_homoscedasticity(
     data = data,
     col = "msf_sc",
-    x_label = "MSF~sc~ (Chronotype proxy) (seconds)"
+    x_label = "MSF~sc~ (Chronotype proxy) (Seconds)"
   )
 ```
 
 Relation between `msf_sc` and the model standardized residuals.
 :::
 
-###### Age (years)
+###### Age (Years)
 
 ::: {#tbl-sm-6-fm-var-homoscedasticity-age}
 ```{r}
@@ -26,14 +26,14 @@ fit |>
   plotr:::plot_homoscedasticity(
     data = data,
     col = "age",
-    x_label = "Age (years)"
+    x_label = "Age (Years)"
   )
 ```
 
 Relation between `age` and the model standardized residuals.
 :::
 
-###### Latitude (decimal degrees)
+###### Latitude (Decimal degrees)
 
 ::: {#tbl-sm-6-fm-var-homoscedasticity-longitude}
 ```{r}
@@ -43,14 +43,14 @@ fit |>
   plotr:::plot_homoscedasticity(
     data = data,
     col = "longitude",
-    x_label = "Latitude (decimal degrees)"
+    x_label = "Latitude (Decimal degrees)"
   )
 ```
 
 Relation between `longitude` and the model standardized residuals.
 :::
 
-###### Longitude (decimal degrees)
+###### Longitude (Decimal degrees)
 
 ::: {#tbl-sm-6-fm-var-homoscedasticity-ghi-month}
 ```{r}
@@ -60,7 +60,7 @@ fit |>
   plotr:::plot_homoscedasticity(
     data = data,
     col = "ghi_month",
-    x_label = "Longitude (decimal degrees)"
+    x_label = "Longitude (Decimal degrees)"
   )
 ```
 

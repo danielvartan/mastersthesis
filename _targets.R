@@ -29,6 +29,7 @@ targets::tar_option_set(
     "methods",
     "mctq",
     "prettycheck", # github.com/danielvartan/prettycheck
+    "orbis", # github.com/danielvartan/orbis
     "osfr",
     "readr",
     "rlang",

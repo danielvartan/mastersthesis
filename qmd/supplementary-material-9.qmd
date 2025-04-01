@@ -257,7 +257,7 @@ The HO value scale is fixed, allowing the values to be accurately determined by 
 - 5. point: $44.5$ to point: $94$ pixels. Estimation: $44.5 + (94 / (402 / (48.5 - 44.5))) \approx 45.43532$.
 - 6. point: $44.5$ to point: $94$ pixels. Estimation: $44.5 + (94 / (402 / (48.5 - 44.5))) \approx 45.43532$.
 
-### Standard error estimation (y-axis)
+### Standard Error Estimation (y-axis)
 
 The standard error (SE) is displayed on the Y-axis, which has a fixed scale. Therefore, the values can be accurately determined by measuring the pixel distances.
 

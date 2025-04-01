@@ -5561,7 +5561,7 @@
       "RemoteUsername": "danielvartan",
       "RemoteRepo": "quartor",
       "RemoteRef": "main",
-      "RemoteSha": "0a0b98b5e370037bee585c8a785b640ac03b2437",
+      "RemoteSha": "947b85d2020ec4d3a90033f5db6ce723a6b44a55",
       "Remotes": "github::danielvartan/plotr, github::danielvartan/prettycheck, github::wmoldham/rbbt"
     },
     "ragg": {

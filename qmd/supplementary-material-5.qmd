@@ -181,14 +181,14 @@ data |>
       names() |>
       stringr::str_subset("^sex$|^cell_weight$", negate = TRUE),
     col_labels = c(
-      "MSF~sc~ (Chronotype proxy) (seconds)",
+      "MSF~sc~ (Chronotype proxy) (Seconds)",
       "Age (years)",
-      "Longitude (decimal degrees)",
+      "Longitude (Decimal degrees)",
       "Monthly average global horizontal irradiance (Wh/m²)",
       "Annual average global horizontal irradiance (Wh/m²)",
-      "Daylight on the March equinox (seconds)",
-      "Daylight on the June solstice (seconds)",
-      "Daylight on the December solstice (seconds)"
+      "Daylight on the March equinox (Seconds)",
+      "Daylight on the June solstice (Seconds)",
+      "Daylight on the December solstice (Seconds)"
     ),
     heading = "###",
     suffix = "sm-5",
@@ -687,9 +687,9 @@ fit |>
       stringr::str_subset("^sex", negate = TRUE)
     ),
     col_labels = c(
-      "MSF~sc~  (Chronotype proxy) (seconds)",
-      "Age (years)",
-      "Longitude (decimal degrees)",
+      "MSF~sc~  (Chronotype proxy) (Seconds)",
+      "Age (Years)",
+      "Longitude (Decimal degrees)",
       "Monthly average global horizontal irradiance (Wh/m²)"
     ),
     heading = "######",
@@ -1820,14 +1820,14 @@ fit |>
       stringr::str_subset("^sex", negate = TRUE)
     ),
     col_labels = c(
-      "MSF~sc~ (Chronotype proxy) (seconds)",
+      "MSF~sc~ (Chronotype proxy) (Seconds)",
       "Age (years)",
-      "Longitude (decimal degrees)",
+      "Longitude (Decimal degrees)",
       "Monthly average global horizontal irradiance (Wh/m²)",
       "Annual average global horizontal irradiance (Wh/m²)",
-      "Daylight on the March equinox (seconds)",
-      "Daylight on the June solstice (seconds)",
-      "Daylight on the December solstice (seconds)"
+      "Daylight on the March equinox (Seconds)",
+      "Daylight on the June solstice (Seconds)",
+      "Daylight on the December solstice (Seconds)"
     ),
     heading = "######",
     suffix = "sm-5-fm",
@@ -2459,8 +2459,8 @@ __Hypothesis__
 
 $$
 \begin{cases}
-\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} \leq \text{MES} \quad \text{or} \quad \text{F-test is not significant} \ (\alpha \geq 0.05) \\
-\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES} \quad \text{and} \quad \text{F-test is significant} \ (\alpha < 0.05)
+\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} < \text{MES} \\
+\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} \geq \text{MES}
 \end{cases}
 $$
 

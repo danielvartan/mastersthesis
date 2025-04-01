@@ -102,9 +102,7 @@ Non-Brazilian postal codes were not validated but were cleaned by removing non-d
 
 Latitudes and longitudes were determined based on the `municipality` and `postal_code` variables. These coordinates were primarily sourced from the QualoCEP database, which integrates geocoding results obtained via the Google Geocoding API. For a detailed comparison of latitude and longitude values between the QualoCEP database and the Google Geocoding API, refer to Supplementary Material [-@sec-sm-qualocep].
 
-For respondents lacking a valid postal code, latitude and longitude were approximated using the average coordinates of their municipality as recorded in the QualoCEP database. These cases were minimal ($0.418\%$ of the total cases).
-
-Finally, Google Geocoding API, via the `tidygeocoder` R package, was used on cases that didn't had a match in the QualoCEP database.
+For cases without a match in the QualoCEP database, the Google Geocoding API was utilized via the `tidygeocoder` R package. For respondents missing valid postal codes, latitude, or longitude were then approximated using the average coordinates of their municipality as recorded in the QualoCEP database. These cases represented a minimal proportion of the total dataset ($0.418\%$).
 
 ## Solar Irradiance Data
 
@@ -117,7 +115,7 @@ The data comprise annual and monthly averages of the daily total irradiation in 
 
 [Source: Adapted by the author from @pereira2017.]{.legend}
 
-Components of solar irradiance. $G_{0}$ = Extraterrestrial irradiance. $G_{n}$ = Direct normal irradiance. $G_{dif}$ = Diffuse horizontal irradiance. $G_{dir}$ = Direct horizontal irradiance. $G$ = Global horizontal irradiance. $G_{i}$ = Inclined plane irradiance.
+Components of solar irradiance.`<br>`{=html}$G_{0}$ = Extraterrestrial irradiance. $G_{n}$ = Direct normal irradiance. $G_{dif}$ = Diffuse horizontal irradiance. $G_{dir}$ = Direct horizontal irradiance. $G$ = Global horizontal irradiance. $G_{i}$ = Inclined plane irradiance.
 :::
 
 ## Solar Time Data
@@ -264,6 +262,8 @@ patchwork::wrap_plots(
 
 Histogram of the local time of sleep onset (SO) with (right) and without (left) the 12:000 treatment.
 :::
+
+In the end, the final values of the `msf_sc` variable were all after the midnight, so the treatment was not necessary.
 
 ### Round-Off Errors
 
