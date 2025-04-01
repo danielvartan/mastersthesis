@@ -27,7 +27,11 @@ Statistics for the `msf_sc` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "msf_sc")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "msf_sc",
+    x_label = "MSF~sc~ (Chronotype proxy) (local time)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -77,7 +81,11 @@ Statistics for the `age` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "age")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "age",
+    x_label = "Age (years)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -127,7 +135,11 @@ Statistics for the `latitude` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "latitude")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "latitude",
+    x_label = "Latitude (decimal degrees)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -177,7 +189,11 @@ Statistics for the `longitude` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "longitude")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "longitude",
+    x_label = "Longitude (decimal degrees)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -227,7 +243,11 @@ Statistics for the `ghi_month` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "ghi_month")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "ghi_month",
+    x_label = "Monthly average global horizontal irradiance (Wh/m²)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -277,7 +297,11 @@ Statistics for the `ghi_annual` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "ghi_annual")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "ghi_annual",
+    x_label = "Annual average global horizontal irradiance (Wh/m²)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -327,7 +351,11 @@ Statistics for the `march_equinox_sunrise` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "march_equinox_sunrise")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "march_equinox_sunrise",
+    x_label = "Sunrise on the March equinox (date-time seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -377,7 +405,11 @@ Statistics for the `march_equinox_sunset` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "march_equinox_sunset")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "march_equinox_sunset",
+    x_label = "Sunset on the March equinox (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -427,7 +459,11 @@ Statistics for the `march_equinox_daylight` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "march_equinox_daylight")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "march_equinox_daylight",
+    x_label = "Daylight on the March equinox (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -477,7 +513,11 @@ Statistics for the `june_solstice_sunrise` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "june_solstice_sunrise")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "june_solstice_sunrise",
+    x_label = "Sunrise on the June solstice (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -527,7 +567,11 @@ Statistics for the `june_solstice_sunset` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "june_solstice_sunset")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "june_solstice_sunset",
+    x_label = "Sunset on the June solstice (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -577,7 +621,11 @@ Statistics for the `june_solstice_daylight` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "june_solstice_daylight")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "june_solstice_daylight",
+    x_label = "Daylight on the June solstice (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -627,7 +675,11 @@ Statistics for the `september_equinox_sunrise` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "september_equinox_sunrise")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "september_equinox_sunrise",
+    x_label = "Sunrise on the September solstice (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -677,7 +729,11 @@ Statistics for the `september_equinox_sunset` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "september_equinox_sunset")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "september_equinox_sunset",
+    x_label = "Sunset on the September solstice (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -727,7 +783,11 @@ Statistics for the `september_equinox_daylight` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "september_equinox_daylight")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "september_equinox_daylight",
+    x_label = "Daylight on the September solstice (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -777,7 +837,11 @@ Statistics for the `december_solstice_sunrise` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "december_solstice_sunrise")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "december_solstice_sunrise",
+    x_label = "Sunrise on the December solstice (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -827,7 +891,11 @@ Statistics for the `december_solstice_sunset` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "december_solstice_sunset")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "december_solstice_sunset",
+    x_label = "Sunset on the December solstice (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -877,7 +945,11 @@ Statistics for the `december_solstice_daylight` variable.
 ```{r}
 #| code-fold: true
 
-weighted_data |> plotr:::plot_dist(col = "december_solstice_daylight")
+weighted_data |>
+  plotr:::plot_dist(
+    col = "december_solstice_daylight",
+    x_label = "Daylight on the December solstice (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}

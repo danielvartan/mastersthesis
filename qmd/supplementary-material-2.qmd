@@ -285,8 +285,8 @@ Alternative Hypothesis ($\text{H}_{a}$)
 
 $$
 \begin{cases}
-\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} \leq \text{MES} \quad \text{or} \quad \text{F-test is not significant} \ (\alpha \geq 0.05) \\
-\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES} \quad \text{and} \quad \text{F-test is significant} \ (\alpha < 0.05)
+\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} < \text{MES} \\
+\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} \geq \text{MES}
 \end{cases}
 $$
 :::
@@ -398,10 +398,10 @@ In summary, the decision rule for the hypothesis test is as follows:
 
 - **Reject** $\text{H}_{0}$ **if both** of the following conditions are met:
   - The F-test is significant.
-  - $\Delta \ \text{Adjusted} \ \text{R}^{2} > 0.01960784$;
+  - $\Delta \ \text{Adjusted} \ \text{R}^{2} \geq 0.01960784$;
 - **Fail to reject** $\text{H}_{0}$ **if either** of the following conditions are met:
   - The F-test is not significant, or
-  - The F-test is significant, but $\Delta \ \text{Adjusted} \ \text{R}^{2} \leq 0.01960784$.
+  - The F-test is significant, but $\Delta \ \text{Adjusted} \ \text{R}^{2} < 0.01960784$.
 
 As usual, the significance level ($\alpha$) was set at $0.05$, allowing a 5% chance of a [Type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors). A power analysis was performed to determine the necessary sample size for detecting a significant effect, targeting a power ($1 - \beta$) of $0.99$.
 

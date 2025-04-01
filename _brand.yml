@@ -72,6 +72,7 @@ typography:
   monospace: DM Mono
   monospace-inline:
     color: black
+    background-color: orange-975
   monospace-block:
     background-color: orange-975
   link:

@@ -94,11 +94,11 @@ dir_list <-
   append(x = _, list.dirs("qmd")[-1])
 
 quartor:::clean_quarto_mess(
-  file = NULL,
+  file = c(".luarc.json"),
   dir = dir_list,
   ext = c(
     "aux", "bbx", "bcf-SAVE-ERROR", "cbx", "dbx", "fdb_latexmk", "lbx", "loa",
-    "log", "luarc.json", "otf", "pdf", "scss", "tex", "xdv"
+    "log", "otf", "pdf", "scss", "tex", "xdv"
   ),
   ignore = NULL,
   wd = here::here()

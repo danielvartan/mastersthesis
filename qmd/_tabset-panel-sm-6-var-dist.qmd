@@ -27,7 +27,11 @@ Statistics for the `msf_sc` variable.
 ```{r}
 #| code-fold: true
 
-data |> plotr:::plot_dist(col = "msf_sc")
+data |>
+  plotr:::plot_dist(
+    col = "msf_sc",
+    x_label = "MSF~sc~ (Chronotype proxy) (seconds)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -77,7 +81,11 @@ Statistics for the `age` variable.
 ```{r}
 #| code-fold: true
 
-data |> plotr:::plot_dist(col = "age")
+data |>
+  plotr:::plot_dist(
+    col = "age",
+    x_label = "Age (years)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -127,7 +135,11 @@ Statistics for the `latitude` variable.
 ```{r}
 #| code-fold: true
 
-data |> plotr:::plot_dist(col = "latitude")
+data |>
+  plotr:::plot_dist(
+    col = "latitude",
+    x_label = "Latitude (decimal degrees)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -177,7 +189,11 @@ Statistics for the `longitude` variable.
 ```{r}
 #| code-fold: true
 
-data |> plotr:::plot_dist(col = "longitude")
+data |>
+  plotr:::plot_dist(
+    col = "longitude",
+    x_label = "Longitude (decimal degrees)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}
@@ -227,7 +243,11 @@ Statistics for the `ghi_month` variable.
 ```{r}
 #| code-fold: true
 
-data |> plotr:::plot_dist(col = "ghi_month")
+data |>
+  plotr:::plot_dist(
+    col = "ghi_month",
+    x_label = "Monthly average global horizontal irradiance (Wh/m²)"
+  )
 ```
 
 [Source: Created by the authors.]{.legend}

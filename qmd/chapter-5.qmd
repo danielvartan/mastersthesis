@@ -318,8 +318,8 @@ Formally:
 
 $$
 \begin{cases}
-\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} \leq \text{MES} \\
-\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES}
+\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} < \text{MES} \\
+\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} \geq \text{MES}
 \end{cases}
 $$
 

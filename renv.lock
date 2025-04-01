@@ -5035,7 +5035,7 @@
       "RemoteUsername": "danielvartan",
       "RemoteRepo": "plotr",
       "RemoteRef": "main",
-      "RemoteSha": "e1f12bdf22a7765e16604dd1b786a89a162fc040",
+      "RemoteSha": "ecdc658a6e3520a42639c23a3575b809b27d06c1",
       "Remotes": "github::danielvartan/lubritime, github::danielvartan/orbis, github::danielvartan/prettycheck"
     },
     "plyr": {
@@ -5561,7 +5561,7 @@
       "RemoteUsername": "danielvartan",
       "RemoteRepo": "quartor",
       "RemoteRef": "main",
-      "RemoteSha": "1f460bc5dafdb48211743f3447b0fdb7aa11adde",
+      "RemoteSha": "0a0b98b5e370037bee585c8a785b640ac03b2437",
       "Remotes": "github::danielvartan/plotr, github::danielvartan/prettycheck, github::wmoldham/rbbt"
     },
     "ragg": {

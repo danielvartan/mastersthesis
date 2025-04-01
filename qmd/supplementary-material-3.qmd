@@ -137,11 +137,12 @@ weighted_data |>
     ),
     heading = "###",
     suffix = "sm-3",
-    summarytools = FALSE
+    summarytools = FALSE,
+    root = ".."
   )
 ```
 
-{{< include ./qmd/_tabset-panel-sm-3-var-dist.qmd >}}
+{{< include ../qmd/_tabset-panel-sm-3-var-dist.qmd >}}
 
 ## Correlation Matrix of the Main Variables
 
@@ -557,7 +558,7 @@ plot_full_5 <-
   anonymized_data |>
   plotr:::plot_brazil_point(
     year = 2017,
-    scale_type = "d"
+    scale_type = "discrete"
   )
 ```
 
@@ -645,7 +646,7 @@ plot_analysis_4 <-
   weighted_data |>
   plotr:::plot_brazil_point(
     year = 2017,
-    scale_type = "d"
+    scale_type = "discrete"
   )
 ```
 
@@ -1433,9 +1434,9 @@ weighted_data |>
     )
   ) |>
   plotr:::plot_brazil_point(
-    col_group = "msf_sc_category"
+    col_group = "msf_sc_category",
     year = 2017,
-    scale_type = "d"
+    scale_type = "discrete"
   )
 ```
 
@@ -1461,7 +1462,7 @@ plot <-
     size = 0.1,
     alpha = 1,
     print = FALSE,
-    scale_type = "d"
+    scale_type = "discrete"
   ) +
   ggplot2::theme(
     axis.title = ggplot2::element_blank(),
