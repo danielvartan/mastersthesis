@@ -119,7 +119,7 @@ get_raw_data <- function(
   }
 
   if (any(stringr::str_detect(file, "(?i).zip$"), na.rm = TRUE)) {
-    cli::cli_progress_step("Unziping data")
+    cli::cli_progress_step("Unzipping data")
 
     temp_dir <- tempfile("dir")
     dir.create(temp_dir)

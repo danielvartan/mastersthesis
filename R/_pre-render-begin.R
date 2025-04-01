@@ -3,9 +3,9 @@
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(showtext)
-# lybrary(stringr)
+# library(stringr)
 library(sysfonts)
-# lybrary(yaml)
+# library(yaml)
 
 # Load common render -----
 
@@ -42,10 +42,10 @@ var_patterns <- c(
   "academic-title", "academic-degree", "area-of-concentration", "author",
   "^book.url$", "cosupervisor", "date", "keyword", "language", "pdf.location$",
   "mainfont", "monofont", "program", "sansfont", "school", "^book.submitted$",
-  "supervisor", "^book.title$","type-of-work", "university", "version-note"
+  "supervisor", "^book.title$", "type-of-work", "university", "version-note"
 )
 
-for (i in var_files){
+for (i in var_files){ #nolint
   values <- unlist(get(i))
 
   for (j in var_patterns) {
@@ -61,7 +61,7 @@ for (i in var_files){
 
       if (j == "date") {
         if (!grepl("\\d{4}", values[test][1]) &&
-            !any(values[test][1] == "today", na.rm = TRUE)) {
+              !any(values[test][1] == "today", na.rm = TRUE)) {
           next()
         } else if (any(values[test][1] == "today", na.rm = TRUE)) {
           env_vars[[j]] <- as.character(Sys.Date())
@@ -74,7 +74,7 @@ for (i in var_files){
       }
 
       if (j == "language" &&
-          !grepl("^[a-z]{2}$|^[a-z]{2}\\-[a-zA-Z]{2}$", values[test][1])) {
+            !grepl("^[a-z]{2}$|^[a-z]{2}\\-[a-zA-Z]{2}$", values[test][1])) {
         next()
       }
 
@@ -82,7 +82,7 @@ for (i in var_files){
         if (!grepl(" ", values[test][1])) {
           env_vars[["author-surname"]] <- values[test][1]
           env_vars[["author-given-name"]] <- values[test][1]
-        } else{
+        } else {
           env_vars[["author-surname"]] <-
             stringr::str_extract(values[test][1], "(?i)(?<= )[a-zÀ-ÿ]+$")
 

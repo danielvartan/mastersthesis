@@ -36,7 +36,7 @@ The MCTQ captures chronotype as a biological circadian phenotype, determined by 
 
 Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization, can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
 
-::: {#fig-chapter-5-mctq-variables}
+::: {#fig-sm-2-mctq-variables}
 ![](images/mctq-figure-1.png)
 
 [Source: Created by the author.]{.legend}
@@ -50,7 +50,7 @@ The dataset used for analysis is made up of `{r} res_vars$ea_analysis_sample_n |
 
 The unfiltered valid sample comprises `{r} res_vars$ea_full_sample_n |> groomr:::format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of `{r} res_vars$pr_raw_data_nrow |> groomr:::format_to_md_latex()` individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
-::: {#fig-appendice-1-age-sex-chronotype-series}
+::: {#fig-sm-1-age-sex-chronotype-series}
 ![](images/globo-2017-figure-1.png)
 
 [Source: Reproduced from @redeglobo2017.]{.legend}
@@ -70,7 +70,7 @@ Information about the sample distribution can be found on Supplementary Material
 
 ## Geographical Data
 
-Geographic data were collected by the variables `country`, `state`, `municipality`, and `postal code`. The unique values of those data were manually inspected and adjusted using lookup tables. The `municiplaity` values were first matched using string distance algorithms present in the [stringdist](https://github.com/markvanderloo/stringdist) R package [@vanderloo] and data from the Brazilian Institute of Geography and Statistics (IBGE) via the [geobr](https://ipeagit.github.io/geobr/index.html>) R package [@pereira]. Other processes were then performed manually.
+Geographic data were collected by the variables `country`, `state`, `municipality`, and `postal code`. The unique values of those data were manually inspected and adjusted using lookup tables. The `municipality` values were first matched using string distance algorithms present in the [stringdist](https://github.com/markvanderloo/stringdist) R package [@vanderloo] and data from the Brazilian Institute of Geography and Statistics (IBGE) via the [geobr](https://ipeagit.github.io/geobr/index.html>) R package [@pereira]. Other processes were then performed manually.
 
 This was a hard task involving crossing information from different sources, such as the [QualoCEP](https://www.qualocep.com/) [@qualocep2024], [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/overview) [@google], [ViaCEP](https://viacep.com.br/) [@viacep], and [OpenStreetMap](https://www.openstreetmap.org/) [@openstreetmap] databases, along with the Brazilian postal service ([Correios](https://www.correios.com.br/enviar/precisa-de-ajuda/tudo-sobre-cep)) postal code documentation. Hence, the data matching shown in the lookup table was gathered considering not only one variable, but the whole set of geographical information provided by the respondent.
 
@@ -152,7 +152,7 @@ The pipeline for data processing is based on the framework outlined in the [`tar
 
 Along with the data cleaning procedures described in the pipeline, lookup tables were employed to clean text and character variables. These tables were created by manually inspecting the **unique values of the raw data** and correcting common misspellings, synonyms, and other inconsistencies. The tables are stored in the research compendium of this thesis.
 
-Text/character variables: `track`, `names`, `email`, `country`, `state`, `municiplality`, `postalcode`, `sleep_drugs_which`, `sleep_disorder_which`, `medication_which`.
+Text/character variables: `track`, `names`, `email`, `country`, `state`, `municipality`, `postalcode`, `sleep_drugs_which`, `sleep_disorder_which`, `medication_which`.
 
 The lookup tables are available in the research compendium of this thesis. They had to be encrypted because of the sensitive information they contain. If you need access, please contact the author.
 
@@ -326,7 +326,7 @@ Where:
 
 - $\text{n}$ = Number of observations in the sample;
 - $k$ = Number of independent variables in the model.
-- $\text{df}_{\text{residual}}$ = Degrees of freedom of the residual sum of squaress = $n - k - 1$.
+- $\text{df}_{\text{residual}}$ = Degrees of freedom of the residual sum of squares = $n - k - 1$.
 - $\text{df}_{\text{total}}$ = Degrees of freedom of the total sum of squares = $n - 1$.
 
 The F-test serves as to determine wether the ratio of variances is different from zero (i.e., statistically significant) considering a baseline prediction [@hair2019, p. 300]. In this case, the baseline prediction is the restricted model. The general equation for the F-test for nested models [@allen1997, p. 113] can be defined as:

@@ -1,7 +1,7 @@
 # library(here)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
-# lybrary(yaml)
+# library(yaml)
 
 # Set variables -----
 
@@ -18,7 +18,7 @@ quarto_yml_revealjs_vars <- yaml::read_yaml(quarto_yml_revealjs_path)
 quarto_yml_extension_vars <- yaml::read_yaml(quarto_yml_extension_path)
 
 github_user <- "danielvartan"
-project_name <- here::here() |> basename() # rstudioapi::getActiveProject()
+project_name <- here::here() |> basename()
 
 # Create output folders if they don't exist -----
 

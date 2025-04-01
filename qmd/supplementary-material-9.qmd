@@ -50,7 +50,7 @@ The degrees of freedom difference ($df = 2$) suggests that the two previously de
 
 A first thing to notice is that the higher $\text{R}^{2}$ value ($0.06352$) differs from the previously reported $\text{R}^{2}$ ($0.06667$). This inconsistency is not justified.
 
-The fomula that appears in the text is based on Cohen's $f^{2}$, which is calculated by the following:
+The formula that appears in the text is based on Cohen's $f^{2}$, which is calculated by the following:
 
 $$
 \text{Cohen's } f^2 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}}
@@ -123,7 +123,7 @@ At this point the reader could ask: "So why the F-test was significant?"
 
 > Testing for nested models, we obtained a significant reduction of residual sum of squares ($\text{F}(2,12884) = 31.983$, $p = 1.395e-14$), [...] [@leocadio-miguel2017].
 
-The significant *p*-value found in their F-test for nested models indicate a difference only because the *p*-value is very sensitive to sample size ($12,884$, in their case) (@fig-sm-9-gomez-de-mariscal-2021-figure-3). This is a common issue in large samples (commoly called the "*p*-value problem"), where even small differences (e.g., a difference of $0.00001$) can be detected as significant [@lin2013].
+The significant *p*-value found in their F-test for nested models indicate a difference only because the *p*-value is very sensitive to sample size ($12,884$, in their case) (@fig-sm-9-gomez-de-mariscal-2021-figure-3). This is a common issue in large samples (commonly called the "*p*-value problem"), where even small differences (e.g., a difference of $0.00001$) can be detected as significant [@lin2013].
 
 ::: {#fig-sm-9-gomez-de-mariscal-2021-figure-3}
 ![](../images/gomez-de-mariscal-2021-figure-3)
@@ -133,7 +133,7 @@ The significant *p*-value found in their F-test for nested models indicate a dif
 Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *p-value* curve. The parameter $n_{\alpha}$ represents the minimum sample size to detect statistically significant differences among compared groups. The parameter $n_{\gamma}$ represents the convergence point of the *p-value* curve. When the *p-value* curve expresses practical differences, the area under the red curve ($A_{p(n)}$) is smaller than the area under the constant function $\alpha = 0.05$ ($A_{\alpha = 0.05}$) when it is evaluated between $0$ and $n_{\gamma}$.
 :::
 
-A *p*-value don not have any pratical significance, that is why the effect size is important. As Cohen put:
+A *p*-value don not have any practical significance, that is why the effect size is important. As Cohen put:
 
 > [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES [Effect Size] is not necessarily zero but **small enough to be negligible** [...]. (p. 461).
 
@@ -161,7 +161,7 @@ The inclusion of sunrise time, sunset time, and daylight duration (sunset - sunr
 
 The [Figure 2](https://www.nature.com/articles/s41598-017-05797-w/figures/2) shown in @leocadio-miguel2017 provides a good example of how data can be misleading. This Figure was shown many times in presentations in chronobiology symposiums, without a proper care of understanding what it was showing.
 
-To interpret this figure, it is essential to first comprehend the scale it represents. In @leocadio-miguel2017, the authors used the Horne & Östberg (HO) chronotype scale [@horne1976] (@fig-appendice-3-leocadio-miguel-2017-figure-1). This scale, one of the first developed to assess chronotype, is a self-report questionnaire designed to determine an individual's preferred time of day for activities such as waking up, going to bed, and moment of peak performance. The HO scale consists of $19$ items, with a total score ranging from $16$ to $86$. Lower scores indicate greater evening orientation, while higher scores reflect stronger morning orientation(@tbl-sm-9-horne-1976-table-1).
+To interpret this figure, it is essential to first comprehend the scale it represents. In @leocadio-miguel2017, the authors used the Horne & Östberg (HO) chronotype scale [@horne1976] (@fig-sm-9-leocadio-miguel-2017-figure-1). This scale, one of the first developed to assess chronotype, is a self-report questionnaire designed to determine an individual's preferred time of day for activities such as waking up, going to bed, and moment of peak performance. The HO scale consists of $19$ items, with a total score ranging from $16$ to $86$. Lower scores indicate greater evening orientation, while higher scores reflect stronger morning orientation(@tbl-sm-9-horne-1976-table-1).
 
 ::: {#tbl-sm-9-horne-1976-table-1}
 ```{r}
@@ -188,7 +188,7 @@ dplyr::tibble(
 Classifications of the Horne & Östberg Morningness-Eveningness scale with the corresponding scores.
 :::
 
-::: {#fig-appendice-3-leocadio-miguel-2017-figure-1}
+::: {#fig-sm-9-leocadio-miguel-2017-figure-1}
 ![](../images/leocadio-miguel-2017-figure-1.png){width=85%}
 
 [Source: Reproduced from @leocadio-miguel2017[Figure 1].]{.legend}
@@ -319,7 +319,7 @@ data
 Data extracted from Figure 2 present in @leocadio-miguel2017.
 :::
 
-### Ploting the Extracted Data
+### Plotting the Extracted Data
 
 First, let's examine the data in a format similar to what is shown in the @leocadio-miguel2017 figure.
 

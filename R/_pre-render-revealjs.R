@@ -1,6 +1,6 @@
 # library(here)
 # library(rutils) # github.com/danielvartan/rutils
-# lybrary(yaml)
+# library(yaml)
 
 # Pre-render begin ----------
 

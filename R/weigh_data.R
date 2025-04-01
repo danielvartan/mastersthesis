@@ -6,7 +6,7 @@
 # library(rutils) # github.com/danielvartan/rutils
 # library(sidrar)
 
-# Please note that the weigths refer to the group of states in the Brazilian
+# Please note that the weights refer to the group of states in the Brazilian
 # time zone UTC-3, not the whole country.
 
 # # Helpers

@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Hypothesis Test B {#sec-sm-hypotehesis-test-b}
+# Hypothesis Test B {#sec-sm-hypothesis-test-b}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -190,6 +190,11 @@ data |>
 
 ::: {#fig-sm-6-correlation-matrix}
 ```{r}
+#| message: false
+#| warning: false
+#| fig-width: 10
+#| fig-width: 7
+
 data |>
   plotr:::plot_ggally(
     cols = c(
@@ -829,15 +834,15 @@ fit_engine |>
   stats::Box.test(type = "Ljung-Box", lag = 10)
 ```
 
-#### Colinearity/Multicollinearity
+#### Collinearity/Multicollinearity
 
-No high degree of colinearity was observed among the independent variables.
+No high degree of collinearity was observed among the independent variables.
 
 ##### Variance Inflation Factor (VIF)
 
 The [Variance Inflation Factor (VIF)](https://en.wikipedia.org/wiki/Variance_inflation_factor) indicates the effect of other independent variables on the standard error of a regression coefficient. The VIF is directly related to the tolerance value ($\text{VIF}_{i} = 1/\text{TO}L$). High VIF values (larger than ~5 [@struck2024]) suggest significant collinearity or multicollinearity among the independent variables [@hair2019, p. 265].
 
-::: {#fig-model-diag-colinearity-1}
+::: {#fig-sm-6-rm-diag-collinearity-1}
 ```{r}
 #| code-fold: true
 
@@ -865,7 +870,7 @@ diag_sum_plots$VIF +
 Variance Inflation Factors (VIF) for each predictor variable. VIFs below 5 are considered acceptable. Between 5 and 10, the variable should be examined. Above 10, the variable must considered highly collinear.
 :::
 
-::: {#tbl-sm-6-restricted-model-residual-diag-colinearity-1}
+::: {#tbl-sm-6-rm-residual-diag-collinearity-2}
 ```{r}
 #| code-fold: true
 
@@ -875,7 +880,7 @@ fit_engine |> olsrr::ols_vif_tol()
 Variance Inflation Factors (VIF) and tolerance values for each predictor variable.
 :::
 
-::: {#tbl-sm-6-restricted-model-residual-diag-colinearity-2}
+::: {#tbl-sm-6-rm-residual-diag-collinearity-3}
 ```{r}
 #| code-fold: true
 
@@ -889,7 +894,7 @@ Variance Inflation Factors (VIF) and tolerance values for each predictor variabl
 
 The [condition index](https://en.wikipedia.org/wiki/Condition_number) is a measure of multicollinearity in a regression model. It is based on the [eigenvalues](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) of the correlation matrix of the predictors. A condition index of 30 or higher is generally considered indicative of significant collinearity [@belsley2004, p. 112-114].
 
-::: {#tbl-sm-6-restricted-model-residual-diag-colinearity-2}
+::: {#tbl-sm-6-rm-residual-diag-collinearity-4}
 ```{r}
 #| code-fold: true
 
@@ -1934,15 +1939,15 @@ fit_engine |>
   stats::Box.test(type = "Ljung-Box", lag = 10)
 ```
 
-#### Colinearity/Multicollinearity
+#### Collinearity/Multicollinearity
 
-No high degree of colinearity was observed among the independent variables.
+No high degree of collinearity was observed among the independent variables.
 
 ##### Variance Inflation Factor (VIF)
 
 The [Variance Inflation Factor (VIF)](https://en.wikipedia.org/wiki/Variance_inflation_factor) indicates the effect of other independent variables on the standard error of a regression coefficient. The VIF is directly related to the tolerance value ($\text{VIF}_{i} = 1/\text{TO}L$). High VIF values (larger than ~5 [@struck2024]) suggest significant collinearity or multicollinearity among the independent variables [@hair2019, p. 265].
 
-::: {#fig-model-diag-colinearity-1}
+::: {#fig-sm-6-fm-diag-collinearity-1}
 ```{r}
 #| code-fold: true
 
@@ -1970,7 +1975,7 @@ diag_sum_plots$VIF +
 Variance Inflation Factors (VIF) for each predictor variable. VIFs below 5 are considered acceptable. Between 5 and 10, the variable should be examined. Above 10, the variable must considered highly collinear.
 :::
 
-::: {#tbl-sm-6-full-model-residual-diag-colinearity-1}
+::: {#tbl-sm-6-fm-residual-diag-collinearity-1}
 ```{r}
 #| code-fold: true
 
@@ -1980,7 +1985,7 @@ fit_engine |> olsrr::ols_vif_tol()
 Variance Inflation Factors (VIF) and tolerance values for each predictor variable.
 :::
 
-::: {#tbl-sm-6-full-model-residual-diag-colinearity-2}
+::: {#tbl-sm-6-fm-residual-diag-collinearity-2}
 ```{r}
 #| code-fold: true
 
@@ -1994,7 +1999,7 @@ Variance Inflation Factors (VIF) and tolerance values for each predictor variabl
 
 The [condition index](https://en.wikipedia.org/wiki/Condition_number) is a measure of multicollinearity in a regression model. It is based on the [eigenvalues](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) of the correlation matrix of the predictors. A condition index of 30 or higher is generally considered indicative of significant collinearity [@belsley2004, p. 112-114].
 
-::: {#tbl-sm-6-full-model-residual-diag-colinearity-2}
+::: {#tbl-sm-6-fm-residual-diag-collinearity-3}
 ```{r}
 #| code-fold: true
 

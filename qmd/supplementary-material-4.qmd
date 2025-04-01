@@ -299,7 +299,7 @@ test_data <-
   )
 ```
 
-## Testing Fiting a Model with the Weights
+## Testing Fitting a Model with the Weights
 
 ```{r}
 #| code-fold: false

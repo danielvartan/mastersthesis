@@ -42,7 +42,7 @@ get_time_and_date_data <- function(
              isFALSE(force)) {
     cli::cli_alert_info(
       paste0(
-        "Using Time and Date AS data from the Global Enviroment ",
+        "Using Time and Date AS data from the Global Environment ",
         "(`time_and_date_data`)."
       ),
       wrap = TRUE
@@ -96,7 +96,7 @@ get_time_and_date_data <- function(
 
   if (isTRUE(save_to_globalenv)) {
     cli::cli_progress_step(paste0(
-      "Saving Time and Date AS data to the Global Enviroment ",
+      "Saving Time and Date AS data to the Global Environment ",
       "(`time_and_date_data`)."
     ))
 

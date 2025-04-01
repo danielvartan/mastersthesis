@@ -1,3 +1,6 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q---\nhtml-table-processing: none\n---\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q# mastersthesis\\E$"}
 {"rule":"ARROWS","sentence":"^\\Q<!-- quarto render --profile gfm -->\\E$"}
+{"rule":"THE_PUNCT","sentence":"^\\Q=100000 presented to the at the , as a requirement for the degree of by the .\\E$"}
+{"rule":"REQUIREMENT","sentence":"^\\Q=100000 presented to the at the , as a requirement for the degree of by the .\\E$"}
+{"rule":"THE_SENT_END","sentence":"^\\Q=100000 presented to the at the , as a requirement for the degree of by the .\\E$"}

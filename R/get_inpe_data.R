@@ -46,7 +46,7 @@ get_inpe_data <- function(
   } else if ("inpe_data" %in% ls(envir = globalenv()) && isFALSE(force)) {
     cli::cli_alert_info(
       paste0(
-        "Using INPE data from the Global Enviroment ",
+        "Using INPE data from the Global Environment ",
         "(`inpe_data`)."
       ),
       wrap = TRUE
@@ -100,7 +100,7 @@ get_inpe_data <- function(
 
   if (isTRUE(save_to_globalenv)) {
     cli::cli_progress_step(paste0(
-      "Saving INPE data to the Global Enviroment (`inpe_data`)."
+      "Saving INPE data to the Global Environment (`inpe_data`)."
     ))
 
     assign("inpe_data", out, envir = globalenv())

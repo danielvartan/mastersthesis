@@ -70,11 +70,11 @@ Approved on February 3, 2025.
 
 \vspace{\hugeskipamount}
 \begin{center}
-  Examination committee
+  Examination Committee
 \end{center}
 
 \vspace{\smallskipamount}
-Committee chair:
+Committee Chair:
 
 \vspace{\tinyskipamount}
 \begingroup

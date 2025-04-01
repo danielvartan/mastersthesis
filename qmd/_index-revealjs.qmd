@@ -57,7 +57,7 @@ weighted_data <- targets::tar_read(
 
 ::::: {.columns}
 :::: {.column style="width: 60%;"}
-This presentation will provide an overview of the thesis objectives, main concepts, methods, and results. Together, we’ll uncover how environment factors can influence the cronotype.
+This presentation will provide an overview of the thesis objectives, main concepts, methods, and results. Together, we’ll uncover how environment factors can influence the chronotype.
 
 ::: {style="padding-top: 15px;"}
 We will cover the following topics:
@@ -665,7 +665,7 @@ found no evidence supporting the latitude hypothesis in humans.
 [![License:
 MIT](images/mit-license-badge.svg){style="width: 10.5%; padding-top: 0px;"}](https://choosealicense.com/licenses/mit/)
 [![License: CC BY
-4.0](images/cc-licence-badge.svg){style="width: 15%; padding-top: 0px;"}](https://creativecommons.org/licenses/by/4.0/)
+4.0](images/cc-license-badge.svg){style="width: 15%; padding-top: 0px;"}](https://creativecommons.org/licenses/by/4.0/)
 
 This thesis was presented to the School of Arts, Sciences and Humanities ([EACH](http://www5.each.usp.br/)) at the University of São Paulo ([USP](https://www5.usp.br/)) as a requirement for the degree of Master of Science by the Graduate Program in Complex Systems Modeling ([PPGSCX](https://sites.usp.br/scx/en/apresentacao/)).
 
@@ -676,7 +676,7 @@ I am deeply grateful to my advisor, [Prof. Dr. Camilo Rodrigues Neto](https://or
 [![License:
 MIT](images/mit-license-badge.svg){style="width: 10.5%; padding-top: 0px;"}](https://choosealicense.com/licenses/mit/)
 [![License: CC BY
-4.0](images/cc-licence-badge.svg){style="width: 15%; padding-top: 0px;"}](https://creativecommons.org/licenses/by/4.0/)
+4.0](images/cc-license-badge.svg){style="width: 15%; padding-top: 0px;"}](https://creativecommons.org/licenses/by/4.0/)
 
 The presentation was created using the [Quarto](https://quarto.org/) publishing system. All analyses presented are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/).
 

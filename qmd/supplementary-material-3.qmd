@@ -152,6 +152,8 @@ weighted_data |>
 ```{r}
 #| message: false
 #| warning: false
+#| fig-width: 10
+#| fig-width: 7
 
 anonymized_data |>
   plotr:::plot_ggally(
@@ -172,6 +174,8 @@ Correlation matrix of main variables (**Full sample**).
 ```{r}
 #| message: false
 #| warning: false
+#| fig-width: 10
+#| fig-width: 7
 
 weighted_data |>
   plotr:::plot_ggally(

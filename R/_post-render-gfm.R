@@ -11,7 +11,7 @@ here::here("README.md") |> groomr::remove_blank_line_dups()
 
 # Update project year -----
 
-file <- c(here::here("CITATION.cff"), here::here("LICENSE.md"))
+file <- c(here::here("LICENSE.md"))
 
 data <-
   file |>
