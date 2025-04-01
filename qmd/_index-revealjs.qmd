@@ -12,7 +12,7 @@ source(here::here("R/_setup.R"))
 #| eval: false
 #| include: false
 
-library(brandr) # github.com/danielvartan/brandr
+library(brandr)
 library(dplyr)
 library(hms)
 library(lubritime)
@@ -34,9 +34,7 @@ library(targets)
 ```{r}
 #| include: false
 
-source(here::here("R", "utils.R"))
 source(here::here("R", "utils-md.R"))
-source(here::here('R', 'utils-stats.R'))
 ```
 
 ```{r}
@@ -289,7 +287,7 @@ Illustration of the interaction between Process $\text{S}$ (Homeostatic/Sleep-de
 
 :::: {.columns}
 ::: {.column style="width: 30%; padding-top: 0px;"}
-The dataset used for analysis is made up of `{r} res_vars$ea_analysis_sample_n |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.
+The dataset used for analysis is made up of `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.
 :::
 ::: {.column style="width: 70%; padding-top: 15px;"}
 ```{r}
@@ -302,6 +300,7 @@ The dataset used for analysis is made up of `{r} res_vars$ea_analysis_sample_n |
 
 weighted_data |>
   plotr:::plot_brazil_municipality(
+    year = 2017,
     transform = "log10",
     direction = -1,
     alpha = 0.75,
@@ -317,7 +316,7 @@ weighted_data |>
 :::
 
 ::: {.notes}
-Geographical distribution of the sample used in the analysis (`{r} res_vars$ea_analysis_sample_n |> format_to_md_latex(before = "n = ")`). `<br>`{=html} `\microskip \\`{=latex} Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017. The size and color scale are logarithmic ($\log_{10}$).
+Geographical distribution of the sample used in the analysis (`{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex(before = "n = ")`). `<br>`{=html} `\microskip \\`{=latex} Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017. The size and color scale are logarithmic ($\log_{10}$).
 :::
 
 ## Hypothesis Test {.smaller}
@@ -504,12 +503,12 @@ weighted_data |>
   ) |>
   plotr:::plot_brazil_state(
     col_fill = "msf_sc",
-    transform = "identity",
-    binned = FALSE,
+    year = 2017,
     breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
     labels = plotr:::format_as_hm,
     limits = limits, # !!!
-    quiet = TRUE
+    quiet = TRUE,
+    reverse = TRUE
   )
 ```
 :::
@@ -546,9 +545,11 @@ plot <-
   ) |>
   plotr:::plot_brazil_point(
     col_group = "msf_sc_category",
+    year = 2017,
     size = 0.1,
     alpha = 1,
-    print = FALSE
+    print = FALSE,
+    scale_type = "d"
   ) +
   ggplot2::theme(
     axis.title = ggplot2::element_blank(),
@@ -1006,8 +1007,7 @@ weighted_data |>
     ) |>
   plotr:::plot_brazil_municipality(
     col_fill = "msf_sc",
-    transform = "identity",
-    binned = TRUE,
+    year = 2017,
     breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
     labels = plotr:::format_as_hm,
     limits = limits,
@@ -1048,7 +1048,9 @@ plot <-
   ) |>
   plotr:::plot_brazil_point(
     col_group = "msf_sc_category",
-    print = FALSE
+    year = 2017,
+    print = FALSE,
+    scale_type = "d"
   ) +
   ggplot2::labs(color = NULL)
 

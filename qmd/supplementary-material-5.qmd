@@ -17,41 +17,32 @@ The assumptions addressed here are those relevant to general linear models, with
 
 As with all analyses in this thesis, the process is fully reproducible and was conducted using the [R programming language](https://www.r-project.org/) [@rcoreteama] along with the [Quarto](https://quarto.org/) publishing system [@allaire].
 
-## Setting the Enviroment
+## Setting the Environment
 
 ```{r}
 #| eval: false
 
-library(brandr) # github.com/danielvartan/brandr
+library(brandr)
 library(broom)
-library(cli)
 library(dplyr)
-library(fBasics)
 library(forecast)
-library(GGally)
 library(ggplot2)
 library(ggplotify)
-library(grDevices)
 library(here)
 library(hms)
 library(janitor)
 library(latex2exp)
 library(lmtest)
-library(lubridate)
 library(lubritime) # github.com/danielvartan/lubritime
 library(magrittr)
 library(methods)
-library(moments)
-library(nortest)
 library(olsrr)
 library(parsnip)
 library(patchwork)
 library(performance)
-library(prettycheck) # github.com/danielvartan/prettycheck
-library(psychometric)
-library(purrr)
+library(plotr) # github.com/danielvartan/plotr
 library(pwrss)
-library(recipes)
+library(quartor) # github.com/danielvartan/quartor
 library(report)
 library(rlang)
 library(rutils) # github.com/danielvartan/rutils
@@ -59,9 +50,7 @@ library(see)
 library(skedastic)
 library(stats)
 library(stringr)
-library(stringr)
 library(tidyr)
-library(tseries)
 library(workflows)
 ```
 
@@ -73,27 +62,11 @@ library(magrittr)
 library(rlang)
 ```
 
-```{r}
-#| output: false
-
-source(here::here("R", "cohens_f_squared.R"))
-source(here::here("R", "normality_summary.R"))
-source(here::here("R", "panel_tabset_coef_dfbetas.R"))
-source(here::here("R", "panel_tabset_var_distribution.R"))
-source(here::here("R", "panel_tabset_var_homoscedasticity.R"))
-source(here::here("R", "stats_summary.R"))
-source(here::here("R", "summarise_r2.R"))
-source(here::here("R", "test_normality.R"))
-source(here::here("R", "utils.R"))
-source(here::here("R", "utils-checks.R"))
-source(here::here("R", "utils-stats.R"))
-```
-
 ## Loading and Processing the Data
 
 ::: {.callout-tip}
 Assumption 1
-: \hspace{20cm} __Predictor is known__. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012, p. 736].
+: \hspace{20cm} __Predictor is known__. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012a, p. 736].
 :::
 
 **Assumption 1** is satisfied, as the predictors are known.
@@ -153,7 +126,7 @@ pwr_analysis <- pwrss::pwrss.f.reg(
 )
 ```
 
-The results indicate that at least `{r} pwr_analysis$n |> format_to_md_latex()` observations per variable are required to achieve a power of $0.99$ ($1 - \beta$) (the probability of **not** committing a [type II error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)) and a significance level ($\alpha$) of $0.01$ ($0.99$ probability of **not** committing a [type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)). The dataset contains `{r} format_to_md_latex(nrow(data))` observations, which exceeds this requirement.
+The results indicate that at least `{r} pwr_analysis$n |> groomr:::format_to_md_latex()` observations per variable are required to achieve a power of $0.99$ ($1 - \beta$) (the probability of **not** committing a [type II error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)) and a significance level ($\alpha$) of $0.01$ ($0.99$ probability of **not** committing a [type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors)). The dataset contains `{r} groomr:::format_to_md_latex(nrow(data))` observations, which exceeds this requirement.
 
 ```{r}
 #| code-fold: false
@@ -187,7 +160,7 @@ Power analysis for the hypothesis test.
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     hta_pwr_analysis = pwr_analysis
   )
@@ -201,7 +174,7 @@ write_in_results_yml(
 #| include: false
 
 data |>
-  panel_tabset_var_distribution(
+  quartor:::tabset_panel_var_dist(
     data_name = "data",
     cols =
       data |>
@@ -218,11 +191,13 @@ data |>
       "Daylight on the December solstice (seconds)"
     ),
     heading = "###",
-    suffix = "sm-5"
+    suffix = "sm-5",
+    root = "..",
+    summarytools = FALSE
   )
 ```
 
-{{< include ../qmd/_panel-tabset-var-distribution-sm-5.qmd >}}
+{{< include ../qmd/_tabset-panel-sm-5-var-dist.qmd >}}
 
 ## Examining Correlations
 
@@ -348,7 +323,7 @@ report::report(fit_engine_2)
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     hta_restricted_model_fit_coefs = fit_coefs,
     hta_restricted_model_fit_stats = fit_stats
@@ -464,7 +439,7 @@ For a straightforward critique of normality tests specifically, refer to [this](
 
 ::: {.callout-tip}
 Assumption 2
-: \hspace{20cm} __Normality__. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012, p. 737].
+: \hspace{20cm} __Normality__. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012a, p. 737].
 
 (Normality of the error term distribution [@hair2019, p. 287])
 :::
@@ -480,7 +455,7 @@ Assumption 2
 fit_engine |>
   stats::residuals() |>
   dplyr::as_tibble() |>
-  test_normality(col = "value", name = "Residuals")
+  rutils:::test_normality(col = "value", name = "Residuals")
 ```
 
 Histogram of the model residuals with a kernel density estimate, along with a quantile-quantile (Q-Q) plot between the residuals and the theoretical quantiles of the normal distribution.
@@ -519,7 +494,7 @@ Boxplot of model residuals with outliers highlighted in orange.
 fit_engine |>
   stats::residuals() |>
   dplyr::as_tibble() |>
-  stats_summary(col = "value", name = "Residuals")
+  rutils:::stats_summary(col = "value", name = "Residuals")
 ```
 
 Summary statistics of model residuals.
@@ -555,7 +530,7 @@ $$
 fit_engine |>
   stats::residuals() |>
   dplyr::as_tibble() |>
-  normality_summary(col = "value")
+  rutils:::normality_summary(col = "value")
 ```
 
 Summary of statistical tests conducted to assess the normality of the residuals.
@@ -571,7 +546,7 @@ $$
 z_{i0} \beta_{0} + z_{i1} \beta_{1} + \cdots + z_{ip - 1} \beta_{p - 1}
 $$
 
-for $i = 1, \dots, n$ [@degroot2012, p. 737].
+for $i = 1, \dots, n$ [@degroot2012a, p. 737].
 
 (Linearity of the phenomenon measured [@hair2019, p. 287])
 :::
@@ -700,10 +675,9 @@ Relation between the fitted values of the model and its standardized residuals.
 #| eval: false
 #| include: false
 
-data |>
-  panel_tabset_var_homoscedasticity(
-    data_name = "data",
-    fit = fit,
+fit |>
+  quartor:::tabset_panel_var_homoscedasticity(
+    data = data,
     cols = c(
       "msf_sc",
       fit_engine |>
@@ -719,11 +693,12 @@ data |>
       "Monthly average global horizontal irradiance (Wh/m²)"
     ),
     heading = "######",
-    suffix = "sm-5-restricted-model"
+    suffix = "sm-5-rm",
+    root = ".."
   )
 ```
 
-{{< include ../qmd/_panel-tabset-var-homoscedasticity-sm-5-restricted-model.qmd >}}
+{{< include ../qmd/_tabset-panel-sm-5-rm-var-homoscedasticity.qmd >}}
 
 ##### Breusch-Pagan Test
 
@@ -776,7 +751,7 @@ fit_engine_2 |> olsrr::ols_test_breusch_pagan()
 
 ::: {.callout-tip}
 Assumption 5
-: \hspace{20cm} __Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012, p. 737].
+: \hspace{20cm} __Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012a, p. 737].
 
 (Independence of the error terms [@hair2019, p. 287])
 :::
@@ -1290,13 +1265,14 @@ fit_engine |> stats::dfbeta() |> head()
 #| include: false
 
 fit_engine |>
-  panel_tabset_coef_dfbetas(
+  quartor:::tabset_panel_coef_dfbetas(
     heading = "######",
-    suffix = "sm-5-restricted-model"
+    suffix = "sm-5-rm",
+    root = ".."
   )
 ```
 
-{{< include ../qmd/_panel-tabset-coef-dfbetas-sm-5-restricted-model.qmd >}}
+{{< include ../qmd/_tabset-panel-sm-5-rm-coef-dfbetas.qmd >}}
 
 ##### Hadi's Measure
 
@@ -1480,7 +1456,7 @@ report::report(fit_engine_2)
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     hta_full_model_fit_coefs = fit_coefs,
     hta_full_model_fit_stats = fit_stats
@@ -1596,7 +1572,7 @@ For a straightforward critique of normality tests specifically, refer to [this](
 
 ::: {.callout-tip}
 Assumption 2
-: \hspace{20cm} __Normality__. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012, p. 737].
+: \hspace{20cm} __Normality__. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012a, p. 737].
 
 (Normality of the error term distribution [@hair2019, p. 287])
 :::
@@ -1612,7 +1588,7 @@ Assumption 2
 fit_engine |>
   stats::residuals() |>
   dplyr::as_tibble() |>
-  test_normality(col = "value", name = "Residuals")
+  rutils:::test_normality(col = "value", name = "Residuals")
 ```
 
 Histogram of the model residuals with a kernel density estimate, along with a quantile-quantile (Q-Q) plot between the residuals and the theoretical quantiles of the normal distribution.
@@ -1651,7 +1627,7 @@ Boxplot of model residuals with outliers highlighted in orange.
 fit_engine |>
   stats::residuals() |>
   dplyr::as_tibble() |>
-  stats_summary(col = "value", name = "Residuals")
+  rutils:::stats_summary(col = "value", name = "Residuals")
 ```
 
 Summary statistics of model residuals.
@@ -1687,7 +1663,7 @@ $$
 fit_engine |>
   stats::residuals() |>
   dplyr::as_tibble() |>
-  normality_summary(col = "value")
+  rutils:::normality_summary(col = "value")
 ```
 
 Summary of statistical tests conducted to assess the normality of the residuals.
@@ -1703,7 +1679,7 @@ $$
 z_{i0} \beta_{0} + z_{i1} \beta_{1} + \cdots + z_{ip - 1} \beta_{p - 1}
 $$
 
-for $i = 1, \dots, n$ [@degroot2012, p. 737].
+for $i = 1, \dots, n$ [@degroot2012a, p. 737].
 
 (Linearity of the phenomenon measured [@hair2019, p. 287])
 :::
@@ -1832,10 +1808,9 @@ Relation between the fitted values of the model and its standardized residuals.
 #| eval: false
 #| include: false
 
-data |>
-  panel_tabset_var_homoscedasticity(
-    data_name = "data",
-    fit = fit,
+fit |>
+  quartor:::tabset_panel_var_homoscedasticity(
+    data = data,
     cols = c(
       "msf_sc",
       fit_engine |>
@@ -1855,11 +1830,12 @@ data |>
       "Daylight on the December solstice (seconds)"
     ),
     heading = "######",
-    suffix = "sm-5-full-model"
+    suffix = "sm-5-fm",
+    root = ".."
   )
 ```
 
-{{< include ../qmd/_panel-tabset-var-homoscedasticity-sm-5-full-model.qmd >}}
+{{< include ../qmd/_tabset-panel-sm-5-fm-var-homoscedasticity.qmd >}}
 
 ##### Breusch-Pagan Test
 
@@ -1912,7 +1888,7 @@ fit_engine_2 |> olsrr::ols_test_breusch_pagan()
 
 ::: {.callout-tip}
 Assumption 5
-: \hspace{20cm} __Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012, p. 737].
+: \hspace{20cm} __Independence__. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012a, p. 737].
 
 (Independence of the error terms [@hair2019, p. 287])
 :::
@@ -2427,13 +2403,14 @@ fit_engine |> stats::dfbeta() |> head()
 #| include: false
 
 fit_engine |>
-  panel_tabset_coef_dfbetas(
+  quartor:::tabset_panel_coef_dfbetas(
     heading = "######",
-    suffix = "sm-5-full-model"
+    suffix = "sm-5-fm",
+    root = ".."
   )
 ```
 
-{{< include ../qmd/_panel-tabset-coef-dfbetas-sm-5-full-model.qmd >}}
+{{< include ../qmd/_tabset-panel-sm-5-fm-coef-dfbetas.qmd >}}
 
 ##### Hadi's Measure
 
@@ -2506,20 +2483,21 @@ print(f_test)
 ```{r}
 #| code-fold: false
 
-source(here::here("R/utils-stats.R"))
-
 n <- nrow(data)
 k_res <- length(stats::coefficients(fit_engine_restricted)) - 1
 k_full <- length(stats::coefficients(fit_engine_full)) - 1
 
-((r_squared(fit_engine_full) - r_squared(fit_engine_restricted)) /
-    (k_full - k_res)) / ((1 - r_squared(fit_engine_full)) / (n  - k_full - 1))
+r_squared_restricted <- summary(fit_engine_restricted)$r.squared
+r_squared_full <- summary(fit_engine_full)$r.squared
+
+((r_squared_full - r_squared_restricted) /
+    (k_full - k_res)) / ((1 - r_squared_full) / (n  - k_full - 1))
 ```
 
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     hta_f_test = f_test
   )
@@ -2548,7 +2526,7 @@ $$
 
 adj_r_squared_restricted <-
   fit_engine_restricted |>
-  summarise_r2(
+  rutils:::summarize_r2(
     n = nrow(data),
     k = length(fit_engine_restricted$coefficients) - 1,
     ci_level = 0.95
@@ -2566,7 +2544,7 @@ Confidence interval for the adjusted R-squared of the **restricted model**. LCL 
 
 adj_r_squared_full <-
   fit_engine_full |>
-  summarise_r2(
+  rutils:::summarize_r2(
     n = nrow(data),
     k = length(fit_engine_full$coefficients) - 1,
     ci_level = 0.95
@@ -2599,12 +2577,12 @@ Comparison between the coefficients of determination ($\text{R}^2$) of the restr
 
 ::: {#tbl-sm-5-hypothesis-test-4}
 ```{r}
-effect_size <- cohens_f_squared_summary(
+effect_size <- rutils:::cohens_f_squared_summary(
   base_r_squared = adj_r_squared_restricted,
   new_r_squared = adj_r_squared_full
 )
 
-effect_size |> list_as_tibble()
+effect_size |> rutils:::list_as_tibble()
 ```
 
 Effect size between the restricted and full models based on Cohen's $f^2$.
@@ -2613,7 +2591,7 @@ Effect size between the restricted and full models based on Cohen's $f^2$.
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     hta_restricted_model_adj_r_squared = adj_r_squared_restricted,
     hta_full_model_adj_r_squared = adj_r_squared_full,
@@ -2628,4 +2606,4 @@ Based on the hypothesis test results, **we must reject the alternative hypothesi
 
 <br>
 
-For questions regarding these computations, please contact the author at <danvartan@mail.com>.
+For questions regarding these computations, please contact the author at <danvartan@gmail.com>.

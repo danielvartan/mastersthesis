@@ -32,7 +32,7 @@ __Palavras-chave__: Ciência da complexidade. Sistemas complexos. Cronobiologia.
 ::: {.content-visible when-format="pdf"}
 <!-- %:::% foreign-abstract keywords begin %:::% -->
 \hyphenpenalty=100000
-\begin{tabular}{p{3.6cm} p{12.3cm}}
+\begin{tabular}{p{5cm} p{10.9cm}}
   \textbf{Palavras-chaves}: &  Ciência da complexidade. Sistemas complexos. Cronobiologia. Ritmos biológicos. Cronotipos. Fenótipos circadianos. Sono. Entrainment. Latitude. MCTQ.
 \end{tabular}
 <!-- %:::% foreign-abstract keywords end %:::% -->

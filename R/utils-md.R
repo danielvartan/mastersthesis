@@ -57,7 +57,7 @@ md_adj_r_squared <- function(
   paste0(
     "$",
     "\\text{R}^2_{\\text{adj}} = ",
-    data$Rsq,
+    data$value[1],
     "$"
   ) |>
     I()

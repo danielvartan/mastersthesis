@@ -5,10 +5,6 @@
 library(magrittr)
 library(targets)
 
-# Load functions -----
-
-source(here::here("R", "utils.R"))
-
 # Load variables -----
 
 env_vars <- yaml::read_yaml(here::here("_variables.yml"))
@@ -101,7 +97,7 @@ if (res_vars$hta_effect_size$f_squared >
 
 # Write in `results.yml` -----
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     pr_raw_data_nrow = raw_data |> nrow(),
     pr_analysis_sample_msf_sc_mean = pr_analysis_sample_msf_sc_mean,

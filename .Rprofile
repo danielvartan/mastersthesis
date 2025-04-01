@@ -75,7 +75,7 @@ rprofile_cat_line <- function(session_id, env_var = "RPROFILE_MESSAGES") {
 }
 
 rprofile_message <- function(
-    x,
+    x, #nolint
     session_id,
     env_var = "RPROFILE_MESSAGES",
     cat_line = TRUE,
@@ -101,6 +101,10 @@ rprofile_message <- function(
   invisible()
 }
 
+# Activate `renv` -----
+
+source(here::here("renv", "activate.R"))
+
 # Assert required packages -----
 
 require_pkg(
@@ -115,47 +119,21 @@ require_pkg(
 library(magrittr)
 library(ragg)
 
-# Show session message -----
-
-rprofile_message(
-  x = "The messages below are shown only once per R session.",
-  session_id = session_id,
-  info = TRUE
-)
-
-# Activate `renv` -----
-
-rprofile_message("`renv` activation settings:", session_id)
-
-source(here::here("renv", "activate.R"))
-
-rprofile_cat_line(session_id)
-
 # Set options -----
 
 options(scipen = 999)
-
-# Warn about setting 'AGG' as the graphic device backend -----
-
-rprofile_message(
-  paste0(
-    "If you haven't already set it, configure {.strong AGG} ",
-    "as the RStudio graphic device backend. Learn more at ",
-    "<https://ragg.r-lib.org/#use-ragg-in-rstudio>."
-  ),
-  session_id
-)
+options(vsc.use_httpgd = TRUE)
 
 # Set system locale -----
 
 source(here::here("R", "set_locale.R"))
 
-set_locale(session_id)
-
-# End line -----
-
-rprofile_cat_line(session_id = session_id, env_var = "SET_LOCALE_MESSAGES")
+set_locale(session_id, verbose = FALSE)
 
 # Clean the global environment -----
 
-rm(list = ls())
+rm(list = c(
+  "session_id", "single_quote", "double_quote", "require_pkg",
+  "rprofile_cat_line", "rprofile_message", "set_locale",
+  "get_locale"
+))

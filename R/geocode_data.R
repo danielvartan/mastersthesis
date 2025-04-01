@@ -1,32 +1,15 @@
 # library(cli)
 # library(dplyr)
 # library(geobr)
+# library(orbis) # github.com/danielvartan/orbis
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
 
-source(here::here("R", "get_brazil_municipality.R"))
-source(here::here("R", "get_brazil_region.R"))
 source(here::here("R", "get_geocode_lookup_data.R"))
 
-# # Helpers
-#
-# data <- targets::tar_read("analyzed_data")
-#
-# source(here::here("R", "filter_geographic_data.R"))
-# data |> filter_geographic_data("postal_code", "41610010", fix_col = FALSE)
-#
-# source(here::here("R", "get_brazil_address_by_postal_code.R"))
-# get_brazil_address_by_postal_code("41610010", method = "google") |>
-#   dplyr::glimpse()
-#
-# postal_code <-
-#   data |>
-#   dplyr::filter(is_postal_code_valid == FALSE) |>
-#   dplyr::pull(postal_code)
-
 geocode_data <- function(
-    data,
+    data, #nolint
     year = 2017,
     geocode_lookup_data = get_geocode_lookup_data()
   ) {
@@ -58,14 +41,12 @@ geocode_data <- function(
 # library(dplyr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R", "get_brazil_municipality.R"))
-
 add_ibge_codes <- function(data) {
   checkmate::assert_tibble(data)
 
   data |>
     dplyr::left_join(
-      get_brazil_municipality(year = 2017) |>
+      orbis::get_brazil_municipality(year = 2017) |>
         dplyr::select(state_code, state, municipality_code, municipality),
       by = c("state", "municipality")
     ) |>
@@ -137,9 +118,7 @@ validate_postal_codes <- function(
 # library(dplyr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R", "get_brazil_municipality.R"))
-
-adjust_state_and_municipality_by_postal_code <- function(data) {
+adjust_state_and_municipality_by_postal_code <- function(data) { #nolint
   checkmate::assert_tibble(data)
 
   data |>
@@ -156,7 +135,7 @@ adjust_state_and_municipality_by_postal_code <- function(data) {
       )
     ) |>
     dplyr::left_join(
-      get_brazil_municipality(year = 2017) |>
+      orbis::get_brazil_municipality(year = 2017) |>
         dplyr::select(state_code, state, municipality_code, municipality),
       by = c("state_code", "municipality_code"),
       suffix = c("", "_geobr")
@@ -183,13 +162,11 @@ adjust_state_and_municipality_by_postal_code <- function(data) {
 # library(dplyr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R", "get_brazil_region.R"))
-
 add_region <- function(data) {
   checkmate::assert_tibble(data)
 
   data |>
-    dplyr::mutate(region = get_brazil_region(state, "state")) |>
+    dplyr::mutate(region = orbis::get_brazil_region(state)) |>
     dplyr::relocate(region, .after = country)
 }
 
@@ -200,7 +177,7 @@ add_region <- function(data) {
 source(here::here("R", "get_geocode_lookup_data.R"))
 
 add_geocode_data_by_postal_code <- function(
-    data,
+    data, #nolint
     geocode_lookup_data = get_geocode_lookup_data()
   ) {
   checkmate::assert_tibble(data)
@@ -235,7 +212,7 @@ add_geocode_data_by_postal_code <- function(
 
 source(here::here("R", "get_geocode_lookup_data.R"))
 
-add_geocode_data_by_municipality <- function(
+add_geocode_data_by_municipality <- function( #nolint
     data,
     geocode_lookup_data = get_geocode_lookup_data()
   ) {
@@ -306,7 +283,7 @@ validate_brazil_geocodes <- function(data, year = 2017) {
   checkmate::assert_tibble(data)
 
   data |>
-    plotr:::filter_points_on_land(
+    orbis:::filter_points_on_land(
       geobr::read_country(year = year, showProgress = FALSE) |>
         dplyr::pull(geom) |>
         rutils::shush()

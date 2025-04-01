@@ -13,7 +13,6 @@
 # library(stringr)
 # library(tidyr)
 
-source(here::here("R", "utils.R"))
 source(here::here("R", "get_lookup_data.R"))
 
 #' Validate `tidy_data()` output
@@ -442,7 +441,7 @@ remove_duplicates_and_blanks <- function(data) {
     ) |>
     dplyr::rowwise() |>
     dplyr::mutate(
-      length = count_not_na(
+      length = rutils:::count_not_na(
         dplyr::c_across(cols = -dplyr::all_of(c("id", "timestamp", "track")))
       )
     ) |>

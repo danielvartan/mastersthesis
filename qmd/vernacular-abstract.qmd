@@ -28,7 +28,7 @@ __Keywords__: {{< var keyword >}}
 ::: {.content-visible when-format="pdf"}
 <!-- %:::% vernacular-abstract keywords begin %:::% -->
 \hyphenpenalty=100000
-\begin{tabular}{p{2.3cm} p{13.6cm}}
+\begin{tabular}{p{2.5cm} p{13.4cm}}
   \textbf{Keywords}: & Complexity science. Complex systems. Chronobiology. Biological rhythms. Chronotypes. Circadian phenotypes. Sleep. Entrainment. Latitude. MCTQ.
 \end{tabular}
 <!-- %:::% vernacular-abstract keywords end %:::% -->

@@ -1,0 +1,901 @@
+:::: {.panel-tabset}
+### `MSF~sc~ (Chronotype proxy) (local time)`
+
+::: {#tbl-sm-3-var-dist-stats-msf-sc}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "msf_sc",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `msf_sc` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-msf-sc}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "msf_sc")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `msf_sc` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-msf-sc}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "msf_sc")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `msf_sc` variable with jittered data points in black.
+:::
+
+### `Age (years)`
+
+::: {#tbl-sm-3-var-dist-stats-age}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "age",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `age` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-age}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "age")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `age` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-age}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "age")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `age` variable with jittered data points in black.
+:::
+
+### `Latitude (decimal degrees)`
+
+::: {#tbl-sm-3-var-dist-stats-latitude}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "latitude",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `latitude` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-latitude}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "latitude")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `latitude` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-latitude}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "latitude")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `latitude` variable with jittered data points in black.
+:::
+
+### `Longitude (decimal degrees)`
+
+::: {#tbl-sm-3-var-dist-stats-longitude}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "longitude",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `longitude` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-longitude}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "longitude")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `longitude` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-longitude}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "longitude")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `longitude` variable with jittered data points in black.
+:::
+
+### `Monthly average global horizontal irradiance (Wh/m²)`
+
+::: {#tbl-sm-3-var-dist-stats-ghi-month}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "ghi_month",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `ghi_month` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-ghi-month}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "ghi_month")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `ghi_month` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-ghi-month}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "ghi_month")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `ghi_month` variable with jittered data points in black.
+:::
+
+### `Annual average global horizontal irradiance (Wh/m²)`
+
+::: {#tbl-sm-3-var-dist-stats-ghi-annual}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "ghi_annual",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `ghi_annual` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-ghi-annual}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "ghi_annual")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `ghi_annual` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-ghi-annual}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "ghi_annual")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `ghi_annual` variable with jittered data points in black.
+:::
+
+### `Sunrise on the March equinox (date-time seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-march-equinox-sunrise}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "march_equinox_sunrise",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `march_equinox_sunrise` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-march-equinox-sunrise}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "march_equinox_sunrise")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `march_equinox_sunrise` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-march-equinox-sunrise}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "march_equinox_sunrise")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `march_equinox_sunrise` variable with jittered data points in black.
+:::
+
+### `Sunset on the March equinox (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-march-equinox-sunset}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "march_equinox_sunset",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `march_equinox_sunset` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-march-equinox-sunset}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "march_equinox_sunset")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `march_equinox_sunset` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-march-equinox-sunset}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "march_equinox_sunset")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `march_equinox_sunset` variable with jittered data points in black.
+:::
+
+### `Daylight on the March equinox (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-march-equinox-daylight}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "march_equinox_daylight",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `march_equinox_daylight` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-march-equinox-daylight}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "march_equinox_daylight")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `march_equinox_daylight` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-march-equinox-daylight}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "march_equinox_daylight")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `march_equinox_daylight` variable with jittered data points in black.
+:::
+
+### `Sunrise on the June solstice (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-june-solstice-sunrise}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "june_solstice_sunrise",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `june_solstice_sunrise` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-june-solstice-sunrise}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "june_solstice_sunrise")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `june_solstice_sunrise` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-june-solstice-sunrise}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "june_solstice_sunrise")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `june_solstice_sunrise` variable with jittered data points in black.
+:::
+
+### `Sunset on the June solstice (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-june-solstice-sunset}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "june_solstice_sunset",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `june_solstice_sunset` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-june-solstice-sunset}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "june_solstice_sunset")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `june_solstice_sunset` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-june-solstice-sunset}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "june_solstice_sunset")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `june_solstice_sunset` variable with jittered data points in black.
+:::
+
+### `Daylight on the June solstice (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-june-solstice-daylight}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "june_solstice_daylight",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `june_solstice_daylight` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-june-solstice-daylight}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "june_solstice_daylight")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `june_solstice_daylight` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-june-solstice-daylight}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "june_solstice_daylight")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `june_solstice_daylight` variable with jittered data points in black.
+:::
+
+### `Sunrise on the September solstice (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-september-equinox-sunrise}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "september_equinox_sunrise",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `september_equinox_sunrise` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-september-equinox-sunrise}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "september_equinox_sunrise")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `september_equinox_sunrise` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-september-equinox-sunrise}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "september_equinox_sunrise")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `september_equinox_sunrise` variable with jittered data points in black.
+:::
+
+### `Sunset on the September solstice (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-september-equinox-sunset}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "september_equinox_sunset",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `september_equinox_sunset` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-september-equinox-sunset}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "september_equinox_sunset")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `september_equinox_sunset` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-september-equinox-sunset}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "september_equinox_sunset")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `september_equinox_sunset` variable with jittered data points in black.
+:::
+
+### `Daylight on the September solstice (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-september-equinox-daylight}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "september_equinox_daylight",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `september_equinox_daylight` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-september-equinox-daylight}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "september_equinox_daylight")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `september_equinox_daylight` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-september-equinox-daylight}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "september_equinox_daylight")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `september_equinox_daylight` variable with jittered data points in black.
+:::
+
+### `Sunrise on the December solstice (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-december-solstice-sunrise}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "december_solstice_sunrise",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `december_solstice_sunrise` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-december-solstice-sunrise}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "december_solstice_sunrise")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `december_solstice_sunrise` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-december-solstice-sunrise}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "december_solstice_sunrise")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `december_solstice_sunrise` variable with jittered data points in black.
+:::
+
+### `Sunset on the December solstice (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-december-solstice-sunset}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "december_solstice_sunset",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `december_solstice_sunset` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-december-solstice-sunset}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "december_solstice_sunset")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `december_solstice_sunset` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-december-solstice-sunset}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "december_solstice_sunset")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `december_solstice_sunset` variable with jittered data points in black.
+:::
+
+### `Daylight on the December solstice (seconds)`
+
+::: {#tbl-sm-3-var-dist-stats-december-solstice-daylight}
+```{r}
+#| code-fold: true
+#| output: asis
+
+weighted_data |>
+  rutils:::stats_summary(
+    col = "december_solstice_daylight",
+    na_rm = TRUE,
+    remove_outliers = FALSE,
+    iqr_mult = 1.5,
+    hms_format = TRUE,
+    threshold = hms::parse_hms("12:00:00"),
+    as_list = FALSE
+  )
+```
+
+[Source: Created by the authors.]{.legend}
+
+Statistics for the `december_solstice_daylight` variable.
+:::
+
+::: {#fig-sm-3-var-dist-charts-hist-qq-plot-december-solstice-daylight}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_dist(col = "december_solstice_daylight")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Histogram of the `december_solstice_daylight` variable with a kernel density
+estimate, along with a quantile-quantile (Q-Q) plot between the
+variable and the theoretical quantiles of the normal distribution.
+:::
+
+::: {#fig-sm-3-var-dist-charts-box-plot-december-solstice-daylight}
+```{r}
+#| code-fold: true
+
+weighted_data |> plotr:::plot_box_plot(col = "december_solstice_daylight")
+```
+
+[Source: Created by the authors.]{.legend}
+
+Box plot of the `december_solstice_daylight` variable with jittered data points in black.
+:::
+::::

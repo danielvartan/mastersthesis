@@ -13,7 +13,7 @@
 # <https://labren.ccst.inpe.br/atlas_2017.html> to learn more.
 
 get_inpe_data <- function(
-    file = NULL,
+    file = NULL, #nolint
     pattern = "inpe-2017.rds",
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub"),

@@ -93,12 +93,12 @@ dir_list <-
   c(".temp", "index_cache", "index_files", "site_libs") |>
   append(x = _, list.dirs("qmd")[-1])
 
-quartor::clean_quarto_mess(
+quartor:::clean_quarto_mess(
   file = NULL,
   dir = dir_list,
   ext = c(
     "aux", "bbx", "bcf-SAVE-ERROR", "cbx", "dbx", "fdb_latexmk", "lbx", "loa",
-    "log", "otf", "pdf", "scss", "tex", "xdv"
+    "log", "luarc.json", "otf", "pdf", "scss", "tex", "xdv"
   ),
   ignore = NULL,
   wd = here::here()

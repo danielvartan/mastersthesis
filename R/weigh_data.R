@@ -1,12 +1,10 @@
 # library(dplyr)
 # library(here)
+# library(orbis) # github.com/danielvartan/orbis
 # library(parsnip)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(sidrar)
-
-source(here::here("R", "get_brazil_region.R"))
-source(here::here("R", "get_brazil_state.R"))
 
 # Please note that the weigths refer to the group of states in the Brazilian
 # time zone UTC-3, not the whole country.
@@ -60,7 +58,7 @@ weigh_data <- function(data) {
     dplyr::mutate(
       year = as.integer(year),
       country = "Brazil",
-      region = get_brazil_region(state, "state"),
+      region = orbis::get_brazil_region(state, "state"),
       sex = dplyr::case_when(
         sex == "Homens" ~ "Male",
         sex == "Mulheres" ~ "Female"
@@ -80,7 +78,7 @@ weigh_data <- function(data) {
       n = as.integer(n * 1000)
     ) |>
     dplyr::relocate(year, country, region, state, sex, age_group, n) |>
-    dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state")) |>
+    dplyr::filter(state %in% orbis::get_brazil_state_by_utc(-3, "state")) |>
     dplyr::mutate(
       n_rel = n / sum(n),
       n_per = (n / sum(n)) * 100

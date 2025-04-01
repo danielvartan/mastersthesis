@@ -1,0 +1,137 @@
+:::: {.panel-tabset}
+###### MSF~sc~ (Chronotype proxy) (seconds)
+
+::: {#tbl-sm-5-fm-var-homoscedasticity-msf-sc}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "msf_sc",
+    x_label = "MSF~sc~ (Chronotype proxy) (seconds)"
+  )
+```
+
+Relation between `msf_sc` and the model standardized residuals.
+:::
+
+###### Age (years)
+
+::: {#tbl-sm-5-fm-var-homoscedasticity-age}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "age",
+    x_label = "Age (years)"
+  )
+```
+
+Relation between `age` and the model standardized residuals.
+:::
+
+###### Longitude (decimal degrees)
+
+::: {#tbl-sm-5-fm-var-homoscedasticity-longitude}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "longitude",
+    x_label = "Longitude (decimal degrees)"
+  )
+```
+
+Relation between `longitude` and the model standardized residuals.
+:::
+
+###### Monthly average global horizontal irradiance (Wh/m²)
+
+::: {#tbl-sm-5-fm-var-homoscedasticity-ghi-month}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "ghi_month",
+    x_label = "Monthly average global horizontal irradiance (Wh/m²)"
+  )
+```
+
+Relation between `ghi_month` and the model standardized residuals.
+:::
+
+###### Annual average global horizontal irradiance (Wh/m²)
+
+::: {#tbl-sm-5-fm-var-homoscedasticity-ghi-annual}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "ghi_annual",
+    x_label = "Annual average global horizontal irradiance (Wh/m²)"
+  )
+```
+
+Relation between `ghi_annual` and the model standardized residuals.
+:::
+
+###### Daylight on the March equinox (seconds)
+
+::: {#tbl-sm-5-fm-var-homoscedasticity-march-equinox-daylight}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "march_equinox_daylight",
+    x_label = "Daylight on the March equinox (seconds)"
+  )
+```
+
+Relation between `march_equinox_daylight` and the model standardized residuals.
+:::
+
+###### Daylight on the June solstice (seconds)
+
+::: {#tbl-sm-5-fm-var-homoscedasticity-june-solstice-daylight}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "june_solstice_daylight",
+    x_label = "Daylight on the June solstice (seconds)"
+  )
+```
+
+Relation between `june_solstice_daylight` and the model standardized residuals.
+:::
+
+###### Daylight on the December solstice (seconds)
+
+::: {#tbl-sm-5-fm-var-homoscedasticity-december-solstice-daylight}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "december_solstice_daylight",
+    x_label = "Daylight on the December solstice (seconds)"
+  )
+```
+
+Relation between `december_solstice_daylight` and the model standardized residuals.
+:::
+::::

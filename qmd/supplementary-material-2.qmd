@@ -18,12 +18,6 @@ library(patchwork)
 library(targets)
 ```
 
-```{r}
-#| include: false
-
-source(here::here("R", "utils.R"))
-```
-
 ## Overview
 
 This document  focuses on providing a detailed explanation of the methods and steps involved in building the models and testing the thesis hypothesis.
@@ -50,9 +44,9 @@ Variables of the Munich ChronoType Questionnaire scale (A sleep log). In its sta
 
 ## Sample
 
-The dataset used for analysis is made up of `{r} res_vars$ea_analysis_sample_n |> format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.
+The dataset used for analysis is made up of `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.
 
-The unfiltered valid sample comprises `{r} res_vars$ea_full_sample_n |> format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of `{r} res_vars$pr_raw_data_nrow |> format_to_md_latex()` individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The unfiltered valid sample comprises `{r} res_vars$ea_full_sample_n |> groomr:::format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of `{r} res_vars$pr_raw_data_nrow |> groomr:::format_to_md_latex()` individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
 
 ::: {#fig-appendice-1-age-sex-chronotype-series}
 ![](images/globo-2017-figure-1.png)
@@ -272,7 +266,7 @@ Histogram of the local time of sleep onset (SO) with (right) and without (left) 
 
 ### Round-Off Errors
 
-The R programming language [only stores values up to 53 binary bits](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f), that's about `{r} format_to_md_latex(53 * log10(2))` digits of precision ($x = 53 \log_{10}(2)$). Since MCTQ deals with self-reported local time of day (e.g., 02:30) and duration (e.g., 15 minutes), a greater floating-point precision is unnecessary. Even with multiple computations, round-off errors wouldn't significantly impact the phenomenon under study.
+The R programming language [only stores values up to 53 binary bits](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f), that's about `{r} groomr:::format_to_md_latex(53 * log10(2))` digits of precision ($x = 53 \log_{10}(2)$). Since MCTQ deals with self-reported local time of day (e.g., 02:30) and duration (e.g., 15 minutes), a greater floating-point precision is unnecessary. Even with multiple computations, round-off errors wouldn't significantly impact the phenomenon under study.
 
 Even considering that `POSIXct` objects are used in the models, there is still a good margin of precision – POSIXct objects are data-time objects measured by the amount of seconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time) (1970-01-01).
 
@@ -305,7 +299,7 @@ $$ {#eq-adjusted-r-squared-delta}
 
 and $\text{MES}$ is a Minimum Effect Size, a threshold for detecting meaningful changes.
 
-$\text{R}^{2}$ is a statistic that represents the proportion of variance explained in the relationship between two or more variables (goodness of fit) [@frey2022, p. 1339]. It ranges from $1$ (perfect prediction) to $0$ (no prediction) and can be defined as [@degroot2012, p. 748]:
+$\text{R}^{2}$ is a statistic that represents the proportion of variance explained in the relationship between two or more variables (goodness of fit) [@frey2022, p. 1339]. It ranges from $1$ (perfect prediction) to $0$ (no prediction) and can be defined as [@degroot2012a, p. 748]:
 
 $$
 \text{R}^{2} = 1 - \cfrac{\text{SS}_{\text{residual}}}{\text{SS}_{\text{total}}} = 1 - \cfrac{\sum \limits^{n}_{i = 1} (y_{i} - \hat{y}_{i})^{2}}{\sum \limits^{n}_{i = 1} (y_{i} - \overline{y})^{2}} = 1 -  \cfrac{\text{Unexplained Variance}}{\text{Total Variance}} = \cfrac{\text{Explained Variance}}{\text{Total Variance}}
@@ -316,8 +310,8 @@ Where:
 - $y_{i}$ = Observed value of the dependent variable;
 - $\hat{y}_{i}$ = Predicted value of the dependent variable;
 - $\overline{y}$ = Mean of the dependent variable;
-- $\text{SS}_{\text{residual}}$ = Sum of the squared prediction errors (residuals) across all observations [@degroot2012, p. 748; @hair2019, p. 264];
-- $\text{SS}_{\text{total}}$ = Total sum of squares or the total amount of variation that exists to be explained by the independent variables. Is equivalent by the sum of the squared difference between the observed value and the mean of the dependent variable (baseline prediction) [@degroot2012, p. 748; @hair2019, p. 265].
+- $\text{SS}_{\text{residual}}$ = Sum of the squared prediction errors (residuals) across all observations [@degroot2012a, p. 748; @hair2019, p. 264];
+- $\text{SS}_{\text{total}}$ = Total sum of squares or the total amount of variation that exists to be explained by the independent variables. Is equivalent by the sum of the squared difference between the observed value and the mean of the dependent variable (baseline prediction) [@degroot2012a, p. 748; @hair2019, p. 265].
 
 Here, $\text{R}^{2}$ is the proportion of the variance in the dependent variable that is predictable from the independent variables.
 

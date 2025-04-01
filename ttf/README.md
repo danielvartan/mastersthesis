@@ -1,8 +1,8 @@
-# masterthesis
+# mastersthesis
 
 ## Typefaces
 
-### DM Sans, DM Mono
+### DM Mono
 
 - License: Open Font License (v1.1) <https://openfontlicense.org/>.
 - Source: Google Fonts.

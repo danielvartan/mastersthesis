@@ -18,13 +18,13 @@ This document presents fundamental concepts and assumptions of general linear mo
 ::: {#def-response-predictor-regression}
 ## Response/Predictor/Regression
 
-The variables $X_{1}, \dots, \text{X}_{k}$ are called predictors, and the random variable $Y$ is called the response. The conditional expectation of $Y$ for given values $x_{1}, \dots, \text{x}_{k}$ of $X_{1}, \dots, \text{X}_{k}$ ($E(Y|x_{1}, \dots, \text{x}_{k})$) is called the regression function of $Y$ on $X_{1}, \dots, \text{X}_{k}$, or simply the regression of $Y$ on $X_{1}, \dots, \text{X}_{k}$. [@degroot2012, p. 699]
+The variables $X_{1}, \dots, \text{X}_{k}$ are called predictors, and the random variable $Y$ is called the response. The conditional expectation of $Y$ for given values $x_{1}, \dots, \text{x}_{k}$ of $X_{1}, \dots, \text{X}_{k}$ ($E(Y|x_{1}, \dots, \text{x}_{k})$) is called the regression function of $Y$ on $X_{1}, \dots, \text{X}_{k}$, or simply the regression of $Y$ on $X_{1}, \dots, \text{X}_{k}$. [@degroot2012a, p. 699]
 :::
 
 ::: {#def-linear-regression}
 ## Linear Regression
 
-A regression function ($E(Y|x_{1}, \dots, \text{x}_{k})$) in the form of a linear function **of the the parameters** $\beta_{0}, \dots, \beta_{k}$, having the following form: [@degroot2012, pp. 699-700]
+A regression function ($E(Y|x_{1}, \dots, \text{x}_{k})$) in the form of a linear function **of the the parameters** $\beta_{0}, \dots, \beta_{k}$, having the following form: [@degroot2012a, pp. 699-700]
 
 $$
 E(Y|x_{1}, \dots, \text{x}_{k}) = \beta_{0} + \beta_{1} x_{1} + \dots + \beta_{k} x_{k}
@@ -34,19 +34,19 @@ $$ {#eq-regression-function}
 ::: {#def-regression-coefficients}
 ## Regression Coefficients
 
-The coefficients $\beta_{0}, \dots, \beta_{k}$ in @eq-regression-function are called regression coefficients [@degroot2012, pp. 699-700].
+The coefficients $\beta_{0}, \dots, \beta_{k}$ in @eq-regression-function are called regression coefficients [@degroot2012a, pp. 699-700].
 :::
 
 ::: {#def-simple-linear-regression}
 ## Simple Linear Regression
 
-A regression of $Y$ on just a single variable $X$. For each value $X = x$, the random variable $Y$ can be represented in the form $Y = \beta_{0} + \beta_{1}x + \epsilon$, where $\epsilon$ is a random variable that has the normal distribution with mean $0$ and variance $\sigma^{2}$. It follows from this assumption that the conditional distribution of $Y$ given $X = x$ is the normal distribution with mean $\beta_{0} + \beta_{1}x$ and variance $\sigma^{2}$ [@degroot2012, p. 700].
+A regression of $Y$ on just a single variable $X$. For each value $X = x$, the random variable $Y$ can be represented in the form $Y = \beta_{0} + \beta_{1}x + \epsilon$, where $\epsilon$ is a random variable that has the normal distribution with mean $0$ and variance $\sigma^{2}$. It follows from this assumption that the conditional distribution of $Y$ given $X = x$ is the normal distribution with mean $\beta_{0} + \beta_{1}x$ and variance $\sigma^{2}$ [@degroot2012a, p. 700].
 :::
 
 ::: {#def-multiple-linear-regression}
 ## Multiple Linear Regression
 
-A linear regression of $Y$ on $k$ variables $X_{1}, \dots, X_{k}$, rather than on just a single variable $X$. In a problem of multiple linear regressions, we obtain $n$ vectors of observations ($x_{i1}. \dots, x_{ik}, Y_{i}$), for $i = 1, \dots, n$. Here $x_{ij}$ is the observed value of the variable $X_{j}$ for the $i$th observation. The $E(Y_{i})$ is given by the relation: [@degroot2012, p. 738]
+A linear regression of $Y$ on $k$ variables $X_{1}, \dots, X_{k}$, rather than on just a single variable $X$. In a problem of multiple linear regressions, we obtain $n$ vectors of observations ($x_{i1}. \dots, x_{ik}, Y_{i}$), for $i = 1, \dots, n$. Here $x_{ij}$ is the observed value of the variable $X_{j}$ for the $i$th observation. The $E(Y_{i})$ is given by the relation: [@degroot2012a, p. 738]
 
 $$
 E(Y_{i}) = \beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}
@@ -56,24 +56,24 @@ $$  {#eq-multiple-linear-regression-function}
 ::: {#def-residuals-fitted-values}
 ## Residuals/Fitted Values
 
-For $i = 1, \dots, n$, the observed values of $\hat{y} = \hat{\beta}_{0} + \hat{\beta}_{1} x_{i}$ are called _fitted values_. For $i = 1, \dots, n$, the observed values of $e_{i} = y_{i} - \hat{y}_{i}$ are called _residuals_ [@degroot2012, p. 717].
+For $i = 1, \dots, n$, the observed values of $\hat{y} = \hat{\beta}_{0} + \hat{\beta}_{1} x_{i}$ are called _fitted values_. For $i = 1, \dots, n$, the observed values of $e_{i} = y_{i} - \hat{y}_{i}$ are called _residuals_ [@degroot2012a, p. 717].
 :::
 
 ::: {#def-general-linear-model}
 ## General Linear Model
 
-The statistical model in which the observations $Y_{1}, \dots, Y_{n}$ satisfy the following assumptions [@degroot2012, p. 738].
+The statistical model in which the observations $Y_{1}, \dots, Y_{n}$ satisfy the following assumptions [@degroot2012a, p. 738].
 :::
 
 ## Assumptions
 
-Here we shall assume that each observation $Y_{1}, \dots, Y_{n}$ has a normal distribution, that the observations $Y_{1}, \dots, Y_{n}$ are independent, and that the observations $Y_{1}, \dots, Y_{n}$ have the same variance $\sigma^{2}$. Instead of a single predictor being associated with each $Y_{i}$, we assume that a $p$-dimensional vector $z_{i} = (z_{i0}, \dots, z_{ip - 1})$ is associated with each $Y_{i}$ [@degroot2012, p. 736].
+Here we shall assume that each observation $Y_{1}, \dots, Y_{n}$ has a normal distribution, that the observations $Y_{1}, \dots, Y_{n}$ are independent, and that the observations $Y_{1}, \dots, Y_{n}$ have the same variance $\sigma^{2}$. Instead of a single predictor being associated with each $Y_{i}$, we assume that a $p$-dimensional vector $z_{i} = (z_{i0}, \dots, z_{ip - 1})$ is associated with each $Y_{i}$ [@degroot2012a, p. 736].
 
 Assumption 1
-: **Predictor is known**. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012, p. 736].
+: **Predictor is known**. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012a, p. 736].
 
 Assumption 2
-: **Normality**. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012, p. 737].
+: **Normality**. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012a, p. 737].
 
 (Normality of the error term distribution [@hair2019, p. 287])
 
@@ -84,7 +84,7 @@ $$
 z_{i0} \beta_{0} + z_{i1} \beta_{1} + \cdots + z_{ip - 1} \beta_{p - 1}
 $$
 
-for $i = 1, \dots, n$ [@degroot2012, p. 737].
+for $i = 1, \dots, n$ [@degroot2012a, p. 737].
 
 (Linearity of the phenomenon measured [@hair2019, p. 287])
 
@@ -98,6 +98,6 @@ Assumption 4
 (Constant variance of the error terms [@hair2019, p. 287])
 
 Assumption 5
-: **Independence**. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012, p. 737].
+: **Independence**. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012a, p. 737].
 
 (Independence of the error terms [@hair2019, p. 287])

@@ -7,12 +7,6 @@
 # library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
-# The Time and Date AS service offers a table with time and dates of the
-# equinoxes and solstices in their website accordingly with Meeus (1991)
-# algorithms.
-#
-# Meeus, J. (1991). Astronomical algorithms. Willmann-Bell.
-
 get_time_and_date_data <- function(
     file = NULL, #nolint
     pattern = "time-and-date-2024.rds",

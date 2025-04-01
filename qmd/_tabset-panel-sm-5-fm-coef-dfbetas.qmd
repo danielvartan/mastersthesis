@@ -1,0 +1,135 @@
+:::: {.panel-tabset}
+
+```{r}
+#| code-fold: true
+
+  plots <- fit_engine |> olsrr::ols_plot_dfbetas(print_plot = FALSE)
+  coef_names <- stats::coef(fit_engine) |> names()
+```
+
+###### Intercept
+
+::: {#tbl-sm-5-fm-coef-dfbetas-intercept}
+```{r}
+#| code-fold: true
+
+plots$plots[[1]] +
+ggplot2::labs(title = "Intercept coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`Intercept` coefficient.
+:::
+
+###### age
+
+::: {#tbl-sm-5-fm-coef-dfbetas-age}
+```{r}
+#| code-fold: true
+
+plots$plots[[2]] +
+ggplot2::labs(title = "age coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`age` coefficient.
+:::
+
+###### sexMale
+
+::: {#tbl-sm-5-fm-coef-dfbetas-sexmale}
+```{r}
+#| code-fold: true
+
+plots$plots[[3]] +
+ggplot2::labs(title = "sexMale coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`sexMale` coefficient.
+:::
+
+###### longitude
+
+::: {#tbl-sm-5-fm-coef-dfbetas-longitude}
+```{r}
+#| code-fold: true
+
+plots$plots[[4]] +
+ggplot2::labs(title = "longitude coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`longitude` coefficient.
+:::
+
+###### ghi_month
+
+::: {#tbl-sm-5-fm-coef-dfbetas-ghi-month}
+```{r}
+#| code-fold: true
+
+plots$plots[[5]] +
+ggplot2::labs(title = "ghi_month coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`ghi_month` coefficient.
+:::
+
+###### ghi_annual
+
+::: {#tbl-sm-5-fm-coef-dfbetas-ghi-annual}
+```{r}
+#| code-fold: true
+
+plots$plots[[6]] +
+ggplot2::labs(title = "ghi_annual coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`ghi_annual` coefficient.
+:::
+
+###### march_equinox_daylight
+
+::: {#tbl-sm-5-fm-coef-dfbetas-march-equinox-daylight}
+```{r}
+#| code-fold: true
+
+plots$plots[[7]] +
+ggplot2::labs(title = "march_equinox_daylight coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`march_equinox_daylight` coefficient.
+:::
+
+###### june_solstice_daylight
+
+::: {#tbl-sm-5-fm-coef-dfbetas-june-solstice-daylight}
+```{r}
+#| code-fold: true
+
+plots$plots[[8]] +
+ggplot2::labs(title = "june_solstice_daylight coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`june_solstice_daylight` coefficient.
+:::
+
+###### december_solstice_daylight
+
+::: {#tbl-sm-5-fm-coef-dfbetas-december-solstice-daylight}
+```{r}
+#| code-fold: true
+
+plots$plots[[9]] +
+ggplot2::labs(title = "december_solstice_daylight coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`december_solstice_daylight` coefficient.
+:::
+::::

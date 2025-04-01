@@ -10,10 +10,8 @@
 # library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
 
-source(here::here("R", "save_and_lock.R"))
-
 lock_and_store_data <- function(
-    data, #Nolint
+    data, #nolint
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub"),
     upload_to_osf = FALSE,
@@ -45,8 +43,6 @@ lock_and_store_data <- function(
 # library(lubritime)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(tidyr)
-
-source(here::here("R", "save_and_lock.R"))
 
 lock_data <- function(
     data, #nolint
@@ -86,7 +82,7 @@ lock_data <- function(
         .fns = ~ .x |> round(5)
       )
     ) |>
-    save_and_lock(
+    lockr:::save_and_lock(
       file = file.path(tempdir(), paste0(file_name_pattern, ".csv")),
       type = "csv",
       public_key = public_key
@@ -98,7 +94,7 @@ lock_data <- function(
 
   rds_file <-
     data |>
-    save_and_lock(
+    lockr:::save_and_lock(
       file = file.path(tempdir(), paste0(file_name_pattern, ".rds")),
       type = "rds",
       public_key = public_key,

@@ -114,7 +114,7 @@ License](https://creativecommons.org/licenses/by/4.0/).
 The research data is subject to a private license and is not publicly
 available due to privacy and ethical considerations.
 
-## Citation
+## How to Cite
 
 To cite this work, please use the following format:
 

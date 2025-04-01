@@ -1,0 +1,79 @@
+:::: {.panel-tabset}
+
+```{r}
+#| code-fold: true
+
+  plots <- fit_engine |> olsrr::ols_plot_dfbetas(print_plot = FALSE)
+  coef_names <- stats::coef(fit_engine) |> names()
+```
+
+###### Intercept
+
+::: {#tbl-sm-6-rm-coef-dfbetas-intercept}
+```{r}
+#| code-fold: true
+
+plots$plots[[1]] +
+ggplot2::labs(title = "Intercept coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`Intercept` coefficient.
+:::
+
+###### age
+
+::: {#tbl-sm-6-rm-coef-dfbetas-age}
+```{r}
+#| code-fold: true
+
+plots$plots[[2]] +
+ggplot2::labs(title = "age coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`age` coefficient.
+:::
+
+###### sexMale
+
+::: {#tbl-sm-6-rm-coef-dfbetas-sexmale}
+```{r}
+#| code-fold: true
+
+plots$plots[[3]] +
+ggplot2::labs(title = "sexMale coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`sexMale` coefficient.
+:::
+
+###### longitude
+
+::: {#tbl-sm-6-rm-coef-dfbetas-longitude}
+```{r}
+#| code-fold: true
+
+plots$plots[[4]] +
+ggplot2::labs(title = "longitude coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`longitude` coefficient.
+:::
+
+###### ghi_month
+
+::: {#tbl-sm-6-rm-coef-dfbetas-ghi-month}
+```{r}
+#| code-fold: true
+
+plots$plots[[5]] +
+ggplot2::labs(title = "ghi_month coefficient")
+```
+
+Standardized DFBETAS values for each observation concerning the
+`ghi_month` coefficient.
+:::
+::::

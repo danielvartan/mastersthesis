@@ -2,10 +2,8 @@
 # library(dplyr)
 # library(here)
 # library(lubridate)
+# library(orbis) # github.com/danielvartan/orbis
 # library(prettycheck) # github.com/danielvartan/prettycheck
-
-source(here::here("R", "utils.R"))
-source(here::here("R", "utils-stats.R"))
 
 # # Outlier removal notice
 #
@@ -31,7 +29,7 @@ filter_data <- function(data) {
       lubridate::date(timestamp) >= lubridate::ymd("2017-10-15"),
       lubridate::date(timestamp) <= lubridate::ymd("2017-10-21"),
       country == "Brazil",
-      state %in% get_brazil_state_by_utc(-3, "state"),
+      state %in% orbis::get_brazil_state_by_utc(-3, "state"),
       age >= 18
     ) |>
     dplyr::filter(

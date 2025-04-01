@@ -17,7 +17,7 @@ It focuses on the sample used on the analysis, with explicit indications provide
 
 Please note that the models were created using cell weights to account for sample unbalances. For more information on the sample balance, see the Supplementary Material [-@sec-sm-sample-balance].
 
-## Setting the Enviroment
+## Setting the Environment
 
 ```{r}
 #| eval: false
@@ -58,17 +58,6 @@ library(rlang)
 library(targets)
 ```
 
-```{r}
-#| output: false
-
-source(here::here("R", "panel_tabset_var_distribution.R"))
-source(here::here("R", "stats_summary.R"))
-source(here::here('R', 'test_normality.R'))
-source(here::here("R", "utils.R"))
-source(here::here('R', 'utils-checks.R'))
-source(here::here('R', 'utils-stats.R'))
-```
-
 ## Loading data
 
 ```{r}
@@ -104,7 +93,7 @@ weighted_data <-
 #| include: false
 
 weighted_data |>
-  panel_tabset_var_distribution(
+  quartor:::tabset_panel_var_dist(
     data_name = "weighted_data",
     cols = c(
       "msf_sc",
@@ -147,11 +136,12 @@ weighted_data |>
       "Daylight on the December solstice (seconds)"
     ),
     heading = "###",
-    suffix = "sm-3"
+    suffix = "sm-3",
+    summarytools = FALSE
   )
 ```
 
-{{< include ../qmd/_panel-tabset-var-distribution-sm-3.qmd >}}
+{{< include ./qmd/_tabset-panel-sm-3-var-dist.qmd >}}
 
 ## Correlation Matrix of the Main Variables
 
@@ -175,7 +165,7 @@ anonymized_data |>
 Correlation matrix of main variables (**Full sample**).
 :::
 
-###  Analysis Sample
+### Analysis Sample
 
 ::: {#fig-sm-3-correlation-matrix-analysis-sample}
 ```{r}
@@ -184,13 +174,7 @@ Correlation matrix of main variables (**Full sample**).
 
 weighted_data |>
   plotr:::plot_ggally(
-    cols = c(
-      "sex",
-      "age",
-      "latitude",
-      "longitude",
-      "msf_sc"
-    ),
+    cols = c("sex", "age", "latitude", "longitude", "msf_sc"),
     mapping = ggplot2::aes(colour = sex)
   ) |>
   rutils::shush()
@@ -244,7 +228,7 @@ Brazil's extreme points (**full sample**).
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_brazil_lat_lon = brazil_lat_lon
   )
@@ -296,7 +280,7 @@ Latitude and longitude statistics of respondents (**Full sample**).
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_full_sample_lat_lon = full_sample_lat_lon
   )
@@ -348,7 +332,7 @@ Latitude and longitude statistics of respondents (**Analysis sample**).
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_analysis_sample_lat_lon = analysis_sample_lat_lon
   )
@@ -387,9 +371,10 @@ plot_6579_ibge_1 <-
   ibge_6579_data_state |>
   plotr:::plot_brazil_state(
     col_fill = "n",
+    year = 2017,
     transform = "log10",
     direction = -1,
-    reverse = FALSE
+    scale_type = "binned"
   )
 ```
 
@@ -412,16 +397,17 @@ ibge_6579_data_municipality <-
 max_limit <-
   ibge_6579_data_municipality |>
   dplyr::pull(n) |>
-  inverse_log_max(10)
+  rutils:::inverse_log_max(10)
 
 plot_6579_ibge_2 <-
   ibge_6579_data_municipality |>
   plotr:::plot_brazil_municipality(
     col_fill = "n",
+    year = 2017,
     transform = "log10",
     direction = -1,
-    reverse = FALSE,
-    breaks = 10^(seq(1, log10(max_limit) - 1))
+    breaks = 10^(seq(1, log10(max_limit) - 1)),
+    reverse = FALSE
   )
 ```
 
@@ -430,6 +416,7 @@ plot_6579_ibge_3 <-
   ibge_6579_data_municipality |>
   plotr:::plot_brazil_municipality(
     col_fill = "n",
+    year = 2017,
     transform = "log10",
     direction = -1,
     alpha = 0.75,
@@ -465,7 +452,7 @@ plot_ibge_panel
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_brazil_pop_2017_n =
       sidrar::get_sidra(api ="/t/6579/n1/all/v/all/p/2017") |>
@@ -494,14 +481,14 @@ plot_full_1 <-
   plotr:::plot_world_countries(
     transform = "log10",
     direction = -1,
-    reverse = FALSE
+    scale_type = "binned"
   )
 ```
 
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_full_sample_non_brazilians_n =
       anonymized_data |>
@@ -519,9 +506,10 @@ write_in_results_yml(
 plot_full_2 <-
   anonymized_data |>
   plotr:::plot_brazil_state(
+    year = 2017,
     transform = "log10",
     direction = -1,
-    reverse = FALSE
+    scale_type = "binned"
   )
 ```
 
@@ -531,14 +519,14 @@ max_limit <-
   dplyr::filter(country == "Brazil") |>
   dplyr::count(municipality_code) |>
   dplyr::pull(n) |>
-  inverse_log_max(10)
+  rutils:::inverse_log_max(10)
 
 plot_full_3 <-
   anonymized_data |>
   plotr:::plot_brazil_municipality(
+    year = 2017,
     transform = "log10",
     direction = -1,
-    reverse = FALSE,
     breaks = 10^(seq(1, log10(max_limit) - 1))
   )
 ```
@@ -554,18 +542,23 @@ max_limit <-
 plot_full_4 <-
   anonymized_data |>
   plotr:::plot_brazil_municipality(
+    year = 2017,
     transform = "log10",
     direction = -1,
     alpha = 0.75,
     breaks = c(10, 500, 1000, 5000, 10000, 12000),
-    point = TRUE
+    point = TRUE,
+    reverse = TRUE
   )
 ```
 
 ```{r}
 plot_full_5 <-
   anonymized_data |>
-  plotr:::plot_brazil_point()
+  plotr:::plot_brazil_point(
+    year = 2017,
+    scale_type = "d"
+  )
 ```
 
 <!-- See <https://r-charts.com/ggplot2/combining-plots/>. -->
@@ -595,7 +588,7 @@ patchwork::wrap_plots(
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_full_sample_n = anonymized_data |> nrow()
   )
@@ -608,10 +601,10 @@ write_in_results_yml(
 plot_analysis_1 <-
   weighted_data |>
   plotr:::plot_brazil_state(
+    year = 2017,
     transform = "log10",
     direction = -1,
-    binned = TRUE,
-    reverse = FALSE
+    scale_type = "binned"
   )
 ```
 
@@ -621,14 +614,14 @@ max_limit <-
   dplyr::filter(country == "Brazil") |>
   dplyr::count(municipality_code) |>
   dplyr::pull(n) |>
-  inverse_log_max(10)
+  rutils:::inverse_log_max(10)
 
 plot_analysis_2 <-
   weighted_data |>
   plotr:::plot_brazil_municipality(
+    year = 2017,
     transform = "log10",
     direction = -1,
-    reverse = FALSE,
     breaks = 10^(seq(1, log10(max_limit)))
   )
 ```
@@ -637,18 +630,23 @@ plot_analysis_2 <-
 plot_analysis_3 <-
   weighted_data |>
   plotr:::plot_brazil_municipality(
+    year = 2017,
     transform = "log10",
     direction = -1,
     alpha = 0.75,
     breaks = c(10, 500, 1000, 5000, 7500),
-    point = TRUE
+    point = TRUE,
+    reverse = TRUE
   )
 ```
 
 ```{r}
 plot_analysis_4 <-
   weighted_data |>
-  plotr:::plot_brazil_point()
+  plotr:::plot_brazil_point(
+    year = 2017,
+    scale_type = "d"
+  )
 ```
 
 <!-- See. <https://patchwork.data-imaginist.com/articles/patchwork.html> -->
@@ -676,7 +674,7 @@ patchwork::wrap_plots(
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_analysis_sample_n = weighted_data |> nrow()
   )
@@ -778,7 +776,7 @@ ibge_6407_data <-
   dplyr::mutate(
     year = as.integer(year),
     country = "Brazil",
-    region = get_brazil_region(state, "state"),
+    region = orbis::get_brazil_region(state),
     state_code = as.integer(state_code),
     sex = dplyr::case_match(
       sex,
@@ -838,28 +836,28 @@ ibge_6407_data |>
   dplyr::mutate(n = n / 1000) |>
   dplyr::select(age, n) |>
   tidyr::uncount(n) |>
-  stats_summary("age")
+  rutils:::stats_summary("age")
 ```
 
 ```{r}
 ibge_6407_data |>
   dplyr::rename(age = age_group_midpoint) |>
   dplyr::mutate(n = n / 1000) |>
-  summary_by("age", "sex", "n")
+  rutils:::summarize_by("age", "sex", "n")
 ```
 
 ```{r}
 ibge_6407_data |>
   dplyr::rename(age = age_group_midpoint) |>
   dplyr::mutate(n = n / 1000) |>
-  summary_by("age", "region", "n")
+  rutils:::summarize_by("age", "region", "n")
 ```
 
 ```{r}
 ibge_6407_data |>
   dplyr::rename(age = age_group_midpoint) |>
   dplyr::mutate(n = n / 1000) |>
-  summary_by("age", "state", "n")
+  rutils:::summarize_by("age", "state", "n")
 ```
 
 ```{r}
@@ -886,17 +884,18 @@ plot_ibge_6407_age_2 <-
   tidyr::uncount(n) |>
   plotr:::plot_brazil_state(
     col_fill = "age",
+    year = 2017,
     transform = "identity",
     direction = -1,
-    reverse = FALSE,
-    quiet = TRUE
+    quiet = TRUE,
+    scale_type = "binned"
   )
 ```
 
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_brazil_age_stats =
       ibge_6407_data |>
@@ -904,13 +903,13 @@ write_in_results_yml(
       dplyr::mutate(n = n / 1000) |>
       dplyr::select(age, n) |>
       tidyr::uncount(n) |>
-      stats_summary("age", as_list = TRUE) |>
+      rutils:::stats_summary("age", as_list = TRUE) |>
       dplyr::as_tibble(),
     ea_brazil_age_stats_by_sex =
       ibge_6407_data |>
       dplyr::rename(age = age_group_midpoint) |>
       dplyr::mutate(n = n / 1000) |>
-      summary_by("age", "sex", "n") |>
+      rutils:::summarize_by("age", "sex", "n") |>
       dplyr::mutate(
         dplyr::across(
           .cols = dplyr::all_of(c("n", "n_rm_na", "n_na")),
@@ -921,7 +920,7 @@ write_in_results_yml(
       ibge_6407_data |>
       dplyr::rename(age = age_group_midpoint) |>
       dplyr::mutate(n = n / 1000) |>
-      summary_by("age", "region", "n") |>
+      rutils:::summarize_by("age", "region", "n") |>
       dplyr::mutate(
         dplyr::across(
           .cols = dplyr::all_of(c("n", "n_rm_na", "n_na")),
@@ -932,7 +931,7 @@ write_in_results_yml(
       ibge_6407_data |>
       dplyr::rename(age = age_group_midpoint) |>
       dplyr::mutate(n = n / 1000) |>
-      summary_by("age", "state", "n") |>
+      rutils:::summarize_by("age", "state", "n") |>
       dplyr::mutate(
         dplyr::across(
           .cols = dplyr::all_of(c("n", "n_rm_na", "n_na")),
@@ -948,25 +947,25 @@ write_in_results_yml(
 ```{r}
 anonymized_data |>
   dplyr::filter(country == "Brazil") |>
-  stats_summary("age")
+  rutils:::stats_summary("age")
 ```
 
 ```{r}
 anonymized_data |>
   dplyr::filter(country == "Brazil") |>
-  summary_by("age", "sex")
+  rutils:::summarize_by("age", "sex")
 ```
 
 ```{r}
 anonymized_data |>
   dplyr::filter(country == "Brazil") |>
-  summary_by("age", "region")
+  rutils:::summarize_by("age", "region")
 ```
 
 ```{r}
 anonymized_data |>
   dplyr::filter(country == "Brazil") |>
-  summary_by("age", "state")
+  rutils:::summarize_by("age", "state")
 ```
 
 ```{r}
@@ -983,10 +982,11 @@ plot_full_age_2 <-
   anonymized_data |>
   plotr:::plot_brazil_state(
     col_fill = "age",
+    year = 2017,
     transform = "identity",
     direction = -1,
-    reverse = FALSE,
-    quiet = TRUE
+    quiet = TRUE,
+    scale_type = "binned"
   )
 ```
 
@@ -995,9 +995,8 @@ plot_full_age_3 <-
   anonymized_data |>
   plotr:::plot_brazil_municipality(
     col_fill = "age", # Means
-    transform = "identity",
+    year = 2017,
     direction = -1,
-    reverse = FALSE,
     quiet = TRUE
   )
 ```
@@ -1024,25 +1023,25 @@ Relation between age and weight (kg), divided by sex and aggregated by the mean.
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_full_sample_age_stats =
       anonymized_data |>
       dplyr::filter(country == "Brazil") |>
-      stats_summary("age", as_list = TRUE) |>
+      rutils:::stats_summary("age", as_list = TRUE) |>
       dplyr::as_tibble(),
     ea_full_sample_age_stats_by_sex =
       anonymized_data |>
       dplyr::filter(country == "Brazil") |>
-      summary_by("age", "sex"),
+      rutils:::summarize_by("age", "sex"),
     ea_full_sample_age_stats_by_region =
       anonymized_data |>
       dplyr::filter(country == "Brazil") |>
-      summary_by("age", "region"),
+      rutils:::summarize_by("age", "region"),
     ea_full_sample_age_stats_by_state =
       anonymized_data |>
       dplyr::filter(country == "Brazil") |>
-      summary_by("age", "state")
+      rutils:::summarize_by("age", "state")
   )
 )
 ```
@@ -1050,19 +1049,19 @@ write_in_results_yml(
 ### Analysis Sample
 
 ```{r}
-weighted_data |> stats_summary("age")
+weighted_data |> rutils:::stats_summary("age")
 ```
 
 ```{r}
-weighted_data |> summary_by("age", "sex")
+weighted_data |> rutils:::summarize_by("age", "sex")
 ```
 
 ```{r}
-weighted_data |> summary_by("age", "region")
+weighted_data |> rutils:::summarize_by("age", "region")
 ```
 
 ```{r}
-weighted_data |> summary_by("age", "state")
+weighted_data |> rutils:::summarize_by("age", "state")
 ```
 
 ```{r}
@@ -1079,10 +1078,10 @@ plot_analysis_age_2 <-
   anonymized_data |>
   plotr:::plot_brazil_state(
     col_fill = "age", # Means
+    year = 2017,
     direction = -1,
-    reverse = FALSE,
-    transform = "identity",
-    quiet = TRUE
+    quiet = TRUE,
+    scale_type = "binned"
   )
 ```
 
@@ -1091,9 +1090,8 @@ plot_analysis_age_3 <-
   weighted_data |>
   plotr:::plot_brazil_municipality(
     col_fill = "age", # Means
+    year = 2017,
     direction = -1,
-    reverse = FALSE,
-    transform = "identity",
     quiet = TRUE
   )
 ```
@@ -1101,21 +1099,21 @@ plot_analysis_age_3 <-
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_analysis_sample_age_stats =
       weighted_data |>
-      stats_summary("age", as_list = TRUE) |>
+      rutils:::stats_summary("age", as_list = TRUE) |>
       dplyr::as_tibble(),
     ea_analysis_sample_age_stats_by_sex =
       weighted_data |>
-      summary_by("age", "sex"),
+      rutils:::summarize_by("age", "sex"),
     ea_analysis_sample_age_stats_by_region =
       weighted_data |>
-      summary_by("age", "region"),
+      rutils:::summarize_by("age", "region"),
     ea_analysis_sample_age_stats_by_state =
       weighted_data |>
-      summary_by("age", "state")
+      rutils:::summarize_by("age", "state")
   )
 )
 ```
@@ -1149,7 +1147,7 @@ Boxplots of mean weight values (kg) aggregated by 1° latitude intervals, illust
 ```{r}
 anonymized_data |>
   dplyr::filter(country == "Brazil") |>
-  stats_summary("msf_sc", as_list = TRUE) |>
+  rutils:::stats_summary("msf_sc", as_list = TRUE) |>
   dplyr::as_tibble() |>
   dplyr::mutate(
     dplyr::across(
@@ -1210,12 +1208,12 @@ plot_age_sex_series <-
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_full_sample_msf_sc_stats =
       anonymized_data |>
       dplyr::filter(country == "Brazil") |>
-      stats_summary("msf_sc", as_list = TRUE) |>
+      rutils:::stats_summary("msf_sc", as_list = TRUE) |>
       dplyr::as_tibble() |>
       dplyr::mutate(
         dplyr::across(
@@ -1234,7 +1232,7 @@ write_in_results_yml(
 
 ```{r}
 weighted_data |>
-  stats_summary("msf_sc", as_list = TRUE) |>
+  rutils:::stats_summary("msf_sc", as_list = TRUE) |>
   dplyr::as_tibble() |>
   dplyr::mutate(
     dplyr::across(
@@ -1267,7 +1265,7 @@ weighted_data |>
       ordered = TRUE
     )
   ) |>
-  summary_by("msf_sc", "msf_sc_category")
+  rutils:::summarize_by("msf_sc", "msf_sc_category")
 ```
 
 ::: {#fig-sm-3-chronotype-distribution-analysis-sample}
@@ -1292,7 +1290,7 @@ Distribution of European chronotypes, as shown in @roenneberg2019b (for comparis
 :::
 
 ```{r}
-weighted_data |> summary_by("msf_sc", "sex")
+weighted_data |> rutils:::summarize_by("msf_sc", "sex")
 ```
 
 ```{r}
@@ -1314,7 +1312,7 @@ weighted_data |>
       age >= 65 ~ "65+"
     )
   ) |>
-  summary_by("msf_sc", "age_group")
+  rutils:::summarize_by("msf_sc", "age_group")
 ```
 
 ::: {#fig-sm-3-age-sex-chronotype-series}
@@ -1348,11 +1346,11 @@ plot_age_sex_series <-
 ```
 
 ```{r}
-weighted_data |> summary_by("msf_sc", "region")
+weighted_data |> rutils:::summarize_by("msf_sc", "region")
 ```
 
 ```{r}
-weighted_data |> summary_by("msf_sc", "state")
+weighted_data |> rutils:::summarize_by("msf_sc", "state")
 ```
 
 ```{r}
@@ -1379,8 +1377,7 @@ weighted_data |>
   ) |>
   plotr:::plot_brazil_state(
     col_fill = "msf_sc",
-    transform = "identity",
-    binned = FALSE,
+    year = 2017,
     breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
     labels = plotr:::format_as_hm,
     limits = limits, # !!!
@@ -1412,12 +1409,12 @@ weighted_data |>
   ) |>
   plotr:::plot_brazil_municipality(
     col_fill = "msf_sc",
-    transform = "identity",
-    binned = TRUE,
+    year = 2017,
     breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
     labels = plotr:::format_as_hm,
     limits = limits,
-    quiet = TRUE
+    quiet = TRUE,
+    reverse = TRUE
   )
 ```
 
@@ -1435,7 +1432,11 @@ weighted_data |>
       ordered = TRUE
     )
   ) |>
-  plotr:::plot_brazil_point(col_group = "msf_sc_category")
+  plotr:::plot_brazil_point(
+    col_group = "msf_sc_category"
+    year = 2017,
+    scale_type = "d"
+  )
 ```
 
 ::: {#fig-sm-3-chronotype-geographical-distribution-by-respondent}
@@ -1456,9 +1457,11 @@ plot <-
   ) |>
   plotr:::plot_brazil_point(
     col_group = "msf_sc_category",
+    year = 2017,
     size = 0.1,
     alpha = 1,
-    print = FALSE
+    print = FALSE,
+    scale_type = "d"
   ) +
   ggplot2::theme(
     axis.title = ggplot2::element_blank(),
@@ -1509,11 +1512,11 @@ weighted_data |>
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     ea_analysis_sample_msf_sc_stats =
       weighted_data |>
-      stats_summary("msf_sc", as_list = TRUE) |>
+      rutils:::stats_summary("msf_sc", as_list = TRUE) |>
       dplyr::as_tibble() |>
       dplyr::mutate(
         dplyr::across(
@@ -1537,10 +1540,10 @@ write_in_results_yml(
           ordered = TRUE
         )
       ) |>
-      summary_by("msf_sc", "msf_sc_category"),
+      rutils:::summarize_by("msf_sc", "msf_sc_category"),
     ea_analysis_sample_msf_sc_stats_by_sex =
       weighted_data |>
-      summary_by("msf_sc", "sex"),
+      rutils:::summarize_by("msf_sc", "sex"),
     ea_analysis_sample_msf_sc_stats_by_age_group =
       weighted_data |>
       dplyr::mutate(
@@ -1560,11 +1563,11 @@ write_in_results_yml(
           age >= 65 ~ "65+"
         )
       ) |>
-      summary_by("msf_sc", "age_group"),
+      rutils:::summarize_by("msf_sc", "age_group"),
     ea_analysis_sample_msf_sc_stats_by_region =
-      weighted_data |> summary_by("msf_sc", "region"),
+      weighted_data |> rutils:::summarize_by("msf_sc", "region"),
     ea_analysis_sample_msf_sc_stats_by_state =
-      weighted_data |> summary_by("msf_sc", "state")
+      weighted_data |> rutils:::summarize_by("msf_sc", "state")
   )
 )
 ```

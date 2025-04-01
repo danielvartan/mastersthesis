@@ -1,20 +1,5 @@
-# TO DO:
-#
-# - Fix the "Source" field, adding a tabulation after "Source: ".
-# - Find a way to center the caption and the source if they are less than
-#   \textwidth, and to justify them if they are greater than \textwidth.
-
 title: "{abnt}: Quarto format for ABNT theses and dissertations"
 author: "Daniel Vartanian"
-  # name: "Daniel Vartanian"
-  # orcid: 0000-0001-7782-759X
-  # url: https://linktr.ee/danielvartan
-  # email: danvartan@gmail.com
-  # corresponding: true
-  # affiliation:
-  #   - name: University of São Paulo
-  #   - Country: Brazil
-  #   - url: https://www.usp.br
 abstract: >
   Quarto format designed for theses and dissertations that adhere to the
   standards of the Brazilian Association of Technical Standards (ABNT).
@@ -22,9 +7,9 @@ description: >
   Quarto format designed for theses and dissertations that adhere to the
   standards of the Brazilian Association of Technical Standards (ABNT).
 keyword: >-
-  abnt. quarto. quarto format. thesis template. reproducibility.
-  open science.
-version: 0.5.0
+  ABNT, Quarto, Quarto format, Thesis template, Reproducibility,
+  Open science
+version: 0.6.0
 quarto-required: ">=1.6.0"
 license:
   text: >
@@ -153,7 +138,7 @@ contributes:
         - tex/layout.tex
         - tex/lengths.tex
         - tex/lua.tex
-        - tex/other.tex
+        - tex/others.tex
         - tex/packages.tex
         - tex/tables.tex
         - tex/tightlist.tex

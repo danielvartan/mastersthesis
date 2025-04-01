@@ -31,7 +31,6 @@ library(targets)
 ```{r}
 #| include: false
 
-source(here::here("R", "utils.R"))
 source(here::here("R", "utils-md.R"))
 ```
 
@@ -52,7 +51,7 @@ The following study was designed for publication in the journal [*Scientific Rep
 
 ## Abstract
 
-`\noindent`{=latex} __Chronotypes are temporal phenotypes that reflect our internal temporal organization, a product of evolutionary pressures enabling organisms to anticipate events. These intrinsic rhythms are entrain by zeitgebers---periodical environmental stimuli with the ability to regulate biological rhythmic expression, with light exposure being the primary mechanism. Given light's role in these systems, previous research hypothesized that latitude might significantly influence chronotypes, suggesting that populations near the equator would exhibit more morning-leaning characteristics due to more consistent light/dark cycles, while populations near the poles might display more evening-leaning tendencies with a potentially freer expression of intrinsic rhythms. To test this hypothesis, we analyzed chronotype data from a large sample of `{r} res_vars$ea_analysis_sample_n |> format_to_md_latex()` subjects across diverse latitudes in Brazil. Our results revealed a negligeble effect size of latitude on chronotype (`{r} md_effect_size("hta", prefix = "")`), indicating that the entrainment phenomenon is far more complex than previously conceived. These findings challenge simplified environmental models of biological timing and underscore the need for more nuanced investigations into the mechanisms underlying temporal phenotypes, opening new avenues for understanding the intricate relationship between environmental cues and individual circadian rhythms.__
+`\noindent`{=latex} __Chronotypes are temporal phenotypes that reflect our internal temporal organization, a product of evolutionary pressures enabling organisms to anticipate events. These intrinsic rhythms are entrain by zeitgebers---periodical environmental stimuli with the ability to regulate biological rhythmic expression, with light exposure being the primary mechanism. Given light's role in these systems, previous research hypothesized that latitude might significantly influence chronotypes, suggesting that populations near the equator would exhibit more morning-leaning characteristics due to more consistent light/dark cycles, while populations near the poles might display more evening-leaning tendencies with a potentially freer expression of intrinsic rhythms. To test this hypothesis, we analyzed chronotype data from a large sample of `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` subjects across diverse latitudes in Brazil. Our results revealed a negligeble effect size of latitude on chronotype (`{r} md_effect_size("hta", prefix = "")`), indicating that the entrainment phenomenon is far more complex than previously conceived. These findings challenge simplified environmental models of biological timing and underscore the need for more nuanced investigations into the mechanisms underlying temporal phenotypes, opening new avenues for understanding the intricate relationship between environmental cues and individual circadian rhythms.__
 
 ## Introduction
 
@@ -66,7 +65,7 @@ The primary zeitgeber influencing biological rhythms is the light/dark cycle, or
 
 Several studies have claimed to find this association in humans, but the evidence they provide is of very low quality or is misleading [@randler2008; @leocadio-miguel2014; @horzum2015; @leocadio-miguel2017; @wang2023]. A notable attempt was made by @leocadio-miguel2017, who measured the chronotype of $12,884$ Brazilian subjects across a wide latitudinal range using the Horne-Östberg (HO) Morningness–Eveningness questionnaire [@horne1976]. Although the authors concluded that there was a meaningful association between latitude and chronotype, their results were too small to be considered practically significant (even by lenient standards), with latitude explaining only approximately $0.388\%$ of the variance in chronotype (Cohen's $f^2 = 0.004143174$). One possible explanation for this result is that the HO measures psychological traits rather than the biological states of circadian rhythms themselves [@roenneberg2019c], suggesting it may not be the most suitable tool for testing the hypothesis [@leocadio-miguel2014].
 
-Building on @leocadio-miguel2017, this study offers a novel attempt to test the latitude hypothesis by employing a biological approach through the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003b] and an enhanced statistical methodology. Additionally, it utilizes the largest dataset on chronotype from a single country, as far as the existing literature suggests, comprising `{r} res_vars$ea_analysis_sample_n |> format_to_md_latex()` respondents, all residing within the same timezone in Brazil and completing the survey within a one-week window (@fig-chapter-5-sample-geographical-distribution).
+Building on @leocadio-miguel2017, this study offers a novel attempt to test the latitude hypothesis by employing a biological approach through the Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003b] and an enhanced statistical methodology. Additionally, it utilizes the largest dataset on chronotype from a single country, as far as the existing literature suggests, comprising `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` respondents, all residing within the same timezone in Brazil and completing the survey within a one-week window (@fig-chapter-5-sample-geographical-distribution).
 
 ::: {#fig-chapter-5-sample-geographical-distribution}
 ```{r}
@@ -75,6 +74,7 @@ Building on @leocadio-miguel2017, this study offers a novel attempt to test the 
 
 weighted_data |>
   plotr:::plot_brazil_municipality(
+    year = 2017,
     transform = "log10",
     direction = -1,
     alpha = 0.75,
@@ -85,14 +85,14 @@ weighted_data |>
 
 [Source: Created by the author.]{.legend}
 
-Geographical distribution of the sample used in the analysis (`{r} res_vars$ea_analysis_sample_n |> format_to_md_latex(before = "n = ")`). `<br>`{=html} `\microskip \\`{=latex} Each point represents a municipality, with its size proportional to the number of participants and color intensity increasing with participant count. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017. The size and color scale are logarithmic ($\log_{10}$).
+Geographical distribution of the sample used in the analysis (`{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex(before = "n = ")`). `<br>`{=html} `\microskip \\`{=latex} Each point represents a municipality, with its size proportional to the number of participants and color intensity increasing with participant count. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017. The size and color scale are logarithmic ($\log_{10}$).
 :::
 
 ## Results
 
 The Munich Chronotype Questionnaire (MCTQ) uses the midpoint between sleep onset (SO) and sleep end (SE) on work-free days (MSF~sc~), with a sleep correction (sc) applied if sleep debt is detected, as a proxy for chronotype [@roenneberg2003b]. For example, if an individual sleeps from $\text{00:00}$ to $\text{08:00}$, the midpoint would be  $\text{04:00}$. This measure is based on the current understanding of sleep regulation, which comprises a homeostatic/sleep-dependent process ($\text{S}$ process) and a circadian process ($\text{C}$ process) [@borbely1982a; @borbely2016a]. The midpoint of sleep on free days offers a way to observe unrestrained sleep behavior, thereby minimizing the influence of the $\text{S}$ process and providing a better approximation of the circadian phenotype (i.e., the $\text{C}$ process).
 
-Our analysis revealed an overall mean MSF~sc~ of `{r} res_vars$pr_analysis_sample_msf_sc_mean |> format_to_md_latex(before = "\\text{", after = "}")`, with an standard deviation of `{r} res_vars$pr_analysis_sample_msf_sc_sd |> format_to_md_latex(before = "\\text{", after = "}")`. The distribution is shown in @fig-chapter-5-chronotype-distribution.
+Our analysis revealed an overall mean MSF~sc~ of `{r} res_vars$pr_analysis_sample_msf_sc_mean |> groomr:::format_to_md_latex(before = "\\text{", after = "}")`, with an standard deviation of `{r} res_vars$pr_analysis_sample_msf_sc_sd |> groomr:::format_to_md_latex(before = "\\text{", after = "}")`. The distribution is shown in @fig-chapter-5-chronotype-distribution.
 
 ::: {#fig-chapter-5-chronotype-distribution}
 ```{r}
@@ -107,7 +107,7 @@ weighted_data |> plotr:::plot_chronotype()
 Observed distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. `<br>`{=html} `\microskip \\`{=latex} Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
 :::
 
-This represents the midsleep point for Brazilian subjects living in the UTC-3 timezone, with an intermediate or average chronotype. Considering the $7–9$ hours of sleep recommended for healthy adults by the American Academy of Sleep Medicine (AASM) [@watson2015b], one might infer that this average individual, in the absence of social constraints, would typically wake up at approximately `{r} res_vars$pr_analysis_sample_msf_sc_mean |> hms::as_hms() |> lubritime::sum_time(hms::parse_hm("04:00")) |> as.numeric() |> hms::as_hms() |> format_to_md_latex(before = "\\text{", after = "}")`.
+This represents the midsleep point for Brazilian subjects living in the UTC-3 timezone, with an intermediate or average chronotype. Considering the $7–9$ hours of sleep recommended for healthy adults by the American Academy of Sleep Medicine (AASM) [@watson2015b], one might infer that this average individual, in the absence of social constraints, would typically wake up at approximately `{r} res_vars$pr_analysis_sample_msf_sc_mean |> hms::as_hms() |> lubritime::sum_time(hms::parse_hm("04:00")) |> as.numeric() |> hms::as_hms() |> groomr:::format_to_md_latex(before = "\\text{", after = "}")`.
 
 The study hypothesis was tested using nested multiple regressions, based on the design of the models presented in @leocadio-miguel2017. The core idea of nested models is to evaluate the effect of including one or more predictors on the model’s variance explanation ($\text{R}^2$) [@maxwell2018]. This is achieved by comparing a restricted model (without the latitude) with a full model (with the latitude). Cell weights, based on sex, age group, and state of residence, were applied to account for sample imbalances.
 
@@ -123,7 +123,7 @@ An ANOVA for nested models revealed a significant reduction in the residual sum 
 
 We emphasize that the assumption of a causal, linear relationship between latitude and chronotype constitutes an *a priori* hypothesis, which this study seeks to falsify.
 
-Despite a broad latitudinal range (`{r}  res_vars$ea_analysis_sample_lat_lon$latitude[3] |> format_to_md_latex(max_digits = 5)` degrees) and a large, balanced sample, our results indicate that the effect of latitude on chronotype is negligible. Indeed, despite suggestions of a potential link in several studies, robust empirical evidence supporting this claim in humans is lacking.
+Despite a broad latitudinal range (`{r}  res_vars$ea_analysis_sample_lat_lon$latitude[3] |> groomr:::format_to_md_latex(max_digits = 5)` degrees) and a large, balanced sample, our results indicate that the effect of latitude on chronotype is negligible. Indeed, despite suggestions of a potential link in several studies, robust empirical evidence supporting this claim in humans is lacking.
 
 Our results align with those of @leocadio-miguel2017, who reported a similar effect size (Cohen's $f^2 = 0.004143174$). However, their analysis did not incorporate a minimum effect size criterion, leading to misleading interpretations.
 
@@ -164,19 +164,18 @@ weighted_data |>
   dplyr::mutate(
     msf_sc =
       msf_sc |>
-      lubritime:::link_to_timeline(
-        threshold = hms::parse_hms("12:00:00")
-      ) |>
+      lubritime:::link_to_timeline() |>
       as.numeric()
   ) |>
   plotr:::plot_brazil_state(
     col_fill = "msf_sc",
-    transform = "identity",
-    binned = FALSE,
+    year = 2017,
+    scale_type = "continuous",
     breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
     labels = plotr:::format_as_hm,
     limits = limits, # !!!
-    quiet = TRUE
+    quiet = TRUE,
+    reverse = TRUE
   )
 ```
 
@@ -211,9 +210,11 @@ plot <-
   ) |>
   plotr:::plot_brazil_point(
     col_group = "msf_sc_category",
+    year = 2017,
     size = 0.1,
     alpha = 1,
-    print = FALSE
+    print = FALSE,
+    scale_type = "d"
   ) +
   ggplot2::theme(
     axis.title = ggplot2::element_blank(),
@@ -273,23 +274,23 @@ The dates and times of equinoxes and solstices were acquired from the [Time and 
 
 ### Sample Characteristics
 
-The analysis dataset consisted of `{r} res_vars$ea_analysis_sample_n |> format_to_md_latex()` participants aged 18 or older residing in the UTC-3 timezone. These individuals completed the survey during a one-week period from October 15th to 21st, 2017, providing a snapshot of the population at that specific time.
+The analysis dataset consisted of `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` participants aged 18 or older residing in the UTC-3 timezone. These individuals completed the survey during a one-week period from October 15th to 21st, 2017, providing a snapshot of the population at that specific time.
 
-The unfiltered valid sample included `{r} res_vars$ea_full_sample_n |> format_to_md_latex()` participants from all Brazilian states. The raw dataset contained `{r} res_vars$pr_raw_data_nrow |> format_to_md_latex()` individuals, with `{r} res_vars$pr_tidy_data_per_nrow_2017_10_15_21 |> format_to_md_latex(after = "\\%")` of the responses collected between October 15th and 21st, 2017. This data collection period coincided with the promotion of the online questionnaire via a [broadcast](https://globoplay.globo.com/v/6219513/) on a nationally televised Sunday show in Brazil [@redeglobo2017].
+The unfiltered valid sample included `{r} res_vars$ea_full_sample_n |> groomr:::format_to_md_latex()` participants from all Brazilian states. The raw dataset contained `{r} res_vars$pr_raw_data_nrow |> groomr:::format_to_md_latex()` individuals, with `{r} res_vars$pr_tidy_data_per_nrow_2017_10_15_21 |> groomr:::format_to_md_latex(after = "\\%")` of the responses collected between October 15th and 21st, 2017. This data collection period coincided with the promotion of the online questionnaire via a [broadcast](https://globoplay.globo.com/v/6219513/) on a nationally televised Sunday show in Brazil [@redeglobo2017].
 
-Based on 2017 data from the Brazilian Institute of Geography and Statistics's (IBGE) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) [@ibgee], Brazil had $51.919\%$ of females and $48.081\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with `{r} res_vars$pr_weighted_data_female_per |> format_to_md_latex(after = "\\%")` of females and `{r} res_vars$pr_weighted_data_male_per |> format_to_md_latex(after = "\\%")` of male subjects. The mean age was `{r} res_vars$ea_analysis_sample_age_stats$mean |> format_to_md_latex()` (`{r} res_vars$ea_analysis_sample_age_stats$sd |> format_to_md_latex(before = "\\text{SD} = ")`), ranging from `{r} res_vars$ea_analysis_sample_age_stats$min |> format_to_md_latex()` to `{r} res_vars$ea_analysis_sample_age_stats$max |> format_to_md_latex()` years.
+Based on 2017 data from the Brazilian Institute of Geography and Statistics's (IBGE) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) [@ibgee], Brazil had $51.919\%$ of females and $48.081\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with `{r} res_vars$pr_weighted_data_female_per |> groomr:::format_to_md_latex(after = "\\%")` of females and `{r} res_vars$pr_weighted_data_male_per |> groomr:::format_to_md_latex(after = "\\%")` of male subjects. The mean age was `{r} res_vars$ea_analysis_sample_age_stats$mean |> groomr:::format_to_md_latex()` (`{r} res_vars$ea_analysis_sample_age_stats$sd |> groomr:::format_to_md_latex(before = "\\text{SD} = ")`), ranging from `{r} res_vars$ea_analysis_sample_age_stats$min |> groomr:::format_to_md_latex()` to `{r} res_vars$ea_analysis_sample_age_stats$max |> groomr:::format_to_md_latex()` years.
 
 To balance the sample, weights were incorporated into the models. These weights were calculated through cell weighting, using sex, age group, and state of residence as references, based on population estimates from IBGE for the same year as the sample.
 
 A survey conducted in 2019 by IBGE [-@ibge2021] found that $82.17\%$ of Brazilian households had access to an internet connection. Therefore, this sample is likely to have a good representation of Brazil’s population.
 
-The sample latitudinal range is `{r} res_vars$ea_analysis_sample_lat_lon$latitude[3] |> format_to_md_latex(after = "°", max_digits = 5)` (`{r} res_vars$ea_analysis_sample_lat_lon$latitude[1] |> format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 5)`, `{r} res_vars$ea_analysis_sample_lat_lon$latitude[2] |> format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 5)`) with a longitudinal span of `{r} res_vars$ea_analysis_sample_lat_lon$longitude[3] |> format_to_md_latex(after = "°", max_digits = 5)` (`{r} res_vars$ea_analysis_sample_lat_lon$longitude[1] |> format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 5)`, `{r} res_vars$ea_analysis_sample_lat_lon$longitude[2] |> format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 5)`). For comparison, Brazil has a latitudinal range of `{r} res_vars$ea_brazil_lat_lon$latitude[3] |> format_to_md_latex(after = "°", max_digits = 5)` (`{r} res_vars$ea_brazil_lat_lon$latitude[1] |> format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 5)`; `{r} res_vars$ea_brazil_lat_lon$latitude[2] |> format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 5)`) and a longitudinal span of `{r} res_vars$ea_brazil_lat_lon$longitude[3] |> format_to_md_latex(after = "°", max_digits = 5)` (`{r} res_vars$ea_brazil_lat_lon$longitude[1] |> format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 5)`; `{r} res_vars$ea_brazil_lat_lon$longitude[2] |> format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 5)`), according to data from IBGE collected via the [geobr](https://ipeagit.github.io/geobr/index.html>) R package [@pereira].
+The sample latitudinal range is `{r} res_vars$ea_analysis_sample_lat_lon$latitude[3] |> groomr:::format_to_md_latex(after = "°", max_digits = 5)` (`{r} res_vars$ea_analysis_sample_lat_lon$latitude[1] |> groomr:::format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 5)`, `{r} res_vars$ea_analysis_sample_lat_lon$latitude[2] |> groomr:::format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 5)`) with a longitudinal span of `{r} res_vars$ea_analysis_sample_lat_lon$longitude[3] |> groomr:::format_to_md_latex(after = "°", max_digits = 5)` (`{r} res_vars$ea_analysis_sample_lat_lon$longitude[1] |> groomr:::format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 5)`, `{r} res_vars$ea_analysis_sample_lat_lon$longitude[2] |> groomr:::format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 5)`). For comparison, Brazil has a latitudinal range of `{r} res_vars$ea_brazil_lat_lon$latitude[3] |> groomr:::format_to_md_latex(after = "°", max_digits = 5)` (`{r} res_vars$ea_brazil_lat_lon$latitude[1] |> groomr:::format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 5)`; `{r} res_vars$ea_brazil_lat_lon$latitude[2] |> groomr:::format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 5)`) and a longitudinal span of `{r} res_vars$ea_brazil_lat_lon$longitude[3] |> groomr:::format_to_md_latex(after = "°", max_digits = 5)` (`{r} res_vars$ea_brazil_lat_lon$longitude[1] |> groomr:::format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 5)`; `{r} res_vars$ea_brazil_lat_lon$longitude[2] |> groomr:::format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 5)`), according to data from IBGE collected via the [geobr](https://ipeagit.github.io/geobr/index.html>) R package [@pereira].
 
 Additional details about the sample are available in the supplementary materials.
 
 ### Power Analysis
 
-To assess the adequacy of the sample size for detecting effects reaching the Minimum Effect Size (MES) threshold ($f^2 = 0.02$), we conducted an *a posteriori* power analysis using the [pwrss](https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html) R package [@bulus]. This analysis revealed a minimum sample size of `{r} res_vars$hta_pwr_analysis$n |> format_to_md_latex()` observations per variable to achieve a power ($1 - \beta$) of $0.99$ with a significance level ($\alpha$) of $0.01$. Our sample size (`{r} res_vars$ea_analysis_sample_n |> format_to_md_latex(before = "n = ")`) comfortably surpasses this threshold, ensuring adequate power.
+To assess the adequacy of the sample size for detecting effects reaching the Minimum Effect Size (MES) threshold ($f^2 = 0.02$), we conducted an *a posteriori* power analysis using the [pwrss](https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html) R package [@bulus]. This analysis revealed a minimum sample size of `{r} res_vars$hta_pwr_analysis$n |> groomr:::format_to_md_latex()` observations per variable to achieve a power ($1 - \beta$) of $0.99$ with a significance level ($\alpha$) of $0.01$. Our sample size (`{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex(before = "n = ")`) comfortably surpasses this threshold, ensuring adequate power.
 
 ### Data Wrangling
 
@@ -317,8 +318,8 @@ Formally:
 
 $$
 \begin{cases}
-\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} \leq \text{MES} \quad \text{or} \quad \text{F-test is not significant} \ (\alpha \geq 0.05) \\
-\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES} \quad \text{and} \quad \text{F-test is significant} \ (\alpha < 0.05)
+\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} \leq \text{MES} \\
+\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES}
 \end{cases}
 $$
 

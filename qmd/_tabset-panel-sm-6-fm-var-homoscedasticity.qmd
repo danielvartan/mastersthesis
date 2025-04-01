@@ -1,0 +1,86 @@
+:::: {.panel-tabset}
+###### MSF~sc~ (Chronotype proxy) (seconds)
+
+::: {#tbl-sm-6-fm-var-homoscedasticity-msf-sc}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "msf_sc",
+    x_label = "MSF~sc~ (Chronotype proxy) (seconds)"
+  )
+```
+
+Relation between `msf_sc` and the model standardized residuals.
+:::
+
+###### Age (years)
+
+::: {#tbl-sm-6-fm-var-homoscedasticity-age}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "age",
+    x_label = "Age (years)"
+  )
+```
+
+Relation between `age` and the model standardized residuals.
+:::
+
+###### Latitude (decimal degrees)
+
+::: {#tbl-sm-6-fm-var-homoscedasticity-longitude}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "longitude",
+    x_label = "Latitude (decimal degrees)"
+  )
+```
+
+Relation between `longitude` and the model standardized residuals.
+:::
+
+###### Longitude (decimal degrees)
+
+::: {#tbl-sm-6-fm-var-homoscedasticity-ghi-month}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "ghi_month",
+    x_label = "Longitude (decimal degrees)"
+  )
+```
+
+Relation between `ghi_month` and the model standardized residuals.
+:::
+
+###### Monthly average global horizontal irradiance (Wh/m²)
+
+::: {#tbl-sm-6-fm-var-homoscedasticity-latitude}
+```{r}
+#| code-fold: true
+
+fit |>
+  plotr:::plot_homoscedasticity(
+    data = data,
+    col = "latitude",
+    x_label = "Monthly average global horizontal irradiance (Wh/m²)"
+  )
+```
+
+Relation between `latitude` and the model standardized residuals.
+:::
+::::

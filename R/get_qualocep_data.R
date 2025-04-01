@@ -7,12 +7,12 @@
 # library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
-# QualoCEP is a databse of Brazillian addresses and postal codes, geocoded
+# *Qual o CEP* is a database of Brazilian addresses and postal codes, geocoded
 # using the Google Geocoding API. See <https://www.qualocep.com/> and the
 # methodology supplemental material to learn more.
 
 get_qualocep_data <- function(
-    file = NULL,
+    file = NULL, #nolint
     pattern = "qualocep-2024-11-12.rds",
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub"),

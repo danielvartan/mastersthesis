@@ -1,7 +1,7 @@
 # library(dplyr)
+# library(orbis) # github.com/danielvartan/orbis
 # library(prettycheck) # github.com/danielvartan/prettycheck
 
-source(here::here("R", "get_brazil_fu.R"))
 source(here::here("R", "get_lookup_data.R"))
 source(here::here("R", "get_qualocep_data.R"))
 
@@ -16,7 +16,7 @@ get_geocode_lookup_data <- function() {
       street_type = NA,
       street_name = NA,
       place = NA,
-      federal_unit = get_brazil_fu(state),
+      federal_unit = orbis::get_brazil_fu(state),
       municipality_code = as.integer(municipality_code),
       state_code = as.integer(state_code),
       latitude = as.numeric(latitude),

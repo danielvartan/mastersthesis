@@ -1,17 +1,3 @@
-# See <https://git-scm.com/docs/gitignore>.
-
-/.auth/
-/.quarto/
-/_freeze/
-/_print/
-/_slides/
-/_ssh/
-/_targets/
-/_temp/
-/_web/
-/index_cache/
-/site_libs/
-
 .luarc.json
 .radian_history
 .Rapp.history
@@ -20,4 +6,16 @@
 .Rhistory
 .Rproj.user
 .Ruserdata
+/_freeze/
+/_print/
+/_slides/
+/_ssh/
+/_targets/
+/_temp/
+/_web/
+/.auth/
+/.luarc.json
+/.quarto/
+/index_cache/
+/site_libs/
 launch.json

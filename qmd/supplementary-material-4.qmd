@@ -35,12 +35,6 @@ library(workflows)
 ```
 
 ```{r}
-source(here::here("R", "get_brazil_region.R"))
-source(here::here("R", "get_brazil_state.R"))
-source(here::here("R", "utils-stats.R"))
-```
-
-```{r}
 #| include: false
 
 library(magrittr)
@@ -68,7 +62,7 @@ targets::tar_make(script = here::here("_targets.R"))
 
 data <-
   targets::tar_read("filtered_data", store = here::here("_targets")) |>
-  dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state")) |>
+  dplyr::filter(state %in% orbis::get_brazil_state_by_utc(-3, "state")) |>
   dplyr::select(country, region, state, sex, age, msf_sc) |>
   tidyr::drop_na(state, sex, age) |>
   dplyr::mutate(
@@ -144,7 +138,7 @@ ibge_6407_data <-
   dplyr::mutate(
     year = as.integer(year),
     country = "Brazil",
-    region = get_brazil_region(state, "state"),
+    region = orbis::get_brazil_region(state),
     sex = dplyr::case_when(
       sex == "Homens" ~ "Male",
       sex == "Mulheres" ~ "Female"
@@ -164,7 +158,7 @@ ibge_6407_data <-
     n = as.integer(n * 1000)
   ) |>
   dplyr::relocate(year, country, region, state, sex, age_group, n) |>
-  dplyr::filter(state %in% get_brazil_state_by_utc(-3, "state")) |>
+  dplyr::filter(state %in% orbis::get_brazil_state_by_utc(-3, "state")) |>
   dplyr::mutate(
     n_rel = n / sum(n),
     n_per = (n / sum(n)) * 100
@@ -178,23 +172,23 @@ ibge_6407_data |> dplyr::glimpse()
 ```
 
 ```{r}
-ibge_6407_data |> summarize_data("age_group")
+ibge_6407_data |> rutils:::summarize_data("age_group")
 ```
 
 ```{r}
-summarize_data(ibge_6407_data, "sex")
+ibge_6407_data |> rutils:::summarize_data("sex")
 ```
 
 ```{r}
-ibge_6407_data |> summarize_data("state")
+ibge_6407_data |> rutils:::summarize_data("state")
 ```
 
 ```{r}
-summarize_data(ibge_6407_data, "region")
+ibge_6407_data |> rutils:::summarize_data("region")
 ```
 
 ```{r}
-ibge_6407_data |> summarize_data("country")
+ibge_6407_data |> rutils:::summarize_data("country")
 ```
 
 ## Comparing Sample Data With the Population Data
@@ -204,38 +198,38 @@ Please note that these values refer to the group of **states in the Brazilian ti
 :::
 
 ```{r}
-compare_sample(data, ibge_6407_data, "age_group")
+data |> rutils:::compare_sample(ibge_6407_data, "age_group")
 ```
 
 ```{r}
-compare_sample(data, ibge_6407_data, "sex")
+data |> rutils:::compare_sample(ibge_6407_data, "sex")
 ```
 
 ```{r}
-compare_sample(data, ibge_6407_data, "state")
+data |> rutils:::compare_sample(ibge_6407_data, "state")
 ```
 
 ```{r}
-compare_sample(data, ibge_6407_data, "region")
+data |> rutils:::compare_sample(ibge_6407_data, "region")
 ```
 
 ```{r}
-compare_sample(data, ibge_6407_data, "country")
+data |> rutils:::compare_sample(ibge_6407_data, "country")
 ```
 
 ```{r}
 #| include: false
 
-write_in_results_yml(
+quartor:::write_in_results_yml(
   list(
     sa_analysis_sample_rel_comparison_age_group =
-      compare_sample(data, ibge_6407_data, "age_group"),
+      rutils:::compare_sample(data, ibge_6407_data, "age_group"),
     sb_analysis_sample_rel_comparison_sex =
-      compare_sample(data, ibge_6407_data, "sex"),
+      rutils:::compare_sample(data, ibge_6407_data, "sex"),
     sb_analysis_sample_rel_comparison_state =
-      compare_sample(data, ibge_6407_data, "state"),
+      rutils:::compare_sample(data, ibge_6407_data, "state"),
     sb_analysis_sample_rel_comparison_region =
-      compare_sample(data, ibge_6407_data, "region")
+      rutils:::compare_sample(data, ibge_6407_data, "region")
   )
 )
 ```

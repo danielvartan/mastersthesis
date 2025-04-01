@@ -2,7 +2,8 @@
 
 # Load packages -----
 
-# library(brandr) # github.com/danielvartan/brandr
+# library(brandr)
+library(rlang)
 library(downlit)
 library(ggplot2)
 # library(here)
@@ -11,18 +12,13 @@ library(httpgd)
 library(lubridate)
 library(magrittr)
 library(ragg)
-library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
 library(showtext)
 library(sysfonts)
 library(targets)
-library(vscDebugger)
+library(vscDebugger) # github.com/ManuelHentschel/vscDebugger
 library(xml2)
 # library(yaml)
-
-# Load functions -----
-
-source(here::here("R", "utils.R"))
 
 # Set general options -----
 
@@ -68,19 +64,21 @@ knitr::opts_chunk$set(
 
 # Set `brandr` options -----
 
+options(BRANDR_BRAND_YML = here::here("_brand.yml"))
+
 brandr_options <- list(
   "BRANDR_COLOR_SEQUENTIAL" =
     brandr::get_brand_color(c("primary", "secondary")),
   "BRANDR_COLOR_DIVERGING" =
     brandr::get_brand_color(c("primary", "white", "secondary")),
   "BRANDR_COLOR_QUALITATIVE" = c(
-    "#EA7701", # orange (primary)
-    "#142A32", # black (secondary)
-    "#964D01", # brown
+    brandr::get_brand_color("primary"),
+    brandr::get_brand_color("secondary"),
+    "#964D01",
     "#D67C20",
-    "#4F5556", # grey (tertiary)
+    brandr::get_brand_color("tertiary"),
     "#2B4A5E",
-    "#F5BD83", # light-orange
+    brandr::get_brand_color("light-orange"),
     "#F08C3E",
     "#CC5A15",
     "#B23300"
@@ -93,20 +91,21 @@ for (i in seq_along(brandr_options)) {
 
 # Set and load graph fonts -----
 
-sysfonts::font_paths(
-  c(
-    here::here("ttf"),
-    here::here("_extensions", "abnt", "otf"),
-    here::here("_extensions", "abnt", "ttf")
-  )
+sysfonts::font_paths(here::here("ttf"))
+
+sysfonts::font_add(
+  family = "poppins",
+  regular = here::here("ttf", "poppins-regular.ttf"),
+  bold = here::here("ttf", "poppins-bold.ttf"),
+  italic = here::here("ttf", "poppins-italic.ttf"),
+  bolditalic = here::here("ttf", "poppins-bolditalic.ttf"),
+  symbol = NULL
 )
 
 sysfonts::font_add(
-  family = "dm-sans",
-  regular = here::here("ttf", "dmsans-regular.ttf"),
-  bold = here::here("ttf", "dmsans-bold.ttf"),
-  italic = here::here("ttf", "dmsans-italic.ttf"),
-  bolditalic = here::here("ttf", "dmsans-bolditalic.ttf"),
+  family = "dm-mono",
+  regular = here::here("ttf", "dmmono-medium.ttf"),
+  italic = here::here("ttf", "dmmono-mediumitalic.ttf"),
   symbol = NULL
 )
 
@@ -122,8 +121,8 @@ ggplot2::theme_set(
   ) +
     ggplot2::theme(
       text = ggplot2::element_text(
-        color = brandr::get_brand_color("secondary"),
-        family = "dm-sans",
+        color = brandr::get_brand_color("black"),
+        family = "poppins",
         face = "plain"
       ),
       panel.background = ggplot2::element_rect(fill = "transparent"),

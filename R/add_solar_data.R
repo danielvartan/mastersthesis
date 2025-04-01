@@ -9,30 +9,6 @@ library(magrittr)
 source(here::here("R", "get_inpe_data.R"))
 source(here::here("R", "get_time_and_date_data.R"))
 
-# # Helpers
-#
-# data <- targets::tar_read("geocoded_data")
-#
-# test <- data |> dplyr::sample_n(1)
-#
-# suntools::sunriset(
-#   matrix(c(test$longitude[1], test$latitude[1]), nrow = 1),
-#   dateTime = test$timestamp[1],
-#   direction = "sunrise", # "sunrise"
-#   POSIXct.out = TRUE
-# ) |>
-#   dplyr::pull(time)
-#
-# suncalc::getSunlightTimes(
-#   date = lubridate::date(test$timestamp[1]),
-#   lat = test$latitude[1],
-#   lon = test$longitude[1],
-#   tz = "America/Sao_Paulo"
-# ) |>
-#   magrittr::extract2("sunrise")
-#
-# get_geocode_by_address("Greenwich, UK", method = "osm")
-
 add_solar_data <- function(
     data,
     inpe_data = get_inpe_data(),

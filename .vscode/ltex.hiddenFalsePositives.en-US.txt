@@ -1,0 +1,3 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q---\nhtml-table-processing: none\n---\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q# mastersthesis\\E$"}
+{"rule":"ARROWS","sentence":"^\\Q<!-- quarto render --profile gfm -->\\E$"}

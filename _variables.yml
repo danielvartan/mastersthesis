@@ -10,7 +10,7 @@ cosupervisor: '[Co-supervisor''s full name]'
 keyword: |
   Complexity science. Complex systems. Chronobiology. Biological rhythms. Chronotypes. Circadian phenotypes. Sleep. Entrainment. Latitude. MCTQ.
 location: São Paulo
-mainfont: DM Sans
+mainfont: Poppins
 monofont: DM Mono
 program: Graduate Program in Complex Systems Modeling
 sansfont: Poppins
@@ -25,4 +25,4 @@ submitted: '2024'
 title: Is Latitude Associated with Chronotype?
 date: '2024-11-27'
 year: '2024'
-format: html
+format: pdf
