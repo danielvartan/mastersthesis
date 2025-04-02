@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Works and Activities Developed During the Thesis {#sec-sm-works-and-activities}
+# Overview of General Linear Models {#sec-sm-linear-models}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -9,155 +9,95 @@
 source(here::here("R", "_setup.R"))
 ```
 
-During the development of this thesis, several activities have been accomplished. These activities are important to note, as they demonstrate the path taken to arrive at this final document. The following sections detail some of them.
+## Overview
 
-## Courses
+This document provides an overview of the fundamental concepts and assumptions underlying general linear models. It serves as a reference for understanding model diagnostics discussed in Supplementary Material [-@sec-sm-hypothesis-test-a] and [-@sec-sm-hypothesis-test-b].
 
-The following graduate courses from the University of São Paulo ([USP](https://www5.usp.br/)) were completed during the first year of the Master's Program.
+## Definitions
 
-* 2022/2: [*SCX5000 - Mathematical and Computational Methods I*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5000) (10 credits) (Concept: **C**).
-* 2022/2: [*SCX5002 - Complex Systems I*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5002) (10 credits) (Concept: **A**).
-* 2023/1: [*SCX5001 - Mathematical and Computational Methods II*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5001) (10 credits) (Concept: **A**).
-* 2023/1: [*SCX5017 - Introduction to Data Science*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=SCX5017) (10 credits) (Concept: **A**).
-* 2023/1: [*EAH5001 - Pedagogic Preparation*](https://uspdigital.usp.br/janus/componente/catalogoDisciplinasInicial.jsf?action=3&sgldis=EAH5001) (4 credits) (Concept: **A**).
+::: {#def-response-predictor-regression}
+## Response/Predictor/Regression
 
-Please note that the unfortunate **C** concept above happened in the same semester when the author broke relations with his former supervisor.
+The variables $X_{1}, \dots, \text{X}_{k}$ are called predictors, and the random variable $Y$ is called the response. The conditional expectation of $Y$ for given values $x_{1}, \dots, \text{x}_{k}$ of $X_{1}, \dots, \text{X}_{k}$ ($E(Y|x_{1}, \dots, \text{x}_{k})$) is called the regression function of $Y$ on $X_{1}, \dots, \text{X}_{k}$, or simply the regression of $Y$ on $X_{1}, \dots, \text{X}_{k}$. [@degroot2012a, p. 699]
+:::
 
-44 discipline credits were completed. An additional 12 special credits, related to an article publication (See @viana-mendes2023), were requested and approved by the Graduate Program Coordination Commission (CCP) in accordance with [program regulations](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019). In total, 56 credits were earned. A minimum of 50 credits is required for the thesis defense.
+::: {#def-linear-regression}
+## Linear Regression
 
-## Teaching Internship
+A regression function ($E(Y|x_{1}, \dots, \text{x}_{k})$) in the form of a linear function **of the the parameters** $\beta_{0}, \dots, \beta_{k}$, having the following form: [@degroot2012a, pp. 699-700]
 
-Scholarship students under the [Coordination for the Improvement of Higher Education Personnel (CAPES)](https://www.gov.br/capes/) are required to participate in the [Teaching Improvement Program (PAE)](www5.each.usp.br/pae/). This internship occurred in the 2º semester of 2023.
+$$
+E(Y|x_{1}, \dots, \text{x}_{k}) = \beta_{0} + \beta_{1} x_{1} + \dots + \beta_{k} x_{k}
+$$ {#eq-regression-function}
+:::
 
-The internship responsibilities entailed serving as an Assistant Professor for the undergraduate course [*ACH0042 - Problem-Based Learning II*](https://uspdigital.usp.br/jupiterweb/obterDisciplina?nomdis=&sgldis=ACH0042) at USP. A comprehensive teaching plan was formulated during enrollment in the aforementioned graduate course *EAH5001*, and it is accessible through the following link.
+::: {#def-regression-coefficients}
+## Regression Coefficients
 
-<!-- @vartanian2023b -->
+The coefficients $\beta_{0}, \dots, \beta_{k}$ in @eq-regression-function are called regression coefficients [@degroot2012a, pp. 699-700].
+:::
 
-Vartanian, D., Rodrigues Neto, C, & Bernardes, M. E. M. (2023). *Plano de ensino: ACH0042 - Resolução de Problemas II*. <https://doi.org/10.13140/RG.2.2.33335.50086>
+::: {#def-simple-linear-regression}
+## Simple Linear Regression
 
-## Publications
+A regression of $Y$ on just a single variable $X$. For each value $X = x$, the random variable $Y$ can be represented in the form $Y = \beta_{0} + \beta_{1}x + \epsilon$, where $\epsilon$ is a random variable that has the normal distribution with mean $0$ and variance $\sigma^{2}$. It follows from this assumption that the conditional distribution of $Y$ given $X = x$ is the normal distribution with mean $\beta_{0} + \beta_{1}x$ and variance $\sigma^{2}$ [@degroot2012a, p. 700].
+:::
 
-The following article was published during the development of this thesis.
+::: {#def-multiple-linear-regression}
+## Multiple Linear Regression
 
-<!-- @viana-mendes2023 -->
+A linear regression of $Y$ on $k$ variables $X_{1}, \dots, X_{k}$, rather than on just a single variable $X$. In a problem of multiple linear regressions, we obtain $n$ vectors of observations ($x_{i1}. \dots, x_{ik}, Y_{i}$), for $i = 1, \dots, n$. Here $x_{ij}$ is the observed value of the variable $X_{j}$ for the $i$th observation. The $E(Y_{i})$ is given by the relation: [@degroot2012a, p. 738]
 
-Viana-Mendes, J., Benedito-Silva, A. A., Andrade, M. A. M., **Vartanian, D.**, Gonçalves, B. da S. B., Cipolla-Neto, J., & Pedrazzoli, M. (2023). Actigraphic characterization of sleep and circadian phenotypes of PER3 gene VNTR genotypes. *Chronobiology International*. <https://doi.org/10.1080/07420528.2023.2256858>
+$$
+E(Y_{i}) = \beta_{0} + \beta_{1} x_{i1} + \dots + \beta_{k} x_{ik}
+$$  {#eq-multiple-linear-regression-function}
+:::
 
-## Translations
+::: {#def-residuals-fitted-values}
+## Residuals/Fitted Values
 
-As a member and package developer of the [rOpenSci Initiative](https://ropensci.org/), the author is actively contributing to the [ongoing translation](https://github.com/ropensci/dev_guide/pull/717) of the [rOpenSci Developer Guide](https://devguide.ropensci.org/) into Portuguese. The aim is to create a more inclusive environment for individuals in Brazil and other Portuguese-speaking countries when developing for the [R programming language](https://www.r-project.org/).
+For $i = 1, \dots, n$, the observed values of $\hat{y} = \hat{\beta}_{0} + \hat{\beta}_{1} x_{i}$ are called _fitted values_. For $i = 1, \dots, n$, the observed values of $e_{i} = y_{i} - \hat{y}_{i}$ are called _residuals_ [@degroot2012a, p. 717].
+:::
 
-This endeavor is linked to the thesis, as the author's membership in rOpenSci began with the creation of the [{mctq} R package](https://docs.ropensci.org/mctq/) (listed below).
+::: {#def-general-linear-model}
+## General Linear Model
 
-## Conferences
+The statistical model in which the observations $Y_{1}, \dots, Y_{n}$ satisfy the following assumptions [@degroot2012a, p. 738].
+:::
 
-An abstract pertaining to the primary investigation was published and presented on a poster at the [Sao Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms](https://espca.fapesp.br/school/sao_paulo_school_of_advanced_science_on_ecology_of_human_sleep_and_biological_rhythms/101/) organized by the [São Paulo Research Foundation (FAPESP)](https://fapesp.br/en). This international school hosted 100 participants, including students and young researchers, with a diverse representation of 50 individuals from various states within Brazil and an additional 50 from international backgrounds. The event was held from November 16 to 26, 2022.
+## Assumptions
 
-<!-- @vartanian2022a -->
+Here we shall assume that each observation $Y_{1}, \dots, Y_{n}$ has a normal distribution, that the observations $Y_{1}, \dots, Y_{n}$ are independent, and that the observations $Y_{1}, \dots, Y_{n}$ have the same variance $\sigma^{2}$. Instead of a single predictor being associated with each $Y_{i}$, we assume that a $p$-dimensional vector $z_{i} = (z_{i0}, \dots, z_{ip - 1})$ is associated with each $Y_{i}$ [@degroot2012a, p. 736].
 
-Vartanian, D., & Pedrazzoli, M. (2022). *Ecology of sleep and circadian phenotypes of the Brazilian population* \[Poster\]. São Paulo Research Foundation; São Paulo School of Advanced Science on Ecology of Human Sleep and Biological Rhythms. <https://doi.org/10.13140/RG.2.2.25343.07840>
+Assumption 1
+: **Predictor is known**. Either the vectors $z_{1}, \dots , z_{n}$ are known ahead of time, or they are the observed values of random vectors $Z_{1}, \dots , Z_{n}$ on whose values we condition before computing the joint distribution of ($Y_{1}, \dots , Y_{n}$) [@degroot2012a, p. 736].
 
-In the same semester (2022/2), the author also participated in USP's International Symposium on Scientific and Technological Initiation ([SIICUSP](https://prpi.usp.br/siicusp/)) as both an examiner and a participant. As a participant, the author presented a research abstract related to the [{actverse} R package](https://github.com/giperbio/actverse) for actigraphy data analysis, as detailed in @matias2022 and @vartaniano. This project was conceived and developed by the author of this thesis and involved collaboration with two undergraduate students. Notably, this project achieved recognition, securing 2nd place in the category of *Earth and Exact Sciences*.
+Assumption 2
+: **Normality**. For $i = 1, \dots, n$, the conditional distribution of $Y_{i}$ given the vectors $z_{1}, \dots , z_{n}$ is a normal distribution [@degroot2012a, p. 737].
 
-## Research Compendium
+(Normality of the error term distribution [@hair2019, p. 287])
 
-This thesis, along with all the accompanying research, is structured and organized within the research compendium provided below.
+Assumption 3
+: **Linear mean**. There is a vector of parameters  $\beta = (\beta_{0}, \dots, \beta_{p - 1})$ such that the conditional mean of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ has the form
 
-<!-- @vartanian2025 -->
+$$
+z_{i0} \beta_{0} + z_{i1} \beta_{1} + \cdots + z_{ip - 1} \beta_{p - 1}
+$$
 
-Vartanian, D. (2025). *Is latitude associated with chronotype?* \[Research compendium\]. <https://doi.org/10.17605/OSF.IO/YGKTS>
+for $i = 1, \dots, n$ [@degroot2012a, p. 737].
 
-## Data Plans
+(Linearity of the phenomenon measured [@hair2019, p. 287])
 
-This research has also produced and published the following data plan.
+::: {.callout-warning}
+It is important to clarify that the linear assumption pertains to **linearity of the parameters** or equivalently, linearity of the coefficients. This means that each predictor is multiplied by its corresponding regression coefficient. However, this does not necessarily imply that the relationship between the predictors and the response variable is linear. In fact, a linear model can still effectively capture non-linear relationships between predictors and the response variable by utilizing transformations of the predictors [@cohen2002, p. 195].
+:::
 
-<!-- @vartanian2024 -->
+Assumption 4
+: **Common variance** (homoscedasticity). There is as parameter $\sigma^{2}$ such the conditional variance of $Y_{i}$ given the values $z_{1}, \dots , z_{n}$ is $\sigma^{2}$ for $i = 1, \dots, n$.
 
-Vartanian, D. (2024). *Is latitude associated with chronotype?* [Data Management Plan]. DMPHub. <https://doi.org/10.48321/D1DW8P>
+(Constant variance of the error terms [@hair2019, p. 287])
 
-## Softwares
+Assumption 5
+: **Independence**. The random variables $Y_{1}, \dots , Y_{n}$ are independent given the observed $z_{1}, \dots , z_{n}$ [@degroot2012a, p. 737].
 
-The following R packages, Python package, [Quarto](https://quarto.org/) format (being used to write this thesis), and Espanso package were developed during this thesis.
-
-<!-- @vartaniane -->
-
-Vartanian, D. (n.d.). *{entrainment}: A rule-based model of the 24h light/dark cycle entrainment phenomenon* [Software, Python Package]. <https://github.com/danielvartan/entrainment>
-
-<!-- @vartanianh -->
-
-Vartanian, D[^sm-10-1]. (n.d.). *{mctq}: Munich ChronoType Questionnaire (MCTQ) tools* [Software, R Package]. <https://docs.ropensci.org/mctq> (The package has already surpassed [9,000 downloads](https://danielvartan.shinyapps.io/cran-logs/?package=mctq))
-
-<!-- @vartanianr -->
-
-Vartanian, D. (n.d.). *{brandr}: Brand identity management using brand.yml standard* [Software, R package]. <https://doi.org/10.32614/CRAN.package.brandr>
-
-<!-- @vartanianc -->
-
-Vartanian, D. (n.d.). *{lubritime}: An extension for the lubridate package* [Software, R package]. <https://github.com/danielvartan/lubritime>
-
-<!-- @vartanianq -->
-
-Vartanian, D. (n.d.). *{orbis}: Spatial data analysis tools* [Software, R package]. <https://danielvartan.github.io/orbis>
-
-<!-- @vartanianp -->
-
-Vartanian, D. (n.d.). *{quartor}: Tools for the Quarto publishing system* [Software, R package]. <https://danielvartan.github.io/quartor>
-
-<!-- @vartaniand -->
-
-Vartanian, D. (n.d.). *{lockr}: Easily encrypt/decrypt files* [Software, R package]. <https://github.com/danielvartan/lockr>
-
-<!-- @vartanianb -->
-
-Vartanian, D. (n.d.). *{prettycheck}: Pretty assertive programming* [Software, R package]. <https://github.com/danielvartan/prettycheck>
-
-<!-- @vartaniang -->
-
-Vartanian, D. (n.d.). *{groomr}: Tidy functions* [Software, R package]. <https://github.com/danielvartan/groomr>
-
-<!-- @vartanians -->
-
-Vartanian, D. (n.d.). *{plotr}: Plots made easy* [Software, R package]. <https://danielvartan.github.io/plotr>
-
-<!-- @vartanianf -->
-
-Vartanian, D. (n.d.). *{abnt}: Quarto format for ABNT theses and dissertations* [Software, LaTeX/R]. <https://github.com/danielvartan/abnt>
-
-<!-- @vartaniann -->
-
-Vartanian, D. (n.d.). *HTML color codes in hex and RGB formats for Espanso* [Software, Espanso package]. <https://hub.espanso.org/html-colors>
-
-## Exercises
-
-Some important exercises made public during the development of this thesis are listed below.
-
-<!-- @vartanianm -->
-
-Vartanian, D. (2024). *Illustration of the Lotka–Volterra's predator–prey model*. <https://danielvartan.github.io/lotka-volterra>
-
-<!-- @vartanianj -->
-
-Vartanian, D. (2024). *Illustration of the Lorenz system*. <https://danielvartan.github.io/lorenz-system>
-
-<!-- @vartaniani -->
-
-Vartanian, D. (2024). *Illustration of the SIR model*. <https://danielvartan.github.io/sir>
-
-<!-- @vartaniank -->
-
-Vartanian, D. (2024). *A demonstration of general linear models using penguins*. <https://danielvartan.github.io/linear-models>
-
-<!-- @vartanianl -->
-
-Vartanian, D. (2024). *Demonstrations of the central limit theorem*. <https://danielvartan.github.io/central-limit-theorem>
-
-
-## Other Projects
-
-The author is also currently working on the development of the two projects below.
-
-Carvalho, A. M. de, Klapka, C. S., Magalhães, A. R., Barbosa, B. B., Vartanian, D., Schettino, J. P. J., & Pereira, E. B. (2023). *Global syndemic: The impact of anthropogenic climate change on the health and nutrition of children under five years old attended by Brazil’s public health system (SUS)* [CNPq project, University of São Paulo]. <https://doi.org/10.17605/OSF.IO/8W36C>
-
-Sales, A. R. V., Vartanian, D., Andrade, M. A. M., Pedrazzoli, M. (2023). *Associations between the duration and quality of sleep in third-trimester pregnant women and the duration of labor* \[Master's project, University of São Paulo\]. <https://doi.org/10.17605/OSF.IO/S4TBZ>
-
-[^sm-10-1]: The package has already surpassed [9,000 downloads](https://danielvartan.shinyapps.io/cran-logs/?package=mctq).
+(Independence of the error terms [@hair2019, p. 287])

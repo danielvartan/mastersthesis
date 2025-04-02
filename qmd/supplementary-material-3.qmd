@@ -11,11 +11,11 @@ source(here::here("R", "_setup.R"))
 
 ## Overview
 
-This document focus in providing a comprehensive overview of the data collected in the survey.
+This document offers a detailed exploration of the survey data, highlighting key patterns and insights derived from the analysis.
 
-It focuses on the sample used on the analysis, with explicit indications provided whenever the full sample is used. The analysis sample is a subset of the full sample, and includes only Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.
+It emphasizes the analysis sample, with explicit notes whenever the full sample is referenced. The analysis sample is a subset of the full sample, consisting of Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.
 
-Please note that the models were created using cell weights to account for sample unbalances. For more information on the sample balance, see the Supplementary Material [-@sec-sm-sample-balance].
+Models were developed using cell weights to address sample imbalances. For details on the sample balancing procedure, refer to Supplementary Material [-@sec-sm-sample-balance].
 
 ## Setting the Environment
 
@@ -35,9 +35,11 @@ library(lubritime) # github.com/danielvartan/lubritime
 library(magrittr)
 library(moments)
 library(nortest)
+library(orbis) # github.com/danielvartan/orbis
 library(patchwork)
 library(prettycheck) # github.com/danielvartan/prettycheck
 library(purrr)
+library(quartor) # github.com/danielvartan/quartor
 library(rlang)
 library(rutils) # github.com/danielvartan/rutils
 library(sidrar)
@@ -144,7 +146,7 @@ weighted_data |>
 
 {{< include ../qmd/_tabset-panel-sm-3-var-dist.qmd >}}
 
-## Correlation Matrix of the Main Variables
+## Correlation Matrix of Main Variables
 
 ### Full Sample
 
@@ -190,7 +192,7 @@ weighted_data |>
 Correlation matrix of the main variables (**Analysis sample**).
 :::
 
-## Latitudinal and Longitudinal Range
+## Latitudinal and Longitudinal Ranges
 
 #### Brazil
 
@@ -227,7 +229,7 @@ brazil_lat_lon
 
 Source: Brazilian Institute of Geography and Statistics ([IBGE](https://www.ibge.gov.br/)), via the shapefiles provided by the [`geobr`](https://ipeagit.github.io/geobr/) R package.
 
-Brazil's extreme points (**full sample**).
+Brazil's extreme points.
 :::
 
 ```{r}
@@ -346,15 +348,13 @@ quartor:::write_in_results_yml(
 
 ## Population Distributions
 
-::: {.callout-note}
-For numerical comparisons, refer to Supplementary Material [-@sec-sm-sample-balance].
-:::
-
 ### Brazil
 
-Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) population estimates of the population distribution is used in the same timeframe of the sample (2017) [@ibgel]. The data can be accessed at the [IBGE's SIDRA](https://sidra.ibge.gov.br/tabela/6579) platform (IBGE's Table 6579).
+The population distribution estimates are derived from the Brazilian Institute of Geography and Statistics ([IBGE](https://www.ibge.gov.br/)) for the year 2017, aligning with the sample. These estimates are accessible via IBGE's Automatic Retrieval System ([SIDRA](https://sidra.ibge.gov.br/)) platform.
 
-IBGE's [Table 6579](https://sidra.ibge.gov.br/tabela/6579) was used instead of [Table 6407](https://sidra.ibge.gov.br/tabela/6407) because the later does not have the same level of detail for the municipalities.
+<!-- @ibgel -->
+
+Source: Instituto Brasileiro de Geografia e Estatística. (n.d.). Tabela 6579: População residente estimada \[Table 6579: Estimated resident population\] \[Dataset\]. SIDRA. https://sidra.ibge.gov.br/Tabela/6579
 
 ```{r}
 ibge_6579_data_state <-
@@ -566,8 +566,6 @@ plot_full_5 <-
   )
 ```
 
-<!-- See <https://r-charts.com/ggplot2/combining-plots/>. -->
-
 ```{r}
 patchwork::wrap_plots(
    plot_full_2 |> plotr:::rm_ggspatial_scale(),
@@ -654,8 +652,6 @@ plot_analysis_4 <-
   )
 ```
 
-<!-- See. <https://patchwork.data-imaginist.com/articles/patchwork.html> -->
-
 ```{r}
 patchwork::wrap_plots(
    plot_analysis_1 |> plotr:::rm_ggspatial_scale(),
@@ -686,7 +682,7 @@ quartor:::write_in_results_yml(
 )
 ```
 
-### Brazil (Population) *versus* Sample
+### Brazil *versus* Full Sample
 
 ```{r}
 patchwork::wrap_plots(
@@ -724,8 +720,6 @@ patchwork::wrap_plots(
   )
 ```
 
-
-
 ```{r}
 patchwork::wrap_plots(
    plot_6579_ibge_3 |> plotr:::rm_ggspatial_scale(),
@@ -748,7 +742,9 @@ patchwork::wrap_plots(
 
 ### Brazil
 
-See <https://sidra.ibge.gov.br/tabela/6407> to learn more about the data.
+<!-- @ibgee -->
+
+Source: Instituto Brasileiro de Geografia e Estatística. (n.d.). Tabela 6407: População residente, por sexo e grupos de idade \[Table 6407: Resident population, by sex and age groups\] \[Dataset\]. SIDRA. https://sidra.ibge.gov.br/tabela/6407
 
 ```{r}
 #| message: false
@@ -832,7 +828,7 @@ ibge_6407_data
 ```
 
 ::: {.callout-warning}
-The statistics shown is this section are estimations based on the age group midpoints, hence, it must be interpreted with caution. $n$ is presented in thousands of people.
+The statistics presented in this section are estimates based on the midpoints of age groups and should be interpreted with caution. The variable $n$ is expressed in thousands of individuals.
 :::
 
 ```{r}
@@ -1006,25 +1002,6 @@ plot_full_age_3 <-
   )
 ```
 
-::: {#fig-sm-3-age-sex-weigth-series}
-```{r}
-#| message: false
-#| warning: false
-
-plot_age_sex_weigth_series <-
-  anonymized_data |>
-  dplyr::filter(age <= 50) |>
-  plotr:::plot_series(
-    col_y = "weight",
-    y_label = "Weight (kg)"
-  )
-```
-
-[Source: Created by the author, based on a data visualization from @roenneberg2007[Figure 4].{.legend}
-
-Relation between age and weight (kg), divided by sex and aggregated by the mean. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
-:::
-
 ```{r}
 #| include: false
 
@@ -1145,7 +1122,26 @@ weighted_data |>
 Boxplots of mean weight values (kg) aggregated by 1° latitude intervals, illustrating the relationship between latitude and weight. The × symbol points to the mean. The orange line represents a linear regression.
 :::
 
-## Chronotype distributions
+::: {#fig-sm-3-age-sex-weigth-series}
+```{r}
+#| message: false
+#| warning: false
+
+plot_age_sex_weigth_series <-
+  anonymized_data |>
+  dplyr::filter(age <= 50) |>
+  plotr:::plot_series(
+    col_y = "weight",
+    y_label = "Weight (kg)"
+  )
+```
+
+[Source: Created by the author, based on a data visualization from @roenneberg2007[Figure 4]].{.legend}
+
+Relation between age and weight (kg), divided by sex and aggregated by the mean. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+:::
+
+## Chronotype Distributions
 
 ### Full Sample
 
@@ -1172,7 +1168,7 @@ anonymized_data |> plotr:::get_msf_sc_cutoffs()
 ```
 
 
-::: {#fig-sm-3-age-sex-chronotype-series}
+::: {#fig-sm-3-fs-age-sex-chronotype-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1188,14 +1184,15 @@ plot_age_sex_series <-
 Observed relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
 :::
 
-::: {#fig-sm-3-roenneberg-2007-figure-4}
-![](images/roenneberg-2007-figure-4.png){style="width: 80%;"}
+::: {#fig-sm-3-fs-roenneberg-2007-figure-4}
+![](images/roenneberg-2007-figure-4.png){style="width: 85%;"}
 
 [Source: Reproduced from @roenneberg2007[Figure 4].]{.legend}
 
 Distribution of European chronotypes by age, as shown in @roenneberg2007, for comparison.
 :::
 
+::: {#fig-sm-3-fs-weight-sex-chronotype-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1209,6 +1206,11 @@ plot_age_sex_series <-
     date_breaks = "30 min"
   )
 ```
+
+[Source: Created by the author based on a data visualization from @roenneberg2007[Figure 4].]{.legend}
+
+Observed relation between weight and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+:::
 
 ```{r}
 #| include: false
@@ -1273,7 +1275,7 @@ weighted_data |>
   rutils:::summarize_by("msf_sc", "msf_sc_category")
 ```
 
-::: {#fig-sm-3-chronotype-distribution-analysis-sample}
+::: {#fig-sm-3-as-chronotype-distribution-analysis-sample}
 ```{r}
 #| message: false
 #| warning: false
@@ -1281,15 +1283,15 @@ weighted_data |>
 weighted_data |> plotr:::plot_chronotype()
 ```
 
-[Source: Created by the author based on a data visualization from @roenneberg2019b[Figure 1].{.legend}
+[Source: Created by the author based on a data visualization from @roenneberg2019b[Figure 1].]{.legend}
 
 Observed distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. `<br>`{=html} `\microskip \\`{=latex} Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.111$) to extremely late ($0.888 |- 1$).
 :::
 
 ::: {#fig-sm-3-roenneberg-2019-figure-1}
-![](images/roenneberg-2019-figure-1.png){style="width: 80%;"}
+![](images/roenneberg-2019-figure-1.png){style="width: 85%;"}
 
-[Source: Reproduced from @roenneberg2019b[Figure 1, right part].] {.legend}
+[Source: Reproduced from @roenneberg2019b[Figure 1, Right part].]{.legend}
 
 Distribution of European chronotypes, as shown in @roenneberg2019b (for comparison).
 :::
@@ -1320,7 +1322,7 @@ weighted_data |>
   rutils:::summarize_by("msf_sc", "age_group")
 ```
 
-::: {#fig-sm-3-age-sex-chronotype-series}
+::: {#fig-sm-3-as-age-sex-chronotype-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1333,9 +1335,10 @@ plot_age_sex_series <-
 
 [Source: Created by the author based on a data visualization from @roenneberg2007[Figure 4].]{.legend}
 
-Observed relation between age and chronotype, divided by sex and aggregated by the mean (Analysis sample). Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+Observed relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
 :::
 
+::: {#fig-sm-3-as-weight-sex-chronotype-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1350,6 +1353,11 @@ plot_age_sex_series <-
   )
 ```
 
+[Source: Created by the author based on a data visualization from @roenneberg2007[Figure 4].]{.legend}
+
+Observed relation between weight and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+:::
+
 ```{r}
 weighted_data |> rutils:::summarize_by("msf_sc", "region")
 ```
@@ -1358,6 +1366,7 @@ weighted_data |> rutils:::summarize_by("msf_sc", "region")
 weighted_data |> rutils:::summarize_by("msf_sc", "state")
 ```
 
+::: {#fig-sm-3-as-chronotype-geographical-distribution-by-state}
 ```{r}
 limits <- # Interquartile range (IQR): Q3 - Q1
   c(
@@ -1389,6 +1398,11 @@ weighted_data |>
     quiet = TRUE
   )
 ```
+
+[Source: Created by the author.]{.legend}
+
+Observed geographical distribution of MSF~sc~ values by Brazilian state, illustrating how chronotype varies with latitude in Brazil. `<br>`{=html} MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values indicate a tendency towards eveningness. The color scale is bounded by the first and third quartiles. Differences in mean MSF~sc~ values across states are small and fall within a narrow range relative to the scale of the Munich ChronoType Questionnaire (MCTQ), limiting the significance of these variations.
+:::
 
 ```{r}
 limits <- # Interquartile range (IQR): Q3 - Q1
@@ -1444,7 +1458,7 @@ weighted_data |>
   )
 ```
 
-::: {#fig-sm-3-chronotype-geographical-distribution-by-respondent}
+::: {#fig-sm-3-as-chronotype-geographical-distribution-by-respondent}
 ```{r}
 plot <-
   weighted_data |>
@@ -1484,10 +1498,10 @@ plot |>
 
 [Source: Created by the author.]{.legend}
 
-Observed geographical distribution of MSF~sc~ values by a spectrum of extremely early and extremely late chronotypes, illustrating how chronotype varies with latitude in Brazil. `<br>`{=html} `\microskip \\`{=latex} MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.111$) to extremely late ($0.888 |- 1$). No discernible pattern emerges from the distribution of chronotypes across latitudes.
+Observed geographical distribution of MSF~sc~ values by a spectrum of extremely early and extremely late chronotypes, illustrating how chronotype varies with latitude in Brazil. `<br>`{=html} MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.111$) to extremely late ($0.888 |- 1$). No discernible pattern emerges from the distribution of chronotypes across latitudes.
 :::
 
-::: {#fig-sm-3-chronotype-latitude-series}
+::: {#fig-sm-3-as-chronotype-latitude-series}
 ```{r}
 #| message: false
 #| warning: false
@@ -1497,7 +1511,7 @@ weighted_data |> plotr:::plot_latitude_series()
 
 [Source: Created by the author.]{.legend}
 
-Boxplots of observed mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values indicate a tendency towards eveningness. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+Boxplots of observed mean MSF~sc~ values aggregated by $1°$ latitude intervals, illustrating the relationship between latitude and chronotype. `<br>`{=html} `\microskip \\`{=latex} MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values indicate a tendency towards eveningness. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
 :::
 
 ```{r}

@@ -1,5 +1,5 @@
 <!-- %:::% .common h1 begin %:::% -->
-# Critique of Leocadio-Miguel et al. (2017) {#sec-sm-critique}
+# Comparative Assessment of QualoCEP and Google Geocoding API Performance {#sec-sm-qualocep}
 <!-- %:::% .common h1 end %:::% -->
 
 ```{r}
@@ -9,411 +9,211 @@
 source(here::here("R", "_setup.R"))
 ```
 
-```{r}
-#| eval: false
-#| include: false
-
-library(brandr)
-library(dplyr)
-library(ggplot2)
-library(stringr)
-```
-
-```{r}
-#| include: false
-
-library(ggplot2)
-library(magrittr)
-```
-
 ## Overview
 
-This document presents some constructive critiques regarding @leocadio-miguel2017 article, which this thesis respond to. It is made with the goal of add to the discussion of the latitude hypothesis and to to enhance understanding of the data depicted and highlight how it may lead to potential misinterpretations.
+This document outlines a workflow to evaluate the geocoding performance of [QualoCEP](https://www.qualocep.com/) in comparison to the [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/overview). The comparison focuses on latitude and longitude outputs to assess the consistency and reliability of both services, which are integral to the geocoding tasks in this thesis.
 
-## Inconsistent Data
+::: {.callout-note}
+To execute this notebook, ensure you have a valid Google Geocoding API key stored in your [`.Renviron`](https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file) file. For detailed instructions on obtaining and configuring the API key, refer to the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/articles/geocoder_services.html) R package documentation.
+:::
 
-> We conducted a first regression of HO scores only on the covariates (age, longitude, and solar irradiation when the subjects filled the online questionnaire) and cofactors (sex, daylight saving time (DST), and season) ($\text{R}^{2} = 0.05964$, $\text{F}(8,12845) = 101.8$, $p < 2.2e-16$) [@leocadio-miguel2017].
-
-The $\text{F}$-test indicates $8$ predictors, yet only $6$ are mentioned in the text. This discrepancy is not clarified, leaving uncertainty about the additional predictors included in the model.
-
-> [continuing from the last quote] ... and a second regression including the annual average solar irradiation, sunrise time, sunset time and daylight duration in March equinox, June, and December solstices for each volunteer ($\text{R}^{2} = 0.06667$, $\text{F}(27,12853) = 33.8$, $p < 2.2e-16$) [@leocadio-miguel2017].
-
-In this case, the $\text{F}$-test indicates $27$ predictors. However, adding the $8$ predictors from the first regression to the $10$ newly mentioned variables yields a total of $18$ predictors, not $27$. This inconsistency is not addressed in the text.
-
-> Testing for nested models, we obtained a significant reduction of residual sum of squares ($\text{F}(2,12884) = 31.983$, $p = 1.395e-14$), [...] [@leocadio-miguel2017].
-
-The degrees of freedom difference ($df = 2$) suggests that the two previously described models were not directly compared in this nested test. This raises further questions about the models used, as the discrepancy is not explained.
-
-## Statistic Ritual (or Lack of Evidence)
-
-> We also obtained an effect size estimate of Cohen’s $f^{2} = (0.06352 - 0.05964) / (1 - 0.06352) = 0.004143174$ [@leocadio-miguel2017].
-
-A first thing to notice is that the higher $\text{R}^{2}$ value ($0.06352$) differs from the previously reported $\text{R}^{2}$ ($0.06667$). This inconsistency is not justified.
-
-The formula that appears in the text is based on Cohen's $f^{2}$, which is calculated by the following:
-
-$$
-\text{Cohen's } f^2 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}}
-$$
-
-For nested models, this can be adapted as:
-
-$$
-\text{Cohen's } f^2 = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r}}{1 - \text{R}^{2}_{f}} = \cfrac{\Delta \text{R}^{2}}{1 - \text{R}^{2}_{f}}
-$$
-
-Before diving into the $f^2$ calculation, let's first calculate the confidence interval of the $\text{R}^{2}$ for the restricted and full model using an estimate of the standard error. Note that all the parameters used in the calculations are provided in the text.
+## Setting the Environment
 
 ```{r}
-#| code-fold: false
+#| eval: false
 
-adj_r_squared_restricted <- rutils:::summarize_r2(
-  r2 = 0.05964,
-  n = 12845 + 8 + 1,
-  k = 8,
-  ci_level = 0.95,
-  rules = "cohen1988"
-)
-
-adj_r_squared_restricted
+library(leaflet)
+library(targets)
+library(tidygeocoder)
 ```
 
 ```{r}
-#| code-fold: false
+#| output: false
 
-adj_r_squared_full <- rutils:::summarize_r2(
-  r2 = 0.06352,
-  n = 12853 + 27 + 1,
-  k = 27,
-  ci_level = 0.95,
-  rules = "cohen1988"
-)
+source(here::here("R", "get_qualocep_data.R"))
+```
 
-adj_r_squared_full
+## Importing QualOCep Data
+
+```{r}
+#| output: false
+
+qualocep_data <- get_qualocep_data()
+```
+
+## Random Test 1
+
+### QualOCep Data
+
+```{r}
+sample_data <- dplyr::sample_n(qualocep_data, 1)
+
+sample_data |> as.list() |> rutils:::list_as_tibble()
 ```
 
 ```{r}
-dplyr::tibble(
-  name = c(
-    "adj_r_squared_res",
-    "adj_r_squared_full",
-    "diff"
-  ),
-  value = c(
-    adj_r_squared_restricted$value[1],
-    adj_r_squared_full$value[1],
-    adj_r_squared_full$value[1] - adj_r_squared_restricted$value[1]
+leaflet::leaflet() |>
+  leaflet::addTiles() |>
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
   )
-)
 ```
 
-Based on this data, it's also possible to estimate the confidence interval for the $\Delta \text{R}^{2}$.
+### Google Geocoding API
 
 ```{r}
-rutils:::cohens_f_squared_summary(
-  base_r_squared = adj_r_squared_restricted,
-  new_r_squared = adj_r_squared_full
-) |>
-  rutils:::list_as_tibble()
-```
-
-As we can see, the authors found an negligible effect size and, considering its confidence interval, it goes to 0. Latitude-related predictors explained only $0.388\%$ of the variability ($(0.06352 - 0.05964) \times 100$). Nonetheless, the authors interpreted this result as evidence of an association.
-
-At this point the reader could ask: "So why the F-test was significant?"
-
-> Testing for nested models, we obtained a significant reduction of residual sum of squares ($\text{F}(2,12884) = 31.983$, $p = 1.395e-14$), [...] [@leocadio-miguel2017].
-
-The significant *p*-value found in their F-test for nested models indicate a difference only because the *p*-value is very sensitive to sample size ($12,884$, in their case) (@fig-sm-9-gomez-de-mariscal-2021-figure-3). This is a common issue in large samples (commonly called the "*p*-value problem"), where even small differences (e.g., a difference of $0.00001$) can be detected as significant [@lin2013].
-
-::: {#fig-sm-9-gomez-de-mariscal-2021-figure-3}
-![](../images/gomez-de-mariscal-2021-figure-3)
-
-[Source: Reproduced from @mariscal2021[Figure 3].]{.legend}
-
-Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *p-value* curve. The parameter $n_{\alpha}$ represents the minimum sample size to detect statistically significant differences among compared groups. The parameter $n_{\gamma}$ represents the convergence point of the *p-value* curve. When the *p-value* curve expresses practical differences, the area under the red curve ($A_{p(n)}$) is smaller than the area under the constant function $\alpha = 0.05$ ($A_{\alpha = 0.05}$) when it is evaluated between $0$ and $n_{\gamma}$.
-:::
-
-A *p*-value don not have any practical significance, that is why the effect size is important. As Cohen put:
-
-> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES [Effect Size] is not necessarily zero but **small enough to be negligible** [...]. (p. 461).
-
-Authors that rely only in the *p*-value indicate a statistical ritual other than a statistical thinking [@gigerenzer2004].
-
-## Model Issues
-
-> We tested the residuals of the second regression with Kolmogorov-Smirnov normality test and obtained a significant result ($\text{D} = 0.42598$, $p < 2.2e-16$) [@leocadio-miguel2017].
-
-This result violates the assumptions of linear regression and it's not addressed in the text.
-
-Objective assumption tests (e.g., Anderson–Darling test) is not advisable for larger samples, since they can be overly sensitive to minor deviations. Additionally, they might overlook visual patterns that are not captured by a single metric [@shatz2024; @kozak2018; @schucany2006].
-
-Nevertheless, the authors did not mention this in the text.
-
-> The irradiation (W/m2) data by latitude was acquired from the NASA website (<http://aom.giss.nasa.gov>). We retrieved monthly average data and calculated the annual mean for each latitude degree [@leocadio-miguel2017].
-
-The type of irradiation (e.g., global, direct, or diffuse) was not specified, nor was it included in the supplementary materials. This omission is crucial, as different irradiation types can yield substantially different results.
-
-> [...] a second regression including the annual average solar irradiation, sunrise time, sunset time and daylight duration in March equinox, June, and December solstices for each volunteer [@leocadio-miguel2017].
-
-The inclusion of sunrise time, sunset time, and daylight duration (sunset - sunrise) likely introduced multicollinearity due to their inherent correlation. The study does not acknowledge or address this potential issue.
-
-## Misleading Visualization
-
-The [Figure 2](https://www.nature.com/articles/s41598-017-05797-w/figures/2) shown in @leocadio-miguel2017 provides a good example of how data can be misleading. This Figure was shown many times in presentations in chronobiology symposiums, without a proper care of understanding what it was showing.
-
-To interpret this figure, it is essential to first comprehend the scale it represents. In @leocadio-miguel2017, the authors used the Horne & Östberg (HO) chronotype scale [@horne1976] (@fig-sm-9-leocadio-miguel-2017-figure-1). This scale, one of the first developed to assess chronotype, is a self-report questionnaire designed to determine an individual's preferred time of day for activities such as waking up, going to bed, and moment of peak performance. The HO scale consists of $19$ items, with a total score ranging from $16$ to $86$. Lower scores indicate greater evening orientation, while higher scores reflect stronger morning orientation(@tbl-sm-9-horne-1976-table-1).
-
-::: {#tbl-sm-9-horne-1976-table-1}
-```{r}
-dplyr::tibble(
-  Category = c(
-    "Definitely morning type",
-    "Moderately morning type",
-    "Neither type",
-    "Moderately evening type",
-    "Definitely evening type"
-  ),
-  Score = c(
-    "70-86",
-    "59-69",
-    "42-58",
-    "31-41",
-    "16-30"
-  )
-)
-```
-
-[Source: Adapted from @horne1976.]{.legend}
-
-Classifications of the Horne & Östberg Morningness-Eveningness scale with the corresponding scores.
-:::
-
-::: {#fig-sm-9-leocadio-miguel-2017-figure-1}
-![](../images/leocadio-miguel-2017-figure-1.png){width=85%}
-
-[Source: Reproduced from @leocadio-miguel2017[Figure 1].]{.legend}
-
-Distribution of HO scores for the entire sample of @leocadio-miguel2017 data. Each bar for each score represents the frequency (number of subjects). Low scores represent evening types and high scores morning types.
-:::
-
-### The Figure
-
-One of the key issues with the data presented in @leocadio-miguel2017 is that it relies on negligible associations, yet the authors present them in a way that suggests a strong effect. The article's Figure 2 (@fig-sm-9-leocadio-miguel-2017-figure-2) illustrates this. At first glance, it appears to show a good fit and a strong relationship between latitude and the chronotype proxy (in this case, the HO score). However, a closer analysis reveals that it is a clear example of the *y*-axis illusion.
-
-::: {#fig-sm-9-leocadio-miguel-2017-figure-2}
-![](../images/leocadio-miguel-2017-figure-2.png){width=85%}
-
-[Source: Reproduced from @leocadio-miguel2017[Figure 2].]{.legend}
-
-Mean HO scores (±SE) along a latitudinal cline, showing corresponding annual average of solar irradiation level (W/m2).
-:::
-
-In the following sections, I reproduce the data from the figure to provide a clearer representation of the actual relationship reported by the authors.
-
-### Latitude Estimation (Upper x-Axis)
-
-As shown in @fig-sm-9-leocadio-miguel-2017-figure-2-with-guides, the latitude does not follow a fixed scale. Instead, it is referenced relative to the second x-axis (solar irradiation). However, it is possible to estimate the latitude values reasonably well by measuring the pixel distances between points on the figure.
-
-::: {#fig-sm-9-leocadio-miguel-2017-figure-2-with-guides}
-![](../images/leocadio-miguel-2017-figure-2-with-guides.png){width=85%}
-
-[Source: Adapted by the author from @leocadio-miguel2017[Figure 2].]{.legend}
-
-[Figure 2](https://www.nature.com/articles/s41598-017-05797-w/figures/2) from @leocadio-miguel2017 with guides for comparison.
-:::
-
-**Interval distances**
-
-- $0\text{-}13$: $87$ pixels. $87 / 13$: 1 point $\approx 6.692308$ pixels.
-- $13\text{-}18$: $88$ pixels. $88 / (18 - 13)$: $1$ point $= 17.6$ pixels.
-- $18\text{-}22$: $87$ pixels. $87 / (22 - 18)$: $1$ point $= 21.75$ pixels.
-- $22\text{-}26$: $87$ pixels. $87 / (26 - 22)$: $1$ point $= 21.75$ pixels.
-- $26\text{-}29$: $88$ pixels. $88 / (29 - 26)$: $1$ point $\approx 29.333$ pixels.
-- $29\text{-}32$: $86$ pixels. $86 / (32 - 29)$: $1$ point $\approx 28.667$ pixels.
-
-**Estimation**
-
-- 1. point: $0$ to point: $42$ pixels. Estimation: $42 / (87 / 13) \approx 6.275862$.
-- 2. point: $13$ to point: $44$ pixels. Estimation: $13 + (44 / (88 / (18 - 13))) = 15.5$.
-- 3. point: $18$ to point: $43$ pixels. Estimation: $18 + (43 / (87 / (22 - 18))) \approx 19.97701$.
-- 4. point: $22$ to point: $44$ pixels. Estimation: $22 + (44 / (87 / (26 - 22))) \approx 24.02299$.
-- 5. point: $26$ to point: $44$ pixels. Estimation: $26 + (44 / (87 / (29 - 26))) \approx 27.51724$.
-- 6. point: $29$ to point: $44$ pixels. Estimation: $29 + (44 / (86 / (32 - 29))) \approx 30.53488$.
-
-### HO Estimation (y-Axis)
-
-The HO value scale is fixed, allowing the values to be accurately determined by measuring the pixel distances.
-
-**Pixel/point**
-
-- $44.5\text{-}48.5$: $402$ pixels. $402 / (48.5 - 44.5)$: $1$ point $= 100.5$ pixels.
-
-**Estimation**
-
-- 1. point: $44.5$ to point: $338$ pixels. Estimation: $44.5 + (338 / (402 / (48.5 - 44.5))) \approx 47.86318$.
-- 2. point: $44.5$ to point: $316$ pixels. Estimation: $44.5 + (316 / (402 / (48.5 - 44.5))) \approx 47.64428$.
-- 3. point: $44.5$ to point: $217$ pixels. Estimation: $44.5 + (217 / (402 / (48.5 - 44.5))) \approx 46.6592$.
-- 4. point: $44.5$ to point: $155$ pixels. Estimation: $44.5 + (155 / (402 / (48.5 - 44.5))) \approx 46.04229$.
-- 5. point: $44.5$ to point: $94$ pixels. Estimation: $44.5 + (94 / (402 / (48.5 - 44.5))) \approx 45.43532$.
-- 6. point: $44.5$ to point: $94$ pixels. Estimation: $44.5 + (94 / (402 / (48.5 - 44.5))) \approx 45.43532$.
-
-### Standard Error Estimation (y-axis)
-
-The standard error (SE) is displayed on the Y-axis, which has a fixed scale. Therefore, the values can be accurately determined by measuring the pixel distances.
-
-**Pixel/point**
-
-- $44.5\text{-}48.5$: $402$ pixels. $402 / (48.5 - 44.5)$: $1$ point $= 100.5$ pixels.
-
-**Estimation**
-
-- 1. point SE: $44.5$ to upper SE: $369$ pixels. Estimation: $44.5 + (369 / (402 / (48.5 - 44.5))) \approx 48.17164$.
-- 2. point SE: $44.5$ to upper SE: $357$ pixels. Estimation: $44.5 + (357 / (402 / (48.5 - 44.5))) \approx 48.05224$.
-- 3. point SE: $44.5$ to upper SE: $240$ pixels. Estimation: $44.5 + (240 / (402 / (48.5 - 44.5))) \approx 46.88806$
-- 4. point SE: $44.5$ to upper SE: $176$ pixels. Estimation: $44.5 + (176 / (402 / (48.5 - 44.5))) \approx 46.25124$
-- 5. point SE: $44.5$ to upper SE: $134$ pixels. Estimation: $44.5 + (134 / (402 / (48.5 - 44.5))) \approx 45.83333$
-- 6. point SE: $44.5$ to upper SE: $131$ pixels. Estimation: $44.5 + (131 / (402 / (48.5 - 44.5))) \approx 45.80348$
-
-### The Extracted Data
-
-By following the processes described above, we can obtained a reliable approximation of the data, as shown below.
-
-::: {#tbl-sm-9-leocadio-miguel-2017-figure-2-data}
-```{r}
-data <-
-  dplyr::tibble(
-    ho = c(
-      44.5 + (338 / (402 / (48.5 - 44.5))),
-      44.5 + (316 / (402 / (48.5 - 44.5))),
-      44.5 + (217 / (402 / (48.5 - 44.5))),
-      44.5 + (155 / (402 / (48.5 - 44.5))),
-      44.5 + (94 / (402 / (48.5 - 44.5))),
-      44.5 + (94 / (402 / (48.5 - 44.5)))
-    ),
-    latitude = c(
-      42 / (87 / 13),
-      13 + (44 / (88 / (18 - 13))),
-      18 + (43 / (87 / (22 - 18))),
-      22 + (44 / (87 / (26 - 22))),
-      26 + (44 / (87 / (29 - 26))),
-      29 + (44 / (86 / (32 - 29)))
+google_data <-
+  sample_data |>
+  dplyr::mutate(
+    address = orbis::render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
     )
   ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
+  )
+
+google_data |> as.list() |> rutils:::list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |>
+  leaflet::addTiles() |>
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
+  )
+```
+
+## Random Test 2
+
+### QualOCep Data
+
+```{r}
+sample_data <- dplyr::sample_n(qualocep_data, 1)
+
+sample_data |> as.list() |> rutils:::list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |>
+  leaflet::addTiles() |>
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
+  )
+```
+
+### Google Geocoding API
+
+```{r}
+google_data <-
+  sample_data |>
   dplyr::mutate(
-    se_upper = c(
-      44.5 + (369 / (402 / (48.5 - 44.5))),
-      44.5 + (357 / (402 / (48.5 - 44.5))),
-      44.5 + (240 / (402 / (48.5 - 44.5))),
-      44.5 + (176 / (402 / (48.5 - 44.5))),
-      44.5 + (134 / (402 / (48.5 - 44.5))),
-      44.5 + (131 / (402 / (48.5 - 44.5)))
-    ),
-    se = se_upper - ho
+    address = orbis::render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
+    )
+  ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
   )
 
-data
+google_data |> as.list() |> rutils:::list_as_tibble()
 ```
 
-[Source: Created by the author, based on a data extracted from @leocadio-miguel2017[Figure 2].]{.legend}
-
-Data extracted from Figure 2 present in @leocadio-miguel2017.
-:::
-
-### Plotting the Extracted Data
-
-First, let's examine the data in a format similar to what is shown in the @leocadio-miguel2017 figure.
-
-Note that here, the *x*-axis follows a fixed scale, which is crucial to avoid any distortions.
-
-::: {#fig-sm-9-new-leocadio-miguel-2017-figure-2-same-scale}
 ```{r}
-data |>
-  ggplot2::ggplot(
-    ggplot2::aes(x = latitude, y = ho)
-  ) +
-  ggplot2::geom_point(shape = 15, size = 3) +
-  ggplot2::geom_errorbar(
-    ggplot2::aes(
-      x = latitude,
-      y = ho,
-      ymin = ho - se,
-      ymax= ho + se
-    ),
-    data = data,
-    show.legend = FALSE,
-    inherit.aes = FALSE,
-    width = 0.5,
-    linewidth = 0.5
-  ) +
-  ggplot2::geom_smooth(
-    method = "lm",
-    formula = y ~ x,
-    se = FALSE,
-    color = brandr::get_brand_color("orange"),
-    linewidth = 2
-  ) +
-  ggplot2::scale_x_continuous(
-    breaks = c(0, 13, 18, 22, 26, 29, 32),
-    labels = c("0º", "13º", "18º", "22º", "26º", "29º", "32º"),
-    limits = c(0, 32)
-  ) +
-  ggplot2::labs(
-    x = "Latitude (Degrees South)",
-    y = "HO Score"
+leaflet::leaflet() |>
+  leaflet::addTiles() |>
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
   )
 ```
 
-[Source: Created by the author, based on a data extracted from @leocadio-miguel2017[Figure 2].]{.legend}
+## Random Test 3
 
-Reproduction of Figure 2 from @leocadio-miguel2017 with a fixed x-axis scale.
-:::
+### QualOCep Data
 
-Now, it is possible to adjust the y-axis to reflect the minimum and maximum values of the HO scale.
-
-::: {#fig-sm-9-new-leocadio-miguel-2017-figure-2-new-scale}
 ```{r}
-data |>
-  ggplot2::ggplot(
-    ggplot2::aes(x = latitude, y = ho)
-  ) +
-  ggplot2::geom_point(shape = 15, size = 3) +
-  ggplot2::geom_errorbar(
-    ggplot2::aes(
-      x = latitude,
-      y = ho,
-      ymin = ho - se,
-      ymax= ho + se
-    ),
-    data = data,
-    show.legend = FALSE,
-    inherit.aes = FALSE,
-    width = 0.5,
-    linewidth = 0.5
-  ) +
-  ggplot2::geom_smooth(
-    method = "lm",
-    formula = y ~ x,
-    se = FALSE,
-    color = brandr::get_brand_color("orange")
-  ) +
-  ggplot2::scale_x_continuous(
-    breaks = c(0, 13, 18, 22, 16, 29, 32),
-    labels = c("0º", "13º", "18º", "22º", "26º", "29º", "32º"),
-    limits = c(0, 32)
-  ) +
-  ggplot2::scale_y_continuous(
-    breaks = seq(16, 86, 10),
-    limits = c(16, 86)
-  ) +
-  ggplot2::labs(
-    x = "Latitude (Degrees South)",
-    y = "HO Score"
+sample_data <- dplyr::sample_n(qualocep_data, 1)
+
+sample_data |> as.list() |> rutils:::list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |>
+  leaflet::addTiles() |>
+  leaflet::addMarkers(
+    lng = sample_data$longitude,
+    lat = sample_data$latitude,
+    popup = paste0(
+      "Latitude: ", sample_data$latitude, "<br>",
+      "Longitude: ", sample_data$longitude
+    )
   )
 ```
 
-[Source: Created by the author, based on a data extracted from @leocadio-miguel2017[Figure 2].]{.legend}
+### Google Geocoding API
 
-Reproduction of Figure 2 from @leocadio-miguel2017 with a fixed x-axis scale and adjusted y-axis scale.
-:::
+```{r}
+google_data <-
+  sample_data |>
+  dplyr::mutate(
+    address = orbis::render_brazil_address(
+      street = sample_data$street,
+      complement = sample_data$complement,
+      neighborhood = sample_data$neighborhood,
+      municipality = sample_data$municipality,
+      state = sample_data$state,
+      postal_code = sample_data$postal_code
+    )
+  ) |>
+  tidygeocoder::geocode(
+    address = address,
+    method = "google"
+  )
 
-With @fig-sm-9-new-leocadio-miguel-2017-figure-2-new-scale, it becomes clear that the data provided by the authors does not demonstrate a relevant effect size.
+google_data |> as.list() |> rutils:::list_as_tibble()
+```
+
+```{r}
+leaflet::leaflet() |>
+  leaflet::addTiles() |>
+  leaflet::addMarkers(
+    lng = google_data$longitude,
+    lat = google_data$latitude,
+    popup = paste0(
+      "Latitude: ", google_data$latitude, "<br>",
+      "Longitude: ", google_data$longitude
+    )
+  )
+```

@@ -1,7 +1,7 @@
 :::: {.panel-tabset}
 ###### MSF~sc~  (Chronotype proxy) (Seconds)
 
-::: {#tbl-sm-6-rm-var-homoscedasticity-msf-sc}
+::: {#tbl-sm-6-var-homoscedasticity-msf-sc}
 ```{r}
 #| code-fold: true
 
@@ -18,7 +18,7 @@ Relation between `msf_sc` and the model standardized residuals.
 
 ###### Age (Years)
 
-::: {#tbl-sm-6-rm-var-homoscedasticity-age}
+::: {#tbl-sm-6-var-homoscedasticity-age}
 ```{r}
 #| code-fold: true
 
@@ -35,7 +35,7 @@ Relation between `age` and the model standardized residuals.
 
 ###### Longitude (Decimal degrees)
 
-::: {#tbl-sm-6-rm-var-homoscedasticity-longitude}
+::: {#tbl-sm-6-var-homoscedasticity-longitude}
 ```{r}
 #| code-fold: true
 
@@ -52,7 +52,7 @@ Relation between `longitude` and the model standardized residuals.
 
 ###### Monthly average global horizontal irradiance (Wh/m²)
 
-::: {#tbl-sm-6-rm-var-homoscedasticity-ghi-month}
+::: {#tbl-sm-6-var-homoscedasticity-ghi-month}
 ```{r}
 #| code-fold: true
 

@@ -2,7 +2,7 @@
 
 Use this quarto document to change your thesis pre-textual sections in the PDF format.
 
-__Do not remove the text tags__! (they look like this: `<!-- %:::% tag %:::% -->`)
+**Do not remove the text tags**! (they look like this: `<!-- %:::% tag %:::% -->`)
 
 Some general instructions:
 

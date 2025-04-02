@@ -1144,7 +1144,7 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{F1F3F5}}{}
 \makeatother
 \makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, frame hidden, sharp corners, borderline west={3pt}{0pt}{shadecolor}, breakable, enhanced, colback={codebgcolor}]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, frame hidden, borderline west={3pt}{0pt}{shadecolor}, colback={codebgcolor}, sharp corners, boxrule=0pt, enhanced]}{\end{tcolorbox}}\fi
 \makeatother
 
 % -----
@@ -2442,12 +2442,12 @@ represents the time the respondent takes to get up after sleep end). GU
 \end{figure}%
 
 Participants completed an online questionnaire, which included the MCTQ
-questionnaire as well as sociodemographic (e.g., age, sex), geographic
-(e.g., full residential address), anthropometric (e.g., weight, height),
-and data on work and study routines. A version of the questionnaire,
-stored independently by the \href{https://archive.org/}{Internet
-Archive} organization, can be viewed at
-\url{https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq}.
+as well as sociodemographic (e.g., age, sex), geographic (e.g., full
+residential address), anthropometric (e.g., weight, height), and data on
+work and study routines. A version of the questionnaire, stored
+independently by the \href{https://archive.org/}{Internet Archive}
+organization, can be viewed at:
+\url{https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq}
 
 \subsection{Sample Characteristics}\label{sample-characteristics}
 
@@ -2508,7 +2508,7 @@ of \(1,895\) observations per variable to achieve a power
 \(0.01\). Our sample size (\(n = 65,824\)) comfortably surpasses this
 threshold, ensuring adequate power.
 
-\subsection{Geographic Parameters}\label{geographic-parameters}
+\subsection{Geographical Data}\label{geographical-data}
 
 We obtained latitude and longitude data by geocoding participants'
 residential addresses using two main resources:
@@ -2618,18 +2618,17 @@ variance in the dependent variable.
 
 The hypothesis can be outlined as follows:
 
-\begin{itemize}
-\item
-  \textbf{Null Hypothesis} (\(\text{H}_{0}\)): Including \emph{latitude}
-  as a predictor does not result in a meaningful improvement in the
-  model's fit, as evidenced by a change in the adjusted \(\text{R}^{2}\)
-  that is less than the Minimum Effect Size (MES).
-\item
-  \textbf{Alternative Hypothesis} (\(\text{H}_{a}\)): Including
-  \emph{latitude} as a predictor results in a meaningful improvement in
-  the model's fit, as evidenced by a change in the adjusted
-  \(\text{R}^{2}\) that meets or exceeds the Minimum Effect Size (MES).
-\end{itemize}
+\begin{description}
+\tightlist
+\item[\textbf{Null Hypothesis} (\(\text{H}_{0}\))]
+Including \emph{latitude} as a predictor does not result in a meaningful
+improvement in the model's fit, as evidenced by a change in the adjusted
+\(\text{R}^{2}\) that is less than the Minimum Effect Size (MES).
+\item[\textbf{Alternative Hypothesis} (\(\text{H}_{a}\))]
+Including \emph{latitude} as a predictor results in a meaningful
+improvement in the model's fit, as evidenced by a change in the adjusted
+\(\text{R}^{2}\) that meets or exceeds the Minimum Effect Size (MES).
+\end{description}
 
 Formally:
 

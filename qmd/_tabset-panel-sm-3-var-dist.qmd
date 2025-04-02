@@ -50,7 +50,7 @@ weighted_data |> plotr:::plot_box_plot(col = "msf_sc")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `msf_sc` variable with jittered data points in black.
+Box plot of the `msf_sc` variable.
 :::
 
 ### Age (years)
@@ -104,7 +104,7 @@ weighted_data |> plotr:::plot_box_plot(col = "age")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `age` variable with jittered data points in black.
+Box plot of the `age` variable.
 :::
 
 ### Latitude (Decimal degrees)
@@ -158,7 +158,7 @@ weighted_data |> plotr:::plot_box_plot(col = "latitude")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `latitude` variable with jittered data points in black.
+Box plot of the `latitude` variable.
 :::
 
 ### Longitude (Decimal degrees)
@@ -212,7 +212,7 @@ weighted_data |> plotr:::plot_box_plot(col = "longitude")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `longitude` variable with jittered data points in black.
+Box plot of the `longitude` variable.
 :::
 
 ### Monthly average global horizontal irradiance (Wh/m²)
@@ -266,7 +266,7 @@ weighted_data |> plotr:::plot_box_plot(col = "ghi_month")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `ghi_month` variable with jittered data points in black.
+Box plot of the `ghi_month` variable.
 :::
 
 ### Annual average global horizontal irradiance (Wh/m²)
@@ -320,7 +320,7 @@ weighted_data |> plotr:::plot_box_plot(col = "ghi_annual")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `ghi_annual` variable with jittered data points in black.
+Box plot of the `ghi_annual` variable.
 :::
 
 ### Sunrise on the March equinox (Seconds)
@@ -374,7 +374,7 @@ weighted_data |> plotr:::plot_box_plot(col = "march_equinox_sunrise")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `march_equinox_sunrise` variable with jittered data points in black.
+Box plot of the `march_equinox_sunrise` variable.
 :::
 
 ### Sunset on the March equinox (Seconds)
@@ -428,7 +428,7 @@ weighted_data |> plotr:::plot_box_plot(col = "march_equinox_sunset")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `march_equinox_sunset` variable with jittered data points in black.
+Box plot of the `march_equinox_sunset` variable.
 :::
 
 ### Daylight on the March equinox (Seconds)
@@ -482,7 +482,7 @@ weighted_data |> plotr:::plot_box_plot(col = "march_equinox_daylight")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `march_equinox_daylight` variable with jittered data points in black.
+Box plot of the `march_equinox_daylight` variable.
 :::
 
 ### Sunrise on the June solstice (Seconds)
@@ -536,7 +536,7 @@ weighted_data |> plotr:::plot_box_plot(col = "june_solstice_sunrise")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `june_solstice_sunrise` variable with jittered data points in black.
+Box plot of the `june_solstice_sunrise` variable.
 :::
 
 ### Sunset on the June solstice (Seconds)
@@ -590,7 +590,7 @@ weighted_data |> plotr:::plot_box_plot(col = "june_solstice_sunset")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `june_solstice_sunset` variable with jittered data points in black.
+Box plot of the `june_solstice_sunset` variable.
 :::
 
 ### Daylight on the June solstice (Seconds)
@@ -644,7 +644,7 @@ weighted_data |> plotr:::plot_box_plot(col = "june_solstice_daylight")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `june_solstice_daylight` variable with jittered data points in black.
+Box plot of the `june_solstice_daylight` variable.
 :::
 
 ### Sunrise on the September solstice (Seconds)
@@ -698,7 +698,7 @@ weighted_data |> plotr:::plot_box_plot(col = "september_equinox_sunrise")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `september_equinox_sunrise` variable with jittered data points in black.
+Box plot of the `september_equinox_sunrise` variable.
 :::
 
 ### Sunset on the September solstice (Seconds)
@@ -752,7 +752,7 @@ weighted_data |> plotr:::plot_box_plot(col = "september_equinox_sunset")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `september_equinox_sunset` variable with jittered data points in black.
+Box plot of the `september_equinox_sunset` variable.
 :::
 
 ### Daylight on the September solstice (Seconds)
@@ -806,7 +806,7 @@ weighted_data |> plotr:::plot_box_plot(col = "september_equinox_daylight")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `september_equinox_daylight` variable with jittered data points in black.
+Box plot of the `september_equinox_daylight` variable.
 :::
 
 ### Sunrise on the December solstice (Seconds)
@@ -860,7 +860,7 @@ weighted_data |> plotr:::plot_box_plot(col = "december_solstice_sunrise")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `december_solstice_sunrise` variable with jittered data points in black.
+Box plot of the `december_solstice_sunrise` variable.
 :::
 
 ### Sunset on the December solstice (Seconds)
@@ -914,7 +914,7 @@ weighted_data |> plotr:::plot_box_plot(col = "december_solstice_sunset")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `december_solstice_sunset` variable with jittered data points in black.
+Box plot of the `december_solstice_sunset` variable.
 :::
 
 ### Daylight on the December solstice (Seconds)
@@ -968,6 +968,6 @@ weighted_data |> plotr:::plot_box_plot(col = "december_solstice_daylight")
 
 [Source: Created by the author.]{.legend}
 
-Box plot of the `december_solstice_daylight` variable with jittered data points in black.
+Box plot of the `december_solstice_daylight` variable.
 :::
 ::::

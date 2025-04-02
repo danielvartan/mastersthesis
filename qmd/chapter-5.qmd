@@ -255,7 +255,7 @@ Chronotypes were assessed using a standard version of the Munich ChronoType Ques
 Variables measured by the Munich Chronotype Questionnaire (MCTQ). In its standard version, these variables are collected in the context of workdays and work-free days. `<br>`{=html} `\microskip \\`{=latex} BT = Local time of going to bed. SPrep = Local time of preparing to sleep. SLat = Sleep latency (Duration. Time to fall asleep after preparing to sleep). SO = Local time of sleep onset. SD = Sleep duration. **MS** = Local time of mid-sleep. SE = Local time of sleep end. Alarm = Indicates whether the respondent uses an alarm clock. SI = "Sleep inertia" (Duration. Despite the name, this variable represents the time the respondent takes to get up after sleep end). GU = Local time of getting out of bed. TBT = Total time in bed.
 :::
 
-Participants completed an online questionnaire, which included the MCTQ questionnaire as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work and study routines. A version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization, can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
+Participants completed an online questionnaire, which included the MCTQ as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work and study routines. A version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization, can be viewed at: <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>
 
 ### Sample Characteristics
 
@@ -277,7 +277,7 @@ Additional details about the sample are available in the supplementary materials
 
 To assess the adequacy of the sample size for detecting effects reaching the Minimum Effect Size (MES) threshold ($f^2 = 0.02$), we conducted a power analysis using the [pwrss](https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html) R package [@bulus]. This analysis revealed a minimum sample size of `{r} res_vars$hta_pwr_analysis$n |> groomr:::format_to_md_latex()` observations per variable to achieve a power ($1 - \beta$) of $0.99$ with a significance level ($\alpha$) of $0.01$. Our sample size (`{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex(before = "n = ")`) comfortably surpasses this threshold, ensuring adequate power.
 
-### Geographic Parameters
+### Geographical Data
 
 We obtained latitude and longitude data by geocoding participants’ residential addresses using two main resources:
 
@@ -316,9 +316,11 @@ To ensure practical significance, a Minimum Effect Size (MES) criterion was appl
 
 The hypothesis can be outlined as follows:
 
-- **Null Hypothesis** ($\text{H}_{0}$): Including *latitude* as a predictor does not result in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that is less than the Minimum Effect Size (MES).
+**Null Hypothesis** ($\text{H}_{0}$)
+: Including *latitude* as a predictor does not result in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that is less than the Minimum Effect Size (MES).
 
-- **Alternative Hypothesis** ($\text{H}_{a}$): Including *latitude* as a predictor results in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that meets or exceeds the Minimum Effect Size (MES).
+**Alternative Hypothesis** ($\text{H}_{a}$)
+: Including *latitude* as a predictor results in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that meets or exceeds the Minimum Effect Size (MES).
 
 Formally:
 

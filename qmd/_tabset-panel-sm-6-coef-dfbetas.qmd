@@ -9,7 +9,7 @@
 
 ###### Intercept
 
-::: {#tbl-sm-6-rm-coef-dfbetas-intercept}
+::: {#tbl-sm-6-coef-dfbetas-intercept}
 ```{r}
 #| code-fold: true
 
@@ -23,7 +23,7 @@ Standardized DFBETAS values for each observation concerning the
 
 ###### age
 
-::: {#tbl-sm-6-rm-coef-dfbetas-age}
+::: {#tbl-sm-6-coef-dfbetas-age}
 ```{r}
 #| code-fold: true
 
@@ -37,7 +37,7 @@ Standardized DFBETAS values for each observation concerning the
 
 ###### sexMale
 
-::: {#tbl-sm-6-rm-coef-dfbetas-sexmale}
+::: {#tbl-sm-6-coef-dfbetas-sexmale}
 ```{r}
 #| code-fold: true
 
@@ -51,7 +51,7 @@ Standardized DFBETAS values for each observation concerning the
 
 ###### longitude
 
-::: {#tbl-sm-6-rm-coef-dfbetas-longitude}
+::: {#tbl-sm-6-coef-dfbetas-longitude}
 ```{r}
 #| code-fold: true
 
@@ -65,7 +65,7 @@ Standardized DFBETAS values for each observation concerning the
 
 ###### ghi_month
 
-::: {#tbl-sm-6-rm-coef-dfbetas-ghi-month}
+::: {#tbl-sm-6-coef-dfbetas-ghi-month}
 ```{r}
 #| code-fold: true
 

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Appendix I — Critique of Leocadio-Miguel et al.&nbsp;(2017) – Is Latitude Associated with Chronotype?</title>
+<title>Appendix I — Comparative Assessment of QualoCEP and Google Geocoding API Performance – Is Latitude Associated with Chronotype?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,27 +51,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -126,40 +106,22 @@ div.csl-indent {
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
-</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-<meta property="og:title" content="Appendix I — Critique of Leocadio-Miguel et al.&nbsp;(2017) – Is Latitude Associated with Chronotype?">
+</script><meta property="og:title" content="Appendix I — Comparative Assessment of QualoCEP and Google Geocoding API Performance – Is Latitude Associated with Chronotype?">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://danielvartan.github.io/mastersthesis/images/gomez-de-mariscal-2021-figure-3.png">
+<meta property="og:image" content="/mastersthesis/images/og-image.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="2400">
+<meta property="og:image:alt " content="Is Latitude Associated with Chronotype?">
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="../site_libs/leaflet-1.3.1/leaflet.js"></script><link href="../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="../site_libs/proj4-2.6.2/proj4.min.js"></script><script src="../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="../site_libs/leaflet-binding-2.2.2/leaflet.js"></script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<meta property="og:title" content="[Appendix I — Comparative Assessment of QualoCEP and Google Geocoding API Performance]{#sec-sm-qualocep .quarto-section-identifier} – Is Latitude Associated with Chronotype?">
+<meta property="og:description" content="This document outlines a workflow to evaluate the geocoding performance of QualoCEP in comparison to the Google Geocoding API.">
 <meta property="og:site_name" content="Is Latitude Associated with Chronotype?">
-<meta property="og:image:height" content="921">
-<meta property="og:image:width" content="1443">
-<meta name="citation_title" content="[Appendix I — Critique of Leocadio-Miguel et al. (2017)]{#sec-sm-critique .quarto-section-identifier}">
+<meta name="citation_title" content="[Appendix I — Comparative Assessment of QualoCEP and Google Geocoding API Performance]{#sec-sm-qualocep .quarto-section-identifier}">
 <meta name="citation_fulltext_html_url" content="https://danielvartan.github.io/mastersthesis/">
 <meta name="citation_pdf_url" content="https://danielvartan.github.io/mastersthesis/print/index.pdf">
 <meta name="citation_doi" content="10.17605/OSF.IO/S4TBZ">
@@ -173,7 +135,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Predictive models aren’t for causal inference;,citation_author=Suchinta Arif;,citation_author=M. Aaron MacNeil;,citation_publication_date=2022-08;,citation_cover_date=2022-08;,citation_year=2022;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/10.1111/ele.14033;,citation_issue=8;,citation_doi=10.1111/ele.14033;,citation_issn=1461-023X, 1461-0248;,citation_volume=25;,citation_language=en-US;,citation_journal_title=Ecology Letters;,citation_journal_abbrev=Ecology Letters;">
 <meta name="citation_reference" content="citation_title=Exogenous and endogenous components in circadian rhythms;,citation_abstract=Excerpt PREFACE The main topic of the symposium “Biological Clocks” says nothing about the types of clocks we will be concerned with. It is an open question whether the clocks run continuously or stop after one revolution and have to be started anew. Also the term “clock” does not imply that one revolution is finished in 24 hours. Watches are instruments to measure time. Organisms have to measure time-spans of quite different lengths and for different purposes. Each measurement of speed, for instance, needs timing and mostly within the limits of milliseconds. One can expect, therefore, that organisms possess several clocks with perhaps extremely different periods [1]. There is no need for these clocks to run continuously; for some purposes it would be sufficient if the clock were started always at the beginning of timing (principle of a sandglass, stop watch). “Biological clocks” therefore is a more general concept than what...;,citation_author=Jürgen Aschoff;,citation_publication_date=1960-01-01;,citation_cover_date=1960-01-01;,citation_year=1960;,citation_fulltext_html_url=http://symposium.cshlp.org/content/25/11;,citation_doi=10.1101/SQB.1960.025.01.004;,citation_issn=0091-7451, 1943-4456;,citation_volume=25;,citation_language=en-US;,citation_journal_title=Cold Spring Harbor Symposia on Quantitative Biology;,citation_journal_abbrev=Cold Spring Harb Symp Quant Biol;,citation_publisher=Cold Spring Harbor Laboratory Press;">
 <meta name="citation_reference" content="citation_title=Phasenlage der Tagesperiodik in Abhängigkeit von Jahreszeit und Breitengrad;,citation_abstract=Es wird die Hypothese vertreten, daß die regelhaften jahreszeitlichen Änderungen der Phasenbeziehung zwischen Aktivitätsrhythmik und natürlichem Licht-Dunkel-Wechsel auf der Grundlage spezieller Synchronisations-mechanismen erklärt werden können. Im Teil 1.1 werden die endogenen und exogenen Faktoren besprochen, die theoretisch die Phase zu beeinflussen vermögen. Die Überlegungen führen zu dem Schluß, daß das Licht-Dunkel-Verhältnis und die Dauer der Dämmerung im wesentlichen die Phase bestimmen. Experimentelle Belege sind in Teil 1.2 enthalten. In Teil 2 werden Freilandbeobachtungen über Beginn und Ende der Aktivität von Vögeln neu ausgewertet. Diese Ergebnisse, wie auch Meßwerte der Aktivität von Tieren in Innenräumen (Teil 3), stützen die Hypothese. Sie zeigen alle maximal voreilende Phasen im Mittsommer bei tagaktiven Arten bzw. im Mittwinter bei einer nachtaktiven Art. Einige, in Teil 4 erwähnte Ausnahmen von dieser Regel, werfen die Frage auf, in welchem Ausmaß die Ergebnisse verallgemeinert werden dürfen. In der Arbeit werden auch die einheitlichen jahreszeitlichen Änderungen der Aktivitätszeit erörtert.;,citation_author=Jürgen Aschoff;,citation_publication_date=1969-08-01;,citation_cover_date=1969-08-01;,citation_year=1969;,citation_fulltext_html_url=https://doi.org/10.1007/BF00416979;,citation_issue=2;,citation_doi=10.1007/BF00416979;,citation_issn=1432-1939;,citation_volume=3;,citation_language=de-DE;,citation_journal_title=Oecologia;,citation_journal_abbrev=Oecologia;">
-<meta name="citation_reference" content="citation_title=Precision of entrained circadian activity rhythms under natural photoperiodic conditions;,citation_author=Jürgen Aschoff;,citation_author=Serge Daan;,citation_author=J. Figala;,citation_author=K. Müller;,citation_publication_date=1972;,citation_cover_date=1972;,citation_year=1972;,citation_fulltext_html_url=https://research.rug.nl/files/14698568/1972NaturwissAschoff.pdf;,citation_issue=6;,citation_volume=59;,citation_language=en-US;,citation_journal_title=Naturwissenschaften;,citation_publisher=Springer Verlag;">
+<meta name="citation_reference" content="citation_title=Precision of entrained circadian activity rhythms under natural photoperiodic conditions;,citation_author=Jürgen Aschoff;,citation_author=Serge Daan;,citation_author=J. Figala;,citation_author=K. Müller;,citation_publication_date=1972;,citation_cover_date=1972;,citation_year=1972;,citation_issue=6;,citation_volume=59;,citation_language=en-US;,citation_journal_title=Naturwissenschaften;,citation_publisher=Springer Verlag;">
 <meta name="citation_reference" content="citation_title=Biological rhythms;,citation_editor=Jürgen Aschoff;,citation_publication_date=1981;,citation_cover_date=1981;,citation_year=1981;,citation_fulltext_html_url=http://link.springer.com/10.1007/978-1-4615-6552-9;,citation_doi=10.1007/978-1-4615-6552-9;,citation_isbn=978-1-4615-6552-9;,citation_language=en-US;,citation_series_title=Handbook of Behavioral Neurobiology;">
 <meta name="citation_reference" content="citation_title=Temporal orientation: Circadian clocks in animals and humans;,citation_author=Jürgen Aschoff;,citation_publication_date=1989-06;,citation_cover_date=1989-06;,citation_year=1989;,citation_fulltext_html_url=https://linkinghub.elsevier.com/retrieve/pii/0003347289901322;,citation_doi=10.1016/0003-3472(89)90132-2;,citation_issn=00033472;,citation_volume=37;,citation_language=en-US;,citation_journal_title=Animal Behaviour;,citation_journal_abbrev=Animal Behaviour;">
 <meta name="citation_reference" content="citation_title=Circadian temporal adaptation and the perception of time;,citation_author=Jürgen Aschoff;,citation_publication_date=1989-08-01;,citation_cover_date=1989-08-01;,citation_year=1989;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/0167876089900718;,citation_issue=2;,citation_doi=10.1016/0167-8760(89)90071-8;,citation_issn=0167-8760;,citation_volume=7;,citation_language=en-US;,citation_journal_title=International Journal of Psychophysiology;,citation_journal_abbrev=International Journal of Psychophysiology;">
@@ -213,6 +175,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Testing for serial correlation in least squares regression. III;,citation_abstract=The paper considers a number of problems arising from the test of serial correlation based on the d statistic proposed earlier by the authors (Durbin &amp;amp;amp;amp; Watson, 1950, 1951). Methods of computing the exact distribution of d are investigated and the exact distribution is compared with six approximations to it for four sets of published data. It is found that approximations suggested by Theil and Nagar and by Hannan are too inaccurate for practical use but that the beta approximation proposed in the 1950 and 1951 papers and a new approximation, called by us the a + bdu approximation and based, like the beta approximation, on the exact first two moments of d, both perform well.The power of the d test is compared with that of certain exact tests proposed by Theil, Durbin, Koerts and Abrahamse from the standpoint of invariance theory. It is shown that the d test is locally most powerful invariant but that the other tests are not.There are three appendices. The first gives an account of the exact distribution of d. The second derives the mean and variance to a second order of approximation of a modified maximum likelihood statistic closely related to d. The third sets out details of the computations required for the a + hdu approximation.;,citation_author=J. Durbin;,citation_author=G. S. Watson;,citation_publication_date=1971-04-01;,citation_cover_date=1971-04-01;,citation_year=1971;,citation_fulltext_html_url=https://doi.org/10.1093/biomet/58.1.1;,citation_issue=1;,citation_doi=10.1093/biomet/58.1.1;,citation_issn=0006-3444;,citation_volume=58;,citation_language=en-US;,citation_journal_title=Biometrika;,citation_journal_abbrev=Biometrika;">
 <meta name="citation_reference" content="citation_title=Evidence that the woman’s ovarian cycle is driven by an internal circamonthly timing system;,citation_abstract=The ovarian cycle has a well-established circa-monthly rhythm, but the mechanisms involved in its regularity are unknown. Is the rhythmicity driven by an endogenous clock-like timer or by other internal or external processes? Here, using two large epidemiological datasets (26,912 cycles from 2303 European women and 4786 cycles from 721 North American women), analyzed with time series and circular statistics, we find evidence that the rhythmic characteristics of the menstrual cycle are more likely to be explained by an endogenous clock-like driving mechanism than by any other internal or external process. We also show that the menstrual cycle is weakly but significantly influenced by the 29.5-day lunar cycle and that the phase alignment between the two cycles differs between the European and the North American populations. Given the need to find efficient treatments of subfertility in women, our results should be confirmed in larger populations, and chronobiological approaches to optimize the ovulatory cycle should be evaluated.;,citation_author=René Ecochard;,citation_author=Joseph B. Stanford;,citation_author=Richard J. Fehring;,citation_author=Marie Schneider;,citation_author=Shahpar Najmabadi;,citation_author=Claude Gronfier;,citation_publication_date=2024-04-10;,citation_cover_date=2024-04-10;,citation_year=2024;,citation_fulltext_html_url=https://www.science.org/doi/10.1126/sciadv.adg9646;,citation_issue=15;,citation_doi=10.1126/sciadv.adg9646;,citation_volume=10;,citation_journal_title=Science Advances;,citation_publisher=American Association for the Advancement of Science;">
 <meta name="citation_reference" content="citation_title=The sense of time: Evidence for its molecular basis in the eukaryotic gene-action system;,citation_author=Charles F. Ehret;,citation_publication_date=1974;,citation_cover_date=1974;,citation_year=1974;,citation_fulltext_html_url=https://linkinghub.elsevier.com/retrieve/pii/B9780120052158500097;,citation_doi=10.1016/B978-0-12-005215-8.50009-7;,citation_isbn=978-0-12-005215-8;,citation_volume=15;,citation_language=en-US;,citation_inbook_title=Advances in Biological and Medical Physics;">
+<meta name="citation_reference" content="citation_title=The essential guide to effect sizes: Statistical power, meta-analysis, and the interpretation of research results;,citation_abstract=This succinct and jargon-free introduction to effect sizes gives students and researchers the tools they need to interpret the practical significance of their results. Using a class-tested approach that includes numerous examples and step-by-step exercises, it introduces and explains three of the most important issues relating to the practical significance of research results: the reporting and interpretation of effect sizes (Part I), the analysis of statistical power (Part II), and the meta-analytic pooling of effect size estimates drawn from different studies (Part III). The book concludes with a handy list of recommendations for those actively engaged in or currently preparing research projects.;,citation_editor=Paul D. Ellis;,citation_publication_date=2010;,citation_cover_date=2010;,citation_year=2010;,citation_isbn=978-0-521-19423-5;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=Agent-based computational models and generative social science;,citation_abstract=This article argues that the agent-based computational model permits a distinctive approach to social science for which the term &amp;amp;amp;quot;generative&amp;quot; is suitable. In defending this terminology, features distinguishing the approach from both &quot;inductive&quot; and &quot;deductive&quot; science are given. Then, the following specific contributions to social science are discussed: The agent-based computational model is a new tool for empirical research. It offers a natural environment for the study of connectionist phenomena in social science. Agent-based modeling pro- vides a powerful way to address certain enduring-and especially interdisciplinary questions. It allows one to subject certain core theories-such as neoclassical microeconomics-to important types of stress (e.g., the effect of evolving preferences). It permits one to study how rules of individual behavior give rise-or &quot;map up&quot;-to macroscopic regularities and organizations. In turn, one can employ laboratory behavioral research findings to select among competing agent-based (&quot;bottom up&quot;) models. The agent-based approach may well have the important effect of decoupling individual rationality from macroscopic equilibrium and of separating decision science from social science more generally. Agent-based modeling offers powerful new forms of hybrid theo- retical-computational work; these are particularly relevant to the study of non-equilibrium systems. The agent- based approach invites the interpretation of society as a distributed computational device, and in turn the interpretation of social dynamics as a type of computation. This interpretation raises important foundational issues in social science-some related to intractability, and some to undecidability proper. Finally, since &quot;emer- gence&quot; figures prominently in this literature, I take up the connection between agent-based modeling and classical emergentism, criticizing the latter and arguing that the two are incompatible.;,citation_author=Joshua M. Epstein;,citation_publication_date=1999;,citation_cover_date=1999;,citation_year=1999;,citation_issue=5;,citation_doi=10.1002/(SICI)1099-0526(199905/06)4:5&amp;amp;lt;41::AID-CPLX9&amp;gt;3.0.CO;2-F;,citation_volume=4;,citation_language=en-US;,citation_journal_title=Complexity;">
 <meta name="citation_reference" content="citation_title=Chrono-nutrition: From molecular and neuronal mechanisms to human epidemiology and timed feeding patterns;,citation_abstract=The circadian timing system governs daily biological rhythms, synchronising physiology and behaviour to the temporal world. External time cues, including the light-dark cycle and timing of food intake, provide daily signals for entrainment of the central, master circadian clock in the hypothalamic suprachiasmatic nuclei (SCN), and of metabolic rhythms in peripheral tissues, respectively. Chrono-nutrition is an emerging field building on the relationship between temporal eating patterns, circadian rhythms, and metabolic health. Evidence from both animal and human research demonstrates adverse metabolic consequences of circadian disruption. Conversely, a growing body of evidence indicates that aligning food intake to periods of the day when circadian rhythms in metabolic processes are optimised for nutrition may be effective for improving metabolic health. Circadian rhythms in glucose and lipid homeostasis, insulin responsiveness and sensitivity, energy expenditure, and postprandial metabolism, may favour eating patterns characterised by earlier temporal distribution of energy. This review details the molecular basis for metabolic clocks, the regulation of feeding behaviour, and the evidence for meal timing as an entraining signal for the circadian system in animal models. The epidemiology of temporal eating patterns in humans is examined, together with evidence from human intervention studies investigating the metabolic effects of morning compared to evening energy intake, and emerging chrono-nutrition interventions such as time-restricted feeding. Chrono-nutrition may have therapeutic application for individuals with and at-risk of metabolic disease and convey health benefits within the general population.;,citation_author=Alan Flanagan;,citation_author=David A. Bechtold;,citation_author=Gerda K. Pot;,citation_author=Jonathan D. Johnston;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/jnc.15246;,citation_issue=1;,citation_doi=10.1111/jnc.15246;,citation_issn=1471-4159;,citation_volume=157;,citation_language=en-US;,citation_journal_title=Journal of Neurochemistry;">
 <meta name="citation_reference" content="citation_title=Rhythms of life: The biological clocks that control the daily lives of every living thing;,citation_author=Russell G. Foster;,citation_author=Leon Kreitzman;,citation_publication_date=2005;,citation_cover_date=2005;,citation_year=2005;,citation_isbn=978-1-86197-571-3;,citation_language=en-US;">
@@ -235,7 +198,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Latitudinal clines: An evolutionary view on biological rhythms;,citation_abstract=Properties of the circadian and annual timing systems are expected to vary systematically with latitude on the basis of different annual light and temperature patterns at higher latitudes, creating specific selection pressures. We review literature with respect to latitudinal clines in circadian phenotypes as well as in polymorphisms of circadian clock genes and their possible association with annual timing. The use of latitudinal (and altitudinal) clines in identifying selective forces acting on biological rhythms is discussed, and we evaluate how these studies can reveal novel molecular and physiological components of these rhythms.;,citation_author=Roelof A. Hut;,citation_author=Silvia Paolucci;,citation_author=Roi Dor;,citation_author=Charalambos P. Kyriacou;,citation_author=Serge Daan;,citation_publication_date=2013-08-22;,citation_cover_date=2013-08-22;,citation_year=2013;,citation_fulltext_html_url=https://royalsocietypublishing.org/doi/10.1098/rspb.2013.0433;,citation_issue=1765;,citation_doi=10.1098/rspb.2013.0433;,citation_issn=0962-8452, 1471-2954;,citation_volume=280;,citation_language=en-US;,citation_journal_title=Proceedings of the Royal Society B: Biological Sciences;,citation_journal_abbrev=Proc. R. Soc. B.;">
 <meta name="citation_reference" content="citation_title=Pesquisa Nacional por Amostra de Domicílios Contínua: Acesso à internet e à televisão e posse de telefone móvel celular para uso pessoal 2019;,citation_author=Instituto Brasileiro de Geografia e Estatística;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://biblioteca.ibge.gov.br/visualizacao/livros/liv101794_informativo.pdf;,citation_isbn=978-65-87201-56-6;,citation_language=pt-BR;,citation_technical_report_institution=Instituto Brasileiro de Geografia e Estatística;">
 <meta name="citation_reference" content="citation_title=Tabela 6407: População residente, por sexo e grupos de idade;,citation_author=Instituto Brasileiro de Geografia e Estatística;,citation_fulltext_html_url=https://sidra.ibge.gov.br/tabela/6407;,citation_publisher=SIDRA;">
-<meta name="citation_reference" content="citation_title=Tabela 6579: População residente estimada;,citation_author=Instituto Brasileiro de Geografia e Estatística;,citation_fulltext_html_url=https://sidra.ibge.gov.br/Tabela/3939;,citation_language=pt-BR;,citation_publisher=SIDRA;">
+<meta name="citation_reference" content="citation_title=Tabela 6579: População residente estimada;,citation_author=Instituto Brasileiro de Geografia e Estatística;,citation_fulltext_html_url=https://sidra.ibge.gov.br/Tabela/6579;,citation_language=pt-BR;,citation_publisher=SIDRA;">
 <meta name="citation_reference" content="citation_title=Efficient tests for normality, homoscedasticity and serial independence of regression residuals;,citation_abstract=We use the Lagrange multiplier procedure to derive efficient joint tests for residual normality, homoscedasticity and serial independence. The tests are simple to compute and asymptotically distributed as χ2.;,citation_author=Carlos M. Jarque;,citation_author=Anil K. Bera;,citation_publication_date=1980-01-01;,citation_cover_date=1980-01-01;,citation_year=1980;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/0165176580900245;,citation_issue=3;,citation_doi=10.1016/0165-1765(80)90024-5;,citation_issn=0165-1765;,citation_volume=6;,citation_language=en-US;,citation_journal_title=Economics Letters;,citation_journal_abbrev=Economics Letters;">
 <meta name="citation_reference" content="citation_title=A test for normality of observations and regression residuals;,citation_abstract=Using the Lagrange multiplier procedure or score test on the Pearson family of distributions we obtain tests for normality of observations and regression disturbances. The tests suggested have optimum asymptotic power properties and good finite sample performance. Due to their simplicity they should prove to be useful tools in statistical analysis.;,citation_author=Carlos M. Jarque;,citation_author=Anil K. Bera;,citation_publication_date=1987;,citation_cover_date=1987;,citation_year=1987;,citation_fulltext_html_url=https://www.jstor.org/stable/1403192;,citation_issue=2;,citation_doi=10.2307/1403192;,citation_issn=0306-7734;,citation_volume=55;,citation_language=en-US;,citation_journal_title=International Statistical Review;,citation_publisher=[Wiley, International Statistical Institute (ISI)];">
 <meta name="citation_reference" content="citation_title=Weighting methods;,citation_abstract=Weighting adjustments are commonly applied in surveys to compensate for nonresponse and noncoverage, and to make weighted sample estimates conform to external values. Recent years have seen theoretical developments and increased use of methods that take account of substantial amounts of auxiliary information in making these adjustments. The article uses a simple example to describe such methods as cell weighting, raking, generalised regression estimation, logistic regression weighting, mixtures of methods, and methods for restricting the range of the resultant adjustments. It also discusses how auxiliary variables may be chosen for use in the adjustments and describes some applications.;,citation_author=Graham Kalton;,citation_author=Ismael Flores-Cervantes;,citation_publication_date=2003;,citation_cover_date=2003;,citation_year=2003;,citation_issue=2;,citation_issn=0282-423X;,citation_volume=19;,citation_language=en-US;,citation_journal_title=Journal of Official Statistics;">
@@ -247,6 +210,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=The reality ouroboros;,citation_abstract=Toward a new understanding of the nature of reality.;,citation_author=David Krakauer;,citation_author=David Wolpert;,citation_publication_date=2024-09-04;,citation_cover_date=2024-09-04;,citation_year=2024;,citation_fulltext_html_url=https://nautil.us/the-reality-ouroboros-809153/;,citation_language=en-US;,citation_journal_title=Nautilus;">
 <meta name="citation_reference" content="citation_title=Chronobiology of interspecific interactions in a changing world;,citation_abstract=Animals should time activities, such as foraging, migration and reproduction, as well as seasonal physiological adaptation, in a way that maximizes fitness. The fitness outcome of such activities depends largely on their interspecific interactions; the temporal overlap with other species determines when they should be active in order to maximize their encounters with food and to minimize their encounters with predators, competitors and parasites. To cope with the constantly changing, but predictable structure of the environment, organisms have evolved internal biological clocks, which are synchronized mainly by light, the most predictable and reliable environmental cue (but which can be masked by other variables), which enable them to anticipate and prepare for predicted changes in the timing of the species they interact with, on top of responding to them directly. Here, we review examples where the internal timing system is used to predict interspecific interactions, and how these interactions affect the internal timing system and activity patterns. We then ask how plastic these mechanisms are, how this plasticity differs between and within species and how this variability in plasticity affects interspecific interactions in a changing world, in which light, the major synchronizer of the biological clock, is no longer a reliable cue owing to the rapidly changing climate, the use of artificial light and urbanization. This article is part of the themed issue “Wild clocks: integrating chronobiology and ecology to understand timekeeping in free-living animals”.;,citation_author=Noga Kronfeld-Schor;,citation_author=Marcel E. Visser;,citation_author=Lucia Salis;,citation_author=Jan A. Gils;,citation_publication_date=2017-10-09;,citation_cover_date=2017-10-09;,citation_year=2017;,citation_fulltext_html_url=https://royalsocietypublishing.org/doi/full/10.1098/rstb.2016.0248;,citation_issue=1734;,citation_doi=10.1098/rstb.2016.0248;,citation_volume=372;,citation_journal_title=Philosophical Transactions of the Royal Society B: Biological Sciences;,citation_publisher=Royal Society;">
 <meta name="citation_reference" content="citation_title=Introduction to chronobiology;,citation_author=Sandra J. Kuhlman;,citation_author=L. Michon Craig;,citation_author=Jeanne F. Duffy;,citation_publication_date=2018-09;,citation_cover_date=2018-09;,citation_year=2018;,citation_fulltext_html_url=http://cshperspectives.cshlp.org/lookup/doi/10.1101/cshperspect.a033613;,citation_issue=9;,citation_doi=10.1101/cshperspect.a033613;,citation_issn=1943-0264;,citation_volume=10;,citation_language=en-US;,citation_journal_title=Cold Spring Harbor Perspectives in Biology;,citation_journal_abbrev=Cold Spring Harb Perspect Biol;">
+<meta name="citation_reference" content="citation_title=Using case weights with tidymodels;,citation_abstract=Support for case weights is now available across many tidymodels packages.;,citation_author=Max Kuhn;,citation_publication_date=2022-05-02;,citation_cover_date=2022-05-02;,citation_year=2022;,citation_fulltext_html_url=https://www.tidyverse.org/blog/2022/05/case-weights/;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=The targets R package: A dynamic make-like function-oriented pipeline toolkit for reproducibility and high-performance computing;,citation_author=William Landau;,citation_publication_date=2021-01-15;,citation_cover_date=2021-01-15;,citation_year=2021;,citation_fulltext_html_url=https://joss.theoj.org/papers/10.21105/joss.02959;,citation_issue=57;,citation_doi=10.21105/joss.02959;,citation_issn=2475-9066;,citation_volume=6;,citation_language=en-US;,citation_journal_title=Journal of Open Source Software;,citation_journal_abbrev=JOSS;">
 <meta name="citation_reference" content="citation_title=Latin dictionaries;,citation_author=Latinitium;,citation_fulltext_html_url=https://latinitium.com/latin-dictionaries/;,citation_language=en-US;,citation_publisher=Latinitium;">
 <meta name="citation_reference" content="citation_title=Detecting chronotype differences associated to latitude: A comparison between Horne–Östberg and Munich Chronotype questionnaires;,citation_author=Mario André Leocadio-Miguel;,citation_author=Valéria Clarisse De Oliveira;,citation_author=Danyella Pereira;,citation_author=Mario Pedrazzoli;,citation_publication_date=2014-03;,citation_cover_date=2014-03;,citation_year=2014;,citation_fulltext_html_url=http://www.tandfonline.com/doi/full/10.3109/03014460.2013.832795;,citation_issue=2;,citation_doi=10.3109/03014460.2013.832795;,citation_issn=0301-4460, 1464-5033;,citation_volume=41;,citation_language=en-US;,citation_journal_title=Annals of Human Biology;,citation_journal_abbrev=Annals of Human Biology;">
@@ -329,13 +293,13 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Ecology of sleep and circadian phenotypes of the Brazilian population [Poster];,citation_author=Daniel Vartanian;,citation_publication_date=2022-11-19;,citation_cover_date=2022-11-19;,citation_year=2022;,citation_fulltext_html_url=https://doi.org/10.13140/RG.2.2.25343.07840;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=Plano de ensino: ACH0042 - Resolução de Problemas II;,citation_author=Daniel Vartanian;,citation_publication_date=2023-07-12;,citation_cover_date=2023-07-12;,citation_year=2023;,citation_fulltext_html_url=https://doi.org/10.13140/RG.2.2.33335.50086;,citation_language=pt-BR;">
 <meta name="citation_reference" content="citation_title=Is latitude associated with chronotype? [Data Management Plan];,citation_author=Daniel Vartanian;,citation_publication_date=2024-11-26;,citation_cover_date=2024-11-26;,citation_year=2024;,citation_fulltext_html_url=https://doi.org/10.48321/D1B5C8068D;,citation_language=en-US;,citation_publisher=DMPHub;">
-<meta name="citation_reference" content="citation_title=Is latitude associated with chronotype?;,citation_abstract=Research compendium of the Master’s Thesis: Is Latitude Associated with Chronotype?;,citation_author=Daniel Vartanian;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_fulltext_html_url=https://doi.org/10.17605/OSF.IO/YGKTS;,citation_doi=10.17605/OSF.IO/YGKTS;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=Is latitude associated with chronotype? [Research compendium];,citation_abstract=Research compendium of the Master’s Thesis: Is Latitude Associated with Chronotype?;,citation_author=Daniel Vartanian;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_fulltext_html_url=https://doi.org/10.17605/OSF.IO/YGKTS;,citation_doi=10.17605/OSF.IO/YGKTS;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title={prettycheck}: Pretty assertive programming;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/prettycheck;">
 <meta name="citation_reference" content="citation_title={lubritime}: An extension for the lubridate package;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/lubritime;">
 <meta name="citation_reference" content="citation_title={lockr}: Easily encrypt/decrypt files;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/lockr;">
 <meta name="citation_reference" content="citation_title={entrainment}: A rule-based model of the 24h light/dark cycle entrainment phenomenon;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/entrainment;">
 <meta name="citation_reference" content="citation_title={abnt}: Quarto format designed for theses and dissertations that adhere to the standards of the Brazilian Association of Technical Standards (ABNT);,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/abnt;">
-<meta name="citation_reference" content="citation_title={groomr}: Tools to tidy strings and text files;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/groomr;">
+<meta name="citation_reference" content="citation_title={groomr}: Tidy tools;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/groomr;">
 <meta name="citation_reference" content="citation_title={mctq}: Munich ChronoType Questionnaire tools;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://docs.ropensci.org/mctq/;">
 <meta name="citation_reference" content="citation_title=Illustration of the SIR model;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/sir;">
 <meta name="citation_reference" content="citation_title=Illustration of the Lorenz system;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/lorenz-system;">
@@ -343,7 +307,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Demonstrations of the central limit theorem;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/central-limit-theorem;">
 <meta name="citation_reference" content="citation_title=Illustration of the Lotka–Volterra’s predator–prey model;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/lotka-volterra;">
 <meta name="citation_reference" content="citation_title=HTML color codes in hex and RGB formats for Espanso;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://hub.espanso.org/html-colors;">
-<meta name="citation_reference" content="citation_title={actverse}: Tools for actigraphy data analysis;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://docs.ropensci.org/actverse/;">
+<meta name="citation_reference" content="citation_title={actverse}: Tools for actigraphy data analysis;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/actverse/;">
 <meta name="citation_reference" content="citation_title={quartor}: Tools for the Quarto publishing system;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/quartor/;">
 <meta name="citation_reference" content="citation_title={orbis}: Spatial data analysis tools;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/orbis/;">
 <meta name="citation_reference" content="citation_title={brandr}: Brand identity management using brand.yml standard;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://doi.org/10.32614/CRAN.package.brandr;">
@@ -355,8 +319,8 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=The ASA statement on p-values: Context, process, and purpose;,citation_author=Ronald L. Wasserstein;,citation_author=Nicole A. Lazar;,citation_publication_date=2016-04-02;,citation_cover_date=2016-04-02;,citation_year=2016;,citation_fulltext_html_url=https://www.tandfonline.com/doi/abs/10.1080/00031305.2016.1154108;,citation_issue=2;,citation_doi=10.1080/00031305.2016.1154108;,citation_issn=0003-1305;,citation_volume=70;,citation_language=en-US;,citation_journal_title=The American Statistician;,citation_publisher=Taylor &amp;amp;amp; Francis;">
 <meta name="citation_reference" content="citation_title=Recommended amount of sleep for a healthy adult: A joint consensus statement of the American Academy of Sleep Medicine and Sleep Research Society;,citation_author=Nathaniel F. Watson;,citation_author=M. Safwan Badr;,citation_author=Gregory Belenky;,citation_author=Donald L. Bliwise;,citation_author=Orfeu M. Buxton;,citation_author=Daniel Buysse;,citation_author=David F. Dinges;,citation_author=James Gangwisch;,citation_author=Michael A. Grandner;,citation_author=Clete Kushida;,citation_author=Raman K. Malhotra;,citation_author=Jennifer L. Martin;,citation_author=Sanjay R. Patel;,citation_author=Stuart F. Quan;,citation_author=Esra Tasali;,citation_publication_date=2015-06-15;,citation_cover_date=2015-06-15;,citation_year=2015;,citation_fulltext_html_url=http://jcsm.aasm.org/doi/10.5664/jcsm.4758;,citation_issue=6;,citation_doi=10.5664/jcsm.4758;,citation_issn=1550-9389, 1550-9397;,citation_volume=11;,citation_language=en-US;,citation_journal_title=Journal of Clinical Sleep Medicine;,citation_journal_abbrev=Journal of Clinical Sleep Medicine;">
 <meta name="citation_reference" content="citation_title=Linear regression diagnostics;,citation_author=Roy Welsch;,citation_author=Edwin Kuh;,citation_publication_date=1977-03;,citation_cover_date=1977-03;,citation_year=1977;,citation_fulltext_html_url=http://www.nber.org/papers/w0173.pdf;,citation_doi=10.3386/w0173;,citation_language=en-US;,citation_technical_report_institution=National Bureau of Economic Research;,citation_technical_report_number=0173;">
-<meta name="citation_reference" content="citation_title=The tidy tools manifesto;,citation_abstract=tidyverse;,citation_author=Hadley Wickham;,citation_publication_date=2023-02-23;,citation_cover_date=2023-02-23;,citation_year=2023;,citation_fulltext_html_url=https://tidyverse.tidyverse.org/articles/manifesto.html;,citation_language=en-US;,citation_publisher=Tidyverse;">
-<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverseâ??a collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023-07-18;,citation_cover_date=2023-07-18;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=The tidy tools manifesto;,citation_abstract=tidyverse;,citation_author=Hadley Wickham;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://tidyverse.tidyverse.org/articles/manifesto.html;,citation_language=en-US;,citation_publisher=Tidyverse;">
+<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverseâ??a collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=The FAIR guiding principles for scientific data management and stewardship;,citation_abstract=There is an urgent need to improve the infrastructure supporting the reuse of scholarly data. A diverse set of stakeholders—representing academia, industry, funding agencies, and scholarly publishers—have come together to design and jointly endorse a concise and measureable set of principles that we refer to as the FAIR Data Principles. The intent is that these may act as a guideline for those wishing to enhance the reusability of their data holdings. Distinct from peer initiatives that focus on the human scholar, the FAIR Principles put specific emphasis on enhancing the ability of machines to automatically find and use the data, in addition to supporting its reuse by individuals. This Comment is the first formal publication of the FAIR Principles, and includes the rationale behind them, and some exemplar implementations in the community.;,citation_author=Mark D. Wilkinson;,citation_author=Michel Dumontier;,citation_author=IJsbrand Jan Aalbersberg;,citation_author=Gabrielle Appleton;,citation_author=Myles Axton;,citation_author=Arie Baak;,citation_author=Niklas Blomberg;,citation_author=Jan-Willem Boiten;,citation_author=Luiz Bonino Da Silva Santos;,citation_author=Philip E. Bourne;,citation_author=Jildau Bouwman;,citation_author=Anthony J. Brookes;,citation_author=Tim Clark;,citation_author=Mercè Crosas;,citation_author=Ingrid Dillo;,citation_author=Olivier Dumon;,citation_author=Scott Edmunds;,citation_author=Chris T. Evelo;,citation_author=Richard Finkers;,citation_author=Alejandra Gonzalez-Beltran;,citation_author=Alasdair J. G. Gray;,citation_author=Paul Groth;,citation_author=Carole Goble;,citation_author=Jeffrey S. Grethe;,citation_author=Jaap Heringa;,citation_author=Peter A. C Hoen;,citation_author=Rob Hooft;,citation_author=Tobias Kuhn;,citation_author=Ruben Kok;,citation_author=Joost Kok;,citation_author=Scott J. Lusher;,citation_author=Maryann E. Martone;,citation_author=Albert Mons;,citation_author=Abel L. Packer;,citation_author=Bengt Persson;,citation_author=Philippe Rocca-Serra;,citation_author=Marco Roos;,citation_author=Rene Van Schaik;,citation_author=Susanna-Assunta Sansone;,citation_author=Erik Schultes;,citation_author=Thierry Sengstag;,citation_author=Ted Slater;,citation_author=George Strawn;,citation_author=Morris A. Swertz;,citation_author=Mark Thompson;,citation_author=Johan Van Der Lei;,citation_author=Erik Van Mulligen;,citation_author=Jan Velterop;,citation_author=Andra Waagmeester;,citation_author=Peter Wittenburg;,citation_author=Katherine Wolstencroft;,citation_author=Jun Zhao;,citation_author=Barend Mons;,citation_publication_date=2016-03-15;,citation_cover_date=2016-03-15;,citation_year=2016;,citation_fulltext_html_url=https://www.nature.com/articles/sdata201618;,citation_issue=1;,citation_doi=10.1038/sdata.2016.18;,citation_issn=2052-4463;,citation_volume=3;,citation_language=en-US;,citation_journal_title=Scientific Data;,citation_journal_abbrev=Sci Data;">
 <meta name="citation_reference" content="citation_title=Emergence isn’t magic;,citation_abstract=Pondering the hard problem of consciousness, Simon Blackburn quite rightly describes “old-fashioned emergence” of mind from brain as “magic tissue secreting a magical effect” (11 September, p 42). But this does not mean emergence necessarily entails smoke and mirrors. It is a familiar phenomenon that science helps us to understand. As we learn in school, if you chemically combine the gases oxygen and hydrogen the result is liquid water. There is no magic involved in the fact that the properties of water are different from its constituent elements. Equally, the emergence of consciousness from certain arrangements of neurons is a natural process. The problem of how it comes about is hard because we have only just begun to investigate the complexity of the brain. While agreeing that neuroscientists can benefit from critical analysis of their ideas by philosophers, the latter tend to be led astray by metaphysical speculation. The Cartesian dualist tradition is a case in point. Modern dualists such as David Chalmers argue that the emergence of consciousness from the brain is not just remarkable, but logically impossible. And so it would be if Descartes’ claim that the conscious mind is separate from the mechanistic body were true. Assuming a logical division between the mental and the physical begs the mind-body question. Mental and physical properties do appear to be radically different but we simply don’t know whether this is a real difference. Bicester, Oxfordshire, UK;,citation_author=Richard Wilson;,citation_publication_date=2004-10-02;,citation_cover_date=2004-10-02;,citation_year=2004;,citation_fulltext_html_url=https://www.newscientist.com/letter/mg18424674-700-emergence-isnt-magic/;,citation_issue=2467;,citation_language=en-US;,citation_journal_title=New Scientist;">
 </head>
@@ -367,7 +331,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/supplementary-material-1.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/supplementary-material-9.html"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/supplementary-material-1.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/supplementary-material-9.html"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -527,37 +491,49 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Hypothesis Test A</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Hypothesis Test B</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Restricted Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Hypothesis Test A</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Hypothesis Test B</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-9.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Works and Activities Developed During the Thesis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Works and Activities Developed During the Thesis</span></span></a>
   </div>
 </li>
       </ul>
@@ -571,25 +547,34 @@ window.Quarto = {
    
   <ul>
 <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">I.1</span> Overview</a></li>
-  <li><a href="#inconsistent-data" id="toc-inconsistent-data" class="nav-link" data-scroll-target="#inconsistent-data"><span class="header-section-number">I.2</span> Inconsistent Data</a></li>
-  <li><a href="#statistic-ritual-or-lack-of-evidence" id="toc-statistic-ritual-or-lack-of-evidence" class="nav-link" data-scroll-target="#statistic-ritual-or-lack-of-evidence"><span class="header-section-number">I.3</span> Statistic Ritual (or Lack of Evidence)</a></li>
-  <li><a href="#model-issues" id="toc-model-issues" class="nav-link" data-scroll-target="#model-issues"><span class="header-section-number">I.4</span> Model Issues</a></li>
+  <li><a href="#setting-the-environment" id="toc-setting-the-environment" class="nav-link" data-scroll-target="#setting-the-environment"><span class="header-section-number">I.2</span> Setting the Environment</a></li>
+  <li><a href="#importing-qualocep-data" id="toc-importing-qualocep-data" class="nav-link" data-scroll-target="#importing-qualocep-data"><span class="header-section-number">I.3</span> Importing QualOCep Data</a></li>
   <li>
-<a href="#misleading-visualization" id="toc-misleading-visualization" class="nav-link" data-scroll-target="#misleading-visualization"><span class="header-section-number">I.5</span> Misleading Visualization</a>
+<a href="#random-test-1" id="toc-random-test-1" class="nav-link" data-scroll-target="#random-test-1"><span class="header-section-number">I.4</span> Random Test 1</a>
   <ul class="collapse">
-<li><a href="#the-figure" id="toc-the-figure" class="nav-link" data-scroll-target="#the-figure"><span class="header-section-number">I.5.1</span> The Figure</a></li>
-  <li><a href="#latitude-estimation-upper-x-axis" id="toc-latitude-estimation-upper-x-axis" class="nav-link" data-scroll-target="#latitude-estimation-upper-x-axis"><span class="header-section-number">I.5.2</span> Latitude Estimation (Upper x-Axis)</a></li>
-  <li><a href="#ho-estimation-y-axis" id="toc-ho-estimation-y-axis" class="nav-link" data-scroll-target="#ho-estimation-y-axis"><span class="header-section-number">I.5.3</span> HO Estimation (y-Axis)</a></li>
-  <li><a href="#standard-error-estimation-y-axis" id="toc-standard-error-estimation-y-axis" class="nav-link" data-scroll-target="#standard-error-estimation-y-axis"><span class="header-section-number">I.5.4</span> Standard Error Estimation (y-axis)</a></li>
-  <li><a href="#the-extracted-data" id="toc-the-extracted-data" class="nav-link" data-scroll-target="#the-extracted-data"><span class="header-section-number">I.5.5</span> The Extracted Data</a></li>
-  <li><a href="#ploting-the-extracted-data" id="toc-ploting-the-extracted-data" class="nav-link" data-scroll-target="#ploting-the-extracted-data"><span class="header-section-number">I.5.6</span> Ploting the Extracted Data</a></li>
+<li><a href="#qualocep-data" id="toc-qualocep-data" class="nav-link" data-scroll-target="#qualocep-data"><span class="header-section-number">I.4.1</span> QualOCep Data</a></li>
+  <li><a href="#google-geocoding-api" id="toc-google-geocoding-api" class="nav-link" data-scroll-target="#google-geocoding-api"><span class="header-section-number">I.4.2</span> Google Geocoding API</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#random-test-2" id="toc-random-test-2" class="nav-link" data-scroll-target="#random-test-2"><span class="header-section-number">I.5</span> Random Test 2</a>
+  <ul class="collapse">
+<li><a href="#qualocep-data-1" id="toc-qualocep-data-1" class="nav-link" data-scroll-target="#qualocep-data-1"><span class="header-section-number">I.5.1</span> QualOCep Data</a></li>
+  <li><a href="#google-geocoding-api-1" id="toc-google-geocoding-api-1" class="nav-link" data-scroll-target="#google-geocoding-api-1"><span class="header-section-number">I.5.2</span> Google Geocoding API</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#random-test-3" id="toc-random-test-3" class="nav-link" data-scroll-target="#random-test-3"><span class="header-section-number">I.6</span> Random Test 3</a>
+  <ul class="collapse">
+<li><a href="#qualocep-data-2" id="toc-qualocep-data-2" class="nav-link" data-scroll-target="#qualocep-data-2"><span class="header-section-number">I.6.1</span> QualOCep Data</a></li>
+  <li><a href="#google-geocoding-api-2" id="toc-google-geocoding-api-2" class="nav-link" data-scroll-target="#google-geocoding-api-2"><span class="header-section-number">I.6.2</span> Google Geocoding API</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/danielvartan/mastersthesis/edit/main/qmd/supplementary-material-9.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/danielvartan/mastersthesis/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/supplementary-material-1.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/supplementary-material-9.html"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-sm-critique" class="quarto-section-identifier">Appendix I — Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/supplementary-material-1.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/supplementary-material-9.html"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-sm-qualocep" class="quarto-section-identifier">Appendix I — Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></h1>
 </div>
 
 
@@ -605,499 +590,274 @@ window.Quarto = {
 
 </header><!-- %:::% .common h1 begin %:::% --><!-- %:::% .common h1 end %:::% --><section id="overview" class="level2" data-number="I.1"><h2 data-number="I.1" class="anchored" data-anchor-id="overview">
 <span class="header-section-number">I.1</span> Overview</h2>
-<p>This document presents some constructive critiques regarding <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span> article, which this thesis respond to. It is made with the goal of add to the discussion of the latitude hypothesis and to to enhance understanding of the data depicted and highlight how it may lead to potential misinterpretations.</p>
-</section><section id="inconsistent-data" class="level2" data-number="I.2"><h2 data-number="I.2" class="anchored" data-anchor-id="inconsistent-data">
-<span class="header-section-number">I.2</span> Inconsistent Data</h2>
-<blockquote class="blockquote">
-<p>We conducted a first regression of HO scores only on the covariates (age, longitude, and solar irradiation when the subjects filled the online questionnaire) and cofactors (sex, daylight saving time (DST), and season) (<span class="math inline">\(\text{R}^{2} = 0.05964\)</span>, <span class="math inline">\(\text{F}(8,12845) = 101.8\)</span>, <span class="math inline">\(p &lt; 2.2e-16\)</span>) <span class="citation" data-cites="leocadio-miguel2017">(<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">Leocadio-Miguel et al., 2017</a>)</span>.</p>
-</blockquote>
-<p>The <span class="math inline">\(\text{F}\)</span>-test indicates <span class="math inline">\(8\)</span> predictors, yet only <span class="math inline">\(6\)</span> are mentioned in the text. This discrepancy is not clarified, leaving uncertainty about the additional predictors included in the model.</p>
-<blockquote class="blockquote">
-<p>[continuing from the last quote] … and a second regression including the annual average solar irradiation, sunrise time, sunset time and daylight duration in March equinox, June, and December solstices for each volunteer (<span class="math inline">\(\text{R}^{2} = 0.06667\)</span>, <span class="math inline">\(\text{F}(27,12853) = 33.8\)</span>, <span class="math inline">\(p &lt; 2.2e-16\)</span>) <span class="citation" data-cites="leocadio-miguel2017">(<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">Leocadio-Miguel et al., 2017</a>)</span>.</p>
-</blockquote>
-<p>In this case, the <span class="math inline">\(\text{F}\)</span>-test indicates <span class="math inline">\(27\)</span> predictors. However, adding the <span class="math inline">\(8\)</span> predictors from the first regression to the <span class="math inline">\(10\)</span> newly mentioned variables yields a total of <span class="math inline">\(18\)</span> predictors, not <span class="math inline">\(27\)</span>. This inconsistency is not addressed in the text.</p>
-<blockquote class="blockquote">
-<p>Testing for nested models, we obtained a significant reduction of residual sum of squares (<span class="math inline">\(\text{F}(2,12884) = 31.983\)</span>, <span class="math inline">\(p = 1.395e-14\)</span>), […] <span class="citation" data-cites="leocadio-miguel2017">(<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">Leocadio-Miguel et al., 2017</a>)</span>.</p>
-</blockquote>
-<p>The degrees of freedom difference (<span class="math inline">\(df = 2\)</span>) suggests that the two previously described models were not directly compared in this nested test. This raises further questions about the models used, as the discrepancy is not explained.</p>
-</section><section id="statistic-ritual-or-lack-of-evidence" class="level2" data-number="I.3"><h2 data-number="I.3" class="anchored" data-anchor-id="statistic-ritual-or-lack-of-evidence">
-<span class="header-section-number">I.3</span> Statistic Ritual (or Lack of Evidence)</h2>
-<blockquote class="blockquote">
-<p>We also obtained an effect size estimate of Cohen’s <span class="math inline">\(f^{2} = (0.06352 - 0.05964) / (1 - 0.06352) = 0.004143174\)</span> <span class="citation" data-cites="leocadio-miguel2017">(<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">Leocadio-Miguel et al., 2017</a>)</span>.</p>
-</blockquote>
-<p>A first thing to notice is that the higher <span class="math inline">\(\text{R}^{2}\)</span> value (<span class="math inline">\(0.06352\)</span>) differs from the previously reported <span class="math inline">\(\text{R}^{2}\)</span> (<span class="math inline">\(0.06667\)</span>). This inconsistency is not justified.</p>
-<p>The fomula that appears in the text is based on Cohen’s <span class="math inline">\(f^{2}\)</span>, which is calculated by the following:</p>
-<p><span class="math display">\[
-\text{Cohen's } f^2 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}}
-\]</span></p>
-<p>For nested models, this can be adapted as:</p>
-<p><span class="math display">\[
-\text{Cohen's } f^2 = \cfrac{\text{R}^{2}_{f} - \text{R}^{2}_{r}}{1 - \text{R}^{2}_{f}} = \cfrac{\Delta \text{R}^{2}}{1 - \text{R}^{2}_{f}}
-\]</span></p>
-<p>Before diving into the <span class="math inline">\(f^2\)</span> calculation, let’s first calculate the confidence interval of the <span class="math inline">\(\text{R}^{2}\)</span> for the restricted and full model using an estimate of the standard error. Note that all the parameters used in the calculations are provided in the text.</p>
+<p>This document outlines a workflow to evaluate the geocoding performance of <a href="https://www.qualocep.com/">QualoCEP</a> in comparison to the <a href="https://developers.google.com/maps/documentation/geocoding/overview">Google Geocoding API</a>. The comparison focuses on latitude and longitude outputs to assess the consistency and reliability of both services, which are integral to the geocoding tasks in this thesis.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>To execute this notebook, ensure you have a valid Google Geocoding API key stored in your <a href="https://bookdown.org/csgillespie/efficientR/set-up.html#:~:text=2.4.6%20The%20.Renviron%20file"><code>.Renviron</code></a> file. For detailed instructions on obtaining and configuring the API key, refer to the <a href="https://jessecambon.github.io/tidygeocoder/articles/geocoder_services.html"><code>tidygeocoder</code></a> R package documentation.</p>
+</div>
+</div>
+</div>
+</section><section id="setting-the-environment" class="level2" data-number="I.2"><h2 data-number="I.2" class="anchored" data-anchor-id="setting-the-environment">
+<span class="header-section-number">I.2</span> Setting the Environment</h2>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">adj_r_squared_restricted</span> <span class="op">&lt;-</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">summarize_r2</span><span class="op">(</span></span>
-<span>  r2 <span class="op">=</span> <span class="fl">0.05964</span>,</span>
-<span>  n <span class="op">=</span> <span class="fl">12845</span> <span class="op">+</span> <span class="fl">8</span> <span class="op">+</span> <span class="fl">1</span>,</span>
-<span>  k <span class="op">=</span> <span class="fl">8</span>,</span>
-<span>  ci_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span>  rules <span class="op">=</span> <span class="st">"cohen1988"</span></span>
-<span><span class="op">)</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/targets/">targets</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jessecambon.github.io/tidygeocoder/">tidygeocoder</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"R"</span>, <span class="st">"get_qualocep_data.R"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="importing-qualocep-data" class="level2" data-number="I.3"><h2 data-number="I.3" class="anchored" data-anchor-id="importing-qualocep-data">
+<span class="header-section-number">I.3</span> Importing QualOCep Data</h2>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">qualocep_data</span> <span class="op">&lt;-</span> <span class="fu">get_qualocep_data</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="random-test-1" class="level2" data-number="I.4"><h2 data-number="I.4" class="anchored" data-anchor-id="random-test-1">
+<span class="header-section-number">I.4</span> Random Test 1</h2>
+<section id="qualocep-data" class="level3" data-number="I.4.1"><h3 data-number="I.4.1" class="anchored" data-anchor-id="qualocep-data">
+<span class="header-section-number">I.4.1</span> QualOCep Data</h3>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sample_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="va">qualocep_data</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">adj_r_squared_restricted</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["interpretation"],"name":[3],"type":["chr"],"align":["left"]},{"label":["rule"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"R2","2":"0.05964000000","3":"weak","4":"cohen1988"},{"1":"SE","2":"0.00404779913","3":"NA","4":"NA"},{"1":"Lower CI","2":"0.05170645949","3":"weak","4":"cohen1988"},{"1":"Upper CI","2":"0.06757354051","3":"weak","4":"cohen1988"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">adj_r_squared_full</span> <span class="op">&lt;-</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">summarize_r2</span><span class="op">(</span></span>
-<span>  r2 <span class="op">=</span> <span class="fl">0.06352</span>,</span>
-<span>  n <span class="op">=</span> <span class="fl">12853</span> <span class="op">+</span> <span class="fl">27</span> <span class="op">+</span> <span class="fl">1</span>,</span>
-<span>  k <span class="op">=</span> <span class="fl">27</span>,</span>
-<span>  ci_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span>  rules <span class="op">=</span> <span class="st">"cohen1988"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">adj_r_squared_full</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["interpretation"],"name":[3],"type":["chr"],"align":["left"]},{"label":["rule"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"R2","2":"0.063520000000","3":"weak","4":"cohen1988"},{"1":"SE","2":"0.004149667674","3":"NA","4":"NA"},{"1":"Lower CI","2":"0.055386800810","3":"weak","4":"cohen1988"},{"1":"Upper CI","2":"0.071653199190","3":"weak","4":"cohen1988"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">"adj_r_squared_res"</span>,</span>
-<span>    <span class="st">"adj_r_squared_full"</span>,</span>
-<span>    <span class="st">"diff"</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="va">adj_r_squared_restricted</span><span class="op">$</span><span class="va">value</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
-<span>    <span class="va">adj_r_squared_full</span><span class="op">$</span><span class="va">value</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
-<span>    <span class="va">adj_r_squared_full</span><span class="op">$</span><span class="va">value</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="va">adj_r_squared_restricted</span><span class="op">$</span><span class="va">value</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">sample_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"adj_r_squared_res","2":"0.05964"},{"1":"adj_r_squared_full","2":"0.06352"},{"1":"diff","2":"0.00388"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"59642000"},{"1":"street_type","2":"Avenida"},{"1":"street_name","2":"Wilson Rosado"},{"1":"street","2":"Avenida Wilson Rosado"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Itapetinga"},{"1":"municipality_code","2":"2408003"},{"1":"municipality","2":"Mossoró"},{"1":"state_code","2":"24"},{"1":"state","2":"Rio Grande do Norte"},{"1":"federal_unit","2":"RN"},{"1":"latitude","2":"-5.1847398"},{"1":"longitude","2":"-37.3708674"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>Based on this data, it’s also possible to estimate the confidence interval for the <span class="math inline">\(\Delta \text{R}^{2}\)</span>.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rutils</span><span class="fu">:::</span><span class="fu">cohens_f_squared_summary</span><span class="op">(</span></span>
-<span>  base_r_squared <span class="op">=</span> <span class="va">adj_r_squared_restricted</span>,</span>
-<span>  new_r_squared <span class="op">=</span> <span class="va">adj_r_squared_full</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
+<span>    lng <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
+<span>    lat <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
+<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Latitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
+<span>      <span class="st">"Longitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"f_squared","2":"0.00414317444045788"},{"1":"lower_ci_limit","2":"0"},{"1":"upper_ci_limit","2":"0.0214863019770568"},{"1":"effect_size","2":"Negligible"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-a399c016fdba09cc70cb" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a399c016fdba09cc70cb">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-5.1847398,-37.3708674,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -5.1847398<br>Longitude: -37.3708674",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-5.1847398,-5.1847398],"lng":[-37.3708674,-37.3708674]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</div>
-<p>As we can see, the authors found an negligible effect size and, considering its confidence interval, it goes to 0. Latitude-related predictors explained only <span class="math inline">\(0.388\%\)</span> of the variability (<span class="math inline">\((0.06352 - 0.05964) \times 100\)</span>). Nonetheless, the authors interpreted this result as evidence of an association.</p>
-<p>At this point the reader could ask: “So why the F-test was significant?”</p>
-<blockquote class="blockquote">
-<p>Testing for nested models, we obtained a significant reduction of residual sum of squares (<span class="math inline">\(\text{F}(2,12884) = 31.983\)</span>, <span class="math inline">\(p = 1.395e-14\)</span>), […] <span class="citation" data-cites="leocadio-miguel2017">(<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">Leocadio-Miguel et al., 2017</a>)</span>.</p>
-</blockquote>
-<p>The significant <em>p</em>-value found in their F-test for nested models indicate a difference only because the <em>p</em>-value is very sensitive to sample size (<span class="math inline">\(12,884\)</span>, in their case) (<a href="#fig-sm-9-gomez-de-mariscal-2021-figure-3" class="quarto-xref">Figure&nbsp;<span>I.1</span></a>). This is a common issue in large samples (commoly called the “<em>p</em>-value problem”), where even small differences (e.g., a difference of <span class="math inline">\(0.00001\)</span>) can be detected as significant <span class="citation" data-cites="lin2013">(<a href="references.html#ref-lin2013" role="doc-biblioref">Lin et al., 2013</a>)</span>.</p>
-<div id="fig-sm-9-gomez-de-mariscal-2021-figure-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-9-gomez-de-mariscal-2021-figure-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;I.1: Comparison of a 95% of confidence level (<span class="math inline">\(\alpha = 0.05\)</span>) and an <em>n</em>-dependent <em>p-value</em> curve. The parameter <span class="math inline">\(n_{\alpha}\)</span> represents the minimum sample size to detect statistically significant differences among compared groups. The parameter <span class="math inline">\(n_{\gamma}\)</span> represents the convergence point of the <em>p-value</em> curve. When the <em>p-value</em> curve expresses practical differences, the area under the red curve (<span class="math inline">\(A_{p(n)}\)</span>) is smaller than the area under the constant function <span class="math inline">\(\alpha = 0.05\)</span> (<span class="math inline">\(A_{\alpha = 0.05}\)</span>) when it is evaluated between <span class="math inline">\(0\)</span> and <span class="math inline">\(n_{\gamma}\)</span>.
-</figcaption><div aria-describedby="fig-sm-9-gomez-de-mariscal-2021-figure-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="../images/gomez-de-mariscal-2021-figure-3.png" class="img-fluid figure-img"></p>
-<p><span class="legend">Source: Reproduced from <span class="citation" data-cites="mariscal2021">Gómez-de-Mariscal et al. (<a href="references.html#ref-mariscal2021" role="doc-biblioref">2021, Figure 3</a>)</span>.</span></p>
-</div>
-</figure>
-</div>
-<p>A <em>p</em>-value don not have any pratical significance, that is why the effect size is important. As Cohen put:</p>
-<blockquote class="blockquote">
-<p>[…] in many circumstances, all that is intended by “proving” the null hypothesis is that the ES [Effect Size] is not necessarily zero but <strong>small enough to be negligible</strong> […]. (p.&nbsp;461).</p>
-</blockquote>
-<p>Authors that rely only in the <em>p</em>-value indicate a statistical ritual other than a statistical thinking <span class="citation" data-cites="gigerenzer2004">(<a href="references.html#ref-gigerenzer2004" role="doc-biblioref">Gigerenzer, 2004</a>)</span>.</p>
-</section><section id="model-issues" class="level2" data-number="I.4"><h2 data-number="I.4" class="anchored" data-anchor-id="model-issues">
-<span class="header-section-number">I.4</span> Model Issues</h2>
-<blockquote class="blockquote">
-<p>We tested the residuals of the second regression with Kolmogorov-Smirnov normality test and obtained a significant result (<span class="math inline">\(\text{D} = 0.42598\)</span>, <span class="math inline">\(p &lt; 2.2e-16\)</span>) <span class="citation" data-cites="leocadio-miguel2017">(<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">Leocadio-Miguel et al., 2017</a>)</span>.</p>
-</blockquote>
-<p>This result violates the assumptions of linear regression and it’s not addressed in the text.</p>
-<p>Objective assumption tests (e.g., Anderson–Darling test) is not advisable for larger samples, since they can be overly sensitive to minor deviations. Additionally, they might overlook visual patterns that are not captured by a single metric <span class="citation" data-cites="shatz2024 kozak2018 schucany2006">(<a href="references.html#ref-kozak2018" role="doc-biblioref">Kozak &amp; Piepho, 2018</a>; <a href="references.html#ref-schucany2006" role="doc-biblioref">Schucany &amp; Ng, 2006</a>; <a href="references.html#ref-shatz2024" role="doc-biblioref">Shatz, 2024</a>)</span>.</p>
-<p>Nevertheless, the authors did not mention this in the text.</p>
-<blockquote class="blockquote">
-<p>The irradiation (W/m2) data by latitude was acquired from the NASA website (<a href="http://aom.giss.nasa.gov" class="uri">http://aom.giss.nasa.gov</a>). We retrieved monthly average data and calculated the annual mean for each latitude degree <span class="citation" data-cites="leocadio-miguel2017">(<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">Leocadio-Miguel et al., 2017</a>)</span>.</p>
-</blockquote>
-<p>The type of irradiation (e.g., global, direct, or diffuse) was not specified, nor was it included in the supplementary materials. This omission is crucial, as different irradiation types can yield substantially different results.</p>
-<blockquote class="blockquote">
-<p>[…] a second regression including the annual average solar irradiation, sunrise time, sunset time and daylight duration in March equinox, June, and December solstices for each volunteer <span class="citation" data-cites="leocadio-miguel2017">(<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">Leocadio-Miguel et al., 2017</a>)</span>.</p>
-</blockquote>
-<p>The inclusion of sunrise time, sunset time, and daylight duration (sunset - sunrise) likely introduced multicollinearity due to their inherent correlation. The study does not acknowledge or address this potential issue.</p>
-</section><section id="misleading-visualization" class="level2" data-number="I.5"><h2 data-number="I.5" class="anchored" data-anchor-id="misleading-visualization">
-<span class="header-section-number">I.5</span> Misleading Visualization</h2>
-<p>The <a href="https://www.nature.com/articles/s41598-017-05797-w/figures/2">Figure 2</a> shown in <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span> provides a good example of how data can be misleading. This Figure was shown many times in presentations in chronobiology symposiums, without a proper care of understanding what it was showing.</p>
-<p>To interpret this figure, it is essential to first comprehend the scale it represents. In <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span>, the authors used the Horne &amp; Östberg (HO) chronotype scale <span class="citation" data-cites="horne1976">(<a href="references.html#ref-horne1976" role="doc-biblioref">Horne &amp; Östberg, 1976</a>)</span> (<a href="#fig-appendice-3-leocadio-miguel-2017-figure-1" class="quarto-xref">Figure&nbsp;<span>I.2</span></a>). This scale, one of the first developed to assess chronotype, is a self-report questionnaire designed to determine an individual’s preferred time of day for activities such as waking up, going to bed, and moment of peak performance. The HO scale consists of <span class="math inline">\(19\)</span> items, with a total score ranging from <span class="math inline">\(16\)</span> to <span class="math inline">\(86\)</span>. Lower scores indicate greater evening orientation, while higher scores reflect stronger morning orientation(<a href="#tbl-sm-9-horne-1976-table-1" class="quarto-xref">Table&nbsp;<span>I.1</span></a>).</p>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>  Category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Definitely morning type"</span>,</span>
-<span>    <span class="st">"Moderately morning type"</span>,</span>
-<span>    <span class="st">"Neither type"</span>,</span>
-<span>    <span class="st">"Moderately evening type"</span>,</span>
-<span>    <span class="st">"Definitely evening type"</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  Score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">"70-86"</span>,</span>
-<span>    <span class="st">"59-69"</span>,</span>
-<span>    <span class="st">"42-58"</span>,</span>
-<span>    <span class="st">"31-41"</span>,</span>
-<span>    <span class="st">"16-30"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="tbl-sm-9-horne-1976-table-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sm-9-horne-1976-table-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;I.1: Classifications of the Horne &amp; Östberg Morningness-Eveningness scale with the corresponding scores.
-</figcaption><div aria-describedby="tbl-sm-9-horne-1976-table-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</section><section id="google-geocoding-api" class="level3" data-number="I.4.2"><h3 data-number="I.4.2" class="anchored" data-anchor-id="google-geocoding-api">
+<span class="header-section-number">I.4.2</span> Google Geocoding API</h3>
 <div class="cell">
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Category"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Score"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Definitely morning type","2":"70-86"},{"1":"Moderately morning type","2":"59-69"},{"1":"Neither type","2":"42-58"},{"1":"Moderately evening type","2":"31-41"},{"1":"Definitely evening type","2":"16-30"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p><span class="legend">Source: Adapted from <span class="citation" data-cites="horne1976">Horne &amp; Östberg (<a href="references.html#ref-horne1976" role="doc-biblioref">1976</a>)</span>.</span></p>
-</div>
-</figure>
-</div>
-<div id="fig-appendice-3-leocadio-miguel-2017-figure-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-appendice-3-leocadio-miguel-2017-figure-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;I.2: Distribution of HO scores for the entire sample of <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span> data. Each bar for each score represents the frequency (number of subjects). Low scores represent evening types and high scores morning types.
-</figcaption><div aria-describedby="fig-appendice-3-leocadio-miguel-2017-figure-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="../images/leocadio-miguel-2017-figure-1.png" class="img-fluid figure-img" style="width:85.0%"></p>
-<p><span class="legend">Source: Reproduced from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017, Figure 1</a>)</span>.</span></p>
-</div>
-</figure>
-</div>
-<section id="the-figure" class="level3" data-number="I.5.1"><h3 data-number="I.5.1" class="anchored" data-anchor-id="the-figure">
-<span class="header-section-number">I.5.1</span> The Figure</h3>
-<p>One of the key issues with the data presented in <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span> is that it relies on negligible associations, yet the authors present them in a way that suggests a strong effect. The article’s Figure 2 (<a href="#fig-sm-9-leocadio-miguel-2017-figure-2" class="quarto-xref">Figure&nbsp;<span>I.3</span></a>) illustrates this. At first glance, it appears to show a good fit and a strong relationship between latitude and the chronotype proxy (in this case, the HO score). However, a closer analysis reveals that it is a clear example of the <em>y</em>-axis illusion.</p>
-<div id="fig-sm-9-leocadio-miguel-2017-figure-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-9-leocadio-miguel-2017-figure-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;I.3: Mean HO scores (±SE) along a latitudinal cline, showing corresponding annual average of solar irradiation level (W/m2).
-</figcaption><div aria-describedby="fig-sm-9-leocadio-miguel-2017-figure-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="../images/leocadio-miguel-2017-figure-2.png" class="img-fluid figure-img" style="width:85.0%"></p>
-<p><span class="legend">Source: Reproduced from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017, Figure 2</a>)</span>.</span></p>
-</div>
-</figure>
-</div>
-<p>In the following sections, I reproduce the data from the figure to provide a clearer representation of the actual relationship reported by the authors.</p>
-</section><section id="latitude-estimation-upper-x-axis" class="level3" data-number="I.5.2"><h3 data-number="I.5.2" class="anchored" data-anchor-id="latitude-estimation-upper-x-axis">
-<span class="header-section-number">I.5.2</span> Latitude Estimation (Upper x-Axis)</h3>
-<p>As shown in <a href="#fig-sm-9-leocadio-miguel-2017-figure-2-with-guides" class="quarto-xref">Figure&nbsp;<span>I.4</span></a>, the latitude does not follow a fixed scale. Instead, it is referenced relative to the second x-axis (solar irradiation). However, it is possible to estimate the latitude values reasonably well by measuring the pixel distances between points on the figure.</p>
-<div id="fig-sm-9-leocadio-miguel-2017-figure-2-with-guides" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-9-leocadio-miguel-2017-figure-2-with-guides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;I.4: <a href="https://www.nature.com/articles/s41598-017-05797-w/figures/2">Figure 2</a> from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span> with guides for comparison.
-</figcaption><div aria-describedby="fig-sm-9-leocadio-miguel-2017-figure-2-with-guides-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="../images/leocadio-miguel-2017-figure-2-with-guides.png" class="img-fluid figure-img" style="width:85.0%"></p>
-<p><span class="legend">Source: Adapted by the author from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017, Figure 2</a>)</span>.</span></p>
-</div>
-</figure>
-</div>
-<p><strong>Interval distances</strong></p>
-<ul>
-<li>
-<span class="math inline">\(0\text{-}13\)</span>: <span class="math inline">\(87\)</span> pixels. <span class="math inline">\(87 / 13\)</span>: 1 point <span class="math inline">\(\approx 6.692308\)</span> pixels.</li>
-<li>
-<span class="math inline">\(13\text{-}18\)</span>: <span class="math inline">\(88\)</span> pixels. <span class="math inline">\(88 / (18 - 13)\)</span>: <span class="math inline">\(1\)</span> point <span class="math inline">\(= 17.6\)</span> pixels.</li>
-<li>
-<span class="math inline">\(18\text{-}22\)</span>: <span class="math inline">\(87\)</span> pixels. <span class="math inline">\(87 / (22 - 18)\)</span>: <span class="math inline">\(1\)</span> point <span class="math inline">\(= 21.75\)</span> pixels.</li>
-<li>
-<span class="math inline">\(22\text{-}26\)</span>: <span class="math inline">\(87\)</span> pixels. <span class="math inline">\(87 / (26 - 22)\)</span>: <span class="math inline">\(1\)</span> point <span class="math inline">\(= 21.75\)</span> pixels.</li>
-<li>
-<span class="math inline">\(26\text{-}29\)</span>: <span class="math inline">\(88\)</span> pixels. <span class="math inline">\(88 / (29 - 26)\)</span>: <span class="math inline">\(1\)</span> point <span class="math inline">\(\approx 29.333\)</span> pixels.</li>
-<li>
-<span class="math inline">\(29\text{-}32\)</span>: <span class="math inline">\(86\)</span> pixels. <span class="math inline">\(86 / (32 - 29)\)</span>: <span class="math inline">\(1\)</span> point <span class="math inline">\(\approx 28.667\)</span> pixels.</li>
-</ul>
-<p><strong>Estimation</strong></p>
-<ul>
-<li><ol type="1">
-<li>point: <span class="math inline">\(0\)</span> to point: <span class="math inline">\(42\)</span> pixels. Estimation: <span class="math inline">\(42 / (87 / 13) \approx 6.275862\)</span>.</li>
-</ol></li>
-<li><ol start="2" type="1">
-<li>point: <span class="math inline">\(13\)</span> to point: <span class="math inline">\(44\)</span> pixels. Estimation: <span class="math inline">\(13 + (44 / (88 / (18 - 13))) = 15.5\)</span>.</li>
-</ol></li>
-<li><ol start="3" type="1">
-<li>point: <span class="math inline">\(18\)</span> to point: <span class="math inline">\(43\)</span> pixels. Estimation: <span class="math inline">\(18 + (43 / (87 / (22 - 18))) \approx 19.97701\)</span>.</li>
-</ol></li>
-<li><ol start="4" type="1">
-<li>point: <span class="math inline">\(22\)</span> to point: <span class="math inline">\(44\)</span> pixels. Estimation: <span class="math inline">\(22 + (44 / (87 / (26 - 22))) \approx 24.02299\)</span>.</li>
-</ol></li>
-<li><ol start="5" type="1">
-<li>point: <span class="math inline">\(26\)</span> to point: <span class="math inline">\(44\)</span> pixels. Estimation: <span class="math inline">\(26 + (44 / (87 / (29 - 26))) \approx 27.51724\)</span>.</li>
-</ol></li>
-<li><ol start="6" type="1">
-<li>point: <span class="math inline">\(29\)</span> to point: <span class="math inline">\(44\)</span> pixels. Estimation: <span class="math inline">\(29 + (44 / (86 / (32 - 29))) \approx 30.53488\)</span>.</li>
-</ol></li>
-</ul></section><section id="ho-estimation-y-axis" class="level3" data-number="I.5.3"><h3 data-number="I.5.3" class="anchored" data-anchor-id="ho-estimation-y-axis">
-<span class="header-section-number">I.5.3</span> HO Estimation (y-Axis)</h3>
-<p>The HO value scale is fixed, allowing the values to be accurately determined by measuring the pixel distances.</p>
-<p><strong>Pixel/point</strong></p>
-<ul>
-<li>
-<span class="math inline">\(44.5\text{-}48.5\)</span>: <span class="math inline">\(402\)</span> pixels. <span class="math inline">\(402 / (48.5 - 44.5)\)</span>: <span class="math inline">\(1\)</span> point <span class="math inline">\(= 100.5\)</span> pixels.</li>
-</ul>
-<p><strong>Estimation</strong></p>
-<ul>
-<li><ol type="1">
-<li>point: <span class="math inline">\(44.5\)</span> to point: <span class="math inline">\(338\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (338 / (402 / (48.5 - 44.5))) \approx 47.86318\)</span>.</li>
-</ol></li>
-<li><ol start="2" type="1">
-<li>point: <span class="math inline">\(44.5\)</span> to point: <span class="math inline">\(316\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (316 / (402 / (48.5 - 44.5))) \approx 47.64428\)</span>.</li>
-</ol></li>
-<li><ol start="3" type="1">
-<li>point: <span class="math inline">\(44.5\)</span> to point: <span class="math inline">\(217\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (217 / (402 / (48.5 - 44.5))) \approx 46.6592\)</span>.</li>
-</ol></li>
-<li><ol start="4" type="1">
-<li>point: <span class="math inline">\(44.5\)</span> to point: <span class="math inline">\(155\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (155 / (402 / (48.5 - 44.5))) \approx 46.04229\)</span>.</li>
-</ol></li>
-<li><ol start="5" type="1">
-<li>point: <span class="math inline">\(44.5\)</span> to point: <span class="math inline">\(94\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (94 / (402 / (48.5 - 44.5))) \approx 45.43532\)</span>.</li>
-</ol></li>
-<li><ol start="6" type="1">
-<li>point: <span class="math inline">\(44.5\)</span> to point: <span class="math inline">\(94\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (94 / (402 / (48.5 - 44.5))) \approx 45.43532\)</span>.</li>
-</ol></li>
-</ul></section><section id="standard-error-estimation-y-axis" class="level3" data-number="I.5.4"><h3 data-number="I.5.4" class="anchored" data-anchor-id="standard-error-estimation-y-axis">
-<span class="header-section-number">I.5.4</span> Standard Error Estimation (y-axis)</h3>
-<p>The standard error (SE) is displayed on the Y-axis, which has a fixed scale. Therefore, the values can be accurately determined by measuring the pixel distances.</p>
-<p><strong>Pixel/point</strong></p>
-<ul>
-<li>
-<span class="math inline">\(44.5\text{-}48.5\)</span>: <span class="math inline">\(402\)</span> pixels. <span class="math inline">\(402 / (48.5 - 44.5)\)</span>: <span class="math inline">\(1\)</span> point <span class="math inline">\(= 100.5\)</span> pixels.</li>
-</ul>
-<p><strong>Estimation</strong></p>
-<ul>
-<li><ol type="1">
-<li>point SE: <span class="math inline">\(44.5\)</span> to upper SE: <span class="math inline">\(369\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (369 / (402 / (48.5 - 44.5))) \approx 48.17164\)</span>.</li>
-</ol></li>
-<li><ol start="2" type="1">
-<li>point SE: <span class="math inline">\(44.5\)</span> to upper SE: <span class="math inline">\(357\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (357 / (402 / (48.5 - 44.5))) \approx 48.05224\)</span>.</li>
-</ol></li>
-<li><ol start="3" type="1">
-<li>point SE: <span class="math inline">\(44.5\)</span> to upper SE: <span class="math inline">\(240\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (240 / (402 / (48.5 - 44.5))) \approx 46.88806\)</span>
-</li>
-</ol></li>
-<li><ol start="4" type="1">
-<li>point SE: <span class="math inline">\(44.5\)</span> to upper SE: <span class="math inline">\(176\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (176 / (402 / (48.5 - 44.5))) \approx 46.25124\)</span>
-</li>
-</ol></li>
-<li><ol start="5" type="1">
-<li>point SE: <span class="math inline">\(44.5\)</span> to upper SE: <span class="math inline">\(134\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (134 / (402 / (48.5 - 44.5))) \approx 45.83333\)</span>
-</li>
-</ol></li>
-<li><ol start="6" type="1">
-<li>point SE: <span class="math inline">\(44.5\)</span> to upper SE: <span class="math inline">\(131\)</span> pixels. Estimation: <span class="math inline">\(44.5 + (131 / (402 / (48.5 - 44.5))) \approx 45.80348\)</span>
-</li>
-</ol></li>
-</ul></section><section id="the-extracted-data" class="level3" data-number="I.5.5"><h3 data-number="I.5.5" class="anchored" data-anchor-id="the-extracted-data">
-<span class="header-section-number">I.5.5</span> The Extracted Data</h3>
-<p>By following the processes described above, we can obtained a reliable approximation of the data, as shown below.</p>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>    ho <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">338</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">316</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">217</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">155</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">94</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">94</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">)</span>,</span>
-<span>    latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>      <span class="fl">42</span> <span class="op">/</span> <span class="op">(</span><span class="fl">87</span> <span class="op">/</span> <span class="fl">13</span><span class="op">)</span>,</span>
-<span>      <span class="fl">13</span> <span class="op">+</span> <span class="op">(</span><span class="fl">44</span> <span class="op">/</span> <span class="op">(</span><span class="fl">88</span> <span class="op">/</span> <span class="op">(</span><span class="fl">18</span> <span class="op">-</span> <span class="fl">13</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">18</span> <span class="op">+</span> <span class="op">(</span><span class="fl">43</span> <span class="op">/</span> <span class="op">(</span><span class="fl">87</span> <span class="op">/</span> <span class="op">(</span><span class="fl">22</span> <span class="op">-</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">22</span> <span class="op">+</span> <span class="op">(</span><span class="fl">44</span> <span class="op">/</span> <span class="op">(</span><span class="fl">87</span> <span class="op">/</span> <span class="op">(</span><span class="fl">26</span> <span class="op">-</span> <span class="fl">22</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">26</span> <span class="op">+</span> <span class="op">(</span><span class="fl">44</span> <span class="op">/</span> <span class="op">(</span><span class="fl">87</span> <span class="op">/</span> <span class="op">(</span><span class="fl">29</span> <span class="op">-</span> <span class="fl">26</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">29</span> <span class="op">+</span> <span class="op">(</span><span class="fl">44</span> <span class="op">/</span> <span class="op">(</span><span class="fl">86</span> <span class="op">/</span> <span class="op">(</span><span class="fl">32</span> <span class="op">-</span> <span class="fl">29</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">google_data</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">sample_data</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    address <span class="op">=</span> <span class="fu">orbis</span><span class="fu">::</span><span class="fu"><a href="https://danielvartan.github.io/orbis/reference/render_brazil_address.html">render_brazil_address</a></span><span class="op">(</span></span>
+<span>      street <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">street</span>,</span>
+<span>      complement <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">complement</span>,</span>
+<span>      neighborhood <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">neighborhood</span>,</span>
+<span>      municipality <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">municipality</span>,</span>
+<span>      state <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">state</span>,</span>
+<span>      postal_code <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">postal_code</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    se_upper <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">369</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">357</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">240</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">176</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">134</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fl">44.5</span> <span class="op">+</span> <span class="op">(</span><span class="fl">131</span> <span class="op">/</span> <span class="op">(</span><span class="fl">402</span> <span class="op">/</span> <span class="op">(</span><span class="fl">48.5</span> <span class="op">-</span> <span class="fl">44.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">)</span>,</span>
-<span>    se <span class="op">=</span> <span class="va">se_upper</span> <span class="op">-</span> <span class="va">ho</span></span>
+<span>  <span class="fu">tidygeocoder</span><span class="fu">::</span><span class="fu"><a href="https://jessecambon.github.io/tidygeocoder/reference/geocode.html">geocode</a></span><span class="op">(</span></span>
+<span>    address <span class="op">=</span> <span class="va">address</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"google"</span></span>
 <span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; Passing 1 address to the Google single address geocoder</span></span>
+<span><span class="co">#&gt; Query completed in: 0.9 seconds</span></span>
 <span></span>
-<span><span class="va">data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="tbl-sm-9-leocadio-miguel-2017-figure-2-data" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sm-9-leocadio-miguel-2017-figure-2-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;I.2: Data extracted from Figure 2 present in <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span>.
-</figcaption><div aria-describedby="tbl-sm-9-leocadio-miguel-2017-figure-2-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell">
-<div class="cell-output-display">
+<span><span class="va">google_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["ho"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["latitude"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["se_upper"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["se"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"47.86318408","2":"6.275862069","3":"48.17164179","4":"0.3084577114"},{"1":"47.64427861","2":"15.500000000","3":"48.05223881","4":"0.4079601990"},{"1":"46.65920398","2":"19.977011494","3":"46.88805970","4":"0.2288557214"},{"1":"46.04228856","2":"24.022988506","3":"46.25124378","4":"0.2089552239"},{"1":"45.43532338","2":"27.517241379","3":"45.83333333","4":"0.3980099502"},{"1":"45.43532338","2":"30.534883721","3":"45.80348259","4":"0.3681592040"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"59642000"},{"1":"street_type","2":"Avenida"},{"1":"street_name","2":"Wilson Rosado"},{"1":"street","2":"Avenida Wilson Rosado"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Itapetinga"},{"1":"municipality_code","2":"2408003"},{"1":"municipality","2":"Mossoró"},{"1":"state_code","2":"24"},{"1":"state","2":"Rio Grande do Norte"},{"1":"federal_unit","2":"RN"},{"1":"latitude","2":"-5.1847398"},{"1":"longitude","2":"-37.3708674"},{"1":"address","2":"Avenida Wilson Rosado, Itapetinga, Mossoró-RN, 59642-000, Brasil"},{"1":"lat","2":"-5.1842258"},{"1":"long","2":"-37.3708625"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p><span class="legend">Source: Created by the author, based on a data extracted from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017, Figure 2</a>)</span>.</span></p>
-</div>
-</figure>
-</div>
-</section><section id="ploting-the-extracted-data" class="level3" data-number="I.5.6"><h3 data-number="I.5.6" class="anchored" data-anchor-id="ploting-the-extracted-data">
-<span class="header-section-number">I.5.6</span> Ploting the Extracted Data</h3>
-<p>First, let’s examine the data in a format similar to what is shown in the <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span> figure.</p>
-<p>Note that here, the <em>x</em>-axis follows a fixed scale, which is crucial to avoid any distortions.</p>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">latitude</span>, y <span class="op">=</span> <span class="va">ho</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">15</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span></span>
-<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
-<span>      x <span class="op">=</span> <span class="va">latitude</span>,</span>
-<span>      y <span class="op">=</span> <span class="va">ho</span>,</span>
-<span>      ymin <span class="op">=</span> <span class="va">ho</span> <span class="op">-</span> <span class="va">se</span>,</span>
-<span>      ymax<span class="op">=</span> <span class="va">ho</span> <span class="op">+</span> <span class="va">se</span></span>
-<span>    <span class="op">)</span>,</span>
-<span>    data <span class="op">=</span> <span class="va">data</span>,</span>
-<span>    show.legend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>    inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>    width <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>    linewidth <span class="op">=</span> <span class="fl">0.5</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
-<span>    method <span class="op">=</span> <span class="st">"lm"</span>,</span>
-<span>    formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,</span>
-<span>    se <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>    color <span class="op">=</span> <span class="fu">brandr</span><span class="fu">::</span><span class="fu"><a href="https://danielvartan.github.io/brandr/reference/get_brand_color.html">get_brand_color</a></span><span class="op">(</span><span class="st">"orange"</span><span class="op">)</span>,</span>
-<span>    linewidth <span class="op">=</span> <span class="fl">2</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
-<span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">13</span>, <span class="fl">18</span>, <span class="fl">22</span>, <span class="fl">26</span>, <span class="fl">29</span>, <span class="fl">32</span><span class="op">)</span>,</span>
-<span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0º"</span>, <span class="st">"13º"</span>, <span class="st">"18º"</span>, <span class="st">"22º"</span>, <span class="st">"26º"</span>, <span class="st">"29º"</span>, <span class="st">"32º"</span><span class="op">)</span>,</span>
-<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">32</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="st">"Latitude (Degrees South)"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"HO Score"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="fig-sm-9-new-leocadio-miguel-2017-figure-2-same-scale" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-9-new-leocadio-miguel-2017-figure-2-same-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;I.5: Reproduction of Figure 2 from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span> with a fixed x-axis scale.
-</figcaption><div aria-describedby="fig-sm-9-new-leocadio-miguel-2017-figure-2-same-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="supplementary-material-9_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><span class="legend">Source: Created by the author, based on a data extracted from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017, Figure 2</a>)</span>.</span></p>
-</div>
-</figure>
-</div>
-<p>Now, it is possible to adjust the y-axis to reflect the minimum and maximum values of the HO scale.</p>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">latitude</span>, y <span class="op">=</span> <span class="va">ho</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">15</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span></span>
-<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
-<span>      x <span class="op">=</span> <span class="va">latitude</span>,</span>
-<span>      y <span class="op">=</span> <span class="va">ho</span>,</span>
-<span>      ymin <span class="op">=</span> <span class="va">ho</span> <span class="op">-</span> <span class="va">se</span>,</span>
-<span>      ymax<span class="op">=</span> <span class="va">ho</span> <span class="op">+</span> <span class="va">se</span></span>
-<span>    <span class="op">)</span>,</span>
-<span>    data <span class="op">=</span> <span class="va">data</span>,</span>
-<span>    show.legend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>    inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>    width <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>    linewidth <span class="op">=</span> <span class="fl">0.5</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
-<span>    method <span class="op">=</span> <span class="st">"lm"</span>,</span>
-<span>    formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,</span>
-<span>    se <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>    color <span class="op">=</span> <span class="fu">brandr</span><span class="fu">::</span><span class="fu"><a href="https://danielvartan.github.io/brandr/reference/get_brand_color.html">get_brand_color</a></span><span class="op">(</span><span class="st">"orange"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
-<span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">13</span>, <span class="fl">18</span>, <span class="fl">22</span>, <span class="fl">16</span>, <span class="fl">29</span>, <span class="fl">32</span><span class="op">)</span>,</span>
-<span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0º"</span>, <span class="st">"13º"</span>, <span class="st">"18º"</span>, <span class="st">"22º"</span>, <span class="st">"26º"</span>, <span class="st">"29º"</span>, <span class="st">"32º"</span><span class="op">)</span>,</span>
-<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">32</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
-<span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">86</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">86</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="st">"Latitude (Degrees South)"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"HO Score"</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
+<span>    lng <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
+<span>    lat <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
+<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Latitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
+<span>      <span class="st">"Longitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span></span>
+<span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="fig-sm-9-new-leocadio-miguel-2017-figure-2-new-scale" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-9-new-leocadio-miguel-2017-figure-2-new-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;I.6: Reproduction of Figure 2 from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017</a>)</span> with a fixed x-axis scale and adjusted y-axis scale.
-</figcaption><div aria-describedby="fig-sm-9-new-leocadio-miguel-2017-figure-2-new-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</details><div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-831ad67a74963a8a9e8d" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-831ad67a74963a8a9e8d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-5.1847398,-37.3708674,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -5.1847398<br>Longitude: -37.3708674",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-5.1847398,-5.1847398],"lng":[-37.3708674,-37.3708674]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section></section><section id="random-test-2" class="level2" data-number="I.5"><h2 data-number="I.5" class="anchored" data-anchor-id="random-test-2">
+<span class="header-section-number">I.5</span> Random Test 2</h2>
+<section id="qualocep-data-1" class="level3" data-number="I.5.1"><h3 data-number="I.5.1" class="anchored" data-anchor-id="qualocep-data-1">
+<span class="header-section-number">I.5.1</span> QualOCep Data</h3>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="supplementary-material-9_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sample_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="va">qualocep_data</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sample_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"74911460"},{"1":"street_type","2":"Avenida"},{"1":"street_name","2":"Otoniel da Cunha"},{"1":"street","2":"Avenida Otoniel da Cunha"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Vila Brasília"},{"1":"municipality_code","2":"5201405"},{"1":"municipality","2":"Aparecida de Goiânia"},{"1":"state_code","2":"52"},{"1":"state","2":"Goiás"},{"1":"federal_unit","2":"GO"},{"1":"latitude","2":"-16.7327626"},{"1":"longitude","2":"-49.2479365"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
 </div>
-<p><span class="legend">Source: Created by the author, based on a data extracted from <span class="citation" data-cites="leocadio-miguel2017">Leocadio-Miguel et al. (<a href="references.html#ref-leocadio-miguel2017" role="doc-biblioref">2017, Figure 2</a>)</span>.</span></p>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
+<span>    lng <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
+<span>    lat <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
+<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Latitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
+<span>      <span class="st">"Longitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-241f3e1c20fb587557c2" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-241f3e1c20fb587557c2">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-16.7327626,-49.2479365,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -16.7327626<br>Longitude: -49.2479365",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-16.7327626,-16.7327626],"lng":[-49.2479365,-49.2479365]}},"evals":[],"jsHooks":[]}</script>
 </div>
-</figure>
 </div>
-<p>With <a href="#fig-sm-9-new-leocadio-miguel-2017-figure-2-new-scale" class="quarto-xref">Figure&nbsp;<span>I.6</span></a>, it becomes clear that the data provided by the authors does not demonstrate a relevant effect size.</p>
+</section><section id="google-geocoding-api-1" class="level3" data-number="I.5.2"><h3 data-number="I.5.2" class="anchored" data-anchor-id="google-geocoding-api-1">
+<span class="header-section-number">I.5.2</span> Google Geocoding API</h3>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">google_data</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">sample_data</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    address <span class="op">=</span> <span class="fu">orbis</span><span class="fu">::</span><span class="fu"><a href="https://danielvartan.github.io/orbis/reference/render_brazil_address.html">render_brazil_address</a></span><span class="op">(</span></span>
+<span>      street <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">street</span>,</span>
+<span>      complement <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">complement</span>,</span>
+<span>      neighborhood <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">neighborhood</span>,</span>
+<span>      municipality <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">municipality</span>,</span>
+<span>      state <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">state</span>,</span>
+<span>      postal_code <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">postal_code</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidygeocoder</span><span class="fu">::</span><span class="fu"><a href="https://jessecambon.github.io/tidygeocoder/reference/geocode.html">geocode</a></span><span class="op">(</span></span>
+<span>    address <span class="op">=</span> <span class="va">address</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"google"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; Passing 1 address to the Google single address geocoder</span></span>
+<span><span class="co">#&gt; Query completed in: 0.3 seconds</span></span>
+<span></span>
+<span><span class="va">google_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"74911460"},{"1":"street_type","2":"Avenida"},{"1":"street_name","2":"Otoniel da Cunha"},{"1":"street","2":"Avenida Otoniel da Cunha"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Vila Brasília"},{"1":"municipality_code","2":"5201405"},{"1":"municipality","2":"Aparecida de Goiânia"},{"1":"state_code","2":"52"},{"1":"state","2":"Goiás"},{"1":"federal_unit","2":"GO"},{"1":"latitude","2":"-16.7327626"},{"1":"longitude","2":"-49.2479365"},{"1":"address","2":"Avenida Otoniel da Cunha, Vila Brasília, Aparecida de Goiânia-GO, 74911-460, Brasil"},{"1":"lat","2":"-16.7330637"},{"1":"long","2":"-49.246647"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
+<span>    lng <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
+<span>    lat <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
+<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Latitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
+<span>      <span class="st">"Longitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-adab72313a3c0fc24433" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-adab72313a3c0fc24433">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-16.7327626,-49.2479365,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -16.7327626<br>Longitude: -49.2479365",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-16.7327626,-16.7327626],"lng":[-49.2479365,-49.2479365]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section></section><section id="random-test-3" class="level2" data-number="I.6"><h2 data-number="I.6" class="anchored" data-anchor-id="random-test-3">
+<span class="header-section-number">I.6</span> Random Test 3</h2>
+<section id="qualocep-data-2" class="level3" data-number="I.6.1"><h3 data-number="I.6.1" class="anchored" data-anchor-id="qualocep-data-2">
+<span class="header-section-number">I.6.1</span> QualOCep Data</h3>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sample_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="va">qualocep_data</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sample_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"69550198"},{"1":"street_type","2":"Beco"},{"1":"street_name","2":"do Tirico"},{"1":"street","2":"Beco do Tirico"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Santo Antônio"},{"1":"municipality_code","2":"1304203"},{"1":"municipality","2":"Tefé"},{"1":"state_code","2":"13"},{"1":"state","2":"Amazonas"},{"1":"federal_unit","2":"AM"},{"1":"latitude","2":"-3.3685833"},{"1":"longitude","2":"-64.7198703"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
+<span>    lng <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
+<span>    lat <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
+<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Latitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
+<span>      <span class="st">"Longitude: "</span>, <span class="va">sample_data</span><span class="op">$</span><span class="va">longitude</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-b98f7130c28e3171b86a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b98f7130c28e3171b86a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-3.3685833,-64.7198703,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -3.3685833<br>Longitude: -64.7198703",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-3.3685833,-3.3685833],"lng":[-64.7198703,-64.7198703]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section><section id="google-geocoding-api-2" class="level3" data-number="I.6.2"><h3 data-number="I.6.2" class="anchored" data-anchor-id="google-geocoding-api-2">
+<span class="header-section-number">I.6.2</span> Google Geocoding API</h3>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">google_data</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">sample_data</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    address <span class="op">=</span> <span class="fu">orbis</span><span class="fu">::</span><span class="fu"><a href="https://danielvartan.github.io/orbis/reference/render_brazil_address.html">render_brazil_address</a></span><span class="op">(</span></span>
+<span>      street <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">street</span>,</span>
+<span>      complement <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">complement</span>,</span>
+<span>      neighborhood <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">neighborhood</span>,</span>
+<span>      municipality <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">municipality</span>,</span>
+<span>      state <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">state</span>,</span>
+<span>      postal_code <span class="op">=</span> <span class="va">sample_data</span><span class="op">$</span><span class="va">postal_code</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidygeocoder</span><span class="fu">::</span><span class="fu"><a href="https://jessecambon.github.io/tidygeocoder/reference/geocode.html">geocode</a></span><span class="op">(</span></span>
+<span>    address <span class="op">=</span> <span class="va">address</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"google"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; Passing 1 address to the Google single address geocoder</span></span>
+<span><span class="co">#&gt; Query completed in: 0.2 seconds</span></span>
+<span></span>
+<span><span class="va">google_data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">as.list</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">list_as_tibble</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"postal_code","2":"69550198"},{"1":"street_type","2":"Beco"},{"1":"street_name","2":"do Tirico"},{"1":"street","2":"Beco do Tirico"},{"1":"complement","2":"NA"},{"1":"place","2":"NA"},{"1":"neighborhood","2":"Santo Antônio"},{"1":"municipality_code","2":"1304203"},{"1":"municipality","2":"Tefé"},{"1":"state_code","2":"13"},{"1":"state","2":"Amazonas"},{"1":"federal_unit","2":"AM"},{"1":"latitude","2":"-3.3685833"},{"1":"longitude","2":"-64.7198703"},{"1":"address","2":"Beco do Tirico, Santo Antônio, Tefé-AM, 69550-198, Brasil"},{"1":"lat","2":"-3.1159486"},{"1":"long","2":"-60.0447373"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
+<span>    lng <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span>,</span>
+<span>    lat <span class="op">=</span> <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>,</span>
+<span>    popup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Latitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">latitude</span>, <span class="st">"&lt;br&gt;"</span>,</span>
+<span>      <span class="st">"Longitude: "</span>, <span class="va">google_data</span><span class="op">$</span><span class="va">longitude</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-eab02dc31713d9cc0af6" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-eab02dc31713d9cc0af6">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[-3.3685833,-64.7198703,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Latitude: -3.3685833<br>Longitude: -64.7198703",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-3.3685833,-3.3685833],"lng":[-64.7198703,-64.7198703]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-gigerenzer2004" class="csl-entry" role="listitem">
-Gigerenzer, G. (2004). Mindless statistics. <em>The Journal of Socio-Economics</em>, <em>33</em>(5), 587–606. <a href="https://doi.org/10.1016/j.socec.2004.09.033">https://doi.org/10.1016/j.socec.2004.09.033</a>
-</div>
-<div id="ref-mariscal2021" class="csl-entry" role="listitem">
-Gómez-de-Mariscal, E., Guerrero, V., Sneider, A., Jayatilaka, H., Phillip, J. M., Wirtz, D., &amp; Muñoz-Barrutia, A. (2021). Use of the p-values as a size-dependent function to address practical differences when analyzing large datasets. <em>Scientific Reports</em>, <em>11</em>(1, 1), 20942. <a href="https://doi.org/10.1038/s41598-021-00199-5">https://doi.org/10.1038/s41598-021-00199-5</a>
-</div>
-<div id="ref-horne1976" class="csl-entry" role="listitem">
-Horne, J. A., &amp; Östberg, O. (1976). A self-assessment questionnaire to determine morningness-eveningness in human circadian rhythms. <em>International Journal of Chronobiology</em>, <em>4</em>(2), 97–110. <a href="https://www.ncbi.nlm.nih.gov/pubmed/1027738">https://www.ncbi.nlm.nih.gov/pubmed/1027738</a>
-</div>
-<div id="ref-kozak2018" class="csl-entry" role="listitem">
-Kozak, M., &amp; Piepho, H.-P. (2018). What’s normal anyway? <span>Residual</span> plots are more telling than significance tests when checking <span>ANOVA</span> assumptions. <em>Journal of Agronomy and Crop Science</em>, <em>204</em>(1), 86–98. <a href="https://doi.org/10.1111/jac.12220">https://doi.org/10.1111/jac.12220</a>
-</div>
-<div id="ref-leocadio-miguel2017" class="csl-entry" role="listitem">
-Leocadio-Miguel, M. A., Louzada, F. M., Duarte, L. L., Areas, R. P., Alam, M., Freire, M. V., Fontenele-Araujo, J., Menna-Barreto, L., &amp; Pedrazzoli, M. (2017). Latitudinal cline of chronotype. <em>Scientific Reports</em>, <em>7</em>(1), 5437. <a href="https://doi.org/10.1038/s41598-017-05797-w">https://doi.org/10.1038/s41598-017-05797-w</a>
-</div>
-<div id="ref-lin2013" class="csl-entry" role="listitem">
-Lin, M., Lucas, H. C., &amp; Shmueli, G. (2013). Research commentary—<span>Too</span> big to fail: Large samples and the p-value problem. <em>Information Systems Research</em>, <em>24</em>(4), 906–917. <a href="https://doi.org/10.1287/isre.2013.0480">https://doi.org/10.1287/isre.2013.0480</a>
-</div>
-<div id="ref-schucany2006" class="csl-entry" role="listitem">
-Schucany, W. R., &amp; Ng, H. K. T. (2006). Preliminary goodness-of-fit tests for normality do not validate the one-sample <span>Student</span> t. <em>Communications in Statistics - Theory and Methods</em>, <em>35</em>(12), 2275–2286. <a href="https://doi.org/10.1080/03610920600853308">https://doi.org/10.1080/03610920600853308</a>
-</div>
-<div id="ref-shatz2024" class="csl-entry" role="listitem">
-Shatz, I. (2024). Assumption-checking rather than (just) testing: <span>The</span> importance of visualization and effect size in statistical diagnostics. <em>Behavior Research Methods</em>, <em>56</em>(2), 826–845. <a href="https://doi.org/10.3758/s13428-023-02072-x">https://doi.org/10.3758/s13428-023-02072-x</a>
-</div>
-</div>
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1515,13 +1275,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../qmd/supplementary-material-8.html" class="pagination-link" aria-label="Overview of General Linear Models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span>
+      <a href="../qmd/supplementary-material-8.html" class="pagination-link" aria-label="Hypothesis Test B">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Hypothesis Test B</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../qmd/supplementary-material-10.html" class="pagination-link" aria-label="Works and Activities Developed During the Thesis">
-        <span class="nav-page-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Works and Activities Developed During the Thesis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../qmd/supplementary-material-10.html" class="pagination-link" aria-label="Overview of General Linear Models">
+        <span class="nav-page-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

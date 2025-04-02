@@ -20,21 +20,19 @@ library(targets)
 
 ## Overview
 
-This document  focuses on providing a detailed explanation of the methods and steps involved in building the models and testing the thesis hypothesis.
+This document provides a detailed explanation of the methods and steps used to construct the models and test the thesis hypothesis.
 
-For a comprehensive review of the thesis question and hypothesis, please refer to Supplementary Material [-@sec-sm-question].
+For an in-depth discussion of the thesis question and hypothesis, see Supplementary Material [-@sec-sm-question].
 
 ## Approach and Procedure Method
 
-This study adopted the hypothetical-deductive method, also known as the method of conjecture and refutation [@popper1979a, p. 164], to approach problem-solving. As a procedural method, it utilized an enhanced version of Null Hypothesis Significance Testing (NHST), grounded in the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015].
+This study employed the hypothetical-deductive method, also known as the method of conjecture and refutation [@popper1979a, p. 164], as its problem-solving approach. Procedurally, it applied an enhanced version of Null Hypothesis Significance Testing (NHST), grounded on the original ideas of Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015].
 
 ## Measurement Instrument
 
-Chronotypes were assessed using a sleep log based on the standard version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003b], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019c].
+Chronotypes were assessed using the standard version of the standard Munich ChronoType Questionnaire (MCTQ) [@roenneberg2003b], a well-validated and widely applied self-report tool for measuring sleep-wake cycles and chronotypes [@roenneberg2019c].
 
 The MCTQ captures chronotype as a biological circadian phenotype, determined by the midpoint of sleep (MS) on work-free days (MSF), accounting for any potential sleep compensation due to sleep deficits (sc = sleep correction) on workdays (Final abbreviation: MSF~sc~) (@fig-sm-2-mctq-variables) [@roenneberg2012].
-
-Participants completed an online questionnaire, which included the sleep log as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work or study routines. A sample version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization, can be viewed at <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>.
 
 ::: {#fig-sm-2-mctq-variables}
 ![](images/mctq-figure-1.png)
@@ -44,13 +42,15 @@ Participants completed an online questionnaire, which included the sleep log as 
 Variables measured by the Munich Chronotype Questionnaire (MCTQ). In its standard version, these variables are collected in the context of workdays and work-free days.`<br>`{=html}BT = Local time of going to bed. SPrep = Local time of preparing to sleep. SLat = Sleep latency (Duration. Time to fall asleep after preparing to sleep). SO = Local time of sleep onset. SD = Sleep duration. **MS** = Local time of mid-sleep. SE = Local time of sleep end. Alarm = Indicates whether the respondent uses an alarm clock. SI = "Sleep inertia" (Duration. Despite the name, this variable represents the time the respondent takes to get up after sleep end). GU = Local time of getting out of bed. TBT = Total time in bed.
 :::
 
+Participants completed an online questionnaire, which included the MCTQ as well as sociodemographic (e.g., age, sex), geographic (e.g., full residential address), anthropometric (e.g., weight, height), and data on work and study routines. A version of the questionnaire, stored independently by the [Internet Archive](https://archive.org/) organization, can be viewed at: <https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq>
+
 ## Sample
 
-The dataset used for analysis is made up of `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.
+The analysis dataset consisted of `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` participants aged 18 or older residing in the UTC-3 timezone. These individuals completed the survey during a one-week period from October 15th to 21st, 2017, providing a snapshot of the population at that specific time.
 
-The unfiltered valid sample comprises `{r} res_vars$ea_full_sample_n |> groomr:::format_to_md_latex()` participants from all Brazilian states, while the raw sample is composed of `{r} res_vars$pr_raw_data_nrow |> groomr:::format_to_md_latex()` individuals. The majority of the sample data was obtained in 2017 from October 15th to 21st by [a broadcast](https://globoplay.globo.com/v/6219513/) of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. This amount of data collected in such a short time gave the sample a population cross-sectional characteristic.
+The unfiltered valid sample included `{r} res_vars$ea_full_sample_n |> groomr:::format_to_md_latex()` participants from all Brazilian states. The raw dataset contained `{r} res_vars$pr_raw_data_nrow |> groomr:::format_to_md_latex()` individuals, with `{r} res_vars$pr_tidy_data_per_nrow_2017_10_15_21 |> groomr:::format_to_md_latex(after = "\\%")` of the responses collected between October 15th and 21st, 2017. This data collection period coincided with the promotion of the online questionnaire via a [broadcast](https://globoplay.globo.com/v/6219513/) on a nationally televised Sunday show in Brazil (@fig-sm-2-rede-globo-2017-screenshots) [@redeglobo2017].
 
-::: {#fig-sm-1-age-sex-chronotype-series}
+::: {#fig-sm-2-rede-globo-2017-screenshots}
 ![](images/globo-2017-figure-1.png)
 
 [Source: Reproduced from @redeglobo2017.]{.legend}
@@ -58,30 +58,36 @@ The unfiltered valid sample comprises `{r} res_vars$ea_full_sample_n |> groomr::
 Screenshots from the Fantástico TV show, aired on Rede Globo on October 15th, 2017, starting at 9 PM, where the online questionnaire was presented.
 :::
 
-A survey conducted in 2019 by the Brazilian Institute of Geography and Statistics (IBGE) [-@ibge2021] found that $82.17\%$ of Brazilian households had access to an internet connection. Therefore, this sample is likely to have a good representation of Brazil’s population.
+Based on 2017 data from the Brazilian Institute of Geography and Statistics's (IBGE) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) [@ibgee], Brazil had $51.919\%$ of females and $48.081\%$ of males with an age equal to or greater than 18 years old. The sample is skewed for female subjects, with `{r} res_vars$pr_weighted_data_female_per |> groomr:::format_to_md_latex(after = "\\%")` of females and `{r} res_vars$pr_weighted_data_male_per |> groomr:::format_to_md_latex(after = "\\%")` of male subjects. The mean age was `{r} res_vars$ea_analysis_sample_age_stats$mean |> groomr:::format_to_md_latex()` (`{r} res_vars$ea_analysis_sample_age_stats$sd |> groomr:::format_to_md_latex(before = "\\text{SD} = ")`), ranging from `{r} res_vars$ea_analysis_sample_age_stats$min |> groomr:::format_to_md_latex()` to `{r} res_vars$ea_analysis_sample_age_stats$max |> groomr:::format_to_md_latex()` years.
 
-Daylight Saving Time (DST) in Brazil began at midnight on October 15th, 2017. Residents from the Midwest, Southeast, and South regions were instructed to set their clocks forward by 1 hour. This event is unlikely to have contaminated the data, as it coincided with the start of data collection.
+To balance the sample, weights were incorporated into the models. These weights were calculated through cell weighting, using sex, age group, and state of residence as references, based on population estimates from IBGE for the same year as the sample. This procedure can be found on Supplementary Material [-@sec-sm-sample-balance].
 
-Participants were asked to report their routine behavior rather than their behavior in the preceding days. A potential effect of DST on the sample could have been the production of an even later chronotype for populations closer to the poles, amplifying a possible latitude effect. However, this effect was not observed in the data.
+A survey conducted in 2019 by IBGE [-@ibge2021] found that $82.17\%$ of Brazilian households had access to an internet connection. Therefore, this sample is likely to have a good representation of Brazil’s population.
 
-To balance the sample, a weighting procedure was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil's state as reference. This procedure can be found on Supplementary Material [-@sec-sm-sample-balance].
+The sample latitudinal range is `{r} res_vars$ea_analysis_sample_lat_lon$latitude[3] |> groomr:::format_to_md_latex(after = "°", max_digits = 3)` (`{r} res_vars$ea_analysis_sample_lat_lon$latitude[1] |> groomr:::format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 3)`, `{r} res_vars$ea_analysis_sample_lat_lon$latitude[2] |> groomr:::format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 3)`) with a longitudinal span of `{r} res_vars$ea_analysis_sample_lat_lon$longitude[3] |> groomr:::format_to_md_latex(after = "°", max_digits = 3)` (`{r} res_vars$ea_analysis_sample_lat_lon$longitude[1] |> groomr:::format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 3)`, `{r} res_vars$ea_analysis_sample_lat_lon$longitude[2] |> groomr:::format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 3)`). For comparison, Brazil has a latitudinal range of `{r} res_vars$ea_brazil_lat_lon$latitude[3] |> groomr:::format_to_md_latex(after = "°", max_digits = 3)` (`{r} res_vars$ea_brazil_lat_lon$latitude[1] |> groomr:::format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 3)`; `{r} res_vars$ea_brazil_lat_lon$latitude[2] |> groomr:::format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 3)`) and a longitudinal span of `{r} res_vars$ea_brazil_lat_lon$longitude[3] |> groomr:::format_to_md_latex(after = "°", max_digits = 3)` (`{r} res_vars$ea_brazil_lat_lon$longitude[1] |> groomr:::format_to_md_latex(before = "\\text{Min.} = ", after = "°", max_digits = 3)`; `{r} res_vars$ea_brazil_lat_lon$longitude[2] |> groomr:::format_to_md_latex(before = "\\text{Max.} = ", after = "°", max_digits = 3)`), according to data from IBGE collected via the [geobr](https://ipeagit.github.io/geobr/index.html>) R package [@pereira].
 
-Information about the sample distribution can be found on Supplementary Material [-@sec-sm-exploratory-data-analysis].
+Additional details about the sample can be found on Supplementary Material [-@sec-sm-exploratory-data-analysis].
+
+### Power Analysis
+
+To evaluate whether the sample size was sufficient to detect effects meeting the Minimum Effect Size (MES) threshold ($f^2 = 0.02$), a power analysis was performed using the [pwrss](https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html) R package [@bulus]. The analysis determined that a minimum of `{r} res_vars$hta_pwr_analysis$n |> groomr:::format_to_md_latex()` observations per variable was required to achieve a power ($1 - \beta$) of $0.99$ at a significance level ($\alpha$) of $0.01$. With a sample size of `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex(before = "n = ")`, this study exceeds the required threshold, ensuring sufficient statistical power.
+
+Further details on the power analysis are provided in Supplementary Material [-@sec-sm-power-analysis].
 
 ## Geographical Data
 
-Geographic data were collected by the variables `country`, `state`, `municipality`, and `postal code`. The unique values of those data were manually inspected and adjusted using lookup tables. The `municipality` values were first matched using string distance algorithms present in the [stringdist](https://github.com/markvanderloo/stringdist) R package [@vanderloo] and data from the Brazilian Institute of Geography and Statistics (IBGE) via the [geobr](https://ipeagit.github.io/geobr/index.html>) R package [@pereira]. Other processes were then performed manually.
+Geographic data were collected using the variables `country`, `state`, `municipality`, and `postal code`. These values were manually inspected and adjusted using lookup tables. The `municipality` values were initially matched using string distance algorithms from the [stringdist](https://github.com/markvanderloo/stringdist) R package [@vanderloo] and data from the Brazilian Institute of Geography and Statistics (IBGE) via the [geobr](https://ipeagit.github.io/geobr/index.html) R package [@pereira]. Subsequent adjustments were performed manually to ensure accuracy.
 
 This was a hard task involving crossing information from different sources, such as the [QualoCEP](https://www.qualocep.com/) [@qualocep2024], [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/overview) [@google], [ViaCEP](https://viacep.com.br/) [@viacep], and [OpenStreetMap](https://www.openstreetmap.org/) [@openstreetmap] databases, along with the Brazilian postal service ([Correios](https://www.correios.com.br/enviar/precisa-de-ajuda/tudo-sobre-cep)) postal code documentation. Hence, the data matching shown in the lookup table was gathered considering not only one variable, but the whole set of geographical information provided by the respondent.
 
-All values were also checked for ambiguities, including the municipalities names (e.g., the name *Aracoiba* could refer to the municipality of *Aracoiaba* in the state of *Ceará*, but could also refer to the municipality of *Araçoiaba da Serra* in the state of *São Paulo*). All values that had a similarity or pattern matching with one or more municipalities were manually inspected to avoid errors.
+All values were thoroughly checked for ambiguities, including municipality names. For instance, the name *Aracoiba* could refer to *Aracoiaba* in the state of *Ceará* or *Araçoiaba da Serra* in the state of *São Paulo*. Any values with potential matches to multiple municipalities were manually inspected to ensure accuracy and avoid errors.
 
 ### Postal Codes
 
 After removing all non-numeric characters from the Brazilian postal codes (Código de Endereçamento Postal ([CEP](https://pt.wikipedia.org/wiki/C%C3%B3digo_de_Endere%C3%A7amento_Postal))), they were processed by the following rules:
 
 - Postal codes with 9 or more digits were truncated to the first 8 digits, as these represent the valid postal code.
-- Postal codes with 5 to 7 digits were padded with trailing `0`s to reach 8 digits.
+- Postal codes with 5 to 7 digits were padded with trailing $0$s to reach 8 digits.
 - Postal codes with fewer than 5 digits were deemed invalid and discarded.
 
 After this process, the postal codes were matched with the [QualoCEP](https://www.qualocep.com/) database [@qualocep2024]. Existing postal codes were than validated by the following rules:
@@ -106,9 +112,9 @@ For cases without a match in the QualoCEP database, the Google Geocoding API was
 
 ## Solar Irradiance Data
 
-The solar irradiance data is based on Brazil's National Institute for Space Research (INPE) 2017 Laboratory of Modeling and Studies of Renewable Energy Resources (LABREN) 2017 [Solar Energy Atlas](https://labren.ccst.inpe.br/atlas_2017.html) [@pereira2017]. In particular, it was used the Global Horizontal Irradiance (GHI) data, which is the total amount of irradiance received from above by a surface horizontal to the ground.
+The solar irradiance data used in this study originates from Brazil's National Institute for Space Research (INPE) 2017 Laboratory of Modeling and Studies of Renewable Energy Resources (LABREN) [Solar Energy Atlas](https://labren.ccst.inpe.br/atlas_2017.html) [@pereira2017]. Specifically, the Global Horizontal Irradiance (GHI) data was utilized, representing the total amount of solar irradiance received by a horizontal surface on the ground.
 
-The data comprise annual and monthly averages of the daily total irradiation in Wh/m².day with spatial resolution of 0.1° x 0.1° (latitude/longitude) (about 10km x 10km). It's important to note that the sample was collected in the same year of the radiance data.
+The dataset includes annual and monthly averages of daily total irradiation in Wh/m².day, with a spatial resolution of 0.1° x 0.1° (approximately 10 km x 10 km). Notably, the radiance data corresponds to the same year in which the sample was collected, ensuring temporal alignment between the irradiance measurements and the study data.
 
 ::: {#fig-sm-2-pereira-2017-figure-13}
 ![](images/pereira-2017-figure-13.png)
@@ -118,53 +124,57 @@ The data comprise annual and monthly averages of the daily total irradiation in 
 Components of solar irradiance.`<br>`{=html}$G_{0}$ = Extraterrestrial irradiance. $G_{n}$ = Direct normal irradiance. $G_{dif}$ = Diffuse horizontal irradiance. $G_{dir}$ = Direct horizontal irradiance. $G$ = Global horizontal irradiance. $G_{i}$ = Inclined plane irradiance.
 :::
 
-## Solar Time Data
+## Astronomical Calculations
 
-The [`suntools`](https://doi.org/10.32614/CRAN.package.suntools) R package [@bivand] was used to calculate the local of time of sunrise, sunset, and daylight duration for a given date and location. `suntools` functions are based on equations provided by @meeus1991 and by the United States's National Oceanic & Atmospheric Administration ([NOAA](https://gml.noaa.gov/grad/solcalc/calcdetails.html)).
+The [suntools](https://doi.org/10.32614/CRAN.package.suntools) R package [@bivand] was used to compute sunrise, sunset times, and daylight duration for each participant's location. These calculations are based on the algorithms provided by @meeus1991 and the National Oceanic and Atmospheric Administration ([NOAA](https://gml.noaa.gov/grad/solcalc/calcdetails.html)).
 
-The data and time of the equinox and solstices were gathered from the [Time and Date AS](https://www.timeanddate.com/calendar/seasons.html?year=2000&n=1440) service [@timeanddateas]. For validity, this data was checked with the equations from @meeus1991 and the results of the National Aeronautics and Space Administration (NASA) [ModelE AR5 Simulations](https://data.giss.nasa.gov/modelE/ar5plots/srvernal.html) [@nasa].
+Dates and times for equinoxes and solstices were sourced from the [Time and Date AS](https://www.timeanddate.com/calendar/seasons.html?year=2000&n=1440) service [@timeanddateas]. To ensure accuracy, this data was cross-verified with calculations from @meeus1991 and results from the National Aeronautics and Space Administration (NASA) [ModelE AR5 Simulations](https://data.giss.nasa.gov/modelE/ar5plots/srvernal.html) [@nasa].
 
 ## Data Management
 
-A data management plan for this study was created and published using the California Digital Library's [DMP Tool](https://dmptool.org/) [@vartanian2024]. It is available at <https://doi.org/10.17605/OSF.IO/3JZ7K>.
+A data management plan for this study was created and published using the California Digital Library's [DMP Tool](https://dmptool.org/) [@vartanian2024]. It is available at: <https://doi.org/10.17605/OSF.IO/3JZ7K>
 
-All data are stored in the study's research compendium on the Open Source Framework ([OSF](https://osf.io)), hosted on Google Cloud servers in the USA. Access to the compendium is restricted, and data are encrypted using a 4096-bit RSA key pair ([Rivest-Shamir-Adleman](https://en.wikipedia.org/wiki/RSA_(cryptosystem))), along with a unique 32-byte project password.
+All data are securely stored in the study's research compendium on the Open Science Framework ([OSF](https://osf.io)), hosted on Google Cloud servers in the USA. The data are encrypted using a 4096-bit RSA key pair ([Rivest-Shamir-Adleman](https://en.wikipedia.org/wiki/RSA_(cryptosystem))) and a unique 32-byte project password to ensure confidentiality.
 
-Access to the data requires authorization from the author on the Open Science Framework ([OSF](https://osf.io)) and the installation of the encryption keys.
+Access to the data requires prior authorization from the author on the Open Science Framework ([OSF](https://osf.io)) and the installation of the corresponding encryption keys.
 
 ## Data Munging
 
-Data munging and analysis followed the data science program proposed by Hadley Wickham and Garrett Grolemund [@wickham2023e] (@fig-sm-2-wickham-at-al-2024-figure-1). All processes were made with the help of the R programming language [@rcoreteama] and several R packages. The [tidyverse](https://www.tidyverse.org/) and [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023c] were prioritized. The MCTQ data was analyzed using the `mctq` rOpenSci peer-reviewed package [@vartanianf]. All processes were made in order to provide result reproducibility and to be in accordance with the FAIR principles [@wilkinson2016].
+Data munging and analysis followed the data science workflow outlined by @wickham2023e, as illustrated in @fig-sm-2-wickham-at-al-2024-figure-1. All processes were conducted using the R programming language [@rcoreteama] and several R packages. The [tidyverse](https://www.tidyverse.org/) and the [rOpenSci](https://ropensci.org/) peer-reviewed package ecosystem and other R packages adherents of the tidy tools manifesto [@wickham2023c] were prioritized.
 
 ::: {#fig-sm-2-wickham-at-al-2024-figure-1}
 ![](images/wickham-at-al-2024-figure-1.png){width=85%}
 
 [Source: Reproduced from @wickham2023e.]{.legend}
 
-Model of the data science process created by Wickham, Çetinkaya-Runde, and Grolemund [-@wickham2023e].
+Data science workflow created by Wickham, Çetinkaya-Runde, and Grolemund [-@wickham2023e].
 :::
+
+The MCTQ data was analyzed using the [mctq](https://docs.ropensci.org/mctq/) R package [@vartanianh], which is part of the rOpenSci peer-reviewed ecosystem.
+
+All processes were designed to ensure result reproducibility and adherence to the FAIR principles (Findability, Accessibility, Interoperability, and Reusability) [@wilkinson2016]. All analyses are fully reproducible and were conducted using [Quarto](https://quarto.org/) computational notebooks. The [renv](https://rstudio.github.io/renv/) R package [@usheya] was employed to ensure that the R analysis environment can be reliably restored.
 
 ### Pipeline
 
-The pipeline for data processing is based on the framework outlined in the [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html). You can view and reproduce this pipeline in the [`_targets.R`](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R) file located at the root of the thesis code repository.
+The data processing pipeline follows the framework described in the [`targets` R package manual](https://books.ropensci.org/targets/walkthrough.html). It is fully reproducible and can be executed using the [`_targets.R`](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R) file, located in the root directory of the thesis code repository.
 
 ### Lookup Tables
 
-Along with the data cleaning procedures described in the pipeline, lookup tables were employed to clean text and character variables. These tables were created by manually inspecting the **unique values of the raw data** and correcting common misspellings, synonyms, and other inconsistencies. The tables are stored in the research compendium of this thesis.
+Alongside the data cleaning procedures described in the pipeline, lookup tables were utilized to standardize text and character variables. These tables were manually curated by inspecting the **unique values in the raw data** and addressing common issues such as misspellings, synonyms, and other inconsistencies. The lookup tables are securely stored in the research compendium of this thesis.
 
-Text/character variables: `track`, `names`, `email`, `country`, `state`, `municipality`, `postalcode`, `sleep_drugs_which`, `sleep_disorder_which`, `medication_which`.
+The following text/character variables were cleaned using these tables: `track`, `names`, `email`, `country`, `state`, `municipality`, `postalcode`, `sleep_drugs_which`, `sleep_disorder_which`, and `medication_which`.
 
-The lookup tables are available in the research compendium of this thesis. They had to be encrypted because of the sensitive information they contain. If you need access, please contact the author.
+Due to the sensitive nature of the information, the lookup tables have been encrypted. They are accessible within the research compendium under appropriate authorization.
 
-The matching of the variables `sleep_drugs_which`, `sleep_disorder_which`, `medication_which` is not complete. This variables were not used in the analysis, but they are available in the research compendium.
+It is important to note that the matching process for the variables `sleep_drugs_which`, `sleep_disorder_which`, and `medication_which` remains incomplete. While these variables were not included in the analysis, they are available in the research compendium for reference.
 
-Read the section about geographical information to learn more about the matching process.
+For additional details about the matching process, particularly for geographical information, refer to the section on geographical data.
 
 ### Circular Statistics
 
-MCTQ is based on local time data, which are circular in nature (i.e., it cycles every 24 hours). Performing statistics with this kind of variables is challenging, since it can have different values depending on each arc/interval of the circle is used.
+MCTQ relies on local time data, which are inherently circular (i.e., they repeat every 24 hours). Analyzing such variables poses unique challenges, as the calculated values can vary depending on the chosen arc or interval of the circle.
 
-For example, the distance between 23:00 (the values here are always in the 24 hour scale) and 01:00 can be 02:00 or 22:00 depending on the direction of the measurement. Hence, the analysis will always have to choose a direction (@fig-sm-2-circular-time-representation).
+For instance, the distance between 23:00 and 01:00 can be interpreted as either 2 hours or 22 hours, depending on the direction of measurement. Therefore, the analysis must consistently define a direction to ensure accurate and meaningful results (@fig-sm-2-circular-time-representation).
 
 ::: {#fig-sm-2-circular-time-representation}
 ```
@@ -192,9 +202,9 @@ For example, the distance between 23:00 (the values here are always in the 24 ho
 Circular time representation.
 :::
 
-The analysis assumed as a method for dealing with this issue the adaptation of the values using the 12:00 hour as a reference point. This method is appropriated when dealing with sleep data.
+The analysis addressed this issue by adapting the values using 12:00 as a reference point. This method is particularly suitable for sleep data.
 
-Consider the local time of sleep onset. We can observe that some subjects start sleeping before midnight, while others sleep after midnight. By the context of the data, the circle arc/interval (@fig-sm-2-circular-time-intervals) here is the shorter one, since the great majority of people don't usually sleep in daytime and for more than 12 hours.
+For instance, consider the local time of sleep onset. Some participants begin sleeping before midnight, while others do so after midnight. In this context, the shorter circular arc/interval (@fig-sm-2-circular-time-intervals) is used, as most individuals typically do not sleep during the daytime or for durations exceeding 12 hours.
 
 ::: {#fig-sm-2-circular-time-intervals}
 ```
@@ -211,7 +221,7 @@ Consider the local time of sleep onset. We can observe that some subjects start 
 Possible intervals for circular time.
 :::
 
-Using the 12:00 hour a threshold, it's possible to calculate the correct distance between times. This method link the values in a two-day timeline, with values equal or greater than 12:00 allocated on day 1, and values with less than 12:00 allocated on day 2. This way, the distance between 23:00 and 01:00 is 02:00, the distance between 01:00 and 23:00 is 22:00 (i.e., there is no gap between data points) (@fig-sm-2-sleep-onset-treatment).
+Using the 12:00 hour as a threshold, it is possible to calculate the correct distance between times. This method links the values in a two-day timeline, where times equal to or greater than 12:00 are allocated to day 1, and times less than 12:00 are allocated to day 2. This ensures that the distance between 23:00 and 01:00 is calculated as 02:00, while the distance between 01:00 and 23:00 is 22:00, eliminating any gaps between data points. @fig-sm-2-sleep-onset-treatment illustrates this process.
 
 ::: {#fig-sm-2-sleep-onset-treatment}
 ```{r}
@@ -263,21 +273,29 @@ patchwork::wrap_plots(
 Histogram of the local time of sleep onset (SO) with (right) and without (left) the 12:000 treatment.
 :::
 
-In the end, the final values of the `msf_sc` variable were all after the midnight, so the treatment was not necessary.
+Fortunately, the final values of the `msf_sc` variable (Chronotype proxy) in the analysis dataset were all after midnight, so no adjustments were required.
 
 ### Round-Off Errors
 
-The R programming language [only stores values up to 53 binary bits](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f), that's about `{r} groomr:::format_to_md_latex(53 * log10(2))` digits of precision ($x = 53 \log_{10}(2)$). Since MCTQ deals with self-reported local time of day (e.g., 02:30) and duration (e.g., 15 minutes), a greater floating-point precision is unnecessary. Even with multiple computations, round-off errors wouldn't significantly impact the phenomenon under study.
+The R programming language [stores values with up to 53 binary digits of precision](https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f), equivalent to approximately `{r} groomr:::format_to_md_latex(53 * log10(2))` decimal digits ($x = 53 \log_{10}(2)$). Given that MCTQ primarily involves self-reported local times (e.g., 02:30) and durations (e.g., 15 minutes), this level of precision is more than sufficient. Even with multiple computations, round-off errors are unlikely to meaningfully affect the results.
 
-Even considering that `POSIXct` objects are used in the models, there is still a good margin of precision – POSIXct objects are data-time objects measured by the amount of seconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time) (1970-01-01).
+Additionally, while `POSIXct` objects are used in the models, they provide ample precision. These objects represent date-time values as the number of seconds since the [UNIX epoch](https://en.wikipedia.org/wiki/Unix_time) (1970-01-01), ensuring accurate handling of time-related data.
 
 ## Hypothesis Test
 
-The study hypothesis was tested using nested multiple linear regressions. The primary concept of nested models is to evaluate the effect of adding one or more predictors on the model’s variance explanation (i.e., the $\text{R}^{2}$) [@allen1997; @maxwell2018]. This is achieved by creating a restricted model ($r$) and comparing it with a full model ($f$). The hypothesis can be outlined as follows:
+The study hypothesis was tested using nested multiple linear regressions. The primary concept of nested models is to evaluate the effect of adding one or more predictors on the model’s variance explanation (i.e., the $\text{R}^{2}$) [@allen1997; @maxwell2018]. This is achieved by creating a restricted model ($r$) and comparing it with a full model ($f$).
 
-- **Null Hypothesis** ($\text{H}_{0}$): Including *latitude* as a predictor does not result in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that is less than the Minimum Effect Size (MES).
+To ensure practical significance, a Minimum Effect Size (MES) criterion was applied, in line with the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015]. The MES was set at a Cohen's threshold for small effects ($f^2 = 0.02$, equivalent to an $\text{R}^2 = 0.01961$) ("just barely escaping triviality" [@cohen1988a, p. 413]). Consequently, latitude was considered meaningful only if its inclusion explained at least $1.96078\%$ of the variance in the dependent variable.
 
-- **Alternative Hypothesis** ($\text{H}_{a}$): Including *latitude* as a predictor results in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that meets or exceeds the Minimum Effect Size (MES).
+The hypothesis can be outlined as follows:
+
+**Null Hypothesis** ($\text{H}_{0}$)
+: Including *latitude* as a predictor does not result in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that is less than the Minimum Effect Size (MES).
+
+**Alternative Hypothesis** ($\text{H}_{a}$)
+: Including *latitude* as a predictor results in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that meets or exceeds the Minimum Effect Size (MES).
+
+Formally:
 
 ::: {#cnj-hypothesis-test}
 ### Data Test – Full Version
@@ -296,23 +314,26 @@ $$
 \Delta \ \text{Adjusted} \ \text{R}^{2} = \text{Adjusted} \ \text{R}^{2}_{f} - \text{Adjusted} \ \text{R}^{2}_{r}
 $$ {#eq-adjusted-r-squared-delta}
 
-and $\text{MES}$ is a Minimum Effect Size, a threshold for detecting meaningful changes.
+### $\text{R}^{2}$ and F-Test
 
 $\text{R}^{2}$ is a statistic that represents the proportion of variance explained in the relationship between two or more variables (goodness of fit) [@frey2022, p. 1339]. It ranges from $1$ (perfect prediction) to $0$ (no prediction) and can be defined as [@degroot2012a, p. 748]:
 
 $$
-\text{R}^{2} = 1 - \cfrac{\text{SS}_{\text{residual}}}{\text{SS}_{\text{total}}} = 1 - \cfrac{\sum \limits^{n}_{i = 1} (y_{i} - \hat{y}_{i})^{2}}{\sum \limits^{n}_{i = 1} (y_{i} - \overline{y})^{2}} = 1 -  \cfrac{\text{Unexplained Variance}}{\text{Total Variance}} = \cfrac{\text{Explained Variance}}{\text{Total Variance}}
-$$ {#eq-r-squared}
+\text{R}^{2} = 1 - \cfrac{\text{SS}_{\text{residual}}}{\text{SS}_{\text{total}}} = 1 - \cfrac{\sum \limits^{n}_{i = 1} (y_{i} - \hat{y}_{i})^{2}}{\sum \limits^{n}_{i = 1} (y_{i} - \overline{y})^{2}} =
+$$ {#eq-r-squared-1}
+
+
+$$
+= 1 -  \cfrac{\text{Unexplained Variance}}{\text{Total Variance}} = \cfrac{\text{Explained Variance}}{\text{Total Variance}}
+$$ {#eq-r-squared-2}
 
 Where:
 
-- $y_{i}$ = Observed value of the dependent variable;
-- $\hat{y}_{i}$ = Predicted value of the dependent variable;
-- $\overline{y}$ = Mean of the dependent variable;
-- $\text{SS}_{\text{residual}}$ = Sum of the squared prediction errors (residuals) across all observations [@degroot2012a, p. 748; @hair2019, p. 264];
+- $y_{i}$ = Observed value of the dependent variable.
+- $\hat{y}_{i}$ = Predicted value of the dependent variable.
+- $\overline{y}$ = Mean of the dependent variable.
+- $\text{SS}_{\text{residual}}$ = Sum of the squared prediction errors (residuals) across all observations [@degroot2012a, p. 748; @hair2019, p. 264].
 - $\text{SS}_{\text{total}}$ = Total sum of squares or the total amount of variation that exists to be explained by the independent variables. Is equivalent by the sum of the squared difference between the observed value and the mean of the dependent variable (baseline prediction) [@degroot2012a, p. 748; @hair2019, p. 265].
-
-Here, $\text{R}^{2}$ is the proportion of the variance in the dependent variable that is predictable from the independent variables.
 
 The adjusted $\text{R}^{2}$ is a modified version of $\text{R}^{2}$ that adjusts for the number of predictors in the model. It can be defined as:
 
@@ -322,7 +343,7 @@ $$ {#eq-adjusted-r-squared}
 
 Where:
 
-- $\text{n}$ = Number of observations in the sample;
+- $\text{n}$ = Number of observations in the sample.
 - $k$ = Number of independent variables in the model.
 - $\text{df}_{\text{residual}}$ = Degrees of freedom of the residual sum of squares = $n - k - 1$.
 - $\text{df}_{\text{total}}$ = Degrees of freedom of the total sum of squares = $n - 1$.
@@ -335,23 +356,27 @@ $$ {#eq-f-test-for-nested-models}
 
 Where:
 
-* $\text{R}^{2}_{F}$ = Coefficient of determination for the **full** model;
-* $\text{R}^{2}_{R}$ = Coefficient of determination for the **restricted** model;
-* $k_{f}$ = Number of independent variables in the full model;
-* $k_{r}$ = Number of independent variables in the restricted model;
+* $\text{R}^{2}_{f}$ = Coefficient of determination for the full model.
+* $\text{R}^{2}_{r}$ = Coefficient of determination for the restricted model.
+* $k_{f}$ = Number of independent variables in the full model.
+* $k_{r}$ = Number of independent variables in the restricted model.
 * $\text{n}$ = Number of observations in the sample.
 
 $$
 \text{F} = \cfrac{\text{Additional Var. Explained} / \text{Additional d.f. Expended}}{\text{Var. unexplained} / \text{d.f. Remaining}}
 $$
 
-A MES must always be present in any data testing. The effect-size was present in the original Neyman and Pearson framework [@neyman1928; @neyman1928a], but unfortunately this practice fade away with the indiscriminate use of *p*-values, one of the many issues that came with the Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015]. While *p*-values are estimates of type 1 error (in Neyman–Pearson’s approaches, or like-approaches), that's not the main thing we are interested while doing a hypothesis test. What is really being test is the effect size (i.e., a practical significance). Another major issue to only relying on *p*-values is that the estimated p-value tends to decrease when the sample size is increased, hence, focusing just on p-values with large sample sizes results in the rejection of the null hypothesis, making it not meaningful in this specific situation [@lin2013; @mariscal2021; @hair2019].
+### Minimum Effect Size (MES)
+
+A MES must always be present in any data testing. The effect-size was present in the original Neyman and Pearson framework [@neyman1928; @neyman1928a], but unfortunately this practice fade away with the indiscriminate use of $p$-values, one of the many issues that came with the Null Hypothesis Significance Testing (NHST) [@perezgonzalez2015].
 
 > Neyman-Pearson’s approach considers, at least, two competing hypotheses, although it only tests data under one of them. The hypothesis which is the most important for the research (i.e., the one you do not want to reject too often) is the one tested (Neyman and Pearson, 1928; Neyman, 1942; Spielman, 1973). This hypothesis **is better off written so as for incorporating the minimum expected effect size within its postulate** (e.g., $\text{HM} : \text{M1} – \text{M2} = 0 \pm \text{MES}$), so that it is clear that values within such minimum threshold are considered reasonably probable under the main hypothesis, while values outside such minimum threshold are considered as more probable under the alternative hypothesis. [@perezgonzalez2015].
 
+While $p$-values are estimates of type 1 error (in Neyman–Pearson’s approaches, or like-approaches), that's not the main thing we are interested while doing a hypothesis test. What is really being test is the effect size (i.e., a practical significance). Another major issue to only relying on $p$-values is that the estimated $p$-value tends to decrease when the sample size is increased, hence, focusing just on $p$-values with large sample sizes results in the rejection of the null hypothesis, making it not meaningful in this specific situation [@lin2013; @mariscal2021; @hair2019].
+
 > Although larger $\text{R}^{2}$ values result in higher $\text{F}$ values, **the researcher must base any assessment of practical significance separate from statistical significance**. Because statistical significance is really an assessment of the impact of sampling error, the researcher must be cautious of always assuming that statistically significant results are also practically significant. **This caution is particularly relevant in the case of large samples** where even small $\text{R}^{2}$ values (e.g., $5\%$ or $10\%$) can be statistically significant, but such levels of explanation would not be acceptable for further action on a practical basis. [@hair2019, p. 300]
 
-Publications related to issues regarding the misuse of p-value are plenty. For more on the matter, I recommend @perezgonzalez2015 review of Fisher's and Neyman-Pearson's data test proposals, @lin2013 and @mariscal2021 studies about large Samples and the p-value problem, and Cohen's essays on the subject (like @cohen1990 and @cohen1994).
+Publications related to issues regarding the misuse of $p$-value are plenty. For more on the matter, see @perezgonzalez2015 review of Fisher's and Neyman-Pearson's data test proposals, @lin2013 and @mariscal2021 studies about large Samples and the $p$-value problem, and Cohen's essays on the subject (like @cohen1990 and @cohen1994).
 
 It's important to note that, in addition to the F-test, it's assumed that for $\text{R}^{2}_{\text{r}}$ to differ significantly from $\text{R}^{2}_{\text{f}}$, there must be a non-negligible effect size between them. This effect size can be calculated using Cohen's $f^{2}$ [@cohen1988a; @cohen1992]:
 
@@ -369,7 +394,7 @@ $$
 f^{2} = \cfrac{\text{Additional Var. Explained}}{\text{Var. unexplained}}
 $$
 
-Considering the particular emphasis that the solar zeitgeber has on the entrainment of biological rhythms (as demonstrated in many experiments), it would not be reasonable to assume that the latitude hypothesis could be supported without at least a non-negligible effect size. With this in mind, this analysis will use Cohen's threshold for small/negligible effects, the Minimum Effect Size (MES) ($\delta$) is defined as 0.02 [@cohen1988a, p. 413; @cohen1992, p. 157].
+Given the significant role of the solar zeitgeber in the entrainment of biological rhythms, as evidenced by numerous studies, it is essential to ensure that the latitude hypothesis demonstrates at least a non-negligible effect size to be considered meaningful. To this end, Cohen's threshold for small effects was applied, defining the Minimum Effect Size (MES) as $f^2 = 0.02$ [@cohen1988a, p. 413].
 
 In Cohen's words:
 
@@ -377,7 +402,7 @@ In Cohen's words:
 
 > SMALL EFFECT SIZE: $f^2 = .02$. Translated into \text{R}^{2} or partial \text{R}^{2} for Case 1, this gives $.02 / (1 + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested [@cohen1988a, p. 413].
 
-> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES is not necessarily zero but **small enough to be negligible**, i.e., no larger than $i$. How large $i$ is will vary with the substantive context. Assume, for example, that ES is expressed as $f^2$, and that the context is such as to consider $f^2$ no larger than $.02$ to be negligible; thus $i$ = .02  [@cohen1988a, p. 461].
+> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES is not necessarily zero but **small enough to be negligible**, i.e., no larger than $i$. How large $i$ is will vary with the substantive context. Assume, for example, that ES is expressed as $f^2$, and that the context is such as to consider $f^2$ no larger than $.02$ to be negligible; thus $i$ = .02 [@cohen1988a, p. 461].
 
 $$
 \text{MES} = \text{Cohen's } f^2 \text{small threshold} = 0.02 \\
@@ -391,18 +416,9 @@ $$
 0.02 = \cfrac{\text{R}^{2}}{1 - \text{R}^{2}} \quad \text{or} \quad \text{R}^{2} = \cfrac{0.02}{1.02} \eqsim 0.01960784
 $$
 
-In other words, the latitude must explain at least $1.960784\%$ of the variance in the dependent variable to be considered non-negligible. This is the Minimum Effect Size (MES) for this analysis.
+In other words, the latitude must explain at least $1.96078\%$ of the variance in the dependent variable to be considered non-negligible.
 
-In summary, the decision rule for the hypothesis test is as follows:
-
-- **Reject** $\text{H}_{0}$ **if both** of the following conditions are met:
-  - The F-test is significant.
-  - $\Delta \ \text{Adjusted} \ \text{R}^{2} \geq 0.01960784$;
-- **Fail to reject** $\text{H}_{0}$ **if either** of the following conditions are met:
-  - The F-test is not significant, or
-  - The F-test is significant, but $\Delta \ \text{Adjusted} \ \text{R}^{2} < 0.01960784$.
-
-As usual, the significance level ($\alpha$) was set at $0.05$, allowing a 5% chance of a [Type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors). A power analysis was performed to determine the necessary sample size for detecting a significant effect, targeting a power ($1 - \beta$) of $0.99$.
+The significance level ($\alpha$) was set at $0.01$, allowing a 1% chance of a [Type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors).
 
 It's important to emphasize that this thesis is not investigating causality, only association. Predictive models alone should never be used to infer causal relationships [@arif2022].
 
@@ -410,46 +426,37 @@ It's important to emphasize that this thesis is not investigating causality, onl
 
 In addition to the analyses described in the *Hypothesis Test* subsection, several other evaluations were conducted to ensure the validity of the results, including: a power analysis, the visual inspection of variable distributions (e.g., Q-Q plots), assessment of residual normality, checks for multicollinearity, and examination of leverage and influential points.
 
-All analyses were performed using computational notebooks and are fully reproducible. Detailed documentation is available in the supplementary materials.
-
 ## Model Predictors
 
-Two modeling approaches were used to assess the impact of latitude and related environmental variables on the outcome of interest. Each approach builds on predictors inspired by the methods in @leocadio-miguel2017 while addressing methodological inconsistencies and data limitations.
-
-### Identified Inconsistencies
-
-During the replication of @leocadio-miguel2017, several inconsistencies were identified:
-
-1. **Variable usage mismatch**: The number of covariates listed in the results section does not align with those used in the $\text{F}$-test parameters for the restricted and full models.
-2. **Multicollinearity issues**: The inclusion of sunrise, sunset, and daylight duration (derived as sunset - sunrise) for the March equinox and the June and December solstices introduces multicollinearity due to the interdependence of these variables.
+Two modeling approaches were used to assess the impact of latitude and related environmental variables on the outcome of interest. Each approach builds on predictors inspired by the methods in @leocadio-miguel2017 while addressing methodological inconsistencies and data limitations (See Supplemantary Material [-@sec-sm-works-and-activities] for more information).
 
 ### Selection of Predictors
 
-The restricted model in @leocadio-miguel2017 included age, longitude, and solar irradiation when the subjects filled the online questionnaire as covariates, with sex, daylight saving time (DST), and season as cofactors. The full model added, annual average solar irradiation, sunrise time, sunset time, and daylight duration for the March equinox and the June and December solstices. However, in this study:
+The restricted model in @leocadio-miguel2017 included age, longitude, and solar irradiation at the time of questionnaire completion as covariates, with sex, daylight saving time (DST), and season as cofactors. The full model added annual average solar irradiation, sunrise time, sunset time, and daylight duration for the March equinox and the June and December solstices. However, in this study:
 
-- **DST and season**: Are excluded, as data were collected within a single week, rendering these variables redundant.
-- **Latitude proxies**: Annual average solar irradiation and daylight duration for the March equinox and the June and December solstices were included. However, sunrise and sunset time coefficients were not estimable and had to be omitted. This was due to their high collinearity ($r > 0.999$). Centralization or standardization of the predictors did not resolve this issue.
+- **DST and season**: Were excluded, as data collection occurred within a single week, making these variables redundant.
+- **Latitude proxies**: Annual average solar irradiation and daylight duration for the March equinox and the June and December solstices were included. However, sunrise and sunset time coefficients were excluded due to high collinearity ($r > 0.999$). Attempts to resolve this issue through centralization or standardization of predictors were unsuccessful.
 
-As in @leocadio-miguel2017, the measure of daylight duration in September equinox was not included due to the high correlation with the March equinox ($r > 0.993$), making it statistically indistinguishable from the latter ($p > 0.05$). This was expected, since the day at the equinoxes must be approximately the same length (from the Latin, *aequĭnoctĭum*, meaning the time of equal days and nights [@latinitium]).
+As in @leocadio-miguel2017, daylight duration for the September equinox was excluded due to its high correlation with the March equinox ($r > 0.993$), making it statistically indistinguishable ($p > 0.05$). This is expected, as the day length at the equinoxes is approximately equal (from the Latin *aequĭnoctĭum*, meaning "equal day and night" [@latinitium]).
 
-Daylight duration for the March equinox, June solstice, and December solstice exhibited high multicollinearity, with a variance inflation factor (VIF) exceeding $1000$. However, since these variables are part of the same group, this does not pose a significant issue for the analysis. The focus is on the collective effect of the group rather than the contributions of individual variables.
+Daylight duration for the March equinox, June solstice, and December solstice exhibited high multicollinearity, with a variance inflation factor (VIF) exceeding $1000$. However, since these variables belong to the same group, this does not pose a significant issue for the analysis. The focus is on the collective effect of the group rather than the individual contributions of each variable.
 
-### Tests and Predictors
+### Tests
 
-To evaluate the hypotheses, two tests were conducted with distinct sets of predictors:
+To evaluate the hypotheses, two tests were conducted using distinct sets of predictors. The first test replicated the approach from @leocadio-miguel2017, incorporating environmental proxies for latitude, while the second test directly included latitude as a predictor to assess its impact.
 
 #### Test A
 
 - **Restricted Model Predictors**
-  - Age, sex, longitude, and Global Horizontal Irradiance (GHI) at the time of questionnaire completion (monthly GHI average for participants' geographic coordinates).
+  - Age, sex, longitude, and monthly Global Horizontal Irradiance (GHI) corresponding to the participants' geographic coordinates at the time of questionnaire completion.
 
 - **Full Model Predictors**
-  - *Restricted model predictors* + annual GHI average and daylight duration for the nearest March and September equinoxes, and the June and December solstices.
+  - *Restricted model predictors* + annual average GHI and daylight duration for the March equinox, June solstice, and December solstice, based on participants' geographic coordinates.
 
 #### Test B
 
 - **Restricted Model Predictors**
-  - Age, sex, longitude, and GHI at the time of questionnaire completion (monthly GHI average for participants' geographic coordinates).
+  - Age, sex, longitude, and monthly Global Horizontal Irradiance (GHI) corresponding to the participants' geographic coordinates at the time of questionnaire completion.
 
 - **Full Model Predictors**
-  - *Restricted model predictors* + latitude.
+  - *Restricted model predictors* + latitude decimal degree based on participants' geographic coordinates.

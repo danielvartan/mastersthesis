@@ -22,3 +22,5 @@
 /scss/
 /site_libs/
 /tex/
+
+!/qmd/

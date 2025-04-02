@@ -126,7 +126,13 @@ div.csl-indent {
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
-</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+</script><meta property="og:title" content="Appendix C — Exploratory Data Analysis – Is Latitude Associated with Chronotype?">
+<meta property="og:description" content="">
+<meta property="og:image" content="/mastersthesis/images/og-image.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="2400">
+<meta property="og:image:alt " content="Is Latitude Associated with Chronotype?">
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -153,8 +159,8 @@ window.Quarto = {
   typesetMath
 };
 </script>
-<meta property="og:title" content="Appendix C — Exploratory Data Analysis – Is Latitude Associated with Chronotype?">
-<meta property="og:description" content="">
+<meta property="og:title" content="[Appendix C — Exploratory Data Analysis]{#sec-sm-exploratory-data-analysis .quarto-section-identifier} – Is Latitude Associated with Chronotype?">
+<meta property="og:description" content="This document offers a detailed exploration of the survey data, highlighting key patterns and insights derived from the analysis.">
 <meta property="og:image" content="https://danielvartan.github.io/mastersthesis/qmd/supplementary-material-3_files/figure-html/unnamed-chunk-8-1.png">
 <meta property="og:site_name" content="Is Latitude Associated with Chronotype?">
 <meta property="og:image:height" content="960">
@@ -173,7 +179,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Predictive models aren’t for causal inference;,citation_author=Suchinta Arif;,citation_author=M. Aaron MacNeil;,citation_publication_date=2022-08;,citation_cover_date=2022-08;,citation_year=2022;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/10.1111/ele.14033;,citation_issue=8;,citation_doi=10.1111/ele.14033;,citation_issn=1461-023X, 1461-0248;,citation_volume=25;,citation_language=en-US;,citation_journal_title=Ecology Letters;,citation_journal_abbrev=Ecology Letters;">
 <meta name="citation_reference" content="citation_title=Exogenous and endogenous components in circadian rhythms;,citation_abstract=Excerpt PREFACE The main topic of the symposium “Biological Clocks” says nothing about the types of clocks we will be concerned with. It is an open question whether the clocks run continuously or stop after one revolution and have to be started anew. Also the term “clock” does not imply that one revolution is finished in 24 hours. Watches are instruments to measure time. Organisms have to measure time-spans of quite different lengths and for different purposes. Each measurement of speed, for instance, needs timing and mostly within the limits of milliseconds. One can expect, therefore, that organisms possess several clocks with perhaps extremely different periods [1]. There is no need for these clocks to run continuously; for some purposes it would be sufficient if the clock were started always at the beginning of timing (principle of a sandglass, stop watch). “Biological clocks” therefore is a more general concept than what...;,citation_author=Jürgen Aschoff;,citation_publication_date=1960-01-01;,citation_cover_date=1960-01-01;,citation_year=1960;,citation_fulltext_html_url=http://symposium.cshlp.org/content/25/11;,citation_doi=10.1101/SQB.1960.025.01.004;,citation_issn=0091-7451, 1943-4456;,citation_volume=25;,citation_language=en-US;,citation_journal_title=Cold Spring Harbor Symposia on Quantitative Biology;,citation_journal_abbrev=Cold Spring Harb Symp Quant Biol;,citation_publisher=Cold Spring Harbor Laboratory Press;">
 <meta name="citation_reference" content="citation_title=Phasenlage der Tagesperiodik in Abhängigkeit von Jahreszeit und Breitengrad;,citation_abstract=Es wird die Hypothese vertreten, daß die regelhaften jahreszeitlichen Änderungen der Phasenbeziehung zwischen Aktivitätsrhythmik und natürlichem Licht-Dunkel-Wechsel auf der Grundlage spezieller Synchronisations-mechanismen erklärt werden können. Im Teil 1.1 werden die endogenen und exogenen Faktoren besprochen, die theoretisch die Phase zu beeinflussen vermögen. Die Überlegungen führen zu dem Schluß, daß das Licht-Dunkel-Verhältnis und die Dauer der Dämmerung im wesentlichen die Phase bestimmen. Experimentelle Belege sind in Teil 1.2 enthalten. In Teil 2 werden Freilandbeobachtungen über Beginn und Ende der Aktivität von Vögeln neu ausgewertet. Diese Ergebnisse, wie auch Meßwerte der Aktivität von Tieren in Innenräumen (Teil 3), stützen die Hypothese. Sie zeigen alle maximal voreilende Phasen im Mittsommer bei tagaktiven Arten bzw. im Mittwinter bei einer nachtaktiven Art. Einige, in Teil 4 erwähnte Ausnahmen von dieser Regel, werfen die Frage auf, in welchem Ausmaß die Ergebnisse verallgemeinert werden dürfen. In der Arbeit werden auch die einheitlichen jahreszeitlichen Änderungen der Aktivitätszeit erörtert.;,citation_author=Jürgen Aschoff;,citation_publication_date=1969-08-01;,citation_cover_date=1969-08-01;,citation_year=1969;,citation_fulltext_html_url=https://doi.org/10.1007/BF00416979;,citation_issue=2;,citation_doi=10.1007/BF00416979;,citation_issn=1432-1939;,citation_volume=3;,citation_language=de-DE;,citation_journal_title=Oecologia;,citation_journal_abbrev=Oecologia;">
-<meta name="citation_reference" content="citation_title=Precision of entrained circadian activity rhythms under natural photoperiodic conditions;,citation_author=Jürgen Aschoff;,citation_author=Serge Daan;,citation_author=J. Figala;,citation_author=K. Müller;,citation_publication_date=1972;,citation_cover_date=1972;,citation_year=1972;,citation_fulltext_html_url=https://research.rug.nl/files/14698568/1972NaturwissAschoff.pdf;,citation_issue=6;,citation_volume=59;,citation_language=en-US;,citation_journal_title=Naturwissenschaften;,citation_publisher=Springer Verlag;">
+<meta name="citation_reference" content="citation_title=Precision of entrained circadian activity rhythms under natural photoperiodic conditions;,citation_author=Jürgen Aschoff;,citation_author=Serge Daan;,citation_author=J. Figala;,citation_author=K. Müller;,citation_publication_date=1972;,citation_cover_date=1972;,citation_year=1972;,citation_issue=6;,citation_volume=59;,citation_language=en-US;,citation_journal_title=Naturwissenschaften;,citation_publisher=Springer Verlag;">
 <meta name="citation_reference" content="citation_title=Biological rhythms;,citation_editor=Jürgen Aschoff;,citation_publication_date=1981;,citation_cover_date=1981;,citation_year=1981;,citation_fulltext_html_url=http://link.springer.com/10.1007/978-1-4615-6552-9;,citation_doi=10.1007/978-1-4615-6552-9;,citation_isbn=978-1-4615-6552-9;,citation_language=en-US;,citation_series_title=Handbook of Behavioral Neurobiology;">
 <meta name="citation_reference" content="citation_title=Temporal orientation: Circadian clocks in animals and humans;,citation_author=Jürgen Aschoff;,citation_publication_date=1989-06;,citation_cover_date=1989-06;,citation_year=1989;,citation_fulltext_html_url=https://linkinghub.elsevier.com/retrieve/pii/0003347289901322;,citation_doi=10.1016/0003-3472(89)90132-2;,citation_issn=00033472;,citation_volume=37;,citation_language=en-US;,citation_journal_title=Animal Behaviour;,citation_journal_abbrev=Animal Behaviour;">
 <meta name="citation_reference" content="citation_title=Circadian temporal adaptation and the perception of time;,citation_author=Jürgen Aschoff;,citation_publication_date=1989-08-01;,citation_cover_date=1989-08-01;,citation_year=1989;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/0167876089900718;,citation_issue=2;,citation_doi=10.1016/0167-8760(89)90071-8;,citation_issn=0167-8760;,citation_volume=7;,citation_language=en-US;,citation_journal_title=International Journal of Psychophysiology;,citation_journal_abbrev=International Journal of Psychophysiology;">
@@ -213,6 +219,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Testing for serial correlation in least squares regression. III;,citation_abstract=The paper considers a number of problems arising from the test of serial correlation based on the d statistic proposed earlier by the authors (Durbin &amp;amp;amp;amp; Watson, 1950, 1951). Methods of computing the exact distribution of d are investigated and the exact distribution is compared with six approximations to it for four sets of published data. It is found that approximations suggested by Theil and Nagar and by Hannan are too inaccurate for practical use but that the beta approximation proposed in the 1950 and 1951 papers and a new approximation, called by us the a + bdu approximation and based, like the beta approximation, on the exact first two moments of d, both perform well.The power of the d test is compared with that of certain exact tests proposed by Theil, Durbin, Koerts and Abrahamse from the standpoint of invariance theory. It is shown that the d test is locally most powerful invariant but that the other tests are not.There are three appendices. The first gives an account of the exact distribution of d. The second derives the mean and variance to a second order of approximation of a modified maximum likelihood statistic closely related to d. The third sets out details of the computations required for the a + hdu approximation.;,citation_author=J. Durbin;,citation_author=G. S. Watson;,citation_publication_date=1971-04-01;,citation_cover_date=1971-04-01;,citation_year=1971;,citation_fulltext_html_url=https://doi.org/10.1093/biomet/58.1.1;,citation_issue=1;,citation_doi=10.1093/biomet/58.1.1;,citation_issn=0006-3444;,citation_volume=58;,citation_language=en-US;,citation_journal_title=Biometrika;,citation_journal_abbrev=Biometrika;">
 <meta name="citation_reference" content="citation_title=Evidence that the woman’s ovarian cycle is driven by an internal circamonthly timing system;,citation_abstract=The ovarian cycle has a well-established circa-monthly rhythm, but the mechanisms involved in its regularity are unknown. Is the rhythmicity driven by an endogenous clock-like timer or by other internal or external processes? Here, using two large epidemiological datasets (26,912 cycles from 2303 European women and 4786 cycles from 721 North American women), analyzed with time series and circular statistics, we find evidence that the rhythmic characteristics of the menstrual cycle are more likely to be explained by an endogenous clock-like driving mechanism than by any other internal or external process. We also show that the menstrual cycle is weakly but significantly influenced by the 29.5-day lunar cycle and that the phase alignment between the two cycles differs between the European and the North American populations. Given the need to find efficient treatments of subfertility in women, our results should be confirmed in larger populations, and chronobiological approaches to optimize the ovulatory cycle should be evaluated.;,citation_author=René Ecochard;,citation_author=Joseph B. Stanford;,citation_author=Richard J. Fehring;,citation_author=Marie Schneider;,citation_author=Shahpar Najmabadi;,citation_author=Claude Gronfier;,citation_publication_date=2024-04-10;,citation_cover_date=2024-04-10;,citation_year=2024;,citation_fulltext_html_url=https://www.science.org/doi/10.1126/sciadv.adg9646;,citation_issue=15;,citation_doi=10.1126/sciadv.adg9646;,citation_volume=10;,citation_journal_title=Science Advances;,citation_publisher=American Association for the Advancement of Science;">
 <meta name="citation_reference" content="citation_title=The sense of time: Evidence for its molecular basis in the eukaryotic gene-action system;,citation_author=Charles F. Ehret;,citation_publication_date=1974;,citation_cover_date=1974;,citation_year=1974;,citation_fulltext_html_url=https://linkinghub.elsevier.com/retrieve/pii/B9780120052158500097;,citation_doi=10.1016/B978-0-12-005215-8.50009-7;,citation_isbn=978-0-12-005215-8;,citation_volume=15;,citation_language=en-US;,citation_inbook_title=Advances in Biological and Medical Physics;">
+<meta name="citation_reference" content="citation_title=The essential guide to effect sizes: Statistical power, meta-analysis, and the interpretation of research results;,citation_abstract=This succinct and jargon-free introduction to effect sizes gives students and researchers the tools they need to interpret the practical significance of their results. Using a class-tested approach that includes numerous examples and step-by-step exercises, it introduces and explains three of the most important issues relating to the practical significance of research results: the reporting and interpretation of effect sizes (Part I), the analysis of statistical power (Part II), and the meta-analytic pooling of effect size estimates drawn from different studies (Part III). The book concludes with a handy list of recommendations for those actively engaged in or currently preparing research projects.;,citation_editor=Paul D. Ellis;,citation_publication_date=2010;,citation_cover_date=2010;,citation_year=2010;,citation_isbn=978-0-521-19423-5;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=Agent-based computational models and generative social science;,citation_abstract=This article argues that the agent-based computational model permits a distinctive approach to social science for which the term &amp;amp;amp;quot;generative&amp;quot; is suitable. In defending this terminology, features distinguishing the approach from both &quot;inductive&quot; and &quot;deductive&quot; science are given. Then, the following specific contributions to social science are discussed: The agent-based computational model is a new tool for empirical research. It offers a natural environment for the study of connectionist phenomena in social science. Agent-based modeling pro- vides a powerful way to address certain enduring-and especially interdisciplinary questions. It allows one to subject certain core theories-such as neoclassical microeconomics-to important types of stress (e.g., the effect of evolving preferences). It permits one to study how rules of individual behavior give rise-or &quot;map up&quot;-to macroscopic regularities and organizations. In turn, one can employ laboratory behavioral research findings to select among competing agent-based (&quot;bottom up&quot;) models. The agent-based approach may well have the important effect of decoupling individual rationality from macroscopic equilibrium and of separating decision science from social science more generally. Agent-based modeling offers powerful new forms of hybrid theo- retical-computational work; these are particularly relevant to the study of non-equilibrium systems. The agent- based approach invites the interpretation of society as a distributed computational device, and in turn the interpretation of social dynamics as a type of computation. This interpretation raises important foundational issues in social science-some related to intractability, and some to undecidability proper. Finally, since &quot;emer- gence&quot; figures prominently in this literature, I take up the connection between agent-based modeling and classical emergentism, criticizing the latter and arguing that the two are incompatible.;,citation_author=Joshua M. Epstein;,citation_publication_date=1999;,citation_cover_date=1999;,citation_year=1999;,citation_issue=5;,citation_doi=10.1002/(SICI)1099-0526(199905/06)4:5&amp;amp;lt;41::AID-CPLX9&amp;gt;3.0.CO;2-F;,citation_volume=4;,citation_language=en-US;,citation_journal_title=Complexity;">
 <meta name="citation_reference" content="citation_title=Chrono-nutrition: From molecular and neuronal mechanisms to human epidemiology and timed feeding patterns;,citation_abstract=The circadian timing system governs daily biological rhythms, synchronising physiology and behaviour to the temporal world. External time cues, including the light-dark cycle and timing of food intake, provide daily signals for entrainment of the central, master circadian clock in the hypothalamic suprachiasmatic nuclei (SCN), and of metabolic rhythms in peripheral tissues, respectively. Chrono-nutrition is an emerging field building on the relationship between temporal eating patterns, circadian rhythms, and metabolic health. Evidence from both animal and human research demonstrates adverse metabolic consequences of circadian disruption. Conversely, a growing body of evidence indicates that aligning food intake to periods of the day when circadian rhythms in metabolic processes are optimised for nutrition may be effective for improving metabolic health. Circadian rhythms in glucose and lipid homeostasis, insulin responsiveness and sensitivity, energy expenditure, and postprandial metabolism, may favour eating patterns characterised by earlier temporal distribution of energy. This review details the molecular basis for metabolic clocks, the regulation of feeding behaviour, and the evidence for meal timing as an entraining signal for the circadian system in animal models. The epidemiology of temporal eating patterns in humans is examined, together with evidence from human intervention studies investigating the metabolic effects of morning compared to evening energy intake, and emerging chrono-nutrition interventions such as time-restricted feeding. Chrono-nutrition may have therapeutic application for individuals with and at-risk of metabolic disease and convey health benefits within the general population.;,citation_author=Alan Flanagan;,citation_author=David A. Bechtold;,citation_author=Gerda K. Pot;,citation_author=Jonathan D. Johnston;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://onlinelibrary.wiley.com/doi/abs/10.1111/jnc.15246;,citation_issue=1;,citation_doi=10.1111/jnc.15246;,citation_issn=1471-4159;,citation_volume=157;,citation_language=en-US;,citation_journal_title=Journal of Neurochemistry;">
 <meta name="citation_reference" content="citation_title=Rhythms of life: The biological clocks that control the daily lives of every living thing;,citation_author=Russell G. Foster;,citation_author=Leon Kreitzman;,citation_publication_date=2005;,citation_cover_date=2005;,citation_year=2005;,citation_isbn=978-1-86197-571-3;,citation_language=en-US;">
@@ -235,7 +242,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Latitudinal clines: An evolutionary view on biological rhythms;,citation_abstract=Properties of the circadian and annual timing systems are expected to vary systematically with latitude on the basis of different annual light and temperature patterns at higher latitudes, creating specific selection pressures. We review literature with respect to latitudinal clines in circadian phenotypes as well as in polymorphisms of circadian clock genes and their possible association with annual timing. The use of latitudinal (and altitudinal) clines in identifying selective forces acting on biological rhythms is discussed, and we evaluate how these studies can reveal novel molecular and physiological components of these rhythms.;,citation_author=Roelof A. Hut;,citation_author=Silvia Paolucci;,citation_author=Roi Dor;,citation_author=Charalambos P. Kyriacou;,citation_author=Serge Daan;,citation_publication_date=2013-08-22;,citation_cover_date=2013-08-22;,citation_year=2013;,citation_fulltext_html_url=https://royalsocietypublishing.org/doi/10.1098/rspb.2013.0433;,citation_issue=1765;,citation_doi=10.1098/rspb.2013.0433;,citation_issn=0962-8452, 1471-2954;,citation_volume=280;,citation_language=en-US;,citation_journal_title=Proceedings of the Royal Society B: Biological Sciences;,citation_journal_abbrev=Proc. R. Soc. B.;">
 <meta name="citation_reference" content="citation_title=Pesquisa Nacional por Amostra de Domicílios Contínua: Acesso à internet e à televisão e posse de telefone móvel celular para uso pessoal 2019;,citation_author=Instituto Brasileiro de Geografia e Estatística;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://biblioteca.ibge.gov.br/visualizacao/livros/liv101794_informativo.pdf;,citation_isbn=978-65-87201-56-6;,citation_language=pt-BR;,citation_technical_report_institution=Instituto Brasileiro de Geografia e Estatística;">
 <meta name="citation_reference" content="citation_title=Tabela 6407: População residente, por sexo e grupos de idade;,citation_author=Instituto Brasileiro de Geografia e Estatística;,citation_fulltext_html_url=https://sidra.ibge.gov.br/tabela/6407;,citation_publisher=SIDRA;">
-<meta name="citation_reference" content="citation_title=Tabela 6579: População residente estimada;,citation_author=Instituto Brasileiro de Geografia e Estatística;,citation_fulltext_html_url=https://sidra.ibge.gov.br/Tabela/3939;,citation_language=pt-BR;,citation_publisher=SIDRA;">
+<meta name="citation_reference" content="citation_title=Tabela 6579: População residente estimada;,citation_author=Instituto Brasileiro de Geografia e Estatística;,citation_fulltext_html_url=https://sidra.ibge.gov.br/Tabela/6579;,citation_language=pt-BR;,citation_publisher=SIDRA;">
 <meta name="citation_reference" content="citation_title=Efficient tests for normality, homoscedasticity and serial independence of regression residuals;,citation_abstract=We use the Lagrange multiplier procedure to derive efficient joint tests for residual normality, homoscedasticity and serial independence. The tests are simple to compute and asymptotically distributed as χ2.;,citation_author=Carlos M. Jarque;,citation_author=Anil K. Bera;,citation_publication_date=1980-01-01;,citation_cover_date=1980-01-01;,citation_year=1980;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/0165176580900245;,citation_issue=3;,citation_doi=10.1016/0165-1765(80)90024-5;,citation_issn=0165-1765;,citation_volume=6;,citation_language=en-US;,citation_journal_title=Economics Letters;,citation_journal_abbrev=Economics Letters;">
 <meta name="citation_reference" content="citation_title=A test for normality of observations and regression residuals;,citation_abstract=Using the Lagrange multiplier procedure or score test on the Pearson family of distributions we obtain tests for normality of observations and regression disturbances. The tests suggested have optimum asymptotic power properties and good finite sample performance. Due to their simplicity they should prove to be useful tools in statistical analysis.;,citation_author=Carlos M. Jarque;,citation_author=Anil K. Bera;,citation_publication_date=1987;,citation_cover_date=1987;,citation_year=1987;,citation_fulltext_html_url=https://www.jstor.org/stable/1403192;,citation_issue=2;,citation_doi=10.2307/1403192;,citation_issn=0306-7734;,citation_volume=55;,citation_language=en-US;,citation_journal_title=International Statistical Review;,citation_publisher=[Wiley, International Statistical Institute (ISI)];">
 <meta name="citation_reference" content="citation_title=Weighting methods;,citation_abstract=Weighting adjustments are commonly applied in surveys to compensate for nonresponse and noncoverage, and to make weighted sample estimates conform to external values. Recent years have seen theoretical developments and increased use of methods that take account of substantial amounts of auxiliary information in making these adjustments. The article uses a simple example to describe such methods as cell weighting, raking, generalised regression estimation, logistic regression weighting, mixtures of methods, and methods for restricting the range of the resultant adjustments. It also discusses how auxiliary variables may be chosen for use in the adjustments and describes some applications.;,citation_author=Graham Kalton;,citation_author=Ismael Flores-Cervantes;,citation_publication_date=2003;,citation_cover_date=2003;,citation_year=2003;,citation_issue=2;,citation_issn=0282-423X;,citation_volume=19;,citation_language=en-US;,citation_journal_title=Journal of Official Statistics;">
@@ -247,6 +254,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=The reality ouroboros;,citation_abstract=Toward a new understanding of the nature of reality.;,citation_author=David Krakauer;,citation_author=David Wolpert;,citation_publication_date=2024-09-04;,citation_cover_date=2024-09-04;,citation_year=2024;,citation_fulltext_html_url=https://nautil.us/the-reality-ouroboros-809153/;,citation_language=en-US;,citation_journal_title=Nautilus;">
 <meta name="citation_reference" content="citation_title=Chronobiology of interspecific interactions in a changing world;,citation_abstract=Animals should time activities, such as foraging, migration and reproduction, as well as seasonal physiological adaptation, in a way that maximizes fitness. The fitness outcome of such activities depends largely on their interspecific interactions; the temporal overlap with other species determines when they should be active in order to maximize their encounters with food and to minimize their encounters with predators, competitors and parasites. To cope with the constantly changing, but predictable structure of the environment, organisms have evolved internal biological clocks, which are synchronized mainly by light, the most predictable and reliable environmental cue (but which can be masked by other variables), which enable them to anticipate and prepare for predicted changes in the timing of the species they interact with, on top of responding to them directly. Here, we review examples where the internal timing system is used to predict interspecific interactions, and how these interactions affect the internal timing system and activity patterns. We then ask how plastic these mechanisms are, how this plasticity differs between and within species and how this variability in plasticity affects interspecific interactions in a changing world, in which light, the major synchronizer of the biological clock, is no longer a reliable cue owing to the rapidly changing climate, the use of artificial light and urbanization. This article is part of the themed issue “Wild clocks: integrating chronobiology and ecology to understand timekeeping in free-living animals”.;,citation_author=Noga Kronfeld-Schor;,citation_author=Marcel E. Visser;,citation_author=Lucia Salis;,citation_author=Jan A. Gils;,citation_publication_date=2017-10-09;,citation_cover_date=2017-10-09;,citation_year=2017;,citation_fulltext_html_url=https://royalsocietypublishing.org/doi/full/10.1098/rstb.2016.0248;,citation_issue=1734;,citation_doi=10.1098/rstb.2016.0248;,citation_volume=372;,citation_journal_title=Philosophical Transactions of the Royal Society B: Biological Sciences;,citation_publisher=Royal Society;">
 <meta name="citation_reference" content="citation_title=Introduction to chronobiology;,citation_author=Sandra J. Kuhlman;,citation_author=L. Michon Craig;,citation_author=Jeanne F. Duffy;,citation_publication_date=2018-09;,citation_cover_date=2018-09;,citation_year=2018;,citation_fulltext_html_url=http://cshperspectives.cshlp.org/lookup/doi/10.1101/cshperspect.a033613;,citation_issue=9;,citation_doi=10.1101/cshperspect.a033613;,citation_issn=1943-0264;,citation_volume=10;,citation_language=en-US;,citation_journal_title=Cold Spring Harbor Perspectives in Biology;,citation_journal_abbrev=Cold Spring Harb Perspect Biol;">
+<meta name="citation_reference" content="citation_title=Using case weights with tidymodels;,citation_abstract=Support for case weights is now available across many tidymodels packages.;,citation_author=Max Kuhn;,citation_publication_date=2022-05-02;,citation_cover_date=2022-05-02;,citation_year=2022;,citation_fulltext_html_url=https://www.tidyverse.org/blog/2022/05/case-weights/;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=The targets R package: A dynamic make-like function-oriented pipeline toolkit for reproducibility and high-performance computing;,citation_author=William Landau;,citation_publication_date=2021-01-15;,citation_cover_date=2021-01-15;,citation_year=2021;,citation_fulltext_html_url=https://joss.theoj.org/papers/10.21105/joss.02959;,citation_issue=57;,citation_doi=10.21105/joss.02959;,citation_issn=2475-9066;,citation_volume=6;,citation_language=en-US;,citation_journal_title=Journal of Open Source Software;,citation_journal_abbrev=JOSS;">
 <meta name="citation_reference" content="citation_title=Latin dictionaries;,citation_author=Latinitium;,citation_fulltext_html_url=https://latinitium.com/latin-dictionaries/;,citation_language=en-US;,citation_publisher=Latinitium;">
 <meta name="citation_reference" content="citation_title=Detecting chronotype differences associated to latitude: A comparison between Horne–Östberg and Munich Chronotype questionnaires;,citation_author=Mario André Leocadio-Miguel;,citation_author=Valéria Clarisse De Oliveira;,citation_author=Danyella Pereira;,citation_author=Mario Pedrazzoli;,citation_publication_date=2014-03;,citation_cover_date=2014-03;,citation_year=2014;,citation_fulltext_html_url=http://www.tandfonline.com/doi/full/10.3109/03014460.2013.832795;,citation_issue=2;,citation_doi=10.3109/03014460.2013.832795;,citation_issn=0301-4460, 1464-5033;,citation_volume=41;,citation_language=en-US;,citation_journal_title=Annals of Human Biology;,citation_journal_abbrev=Annals of Human Biology;">
@@ -329,13 +337,13 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Ecology of sleep and circadian phenotypes of the Brazilian population [Poster];,citation_author=Daniel Vartanian;,citation_publication_date=2022-11-19;,citation_cover_date=2022-11-19;,citation_year=2022;,citation_fulltext_html_url=https://doi.org/10.13140/RG.2.2.25343.07840;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=Plano de ensino: ACH0042 - Resolução de Problemas II;,citation_author=Daniel Vartanian;,citation_publication_date=2023-07-12;,citation_cover_date=2023-07-12;,citation_year=2023;,citation_fulltext_html_url=https://doi.org/10.13140/RG.2.2.33335.50086;,citation_language=pt-BR;">
 <meta name="citation_reference" content="citation_title=Is latitude associated with chronotype? [Data Management Plan];,citation_author=Daniel Vartanian;,citation_publication_date=2024-11-26;,citation_cover_date=2024-11-26;,citation_year=2024;,citation_fulltext_html_url=https://doi.org/10.48321/D1B5C8068D;,citation_language=en-US;,citation_publisher=DMPHub;">
-<meta name="citation_reference" content="citation_title=Is latitude associated with chronotype?;,citation_abstract=Research compendium of the Master’s Thesis: Is Latitude Associated with Chronotype?;,citation_author=Daniel Vartanian;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_fulltext_html_url=https://doi.org/10.17605/OSF.IO/YGKTS;,citation_doi=10.17605/OSF.IO/YGKTS;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=Is latitude associated with chronotype? [Research compendium];,citation_abstract=Research compendium of the Master’s Thesis: Is Latitude Associated with Chronotype?;,citation_author=Daniel Vartanian;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_fulltext_html_url=https://doi.org/10.17605/OSF.IO/YGKTS;,citation_doi=10.17605/OSF.IO/YGKTS;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title={prettycheck}: Pretty assertive programming;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/prettycheck;">
 <meta name="citation_reference" content="citation_title={lubritime}: An extension for the lubridate package;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/lubritime;">
 <meta name="citation_reference" content="citation_title={lockr}: Easily encrypt/decrypt files;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/lockr;">
 <meta name="citation_reference" content="citation_title={entrainment}: A rule-based model of the 24h light/dark cycle entrainment phenomenon;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/entrainment;">
 <meta name="citation_reference" content="citation_title={abnt}: Quarto format designed for theses and dissertations that adhere to the standards of the Brazilian Association of Technical Standards (ABNT);,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/abnt;">
-<meta name="citation_reference" content="citation_title={groomr}: Tools to tidy strings and text files;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/groomr;">
+<meta name="citation_reference" content="citation_title={groomr}: Tidy tools;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://github.com/danielvartan/groomr;">
 <meta name="citation_reference" content="citation_title={mctq}: Munich ChronoType Questionnaire tools;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://docs.ropensci.org/mctq/;">
 <meta name="citation_reference" content="citation_title=Illustration of the SIR model;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/sir;">
 <meta name="citation_reference" content="citation_title=Illustration of the Lorenz system;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/lorenz-system;">
@@ -343,7 +351,7 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=Demonstrations of the central limit theorem;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/central-limit-theorem;">
 <meta name="citation_reference" content="citation_title=Illustration of the Lotka–Volterra’s predator–prey model;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/lotka-volterra;">
 <meta name="citation_reference" content="citation_title=HTML color codes in hex and RGB formats for Espanso;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://hub.espanso.org/html-colors;">
-<meta name="citation_reference" content="citation_title={actverse}: Tools for actigraphy data analysis;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://docs.ropensci.org/actverse/;">
+<meta name="citation_reference" content="citation_title={actverse}: Tools for actigraphy data analysis;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/actverse/;">
 <meta name="citation_reference" content="citation_title={quartor}: Tools for the Quarto publishing system;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/quartor/;">
 <meta name="citation_reference" content="citation_title={orbis}: Spatial data analysis tools;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://danielvartan.github.io/orbis/;">
 <meta name="citation_reference" content="citation_title={brandr}: Brand identity management using brand.yml standard;,citation_author=Daniel Vartanian;,citation_fulltext_html_url=https://doi.org/10.32614/CRAN.package.brandr;">
@@ -355,8 +363,8 @@ window.Quarto = {
 <meta name="citation_reference" content="citation_title=The ASA statement on p-values: Context, process, and purpose;,citation_author=Ronald L. Wasserstein;,citation_author=Nicole A. Lazar;,citation_publication_date=2016-04-02;,citation_cover_date=2016-04-02;,citation_year=2016;,citation_fulltext_html_url=https://www.tandfonline.com/doi/abs/10.1080/00031305.2016.1154108;,citation_issue=2;,citation_doi=10.1080/00031305.2016.1154108;,citation_issn=0003-1305;,citation_volume=70;,citation_language=en-US;,citation_journal_title=The American Statistician;,citation_publisher=Taylor &amp;amp;amp; Francis;">
 <meta name="citation_reference" content="citation_title=Recommended amount of sleep for a healthy adult: A joint consensus statement of the American Academy of Sleep Medicine and Sleep Research Society;,citation_author=Nathaniel F. Watson;,citation_author=M. Safwan Badr;,citation_author=Gregory Belenky;,citation_author=Donald L. Bliwise;,citation_author=Orfeu M. Buxton;,citation_author=Daniel Buysse;,citation_author=David F. Dinges;,citation_author=James Gangwisch;,citation_author=Michael A. Grandner;,citation_author=Clete Kushida;,citation_author=Raman K. Malhotra;,citation_author=Jennifer L. Martin;,citation_author=Sanjay R. Patel;,citation_author=Stuart F. Quan;,citation_author=Esra Tasali;,citation_publication_date=2015-06-15;,citation_cover_date=2015-06-15;,citation_year=2015;,citation_fulltext_html_url=http://jcsm.aasm.org/doi/10.5664/jcsm.4758;,citation_issue=6;,citation_doi=10.5664/jcsm.4758;,citation_issn=1550-9389, 1550-9397;,citation_volume=11;,citation_language=en-US;,citation_journal_title=Journal of Clinical Sleep Medicine;,citation_journal_abbrev=Journal of Clinical Sleep Medicine;">
 <meta name="citation_reference" content="citation_title=Linear regression diagnostics;,citation_author=Roy Welsch;,citation_author=Edwin Kuh;,citation_publication_date=1977-03;,citation_cover_date=1977-03;,citation_year=1977;,citation_fulltext_html_url=http://www.nber.org/papers/w0173.pdf;,citation_doi=10.3386/w0173;,citation_language=en-US;,citation_technical_report_institution=National Bureau of Economic Research;,citation_technical_report_number=0173;">
-<meta name="citation_reference" content="citation_title=The tidy tools manifesto;,citation_abstract=tidyverse;,citation_author=Hadley Wickham;,citation_publication_date=2023-02-23;,citation_cover_date=2023-02-23;,citation_year=2023;,citation_fulltext_html_url=https://tidyverse.tidyverse.org/articles/manifesto.html;,citation_language=en-US;,citation_publisher=Tidyverse;">
-<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverseâ??a collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023-07-18;,citation_cover_date=2023-07-18;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=The tidy tools manifesto;,citation_abstract=tidyverse;,citation_author=Hadley Wickham;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://tidyverse.tidyverse.org/articles/manifesto.html;,citation_language=en-US;,citation_publisher=Tidyverse;">
+<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverseâ??a collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=The FAIR guiding principles for scientific data management and stewardship;,citation_abstract=There is an urgent need to improve the infrastructure supporting the reuse of scholarly data. A diverse set of stakeholders—representing academia, industry, funding agencies, and scholarly publishers—have come together to design and jointly endorse a concise and measureable set of principles that we refer to as the FAIR Data Principles. The intent is that these may act as a guideline for those wishing to enhance the reusability of their data holdings. Distinct from peer initiatives that focus on the human scholar, the FAIR Principles put specific emphasis on enhancing the ability of machines to automatically find and use the data, in addition to supporting its reuse by individuals. This Comment is the first formal publication of the FAIR Principles, and includes the rationale behind them, and some exemplar implementations in the community.;,citation_author=Mark D. Wilkinson;,citation_author=Michel Dumontier;,citation_author=IJsbrand Jan Aalbersberg;,citation_author=Gabrielle Appleton;,citation_author=Myles Axton;,citation_author=Arie Baak;,citation_author=Niklas Blomberg;,citation_author=Jan-Willem Boiten;,citation_author=Luiz Bonino Da Silva Santos;,citation_author=Philip E. Bourne;,citation_author=Jildau Bouwman;,citation_author=Anthony J. Brookes;,citation_author=Tim Clark;,citation_author=Mercè Crosas;,citation_author=Ingrid Dillo;,citation_author=Olivier Dumon;,citation_author=Scott Edmunds;,citation_author=Chris T. Evelo;,citation_author=Richard Finkers;,citation_author=Alejandra Gonzalez-Beltran;,citation_author=Alasdair J. G. Gray;,citation_author=Paul Groth;,citation_author=Carole Goble;,citation_author=Jeffrey S. Grethe;,citation_author=Jaap Heringa;,citation_author=Peter A. C Hoen;,citation_author=Rob Hooft;,citation_author=Tobias Kuhn;,citation_author=Ruben Kok;,citation_author=Joost Kok;,citation_author=Scott J. Lusher;,citation_author=Maryann E. Martone;,citation_author=Albert Mons;,citation_author=Abel L. Packer;,citation_author=Bengt Persson;,citation_author=Philippe Rocca-Serra;,citation_author=Marco Roos;,citation_author=Rene Van Schaik;,citation_author=Susanna-Assunta Sansone;,citation_author=Erik Schultes;,citation_author=Thierry Sengstag;,citation_author=Ted Slater;,citation_author=George Strawn;,citation_author=Morris A. Swertz;,citation_author=Mark Thompson;,citation_author=Johan Van Der Lei;,citation_author=Erik Van Mulligen;,citation_author=Jan Velterop;,citation_author=Andra Waagmeester;,citation_author=Peter Wittenburg;,citation_author=Katherine Wolstencroft;,citation_author=Jun Zhao;,citation_author=Barend Mons;,citation_publication_date=2016-03-15;,citation_cover_date=2016-03-15;,citation_year=2016;,citation_fulltext_html_url=https://www.nature.com/articles/sdata201618;,citation_issue=1;,citation_doi=10.1038/sdata.2016.18;,citation_issn=2052-4463;,citation_volume=3;,citation_language=en-US;,citation_journal_title=Scientific Data;,citation_journal_abbrev=Sci Data;">
 <meta name="citation_reference" content="citation_title=Emergence isn’t magic;,citation_abstract=Pondering the hard problem of consciousness, Simon Blackburn quite rightly describes “old-fashioned emergence” of mind from brain as “magic tissue secreting a magical effect” (11 September, p 42). But this does not mean emergence necessarily entails smoke and mirrors. It is a familiar phenomenon that science helps us to understand. As we learn in school, if you chemically combine the gases oxygen and hydrogen the result is liquid water. There is no magic involved in the fact that the properties of water are different from its constituent elements. Equally, the emergence of consciousness from certain arrangements of neurons is a natural process. The problem of how it comes about is hard because we have only just begun to investigate the complexity of the brain. While agreeing that neuroscientists can benefit from critical analysis of their ideas by philosophers, the latter tend to be led astray by metaphysical speculation. The Cartesian dualist tradition is a case in point. Modern dualists such as David Chalmers argue that the emergence of consciousness from the brain is not just remarkable, but logically impossible. And so it would be if Descartes’ claim that the conscious mind is separate from the mechanistic body were true. Assuming a logical division between the mental and the physical begs the mind-body question. Mental and physical properties do appear to be radically different but we simply don’t know whether this is a real difference. Bicester, Oxfordshire, UK;,citation_author=Richard Wilson;,citation_publication_date=2004-10-02;,citation_cover_date=2004-10-02;,citation_year=2004;,citation_fulltext_html_url=https://www.newscientist.com/letter/mg18424674-700-emergence-isnt-magic/;,citation_issue=2467;,citation_language=en-US;,citation_journal_title=New Scientist;">
 </head>
@@ -527,37 +535,49 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Hypothesis Test A</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Power Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Hypothesis Test B</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Restricted Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Hypothesis Test A</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Hypothesis Test B</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">I</span>&nbsp; <span class="chapter-title">Comparative Assessment of QualoCEP and Google Geocoding API Performance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/supplementary-material-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Works and Activities Developed During the Thesis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">J</span>&nbsp; <span class="chapter-title">Overview of General Linear Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">K</span>&nbsp; <span class="chapter-title">Critique of Leocadio-Miguel et al.&nbsp;(2017)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/supplementary-material-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">L</span>&nbsp; <span class="chapter-title">Works and Activities Developed During the Thesis</span></span></a>
   </div>
 </li>
       </ul>
@@ -581,20 +601,20 @@ window.Quarto = {
 </li>
   <li><a href="#distribution-of-main-variables" id="toc-distribution-of-main-variables" class="nav-link" data-scroll-target="#distribution-of-main-variables"><span class="header-section-number">C.4</span> Distribution of Main Variables</a></li>
   <li>
-<a href="#correlation-matrix-of-the-main-variables" id="toc-correlation-matrix-of-the-main-variables" class="nav-link" data-scroll-target="#correlation-matrix-of-the-main-variables"><span class="header-section-number">C.5</span> Correlation Matrix of the Main Variables</a>
+<a href="#correlation-matrix-of-main-variables" id="toc-correlation-matrix-of-main-variables" class="nav-link" data-scroll-target="#correlation-matrix-of-main-variables"><span class="header-section-number">C.5</span> Correlation Matrix of Main Variables</a>
   <ul class="collapse">
 <li><a href="#full-sample-1" id="toc-full-sample-1" class="nav-link" data-scroll-target="#full-sample-1"><span class="header-section-number">C.5.1</span> Full Sample</a></li>
   <li><a href="#analysis-sample-1" id="toc-analysis-sample-1" class="nav-link" data-scroll-target="#analysis-sample-1"><span class="header-section-number">C.5.2</span> Analysis Sample</a></li>
   </ul>
 </li>
-  <li><a href="#latitudinal-and-longitudinal-range" id="toc-latitudinal-and-longitudinal-range" class="nav-link" data-scroll-target="#latitudinal-and-longitudinal-range"><span class="header-section-number">C.6</span> Latitudinal and Longitudinal Range</a></li>
+  <li><a href="#latitudinal-and-longitudinal-ranges" id="toc-latitudinal-and-longitudinal-ranges" class="nav-link" data-scroll-target="#latitudinal-and-longitudinal-ranges"><span class="header-section-number">C.6</span> Latitudinal and Longitudinal Ranges</a></li>
   <li>
 <a href="#population-distributions" id="toc-population-distributions" class="nav-link" data-scroll-target="#population-distributions"><span class="header-section-number">C.7</span> Population Distributions</a>
   <ul class="collapse">
 <li><a href="#brazil-1" id="toc-brazil-1" class="nav-link" data-scroll-target="#brazil-1"><span class="header-section-number">C.7.1</span> Brazil</a></li>
   <li><a href="#full-sample-3" id="toc-full-sample-3" class="nav-link" data-scroll-target="#full-sample-3"><span class="header-section-number">C.7.2</span> Full Sample</a></li>
   <li><a href="#analysis-sample-3" id="toc-analysis-sample-3" class="nav-link" data-scroll-target="#analysis-sample-3"><span class="header-section-number">C.7.3</span> Analysis Sample</a></li>
-  <li><a href="#brazil-population-versus-sample" id="toc-brazil-population-versus-sample" class="nav-link" data-scroll-target="#brazil-population-versus-sample"><span class="header-section-number">C.7.4</span> Brazil (Population) <em>versus</em> Sample</a></li>
+  <li><a href="#brazil-versus-full-sample" id="toc-brazil-versus-full-sample" class="nav-link" data-scroll-target="#brazil-versus-full-sample"><span class="header-section-number">C.7.4</span> Brazil <em>versus</em> Full Sample</a></li>
   </ul>
 </li>
   <li>
@@ -612,7 +632,7 @@ window.Quarto = {
   </ul>
 </li>
   <li>
-<a href="#chronotype-distributions" id="toc-chronotype-distributions" class="nav-link" data-scroll-target="#chronotype-distributions"><span class="header-section-number">C.10</span> Chronotype distributions</a>
+<a href="#chronotype-distributions" id="toc-chronotype-distributions" class="nav-link" data-scroll-target="#chronotype-distributions"><span class="header-section-number">C.10</span> Chronotype Distributions</a>
   <ul class="collapse">
 <li><a href="#full-sample-6" id="toc-full-sample-6" class="nav-link" data-scroll-target="#full-sample-6"><span class="header-section-number">C.10.1</span> Full Sample</a></li>
   <li><a href="#analysis-sample-5" id="toc-analysis-sample-5" class="nav-link" data-scroll-target="#analysis-sample-5"><span class="header-section-number">C.10.2</span> Analysis Sample</a></li>
@@ -638,9 +658,9 @@ window.Quarto = {
 
 </header><!-- %:::% .common h1 begin %:::% --><!-- %:::% .common h1 end %:::% --><section id="overview" class="level2" data-number="C.1"><h2 data-number="C.1" class="anchored" data-anchor-id="overview">
 <span class="header-section-number">C.1</span> Overview</h2>
-<p>This document focus in providing a comprehensive overview of the data collected in the survey.</p>
-<p>It focuses on the sample used on the analysis, with explicit indications provided whenever the full sample is used. The analysis sample is a subset of the full sample, and includes only Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.</p>
-<p>Please note that the models were created using cell weights to account for sample unbalances. For more information on the sample balance, see the Supplementary Material <a href="supplementary-material-4.html" class="quarto-xref"><span>D</span></a>.</p>
+<p>This document offers a detailed exploration of the survey data, highlighting key patterns and insights derived from the analysis.</p>
+<p>It emphasizes the analysis sample, with explicit notes whenever the full sample is referenced. The analysis sample is a subset of the full sample, consisting of Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.</p>
+<p>Models were developed using cell weights to address sample imbalances. For details on the sample balancing procedure, refer to Supplementary Material <a href="supplementary-material-4.html" class="quarto-xref"><span>D</span></a>.</p>
 </section><section id="setting-the-environment" class="level2" data-number="C.2"><h2 data-number="C.2" class="anchored" data-anchor-id="setting-the-environment">
 <span class="header-section-number">C.2</span> Setting the Environment</h2>
 <div class="cell">
@@ -657,9 +677,11 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.r-project.org">moments</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">nortest</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://danielvartan.github.io/orbis/">orbis</a></span><span class="op">)</span> <span class="co"># github.com/danielvartan/orbis</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://danielvartan.github.io/prettycheck/">prettycheck</a></span><span class="op">)</span> <span class="co"># github.com/danielvartan/prettycheck</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://danielvartan.github.io/quartor/">quartor</a></span><span class="op">)</span> <span class="co"># github.com/danielvartan/quartor</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rlang.r-lib.org">rlang</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://danielvartan.github.io/rutils/">rutils</a></span><span class="op">)</span> <span class="co"># github.com/danielvartan/rutils</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rpradosiqueira/sidrar/">sidrar</a></span><span class="op">)</span></span>
@@ -759,7 +781,7 @@ Figure&nbsp;C.1: Histogram of the <code>msf_sc</code> variable with a kernel den
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"msf_sc"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-msf-sc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-msf-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.2: Box plot of the <code>msf_sc</code> variable with jittered data points in black.
+Figure&nbsp;C.2: Box plot of the <code>msf_sc</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-msf-sc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -822,7 +844,7 @@ Figure&nbsp;C.3: Histogram of the <code>age</code> variable with a kernel densit
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-age" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.4: Box plot of the <code>age</code> variable with jittered data points in black.
+Figure&nbsp;C.4: Box plot of the <code>age</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -885,7 +907,7 @@ Figure&nbsp;C.5: Histogram of the <code>latitude</code> variable with a kernel d
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"latitude"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-latitude" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-latitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.6: Box plot of the <code>latitude</code> variable with jittered data points in black.
+Figure&nbsp;C.6: Box plot of the <code>latitude</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-latitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -948,7 +970,7 @@ Figure&nbsp;C.7: Histogram of the <code>longitude</code> variable with a kernel 
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"longitude"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-longitude" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-longitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.8: Box plot of the <code>longitude</code> variable with jittered data points in black.
+Figure&nbsp;C.8: Box plot of the <code>longitude</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-longitude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1011,7 +1033,7 @@ Figure&nbsp;C.9: Histogram of the <code>ghi_month</code> variable with a kernel 
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"ghi_month"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-ghi-month" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-ghi-month-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.10: Box plot of the <code>ghi_month</code> variable with jittered data points in black.
+Figure&nbsp;C.10: Box plot of the <code>ghi_month</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-ghi-month-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1074,7 +1096,7 @@ Figure&nbsp;C.11: Histogram of the <code>ghi_annual</code> variable with a kerne
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"ghi_annual"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-ghi-annual" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-ghi-annual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.12: Box plot of the <code>ghi_annual</code> variable with jittered data points in black.
+Figure&nbsp;C.12: Box plot of the <code>ghi_annual</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-ghi-annual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1137,7 +1159,7 @@ Figure&nbsp;C.13: Histogram of the <code>march_equinox_sunrise</code> variable w
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"march_equinox_sunrise"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-march-equinox-sunrise" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-march-equinox-sunrise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.14: Box plot of the <code>march_equinox_sunrise</code> variable with jittered data points in black.
+Figure&nbsp;C.14: Box plot of the <code>march_equinox_sunrise</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-march-equinox-sunrise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1200,7 +1222,7 @@ Figure&nbsp;C.15: Histogram of the <code>march_equinox_sunset</code> variable wi
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"march_equinox_sunset"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-march-equinox-sunset" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-march-equinox-sunset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.16: Box plot of the <code>march_equinox_sunset</code> variable with jittered data points in black.
+Figure&nbsp;C.16: Box plot of the <code>march_equinox_sunset</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-march-equinox-sunset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1263,7 +1285,7 @@ Figure&nbsp;C.17: Histogram of the <code>march_equinox_daylight</code> variable 
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"march_equinox_daylight"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-march-equinox-daylight" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-march-equinox-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.18: Box plot of the <code>march_equinox_daylight</code> variable with jittered data points in black.
+Figure&nbsp;C.18: Box plot of the <code>march_equinox_daylight</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-march-equinox-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1326,7 +1348,7 @@ Figure&nbsp;C.19: Histogram of the <code>june_solstice_sunrise</code> variable w
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"june_solstice_sunrise"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-june-solstice-sunrise" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-june-solstice-sunrise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.20: Box plot of the <code>june_solstice_sunrise</code> variable with jittered data points in black.
+Figure&nbsp;C.20: Box plot of the <code>june_solstice_sunrise</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-june-solstice-sunrise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1389,7 +1411,7 @@ Figure&nbsp;C.21: Histogram of the <code>june_solstice_sunset</code> variable wi
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"june_solstice_sunset"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-june-solstice-sunset" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-june-solstice-sunset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.22: Box plot of the <code>june_solstice_sunset</code> variable with jittered data points in black.
+Figure&nbsp;C.22: Box plot of the <code>june_solstice_sunset</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-june-solstice-sunset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1452,7 +1474,7 @@ Figure&nbsp;C.23: Histogram of the <code>june_solstice_daylight</code> variable 
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"june_solstice_daylight"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-june-solstice-daylight" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-june-solstice-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.24: Box plot of the <code>june_solstice_daylight</code> variable with jittered data points in black.
+Figure&nbsp;C.24: Box plot of the <code>june_solstice_daylight</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-june-solstice-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1515,7 +1537,7 @@ Figure&nbsp;C.25: Histogram of the <code>september_equinox_sunrise</code> variab
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"september_equinox_sunrise"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-september-equinox-sunrise" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-september-equinox-sunrise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.26: Box plot of the <code>september_equinox_sunrise</code> variable with jittered data points in black.
+Figure&nbsp;C.26: Box plot of the <code>september_equinox_sunrise</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-september-equinox-sunrise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1578,7 +1600,7 @@ Figure&nbsp;C.27: Histogram of the <code>september_equinox_sunset</code> variabl
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"september_equinox_sunset"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-september-equinox-sunset" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-september-equinox-sunset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.28: Box plot of the <code>september_equinox_sunset</code> variable with jittered data points in black.
+Figure&nbsp;C.28: Box plot of the <code>september_equinox_sunset</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-september-equinox-sunset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1641,7 +1663,7 @@ Figure&nbsp;C.29: Histogram of the <code>september_equinox_daylight</code> varia
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"september_equinox_daylight"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-september-equinox-daylight" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-september-equinox-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.30: Box plot of the <code>september_equinox_daylight</code> variable with jittered data points in black.
+Figure&nbsp;C.30: Box plot of the <code>september_equinox_daylight</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-september-equinox-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1704,7 +1726,7 @@ Figure&nbsp;C.31: Histogram of the <code>december_solstice_sunrise</code> variab
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"december_solstice_sunrise"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-december-solstice-sunrise" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-december-solstice-sunrise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.32: Box plot of the <code>december_solstice_sunrise</code> variable with jittered data points in black.
+Figure&nbsp;C.32: Box plot of the <code>december_solstice_sunrise</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-december-solstice-sunrise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1767,7 +1789,7 @@ Figure&nbsp;C.33: Histogram of the <code>december_solstice_sunset</code> variabl
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"december_solstice_sunset"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-december-solstice-sunset" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-december-solstice-sunset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.34: Box plot of the <code>december_solstice_sunset</code> variable with jittered data points in black.
+Figure&nbsp;C.34: Box plot of the <code>december_solstice_sunset</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-december-solstice-sunset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1830,7 +1852,7 @@ Figure&nbsp;C.35: Histogram of the <code>december_solstice_daylight</code> varia
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_box_plot</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"december_solstice_daylight"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-var-dist-charts-box-plot-december-solstice-daylight" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-var-dist-charts-box-plot-december-solstice-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.36: Box plot of the <code>december_solstice_daylight</code> variable with jittered data points in black.
+Figure&nbsp;C.36: Box plot of the <code>december_solstice_daylight</code> variable.
 </figcaption><div aria-describedby="fig-sm-3-var-dist-charts-box-plot-december-solstice-daylight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -1847,8 +1869,8 @@ Figure&nbsp;C.36: Box plot of the <code>december_solstice_daylight</code> variab
 </div>
 </div>
 </div>
-</section><section id="correlation-matrix-of-the-main-variables" class="level2" data-number="C.5"><h2 data-number="C.5" class="anchored" data-anchor-id="correlation-matrix-of-the-main-variables">
-<span class="header-section-number">C.5</span> Correlation Matrix of the Main Variables</h2>
+</section><section id="correlation-matrix-of-main-variables" class="level2" data-number="C.5"><h2 data-number="C.5" class="anchored" data-anchor-id="correlation-matrix-of-main-variables">
+<span class="header-section-number">C.5</span> Correlation Matrix of Main Variables</h2>
 <section id="full-sample-1" class="level3" data-number="C.5.1"><h3 data-number="C.5.1" class="anchored" data-anchor-id="full-sample-1">
 <span class="header-section-number">C.5.1</span> Full Sample</h3>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anonymized_data</span> <span class="op">|&gt;</span></span>
@@ -1864,7 +1886,7 @@ Figure&nbsp;C.37: Correlation matrix of main variables (<strong>Full sample</str
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1888,7 +1910,7 @@ Figure&nbsp;C.38: Correlation matrix of the main variables (<strong>Analysis sam
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1897,8 +1919,8 @@ Figure&nbsp;C.38: Correlation matrix of the main variables (<strong>Analysis sam
 </div>
 </figure>
 </div>
-</section></section><section id="latitudinal-and-longitudinal-range" class="level2" data-number="C.6"><h2 data-number="C.6" class="anchored" data-anchor-id="latitudinal-and-longitudinal-range">
-<span class="header-section-number">C.6</span> Latitudinal and Longitudinal Range</h2>
+</section></section><section id="latitudinal-and-longitudinal-ranges" class="level2" data-number="C.6"><h2 data-number="C.6" class="anchored" data-anchor-id="latitudinal-and-longitudinal-ranges">
+<span class="header-section-number">C.6</span> Latitudinal and Longitudinal Ranges</h2>
 <section id="brazil" class="level4" data-number="C.6.0.1"><h4 data-number="C.6.0.1" class="anchored" data-anchor-id="brazil">
 <span class="header-section-number">C.6.0.1</span> Brazil</h4>
 <p>Click <a href="https://anuario.ibge.gov.br/2023/territorio/posicao-e-extensao.html">here</a> to learn more about Brazil’s extreme points.</p>
@@ -1926,7 +1948,7 @@ Figure&nbsp;C.38: Correlation matrix of the main variables (<strong>Analysis sam
 <span><span class="va">brazil_lat_lon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="tbl-sm-3-logitudinal-range-brazil" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sm-3-logitudinal-range-brazil-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;C.19: Brazil’s extreme points (<strong>full sample</strong>).
+Table&nbsp;C.19: Brazil’s extreme points.
 </figcaption><div aria-describedby="tbl-sm-3-logitudinal-range-brazil-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
@@ -2037,20 +2059,11 @@ Table&nbsp;C.21: Latitude and longitude statistics of respondents (<strong>Analy
 </div>
 </section></section><section id="population-distributions" class="level2" data-number="C.7"><h2 data-number="C.7" class="anchored" data-anchor-id="population-distributions">
 <span class="header-section-number">C.7</span> Population Distributions</h2>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>For numerical comparisons, refer to Supplementary Material <a href="supplementary-material-4.html" class="quarto-xref"><span>D</span></a>.</p>
-</div>
-</div>
-</div>
 <section id="brazil-1" class="level3" data-number="C.7.1"><h3 data-number="C.7.1" class="anchored" data-anchor-id="brazil-1">
 <span class="header-section-number">C.7.1</span> Brazil</h3>
-<p>Brazilian Institute of Geography and Statistics’s (<a href="https://www.ibge.gov.br/">IBGE</a>) population estimates of the population distribution is used in the same timeframe of the sample (2017) <span class="citation" data-cites="ibgel">(<a href="references.html#ref-ibgel" role="doc-biblioref">Instituto Brasileiro de Geografia e Estatística, n.d.</a>)</span>. The data can be accessed at the <a href="https://sidra.ibge.gov.br/tabela/6579">IBGE’s SIDRA</a> platform (IBGE’s Table 6579).</p>
-<p>IBGE’s <a href="https://sidra.ibge.gov.br/tabela/6579">Table 6579</a> was used instead of <a href="https://sidra.ibge.gov.br/tabela/6407">Table 6407</a> because the later does not have the same level of detail for the municipalities.</p>
+<p>The population distribution estimates are derived from the Brazilian Institute of Geography and Statistics (<a href="https://www.ibge.gov.br/">IBGE</a>) for the year 2017, aligning with the sample. These estimates are accessible via IBGE’s Automatic Retrieval System (<a href="https://sidra.ibge.gov.br/">SIDRA</a>) platform.</p>
+<!-- @ibgel -->
+<p>Source: Instituto Brasileiro de Geografia e Estatística. (n.d.). Tabela 6579: População residente estimada [Table 6579: Estimated resident population] [Dataset]. SIDRA. https://sidra.ibge.gov.br/Tabela/6579</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ibge_6579_data_state</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">sidrar</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sidrar/man/get_sidra.html">get_sidra</a></span><span class="op">(</span>api <span class="op">=</span><span class="st">"/t/6579/n3/all/v/all/p/2017"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -2265,7 +2278,6 @@ Table&nbsp;C.21: Latitude and longitude statistics of respondents (<strong>Analy
 </div>
 </div>
 </div>
-<!-- See <https://r-charts.com/ggplot2/combining-plots/>. -->
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html">wrap_plots</a></span><span class="op">(</span></span>
 <span>   <span class="va">plot_full_2</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">rm_ggspatial_scale</span><span class="op">(</span><span class="op">)</span>,</span>
@@ -2367,7 +2379,6 @@ Table&nbsp;C.21: Latitude and longitude statistics of respondents (<strong>Analy
 </div>
 </div>
 </div>
-<!-- See. <https://patchwork.data-imaginist.com/articles/patchwork.html> -->
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html">wrap_plots</a></span><span class="op">(</span></span>
 <span>   <span class="va">plot_analysis_1</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">rm_ggspatial_scale</span><span class="op">(</span><span class="op">)</span>,</span>
@@ -2393,8 +2404,8 @@ Table&nbsp;C.21: Latitude and longitude statistics of respondents (<strong>Analy
 </div>
 </div>
 </div>
-</section><section id="brazil-population-versus-sample" class="level3" data-number="C.7.4"><h3 data-number="C.7.4" class="anchored" data-anchor-id="brazil-population-versus-sample">
-<span class="header-section-number">C.7.4</span> Brazil (Population) <em>versus</em> Sample</h3>
+</section><section id="brazil-versus-full-sample" class="level3" data-number="C.7.4"><h3 data-number="C.7.4" class="anchored" data-anchor-id="brazil-versus-full-sample">
+<span class="header-section-number">C.7.4</span> Brazil <em>versus</em> Full Sample</h3>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html">wrap_plots</a></span><span class="op">(</span></span>
 <span>   <span class="va">plot_6579_ibge_1</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">rm_ggspatial_scale</span><span class="op">(</span><span class="op">)</span>,</span>
@@ -2468,7 +2479,8 @@ Table&nbsp;C.21: Latitude and longitude statistics of respondents (<strong>Analy
 <span class="header-section-number">C.8</span> Age Distributions</h2>
 <section id="brazil-2" class="level3" data-number="C.8.1"><h3 data-number="C.8.1" class="anchored" data-anchor-id="brazil-2">
 <span class="header-section-number">C.8.1</span> Brazil</h3>
-<p>See <a href="https://sidra.ibge.gov.br/tabela/6407" class="uri">https://sidra.ibge.gov.br/tabela/6407</a> to learn more about the data.</p>
+<!-- @ibgee -->
+<p>Source: Instituto Brasileiro de Geografia e Estatística. (n.d.). Tabela 6407: População residente, por sexo e grupos de idade [Table 6407: Resident population, by sex and age groups] [Dataset]. SIDRA. https://sidra.ibge.gov.br/tabela/6407</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">prettycheck</span><span class="fu">:::</span><span class="fu"><a href="https://danielvartan.github.io/prettycheck/reference/check_internet.html">assert_internet</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -2559,7 +2571,7 @@ Table&nbsp;C.21: Latitude and longitude statistics of respondents (<strong>Analy
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The statistics shown is this section are estimations based on the age group midpoints, hence, it must be interpreted with caution. <span class="math inline">\(n\)</span> is presented in thousands of people.</p>
+<p>The statistics presented in this section are estimates based on the midpoints of age groups and should be interpreted with caution. The variable <span class="math inline">\(n\)</span> is expressed in thousands of individuals.</p>
 </div>
 </div>
 </div>
@@ -2751,33 +2763,10 @@ Table&nbsp;C.21: Latitude and longitude statistics of respondents (<strong>Analy
 </div>
 </div>
 </div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_age_sex_weigth_series</span> <span class="op">&lt;-</span></span>
-<span>  <span class="va">anonymized_data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_series</span><span class="op">(</span></span>
-<span>    col_y <span class="op">=</span> <span class="st">"weight"</span>,</span>
-<span>    y_label <span class="op">=</span> <span class="st">"Weight (kg)"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="fig-sm-3-age-sex-weigth-series" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-age-sex-weigth-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.39: Relation between age and weight (kg), divided by sex and aggregated by the mean. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
-</figcaption><div aria-describedby="fig-sm-3-age-sex-weigth-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-109-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>[Source: Created by the author, based on a data visualization from <span class="citation" data-cites="roenneberg2007">Roenneberg et al. (<a href="references.html#ref-roenneberg2007" role="doc-biblioref">2007, Figure 4</a>)</span>.{.legend}</p>
-</div>
-</figure>
-</div>
 </section><section id="analysis-sample-4" class="level3" data-number="C.8.3"><h3 data-number="C.8.3" class="anchored" data-anchor-id="analysis-sample-4">
 <span class="header-section-number">C.8.3</span> Analysis Sample</h3>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">stats_summary</span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">stats_summary</span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -2787,7 +2776,7 @@ Figure&nbsp;C.39: Relation between age and weight (kg), divided by sex and aggre
 </div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">summarize_by</span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">summarize_by</span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -2797,7 +2786,7 @@ Figure&nbsp;C.39: Relation between age and weight (kg), divided by sex and aggre
 </div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">summarize_by</span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"region"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb100"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">summarize_by</span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"region"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -2807,7 +2796,7 @@ Figure&nbsp;C.39: Relation between age and weight (kg), divided by sex and aggre
 </div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">summarize_by</span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"state"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">summarize_by</span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"state"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -2817,18 +2806,18 @@ Figure&nbsp;C.39: Relation between age and weight (kg), divided by sex and aggre
 </div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_analysis_age_1</span> <span class="op">&lt;-</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb102"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_analysis_age_1</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">weighted_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_age_pyramid</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-115-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-114-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_analysis_age_2</span> <span class="op">&lt;-</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_analysis_age_2</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">anonymized_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_brazil_state</span><span class="op">(</span></span>
 <span>    col_fill <span class="op">=</span> <span class="st">"age"</span>, <span class="co"># Means</span></span>
@@ -2839,13 +2828,13 @@ Figure&nbsp;C.39: Relation between age and weight (kg), divided by sex and aggre
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-116-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-115-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_analysis_age_3</span> <span class="op">&lt;-</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb104"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_analysis_age_3</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">weighted_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_brazil_municipality</span><span class="op">(</span></span>
 <span>    col_fill <span class="op">=</span> <span class="st">"age"</span>, <span class="co"># Means</span></span>
@@ -2855,7 +2844,7 @@ Figure&nbsp;C.39: Relation between age and weight (kg), divided by sex and aggre
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-117-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-116-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2864,7 +2853,7 @@ Figure&nbsp;C.39: Relation between age and weight (kg), divided by sex and aggre
 <span class="header-section-number">C.9</span> Weight Distributions</h2>
 <section id="full-sample-5" class="level3" data-number="C.9.1"><h3 data-number="C.9.1" class="anchored" data-anchor-id="full-sample-5">
 <span class="header-section-number">C.9.1</span> Full Sample</h3>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb106"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu">rutils</span><span class="fu">::</span><span class="fu"><a href="https://danielvartan.github.io/rutils/reference/test_outlier.html">test_outlier</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_latitude_series</span><span class="op">(</span></span>
 <span>    col <span class="op">=</span> <span class="st">"weight"</span>,</span>
@@ -2872,12 +2861,12 @@ Figure&nbsp;C.39: Relation between age and weight (kg), divided by sex and aggre
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div id="fig-sm-3-weight-latitude-series" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-weight-latitude-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.40: Boxplots of mean weight values (kg) aggregated by 1° latitude intervals, illustrating the relationship between latitude and weight. The × symbol points to the mean. The orange line represents a linear regression.
+Figure&nbsp;C.39: Boxplots of mean weight values (kg) aggregated by 1° latitude intervals, illustrating the relationship between latitude and weight. The × symbol points to the mean. The orange line represents a linear regression.
 </figcaption><div aria-describedby="fig-sm-3-weight-latitude-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-119-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-118-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2886,8 +2875,31 @@ Figure&nbsp;C.40: Boxplots of mean weight values (kg) aggregated by 1° latitude
 </div>
 </figure>
 </div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb106"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_age_sex_weigth_series</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">anonymized_data</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_series</span><span class="op">(</span></span>
+<span>    col_y <span class="op">=</span> <span class="st">"weight"</span>,</span>
+<span>    y_label <span class="op">=</span> <span class="st">"Weight (kg)"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div id="fig-sm-3-age-sex-weigth-series" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-age-sex-weigth-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;C.40: Relation between age and weight (kg), divided by sex and aggregated by the mean. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+</figcaption><div aria-describedby="fig-sm-3-age-sex-weigth-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-119-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="citation" data-cites="roenneberg2007">(Source: Created by the author, based on a data visualization from <a href="references.html#ref-roenneberg2007" role="doc-biblioref">Roenneberg et al., 2007</a>[Figure 4])</span>.{.legend}</p>
+</div>
+</figure>
+</div>
 </section></section><section id="chronotype-distributions" class="level2" data-number="C.10"><h2 data-number="C.10" class="anchored" data-anchor-id="chronotype-distributions">
-<span class="header-section-number">C.10</span> Chronotype distributions</h2>
+<span class="header-section-number">C.10</span> Chronotype Distributions</h2>
 <section id="full-sample-6" class="level3" data-number="C.10.1"><h3 data-number="C.10.1" class="anchored" data-anchor-id="full-sample-6">
 <span class="header-section-number">C.10.1</span> Full Sample</h3>
 <div class="cell">
@@ -2928,10 +2940,10 @@ Figure&nbsp;C.40: Boxplots of mean weight values (kg) aggregated by 1° latitude
 <span>  <span class="va">anonymized_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_series</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="fig-sm-3-age-sex-chronotype-series" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-age-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</details><div id="fig-sm-3-fs-age-sex-chronotype-series" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-fs-age-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;C.41: Observed relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF<sub>sc</sub>), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
-</figcaption><div aria-describedby="fig-sm-3-age-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</figcaption><div aria-describedby="fig-sm-3-fs-age-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -2944,16 +2956,15 @@ Figure&nbsp;C.41: Observed relation between age and chronotype, divided by sex a
 </div>
 </figure>
 </div>
-<div id="fig-sm-3-roenneberg-2007-figure-4" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 80%;">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-roenneberg-2007-figure-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-sm-3-fs-roenneberg-2007-figure-4" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 85%;">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-fs-roenneberg-2007-figure-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;C.42: Distribution of European chronotypes by age, as shown in <span class="citation" data-cites="roenneberg2007">Roenneberg et al. (<a href="references.html#ref-roenneberg2007" role="doc-biblioref">2007</a>)</span>, for comparison.
-</figcaption><div aria-describedby="fig-sm-3-roenneberg-2007-figure-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="images/roenneberg-2007-figure-4.png" class="img-fluid figure-img" style="width: 80%;"></p>
+</figcaption><div aria-describedby="fig-sm-3-fs-roenneberg-2007-figure-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><img src="images/roenneberg-2007-figure-4.png" class="img-fluid figure-img" style="width: 85%;"></p>
 <p><span class="legend">Source: Reproduced from <span class="citation" data-cites="roenneberg2007">Roenneberg et al. (<a href="references.html#ref-roenneberg2007" role="doc-biblioref">2007, Figure 4</a>)</span>.</span></p>
 </div>
 </figure>
 </div>
-<div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb110"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_age_sex_series</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">anonymized_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu">rutils</span><span class="fu">::</span><span class="fu"><a href="https://danielvartan.github.io/rutils/reference/test_outlier.html">test_outlier</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -2962,12 +2973,21 @@ Figure&nbsp;C.42: Distribution of European chronotypes by age, as shown in <span
 <span>    x_label <span class="op">=</span> <span class="st">"Weigth"</span>,</span>
 <span>    date_breaks <span class="op">=</span> <span class="st">"30 min"</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+</details><div id="fig-sm-3-fs-weight-sex-chronotype-series" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-fs-weight-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;C.43: Observed relation between weight and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF<sub>sc</sub>), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+</figcaption><div aria-describedby="fig-sm-3-fs-weight-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-123-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
+</div>
+<p><span class="legend">Source: Created by the author based on a data visualization from <span class="citation" data-cites="roenneberg2007">Roenneberg et al. (<a href="references.html#ref-roenneberg2007" role="doc-biblioref">2007, Figure 4</a>)</span>.</span></p>
+</div>
+</figure>
 </div>
 </section><section id="analysis-sample-5" class="level3" data-number="C.10.2"><h3 data-number="C.10.2" class="anchored" data-anchor-id="analysis-sample-5">
 <span class="header-section-number">C.10.2</span> Analysis Sample</h3>
@@ -3028,10 +3048,10 @@ Figure&nbsp;C.42: Distribution of European chronotypes by age, as shown in <span
 </div>
 </div>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb114"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_chronotype</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="fig-sm-3-chronotype-distribution-analysis-sample" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-chronotype-distribution-analysis-sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.43: Observed distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF<sub>sc</sub>), a proxy for chronotype. <br> Chronotypes are categorized into quantiles, ranging from extremely early (<span class="math inline">\(0 |- 0.11\)</span>) to extremely late (<span class="math inline">\(0.88 - 1\)</span>).
-</figcaption><div aria-describedby="fig-sm-3-chronotype-distribution-analysis-sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</details><div id="fig-sm-3-as-chronotype-distribution-analysis-sample" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-as-chronotype-distribution-analysis-sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;C.44: Observed distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF<sub>sc</sub>), a proxy for chronotype. <br> Chronotypes are categorized into quantiles, ranging from extremely early (<span class="math inline">\(0 |- 0.111\)</span>) to extremely late (<span class="math inline">\(0.888 |- 1\)</span>).
+</figcaption><div aria-describedby="fig-sm-3-as-chronotype-distribution-analysis-sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -3040,16 +3060,16 @@ Figure&nbsp;C.43: Observed distribution of the local time of the sleep-corrected
 </div>
 </div>
 </div>
-<p>[Source: Created by the author based on a data visualization from <span class="citation" data-cites="roenneberg2019b">Roenneberg et al. (<a href="references.html#ref-roenneberg2019b" role="doc-biblioref">2019, Figure 1</a>)</span>.{.legend}</p>
+<p><span class="legend">Source: Created by the author based on a data visualization from <span class="citation" data-cites="roenneberg2019b">Roenneberg et al. (<a href="references.html#ref-roenneberg2019b" role="doc-biblioref">2019, Figure 1</a>)</span>.</span></p>
 </div>
 </figure>
 </div>
-<div id="fig-sm-3-roenneberg-2019-figure-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 80%;">
+<div id="fig-sm-3-roenneberg-2019-figure-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 85%;">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-roenneberg-2019-figure-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.44: Distribution of European chronotypes, as shown in <span class="citation" data-cites="roenneberg2019b">Roenneberg et al. (<a href="references.html#ref-roenneberg2019b" role="doc-biblioref">2019</a>)</span> (for comparison).
+Figure&nbsp;C.45: Distribution of European chronotypes, as shown in <span class="citation" data-cites="roenneberg2019b">Roenneberg et al. (<a href="references.html#ref-roenneberg2019b" role="doc-biblioref">2019</a>)</span> (for comparison).
 </figcaption><div aria-describedby="fig-sm-3-roenneberg-2019-figure-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="images/roenneberg-2019-figure-1.png" class="img-fluid figure-img" style="width: 80%;"></p>
-<p><span class="citation" data-cites="roenneberg2019b">(Source: Reproduced from <a href="references.html#ref-roenneberg2019b" role="doc-biblioref">Roenneberg et al., 2019</a>[Figure 1, right part].)</span> {.legend}</p>
+<p><img src="images/roenneberg-2019-figure-1.png" class="img-fluid figure-img" style="width: 85%;"></p>
+<p><span class="legend">Source: Reproduced from <span class="citation" data-cites="roenneberg2019b">Roenneberg et al. (<a href="references.html#ref-roenneberg2019b" role="doc-biblioref">2019, Figure 1</a>, Right part)</span>.</span></p>
 </div>
 </figure>
 </div>
@@ -3095,10 +3115,10 @@ Figure&nbsp;C.44: Distribution of European chronotypes, as shown in <span class=
 <span>  <span class="va">weighted_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&lt;=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_series</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="fig-sm-3-age-sex-chronotype-series" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-age-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.45: Observed relation between age and chronotype, divided by sex and aggregated by the mean (Analysis sample). Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF<sub>sc</sub>), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
-</figcaption><div aria-describedby="fig-sm-3-age-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</details><div id="fig-sm-3-as-age-sex-chronotype-series" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-as-age-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;C.46: Observed relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF<sub>sc</sub>), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+</figcaption><div aria-describedby="fig-sm-3-as-age-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -3111,7 +3131,6 @@ Figure&nbsp;C.45: Observed relation between age and chronotype, divided by sex a
 </div>
 </figure>
 </div>
-<div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb118"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_age_sex_series</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">weighted_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu">rutils</span><span class="fu">::</span><span class="fu"><a href="https://danielvartan.github.io/rutils/reference/test_outlier.html">test_outlier</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span>, <span class="va">weight</span> <span class="op">&gt;</span> <span class="fl">45</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -3120,12 +3139,21 @@ Figure&nbsp;C.45: Observed relation between age and chronotype, divided by sex a
 <span>    x_label <span class="op">=</span> <span class="st">"Weigth"</span>,</span>
 <span>    date_breaks <span class="op">=</span> <span class="st">"30 min"</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+</details><div id="fig-sm-3-as-weight-sex-chronotype-series" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-as-weight-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;C.47: Observed relation between weight and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF<sub>sc</sub>), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+</figcaption><div aria-describedby="fig-sm-3-as-weight-sex-chronotype-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-132-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
+</div>
+<p><span class="legend">Source: Created by the author based on a data visualization from <span class="citation" data-cites="roenneberg2007">Roenneberg et al. (<a href="references.html#ref-roenneberg2007" role="doc-biblioref">2007, Figure 4</a>)</span>.</span></p>
+</div>
+</figure>
 </div>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">rutils</span><span class="fu">:::</span><span class="fu">summarize_by</span><span class="op">(</span><span class="st">"msf_sc"</span>, <span class="st">"region"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3147,7 +3175,6 @@ Figure&nbsp;C.45: Observed relation between age and chronotype, divided by sex a
 </div>
 </div>
 </div>
-<div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb121"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">limits</span> <span class="op">&lt;-</span> <span class="co"># Interquartile range (IQR): Q3 - Q1</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>    <span class="va">weighted_data</span> <span class="op">|&gt;</span></span>
@@ -3177,12 +3204,21 @@ Figure&nbsp;C.45: Observed relation between age and chronotype, divided by sex a
 <span>    limits <span class="op">=</span> <span class="va">limits</span>, <span class="co"># !!!</span></span>
 <span>    quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+</details><div id="fig-sm-3-as-chronotype-geographical-distribution-by-state" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-as-chronotype-geographical-distribution-by-state-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;C.48: Observed geographical distribution of MSF<sub>sc</sub> values by Brazilian state, illustrating how chronotype varies with latitude in Brazil. <br> MSF<sub>sc</sub> is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF<sub>sc</sub> values indicate a tendency towards eveningness. The color scale is bounded by the first and third quartiles. Differences in mean MSF<sub>sc</sub> values across states are small and fall within a narrow range relative to the scale of the Munich ChronoType Questionnaire (MCTQ), limiting the significance of these variations.
+</figcaption><div aria-describedby="fig-sm-3-as-chronotype-geographical-distribution-by-state-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="supplementary-material-3_files/figure-html/unnamed-chunk-135-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
+</div>
+<p><span class="legend">Source: Created by the author.</span></p>
+</div>
+</figure>
 </div>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb122"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">limits</span> <span class="op">&lt;-</span> <span class="co"># Interquartile range (IQR): Q3 - Q1</span></span>
@@ -3282,10 +3318,10 @@ Figure&nbsp;C.45: Observed relation between age and chronotype, divided by sex a
 <span><span class="va">plot</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">rm_ggspatial_scale</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">msf_sc_category</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="fig-sm-3-chronotype-geographical-distribution-by-respondent" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-chronotype-geographical-distribution-by-respondent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.46: Observed geographical distribution of MSF<sub>sc</sub> values by a spectrum of extremely early and extremely late, illustrating how chronotype varies with latitude in Brazil. <br> MSF<sub>sc</sub> is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Chronotypes are categorized into quantiles, ranging from extremely early (<span class="math inline">\(0 |- 0.11\)</span>) to extremely late (<span class="math inline">\(0.88 - 1\)</span>). No discernible pattern emerges from the distribution of chronotypes across latitudes.
-</figcaption><div aria-describedby="fig-sm-3-chronotype-geographical-distribution-by-respondent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</details><div id="fig-sm-3-as-chronotype-geographical-distribution-by-respondent" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-as-chronotype-geographical-distribution-by-respondent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;C.49: Observed geographical distribution of MSF<sub>sc</sub> values by a spectrum of extremely early and extremely late chronotypes, illustrating how chronotype varies with latitude in Brazil. <br> MSF<sub>sc</sub> is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Chronotypes are categorized into quantiles, ranging from extremely early (<span class="math inline">\(0 |- 0.111\)</span>) to extremely late (<span class="math inline">\(0.888 |- 1\)</span>). No discernible pattern emerges from the distribution of chronotypes across latitudes.
+</figcaption><div aria-describedby="fig-sm-3-as-chronotype-geographical-distribution-by-respondent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -3299,10 +3335,10 @@ Figure&nbsp;C.46: Observed geographical distribution of MSF<sub>sc</sub> values 
 </figure>
 </div>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb125"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weighted_data</span> <span class="op">|&gt;</span> <span class="fu">plotr</span><span class="fu">:::</span><span class="fu">plot_latitude_series</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div id="fig-sm-3-chronotype-latitude-series" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-chronotype-latitude-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;C.47: Boxplots of observed mean MSF<sub>sc</sub> values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF<sub>sc</sub> represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF<sub>sc</sub> values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
-</figcaption><div aria-describedby="fig-sm-3-chronotype-latitude-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</details><div id="fig-sm-3-as-chronotype-latitude-series" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sm-3-as-chronotype-latitude-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;C.50: Boxplots of observed mean MSF<sub>sc</sub> values aggregated by <span class="math inline">\(1°\)</span> latitude intervals, illustrating the relationship between latitude and chronotype. <br> MSF<sub>sc</sub> is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF<sub>sc</sub> values indicate a tendency towards eveningness. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+</figcaption><div aria-describedby="fig-sm-3-as-chronotype-latitude-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -3334,9 +3370,6 @@ Figure&nbsp;C.47: Boxplots of observed mean MSF<sub>sc</sub> values aggregated b
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-ibgel" class="csl-entry" role="listitem">
-Instituto Brasileiro de Geografia e Estatística. (n.d.). <em>Tabela 6579: População residente estimada</em> [Data set]. SIDRA. Retrieved November 16, 2023, from <a href="https://sidra.ibge.gov.br/Tabela/3939">https://sidra.ibge.gov.br/Tabela/3939</a>
-</div>
 <div id="ref-roenneberg2007" class="csl-entry" role="listitem">
 Roenneberg, T., Kuehnle, T., Juda, M., Kantermann, T., Allebrandt, K., Gordijn, M., &amp; Merrow, M. (2007). Epidemiology of the human circadian clock. <em>Sleep Medicine Reviews</em>, <em>11</em>(6), 429–438. <a href="https://doi.org/10.1016/j.smrv.2007.07.005">https://doi.org/10.1016/j.smrv.2007.07.005</a>
 </div>

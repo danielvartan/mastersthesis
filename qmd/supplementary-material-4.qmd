@@ -11,7 +11,13 @@ source(here::here("R", "_setup.R"))
 
 ## Overview
 
-This document outlines the procedure for balancing the sample used in the hypothesis test.
+This document outlines the methodology employed to balance the sample data, ensuring representativeness and reliability for hypothesis testing and subsequent analysis.
+
+The balancing process accounts for the population distribution across the variables `state`, `sex`, and `age`.
+
+::: {.callout-warning}
+Please note that the values presented here are specific to the group of **states in the Brazilian time zone UTC-3** and do not represent the entire country.
+:::
 
 ## Setting the Environment
 
@@ -40,13 +46,7 @@ library(rlang)
 library(targets)
 ```
 
-## Loading and Processing the Sample Data
-
-You can visualize the data wrangling pipeline at the code repository in the  [`_targets.R`](https://github.com/danielvartan/mastersthesis/blob/main/_targets.R) file.
-
-::: {.callout-warning}
-Please note that these values refer to the group of **states in the Brazilian time zone UTC-3**, not the whole country.
-:::
+## Loading the Sample Data
 
 ```{r}
 #| eval: false
@@ -90,13 +90,9 @@ data
 
 ## Getting the Population Data
 
-The sample data was obtained in 2017 from October 15th to 21st by a broadcast of the online questionnaire on a popular Brazil's Sunday TV show with national reach [@redeglobo2017]. Here the Brazilian Institute of Geography and Statistics's ([IBGE](https://www.ibge.gov.br/)) Continuous National Household Sample Survey ([PNAD Contínua](https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html)) its used for a estimate of the population distribution in this timeframe [@ibgee]. The data can be accessed at the [IBGE's SIDRA](https://sidra.ibge.gov.br/tabela/6407) platform (IBGE's Table 6407).
+<!-- @ibgee -->
 
-The balance is made considering the distribution of the population related only to the variables `state`, `sex` and `age`.
-
-::: {.callout-warning}
-Please note that these values refer to the group of **states in the Brazilian time zone UTC-3**, not the whole country.
-:::
+Source: Instituto Brasileiro de Geografia e Estatística. (n.d.). Tabela 6407: População residente, por sexo e grupos de idade \[Table 6407: Resident population, by sex and age groups\] \[Dataset\]. SIDRA. https://sidra.ibge.gov.br/tabela/6407
 
 ```{r}
 #| message: false
@@ -166,10 +162,6 @@ ibge_6407_data
 ```
 
 ```{r}
-ibge_6407_data |> dplyr::glimpse()
-```
-
-```{r}
 ibge_6407_data |> rutils:::summarize_data("age_group")
 ```
 
@@ -189,11 +181,7 @@ ibge_6407_data |> rutils:::summarize_data("region")
 ibge_6407_data |> rutils:::summarize_data("country")
 ```
 
-## Comparing Sample Data With the Population Data
-
-::: {.callout-warning}
-Please note that these values refer to the group of **states in the Brazilian time zone UTC-3**, not the whole country.
-:::
+## Comparing the Sample Data with the Population Data
 
 ```{r}
 data |> rutils:::compare_sample(ibge_6407_data, "age_group")
@@ -234,10 +222,12 @@ quartor:::write_in_results_yml(
 
 ## Adjusting Sample Data with the Population Data
 
-The tables above indicate an overrepresentation of states like São Paulo and Rio de Janeiro, while states such as Amapá and Tocantins are underrepresented. To achieve a balanced sample, a cell weighting procedure was use [see @kalton2003] based on the characteristics of `state`, `sex` and `age group`, using data from the 2017 PNAD as a reference.
+The tables above reveal an overrepresentation of states such as São Paulo and Rio de Janeiro, while states like Amapá and Tocantins are underrepresented. To address this imbalance, a cell weighting procedure was applied, using the variables `state`, `sex`, and `age group` to ensure a more representative sample.
+
+See @kalton2003 and @kuhn2022a to learn more about the methodology.
 
 $$
-\text{Cell weighting}: \cfrac{\% \ \text{2017 PNAD}}{\% \ \text{Survey sample}}
+\text{Cell weighting}: \cfrac{\% \ \text{2017 IBGE's PNAD Survey}}{\% \ \text{Sample}}
 $$
 
 ```{r}
@@ -250,8 +240,6 @@ ibge_6407_data |>
   janitor::adorn_ns() |>
   dplyr::as_tibble()
 ```
-
-Click [here](https://www.tidyverse.org/blog/2022/05/case-weights/) to learn more.
 
 ```{r}
 weights_data <-
@@ -301,6 +289,57 @@ test_data <-
 
 ## Testing Fitting a Model with the Weights
 
+### Without Weights
+
+```{r}
+#| code-fold: false
+
+model <-
+  parsnip::linear_reg() |>
+  parsnip::set_engine("lm") |>
+  parsnip::set_mode("regression")
+```
+
+```{r}
+#| code-fold: false
+
+workflow <-
+  workflows::workflow() |>
+  workflows::add_formula(msf_sc ~ sex + age) |>
+  workflows::add_model(model)
+
+workflow
+```
+
+```{r}
+#| code-fold: false
+
+fit <- workflow |> parsnip::fit(test_data)
+```
+
+```{r}
+fit |>
+  broom::tidy() |>
+  janitor::adorn_rounding(5)
+```
+
+```{r}
+#| include: false
+
+fit |>
+  broom::augment(test_data) |>
+  janitor::adorn_rounding(5)
+```
+
+```{r}
+fit |>
+  broom::glance() |>
+  tidyr::pivot_longer(cols = dplyr::everything()) |>
+  janitor::adorn_rounding(10)
+```
+
+### With Weights
+
 ```{r}
 #| code-fold: false
 
@@ -347,34 +386,4 @@ fit |>
   broom::glance() |>
   tidyr::pivot_longer(cols = dplyr::everything()) |>
   janitor::adorn_rounding(10)
-```
-
-```{r}
-fit_engine <- fit |> parsnip::extract_fit_engine()
-
-fit_engine |> summary()
-```
-
-```{r}
-#| code-fold: false
-
-fit_engine_2 <-
-  lm(
-    formula = msf_sc ~ sex + age,
-    weights = cell_weight,
-    data = test_data
-  )
-
-fit_engine_2 |> summary()
-```
-
-```{r}
-
-report::report(fit_engine_2)
-```
-
-```{r}
-#| code-fold: false
-
-lm(formula = msf_sc ~ sex + age, data = test_data) |> summary()
 ```

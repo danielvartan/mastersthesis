@@ -42,6 +42,8 @@ book:
     - qmd/supplementary-material-8.qmd
     - qmd/supplementary-material-9.qmd
     - qmd/supplementary-material-10.qmd
+    - qmd/supplementary-material-11.qmd
+    - qmd/supplementary-material-12.qmd
   comments:
     hypothesis:
       theme: clean

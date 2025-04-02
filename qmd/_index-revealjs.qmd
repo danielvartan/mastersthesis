@@ -577,7 +577,7 @@ plot |>
 Respondent level by categorical chronotype.
 :::
 
-## The *p*-value Problem {.smaller}
+## The $p$-value Problem {.smaller}
 
 ::::: {.columns}
 :::: {.column style="width: 40%; padding-top: 0px;"}
@@ -592,7 +592,7 @@ Confirmation bias.
 <br>
 
 ::: {style="font-size: 0.5em; font-style: italic;"}
-Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *p-value* curve. The parameter $n_{\alpha}$ represents the minimum sample size to detect statistically significant differences among compared groups. The parameter $n_{\gamma}$ represents the convergence point of the *p-value* curve. When the *p-value* curve expresses practical differences, the area under the red curve ($A_{p(n)}$) is smaller than the area under the constant function $\alpha = 0.05$ ($A_{\alpha = 0.05}$) when it is evaluated between $0$ and $n_{\gamma}$.
+Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent $p$-value curve. The parameter $n_{\alpha}$ represents the minimum sample size to detect statistically significant differences among compared groups. The parameter $n_{\gamma}$ represents the convergence point of the $p$-value curve. When the $p$-value curve expresses practical differences, the area under the red curve ($A_{p(n)}$) is smaller than the area under the constant function $\alpha = 0.05$ ($A_{\alpha = 0.05}$) when it is evaluated between $0$ and $n_{\gamma}$.
 :::
 ::::
 :::: {.column style="width: 60%; padding-top: 100px;"}
@@ -607,7 +607,7 @@ Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *
 ::: {.notes}
 :::
 
-## The *p*-value Problem {.smaller}
+## The $p$-value Problem {.smaller}
 
 :::: {.columns}
 ::: {.column style="width: 50%; font-size: 0.7em; padding-top: 0px;"}
