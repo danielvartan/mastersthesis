@@ -15,19 +15,14 @@ book:
   keyword: >
     Complexity science. Complex systems. Chronobiology. Biological rhythms.
     Chronotypes. Circadian phenotypes. Sleep. Entrainment. Latitude. MCTQ.
+  submitted: 2024
   language: en
   license: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
-  submitted: 2024
   favicon: images/favicon.png
   url: https://danielvartan.github.io/mastersthesis/
   site-url: https://danielvartan.github.io/mastersthesis/
   repo-url: https://github.com/danielvartan/mastersthesis/
   issue-url: https://github.com/danielvartan/mastersthesis/issues/
-  open-graph:
-    image: images/og-image.png
-    image-width: 2400
-    image-height: 1600
-    image-alt: "Is Latitude Associated with Chronotype? [Master's Thesis]"
   repo-branch: main
 
 citation:

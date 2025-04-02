@@ -11,7 +11,7 @@ source(here::here("R", "_setup.R"))
 
 Complexity science is the science dedicated to understanding emergent phenomena [@krakauer2024]. Like computer science and chronobiology, it began to take shape in the second half of the 20th century[^ch-3-1], by the convergence of several fields, such as systems theory, game theory, and nonlinear dynamics [@sayama2015].
 
-At a fundamental level, emergence can be defined as stable macroscopic patterns arising from local interactions [@epstein1999]. These patterns emerge from the collective actions of a system's parts, which cannot be attained by simply summing them up [@holland2014] (@fig-chapter-3-lewin-1993-figure-1). They may give rise to new properties in a system, which can only be studied by observing the interactions within it.
+At a fundamental level, emergence can be defined as stable macroscopic patterns arising from local interactions [@epstein1999]. These patterns emerge from the collective actions of a system's parts, which cannot be attained by simply summing them up [@holland2014]. They may give rise to new properties in a system, which can only be studied by observing the interactions within it (@fig-chapter-3-lewin-1993-figure-1).
 
 ::: {#fig-chapter-3-lewin-1993-figure-1}
 ![](images/lewin-1993-figure-1.png){width=65%}
@@ -43,4 +43,4 @@ The entrainment of these rhythms with environmental periodicities can involve di
 
 To model this phenomenon, one must understand how complex systems behave and can be studied. This thesis adopts a global approach to understanding the effect of light/dark cycle entrainment on circadian expressions of populations, considering potential interactions for proper system control. Given the thesis's aim to test the latitude hypothesis, a global approach is appropriate. Alternatively, a local approach could explore entrainment in populations by modeling individuals, each with their own circadian clock, and their interactions with the environment.
 
-[^ch-3-1]: Brian Castellani & Lasse Gerrits created a visual map to illustrate the different fields and components of complexity science. You can find it at <https://www.art-sciencefactory.com/complexity-map_feb09.html>.
+[^ch-3-1]: Brian Castellani & Lasse Gerrits created a visual map to illustrate the different fields and components of complexity science. You can find it at: <https://www.art-sciencefactory.com/complexity-map_feb09.html>

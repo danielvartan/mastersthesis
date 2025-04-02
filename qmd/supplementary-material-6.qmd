@@ -193,7 +193,7 @@ data |>
 #| message: false
 #| warning: false
 #| fig-width: 10
-#| fig-width: 7
+#| fig-height: 7
 
 data |>
   plotr:::plot_ggally(

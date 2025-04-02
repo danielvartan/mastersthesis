@@ -9,24 +9,16 @@ title: "Is Latitude Associated with Chronotype?"
 author: "Daniel Vartanian"
 institute: "University of São Paulo"
 date: 2025-02-03
-# title-slide-attributes:
-#  data-background-color: "white"
 
 website:
   favicon: images/favicon.png
   site-url: https://danielvartan.github.io/mastersthesis/
   repo-url: https://github.com/danielvartan/mastersthesis/
   issue-url: https://github.com/danielvartan/mastersthesis/issues/
-  open-graph:
-    image: images/og-image.png
-    image-width: 2400
-    image-height: 1600
-    image-alt: "Is Latitude Associated with Chronotype? [Master's Thesis]"
   repo-branch: main
 
 format:
   revealjs:
-    open-graph: true
     locale: en
     lang: en
     code-link: true
@@ -49,3 +41,4 @@ format:
       titleSelector: [h1 h2]
       useTextContentForMissingTitles: false
       hideMissingTitles: false
+    include-in-header: "html/include-in-header.html"

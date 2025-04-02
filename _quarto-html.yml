@@ -73,3 +73,4 @@ format:
     link-external-icon: false
     link-external-newwindow: false
     theme: [cosmo, brand, scss/web.scss]
+    include-in-header: "html/include-in-header.html"

@@ -368,7 +368,7 @@ english
   }{}
 }
 
-% Open an issue about it (`\hspace{-1em}`) - Title streching.
+% Open an issue about it (`\hspace{-1em}`) - Title stretching.
 \renewcommand{\chapternamenum}{
   \ifthenelse{\boolean{abntex@apendiceousecao}}{
     \hspace{-2em} \space
@@ -739,7 +739,7 @@ english
 % \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
 % \makeatother
 
-% Allow footnotes in longtable head/foot
+% Allow footnotes in `longtable` head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
 
@@ -1144,7 +1144,7 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{F1F3F5}}{}
 \makeatother
 \makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, colback={codebgcolor}, frame hidden, enhanced, breakable, boxrule=0pt, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, frame hidden, sharp corners, borderline west={3pt}{0pt}{shadecolor}, breakable, enhanced, colback={codebgcolor}]}{\end{tcolorbox}}\fi
 \makeatother
 
 % -----
@@ -1389,7 +1389,7 @@ stronger solar zeitgeber near the equator should promote greater
 entrainment to the light/dark cycle, potentially reducing phenotype
 diversity and favoring morningness in equatorial populations. To test
 this hypothesis, data from \(65,824\) individuals distributed across a
-\(33.85°\) latitute range in Brazil were analyzed. Data collection
+\(33.85°\) latitude range in Brazil were analyzed. Data collection
 employed the Munich ChronoType Questionnaire (MCTQ) during a single
 spring week (October 15--21, 2017), minimizing seasonal variations in
 photoperiod across regions. The analysis employed nested regression
@@ -1517,9 +1517,9 @@ The central hypothesis is that \emph{latitude is associated with human
 chronotype distributions}, with populations closer to the equator
 exhibiting, on average, a shorter or more morning-oriented circadian
 phenotype compared to those living near the poles
-\autocite{bohlen1973,randler2008,leocadio-miguel2014,horzum2015,leocadio-miguel2017}.
-The primary objective of this study is to model and test this hypothesis
-by critically examining whether a meaningful association exists between
+\autocite{bohlen1973,roenneberg2003b,leocadio-miguel2017}. The primary
+objective of this study is to model and test this hypothesis by
+critically examining whether a meaningful association exists between
 latitude and circadian phenotypes in the Brazilian population.
 
 This study emerged from an insightful debate with my former supervisor,
@@ -1542,7 +1542,7 @@ series of analyses conducted on a large dataset of \(65,824\)
 individuals, collected from the Brazilian population in 2017. The
 dataset is based on the Munich Chronotype Questionnaire (MCTQ)
 \autocite{roenneberg2003b,roenneberg2012a}, and includes data on sleep
-habits and geeographical and demographic characteristics from all of
+habits and geographical and demographic characteristics from all of
 Brazil's states.
 
 It is important to emphasize that this thesis does not aim to propose or
@@ -1666,7 +1666,7 @@ the collective behavior of the system's parts, resulting in properties
 not attainable by the aggregate summation
 \autocite{epstein1999,holland2014}. Today, it is understood that
 endogenous rhythms provide organisms with an anticipatory capacity,
-enabling them to pre-emptively organize resources and activities
+enabling them to preemptively organize resources and activities
 \autocite{aschoff1989a}.
 
 Despite the endogenous nature of these rhythms, they can still be
@@ -1743,7 +1743,7 @@ process.
 interaction between Process \(\text{S}\) (Homeostatic/Sleep-dependent
 process) and Process \(\text{C}\) (Circadian rhythm process) in sleep
 regulation. \microskip \\ The figure depicts two scenarios: One with
-\(17\) hours of wakefulness followed by \(7\) hours of sleep, and
+\(17\) hours of wakefulness followed by \(7\) hours of sleep; and
 another, under sleep deprivation, with \(41\) hours of wakefulness
 followed by \(7\) hours of sleep. The hatched areas indicate periods of
 sleep, illustrating the exponential decline of Process \(\text{S}\).}
@@ -1813,18 +1813,18 @@ phenomena \autocite{krakauer2024}. Like computer science and
 chronobiology, it began to take shape in the second half of the 20th
 century\footnote{Brian Castellani \& Lasse Gerrits created a visual map
   to illustrate the different fields and components of complexity
-  science. You can find it at
-  \url{https://www.art-sciencefactory.com/complexity-map_feb09.html}.},
+  science. You can find it at:
+  \url{https://www.art-sciencefactory.com/complexity-map_feb09.html}},
 by the convergence of several fields, such as systems theory, game
 theory, and nonlinear dynamics \autocite{sayama2015}.
 
 At a fundamental level, emergence can be defined as stable macroscopic
 patterns arising from local interactions \autocite{epstein1999}. These
 patterns emerge from the collective actions of a system's parts, which
-cannot be attained by simply summing them up \autocite{holland2014}
-(Figure~\ref{fig-chapter-3-lewin-1993-figure-1}). They may give rise to
-new properties in a system, which can only be studied by observing the
-interactions within it.
+cannot be attained by simply summing them up \autocite{holland2014}.
+They may give rise to new properties in a system, which can only be
+studied by observing the interactions within it
+(Figure~\ref{fig-chapter-3-lewin-1993-figure-1}).
 
 \begin{figure}[H]
 
@@ -1961,12 +1961,12 @@ latitudes would tend toward eveningness
 
 It's important to emphasize that the latitude hypothesis is grounded in
 underlying circadian rhythms, not in self-reported
-morningness-eveningness (ME) \emph{preference}. Self-reported preference
-can be influenced by extraneous factors, such as social constraints.
-Reducing this hypothesis to individual preferences undermines its
-theoretical foundation and introduces unnecessary confounders.
-Therefore, chronotype scales focusing on the preference aspect of ME may
-be unsuitable for testing this hypothesis. This is illustrated by
+morningness-eveningness (ME) preference. Self-reported preference can be
+influenced by extraneous factors, such as social constraints. Reducing
+this hypothesis to individual preferences undermines its theoretical
+foundation and introduces unnecessary confounders. Therefore, chronotype
+scales focusing on the preference aspect of ME may be unsuitable for
+testing this hypothesis. This is illustrated by
 \textcite{leocadio-miguel2014} when discussing differences between the
 Horne-Östberg (HO) ME questionnaire \autocite{horne1976}, which treats
 chronotype as a psychological construct \autocite{roenneberg2019c}, and
@@ -2005,8 +2005,7 @@ association between latitude and chronotype in a sample of \(12,884\)
 Brazilian participants using the HO questionnaire. However, the reported
 effect size was too small to be considered practically significant (even
 by lenient standards), with latitude explaining only approximately
-\(0.388\%\) of the variance in chronotype (Cohen's
-\(f^2 = 0.004143174\))
+\(0.388\%\) of the variance in chronotype (Cohen's \(f^2 = 0.00414\))
 (Figure~\ref{fig-chapter-4-leocadio-miguel-2017-figure-2}) (See the
 Supplemental Materials for an in-depth analysis of this result).
 Considering the particular emphasis that the solar zeitgeber has on the
@@ -2014,14 +2013,16 @@ entrainment of biological rhythms (as demonstrated by numerous studies),
 it is unreasonable to assume that the latitude hypothesis could be
 supported without at least a non-negligible effect size.
 
-The results from the latitude hypothesis highlight common limitations of
-studies relying on Null Hypothesis Significance Testing (NHST). A
-\emph{p}-value does not measure effect size; rather, it represents the
+The results from the latitude hypothesis underscore common limitations
+of studies that rely heavily on Null Hypothesis Significance Testing
+(NHST), particularly the overemphasis on \(p\)-values. A \(p\)-value
+does not quantify the magnitude of an effect; instead, it represents the
 conditional probability of observing the test statistic (or a more
-extreme value) given that the null hypothesis is true
+extreme value) assuming the null hypothesis is true
 \autocite{cohen1994,wasserstein2016}. As \textcite[16]{cohen1988a}
-noted, the goal in NHST is not to test whether the population effect
-size is literally zero, but rather whether it is negligible or trivial.
+emphasized, the objective of NHST is not to test whether the population
+effect size is exactly zero, but rather to assess whether it is
+negligible or trivial.
 
 \begin{figure}[H]
 
@@ -2030,10 +2031,10 @@ size is literally zero, but rather whether it is negligible or trivial.
 across a latitudinal gradient, along with corresponding annual average
 solar irradiation levels (W/m²). \microskip \\ The HO scale comprises 19
 items, with total scores ranging from 16 to 86; lower scores indicate a
-stronger evening orientation, while higher scores reflect a greater
-morning orientation. Notably, the y-axis exaggerates the visual impact
-of the differences, as it spans a range of only approximately \(4\)
-points, which overstate the perceived significance of the effect.}
+evening orientation, while higher scores reflect a morning orientation.
+Notably, the \(y\)-axis exaggerates the visual impact of the
+differences, as it spans a range of only approximately \(4\) points,
+which overstate the perceived significance of the effect.}
 
 \centering{
 
@@ -2058,7 +2059,7 @@ gap.
 \null\vfill
 
 \begingroup
-\hyphenpenalty=100000
+\hyphenpenalty=1000000
 \noindent The following study was designed for publication in the journal \href{https://www.nature.com/srep/}{\textit{Scientific Reports}} (\href{https://jcr.clarivate.com/jcr}{IF 2023: 3.8/JCR} | \href{https://sucupira-legado.capes.gov.br/sucupira/}{CAPES: A1/2017-2020}) and structured in accordance with the journal's \href{https://www.nature.com/srep/author-instructions/submission-guidelines}{submission guidelines}.
 \endgroup
 
@@ -2084,7 +2085,7 @@ consistent light/dark cycles, while populations near the poles might
 display more evening-leaning tendencies with a potentially freer
 expression of intrinsic rhythms. To test this hypothesis, we analyzed
 chronotype data from a large sample of \(65,824\) subjects across
-diverse latitudes in Brazil. Our results revealed a negligeble effect
+diverse latitudes in Brazil. Our results revealed a negligible effect
 size of latitude on chronotype
 (\(f^2 = 0.00314, 95\% \ \text{CI}[0, 0.0122]\)), indicating that the
 entrainment phenomenon is far more complex than previously conceived.
@@ -2101,17 +2102,18 @@ color, which are referred to as phenotypes. These phenotypes also
 manifest in the way our bodies function.
 
 A chronotype is a temporal phenotype
-\autocite{ehret1974a,pittendrigh1993}, typically used to refer to
-endogenous circadian rhythms---biological rhythms with periods close to
-24 hours. Chronobiology, the science that studies biological rhythms,
-suggests that the evolution of these internal oscillators is closely
-linked to our environment, particularly to the day/night cycle. Is
-believed that this cycle, alongside human evolution, created
-environmental pressures that led to the development of temporal
+\autocite{ehret1974a,pittendrigh1993}, often used to describe endogenous
+circadian rhythms---biological rhythms with periods close to 24 hours.
+Chronobiology, the field dedicated to studying biological rhythms,
+posits that the evolution of these internal oscillators is intricately
+tied to environmental factors, particularly the day/night cycle. This
+cycle, in conjunction with human evolution, is believed to have exerted
+selective pressures that fostered the development of temporal
 organization within organisms
 \autocite{pittendrigh1981,aschoff1989,paranjpe2005}. Such organization
-allowed organisms to predict events and better manage their needs, such
-as storing food for winter \autocite{aschoff1989a}.
+enables organisms to anticipate environmental changes and optimize
+survival strategies, such as storing food for winter
+\autocite{aschoff1989a}.
 
 For a temporal system to be effective, it must adapt to environmental
 changes. Environmental cues that regulate biological rhythms are termed
@@ -2169,7 +2171,7 @@ proportional to the number of participants and color intensity
 increasing with participant count. The sample includes Brazilian
 individuals aged 18 or older, residing in the UTC-3 timezone, who
 completed the survey between October 15th and 21st, 2017. The size and
-color scale are logarithmic (\(\log_{10}\)).}
+color scale are logarithmic.}
 
 \centering{
 
@@ -2209,8 +2211,8 @@ Figure~\ref{fig-chapter-5-chronotype-distribution}.
 distribution of the local time of the sleep-corrected midpoint between
 sleep onset and sleep end on work-free days (MSF\textsubscript{sc}), a
 proxy for chronotype. \microskip \\ Chronotypes are categorized into
-quantiles, ranging from extremely early (\(0 |- 0.11\)) to extremely
-late (\(0.88 - 1\)).}
+quantiles, ranging from extremely early (\(0 |- 0.111\)) to extremely
+late (\(0.888 |- 1\)).}
 
 \centering{
 
@@ -2241,51 +2243,47 @@ latitude). Cell weights, based on sex, age group, and state of
 residence, were applied to account for sample imbalances.
 
 To ensure practical significance, the hypothesis test incorporated a
-minimum effect size (MES) criterion, aligning with the original
+minimum effect size (MES) criterion, consistent with the original
 Neyman-Pearson framework for data testing
 \autocite{neyman1928,neyman1928a,perezgonzalez2015}. The MES was set at
-a Cohen's \(f^2\) of \(0.02\) (equivalent to an \(\text{R}^2\) of
-\(0.01960784\)), a lenient threshold \autocite{cohen1988a}. Given the
-well-established influence of the solar zeitgeber on biological rhythm
-entrainment, it is unlikely that the latitude hypothesis could be
-meaningfully supported without demonstrating at least a non-trivial
-effect.
+Cohen's \(f^2\) of \(0.02\) (equivalent to an \(\text{R}^2\) of
+\(0.01961\)), a lenient threshold \autocite{cohen1988a}. Given the
+established role of solar zeitgebers in biological rhythm entrainment,
+it would be unreasonable to support the latitude hypothesis without
+demonstrating at least a non-trivial effect size.
 
 Two tests were conducted, both starting with the same restricted model,
 which included age, sex, longitude, and the average monthly Global
 Horizontal Irradiance (GHI) at the time of questionnaire completion as
-predictors related to the latitude/longitude of each respondent as
 predictors (\(\text{R}^2_{\text{adj}} = 0.08517\),
-\(\text{F}(4, 65818) = 1531.808\), \(p\text{-value} < 1e-05\)). The
-first full model (\textbf{A}) added the average annual GHI and daylight
-duration for the nearest March equinox, as well as the June and December
-solstices, as proxies for latitude, following the methods of
-\textcite{leocadio-miguel2017} (\(\text{R}^2_{\text{adj}} = 0.08803\),
-\(\text{F}(8, 65814) = 794.12\), \(p\text{-value} < 1e-05\)). The second
-full model (\textbf{B}) added only latitude as a predictor
-(\(\text{R}^2_{\text{adj}} = 0.08568\),
-\(\text{F}(5, 65817) = 1233.588\), \(p\text{-value} < 1e-05\)). All
-coefficients were statistically different from zero
-(\(p\text{-value} < 0.05\)). Assumption checking and residual
-diagnostics primarily relied on visual inspection, as formal assumption
-tests (e.g., Anderson-Darling) are often not recommended for large
-samples \autocite{shatz2024}. All validity assumptions were met, and no
-serious multicollinearity was found among the predictor variables.
+\(\text{F}(4, 65818) = 1531.808\), \(p\text{-value} < 1e-05\)).
 
-Sunrise times for the nearest March and September equinoxes, as well as
-the June and December solstices, were excluded due to high
-multicollinearity. Daylight duration for the September equinox was
-excluded for its collinearity with daylight duration during the March
-equinox.
+The first full model (\textbf{A}) added the average annual GHI and
+daylight duration for the nearest March equinox, as well as the June and
+December solstices, as proxies for latitude, following the methods of
+\textcite{leocadio-miguel2017} (\(\text{R}^2_{\text{adj}} = 0.08803\),
+\(\text{F}(8, 65814) = 794.12\), \(p\text{-value} < 1e-05\)).
+
+The second full model (\textbf{B}) included only latitude as an
+additional predictor (\(\text{R}^2_{\text{adj}} = 0.08568\),
+\(\text{F}(5, 65817) = 1233.588\), \(p\text{-value} < 1e-05\)).
+
+All coefficients were statistically significant
+(\(p\text{-value} < 0.05\)). Assumption checking and residual
+diagnostics were primarily conducted through visual inspection, as
+formal assumption tests (e.g., Anderson-Darling) are often not
+recommended for large samples \autocite{shatz2024}. All validity
+assumptions were satisfied, and no significant multicollinearity was
+detected among the predictor variables.
 
 An ANOVA for nested models revealed a significant reduction in the
-residual sum of squares in both tests (\textbf{A}
-\(\text{F}(4, 65814) = 51.71\), \(p\text{-value} < 1e-05\)) (\textbf{B}
+residual sum of squares in both tests (\textbf{A},
+\(\text{F}(4, 65814) = 51.71\), \(p\text{-value} < 1e-05\)) (\textbf{B},
 \(\text{F}(1, 65817) = 37.325\), \(p\text{-value} < 1e-05\)). However,
 similarly to \textcite{leocadio-miguel2017}, when estimating Cohen's
 \(f^2\) effect size, the results were below the MES (i.e., negligible)
-(\textbf{A} \(f^2 = 0.00314, 95\% \ \text{CI}[0, 0.0122]\)) (\textbf{B}
-\(f^2 = 0.00057, 95\% \ \text{CI}[0, 0.00954]\)).
+(\textbf{A}, \(f^2 = 0.00314, 95\% \ \text{CI}[0, 0.0122]\))
+(\textbf{B}, \(f^2 = 0.00057, 95\% \ \text{CI}[0, 0.00954]\)).
 
 \section{Discussion}\label{discussion}
 
@@ -2293,14 +2291,14 @@ We emphasize that the assumption of a causal, linear relationship
 between latitude and chronotype constitutes an \emph{a priori}
 hypothesis, which this study seeks to falsify.
 
-Despite a broad latitudinal range (\(33.85026\) degrees) and a large,
+Despite a broad latitudinal range (\(33.85\) degrees) and a large,
 balanced sample, our results indicate that the effect of latitude on
 chronotype is negligible. Indeed, despite suggestions of a potential
 link in several studies, robust empirical evidence supporting this claim
 in humans is lacking.
 
 Our results align with those of \textcite{leocadio-miguel2017}, who
-reported a similar effect size (Cohen's \(f^2 = 0.004143174\)). However,
+reported a similar effect size (Cohen's \(f^2 = 0.00414\)). However,
 their analysis did not incorporate a minimum effect size criterion,
 leading to misleading interpretations.
 
@@ -2316,10 +2314,10 @@ Figure~\ref{fig-chapter-5-chronotype-geographical-distribution-by-respondent}.
 \caption{\label{fig-chapter-5-chronotype-latitude-series}Boxplots of
 observed mean MSF\textsubscript{sc} values aggregated by \(1°\) latitude
 intervals, illustrating the relationship between latitude and
-chronotype. \microskip \\ MSF\textsubscript{sc} represents the local
-time of the sleep-corrected midpoint between sleep onset and sleep end
-on work-free days, a proxy for chronotype. Higher MSF\textsubscript{sc}
-values indicate later chronotypes. The × symbol points to the mean. The
+chronotype. \microskip \\ MSF\textsubscript{sc} is a proxy for
+chronotype, representing the midpoint of sleep on work-free days,
+adjusted for sleep debt. Higher MSF\textsubscript{sc} values indicate a
+tendency towards eveningness. The × symbol points to the mean. The
 orange line represents a linear regression. The differences in
 mean/median values across latitudes are minimal relative to the Munich
 ChronoType Questionnaire (MCTQ) scale.}
@@ -2337,16 +2335,15 @@ ChronoType Questionnaire (MCTQ) scale.}
 The absence of a clear relationship between latitude and chronotype can
 be attributed to multiple factors. As Jürgen Aschoff might have put it,
 this may reflect a lack of ``ecological significance''
-\autocite{aschoff1972}. Even if latitude does influence circadian
-rhythms, the effect could be too minor to detect or might be
-overshadowed by other, more prominent factors like social behaviors,
-work hours, or the widespread use of artificial lighting. Furthermore,
-the variations in sunlight exposure between latitudes may not be
-substantial enough to meaningfully impact the circadian system, which is
-highly responsive to light. Given that even minor light fluctuations can
-lead to measurable physiological changes
-\autocite{khalsa2003,minors1991}, latitude alone may not be a decisive
-factor in determining chronotype.
+\autocite[277]{aschoff1972}. Even if latitude does influence circadian
+rhythms, the effect might be overshadowed by other, more prominent
+factors like social behaviors, work hours, or the widespread use of
+artificial lighting. Furthermore, the variations in sunlight exposure
+between latitudes may not be substantial enough to meaningfully impact
+the circadian system, which is highly responsive to light. Given that
+even minor light fluctuations can lead to measurable physiological
+changes \autocite{khalsa2003,minors1991}, latitude alone may not be a
+decisive factor in determining chronotype.
 
 \begin{figure}[H]
 
@@ -2355,8 +2352,8 @@ geographical distribution of MSF\textsubscript{sc} values by Brazilian
 state, illustrating how chronotype varies with latitude in Brazil.
 \microskip \\ MSF\textsubscript{sc} is a proxy for chronotype,
 representing the midpoint of sleep on work-free days, adjusted for sleep
-debt. Higher MSF\textsubscript{sc} values correspond to later
-chronotypes. The color scale is bounded by the first and third
+debt. Higher MSF\textsubscript{sc} values indicate a tendency towards
+eveningness. The color scale is bounded by the first and third
 quartiles. Differences in mean MSF\textsubscript{sc} values across
 states are small and fall within a narrow range relative to the scale of
 the Munich ChronoType Questionnaire (MCTQ), limiting the significance of
@@ -2383,13 +2380,13 @@ and unbiased data analysis.
 
 \caption{\label{fig-chapter-5-chronotype-geographical-distribution-by-respondent}Observed
 geographical distribution of MSF\textsubscript{sc} values by a spectrum
-of extremely early and extremely late, illustrating how chronotype
-varies with latitude in Brazil. \microskip \\ MSF\textsubscript{sc} is a
-proxy for chronotype, representing the midpoint of sleep on work-free
-days, adjusted for sleep debt. Chronotypes are categorized into
-quantiles, ranging from extremely early (\(0 |- 0.11\)) to extremely
-late (\(0.88 - 1\)). No discernible pattern emerges from the
-distribution of chronotypes across latitudes.}
+of extremely early and extremely late chronotypes, illustrating how
+chronotype varies with latitude in Brazil. \microskip \\
+MSF\textsubscript{sc} is a proxy for chronotype, representing the
+midpoint of sleep on work-free days, adjusted for sleep debt.
+Chronotypes are categorized into quantiles, ranging from extremely early
+(\(0 |- 0.111\)) to extremely late (\(0.888 |- 1\)). No discernible
+pattern emerges from the distribution of chronotypes across latitudes.}
 
 \centering{
 
@@ -2410,15 +2407,15 @@ until supported by robust evidence.
 
 \subsection{Measurement Instrument}\label{measurement-instrument}
 
-Chronotypes were assessed using a sleep log based on the standard
-version of the Munich ChronoType Questionnaire (MCTQ)
-\autocite{roenneberg2003b}, a well-validated and widely used self-report
-tool for measuring sleep-wake behavior and determining chronotype
-\autocite{roenneberg2019c}. The MCTQ derives chronotype from the
-sleep-corrected midpoint of sleep on free days (MSF\textsubscript{sc}),
-which compensates for sleep debt incurred during the workweek
-\autocite{roenneberg2012}. Figure~\ref{fig-chapter-5-mctq-variables}
-illustrates the variables collected by the MCTQ.
+Chronotypes were assessed using a standard version of the Munich
+ChronoType Questionnaire (MCTQ) \autocite{roenneberg2003b}, a
+well-validated and widely used self-report tool for measuring sleep-wake
+behavior and determining chronotype \autocite{roenneberg2019c}. The MCTQ
+derives chronotype from the sleep-corrected midpoint of sleep on free
+days (MSF\textsubscript{sc}), which compensates for sleep debt incurred
+during the workweek \autocite{roenneberg2012}.
+Figure~\ref{fig-chapter-5-mctq-variables} illustrates the variables
+collected by the MCTQ.
 
 \begin{figure}[H]
 
@@ -2444,13 +2441,72 @@ represents the time the respondent takes to get up after sleep end). GU
 
 \end{figure}%
 
-Participants completed an online questionnaire, which included the sleep
-log as well as sociodemographic (e.g., age, sex), geographic (e.g., full
-residential address), anthropometric (e.g., weight, height), and data on
-work and study routines. A version of the questionnaire, stored
-independently by the \href{https://archive.org/}{Internet Archive}
-organization, can be viewed at
+Participants completed an online questionnaire, which included the MCTQ
+questionnaire as well as sociodemographic (e.g., age, sex), geographic
+(e.g., full residential address), anthropometric (e.g., weight, height),
+and data on work and study routines. A version of the questionnaire,
+stored independently by the \href{https://archive.org/}{Internet
+Archive} organization, can be viewed at
 \url{https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq}.
+
+\subsection{Sample Characteristics}\label{sample-characteristics}
+
+The analysis dataset consisted of \(65,824\) participants aged 18 or
+older residing in the UTC-3 timezone. These individuals completed the
+survey during a one-week period from October 15th to 21st, 2017,
+providing a snapshot of the population at that specific time.
+
+The unfiltered valid sample included \(115,166\) participants from all
+Brazilian states. The raw dataset contained \(120,265\) individuals,
+with \(98.173\%\) of the responses collected between October 15th and
+21st, 2017. This data collection period coincided with the promotion of
+the online questionnaire via a
+\href{https://globoplay.globo.com/v/6219513/}{broadcast} on a nationally
+televised Sunday show in Brazil \autocite{redeglobo2017}.
+
+Based on 2017 data from the Brazilian Institute of Geography and
+Statistics's (IBGE) Continuous National Household Sample Survey
+(\href{https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html}{PNAD
+Contínua}) \autocite{ibgee}, Brazil had \(51.919\%\) of females and
+\(48.081\%\) of males with an age equal to or greater than 18 years old.
+The sample is skewed for female subjects, with \(66.433\%\) of females
+and \(33.567\%\) of male subjects. The mean age was \(32.109\)
+(\(\text{SD} = 9.258\)), ranging from \(18\) to \(58.95\) years.
+
+To balance the sample, weights were incorporated into the models. These
+weights were calculated through cell weighting, using sex, age group,
+and state of residence as references, based on population estimates from
+IBGE for the same year as the sample.
+
+A survey conducted in 2019 by IBGE \autocite*{ibge2021} found that
+\(82.17\%\) of Brazilian households had access to an internet
+connection. Therefore, this sample is likely to have a good
+representation of Brazil's population.
+
+The sample latitudinal range is \(33.85°\) (\(\text{Min.} = -33.522°\),
+\(\text{Max.} = 0.329°\)) with a longitudinal span of \(22.741°\)
+(\(\text{Min.} = -57.553°\), \(\text{Max.} = -34.812°\)). For
+comparison, Brazil has a latitudinal range of \(39.023°\)
+(\(\text{Min.} = -33.751°\); \(\text{Max.} = 5.272°\)) and a
+longitudinal span of \(45.155°\) (\(\text{Min.} = -73.99°\);
+\(\text{Max.} = -28.836°\)), according to data from IBGE collected via
+the \href{https://ipeagit.github.io/geobr/index.html\%3E}{geobr} R
+package \autocite{pereira}.
+
+Additional details about the sample are available in the supplementary
+materials.
+
+\subsection{Power Analysis}\label{power-analysis}
+
+To assess the adequacy of the sample size for detecting effects reaching
+the Minimum Effect Size (MES) threshold (\(f^2 = 0.02\)), we conducted a
+power analysis using the
+\href{https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html}{pwrss}
+R package \autocite{bulus}. This analysis revealed a minimum sample size
+of \(1,895\) observations per variable to achieve a power
+(\(1 - \beta\)) of \(0.99\) with a significance level (\(\alpha\)) of
+\(0.01\). Our sample size (\(n = 65,824\)) comfortably surpasses this
+threshold, ensuring adequate power.
 
 \subsection{Geographic Parameters}\label{geographic-parameters}
 
@@ -2500,66 +2556,6 @@ results from the National Aeronautics and Space Administration (NASA)
 \href{https://data.giss.nasa.gov/modelE/ar5plots/srvernal.html}{ModelE
 AR5 Simulations} \autocite{nasa}.
 
-\subsection{Sample Characteristics}\label{sample-characteristics}
-
-The analysis dataset consisted of \(65,824\) participants aged 18 or
-older residing in the UTC-3 timezone. These individuals completed the
-survey during a one-week period from October 15th to 21st, 2017,
-providing a snapshot of the population at that specific time.
-
-The unfiltered valid sample included \(115,166\) participants from all
-Brazilian states. The raw dataset contained \(120,265\) individuals,
-with \(98.173\%\) of the responses collected between October 15th and
-21st, 2017. This data collection period coincided with the promotion of
-the online questionnaire via a
-\href{https://globoplay.globo.com/v/6219513/}{broadcast} on a nationally
-televised Sunday show in Brazil \autocite{redeglobo2017}.
-
-Based on 2017 data from the Brazilian Institute of Geography and
-Statistics's (IBGE) Continuous National Household Sample Survey
-(\href{https://www.ibge.gov.br/estatisticas/sociais/trabalho/17270-pnad-continua.html}{PNAD
-Contínua}) \autocite{ibgee}, Brazil had \(51.919\%\) of females and
-\(48.081\%\) of males with an age equal to or greater than 18 years old.
-The sample is skewed for female subjects, with \(66.433\%\) of females
-and \(33.567\%\) of male subjects. The mean age was \(32.109\)
-(\(\text{SD} = 9.258\)), ranging from \(18\) to \(58.95\) years.
-
-To balance the sample, weights were incorporated into the models. These
-weights were calculated through cell weighting, using sex, age group,
-and state of residence as references, based on population estimates from
-IBGE for the same year as the sample.
-
-A survey conducted in 2019 by IBGE \autocite*{ibge2021} found that
-\(82.17\%\) of Brazilian households had access to an internet
-connection. Therefore, this sample is likely to have a good
-representation of Brazil's population.
-
-The sample latitudinal range is \(33.85026°\)
-(\(\text{Min.} = -33.52156°\), \(\text{Max.} = 0.32869°\)) with a
-longitudinal span of \(22.74063°\) (\(\text{Min.} = -57.5531°\),
-\(\text{Max.} = -34.81247°\)). For comparison, Brazil has a latitudinal
-range of \(39.02299°\) (\(\text{Min.} = -33.75115°\);
-\(\text{Max.} = 5.27184°\)) and a longitudinal span of \(45.15451°\)
-(\(\text{Min.} = -73.99045°\); \(\text{Max.} = -28.83594°\)), according
-to data from IBGE collected via the
-\href{https://ipeagit.github.io/geobr/index.html\%3E}{geobr} R package
-\autocite{pereira}.
-
-Additional details about the sample are available in the supplementary
-materials.
-
-\subsection{Power Analysis}\label{power-analysis}
-
-To assess the adequacy of the sample size for detecting effects reaching
-the Minimum Effect Size (MES) threshold (\(f^2 = 0.02\)), we conducted
-an \emph{a posteriori} power analysis using the
-\href{https://cran.r-project.org/web/packages/pwrss/vignettes/examples.html}{pwrss}
-R package \autocite{bulus}. This analysis revealed a minimum sample size
-of \(1,895\) observations per variable to achieve a power
-(\(1 - \beta\)) of \(0.99\) with a significance level (\(\alpha\)) of
-\(0.01\). Our sample size (\(n = 65,824\)) comfortably surpasses this
-threshold, ensuring adequate power.
-
 \subsection{Data Munging}\label{data-munging}
 
 Data munging and analysis followed the data science framework proposed
@@ -2595,40 +2591,44 @@ were compared: a restricted model (excluding latitude) and a full model
 (including latitude). The restricted model included sex, age, longitude,
 and the average monthly Global Horizontal Irradiance (GHI) at the time
 of questionnaire completion related to the latitude/longitude of each
-respondent as predictors. Two full models were tested. The first one
-including the restricted predictors plus the average annual GHI (proxy
-for the latitude) and daylight duration for the nearest March equinox,
-as well as the June and December solstices---all related to the
-latitude/longitude of each respondent.The second one included the
-restricted model predictors with only the latitude decimal degrees as a
-predictor.
+respondent as predictors.
 
-It is important to notice that the design of the models were based on
-\textcite{leocadio-miguel2017} study. Cell weights were applied to
-account for sample imbalances. The models were compared using an F-test
-for nested models, with a Type I error probability (\(\alpha\)) of
-\(0.05\).
+Two full models were tested. The first model (\textbf{A}) included the
+restricted predictors along with proxies for latitude, such as the
+average annual GHI and daylight duration for the nearest March equinox,
+as well as the June and December solstices. These proxies were derived
+based on the latitude and longitude of each respondent. The second model
+(\textbf{B}) included the restricted predictors with latitude (in
+decimal degrees) as the sole additional predictor. It is important to
+notice that the design of the models were based on
+\textcite{leocadio-miguel2017} study.
+
+Cell weights were applied to account for sample imbalances. The models
+were compared using an F-test for nested models, considering a Type I
+error probability (\(\alpha\)) of \(0.05\).
 
 To ensure practical significance, a Minimum Effect Size (MES) criterion
 was applied, in line with the original Neyman-Pearson framework for data
 testing \autocite{neyman1928,neyman1928a,perezgonzalez2015}. The MES was
 set at a Cohen's threshold for small effects (\(f^2 = 0.02\), equivalent
-to \(\text{R}^2 = 0.01960784\)) (``just barely escaping triviality''
+to an \(\text{R}^2 = 0.01961\)) (``just barely escaping triviality''
 \autocite[413]{cohen1988a}). Consequently, latitude was considered
-meaningful only if its inclusion explained at least \(1.960784\%\) of
-the variance in the dependent variable.
+meaningful only if its inclusion explained at least \(1.96078\%\) of the
+variance in the dependent variable.
 
 The hypothesis can be outlined as follows:
 
 \begin{itemize}
 \item
-  \textbf{Null hypothesis} (\(\text{H}_{0}\)): Adding \emph{latitude}
-  does not meaningfully improve the model's fit, indicated by a
-  negligible change in adjusted \(\text{R}^{2}\).
+  \textbf{Null Hypothesis} (\(\text{H}_{0}\)): Including \emph{latitude}
+  as a predictor does not result in a meaningful improvement in the
+  model's fit, as evidenced by a change in the adjusted \(\text{R}^{2}\)
+  that is less than the Minimum Effect Size (MES).
 \item
-  \textbf{Alternative Hypothesis} (\(\text{H}_{a}\)): Adding
-  \emph{latitude} meaningfully improves the model's fit, indicated by an
-  increase in adjusted \(\text{R}^{2}\) exceeding the MES.
+  \textbf{Alternative Hypothesis} (\(\text{H}_{a}\)): Including
+  \emph{latitude} as a predictor results in a meaningful improvement in
+  the model's fit, as evidenced by a change in the adjusted
+  \(\text{R}^{2}\) that meets or exceeds the Minimum Effect Size (MES).
 \end{itemize}
 
 Formally:
@@ -2661,7 +2661,7 @@ The code repository is available on GitHub at
 \url{https://github.com/danielvartan/mastersthesis}, and the research
 compendium can be accessed via \href{https://osf.io/}{The Open Science
 Framework} at the following link:
-\url{https://doi.org/10.17605/OSF.IO/YGKTS}.
+\url{https://doi.org/10.17605/OSF.IO/YGKTS}
 
 \section{Acknowledgments}\label{acknowledgments}
 
@@ -2772,11 +2772,11 @@ findings:
   large sample size likely mitigates these biases, as suggested by the
   law of large numbers \autocite[352]{degroot2012a}.
 \item
-  \textbf{Validation in portuguese}: At the time of data collection, the
-  MCTQ had not been officially validated in Portuguese (a process
-  completed in 2020 by \textcite{reis2020a}), potentially introducing
-  minor inconsistencies. However, given its sleep log format, the impact
-  is expected to be minimal.
+  \textbf{Questionnaire validation in Portuguese}: At the time of data
+  collection, the MCTQ had not been officially validated in Portuguese
+  (a process completed in 2020 by \textcite{reis2020a}), potentially
+  introducing minor inconsistencies. However, given its sleep log
+  format, the impact is expected to be minimal.
 \item
   \textbf{Daylight Saving Time (DST)}: The timing of data collection
   coincided with the onset of Daylight Saving Time (DST) in Brazil. On
@@ -2804,7 +2804,7 @@ findings:
   unlikely to alter the overall conclusions.
 \item
   \textbf{Chronotype measurement}: The study used sleep as a proxy for
-  measuring chronotype, leveraging its underlying circadian processes.
+  measuring chronotype, leveraging its underlying circadian process.
   However, sleep is not the only marker of circadian phenotypes. More
   precise methods, such as Dim Light Melatonin Onset (DLMO)
   \autocite{ruiz2020}, can provide a direct measure of circadian phase.

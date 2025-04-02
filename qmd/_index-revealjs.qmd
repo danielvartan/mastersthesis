@@ -56,11 +56,11 @@ weighted_data <- targets::tar_read(
 ```
 
 ::::: {.columns}
-:::: {.column style="width: 60%;"}
+:::: {.column style="width: 47.5%;"}
 This presentation will provide an overview of the thesis objectives, main concepts, methods, and results. Together, we’ll uncover how environment factors can influence the chronotype.
 
 ::: {style="padding-top: 15px;"}
-We will cover the following topics:
+Here are the main topics:
 
 1. **Introduction**
 1. **Methods**
@@ -69,8 +69,10 @@ We will cover the following topics:
 1. **Conclusion**
 :::
 ::::
-:::: {.column style="width: 40%; padding-top: 150px;"}
-![](images/sun-rhythm-rgb-96-dpi.png){fig-align="center"}
+:::: {.column style="width: 5%;"}
+::::
+:::: {.column style="width: 47.5%;"}
+![](images/sun-rhythm-rgb-96-dpi.png){fig-align="center" style="width: 80%; padding-top: 150px;"}
 ::::
 :::::
 
@@ -101,12 +103,13 @@ Is latitude associated with chronotype?
 ## Chronotype {.smaller}
 
 :::: {.columns}
-::: {.column style="width: 50%; padding-top: 0px;"}
-![](images/merrow-2023-video-1-3-figure-1-adapted.png)
+::: {.column style="width: 47.5%;"}
+![](images/merrow-2023-video-1-3-figure-1-adapted.png){style="width: 100%; padding-top: 20px;"}
 :::
-
-::: {.column style="width: 50%; padding-top: 75px;"}
-![](images/duffy-2011-figure-1-middle.png)
+::: {.column style="width: 5%;"}
+:::
+::: {.column style="width: 47.5%;"}
+![](images/duffy-2011-figure-1-middle.png){style="width: 100%; padding-top: 75px;"}
 :::
 ::::
 
@@ -152,11 +155,11 @@ URL: https://www.nature.com/articles/s41598-017-05797-w
 
 ## Leocadio-Miguel et al. {.smaller}
 
-Sample: $12,884$ Brazilian participants
+Sample: $12,884$ Brazilian participants.
 
-Method: HO Questionnaire [@horne1976]
+Method: HO Questionnaire [@horne1976].
 
-$\Delta \ \text{Adjusted} \ \text{R}^{2} = 0.388\%$ (Cohen's $f^2 = 0.004143174$)
+$\Delta \ \text{Adjusted} \ \text{R}^{2} = 0.388\%$ (Cohen's $f^2 = 0.00414$).
 
 ::::: {.columns}
 :::: {.column style="width: 50%; padding-top: 10px;"}
@@ -327,7 +330,7 @@ A restricted model (excluding latitude) with a full model (including latitude) w
 
 To ensure practical significance, a **Minimum Effect Size** (MES) criterion was applied, following the original Neyman-Pearson framework for hypothesis testing [@neyman1928; @neyman1928a; @perezgonzalez2015].
 
-The MES was set at Cohen's threshold for small effects ($f^2 = 0.02$, equivalent to $\text{R}^2 = 0.01960784$) [@cohen1988a, p. 413]. Thus, latitude was considered meaningful only if its inclusion accounted for at least $1.960784\%$ of the variance in chronotype.
+The MES was set at Cohen's threshold for small effects ($f^2 = 0.02$, equivalent to $\text{R}^2 = 0.01961$) [@cohen1988a, p. 413]. Thus, latitude was considered meaningful only if its inclusion accounted for at least $1.96078\%$ of the variance in chronotype.
 
 To balance the sample, a **weighting procedure** was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil's state as reference.
 
@@ -340,17 +343,17 @@ The hypothesis can be outlined as follows:
 
 ::: {style="padding-top: 15px;"}
 Null hypothesis ($\text{H}_{0}$)
-: Adding *latitude* does not meaningfully improve the model’s fit. This implies that the change in adjusted $\text{R}^{2}$ is negligible, or the F-test is not significant, given a type I error probability ($\alpha$) of $0.05$.
+: Including *latitude* as a predictor does not result in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that is less than the Minimum Effect Size (MES).
 
 Alternative Hypothesis ($\text{H}_{a}$)
-: Adding *latitude* meaningfully improves the model’s fit. This implies that the change in adjusted $\text{R}^{2}$ exceeds the expected Minimum Effect Size (MES), and the F-test is significant, given a type I error probability ($\alpha$) of $0.05$.
+: Including *latitude* as a predictor results in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that meets or exceeds the Minimum Effect Size (MES).
 :::
 
 ::: {style="text-align: center; padding-top: 10px;"}
 $$
 \begin{cases}
-\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} \leq \text{MES} \quad \text{or} \quad \text{F-test is not significant} \ (\alpha \geq 0.05) \\
-\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} > \text{MES} \quad \text{and} \quad \text{F-test is significant} \ (\alpha < 0.05)
+\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} < \text{MES} \\
+\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} \geq \text{MES}
 \end{cases}
 $$
 :::
@@ -414,7 +417,7 @@ In particular, it was used the Global Horizontal Irradiance (GHI) data, which is
 ::: {.column style="width: 49%; padding-top: 0px;"}
 **Full Model A**<br>[(Based on @leocadio-miguel2017)]{style="font-size: 1rem;"}
 
-- Predictors ($8$):<br>[restricted predictors] + Average Annual Global Horizontal Irradiance (GHI), Daylight Duration for the Nearest March Equinox, June and December solstices
+- Predictors ($8$):<br>[restricted predictors] + Average Annual Global Horizontal Irradiance (GHI), Daylight Duration for the Nearest March Equinox, June and December solstices.
 - `{r} md_adj_r_squared("hta", "full")`
 - `{r} md_f_test("hta", "full")`
 - `{r} md_p_value("hta", "full")`
@@ -424,7 +427,7 @@ In particular, it was used the Global Horizontal Irradiance (GHI) data, which is
 ::: {.column style="width: 49%; padding-top: 0px;"}
 **Full Model B**
 
-- Predictors ($5$):<br>[restricted predictors] + Latitude
+- Predictors ($5$):<br>[restricted predictors] + Latitude.
 - `{r} md_adj_r_squared("htb", "full")`
 - `{r} md_f_test("htb", "full")`
 - `{r} md_p_value("htb", "full")`
@@ -438,11 +441,11 @@ In particular, it was used the Global Horizontal Irradiance (GHI) data, which is
 
 All coefficients were statistically different from zero ($p\text{-value} < 0.05$). Assumption checking and residual diagnostics primarily relied on visual inspection, as formal assumption tests (e.g., Anderson-Darling) are often not recommended for large samples [@shatz2024]. All validity assumptions were met, and no serious multicollinearity was found among the predictor variables.
 
-An ANOVA for nested models revealed a significant reduction in the residual sum of squares in both tests (**A** `{r} md_f_test("hta")`, `{r} md_p_value("hta")`) (**B** `{r} md_f_test("htb")`, `{r} md_p_value("htb")`).
+An ANOVA for nested models revealed a significant reduction in the residual sum of squares in both tests (**A**, `{r} md_f_test("hta")`, `{r} md_p_value("hta")`) (**B**, `{r} md_f_test("htb")`, `{r} md_p_value("htb")`).
 
-<br>
-
-However, similarly to @leocadio-miguel2017, when estimating Cohen’s $f^2$ effect size ($f^2 = 0.004143174$), **the results were below the MES (i.e., negligible)** (**A** `{r} md_effect_size("hta", prefix = "")`) (**B** `{r} md_effect_size("htb", prefix = "")`).
+::: {style="padding-top: 15px;"}
+However, similarly to @leocadio-miguel2017, when estimating Cohen’s $f^2$ effect size ($f^2 = 0.00414$), **the results were below the MES** (i.e., negligible) (**A**, `{r} md_effect_size("hta", prefix = "")`) (**B**, `{r} md_effect_size("htb", prefix = "")`).
+:::
 
 ::: {.notes}
 Sunrise times for the nearest March and September equinoxes, as well as the June and December solstices, were excluded due to high multicollinearity. Daylight duration for the September equinox was excluded for its collinearity with daylight duration during the March equinox.
@@ -578,13 +581,13 @@ Respondent level by categorical chronotype.
 
 ::::: {.columns}
 :::: {.column style="width: 40%; padding-top: 0px;"}
-Large samples and sensitivity
+Large samples and sensitivity.
 
 Is a difference of $0.00001$ valid?
 
-Statistical ritual *versus* Statistical thinking
+Statistical ritual *versus* Statistical thinking.
 
-Confirmation bias
+Confirmation bias.
 
 <br>
 
@@ -726,7 +729,7 @@ Illustration of a circadian rhythm entrained (Phase-advanced, indicated by a lef
 
 ## (AP) Emergence {.smaller visibility="uncounted"}
 
-::: {style="font-size: 0.9em;"}
+::: {style="font-size: 0.8em;"}
 **Stable macroscopic patterns** arising from **local interaction** of agents [@epstein1999].
 
 When the aggregate exhibits **properties not attained by summation** [@holland2014].
@@ -771,7 +774,9 @@ You are dealing with an emergence phenomenon when there is no need to look under
 
 ## (AP) Emergence {.smaller visibility="uncounted"}
 
+::: {style="font-size: 0.8em;"}
 **An aggregate behavior emerges** from the interactions of the parts (CAS) [@holland2012].
+:::
 
 ![](images/holland-2012-figure-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 50px"}
 
@@ -780,18 +785,9 @@ You are dealing with an emergence phenomenon when there is no need to look under
 :::
 
 ::: {.notes}
-Illustrative example: Societies; immune cells.
+Illustrative example: Societies; Immune cells.
 
 A society is formed by individuals and their interactions. In this case, we are the agents and the society is the aggregate agent. And, as we know, we shape the society, but the society also shapes us.
-
-<!-- ![](images/homer-emerging.gif) -->
-<!-- ![](images/power-rangers-megazord-1.gif) -->
-<!-- ![](images/seinfeld-kramer-levels.gif) -->
-:::
-
-## {visibility="uncounted" data-menu-title="(AP) Extreme Points of Mainland Brazil" background-iframe="https://www.google.com/maps/d/embed?mid=16u6tEjgzxAsDQglWJ5J6ozhkxaLQaoE&ehbc=2E312F" background-interactive=true}
-
-::: {.notes}
 :::
 
 ## (AP) Earth's Rotation Axis {visibility="uncounted"}
@@ -805,28 +801,6 @@ A society is formed by individuals and their interactions. In this case, we are 
 ::: {.notes}
 :::
 
-## {visibility="uncounted" data-menu-title="(AP) Earth's Orbit Around the Sun" background-iframe="https://www.earthspacelab.com/app/earth-revolution" background-interactive=true scrollable=false}
-
-::: {.notes}
-:::
-
-## {visibility="uncounted" data-menu-title="(AP) Annual Variations in Global Irradiation" background-iframe="https://ciechanow.ski/earth-and-sun/#es_cosine" background-interactive=true}
-
-::: {.notes}
-:::
-
-## {visibility="uncounted" data-menu-title="(AP) Annual Variations in Photoperiod" background-iframe="https://ciechanow.ski/earth-and-sun/#es_earth_outline" background-interactive=true}
-
-::: {.notes}
-:::
-
-<!-- ## {visibility="uncounted" data-menu-title="(AP) Sun's Rays Simulator" background-iframe="https://astro.unl.edu/classaction/animations/coordsmotion/sunsrays.html" background-interactive=true scrollable=false} -->
-
-## {visibility="uncounted" data-menu-title="(AP) Overview of Brazil's 2022 Census" background-iframe="https://censo2022.ibge.gov.br/panorama/#territorioCard" background-interactive=true}
-
-::: {.notes}
-:::
-
 ## {visibility="uncounted" data-menu-title="(AP) Core MCTQ" .center-x .nostretch .scrollable}
 
 ![](images/roenneberg-2015-mctq-core-adapted.png){width="100%"}
@@ -834,26 +808,6 @@ A society is formed by individuals and their interactions. In this case, we are 
 ::: footer
 (Reproduced from @thewep)
 :::
-
-::: {.notes}
-:::
-
-## {visibility="uncounted" data-menu-title="(AP) Data Collection Instrument" background-iframe="https://web.archive.org/web/20171018043514/each.usp.br/gipso/mctq" background-interactive=true scrollable=false}
-
-::: {.notes}
-:::
-
-## {visibility="uncounted" data-menu-title="(AP) The {mctq} R Package" background-iframe="https://docs.ropensci.org/mctq/" background-interactive=true}
-
-::: {.notes}
-:::
-
-## {visibility="uncounted" data-menu-title="(AP) INPE'S 2017 Solar Atlas" background-iframe="http://labren.ccst.inpe.br/atlas_2017.html" background-interactive=true}
-
-::: {.notes}
-:::
-
-## {visibility="uncounted" data-menu-title="(AP) The {targets} R Package" background-iframe="https://books.ropensci.org/targets/walkthrough.html#run-the-pipeline:~:text=up%20to%20date.-,tar_visnetwork(),-tar_outdated()%0A%23%3E%20character" background-interactive=true}
 
 ::: {.notes}
 :::
@@ -1068,10 +1022,75 @@ Respondent level by categorical chronotype.
 
 ## (AP) Cohen's Benchmarks {.smaller visibility="uncounted"}
 
-![](images/cohen-1992-table-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 25px;"}
+::: {style="padding-top: 15px;"}
+```{r}
+#| echo: false
+
+library(gt)
+library(katex)
+
+dplyr::tibble(
+  test = c(
+    "Comparison of independent means", "Comparison of two correlations",
+    "Difference between proportions", "Correlation", "", "Crosstabulation",
+    "ANOVA", "", "Multiple regression", ""
+  ),
+  relevant_effect_size = c(
+    "$d$, $\\Delta$, Hedges’ $g$", "$q$", "Cohen’s $g$", "$r$", "$r^{2}$",
+    "$w$, $\\varphi$, $V$, $C$", "$f$", "$\\eta^{2}$", "$R^{2}$", "$f^{2}$"
+  ),
+  small = c(.20, .10, .05, .10, .01, .10, .10, .01, .02, .02),
+  medium = c(.50, .30, .15, .30, .09, .30, .25, .06, .13, .15),
+  large = c(.80, .50, .25, .50, .25, .50, .40, .14, .26, .35)
+) |>
+  gt::gt() |>
+  gt::cols_label(
+    test = "Test",
+    relevant_effect_size = "Relevant Effect Size",
+    small = "Small",
+    medium = "Medium",
+    large = "Large"
+  ) |>
+  gt::tab_spanner(
+    label = "Effect Size Classes",
+    columns = c(small, medium, large)
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(
+      paste0(
+        "Notes: The rationale for most of these benchmarks can be found ",
+        "in Cohen (1988) at the following pages: Cohen’s $d$ (p. 40), ",
+        "$q$ (p. 115), Cohen’s $g$ (pp. 147–149), $r$ and $r^{2}$ ",
+        "(pp. 79–80), Cohen’s $w$ (pp. 224–227), $f$ and $\\eta^{2}$ ",
+        "(pp. 285–287), $R^{2}$ and $f^{2}$ (pp. 413–414)."
+      )
+    )
+  ) |>
+  gt::fmt_markdown(columns = relevant_effect_size) |>
+  gt::cols_align(
+    align = "center",
+    columns = c(small, medium, large)
+  ) |>
+  gt::tab_style(
+    style = gt::cell_text(weight = "bold"),
+    locations = gt::cells_column_spanners()
+  ) |>
+  gt::tab_style(
+    style = gt::cell_text(weight = "bold"),
+    locations = gt::cells_column_labels(gt::everything())
+  ) |>
+  gt::tab_options(
+    table.font.size = gt::pct(50),
+    table.background.color = "#FEF9F4"
+  )
+```
+:::
 
 ::: footer
-(Reproduced from @cohen1992)
+(Adapted from @ellis2010. Based on @cohen1988a)
+:::
+
+::: {.notes}
 :::
 
 ## (AP) Directions for Fut. Research {.smaller visibility="uncounted"}
@@ -1087,7 +1106,7 @@ WorldClim 2.1 in NetLogo (*NetLogo/Scala-Java*).
 ::: {.notes}
 :::
 
-## (AP) Popper's hypothetico-deductive method {.smaller visibility="uncounted"}
+## (AP) Popper's Hypothetico-Deductive Method {.smaller visibility="uncounted"}
 
 The activity can be represented by a **general schema of problem- solving by the method of imaginative conjectures and criticism**, or, as I have often called it, by **the method of conjecture and refutation**. The schema (in its simplest form) is this:
 
@@ -1122,10 +1141,11 @@ flowchart LR
 ::: {.notes}
 :::
 
-## (AP) Popper's hypothetico-deductive method {.smaller visibility="uncounted"}
+## (AP) Popper's Hypothetico-Deductive Method {.smaller visibility="uncounted"}
 
-Here $\text{P}_1$, is the **problem** from which we start, $\text{TT}$ (the ‘tentative theory’) is the imaginative conjectural solution which we first reach, for example our first **tentative interpretation**. $\text{EE}$ (‘**error- elimination**’) consists of a severe critical examination of our conjecture, our tentative interpretation: it consists, for example, of the critical use of documentary evidence and, if we have at this early stage more than one conjecture at our disposal, it will also consist of a critical discussion and comparative evaluation of the competing conjectures. $\text{P}_2$ is the problem situation as it emerges from our first critical attempt to solve our problems.
-It leads up to our second attempt (**and so on**).
+::: {style="font-size: 0.9em;"}
+Here $\text{P}_1$, is the **problem** from which we start, $\text{TT}$ (the ‘tentative theory’) is the imaginative conjectural solution which we first reach, for example our first **tentative interpretation**. $\text{EE}$ (‘**error- elimination**’) consists of a severe critical examination of our conjecture, our tentative interpretation: it consists, for example, of the critical use of documentary evidence and, if we have at this early stage more than one conjecture at our disposal, it will also consist of a critical discussion and comparative evaluation of the competing conjectures. $\text{P}_2$ is the problem situation as it emerges from our first critical attempt to solve our problems. It leads up to our second attempt (**and so on**).
+:::
 
 ```{mermaid}
 %%| fig-width: 6.5
@@ -1143,9 +1163,11 @@ flowchart LR
 ::: {.notes}
 :::
 
-## (AP) Popper's hypothetico-deductive method {.smaller visibility="uncounted"}
+## (AP) Popper's Hypothetico-Deductive Method {.smaller visibility="uncounted"}
 
+::: {style="font-size: 0.9em;"}
 The history of ideas teaches us very clearly that ideas emerge in logical or, if the term is preferred, in **dialectical contexts**. My various schemata such as
+:::
 
 ```{mermaid}
 %%| fig-width: 6.5
@@ -1156,7 +1178,9 @@ flowchart LR
   C --> D(P2)
 ```
 
+::: {style="font-size: 0.9em;"}
 may indeed be looked upon as improvements and rationalizations of the Hegelian dialectical schema: they are rationalizations because they operate entirely within the classical logical organon of rational criticism, which is based upon the so-called law of contradiction; that is to say, upon the demand that contradictions, whenever we discover them, must be eliminated. Critical error-elimination on the scientific level proceeds by way of a **conscious search for contradictions**.
+:::
 
 ::: footer
 (Reproduced from @popper1979a[p. 297])
@@ -1165,7 +1189,7 @@ may indeed be looked upon as improvements and rationalizations of the Hegelian d
 ::: {.notes}
 :::
 
-## (AP) Popper against positivism (or the problem of induction) {.smaller visibility="uncounted"}
+## (AP) Popper Against Positivism (or the Problem of Induction) {.smaller visibility="uncounted"}
 
 *Notre activité intellectuelle est suffisamment excitée par le pur espoir de découvrir les lois des phénomènes, par le simple **désir de confirmer** ou d'infirmer une théorie. [...] la philosophie positive est le véritable **état définitif** de l'intelligence humaine [...]* [@comte1892, pp. 9-10].
 
@@ -1173,11 +1197,11 @@ may indeed be looked upon as improvements and rationalizations of the Hegelian d
 
 **Why post-positivist?**
 
-- Anti-inductivist (deduction, satisfactory answers)
-- Anti-verificationist (falsifiability as demarcation criterion)
-- Anti-historicist (rebuttable presumptions)
+- Anti-inductivist (deduction, satisfactory answers).
+- Anti-verificationist (falsifiability as demarcation criterion).
+- Anti-historicist (rebuttable presumptions).
 
-## (AP) Popper against positivism (or the problem of induction) {.smaller visibility="uncounted"}
+## (AP) Popper Against Positivism (or the Problem of Induction) {.smaller visibility="uncounted"}
 
 But I shall certainly admit a system as empirical or scientific only if it is capable of being tested by experience. These considerations suggest that **not the _verifiability_ but the _falsifiability_ of a system is to be taken as a criterion of demarcation**. In other words: I shall not require of a scientific system that it shall be capable of being singled out, once and for all, in a positive sense; but I shall require that its logical form shall be such that it can be singled out, by means of empirical tests, in a negative sense: **it must be possible for an empirical scientific system to be refuted by experience**.
 
@@ -1188,7 +1212,7 @@ But I shall certainly admit a system as empirical or scientific only if it is ca
 ::: {.notes}
 :::
 
-## (AP) Popper against positivism (or the problem of induction) {.smaller visibility="uncounted"}
+## (AP) Popper Against Positivism (or the Problem of Induction) {.smaller visibility="uncounted"}
 
 :::: {.columns}
 ::: {.column style="width: 50%; padding-top: 0px;"}
@@ -1207,10 +1231,10 @@ Everybody knows nowadays that **logical positivism is dead**. But nobody seems t
 ::: {.notes}
 :::
 
-## (AP) The 7 conclusions of Popper on science {.smaller visibility="uncounted"}
+## (AP) The 7 Conclusions of Popper on Science {.smaller visibility="uncounted"}
 
 :::: {.columns}
-::: {.column style="width: 50%; padding-top: 0px;"}
+::: {.column style="width: 50%; padding-top: 0px; font-size: 0.9em;"}
 (@) It is easy to obtain confirmations, or verifications, for nearly every theory---if we look for confirmations.
 (@) Confirmations should count only if they are the result of *risky predictions*; that is to say, if, unenlightened by the theory in question, we should have expected an event which was incompatible with the theory---an event which would have refuted the theory.
 :::
@@ -1227,10 +1251,10 @@ Everybody knows nowadays that **logical positivism is dead**. But nobody seems t
 ::: {.notes}
 :::
 
-## (AP) The 7 conclusions of Popper on science {.smaller visibility="uncounted"}
+## (AP) The 7 Conclusions of Popper on Science {.smaller visibility="uncounted"}
 
 :::: {.columns}
-::: {.column style="width: 50%; padding-top: 0px;"}
+::: {.column style="width: 50%; padding-top: 0px; font-size: 0.9em;"}
 (@) Every ‘good’ scientific theory is a prohibition: it forbids certain things to happen. The more a theory forbids, the better it is.
 (@) A theory which is not refutable by any conceivable event is nonscientific.
 Irrefutability is not a virtue of a theory (as people often think) but a vice.
@@ -1248,10 +1272,10 @@ Irrefutability is not a virtue of a theory (as people often think) but a vice.
 ::: {.notes}
 :::
 
-## (AP) The 7 conclusions of Popper on science {.smaller visibility="uncounted"}
+## (AP) The 7 Conclusions of Popper on Science {.smaller visibility="uncounted"}
 
 :::: {.columns}
-::: {.column style="width: 50%; padding-top: 0px;"}
+::: {.column style="width: 50%; padding-top: 0px; font-size: 0.9em;"}
 (@) Every genuine *test* of a theory is an attempt to falsify it, or to refute it.
 Testability is falsifiability; but there are degrees of testability: some theories are more testable, more exposed to refutation, than others; they take, as it were, greater risks.
 (@) Confirming evidence should not count *except when it is the result of a genuine test of the theory*; and this means that it can be presented as a serious but unsuccessful attempt to falsify the theory. (I now speak in such cases of ‘corroborating evidence’).
@@ -1269,10 +1293,10 @@ Testability is falsifiability; but there are degrees of testability: some theori
 ::: {.notes}
 :::
 
-## (AP) The 7 conclusions of Popper on science {.smaller visibility="uncounted"}
+## (AP) The 7 Conclusions of Popper on Science {.smaller visibility="uncounted"}
 
 :::: {.columns}
-::: {.column style="width: 50%; padding-top: 0px;"}
+::: {.column style="width: 50%; padding-top: 0px; font-size: 0.9em;"}
 (@) Some genuinely testable theories, when found to be false, are still upheld by their admirers---for example by introducing *ad hoc* some auxiliary assumption, or by re-interpreting the theory *ad hoc* in such a way that it escapes refutation. Such a procedure is always possible, but it rescues the theory from refutation only at the price of destroying, or at least lowering, its scientific status. (I later described such a rescuing operation as a ‘*conventionalist twist*’ or
 a ‘*conventionalist stratagem*’).
 :::
@@ -1289,7 +1313,7 @@ a ‘*conventionalist stratagem*’).
 ::: {.notes}
 :::
 
-## (AP) The 7 conclusions of Popper on science {visibility="uncounted"}
+## (AP) The 7 Conclusions of Popper on Science {visibility="uncounted"}
 
 :::: {.columns}
 ::: {.column style="width: 50%; padding-top: 0px;"}

@@ -153,7 +153,7 @@ weighted_data |>
 #| message: false
 #| warning: false
 #| fig-width: 10
-#| fig-width: 7
+#| fig-height: 7
 
 anonymized_data |>
   plotr:::plot_ggally(
@@ -175,7 +175,7 @@ Correlation matrix of main variables (**Full sample**).
 #| message: false
 #| warning: false
 #| fig-width: 10
-#| fig-width: 7
+#| fig-height: 7
 
 weighted_data |>
   plotr:::plot_ggally(
@@ -1283,7 +1283,7 @@ weighted_data |> plotr:::plot_chronotype()
 
 [Source: Created by the author based on a data visualization from @roenneberg2019b[Figure 1].{.legend}
 
-Observed distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. `<br>`{=html} `\microskip \\`{=latex} Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
+Observed distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. `<br>`{=html} `\microskip \\`{=latex} Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.111$) to extremely late ($0.888 |- 1$).
 :::
 
 ::: {#fig-sm-3-roenneberg-2019-figure-1}
@@ -1484,7 +1484,7 @@ plot |>
 
 [Source: Created by the author.]{.legend}
 
-Observed geographical distribution of MSF~sc~ values by a spectrum of extremely early and extremely late, illustrating how chronotype varies with latitude in Brazil. `<br>`{=html} `\microskip \\`{=latex} MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$). No discernible pattern emerges from the distribution of chronotypes across latitudes.
+Observed geographical distribution of MSF~sc~ values by a spectrum of extremely early and extremely late chronotypes, illustrating how chronotype varies with latitude in Brazil. `<br>`{=html} `\microskip \\`{=latex} MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.111$) to extremely late ($0.888 |- 1$). No discernible pattern emerges from the distribution of chronotypes across latitudes.
 :::
 
 ::: {#fig-sm-3-chronotype-latitude-series}
@@ -1497,7 +1497,7 @@ weighted_data |> plotr:::plot_latitude_series()
 
 [Source: Created by the author.]{.legend}
 
-Boxplots of observed mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+Boxplots of observed mean MSF~sc~ values aggregated by 1° latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values indicate a tendency towards eveningness. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
 :::
 
 ```{r}

@@ -275,11 +275,9 @@ Even considering that `POSIXct` objects are used in the models, there is still a
 
 The study hypothesis was tested using nested multiple linear regressions. The primary concept of nested models is to evaluate the effect of adding one or more predictors on the model’s variance explanation (i.e., the $\text{R}^{2}$) [@allen1997; @maxwell2018]. This is achieved by creating a restricted model ($r$) and comparing it with a full model ($f$). The hypothesis can be outlined as follows:
 
-Null hypothesis ($\text{H}_{0}$)
-: Adding *latitude* does not meaningfully improve the model’s fit. This implies that the change in adjusted $\text{R}^{2}$ is negligible, or the F-test is not significant, given a type I error probability ($\alpha$) of $0.05$.
+- **Null Hypothesis** ($\text{H}_{0}$): Including *latitude* as a predictor does not result in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that is less than the Minimum Effect Size (MES).
 
-Alternative Hypothesis ($\text{H}_{a}$)
-: Adding *latitude* meaningfully improves the model’s fit. This implies that the change in adjusted $\text{R}^{2}$ exceeds the expected Minimum Effect Size (MES), and the F-test is significant, given a type I error probability ($\alpha$) of $0.05$.
+- **Alternative Hypothesis** ($\text{H}_{a}$): Including *latitude* as a predictor results in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that meets or exceeds the Minimum Effect Size (MES).
 
 ::: {#cnj-hypothesis-test}
 ### Data Test – Full Version

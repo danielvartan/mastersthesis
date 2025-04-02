@@ -4,38 +4,1336 @@ execute:
 ---
 
 <!-- %:::% index begin %:::% -->
-# Introduction {#sec-introduction}
+## Hi there! 👋 {.smaller}
 
 ```{r}
 #| label: setup
 #| include: false
 
-source(here::here("R", "_setup.R"))
+source(here::here("R/_setup.R"))
 ```
 
-<!-- %:::% index pdf begin %:::% -->
-There has been a long-standing debate in the chronobiology community regarding the relationship between latitude and human circadian phenotypes (chronotypes) [e.g., @bohlen1973; @randler2008; @leocadio-miguel2017; @wang2023], with many assuming that this association is well-established. The hypothesis is based on the varying amounts of solar radiation experienced by populations across different latitudes. Since light exposure serves as a primary zeitgeber---a periodic environmental cue that influences or regulates biological rhythms [@aschoff1960; @pittendrigh1960]---such variations, along with temperature differences, are thought to result in observable differences in chronotype distributions globally. This thesis investigates the so-called latitude or environmental hypothesis in human circadian phenotypes, addressing the question: *Is latitude associated with chronotype?*
+```{r}
+#| eval: false
+#| include: false
 
-The central hypothesis is that *latitude is associated with human chronotype distributions*, with populations closer to the equator exhibiting, on average, a shorter or more morning-oriented circadian phenotype compared to those living near the poles [@bohlen1973; @randler2008; @leocadio-miguel2014; @horzum2015; @leocadio-miguel2017]. The primary objective of this study is to model and test this hypothesis by critically examining whether a meaningful association exists between latitude and circadian phenotypes in the Brazilian population.
+library(brandr)
+library(dplyr)
+library(hms)
+library(lubritime)
+library(rutils) # github.com/danielvartan/rutils
+library(stats)
+library(targets)
+```
 
-This study emerged from an insightful debate with my former supervisor, sparked by results published in 2017 in the journal *Scientific Reports* [@leocadio-miguel2017]. In this paper, the authors conclude that there is a meaningful association between latitude and chronotype in the Brazilian population, consistent with theoretical predictions. However, the results were not as clear-cut as presented, and the methodology used to test the hypothesis was not optimal. This thesis revisits the hypothesis using an improved statistical approach, aiming to provide a more accurate and reliable answer to the research question.
+```{r}
+#| include: false
 
-In the following chapters, the latitude hypothesis is tested using Popper's hypothetical-deductive method [@popper1979a] and an enhanced approach to Null Hypothesis Significance Testing (NHST), rooted in the original Neyman-Pearson framework for data testing [@neyman1928; @neyman1928a; @perezgonzalez2015]. This involves a series of analyses conducted on a large dataset of `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` individuals, collected from the Brazilian population in 2017. The dataset is based on the Munich Chronotype Questionnaire (MCTQ) [@roenneberg2003b; @roenneberg2012a], and includes data on sleep habits and geographical and demographic characteristics from all of Brazil's states.
+library(ggplot2)
+library(lubridate)
+library(magrittr)
+library(rlang)
+library(targets)
+```
 
-It is important to emphasize that this thesis does not aim to propose or discuss the mechanisms underlying the latitude-chronotype relationship. Instead, it focuses solely on the statistical association between them concerning only human populations. An association is a necessary precursor to any causal relationship---and this thesis aims to determine whether such an association exists.
+```{r}
+#| include: false
 
-The analyses utilized nested multiple regression models to assess the variance explained by latitude in predicting chronotype. This method of procedure builds on the method used in @leocadio-miguel2017. The results will contribute to the ongoing debate on the latitude-chronotype relationship, offering new evidence on the influence of environmental factors on human circadian rhythms.
+source(here::here("R", "utils-md.R"))
+```
 
-In accordance with the [graduate program regulation](https://leginf.usp.br/?resolucao=resolucao-copgr-no-7829-de-03-de-outubro-de-2019#:~:text=XI%20%E2%80%93%20PROCEDIMENTOS%20PARA%20DEP%C3%93SITO%20DA%20DISSERTA%C3%87%C3%83O), this thesis follows an [article-based format](https://en.wikipedia.org/wiki/Collection_of_articles), inspired by the structure of @reis2020b's PhD thesis. Chapters [-@sec-on-chronobiology], [-@sec-on-complexity-science], and [-@sec-on-the-latitude-hypothesis] consist of essays and literature reviews related to the thesis topic that provide essential background for understanding the research. Chapter [-@sec-latitude-hypothesis-article] presents the core investigation, including an article detailing the hypothesis test and addressing the research question. Finally, Chapter [-@sec-conclusion] offers conclusions, discusses limitations, and proposes directions for future research. Additionally, supplementary materials are provided to offer a richer, more comprehensive understanding of the research. The reader is encouraged to explore them in detail.
+```{r}
+#| include: false
 
-::: {.content-visible when-format="html"}
-All analyses in this thesis are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) [@rcoreteama] alongside the [Quarto](https://quarto.org/) publishing system [@allaire].
+anonymized_data <- targets::tar_read(
+  "anonymized_data",
+  store = here::here("_targets")
+)
+```
+
+```{r}
+#| include: false
+
+weighted_data <- targets::tar_read(
+  "weighted_data",
+  store = here::here("_targets")
+)
+```
+
+::::: {.columns}
+:::: {.column style="width: 47.5%;"}
+This presentation will provide an overview of the thesis objectives, main concepts, methods, and results. Together, we’ll uncover how environment factors can influence the chronotype.
+
+::: {style="padding-top: 15px;"}
+Here are the main topics:
+
+1. **Introduction**
+1. **Methods**
+1. **Results**
+1. **Discussion**
+1. **Conclusion**
+:::
+::::
+:::: {.column style="width: 5%;"}
+::::
+:::: {.column style="width: 47.5%;"}
+![](images/sun-rhythm-rgb-96-dpi.png){fig-align="center" style="width: 80%; padding-top: 150px;"}
+::::
+:::::
+
+::: {.notes}
+1. **Introduction** [5m]
+1. **Methods** [5m]
+1. **Results** [5m]
+1. **Discussion** [5m]
+1. **Conclusion** [5m]
 :::
 
-::: {.content-visible when-format="pdf"}
-All analyses in this thesis are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/) [@rcoreteama] alongside the [Quarto](https://quarto.org/) publishing system [@allaire]. Given the thesis's data-centric nature, it is best experienced online. To view the digital version
-visit: <https://danielvartan.github.io/mastersthesis>
+# Introduction
 
-The thesis code repository is available on GitHub at <https://github.com/danielvartan/mastersthesis>, and the research compendium can be accessed via [The Open Science Framework](https://osf.io/) at the following link:  <https://doi.org/10.17605/OSF.IO/YGKTS>
+::: {.notes}
+:::
+
+## Question {.smaller}
+
+This thesis focuses on the *expression of sleep and circadian phenotypes (chronotypes)*, seeking to provide an answer to the following question related to **human populations**:
+
+::: {style="text-align: center; font-size: 2em; font-weight: bold; color: #EA7701; padding-top: 125px;"}
+Is latitude associated with chronotype?
+:::
+
+::: {.notes}
+:::
+
+## Chronotype {.smaller}
+
+:::: {.columns}
+::: {.column style="width: 47.5%;"}
+![](images/merrow-2023-video-1-3-figure-1-adapted.png){style="width: 100%; padding-top: 20px;"}
+:::
+::: {.column style="width: 5%;"}
+:::
+::: {.column style="width: 47.5%;"}
+![](images/duffy-2011-figure-1-middle.png){style="width: 100%; padding-top: 75px;"}
+:::
+::::
+
+::: footer
+(Reproduced from @merrow2020 (Left) and @duffy2011a[Figure 1] (Right))
+:::
+
+::: {.notes}
+Temporal dimension of evolution.
+:::
+
+## Entrainment {.smaller}
+
+![](images/flanagan-2021-figure-2-adapted.png){fig-align="center" style="width: 75%; padding-top: 10px; padding-bottom: 30px"}
+
+::: footer
+(Reproduced from @flanagan2021[Figure 2])
+:::
+
+::: {.notes}
+Physiological global emergence.
+
+An illustration depicting how the human circadian clock system regulate multiple aspects of metabolic physiology, such as: hormone secretion, core body
+temperature, resting metabolic rate, and plasma metabolite concentration.
+::::
+
+## The Latitude Hypothesis {.smaller}
+
+![](images/roenneberg-2003-figure-7-f-adapted.svg){fig-align="center" style="width: 50%; padding-top: 30px; padding-bottom: 50px"}
+
+::: footer
+(Adapted by the author from @roenneberg2003b[Figure 7F])
+:::
+
+::: {.notes}
+::::
+
+## {visibility="uncounted" data-menu-title="Leocadio-Miguel et al." background-image="images/leocadio-miguel-2017-article-print.png" background-position="top left" background-size="100%" .scrollable}
+
+::: {.notes}
+URL: https://www.nature.com/articles/s41598-017-05797-w
+:::
+
+## Leocadio-Miguel et al. {.smaller}
+
+Sample: $12,884$ Brazilian participants.
+
+Method: HO Questionnaire [@horne1976].
+
+$\Delta \ \text{Adjusted} \ \text{R}^{2} = 0.388\%$ (Cohen's $f^2 = 0.00414$).
+
+::::: {.columns}
+:::: {.column style="width: 50%; padding-top: 10px;"}
+![](images/leocadio-miguel-2017-figure-2.png){fig-align="center"}
+::::
+:::: {.column style="width: 50%; padding-top: 35px;"}
+```{r}
+#| fig-align: center
+#| fig-width: 7
+#| fig-height: 4.75
+
+data <-
+  dplyr::tibble(
+    ho = c(
+      44.5 + (338 / (402 / (48.5 - 44.5))),
+      44.5 + (316 / (402 / (48.5 - 44.5))),
+      44.5 + (217 / (402 / (48.5 - 44.5))),
+      44.5 + (155 / (402 / (48.5 - 44.5))),
+      44.5 + (94 / (402 / (48.5 - 44.5))),
+      44.5 + (94 / (402 / (48.5 - 44.5)))
+    ),
+    latitude = c(
+      42 / (87 / 13),
+      13 + (44 / (88 / (18 - 13))),
+      18 + (43 / (87 / (22 - 18))),
+      22 + (44 / (87 / (26 - 22))),
+      26 + (44 / (87 / (29 - 26))),
+      29 + (44 / (86 / (32 - 29)))
+    )
+  ) |>
+  dplyr::mutate(
+    se_upper = c(
+      44.5 + (369 / (402 / (48.5 - 44.5))),
+      44.5 + (357 / (402 / (48.5 - 44.5))),
+      44.5 + (240 / (402 / (48.5 - 44.5))),
+      44.5 + (176 / (402 / (48.5 - 44.5))),
+      44.5 + (134 / (402 / (48.5 - 44.5))),
+      44.5 + (131 / (402 / (48.5 - 44.5)))
+    ),
+    se = se_upper - ho
+  )
+
+data |>
+  ggplot2::ggplot(
+    ggplot2::aes(x = latitude, y = ho)
+  ) +
+  ggplot2::geom_point(shape = 15, size = 3) +
+  ggplot2::geom_errorbar(
+    ggplot2::aes(
+      x = latitude,
+      y = ho,
+      ymin = ho - se,
+      ymax= ho + se
+    ),
+    data = data,
+    show.legend = FALSE,
+    inherit.aes = FALSE,
+    width = 0.5,
+    linewidth = 0.5
+  ) +
+  ggplot2::geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE,
+    color = brandr::get_brand_color("orange")
+  ) +
+  ggplot2::scale_x_continuous(
+    breaks = c(0, 13, 18, 22, 26, 29, 32),
+    labels = c("0º", "13º", "18º", "22º", "26º", "29º", "32º"),
+    limits = c(0, 32)
+  ) +
+  ggplot2::scale_y_continuous(
+    breaks = seq(16, 86, 10),
+    limits = c(16, 86)
+  ) +
+  ggplot2::labs(
+    x = "Latitude (Degrees South)",
+    y = "HO Score"
+  )
+```
+::::
+:::::
+
+::: footer
+(Reproduced from @leocadio-miguel2017[Figure 2] (Left), with a rescaled version created by the author (Right))
+:::
+
+::: {.notes}
+:::
+
+# Methods
+
+## MCTQ {.smaller}
+
+![](images/mctq-figure-1.png){fig-align="center" style="width: 100%; padding-top: 125px; padding-bottom: 30px"}
+
+::: footer
+(Created by the author)
+:::
+
+::: {.notes}
+::::
+
+## The Two Process of Sleep Reg. {.smaller}
+
+![](images/borbely-1982-figure-4-adapted.png){fig-align="center" style="width: 70%; padding-top: 30px; padding-bottom: 50px"}
+
+::: footer
+(Adapted by the author from @borbely1982a[Figure 4])
+:::
+
+::: {.notes}
+Illustration of the interaction between Process $\text{S}$ (Homeostatic/Sleep-dependent process) and Process $\text{C}$ (Circadian rhythm process) in sleep regulation. `<br>`{=html} `\microskip \\`{=latex} The figure depicts two scenarios: One with $17$ hours of wakefulness followed by $7$ hours of sleep, and another, under sleep deprivation, with $41$ hours of wakefulness followed by $7$ hours of sleep. The hatched areas indicate periods of sleep, illustrating the exponential decline of Process $\text{S}$.
+:::
+
+## Sample {.smaller}
+
+![](images/globo-2017-figure-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 25px;"}
+
+::: footer
+(Reproduced from @redeglobo2017)
+:::
+
+::: {.notes}
+:::
+
+## Sample {.smaller}
+
+:::: {.columns}
+::: {.column style="width: 30%; padding-top: 0px;"}
+The dataset used for analysis is made up of `{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex()` Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017.
+:::
+::: {.column style="width: 70%; padding-top: 15px;"}
+```{r}
+#| message: false
+#| warning: false
+#| fig-align: center
+#| fig-width: 7
+#| fig-height: 5
+
+
+weighted_data |>
+  plotr:::plot_brazil_municipality(
+    year = 2017,
+    transform = "log10",
+    direction = -1,
+    alpha = 0.75,
+    breaks = c(10, 500, 1000, 5000, 7500),
+    point = TRUE
+  )
+```
+:::
+::::
+
+::: footer
+(Created by the author)
+:::
+
+::: {.notes}
+Geographical distribution of the sample used in the analysis (`{r} res_vars$ea_analysis_sample_n |> groomr:::format_to_md_latex(before = "n = ")`). `<br>`{=html} `\microskip \\`{=latex} Each point represents a municipality, with its size proportional to the number of participants and its color indicating participant density. The sample includes Brazilian individuals aged 18 or older, residing in the UTC-3 timezone, who completed the survey between October 15th and 21st, 2017. The size and color scale are logarithmic ($\log_{10}$).
+:::
+
+## Hypothesis Test {.smaller}
+
+The study tested whether *latitude* significantly improves model fit when predicting chronotype with **nested models**.
+
+A restricted model (excluding latitude) with a full model (including latitude) was compared.
+
+To ensure practical significance, a **Minimum Effect Size** (MES) criterion was applied, following the original Neyman-Pearson framework for hypothesis testing [@neyman1928; @neyman1928a; @perezgonzalez2015].
+
+The MES was set at Cohen's threshold for small effects ($f^2 = 0.02$, equivalent to $\text{R}^2 = 0.01961$) [@cohen1988a, p. 413]. Thus, latitude was considered meaningful only if its inclusion accounted for at least $1.96078\%$ of the variance in chronotype.
+
+To balance the sample, a **weighting procedure** was applied to the data. The weights were calculated by cell weighting, using the sex, age group and Brazil's state as reference.
+
+::: {.notes}
+::::
+
+## Hypothesis Test {.smaller}
+
+The hypothesis can be outlined as follows:
+
+::: {style="padding-top: 15px;"}
+Null hypothesis ($\text{H}_{0}$)
+: Including *latitude* as a predictor does not result in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that is less than the Minimum Effect Size (MES).
+
+Alternative Hypothesis ($\text{H}_{a}$)
+: Including *latitude* as a predictor results in a meaningful improvement in the model’s fit, as evidenced by a change in the adjusted $\text{R}^{2}$ that meets or exceeds the Minimum Effect Size (MES).
+:::
+
+::: {style="text-align: center; padding-top: 10px;"}
+$$
+\begin{cases}
+\text{H}_{0}: \Delta \ \text{Adjusted} \ \text{R}^{2} < \text{MES} \\
+\text{H}_{a}: \Delta \ \text{Adjusted} \ \text{R}^{2} \geq \text{MES}
+\end{cases}
+$$
+:::
+
+::: {.notes}
+:::
+
+# Results
+
+## Chronotype Distribution {.smaller}
+
+::: {style="padding-top: 10px; padding-bottom: 30px"}
+```{r}
+#| message: false
+#| warning: false
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 5.75
+
+weighted_data |> plotr:::plot_chronotype()
+```
+:::
+
+::: footer
+(Created by the author based on a data visualization from @roenneberg2019b[Figure 1])
+:::
+
+::: {.notes}
+Distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. `<br>`{=html} `\microskip \\`{=latex} Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
+:::
+
+## Hypothesis Test {.smaller}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px;"}
+**Restricted Model**<br>[(Based on @leocadio-miguel2017)]{style="font-size: 1rem;"}
+
+- Predictors ($4$):<br>Age, Sex, Longitude, and the Average Monthly Global Horizontal Irradiance (GHI) at the time of questionnaire completion.
+- `{r} md_adj_r_squared("hta", "restricted")`
+- `{r} md_f_test("hta", "restricted")`
+- `{r} md_p_value("hta", "restricted")`
+:::
+::: {.column style="width: 50%; padding-top: 0px;"}
+![](images/pereira-2017-figure-13.png){fig-align="center" style="width: 80%; padding-top: 0px;"}
+:::
+::::
+
+::: footer
+(Adapted by the author from @pereira2017)
+:::
+
+::: {.notes}
+Components of solar irradiance. $G_{0}$ = Extraterrestrial irradiance. $G_{n}$ = Direct normal irradiance. $G_{dif}$ = Diffuse horizontal irradiance. $G_{dir}$ = Direct horizontal irradiance. $G$ = Global horizontal irradiance. $G_{i}$ = Inclined plane irradiance.
+
+In particular, it was used the Global Horizontal Irradiance (GHI) data, which is the total amount of irradiance received from above by a surface horizontal to the ground.
+:::
+
+## Hypothesis Test {.smaller}
+
+:::: {.columns}
+::: {.column style="width: 49%; padding-top: 0px;"}
+**Full Model A**<br>[(Based on @leocadio-miguel2017)]{style="font-size: 1rem;"}
+
+- Predictors ($8$):<br>[restricted predictors] + Average Annual Global Horizontal Irradiance (GHI), Daylight Duration for the Nearest March Equinox, June and December solstices.
+- `{r} md_adj_r_squared("hta", "full")`
+- `{r} md_f_test("hta", "full")`
+- `{r} md_p_value("hta", "full")`
+:::
+::: {.column style="width: 2%; padding-top: 0px;"}
+:::
+::: {.column style="width: 49%; padding-top: 0px;"}
+**Full Model B**
+
+- Predictors ($5$):<br>[restricted predictors] + Latitude.
+- `{r} md_adj_r_squared("htb", "full")`
+- `{r} md_f_test("htb", "full")`
+- `{r} md_p_value("htb", "full")`
+:::
+::::
+
+::: {.notes}
+::::
+
+## Hypothesis Test {.smaller}
+
+All coefficients were statistically different from zero ($p\text{-value} < 0.05$). Assumption checking and residual diagnostics primarily relied on visual inspection, as formal assumption tests (e.g., Anderson-Darling) are often not recommended for large samples [@shatz2024]. All validity assumptions were met, and no serious multicollinearity was found among the predictor variables.
+
+An ANOVA for nested models revealed a significant reduction in the residual sum of squares in both tests (**A**, `{r} md_f_test("hta")`, `{r} md_p_value("hta")`) (**B**, `{r} md_f_test("htb")`, `{r} md_p_value("htb")`).
+
+::: {style="padding-top: 15px;"}
+However, similarly to @leocadio-miguel2017, when estimating Cohen’s $f^2$ effect size ($f^2 = 0.00414$), **the results were below the MES** (i.e., negligible) (**A**, `{r} md_effect_size("hta", prefix = "")`) (**B**, `{r} md_effect_size("htb", prefix = "")`).
+:::
+
+::: {.notes}
+Sunrise times for the nearest March and September equinoxes, as well as the June and December solstices, were excluded due to high multicollinearity. Daylight duration for the September equinox was excluded for its collinearity with daylight duration during the March equinox.
+::::
+
+# Discussion
+
+## Chronotype *versus* Latitude {.smaller}
+
+::: {style="padding-top: 10px; padding-bottom: 30px"}
+```{r}
+#| message: false
+#| warning: false
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 6
+
+weighted_data |> plotr:::plot_latitude_series()
+```
+:::
+
+::: footer
+(Created by the author)
+:::
+
+::: {.notes}
+Boxplots of mean MSF~sc~ values aggregated by $1°$ latitude intervals, illustrating the relationship between latitude and chronotype. MSF~sc~ represents the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days, a proxy for chronotype. Higher MSF~sc~ values indicate later chronotypes. The × symbol points to the mean. The orange line represents a linear regression. The differences in mean/median values across latitudes are minimal relative to the Munich ChronoType Questionnaire (MCTQ) scale.
+:::
+
+## Chronotype Geo. Distribution
+
+::: {style="padding-top: 10px; padding-bottom: 30px"}
+```{r}
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 6
+
+limits <- # Interquartile range (IQR): Q3 - Q1
+  c(
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
+      stats::quantile(0.25, na.rm = TRUE),
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
+      stats::quantile(0.75, na.rm = TRUE)
+  )
+
+weighted_data |>
+  dplyr::mutate(
+    msf_sc =
+      msf_sc |>
+      lubritime::link_to_timeline() |>
+      as.numeric()
+  ) |>
+  plotr:::plot_brazil_state(
+    col_fill = "msf_sc",
+    year = 2017,
+    breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
+    labels = plotr:::format_as_hm,
+    limits = limits, # !!!
+    quiet = TRUE,
+    reverse = TRUE
+  )
+```
+:::
+
+::: footer
+(Created by the author. The color scale is bounded by the first and third quartiles.)
+:::
+
+::: {.notes}
+Geographical distribution of MSF~sc~ values by Brazilian state, illustrating how chronotype varies with latitude in Brazil. MSF~sc~ is a proxy for chronotype, representing the midpoint of sleep on work-free days, adjusted for sleep debt. Higher MSF~sc~ values correspond to later chronotypes. The color scale was not transformed and it has as limits the first and third quartile (interquartile range). Differences in mean MSF~sc~ values across states are small and fall within a narrow range relative to the scale of the Munich ChronoType Questionnaire (MCTQ), limiting the significance of these variations.
+:::
+
+## Chronotype Geo. Distribution
+
+::: {style="padding-top: 10px; padding-bottom: 30px"}
+```{r}
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 6
+
+plot <-
+  weighted_data |>
+  dplyr::mutate(
+    msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
+    msf_sc_category = factor(
+      msf_sc_category,
+      levels = c(
+        "Extremely early", "Moderately early", "Slightly early",
+        "Intermediate", "Slightly late", "Moderately late",
+        "Extremely late"
+      ),
+      ordered = TRUE
+    )
+  ) |>
+  plotr:::plot_brazil_point(
+    col_group = "msf_sc_category",
+    year = 2017,
+    size = 0.1,
+    alpha = 1,
+    print = FALSE,
+    scale_type = "d"
+  ) +
+  ggplot2::theme(
+    axis.title = ggplot2::element_blank(),
+    axis.text= ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_blank(),
+    panel.grid.major = ggplot2::element_blank(),
+    panel.grid.minor = ggplot2::element_blank(),
+    legend.position = "none"
+  )
+
+plot |>
+  plotr:::rm_ggspatial_scale() +
+  ggplot2::facet_wrap(~msf_sc_category, ncol = 4, nrow = 2)
+```
+:::
+
+::: footer
+(Created by the author)
+:::
+
+::: {.notes}
+Respondent level by categorical chronotype.
+:::
+
+## The *p*-value Problem {.smaller}
+
+::::: {.columns}
+:::: {.column style="width: 40%; padding-top: 0px;"}
+Large samples and sensitivity.
+
+Is a difference of $0.00001$ valid?
+
+Statistical ritual *versus* Statistical thinking.
+
+Confirmation bias.
+
+<br>
+
+::: {style="font-size: 0.5em; font-style: italic;"}
+Comparison of a 95% of confidence level ($\alpha = 0.05$) and an *n*-dependent *p-value* curve. The parameter $n_{\alpha}$ represents the minimum sample size to detect statistically significant differences among compared groups. The parameter $n_{\gamma}$ represents the convergence point of the *p-value* curve. When the *p-value* curve expresses practical differences, the area under the red curve ($A_{p(n)}$) is smaller than the area under the constant function $\alpha = 0.05$ ($A_{\alpha = 0.05}$) when it is evaluated between $0$ and $n_{\gamma}$.
+:::
+::::
+:::: {.column style="width: 60%; padding-top: 100px;"}
+![](images/gomez-de-mariscal-2021-figure-3.png){fig-align="center" style="width: 75%; padding-top: 0px;"}
+::::
+:::::
+
+::: footer
+(Chart reproduced from @mariscal2021[Figure 3])
+:::
+
+::: {.notes}
+:::
+
+## The *p*-value Problem {.smaller}
+
+:::: {.columns}
+::: {.column style="width: 50%; font-size: 0.7em; padding-top: 0px;"}
+> SMALL EFFECT SIZE: $f^2 = .02$. Translated into $\text{R}^{2}$ or partial $\text{R}^{2}$ for Case 1, this gives $.02 / (1 + .02) = .0196$. We thus define a small effect as one that accounts for 2% of the $\text{Y}$ variance (in contrast with 1% for $r$), and translate to an $\text{R} = \sqrt{0196} = .14$ (compared to .10 for $r$). This is a modest enough amount, **just barely escaping triviality** and (alas!) all too frequently in practice represents the true order of magnitude of the effect being tested. (p. 413)
+
+> [...] in many circumstances, all that is intended by "proving" the null hypothesis is that the ES [Effect Size] is not necessarily zero but **small enough to be negligible** [...]. (p. 461)
+:::
+::: {.column style="width: 50%; padding-top: 0px;"}
+![](images/jacob-cohen-figure-1.jpg){fig-align="center" style="width: 80%; padding-top: 25px;"}
+:::
+::::
+
+::: footer
+(Quotes reproduced from @cohen1988a. Photo by an unknown author.)
+:::
+
+::: {.notes}
+:::
+
+## Nonrealistic Models {.smaller}
+
+![](images/oinonen-2021-figure-1.png){fig-align="center" style="padding-top: 0px; padding-bottom: 25px;"}
+
+::: footer
+(Artwork by [Virpi Oinonen](https://www.businessillustrator.com/complexity-and-policy-making-cartoon-summary-2/))
+:::
+
+::: {.notes}
+:::
+
+# Conclusion
+
+## Answer {.smaller}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px;"}
+
+> I suggest that **it is the aim of science to find satisfactory explanations**, of whatever strikes us as being in need of explanation.
+
+This study, using what is arguably one of the largest datasets on chronotype,
+found no evidence supporting the latitude hypothesis in humans.
+:::
+
+::: {.column style="width: 50%; padding-top: 0px;"}
+![](images/karl-popper-figure-1.jpg){fig-align="center" style="width: 100%; padding-top: 25px;"}
+:::
+::::
+
+::: footer
+(Quote reproduced from @popper1979a[p. 193]. Photo by an unknown author.)
+:::
+
+::: {.notes}
+:::
+
+## Closing remarks {.smaller}
+
+[![License:
+MIT](images/mit-license-badge.svg){style="width: 10.5%; padding-top: 0px;"}](https://choosealicense.com/licenses/mit/)
+[![License: CC BY
+4.0](images/cc-license-badge.svg){style="width: 15%; padding-top: 0px;"}](https://creativecommons.org/licenses/by/4.0/)
+
+This thesis was presented to the School of Arts, Sciences and Humanities ([EACH](http://www5.each.usp.br/)) at the University of São Paulo ([USP](https://www5.usp.br/)) as a requirement for the degree of Master of Science by the Graduate Program in Complex Systems Modeling ([PPGSCX](https://sites.usp.br/scx/en/apresentacao/)).
+
+I am deeply grateful to my advisor, [Prof. Dr. Camilo Rodrigues Neto](https://orcid.org/0000-0001-6783-6695), for introducing me to complexity science in 2012, guiding my dissertation with patience, and demonstrating remarkable integrity in navigating a challenging supervisory transition.
+
+## Closing remarks {.smaller}
+
+[![License:
+MIT](images/mit-license-badge.svg){style="width: 10.5%; padding-top: 0px;"}](https://choosealicense.com/licenses/mit/)
+[![License: CC BY
+4.0](images/cc-license-badge.svg){style="width: 15%; padding-top: 0px;"}](https://creativecommons.org/licenses/by/4.0/)
+
+The presentation was created using the [Quarto](https://quarto.org/) publishing system. All analyses presented are fully reproducible and were conducted using the [R programming language](https://www.r-project.org/).
+
+To explore the code and repository for this thesis, click [here](https://github.com/danielvartan/mastersthesis). The research compendium is also accessible via [The Open Science Framework](https://osf.io/) by clicking [here](https://doi.org/10.17605/OSF.IO/YGKTS).
+
+Financial support was provided by the Coordination for the Improvement of Higher Education Personnel ([CAPES](https://www.gov.br/capes/)) (Grant number: 88887.703720/2022-00).
+
+::: {.notes}
+:::
+
+## References {.smaller}
+
+::: {style="font-size: 0.75em;"}
+In accordance with the [American Psychological Association (APA) Style](https://apastyle.apa.org/), 7th edition.
+:::
+
+::: {#refs style="font-size: 0.75em;"}
+:::
+
+# Thank you!
+
+# Appendices {visibility="uncounted"}
+
+## (AP) *Mimosa Pudica* {.smaller visibility="uncounted"}
+
+![](images/nobel-prize-outreach-ab-2017-figure-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 25px;"}
+
+::: footer
+(Reproduced from @nobelprizeoutreachab)
+:::
+
+::: {.notes}
+Illustration of the circadian rhythm in leaf movement of the sensitive plant (*Mimosa pudica*) observed by Jacques d'Ortous de Mairan in 1729.
+:::
+
+## (AP) Entrainment {.smaller visibility="uncounted"}
+
+![](images/kuhlman-2018-figure-2b-adapted.png){fig-align="center" style="width: 70%; padding-top: 30px; padding-bottom: 50px;"}
+
+::: footer
+(Adapted by the author from @kuhlman2018[Figure 2B])
+:::
+
+::: {.notes}
+Illustration of a circadian rhythm entrained (Phase-advanced, indicated by a leftward shift) by a zeitgeber (Input).
+:::
+
+## (AP) Emergence {.smaller visibility="uncounted"}
+
+::: {style="font-size: 0.8em;"}
+**Stable macroscopic patterns** arising from **local interaction** of agents [@epstein1999].
+
+When the aggregate exhibits **properties not attained by summation** [@holland2014].
+:::
+
+::: {layout-nrow=2}
+![](images/kurzgesagt-2017-emergence-figure-1.gif){fig-align="center" style="width: 80%; left: 61.5px;"}
+
+![](images/kurzgesagt-2017-emergence-figure-2.gif){fig-align="center" style="width: 80%; left: -61.5px;"}
+
+![](images/quanta-magazine-2018-figure-1.gif){fig-align="center" style="width: 80%; left: 61.5px; top: -68.5px;"}
+
+![](images/journey-to-the-microcosmos-2019-figure-1.gif){fig-align="center" style="width: 80%; left: -61.5px; top: -68.5px;"}
+:::
+
+::: footer
+(Artworks by [Kurzgesagt – In a Nutshell](https://www.youtube.com/watch?v=16W7c0mb-rE), [Quanta Magazine](https://www.youtube.com/watch?v=TlysTnxF_6c), and [Journey to the Microcosmos](https://www.youtube.com/watch?v=KLi5bl-gdeQ))
+:::
+
+::: {.notes}
+The behavior of each part don't explain how they behave collectively.
+
+Levels of description [@nicolis2012].
+
+In mathematical terms, the interactions of interest are non-linear [@holland2014].
+
+**Emergence isn't magic** [@wilson2004].
+
+You are dealing with an emergence phenomenon when there is no need to look under the hood [@krakauer2023].
+:::
+
+## (AP) Emergence {.smaller visibility="uncounted"}
+
+![](images/lewin-1993-figure-1.png){fig-align="center" style="width: 85%; padding-top: 25px; padding-bottom: 25px;"}
+
+::: footer
+(Reproduced from @lewin1993[Figure 1])
+:::
+
+::: {.notes}
+:::
+
+## (AP) Emergence {.smaller visibility="uncounted"}
+
+::: {style="font-size: 0.8em;"}
+**An aggregate behavior emerges** from the interactions of the parts (CAS) [@holland2012].
+:::
+
+![](images/holland-2012-figure-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 50px"}
+
+::: footer
+(Reproduced from @holland2012[Figure 1.1])
+:::
+
+::: {.notes}
+Illustrative example: Societies; Immune cells.
+
+A society is formed by individuals and their interactions. In this case, we are the agents and the society is the aggregate agent. And, as we know, we shape the society, but the society also shapes us.
+:::
+
+## (AP) Earth's Rotation Axis {visibility="uncounted"}
+
+![](images/latitude-hypothesis-figure-1.png){fig-align="center" style="padding-top: 10px; padding-bottom: 30px"}
+
+::: footer
+(Artwork by an unknown author)
+:::
+
+::: {.notes}
+:::
+
+## {visibility="uncounted" data-menu-title="(AP) Core MCTQ" .center-x .nostretch .scrollable}
+
+![](images/roenneberg-2015-mctq-core-adapted.png){width="100%"}
+
+::: footer
+(Reproduced from @thewep)
+:::
+
+::: {.notes}
+:::
+
+## (AP) Corr. Matrix {.smaller visibility="uncounted"}
+
+::: {style="text-align: center"}
+```{r}
+#| message: false
+#| warning: false
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 6
+
+weighted_data |>
+  plotr:::plot_ggally(
+    cols = c(
+      "sex",
+      "age",
+      "latitude",
+      "longitude",
+      "msf_sc"
+    ),
+    mapping = ggplot2::aes(colour = sex)
+  ) |>
+  rutils::shush()
+```
+:::
+
+::: footer
+(Created by the author)
+:::
+
+::: {.notes}
+Correlation matrix of main variables.
+:::
+
+## (AP) Chronotype Comparison {.smaller visibility="uncounted"}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px;"}
+**Brazil**
+
+```{r}
+#| message: false
+#| warning: false
+#| fig-width: 7
+#| fig-height: 7
+
+plot <-
+  weighted_data |>
+  plotr:::plot_chronotype(print = FALSE) +
+  ggplot2::theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.875, 0.2)
+  )
+
+plot |> print()
+```
+:::
+
+::: {.column style="width: 50%; padding-top: 0px;"}
+**Europe**
+
+![](images/roenneberg-2019-figure-1.png){style="padding-top: 30px;"}
+:::
+::::
+
+::: footer
+(Created by the author (Left) and reproduced from @roenneberg2019b[Figure 1] (Right))
+:::
+
+::: {.notes}
+- Left: Distribution of the local time of the sleep-corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), a proxy for chronotype. Chronotypes are categorized into quantiles, ranging from extremely early ($0 |- 0.11$) to extremely late ($0.88 - 1$).
+- Right: Distribution of European chronotypes, as shown in @roenneberg2019b (for comparison).
+:::
+
+## (AP) Age *versus* Chronotype {.smaller visibility="uncounted"}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px;"}
+**Brazil**
+
+```{r}
+#| message: false
+#| warning: false
+#| fig-width: 7
+#| fig-height: 7
+
+plot <-
+  anonymized_data |>
+  dplyr::filter(age <= 50) |>
+  plotr:::plot_series(print = FALSE) +
+  ggplot2::theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.85, 0.85)
+  )
+
+plot |> print()
+```
+:::
+
+::: {.column style="width: 50%; padding-top: 0px;"}
+**Europe**
+
+![](images/roenneberg-2007-figure-4.png){style="padding-top: 30px;"}
+:::
+::::
+
+::: footer
+(Created by the author (Left) and reproduced from @roenneberg2007[Figure 4] (Right))
+:::
+
+::: footer
+(Created by the author, based on a data visualization from @roenneberg2007[Right Figure])
+:::
+
+::: {.notes}
+- Left: Relation between age and chronotype, divided by sex and aggregated by the mean. Chronotype is represented by the local time of the sleep corrected midpoint between sleep onset and sleep end on work-free days (MSF~sc~), MCTQ proxy for measuring the chronotype. The gray line represents both sex. Vertical lines represent the standard error of the mean (SEM).
+- Right: Distribution of European chronotypes by age, as shown in @roenneberg2007, for comparison.
+:::
+
+## (AP) Chronotype Geo. Dist. {.smaller visibility="uncounted"}
+
+::: {style="padding-top: 10px; padding-bottom: 30px"}
+```{r}
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 6
+
+limits <- # Interquartile range (IQR): Q3 - Q1
+  c(
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
+      quantile(0.25, na.rm = TRUE),
+    weighted_data |>
+      dplyr::pull(msf_sc) |>
+      lubritime::link_to_timeline() |>
+      as.numeric() |>
+      quantile(0.75, na.rm = TRUE)
+  )
+
+weighted_data |>
+  dplyr::mutate(
+    msf_sc =
+      msf_sc |>
+      lubritime::link_to_timeline() |>
+      as.numeric()
+    ) |>
+  plotr:::plot_brazil_municipality(
+    col_fill = "msf_sc",
+    year = 2017,
+    breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
+    labels = plotr:::format_as_hm,
+    limits = limits,
+    quiet = TRUE
+  )
+```
+:::
+
+::: footer
+(Created by the author. The color scale is bounded by the first and third quartiles.)
+:::
+
+::: {.notes}
+Municipality level.
+:::
+
+## (AP) Chronotype Geo. Dist. {.smaller visibility="uncounted"}
+
+::: {style="padding-top: 10px; padding-bottom: 30px"}
+```{r}
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 6
+
+plot <-
+  weighted_data |>
+  dplyr::mutate(
+    msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
+    msf_sc_category = factor(
+      msf_sc_category,
+      levels = c(
+        "Extremely early", "Moderately early", "Slightly early",
+        "Intermediate", "Slightly late", "Moderately late",
+        "Extremely late"
+      ),
+      ordered = TRUE
+    )
+  ) |>
+  plotr:::plot_brazil_point(
+    col_group = "msf_sc_category",
+    year = 2017,
+    print = FALSE,
+    scale_type = "d"
+  ) +
+  ggplot2::labs(color = NULL)
+
+plot |> print() |> rutils::shush()
+```
+:::
+
+::: footer
+(Created by the author)
+:::
+
+::: {.notes}
+Respondent level by categorical chronotype.
+:::
+
+## (AP) Cohen's Benchmarks {.smaller visibility="uncounted"}
+
+::: {style="padding-top: 15px;"}
+```{r}
+#| echo: false
+
+library(gt)
+library(katex)
+
+dplyr::tibble(
+  test = c(
+    "Comparison of independent means", "Comparison of two correlations",
+    "Difference between proportions", "Correlation", "", "Crosstabulation",
+    "ANOVA", "", "Multiple regression", ""
+  ),
+  relevant_effect_size = c(
+    "$d$, $\\Delta$, Hedges’ $g$", "$q$", "Cohen’s $g$", "$r$", "$r^{2}$",
+    "$w$, $\\varphi$, $V$, $C$", "$f$", "$\\eta^{2}$", "$R^{2}$", "$f^{2}$"
+  ),
+  small = c(.20, .10, .05, .10, .01, .10, .10, .01, .02, .02),
+  medium = c(.50, .30, .15, .30, .09, .30, .25, .06, .13, .15),
+  large = c(.80, .50, .25, .50, .25, .50, .40, .14, .26, .35)
+) |>
+  gt::gt() |>
+  gt::cols_label(
+    test = "Test",
+    relevant_effect_size = "Relevant Effect Size",
+    small = "Small",
+    medium = "Medium",
+    large = "Large"
+  ) |>
+  gt::tab_spanner(
+    label = "Effect Size Classes",
+    columns = c(small, medium, large)
+  ) |>
+  gt::tab_source_note(
+    source_note = gt::md(
+      paste0(
+        "Notes: The rationale for most of these benchmarks can be found ",
+        "in Cohen (1988) at the following pages: Cohen’s $d$ (p. 40), ",
+        "$q$ (p. 115), Cohen’s $g$ (pp. 147–149), $r$ and $r^{2}$ ",
+        "(pp. 79–80), Cohen’s $w$ (pp. 224–227), $f$ and $\\eta^{2}$ ",
+        "(pp. 285–287), $R^{2}$ and $f^{2}$ (pp. 413–414)."
+      )
+    )
+  ) |>
+  gt::fmt_markdown(columns = relevant_effect_size) |>
+  gt::cols_align(
+    align = "center",
+    columns = c(small, medium, large)
+  ) |>
+  gt::tab_style(
+    style = gt::cell_text(weight = "bold"),
+    locations = gt::cells_column_spanners()
+  ) |>
+  gt::tab_style(
+    style = gt::cell_text(weight = "bold"),
+    locations = gt::cells_column_labels(gt::everything())
+  ) |>
+  gt::tab_options(
+    table.font.size = gt::pct(50),
+    table.background.color = "#FEF9F4"
+  )
+```
+:::
+
+::: footer
+(Adapted from @ellis2010. Based on @cohen1988a)
+:::
+
+::: {.notes}
+:::
+
+## (AP) Directions for Fut. Research {.smaller visibility="uncounted"}
+
+WorldClim 2.1 in NetLogo (*NetLogo/Scala-Java*).
+
+![](images/logoclim-figure-1.png){fig-align="center" style="padding-top: 25px; padding-bottom: 25px;"}
+
+::: footer
+(Reproduced from Vartanian et al. (2025, Unpublished))
+:::
+
+::: {.notes}
+:::
+
+## (AP) Popper's Hypothetico-Deductive Method {.smaller visibility="uncounted"}
+
+The activity can be represented by a **general schema of problem- solving by the method of imaginative conjectures and criticism**, or, as I have often called it, by **the method of conjecture and refutation**. The schema (in its simplest form) is this:
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 75px;"}
+```{mermaid}
+%%| fig-width: 6.5
+
+flowchart LR
+  A(P1) --> B(TT)
+  B --> C(EE)
+  C --> D(P2)
+```
+:::
+
+::: {.column style="width: 50%; padding-top: 50px;"}
+```{mermaid}
+%%| fig-width: 4.0
+
+flowchart LR
+  A(P) --> B(TT)
+  B --> C(EE)
+  C --> A
+```
+:::
+::::
+
+::: footer
+(Reproduced from @popper1979a[p. 164])
+:::
+
+::: {.notes}
+:::
+
+## (AP) Popper's Hypothetico-Deductive Method {.smaller visibility="uncounted"}
+
+::: {style="font-size: 0.9em;"}
+Here $\text{P}_1$, is the **problem** from which we start, $\text{TT}$ (the ‘tentative theory’) is the imaginative conjectural solution which we first reach, for example our first **tentative interpretation**. $\text{EE}$ (‘**error- elimination**’) consists of a severe critical examination of our conjecture, our tentative interpretation: it consists, for example, of the critical use of documentary evidence and, if we have at this early stage more than one conjecture at our disposal, it will also consist of a critical discussion and comparative evaluation of the competing conjectures. $\text{P}_2$ is the problem situation as it emerges from our first critical attempt to solve our problems. It leads up to our second attempt (**and so on**).
+:::
+
+```{mermaid}
+%%| fig-width: 6.5
+
+flowchart LR
+  A(P1) --> B(TT)
+  B --> C(EE)
+  C --> D(P2)
+```
+
+::: footer
+(Reproduced from @popper1979a[p. 164])
+:::
+
+::: {.notes}
+:::
+
+## (AP) Popper's Hypothetico-Deductive Method {.smaller visibility="uncounted"}
+
+::: {style="font-size: 0.9em;"}
+The history of ideas teaches us very clearly that ideas emerge in logical or, if the term is preferred, in **dialectical contexts**. My various schemata such as
+:::
+
+```{mermaid}
+%%| fig-width: 6.5
+
+flowchart LR
+  A(P1) --> B(TT)
+  B --> C(EE)
+  C --> D(P2)
+```
+
+::: {style="font-size: 0.9em;"}
+may indeed be looked upon as improvements and rationalizations of the Hegelian dialectical schema: they are rationalizations because they operate entirely within the classical logical organon of rational criticism, which is based upon the so-called law of contradiction; that is to say, upon the demand that contradictions, whenever we discover them, must be eliminated. Critical error-elimination on the scientific level proceeds by way of a **conscious search for contradictions**.
+:::
+
+::: footer
+(Reproduced from @popper1979a[p. 297])
+:::
+
+::: {.notes}
+:::
+
+## (AP) Popper Against Positivism (or the Problem of Induction) {.smaller visibility="uncounted"}
+
+*Notre activité intellectuelle est suffisamment excitée par le pur espoir de découvrir les lois des phénomènes, par le simple **désir de confirmer** ou d'infirmer une théorie. [...] la philosophie positive est le véritable **état définitif** de l'intelligence humaine [...]* [@comte1892, pp. 9-10].
+
+<br>
+
+**Why post-positivist?**
+
+- Anti-inductivist (deduction, satisfactory answers).
+- Anti-verificationist (falsifiability as demarcation criterion).
+- Anti-historicist (rebuttable presumptions).
+
+## (AP) Popper Against Positivism (or the Problem of Induction) {.smaller visibility="uncounted"}
+
+But I shall certainly admit a system as empirical or scientific only if it is capable of being tested by experience. These considerations suggest that **not the _verifiability_ but the _falsifiability_ of a system is to be taken as a criterion of demarcation**. In other words: I shall not require of a scientific system that it shall be capable of being singled out, once and for all, in a positive sense; but I shall require that its logical form shall be such that it can be singled out, by means of empirical tests, in a negative sense: **it must be possible for an empirical scientific system to be refuted by experience**.
+
+::: footer
+(Reproduced from @popper2005a)
+:::
+
+::: {.notes}
+:::
+
+## (AP) Popper Against Positivism (or the Problem of Induction) {.smaller visibility="uncounted"}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px;"}
+Everybody knows nowadays that **logical positivism is dead**. But nobody seems to suspect that there may be a question to be asked here---the question “Who is responsible?” or, rather, the question “Who has done it?”. (Passmore’s excellent historical article does not raise this question.) **I fear that I must admit responsibility**.
+:::
+
+::: {.column style="width: 50%; padding-top: 0px;"}
+![](images/karl-popper-figure-8.jpg){fig-align="center" style="width: 90%; padding-top: 0px;"}
+:::
+::::
+
+::: footer
+(Reproduced from @popper2005)
+:::
+
+::: {.notes}
+:::
+
+## (AP) The 7 Conclusions of Popper on Science {.smaller visibility="uncounted"}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px; font-size: 0.9em;"}
+(@) It is easy to obtain confirmations, or verifications, for nearly every theory---if we look for confirmations.
+(@) Confirmations should count only if they are the result of *risky predictions*; that is to say, if, unenlightened by the theory in question, we should have expected an event which was incompatible with the theory---an event which would have refuted the theory.
+:::
+
+::: {.column style="width: 50%; padding-top: 0px;"}
+![](images/karl-popper-figure-3.jpg){fig-align="center" style="width: 80%; padding-top: 0px;"}
+:::
+::::
+
+::: footer
+(Reproduced from @popper2002)
+:::
+
+::: {.notes}
+:::
+
+## (AP) The 7 Conclusions of Popper on Science {.smaller visibility="uncounted"}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px; font-size: 0.9em;"}
+(@) Every ‘good’ scientific theory is a prohibition: it forbids certain things to happen. The more a theory forbids, the better it is.
+(@) A theory which is not refutable by any conceivable event is nonscientific.
+Irrefutability is not a virtue of a theory (as people often think) but a vice.
+:::
+
+::: {.column style="width: 50%; padding-top: 0px;"}
+![](images/karl-popper-figure-3.jpg){fig-align="center" style="width: 80%; padding-top: 0px;"}
+:::
+::::
+
+::: footer
+(Reproduced from @popper2002)
+:::
+
+::: {.notes}
+:::
+
+## (AP) The 7 Conclusions of Popper on Science {.smaller visibility="uncounted"}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px; font-size: 0.9em;"}
+(@) Every genuine *test* of a theory is an attempt to falsify it, or to refute it.
+Testability is falsifiability; but there are degrees of testability: some theories are more testable, more exposed to refutation, than others; they take, as it were, greater risks.
+(@) Confirming evidence should not count *except when it is the result of a genuine test of the theory*; and this means that it can be presented as a serious but unsuccessful attempt to falsify the theory. (I now speak in such cases of ‘corroborating evidence’).
+:::
+
+::: {.column style="width: 50%; padding-top: 0px;"}
+![](images/karl-popper-figure-3.jpg){fig-align="center" style="width: 80%; padding-top: 0px;"}
+:::
+::::
+
+::: footer
+(Reproduced from @popper2002)
+:::
+
+::: {.notes}
+:::
+
+## (AP) The 7 Conclusions of Popper on Science {.smaller visibility="uncounted"}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px; font-size: 0.9em;"}
+(@) Some genuinely testable theories, when found to be false, are still upheld by their admirers---for example by introducing *ad hoc* some auxiliary assumption, or by re-interpreting the theory *ad hoc* in such a way that it escapes refutation. Such a procedure is always possible, but it rescues the theory from refutation only at the price of destroying, or at least lowering, its scientific status. (I later described such a rescuing operation as a ‘*conventionalist twist*’ or
+a ‘*conventionalist stratagem*’).
+:::
+
+::: {.column style="width: 50%; padding-top: 0px;"}
+![](images/karl-popper-figure-3.jpg){fig-align="center" style="width: 80%; padding-top: 0px;"}
+:::
+::::
+
+::: footer
+(Reproduced from @popper2002)
+:::
+
+::: {.notes}
+:::
+
+## (AP) The 7 Conclusions of Popper on Science {visibility="uncounted"}
+
+:::: {.columns}
+::: {.column style="width: 50%; padding-top: 0px;"}
+One can sum up all this by saying that **_the criterion of the scientific status of a theory is its falsifiability, or refutability, or testability_**.
+:::
+
+::: {.column style="width: 50%; padding-top: 0px;"}
+![](images/karl-popper-figure-3.jpg){fig-align="center" style="width: 80%; padding-top: 0px;"}
+:::
+::::
+
+::: footer
+(Reproduced from @popper2002)
+:::
+
+::: {.notes}
 :::
 <!-- %:::% index end %:::% -->
