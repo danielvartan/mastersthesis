@@ -1,3 +1,4 @@
+# library(checkmate)
 # library(cli)
 # library(here)
 # library(lockr) # github.com/danielvartan/lockr

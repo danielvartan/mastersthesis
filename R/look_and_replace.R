@@ -1,3 +1,4 @@
+# library(checkmate)
 # library(cli)
 # library(dplyr)
 # library(here)
@@ -7,7 +8,7 @@ library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
 
 look_and_replace <- function(
-    x,
+    x, #nolint
     table,
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh/id_rsa.pub"),

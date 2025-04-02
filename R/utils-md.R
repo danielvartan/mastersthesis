@@ -1,5 +1,6 @@
+# library(checkmate)
 # library(here)
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(magrittr)
 # library(yaml)
 
 md_effect_size <- function(
@@ -33,8 +34,9 @@ md_effect_size <- function(
     I()
 }
 
+# library(checkmate)
 # library(here)
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(magrittr)
 # library(yaml)
 
 md_adj_r_squared <- function(
@@ -61,8 +63,9 @@ md_adj_r_squared <- function(
     I()
 }
 
+# library(checkmate)
 # library(here)
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(magrittr)
 # library(yaml)
 
 md_f_test <- function(
@@ -111,7 +114,9 @@ md_f_test <- function(
   }
 }
 
+# library(checkmate)
 # library(here)
+# library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 # library(yaml)
 

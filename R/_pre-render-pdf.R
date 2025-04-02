@@ -1,7 +1,5 @@
 # library(here)
-# library(rutils) # github.com/danielvartan/rutils
-library(sysfonts)
-# library(yaml)
+# library(quartor) # github.com/danielvartan/quartor
 
 # Pre-render begin ----------
 

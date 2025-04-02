@@ -1,3 +1,4 @@
+# library(checkmate)
 # library(cli)
 # library(here)
 # library(lockr) # github.com/danielvartan/lockr
@@ -8,7 +9,7 @@
 # library(stringr)
 
 get_lookup_data <- function(
-    file = NULL,
+    file = NULL, #nolint
     pattern = "lookup-data.rds",
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh", "id_rsa.pub"),

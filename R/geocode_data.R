@@ -1,8 +1,8 @@
+# library(checkmate)
 # library(cli)
 # library(dplyr)
 # library(geobr)
 # library(orbis) # github.com/danielvartan/orbis
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
 
@@ -38,8 +38,8 @@ geocode_data <- function(
     validate_brazil_geocodes(year = year)
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 add_ibge_codes <- function(data) {
   checkmate::assert_tibble(data)
@@ -66,8 +66,8 @@ add_ibge_codes <- function(data) {
     dplyr::relocate(municipality_code, .before = municipality)
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 
 source(here::here("R", "get_geocode_lookup_data.R"))
@@ -115,8 +115,9 @@ validate_postal_codes <- function(
     )
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(orbis) # github.com/danielvartan/orbis
 
 adjust_state_and_municipality_by_postal_code <- function(data) { #nolint
   checkmate::assert_tibble(data)
@@ -159,8 +160,8 @@ adjust_state_and_municipality_by_postal_code <- function(data) { #nolint
     )
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 add_region <- function(data) {
   checkmate::assert_tibble(data)
@@ -170,8 +171,8 @@ add_region <- function(data) {
     dplyr::relocate(region, .after = country)
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 
 source(here::here("R", "get_geocode_lookup_data.R"))
@@ -205,8 +206,8 @@ add_geocode_data_by_postal_code <- function(
     dplyr::relocate(latitude, longitude, .after = postal_code)
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
 
@@ -257,8 +258,8 @@ add_geocode_data_by_municipality <- function( #nolint
     dplyr::select(-dplyr::ends_with("_lookup_data"))
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 remove_invalid_postal_codes <- function(data) {
   checkmate::assert_tibble(data)
@@ -274,9 +275,9 @@ remove_invalid_postal_codes <- function(data) {
     # dplyr::select(-is_postal_code_valid)
 }
 
+# library(checkmate)
 # library(dplyr)
 # library(geobr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 
 validate_brazil_geocodes <- function(data, year = 2017) {

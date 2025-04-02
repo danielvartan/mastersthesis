@@ -1,9 +1,7 @@
+# library(checkmate)
 # library(cli)
 # library(dplyr)
 library(magrittr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(purrr)
-# library(rutils) # github.com/danielvartan/rutils
 # library(tidyr)
 
 source(here::here("R", "get_inpe_data.R"))
@@ -29,8 +27,8 @@ add_solar_data <- function(
     add_sun_time()
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 source(here::here("R", "get_inpe_data.R"))
 
@@ -108,9 +106,9 @@ add_ghi <- function(data, inpe_data = get_inpe_data()) {
   }
 }
 
+# library(checkmate)
 # library(dplyr)
 library(magrittr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(tidyr)
 
 source(here::here("R", "get_time_and_date_data.R"))
@@ -158,8 +156,8 @@ add_equinox_and_solstice <- function(
     )
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(suntools)
 
 add_sun_time <- function(data) {

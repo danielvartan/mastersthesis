@@ -1,8 +1,7 @@
+# library(checkmate)
 # library(dplyr)
-# library(here)
 # library(orbis) # github.com/danielvartan/orbis
 # library(parsnip)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(sidrar)
 

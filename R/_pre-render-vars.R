@@ -1,9 +1,8 @@
-# Load packages -----
-
 # library(dplyr)
-# library(lubritime)
+# library(lubritime) # github.com/danielvartan/lubritime
 library(magrittr)
 library(targets)
+# library(yaml)
 
 # Load variables -----
 

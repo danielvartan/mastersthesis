@@ -1,5 +1,5 @@
+# library(checkmate)
 # library(cli)
-# library(curl)
 # library(dplyr)
 # library(here)
 # library(hms)
@@ -7,18 +7,17 @@
 # library(lubridate)
 # library(methods)
 # library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 # library(tidyr)
 
 source(here::here("R", "get_lookup_data.R"))
 source(here::here("R", "look_and_replace.R"))
 
+# library(checkmate)
 # library(cli)
 # library(here)
 # library(lockr) # github.com/danielvartan/lockr
 # library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
 
 #' Tidy `get_raw_data()` output
 #'
@@ -89,7 +88,7 @@ source(here::here("R", "look_and_replace.R"))
 #' }
 #' }
 tidy_data_ <- function(
-    data,
+    data, #nolint
     osf_pat = Sys.getenv("OSF_PAT"),
     public_key = here::here("_ssh/id_rsa.pub"),
     private_key = here::here("_ssh/id_rsa"),
@@ -119,8 +118,8 @@ tidy_data_ <- function(
     select_vars()
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 fix_col_names <- function(data) {
   checkmate::assert_tibble(data)
@@ -154,9 +153,9 @@ fix_col_names <- function(data) {
     )
 }
 
+# library(checkmate)
 # library(dplyr)
 # library(lubridate)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 fix_var_classes <- function(data) {
   checkmate::assert_tibble(data)
@@ -238,12 +237,12 @@ fix_var_classes <- function(data) {
     )
 }
 
+# library(checkmate)
 # library(dplyr)
 # library(lockr) # github.com/danielvartan/lockr
 # library(methods)
 # library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
-# library(rutils) # github.com/danielvartan/rutils
 
 look_and_replace_values <- function(
     data,
@@ -339,10 +338,8 @@ look_and_replace_values <- function(
   out
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(lockr) # github.com/danielvartan/lockr
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
 # library(stringr)
 
 fix_character_vars <- function(data) {
@@ -365,8 +362,7 @@ fix_character_vars <- function(data) {
     )
 }
 
-# library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(checkmate)
 # library(tidyr)
 
 nest_work_vars <- function(data) {
@@ -382,6 +378,9 @@ nest_work_vars <- function(data) {
       )
     )
 }
+
+# library(checkmate)
+# library(dplyr)
 
 select_vars <- function(data) {
   checkmate::assert_tibble(data)

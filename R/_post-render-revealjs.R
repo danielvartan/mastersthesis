@@ -1,7 +1,4 @@
 # library(here)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
-# library(yaml)
 
 # Post-render begin ----------
 

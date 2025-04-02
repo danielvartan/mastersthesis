@@ -1,6 +1,5 @@
 # library(here)
 # library(lubridate)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(showtext)
 # library(stringr)

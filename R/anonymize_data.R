@@ -1,5 +1,5 @@
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 anonymize_data <- function(data) {
   checkmate::assert_tibble(data)
@@ -9,8 +9,8 @@ anonymize_data <- function(data) {
     remove_sensitive_data()
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 remove_data_identification <- function(data) {
   id_vars <- c("track", "name", "email")
@@ -22,8 +22,8 @@ remove_data_identification <- function(data) {
     dplyr::select(-dplyr::all_of(id_vars))
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 remove_sensitive_data <- function(data) {
   sensible_vars <- c("gender_identity", "sexual_orientation")

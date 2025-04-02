@@ -1,6 +1,6 @@
+# library(checkmate)
 # library(dplyr)
 # library(orbis) # github.com/danielvartan/orbis
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 source(here::here("R", "get_lookup_data.R"))
 source(here::here("R", "get_qualocep_data.R"))

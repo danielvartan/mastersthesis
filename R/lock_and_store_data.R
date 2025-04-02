@@ -1,3 +1,4 @@
+# library(checkmate)
 # library(cli)
 # library(dplyr)
 # library(hardhat)
@@ -34,6 +35,7 @@ lock_and_store_data <- function(
     )
 }
 
+# library(checkmate)
 # library(cli)
 # library(dplyr)
 # library(hardhat)
@@ -107,6 +109,7 @@ lock_data <- function(
   c(rds_file, csv_file)
 }
 
+# library(checkmate)
 # library(cli)
 # library(osfr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
@@ -148,8 +151,8 @@ store_data <- function(
   invisible()
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(purrr)
 # library(tidyr)
 

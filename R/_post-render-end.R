@@ -3,6 +3,7 @@
 # library(here)
 library(magrittr)
 # library(prettycheck) # github.com/danielvartan/prettycheck
+# library(quartor) # github.com/danielvartan/quartor
 # library(readr)
 # library(rutils) # github.com/danielvartan/rutils
 # library(stringr)

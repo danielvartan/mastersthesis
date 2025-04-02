@@ -1,9 +1,9 @@
+# library(checkmate)
 # library(cli)
 # library(dplyr)
 # library(hms)
 # library(lubridate)
 # library(mctq)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 # library(scaler) # github.com/danielvartan/scaler
 

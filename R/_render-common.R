@@ -1,6 +1,5 @@
+# library(fs)
 # library(here)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(rutils) # github.com/danielvartan/rutils
 # library(yaml)
 
 # Set variables -----

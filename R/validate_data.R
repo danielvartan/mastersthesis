@@ -1,3 +1,4 @@
+# library(checkmate)
 # library(cli)
 # library(dplyr)
 # library(here)
@@ -14,6 +15,9 @@
 # library(tidyr)
 
 source(here::here("R", "get_lookup_data.R"))
+
+# library(checkmate)
+# library(cli)
 
 #' Validate `tidy_data()` output
 #'
@@ -73,8 +77,9 @@ validate_data <- function(data) {
     remove_duplicates_and_blanks()
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
+# library(stringr)
 
 rm_test_cases <- function(data) {
   checkmate::assert_tibble(data)
@@ -92,9 +97,9 @@ rm_test_cases <- function(data) {
     )
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
-# library(utils)
+# library(stringr)
 
 source(here::here("R", "get_lookup_data.R"))
 
@@ -102,7 +107,7 @@ source(here::here("R", "get_lookup_data.R"))
 # Example: Cases when a respondent indicated that they were doing a
 # test by including the word "test" in the "name" field.
 
-rm_invalid_cases_detected_manually <- function(data) {
+rm_invalid_cases_detected_manually <- function(data) { #nolint
   checkmate::assert_tibble(data)
 
   cols <-
@@ -124,10 +129,10 @@ rm_invalid_cases_detected_manually <- function(data) {
     )
 }
 
+# library(checkmate)
 # library(dplyr)
 # library(hms)
 # library(lubridate)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 
 na_mctq_blank_cases <- function(data) {
@@ -156,8 +161,8 @@ na_mctq_blank_cases <- function(data) {
     dplyr::select(-dummy)
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(stringr)
 
 validate_emails <- function(data) {
@@ -174,9 +179,9 @@ validate_emails <- function(data) {
     )
 }
 
+# library(checkmate)
 # library(dplyr)
 # library(hms)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(scaler) # github.com/danielvartan/scaler
 
 validate_ranges <- function(data) {
@@ -227,8 +232,8 @@ validate_ranges <- function(data) {
     )
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(purrr)
 library(rlang)
 # library(stringr)
@@ -315,10 +320,10 @@ validate_work_study <- function(data){
     )
 }
 
+# library(checkmate)
 # library(dplyr)
 # library(lubridate)
 # library(lubritime) # github.com/danielvartan/lubritime
-# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 
 fix_bt_sprep_inversion <- function(data) {
@@ -354,10 +359,10 @@ fix_bt_sprep_inversion <- function(data) {
   out
 }
 
+# library(checkmate)
 # library(dplyr)
 # library(lubridate)
 # library(mctq)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 library(rlang)
 # library(rutils) # github.com/danielvartan/rutils
 
@@ -396,10 +401,10 @@ validate_sdu <- function(data) {
   out
 }
 
+# library(checkmate)
 # library(dplyr)
 # library(hms)
 # library(mctq)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 # library(rutils) # github.com/danielvartan/rutils
 
 validate_so <- function(data) {
@@ -425,8 +430,8 @@ validate_so <- function(data) {
     dplyr::select(-so_w, -so_f, -dummy)
 }
 
+# library(checkmate)
 # library(dplyr)
-# library(prettycheck) # github.com/danielvartan/prettycheck
 
 remove_duplicates_and_blanks <- function(data) {
   checkmate::assert_tibble(data)
