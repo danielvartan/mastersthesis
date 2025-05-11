@@ -93,7 +93,7 @@ Vartanian, D. (n.d.). *{entrainment}: A rule-based model of the 24h light/dark c
 
 <!-- @vartanianh -->
 
-Vartanian, D[^sm-10-1]. (n.d.). *{mctq}: Munich ChronoType Questionnaire (MCTQ) tools* [Computer software, R package]. <https://docs.ropensci.org/mctq> (The package has already surpassed [9,000 downloads](https://danielvartan.shinyapps.io/cran-logs/?package=mctq))
+Vartanian, D[^sm-10-1]. (n.d.). *{mctq}: Munich ChronoType Questionnaire (MCTQ) tools* [Computer software, R package]. <https://docs.ropensci.org/mctq>
 
 <!-- @vartanianr -->
 

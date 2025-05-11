@@ -507,7 +507,9 @@ weighted_data |>
   plotr:::plot_brazil_state(
     col_fill = "msf_sc",
     year = 2017,
-    breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
+    breaks =
+      seq(limits[1], limits[2], length.out = 6) |>
+      groomr::remove_caps(),
     labels = plotr:::format_as_hm,
     limits = limits, # !!!
     quiet = TRUE,
@@ -962,7 +964,9 @@ weighted_data |>
   plotr:::plot_brazil_municipality(
     col_fill = "msf_sc",
     year = 2017,
-    breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
+    breaks =
+      seq(limits[1], limits[2], length.out = 6) |>
+      groomr::remove_caps(),
     labels = plotr:::format_as_hm,
     limits = limits,
     quiet = TRUE

@@ -16,7 +16,7 @@ All analyses presented in this document are fully reproducible and were conducte
 
 [![](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/){fig-align="left"}
 
-This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). This means you are free to share and adapt it for any purpose, including commercial use, as long as you provide appropriate credit, link to the license, and indicate any changes made..
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). This means you are free to share and adapt it for any purpose, including commercial use, as long as you provide appropriate credit, link to the license, and indicate any changes made.
 
 ## Citation {.unnumbered}
 

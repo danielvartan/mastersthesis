@@ -1144,7 +1144,7 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \@ifundefined{codebgcolor}{\definecolor{codebgcolor}{HTML}{F1F3F5}}{}
 \makeatother
 \makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, boxrule=0pt, breakable, colback={codebgcolor}]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, colback={codebgcolor}, enhanced, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, sharp corners, frame hidden]}{\end{tcolorbox}}\fi
 \makeatother
 
 % -----
@@ -1188,8 +1188,6 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 \hyphenpenalty=100000
 %:::% cataloging-record body begin %:::%
 I authorize the full or partial reproduction of this work by any conventional or electronic means for the purposes of study and research, provided that the source is cited.
-\small
-
 
 \vfill
 \begin{center}
@@ -1395,9 +1393,9 @@ spring week (October 15--21, 2017), minimizing seasonal variations in
 photoperiod across regions. The analysis employed nested regression
 models weighted according to population proportions at the time of data
 collection. Contrary to expectations, results revealed no meaningful
-relationship between latitude and chronotype (Cohen's \(f^2 = 0.00308\),
-\(95\% \ \text{CI}[0, 0.01214]\)), consistent with recent findings in
-the field. All analytical procedures, from raw data processing through
+relationship between latitude and chronotype (Cohen's \(f^2 = 0.00314\),
+\(95\% \ \text{CI}[0, 0.0122]\)), consistent with recent findings in the
+field. All analytical procedures, from raw data processing through
 effect size estimation, were conducted using reproducible methods. These
 findings contribute to our evidence-based understanding of circadian
 rhythm regulation while challenging established assumptions in
@@ -1449,17 +1447,16 @@ sazonais no fotoperíodo entre as regiões. A análise empregou modelos de
 regressão aninhados ponderados de acordo com as proporções populacionais
 no momento da coleta. Contrariando as expectativas, os resultados não
 indicaram uma relação significativa entre latitude e cronotipo (\(f^2\)
-de Cohen \(= 0,00308\), \(95\% \ \text{IC}[0; 0,01214]\)), em
-consonância com achados recentes da área. Todos os procedimentos
-analíticos, desde os dados brutos até a estimativa do tamanho do efeito,
-foram conduzidos por meio de métodos totalmente reprodutíveis. Esses
-achados contribuem para uma compreensão baseada em evidências da
-regulação dos ritmos circadianos, ao mesmo tempo que desafiam
-pressupostos estabelecidos na pesquisa em cronobiologia. Ainda que este
-estudo não refute completamente a hipótese, a associação entre latitude
-e cronotipo deve permanecer uma questão científica em aberto, em vez de
-ser considerada um conhecimento consolidado, até que evidências robustas
-a confirmem.
+de Cohen \(= 0,00314\), \(95\% \ \text{IC}[0; 0,0122]\)), em consonância
+com achados recentes da área. Todos os procedimentos analíticos, desde
+os dados brutos até a estimativa do tamanho do efeito, foram conduzidos
+por meio de métodos totalmente reprodutíveis. Esses achados contribuem
+para uma compreensão baseada em evidências da regulação dos ritmos
+circadianos, ao mesmo tempo que desafiam pressupostos estabelecidos na
+pesquisa em cronobiologia. Ainda que este estudo não refute
+completamente a hipótese, a associação entre latitude e cronotipo deve
+permanecer uma questão científica em aberto, em vez de ser considerada
+um conhecimento consolidado, até que evidências robustas a confirmem.
 
 %:::% foreign-abstract body end %:::%
 
@@ -2256,17 +2253,17 @@ Two tests were conducted, both starting with the same restricted model,
 which included age, sex, longitude, and the average monthly Global
 Horizontal Irradiance (GHI) at the time of questionnaire completion as
 predictors (\(\text{R}^2_{\text{adj}} = 0.08517\),
-\(\text{F}(4, 65818) = 1531.808\), \(p\text{-value} < 1e-05\)).
+\(\text{F}(4, 65818) = 1531.829\), \(p\text{-value} < 1e-05\)).
 
 The first full model (\textbf{A}) added the average annual GHI and
 daylight duration for the nearest March equinox, as well as the June and
 December solstices, as proxies for latitude, following the methods of
 \textcite{leocadio-miguel2017} (\(\text{R}^2_{\text{adj}} = 0.08803\),
-\(\text{F}(8, 65814) = 794.12\), \(p\text{-value} < 1e-05\)).
+\(\text{F}(8, 65814) = 794.119\), \(p\text{-value} < 1e-05\)).
 
 The second full model (\textbf{B}) included only latitude as an
 additional predictor (\(\text{R}^2_{\text{adj}} = 0.08568\),
-\(\text{F}(5, 65817) = 1233.588\), \(p\text{-value} < 1e-05\)).
+\(\text{F}(5, 65817) = 1233.601\), \(p\text{-value} < 1e-05\)).
 
 All coefficients were statistically significant
 (\(p\text{-value} < 0.05\)). Assumption checking and residual
@@ -2278,12 +2275,13 @@ detected among the predictor variables.
 
 An ANOVA for nested models revealed a significant reduction in the
 residual sum of squares in both tests (\textbf{A},
-\(\text{F}(4, 65814) = 51.71\), \(p\text{-value} < 1e-05\)) (\textbf{B},
-\(\text{F}(1, 65817) = 37.325\), \(p\text{-value} < 1e-05\)). However,
-similarly to \textcite{leocadio-miguel2017}, when estimating Cohen's
-\(f^2\) effect size, the results were below the MES (i.e., negligible)
-(\textbf{A}, \(f^2 = 0.00314, 95\% \ \text{CI}[0, 0.0122]\))
-(\textbf{B}, \(f^2 = 0.00057, 95\% \ \text{CI}[0, 0.00954]\)).
+\(\text{F}(4, 65814) = 51.691\), \(p\text{-value} < 1e-05\))
+(\textbf{B}, \(\text{F}(1, 65817) = 37.312\),
+\(p\text{-value} < 1e-05\)). However, similarly to
+\textcite{leocadio-miguel2017}, when estimating Cohen's \(f^2\) effect
+size, the results were below the MES (i.e., negligible) (\textbf{A},
+\(f^2 = 0.00314, 95\% \ \text{CI}[0, 0.0122]\)) (\textbf{B},
+\(f^2 = 0.00057, 95\% \ \text{CI}[0, 0.00954]\)).
 
 \section{Discussion}\label{discussion}
 
@@ -2712,12 +2710,12 @@ chronotype, found no evidence supporting the latitude hypothesis in
 humans.
 
 Current evidence does not support the latitude hypothesis, and some
-claims made in its favor warrant further examination (see Supplemental
-Materials). Nevertheless, the hypothesis is often cited in chronobiology
-research as if it were well-established. While this study does not
-definitively refute it, the relationship between latitude and chronotype
-should remain an open scientific question until strong evidence
-substantiates it.
+claims made in its favor warrant further examination (See the
+Supplementary Materials to learn more). Nevertheless, the hypothesis is
+often cited in chronobiology research as if it were well-established.
+While this study does not definitively refute it, the relationship
+between latitude and chronotype should remain an open scientific
+question until strong evidence substantiates it.
 
 \section{Strengths}\label{strengths}
 

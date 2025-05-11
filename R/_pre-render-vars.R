@@ -105,7 +105,8 @@ quartor:::write_in_results_yml(
     pr_tidy_data_per_nrow_2017_10_15_21 = pr_tidy_data_per_nrow_2017_10_15_21,
     pr_weighted_data_male_per = pr_weighted_data_male_per,
     pr_weighted_data_female_per = pr_weighted_data_female_per,
-    pr_analysis_sample_per_nrow_2017_10_15 = pr_analysis_sample_per_nrow_2017_10_15,
+    pr_analysis_sample_per_nrow_2017_10_15 =
+      pr_analysis_sample_per_nrow_2017_10_15,
     final_effect_size = final_effect_size
   )
 )

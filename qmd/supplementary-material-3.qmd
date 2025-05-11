@@ -1392,7 +1392,9 @@ weighted_data |>
   plotr:::plot_brazil_state(
     col_fill = "msf_sc",
     year = 2017,
-    breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
+    breaks =
+      seq(limits[1], limits[2], length.out = 6) |>
+      groomr::remove_caps(),
     labels = plotr:::format_as_hm,
     limits = limits, # !!!
     quiet = TRUE
@@ -1429,7 +1431,9 @@ weighted_data |>
   plotr:::plot_brazil_municipality(
     col_fill = "msf_sc",
     year = 2017,
-    breaks = seq(limits[1], limits[2], length.out = 6) |> groomr::rm_caps(),
+    breaks =
+      seq(limits[1], limits[2], length.out = 6) |>
+      groomr::remove_caps(),
     labels = plotr:::format_as_hm,
     limits = limits,
     quiet = TRUE,
@@ -1458,11 +1462,7 @@ plot <-
     scale_type = "discrete",
     print = FALSE
   ) +
-  ggplot2::labs(color = NULL) +
-  ggplot2::theme(
-    legend.position = "inside",
-    legend.position.inside = c(0.825, 0.2)
-  )
+  ggplot2::labs(color = NULL)
 
 plot |> print() |> rutils::shush()
 ```

@@ -107,6 +107,7 @@ env_vars |> yaml::write_yaml(env_vars_file_path)
 
 source(here::here("R", "_pre-render-vars.R"))
 
+# This was commented out to ensure reproducibility of the results.
 # Scan Quarto files for citations and add them to references.bib -----
 
 ## Uncheck the option "Apply title-casing to titles" in Zotero Better BibTeX
@@ -121,11 +122,11 @@ quarto_yml_pdf_vars <- yaml::read_yaml(quarto_yml_pdf_path)
 # <https://github.com/paleolimbot/rbbt/issues/47>). If not, install `rbbt`
 # from @wmoldham fork `renv::install("wmoldham/rbbt")`.
 
-if (isTRUE(quarto_yml_pdf_vars$format$`abnt-pdf`$zotero)) {
-  quartor:::bbt_write_quarto_bib(
-    bib_file = "references.bib",
-    dir = c("", "qmd", "tex"),
-    pattern = c("\\.qmd$|\\.tex$"),
-    wd = here::here()
-  )
-}
+# if (isTRUE(quarto_yml_pdf_vars$format$`abnt-pdf`$zotero)) {
+#   quartor:::bbt_write_quarto_bib(
+#     bib_file = "references.bib",
+#     dir = c("", "qmd", "tex"),
+#     pattern = c("\\.qmd$|\\.tex$"),
+#     wd = here::here()
+#   )
+# }
