@@ -1,3 +1,4 @@
+source("renv/activate.R")
 # Set session ID -----
 
 session_id <- Sys.time() |> as.character()
@@ -103,7 +104,7 @@ rprofile_message <- function(
 
 # Activate `renv` -----
 
-source(here::here("renv", "activate.R"))
+# source(here::here("renv", "activate.R"))
 
 # Assert required packages -----
 

@@ -10,11 +10,6 @@ library(magrittr)
 
 # Copy output to `docs` folder -----
 
-# TO DO
-#
-# - Create a function in `rutils` to delete all files and dirs from a
-#   folder.
-
 env_vars <- yaml::read_yaml(env_vars_file_path)
 
 output_dir_files <- list.files(

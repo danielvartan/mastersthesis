@@ -1,4 +1,4 @@
-# {abnt} config file
+# {abnt} Config File
 
 Use this quarto document to change your thesis pre-textual sections in the PDF format.
 
@@ -6,7 +6,7 @@ Use this quarto document to change your thesis pre-textual sections in the PDF f
 
 Some general instructions:
 
-* If you won't use a section of this document, remove it! Empty sections will produce an error. At the moment, you also need to remove them in the `tex/include-before-body.tex` file and `R/_pre-render-pdf.R`.
+- If you won't use a section of this document, remove it! Empty sections will produce an error. At the moment, you also need to remove them in the `tex/include-before-body.tex` file and `R/_pre-render-pdf.R`.
 
 ## Title page
 
@@ -24,8 +24,6 @@ Supervisor: Prof. Dr. {\imprimirorientador}
 
 <!-- %:::% cataloging-record body begin %:::% -->
 I authorize the full or partial reproduction of this work by any conventional or electronic means for the purposes of study and research, provided that the source is cited.
-\small
-
 
 \vfill
 \begin{center}

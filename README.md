@@ -3,20 +3,17 @@
 <!-- quarto render --profile gfm -->
 
 <!-- badges: start -->
-[![Project Status: Active – The project has reached a stable, usable
+[![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![OSF
-DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/YGKTS-1284C5.svg)](https://doi.org/10.17605/OSF.IO/YGKTS)
+[![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/YGKTS-1284C5.svg)](https://doi.org/10.17605/OSF.IO/YGKTS)
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green.png)](https://opensource.org/license/mit)
+MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![License: CC BY
-4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+4.0](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 <!-- badges: end -->
 
 ## Overview
-
-☀️🌙⏰🛌💤🌍🗺️🧭📅🧬🧠🕰️📊📓
 
 This repository contains the [Quarto
 book](https://quarto.org/docs/books/) of my Master’s Thesis: *Is
@@ -101,9 +98,9 @@ all necessary approvals for their research proposal.
 ## License
 
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green.png)](https://opensource.org/license/mit)
+MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![License: CC BY
-4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+4.0](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 The code accompanying this thesis is distributed under the [MIT
 License](https://opensource.org/license/mit). All documents are released
@@ -172,7 +169,7 @@ A BibTeX entry for LaTeX users is:
     <td width="70%">
       <p>
         This study was financed by the Coordenação de Aperfeiçoamento de 
-        Pessoal de Nível Superior - Brazil (<a href="https://orcid.org/0000-0001-6783-6695">CAPES</a>) - Finance Code 001, Grant Number 88887.703720/2022-00.
+        Pessoal de Nível Superior - Brazil (<a href="https://www.gov.br/capes/">CAPES</a>) - Finance Code 001, Grant Number 88887.703720/2022-00.
       </p>
     </td>
   </tr>

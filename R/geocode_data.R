@@ -9,10 +9,10 @@
 source(here::here("R", "get_geocode_lookup_data.R"))
 
 geocode_data <- function(
-    data, #nolint
-    year = 2017,
-    geocode_lookup_data = get_geocode_lookup_data()
-  ) {
+  data,
+  year = 2017,
+  geocode_lookup_data = get_geocode_lookup_data()
+) {
   geo_vars <- c("country", "state", "municipality", "postal_code")
 
   checkmate::assert_tibble(data)
@@ -73,9 +73,9 @@ add_ibge_codes <- function(data) {
 source(here::here("R", "get_geocode_lookup_data.R"))
 
 validate_postal_codes <- function(
-    data,
-    geocode_lookup_data = get_geocode_lookup_data()
-  ) {
+  data,
+  geocode_lookup_data = get_geocode_lookup_data()
+) {
   checkmate::assert_tibble(data)
   checkmate::assert_tibble(geocode_lookup_data)
 
@@ -177,7 +177,7 @@ add_region <- function(data) {
 
 source(here::here("R", "get_geocode_lookup_data.R"))
 
-add_geocode_data_by_postal_code <- function(
+add_geocode_data_by_postal_code <- function( #nolint
     data, #nolint
     geocode_lookup_data = get_geocode_lookup_data()
   ) {

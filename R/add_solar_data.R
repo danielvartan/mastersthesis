@@ -8,10 +8,10 @@ source(here::here("R", "get_inpe_data.R"))
 source(here::here("R", "get_time_and_date_data.R"))
 
 add_solar_data <- function(
-    data,
-    inpe_data = get_inpe_data(),
-    time_and_date_data = get_time_and_date_data()
-  ) {
+  data,
+  inpe_data = get_inpe_data(),
+  time_and_date_data = get_time_and_date_data()
+) {
   assertion_vars <- c("timestamp", "latitude", "longitude")
 
   checkmate::assert_tibble(data)
@@ -114,9 +114,9 @@ library(magrittr)
 source(here::here("R", "get_time_and_date_data.R"))
 
 add_equinox_and_solstice <- function(
-    data,
-    time_and_date_data = get_time_and_date_data()
-  ) {
+  data,
+  time_and_date_data = get_time_and_date_data()
+) {
   checkmate::assert_tibble(data)
   checkmate::assert_tibble(time_and_date_data)
 
@@ -173,10 +173,13 @@ add_sun_time <- function(data) {
           )
         ),
         .fns = ~ suntools::sunriset(
+          # These set of coordinates (Royal Observatory in Greenwich, London)
+          # are used as placeholders for dealing with missing values.
+          # They are removed in the next step.
           matrix(
             c(
-              longitude |> tidyr::replace_na(51.48208), # Placeholder
-              latitude |> tidyr::replace_na(-0.0045417) # Placeholder
+              longitude |> tidyr::replace_na(-0.0045417), # Placeholder
+              latitude |> tidyr::replace_na(51.48208) # Placeholder
             ),
             nrow = dplyr::n()
           ),
@@ -197,8 +200,8 @@ add_sun_time <- function(data) {
         .fns = ~ suntools::sunriset(
           matrix(
             c(
-              longitude |> tidyr::replace_na(51.48208), # Placeholder
-              latitude |> tidyr::replace_na(-0.0045417) # Placeholder
+              longitude |> tidyr::replace_na(-0.0045417), # Placeholder
+              latitude |> tidyr::replace_na(51.48208) # Placeholder
             ),
             nrow = dplyr::n()
           ),
@@ -211,10 +214,10 @@ add_sun_time <- function(data) {
       ),
       dplyr::across(
         .cols = dplyr::matches("_sunrise$|_sunset$"),
-        .fns = ~ dplyr::if_else(
-          is.na(latitude) | is.na(longitude),
-          NA,
-          .x
+        .fns = ~ dplyr::case_when(
+          is.na(latitude) | is.na(longitude) ~ NA,
+          latitude > 6 | longitude > -29 ~ NA, # Top-right corner of Brazil
+          TRUE ~ .x
         )
       )
     ) |>

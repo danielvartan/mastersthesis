@@ -1,8 +1,5 @@
 /*-- scss:defaults --*/
 
-// See: <https://quarto.org/docs/output-formats/html-themes.htm>.
-// See: <https://quarto.org/docs/authoring/brand.html>.
-
 $content-padding-top: 1.25rem;
 
 $callout-color-note: #EA7701;
@@ -40,10 +37,6 @@ div.sidebar-item-container .active {
 div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, div.sidebar-item-container .sidebar-link>code {
   color: $primary;
 }
-
-// #quarto-margin-sidebar.sidebar.margin-sidebar {
-//   margin-top: 1.25rem
-// }
 
 /* Headings ----- */
 

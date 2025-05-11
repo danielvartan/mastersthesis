@@ -27,7 +27,7 @@
 # targets::tar_outdated()
 # data <- targets::tar_read(geocoded_data)
 
-# # Quarto (see <https://quarto.org/docs/projects/quarto-projects.html>)
+# # Quarto
 #
 # source(here::here("R", "_pre-render-pdf.R"))
 # source(here::here("R", "_pre-render-html.R"))

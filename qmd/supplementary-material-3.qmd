@@ -1438,7 +1438,8 @@ weighted_data |>
 ```
 
 ```{r}
-weighted_data |>
+plot <-
+  weighted_data |>
   dplyr::mutate(
     msf_sc_category = plotr:::categorize_msf_sc(msf_sc),
     msf_sc_category = factor(
@@ -1454,8 +1455,16 @@ weighted_data |>
   plotr:::plot_brazil_point(
     col_group = "msf_sc_category",
     year = 2017,
-    scale_type = "discrete"
+    scale_type = "discrete",
+    print = FALSE
+  ) +
+  ggplot2::labs(color = NULL) +
+  ggplot2::theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.825, 0.2)
   )
+
+plot |> print() |> rutils::shush()
 ```
 
 ::: {#fig-sm-3-as-chronotype-geographical-distribution-by-respondent}

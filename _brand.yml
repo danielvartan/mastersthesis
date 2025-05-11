@@ -1,8 +1,3 @@
-# For detailed documentation on the format, refer to:
-#
-# - https://posit-dev.github.io/brand-yml
-# - https://quarto.org/docs/authoring/brand.html
-
 meta:
   name:
     short: Is Latitude Associated with Chronotype?
@@ -24,14 +19,6 @@ logo:
       path: images/og-image.png
       alt: "Open Graph Image"
 
-# For a better visualization of the color palette, see:
-#
-# - https://coolors.co/user/palettes/67527c62131790000b4c03d7
-# - https://www.color-name.com/hex/ea7701
-# - https://www.pantone.com/articles/case-studies/colors-of-ticino
-# - https://colori.ticino.ch/en/pantone/lugano-sunset-orange
-# - https://www.ticino.ch/en/travel-inspirations/top-5-sunsets.html
-
 color:
   palette:
     orange: "#EA7701" # PANTONE Lugano Sunset Orange
@@ -47,7 +34,6 @@ color:
     gray: "#4F5556"
     black: "#142A32"
     black-725: "#7D898E" # brandr::get_brand_color_tint(725, "black")
-
   background: orange-980
   primary: orange
   secondary: black

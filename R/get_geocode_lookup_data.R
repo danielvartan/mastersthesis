@@ -10,7 +10,8 @@ get_geocode_lookup_data <- function() {
   qualocep_data <- get_qualocep_data()
 
   geocode_data <-
-    lookup_data$geocodes |>
+    lookup_data |>
+    magrittr::extract2("geocodes") |>
     dplyr::select(-dplyr::all_of(c("timestamp", "region", "source"))) |>
     dplyr::mutate(
       street_type = NA,

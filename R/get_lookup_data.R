@@ -9,13 +9,13 @@
 # library(stringr)
 
 get_lookup_data <- function(
-    file = NULL, #nolint
-    pattern = "lookup-data.rds",
-    osf_pat = Sys.getenv("OSF_PAT"),
-    public_key = here::here("_ssh", "id_rsa.pub"),
-    private_key = here::here("_ssh", "id_rsa"),
-    password = Sys.getenv("MASTERSTHESIS_PASSWORD")
-  ) {
+  file = NULL,
+  pattern = "lookup-data.rds",
+  osf_pat = Sys.getenv("OSF_PAT"),
+  public_key = here::here("_ssh", "id_rsa.pub"),
+  private_key = here::here("_ssh", "id_rsa"),
+  password = Sys.getenv("MASTERSTHESIS_PASSWORD")
+) {
   checkmate::assert_string(file, null.ok = TRUE)
   checkmate::assert_string(pattern)
   checkmate::assert_string(osf_pat, n.chars = 70)

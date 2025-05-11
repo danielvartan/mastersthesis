@@ -9,8 +9,8 @@
 # library(stringr)
 
 # This dataset is derived from the 2017 Solarimetric Atlas of Brazil, developed
-# by the Laboratory for Modeling and Studies of Renewable Energy Resources (LABREN)
-# at the National Institute for Space Research (INPE). See
+# by the Laboratory for Modeling and Studies of Renewable Energy Resources
+# (LABREN) at the National Institute for Space Research (INPE). See
 # <https://labren.ccst.inpe.br/atlas_2017.html> to learn more.
 
 get_inpe_data <- function(
