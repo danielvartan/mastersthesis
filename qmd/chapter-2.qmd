@@ -33,7 +33,7 @@ Despite the endogenous nature of these rhythms, they can still be regulated by t
 Illustration of a circadian rhythm entrained (Phase-advanced, indicated by a leftward shift) by a zeitgeber (Input).
 :::
 
-The expression of this temporal organization varies among organisms, even within the same species (@duffy2011a; @silverio2024). These variations can be attributed to differences in how organisms experience their environment or to differences in their endogenous rhythmicity, a characteristic ultimately influenced by gene expression [@roenneberg2007a]. The interplay between environmental influences and genetic predisposition results in an observable characteristic: the phenotype [@frommlet2016a].
+The expression of this temporal organization varies among organisms, even within the same species [@duffy2011a; @silverio2024]. These variations can be attributed to differences in how organisms experience their environment or to differences in their endogenous rhythmicity, a characteristic ultimately influenced by gene expression [@roenneberg2007a]. The interplay between environmental influences and genetic predisposition results in an observable characteristic: the phenotype [@frommlet2016a].
 
 The various temporal characteristics of an organism can be linked to different oscillatory periods. Among these are circadian phenotypes, which refer to characteristics observed in rhythms with periods lasting about a day [@foster2005a]. Another term used for these temporal phenotypes, as the name suggests, is *chronotype* [@ehret1974a; @pittendrigh1993]. This term is also often used to differentiate phenotypes on a spectrum ranging from morningness to eveningness [@horne1976; @roenneberg2019b].
 
